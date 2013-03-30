@@ -3,13 +3,11 @@
 	text-align:center;
 	}
 	
-.login-deck .headline {
-	float:left;
-	text-align:left;
-	display:inline-block;
-	font-weight: 600;	
-	background:rgba(0,0,0,.8);
-	padding:.3em .8em;
+.login-deck .logo {
+	height:106px;
+	overflow:hidden;
+	text-indent:-999px;
+	background:#333745 url(../img/logo.png) no-repeat center center;
 	color:#fff;
 	cursor:pointer;
 	margin-top:0;
@@ -21,9 +19,8 @@
 .login-deck .headline:hover {
 	background:rgba(43,86,155,.8);
 	}
-	
 
-.login-deck .login-content {
+.modal-store {
 	background:#fff;
 	max-width:650px;
 	top:50%;
@@ -31,17 +28,16 @@
 	left:50%;
 	margin:-150px -315px 0;
 	padding:4em;
-	overflow:hidden;
 	color:#333;
 	text-align:left;
-	border-radius:5px;
+	_border-radius:5px;
 	border:1px solid #ccc;
+	box-shadow:0 0 0 6px rgba(88,165,230,.3);
 	
-	-vendor-animation-duration: 3s;
+	-vendor-animation-duration: 1s;
     animation-delay:1s;
 	-webkit-animation-delay:1s; /* Safari and Chrome */
 	}
-	
 
 .login-deck label {
 	font-size:16px;
@@ -63,15 +59,6 @@
 .row-dm {
 	margin-bottom:15px;
 	text-shadow:1px 0 1px #000;
-	}
-	
-.login-content .bttn {
-	font-size:16px;
-	height:34px;
-	line-height:32px;
-	letter-spacing:1px;
-	padding:0 14px;	
-	font-family: 'Open Sans', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 	}
 	
 .form-login {
@@ -136,3 +123,98 @@
 	background:url(../img/git-signup.png) no-repeat;
 	color:#000;
 	}
+	
+	
+/*Set up account*/
+.setup-account {
+	padding:3em 3em 2em;
+	display:none;
+	margin:-150px -260px 0;
+	
+	-vendor-animation-duration: 0.5s;
+    animation-delay:0.5s;
+	-webkit-animation-delay:0.5s; /* Safari and Chrome */
+	}
+.setup-account h2 {
+	margin-bottom:1em;
+	}
+	
+.tern-on-social {
+	padding:0 .5em 0 50px;
+	margin:0 0.5em;
+	line-height:50px;
+	font-size:20px;
+	font-family: 'Open Sans', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	opacity:.6;
+	cursor:pointer;
+	float:left;
+	white-space:nowrap;
+	}
+
+.git-soc {
+	background:url(../img/github.png) no-repeat 0 0;
+	border:1px solid #000;
+	box-shadow:0 2px 0 2px #000;
+	color:#000;
+	}
+.git-soc-on,
+.git-soc:hover {
+	background:#000 url(../img/github-on.png) no-repeat 0 0;
+	color:#fff;
+	}
+.tw-soc {
+	background:url(../img/twitter.png) no-repeat 0 0;
+	border:1px solid #00aced;
+	box-shadow:0 2px 0 2px #00aced;
+	color:#00aced;
+}
+.tw-soc:hover,
+.tw-soc-on:hover {
+	background:#00aced url(../img/twitter-on.png) no-repeat 0 0;
+	color:#fff;
+	}
+
+.fb-soc {
+	background:url(../img/facebook.png) no-repeat 0 0;
+	border:1px solid #425d9b;
+	box-shadow:0 2px 0 2px #425d9b;
+	color:#425d9b;
+	}
+.fb-soc:hover,
+.fb-soc-on:hover {
+	background:#425d9b url(../img/facebook-on.png) no-repeat 0 0;
+	color:#fff;
+	}
+		
+.tern-on-social:hover {
+	opacity:1;
+	}
+	
+.turn-on-s {
+	margin:0 0 15px;
+	font-size:14px;
+	border-bottom:1px solid #eee;
+	padding:0 0 8px;
+	overflow:hidden;
+	}
+.turn-on-s .icon-ok {
+	display:none;
+	}
+.turn-on-s.active span {
+	color:#000;
+	}
+	.turn-on-s span {
+		color:#ccc;
+		}
+.turn-on-s.active .icon-ok {
+	display:inline-block;
+	}
+	
+.ui-toggle-switch,
+.start-app {
+	float:right;
+	}
+
+.start-app {
+	margin:8px 0 0;} 
+	

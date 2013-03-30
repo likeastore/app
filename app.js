@@ -4,14 +4,15 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
 var everyauth = require('everyauth');
 var auth = require('./src/modules/auth.js')(everyauth);
-var handshaking = require('./src/handshaking.js');
+var handshake = require('./src/api/handshake.js');
+var github = require('./src/api/connector/github.js');
 
+var routes = require('./routes')(everyauth);
 var app = express();
 
 app.configure(function(){
@@ -34,8 +35,10 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/setup', routes.setup);
 
-handshaking(auth);
+handshake(app);
+github(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

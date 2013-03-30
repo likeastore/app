@@ -26,9 +26,11 @@ function auth(everyauth) {
 		.consumerKey('dgwuxgGb07ymueGJF0ug')
 		.consumerSecret('eusoZYiUldYqtI2SwK9MJNbiygCWOp9lQX7i5gnpWU')
 		.findOrCreateUser( function (sess, accessToken, accessSecret, twitUser) {
+			var promise = this.Promise();
 			console.log('everyauth: twitter-findOrCreateUser');
 			emitter.emit('auth:twitter:connected', {token: accessToken});
-			return this.Promise().fulfill(twitUser);
+			users.findOrCreateUser(twitUser, promise);
+			return promise;
 		})
 		.redirectPath('/');
 

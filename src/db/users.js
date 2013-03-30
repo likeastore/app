@@ -9,7 +9,7 @@ function findOrCreateUser (user, promise) {
 		}
 
 		if (docs.length > 0) {
-			var existing = doc[0].value;
+			var existing = docs[0].value;
 			console.info('User exists');
 			promise.fulfill(existing);
 		} else {

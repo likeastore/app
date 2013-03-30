@@ -1,16 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <title>Setup</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Turn on github</h1>
-    <form action="/auth/github" method="POST">
-    	<button type="submit">Turn on</button>
-    </form>
+<head>
+<meta charset="utf-8">
+<title>Like a store</title>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,800,700,400italic|PT+Serif:400,400italic" />
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap-responsive.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/kiandra/jquery-ui.css">
+<link rel="stylesheet" href="css/jquery-ui.toggleSwitch.css">
+<script src="js/modernizr-2.0.6.min.js"></script>
+</head>
 
-    <a href="/auth/github">Turn on github</a>
-    <a href="/auth/twitter">Turn on twitter</a>
-  </body>
+<body>
+<div class="login-deck">
+  <h1 class="logo"></h1>   
+        <div class="modal-store setup-account">
+      <h2>Turn on your social networks</h2>
+        <div class="turn-on-s">
+          <i class="icon-ok"></i>
+          <span>Turn on Facebook </span>
+          <input type="checkbox" data-type="facebook"/>
+        </div>
+        <div class="turn-on-s">
+        <i class="icon-ok"></i>
+          <span>Turn on Twitter</span>
+          <input type="checkbox" data-type="twitter"/>
+        </div>
+        <div class="turn-on-s">
+        <i class="icon-ok"></i>
+          <span>Turn on Github</span>
+          <input type="checkbox" data-type="github"/>
+         </div>
+         
+         <button class="btn start-app">Start <i class="icon-chevron-right"></i></button>
+        
+    </div>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script src="js/jquery-ui.toggleSwitch.js"></script>
+<script src="js/custom.js"></script>
+<script>
+  $(document).ready(function() { 
+    $('.setup-account').show().addClass('animated fadeInDown');
+
+    $('.selector').select(function () {
+      console.log('changed');
+    });
+
+    $('input:checkbox').change(function () {
+      var checkbox = $(this);
+      var connector = checkbox.data('type');
+      $.post('/api/handshake/' + connector, function () {
+        checkbox.parent().toggleClass('active');
+      });
+    });
+
+    // $(".selector").toggleSwitch({
+    //     highlight: false,
+    //     width: 25,
+    //     change: function(e) {
+    //       var selector = $(this);
+    //       selector.parent().parent().toggleClass('active');
+    //     } 
+    // });
+
+});
+</script>
+
+</body>
 </html>
