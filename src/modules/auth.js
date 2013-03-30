@@ -10,6 +10,17 @@ function auth(everyauth) {
 	});
 
 	everyauth
+		.facebook
+		.appId('394024317362081')
+		.appSecret('bc86f2ab9afcb1227227146e5ea9ad44')
+		.findOrCreateUser( function (session, accessToken, accessTokenExtra, fbUserMetadata) {
+			console.log('everyauth: facebook-findOrCreateUser');
+			emitter.emit('auth:facebook:connected', {token: accessToken});
+			return this.Promise().fulfill(fbUserMetadata);
+		})
+		.redirectPath('/');
+
+	everyauth
 		.twitter
 		.consumerKey('dgwuxgGb07ymueGJF0ug')
 		.consumerSecret('eusoZYiUldYqtI2SwK9MJNbiygCWOp9lQX7i5gnpWU')
