@@ -12,7 +12,7 @@ var express = require('express')
 
 var everyauth = require('everyauth');
 var auth = require('./src/modules/auth.js')(everyauth);
-var githubConnector = require('./src/modules/githubConnector.js');
+var githubConnector = require('./src/connectors/github.js');
 
 var app = express();
 
