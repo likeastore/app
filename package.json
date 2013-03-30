@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "express": "3.0.0rc4",
-    "ejs": "*"
+    "ejs": "*",
+    "everyauth": "~0.3.1",
+    "request": "~2.16.6"
   }
 }
