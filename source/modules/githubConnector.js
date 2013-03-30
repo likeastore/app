@@ -2,7 +2,8 @@ var request = require('request');
 
 module.exports = {
 	handshake: function (token, callback) {
-		request.post('http://localhost:3001/handshake', {token: token}, function(err, response) {
+		var postUrl = 'http://localhost:3000/api/connector/github/stars';
+		request.post('http://localhost:3001/handshake', {token: token, postUrl: postUrl}, function(err, response) {
 			return callback(err, response);
 		});
 	}
