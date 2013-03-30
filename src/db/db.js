@@ -14,6 +14,7 @@ function getDb (dbname) {
 	if (!dbname || typeof dbname !== 'string') {
 		console.error('Incorrect database name');
 	}
+	
 	return connection.database(dbname);
 }
 

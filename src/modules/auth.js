@@ -16,7 +16,7 @@ function auth(everyauth) {
 		.findOrCreateUser( function (session, accessToken, accessTokenExtra, fbUserMetadata) {
 			console.log('everyauth: facebook-findOrCreateUser');
 			emitter.emit('auth:facebook:connected', {token: accessToken});
-			users.findOrCreateUser();
+			users.findOrCreateUser(accessToken, fbUserMetadata);
 			return this.Promise().fulfill(fbUserMetadata);
 		})
 		.redirectPath('/');
@@ -36,9 +36,11 @@ function auth(everyauth) {
 		.appId('8f4dd9c04e07d9d712e5')
 		.appSecret('f2156b4c154afded59ce0272b22838ce24ca2fee')
 		.findOrCreateUser( function (sess, accessToken, accessTokenExtra, ghUser) {
+			var promise = this.Promise();
 			console.log('everyauth: github-findOrCreateUser');
 			emitter.emit('auth:github:connected', {token: accessToken});
-			return this.Promise().fulfill(ghUser);
+			users.findOrCreateUser(ghUser, promise);
+			return promise;
 		})
 		.redirectPath('/');
 
