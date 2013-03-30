@@ -1,5 +1,5 @@
 var EventEmitter = require('events').EventEmitter;
-var users = [];
+var users = require('../db/users.js');
 
 function auth(everyauth) {
 	var emitter = new EventEmitter();
@@ -16,6 +16,7 @@ function auth(everyauth) {
 		.findOrCreateUser( function (session, accessToken, accessTokenExtra, fbUserMetadata) {
 			console.log('everyauth: facebook-findOrCreateUser');
 			emitter.emit('auth:facebook:connected', {token: accessToken});
+			users.findOrCreateUser();
 			return this.Promise().fulfill(fbUserMetadata);
 		})
 		.redirectPath('/');
