@@ -11,8 +11,8 @@ var express = require('express')
   , path = require('path');
 
 var everyauth = require('everyauth');
-var auth = require('./source/modules/auth.js')(everyauth);
-var githubConnector = require('./source/modules/githubConnector.js');
+var auth = require('./src/modules/auth.js')(everyauth);
+var githubConnector = require('./src/modules/githubConnector.js');
 
 var app = express();
 
@@ -38,7 +38,9 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-auth.on('auth:connected', function (data) {
+auth.on('auth:github:connected', function (data) {
+  console.log('connected to github');
+
   githubConnector.handshake(data.token, function (err, response) {
     if (err) {
       return console.log('Failed handshake to github-connector.');
@@ -46,6 +48,10 @@ auth.on('auth:connected', function (data) {
 
     return console.log('Connected to github-connector.');
   });
+});
+
+auth.on('auth:twitter:connected', function (data) {
+  console.log('connected to twitter');
 });
 
 http.createServer(app).listen(app.get('port'), function(){
