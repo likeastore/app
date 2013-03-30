@@ -3,16 +3,14 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , setup = require('./routes/setup')
-  , http = require('http')
-  , path = require('path');
+var express = require('express');
+var routes = require('./routes');
+var http = require('http');
+var path = require('path');
 
 var everyauth = require('everyauth');
 var auth = require('./src/modules/auth.js')(everyauth);
-var githubConnector = require('./src/connectors/github.js');
+var handshaking = require('./src/handshaking.js');
 
 var app = express();
 
@@ -36,27 +34,8 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
 
-auth.on('auth:github:connected', function (data) {
-  console.log('connected to github');
-
-  githubConnector.handshake(data.token, function (err, response) {
-    if (err) {
-      return console.log('Failed handshake to github-connector.');
-    }
-
-    return console.log('Connected to github-connector.');
-  });
-});
-
-auth.on('auth:twitter:connected', function (data) {
-  console.log('connected to twitter');
-});
-
-auth.on('auth:facebook:connected', function (data) {
-  console.log('connected to facebook');
-});
+handshaking(auth);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

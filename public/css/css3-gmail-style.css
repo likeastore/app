@@ -1,0 +1,744 @@
+/*====================================================
+CSS3 Gmail Buttons by Adam Whitcroft
+https://github.com/AdamWhitcroft/CSS3.Gmail.Buttons
+====================================================*/
+/*==================================================*/
+/*  $Basic Button                                   */
+/*==================================================*/
+.bttn {
+	text-decoration:none;
+	cursor:pointer;
+	font-size:0.75em;
+	padding:0 8px;
+	font-weight:bold;
+	height:30px;
+	line-height:30px;
+	display:inline-block;
+	outline:0;
+	color:#444;
+	background-color:#f5f5f5;
+	background-image:-webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+	background-image:-moz-linear-gradient(top,#f5f5f5,#f1f1f1);
+	background-image:linear-gradient(top,#f5f5f5,#f1f1f1);
+	border:1px solid #d9d9d9;
+	border:1px solid rgba(0,0,0,0.1);
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+}
+.bttn:hover {
+	border:1px solid #c6c6c6;
+	border:1px solid rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+	position:relative;
+	z-index:1;
+}
+.bttn:active {
+	-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);
+	-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);
+	box-shadow:inset 0 1px 2px rgba(0,0,0,0.1);
+}
+/*==================================================*/
+/*  $Emphasis                                       */
+/*==================================================*/
+.emphasis {
+	text-transform:uppercase;
+}
+/*==================================================*/
+/*  $Colors                                         */
+/*==================================================*/
+/* .red */
+.red {
+	color:#fff;
+	background-color:#d14836;
+	border:1px solid transparent;
+	background-image:-webkit-linear-gradient(top,#dd4b39,#d14836);
+	background-image:-moz-linear-gradient(top,#dd4b39,#d14836);
+	background-image:linear-gradient(top,#dd4b39,#d14836);
+}
+.red:hover {
+	background-color:#c53727;
+	border:1px solid #b0281a;
+	background-image:-webkit-linear-gradient(top,#dd4b39,#c53727);
+	background-image:-moz-linear-gradient(top,#dd4b39,#c53727);
+	background-image:linear-gradient(top,#dd4b39,#c53727);
+	-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow:0 1px 2px rgba(0,0,0,0.2);
+	box-shadow:0 1px 2px rgba(0,0,0,0.2);
+}
+.red:active {
+	-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,0.2);
+	box-shadow:inset 0 1px 2px rgba(0,0,0,0.2);	
+}
+/* .blue */
+.blue {
+	color:#fff;
+	background-color:#4D90fe;
+	border:1px solid #3079ed;
+	background-image:-webkit-linear-gradient(top,#4d90fe,#4787ed);
+	background-image:-moz-linear-gradient(top,#4d90fe,#4787ed);
+	background-image:linear-gradient(top,#4d90fe,#4787ed);
+}
+.blue:hover {
+	background-color:#357aeb;
+	border:1px solid #2F5bb7;
+	background-image:-webkit-linear-gradient(top,#4d90fe,#357ae8);
+	background-image:-moz-linear-gradient(top,#4d90fe,#357ae8);
+	background-image:linear-gradient(top,#4d90fe,#357ae8);
+	-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow:0 1px 2px rgba(0,0,0,0.2);
+	box-shadow:0 1px 2px rgba(0,0,0,0.2);	
+}
+.blue:active {
+	-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,0.2);
+	box-shadow:inset 0 1px 2px rgba(0,0,0,0.2);	
+}
+/* .yellow */
+.yellow {
+	color:#867343;
+	background-color:#ffe07b;
+	border:1px solid #fddb69;
+	background-image:-webkit-linear-gradient(top,#ffe896,#ffe07b);
+	background-image:-moz-linear-gradient(top,#ffe896,#ffe07b);
+	background-image:linear-gradient(top,#ffe896,#ffe07b);
+}
+.yellow:hover {
+	background-color:#ffda73;
+	border:1px solid #deb74f;
+	background-image:-webkit-linear-gradient(top,#ffe485,#ffda73);
+	background-image:-moz-linear-gradient(top,#ffe485,#ffda73);
+	background-image:linear-gradient(top,#ffe485,#ffda73);
+	-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow:0 1px 2px rgba(0,0,0,0.2);
+	box-shadow:0 1px 2px rgba(0,0,0,0.2);	
+}
+.yellow:active {
+	-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,0.2);
+	box-shadow:inset 0 1px 2px rgba(0,0,0,0.2);	
+}
+/*==================================================*/
+/*  $Icons                                          */
+/*==================================================*/
+.icon:before,
+.prev:before {
+	content:"";
+	position:relative;
+	top:9px;
+	left:0;
+	margin-right:6px;
+	float:left;
+	width:12px;
+	height:12px;
+	background:url(icons.png) no-repeat 0 0;
+}
+.next:after {
+	content:"";
+	position:relative;
+	top:9px;
+	right:0;
+	margin-left:6px;
+	float:right;
+	width:12px;
+	height:12px;
+	background:url(icons.png) no-repeat 0 0;
+}
+.bttn.icon:before,
+.prev:before,
+.next:after {
+	opacity:0.8;
+}
+.bttn.icon:hover:before,
+.prev:hover:before,
+.next:hover:after {
+	opacity:1;
+}
+/* Move icon to right side */
+.icon.right:before {
+	margin-left:6px;
+	margin-right:0px;
+	float:right;
+}
+/* Icons */
+.icon.add:before {
+	background-position:0 0;
+}
+.icon.apple:before {
+	background-position:0 -12px;
+}
+.icon.approve:before {
+	background-position:0 -24px;
+}
+.icon.attachment-1:before {
+	background-position:0 -36px;
+}
+.icon.attachment-2:before {
+	background-position:0 -48px;
+}
+.icon.bookmark:before {
+	background-position:0 -60px;
+}
+.icon.calendar:before {
+	background-position:0 -72px;
+}
+.icon.cart:before {
+	background-position:0 -84px;
+}
+.icon.clipboard:before {
+	background-position:0 -96px;
+}
+.icon.close:before {
+	background-position:0 -108px;
+}
+.icon.comment:before {
+	background-position:0 -120px;
+}
+.icon.delete:before {
+	background-position:0 -132px;
+}
+.icon.download:before {
+	background-position:0 -144px;
+}
+.icon.dropdown:before {
+	background-position:0 -156px;
+}
+.icon.edit:before {
+	background-position:0 -168px;
+}
+.icon.favourite:before {
+	background-position:0 -180px;
+}
+.icon.folder:before {
+	background-position:0 -192px;
+}
+.icon.folder-plus:before {
+	background-position:0 -204px;
+}
+.icon.folder-minus:before {
+	background-position:0 -216px;
+}
+.icon.fork:before {
+	background-position:0 -228px;
+}
+.icon.home:before {
+	background-position:0 -240px;
+}
+.icon.like:before {
+	background-position:0 -252px;
+}
+.icon.link:before {
+	background-position:0 -264px;
+}
+.icon.list:before {
+	background-position:0 -276px;
+}
+.icon.lock:before {
+	background-position:0 -288px;
+}
+.icon.mail:before {
+	background-position:0 -300px;
+}
+.icon.maximise:before {
+	background-position:0 -312px;
+}
+.icon.minimise:before {
+	background-position:0 -324px;
+}
+.icon.move:before {
+	background-position:0 -336px;
+}
+.icon.new-window:before {
+	background-position:0 -348px;
+}
+.next:after {
+	background-position:0 -360px;
+}
+.icon.pin:before {
+	background-position:0 -372px;
+}
+.prev:before {
+	background-position:0 -384px;
+}
+.icon.print:before {
+	background-position:0 -396px;
+}
+.icon.profile:before {
+	background-position:0 -408px;
+}
+.icon.refresh:before {
+	background-position:0 -420px;
+}
+.icon.remove:before {
+	background-position:0 -432px;
+}
+.icon.rss:before {
+	background-position:0 -444px;
+}
+.icon.save:before {
+	background-position:0 -456px;
+}
+.icon.search:before {
+	background-position:0 -468px;
+}
+.icon.settings:before {
+	background-position:0 -480px;
+}
+.icon.stats:before {
+	background-position:0 -492px;
+}
+.icon.sync:before {
+	background-position:0 -504px;
+}
+.icon.tag:before {
+	background-position:0 -516px;
+}
+.icon.tools:before {
+	background-position:0 -528px;
+}
+.icon.unlock:before {
+	background-position:0 -540px;
+}
+.icon.upload:before {
+	background-position:0 -552px;
+}
+.icon.view:before {
+	background-position:0 -564px;
+}
+.icon.vol-mute:before {
+	background-position:0 -576px;
+}
+.icon.vol-low:before {
+	background-position:0 -588px;
+}
+.icon.vol-mid:before {
+	background-position:0 -600px;
+}
+.icon.vol-high:before {
+	background-position:0 -612px;
+}
+
+/*==================================================*/
+/*  $Colored-icons                                  */
+/*==================================================*/
+
+.red.icon.add:before, .blue.icon.add:before {
+	background-position:-12px 0;
+}
+.red.icon.apple:before, .blue.icon.apple:before {
+	background-position:-12px -12px;
+}
+.red.icon.approve:before, .blue.icon.approve:before {
+	background-position:-12px -24px;
+}
+.red.icon.attachment-1:before, .blue.icon.attachment-1:before {
+	background-position:-12px -36px;
+}
+.red.icon.attachment-2:before, .blue.icon.attachment-2:before {
+	background-position:-12px -48px;
+}
+.red.icon.bookmark:before, .blue.icon.bookmark:before {
+	background-position:-12px -60px;
+}
+.red.icon.calendar:before, .blue.icon.calendar:before {
+	background-position:-12px -72px;
+}
+.red.icon.cart:before, .blue.icon.cart:before {
+	background-position:-12px -84px;
+}
+.red.icon.clipboard:before, .blue.icon.clipboard:before{
+	background-position:-12px -96px;
+}
+.red.icon.close:before, .blue.icon.close:before {
+	background-position:-12px -108px;
+}
+.red.icon.comment:before, .blue.icon.comment:before {
+	background-position:-12px -120px;
+}
+.red.icon.delete:before, .blue.icon.delete:before {
+	background-position:-12px -132px;
+}
+.red.icon.download:before, .blue.icon.download:before {
+	background-position:-12px -144px;
+}
+.red.icon.dropdown:before, .blue.icon.dropdown:before {
+	background-position:-12px -156px;
+}
+.red.icon.edit:before, .blue.icon.edit:before {
+	background-position:-12px -168px;
+}
+.red.icon.favourite:before, .blue.icon.favourite:before {
+	background-position:-12px -180px;
+}
+.red.icon.folder:before, .blue.icon.folder:before {
+	background-position:-12px -192px;
+}
+.red.icon.folder-plus:before, .blue.icon.folder-plus:before {
+	background-position:-12px -204px;
+}
+.red.icon.folder-minus:before, .blue.icon.folder-minus:before {
+	background-position:-12px -216px;
+}
+.red.icon.fork:before, .blue.icon.fork:before {
+	background-position:-12px -228px;
+}
+.red.icon.home:before, .blue.icon.home:before {
+	background-position:-12px -240px;
+}
+.red.icon.like:before, .blue.icon.like:before {
+	background-position:-12px -252px;
+}
+.red.icon.link:before, .blue.icon.link:before {
+	background-position:-12px -264px;
+}
+.red.icon.list:before, .blue.icon.list:before {
+	background-position:-12px -276px;
+}
+.red.icon.lock:before, .blue.icon.lock:before {
+	background-position:-12px -288px;
+}
+.red.icon.mail:before, .blue.icon.mail:before {
+	background-position:-12px -300px;
+}
+.red.icon.maximise:before, .blue.icon.maximise:before {
+	background-position:-12px -312px;
+}
+.red.icon.minimise:before, .blue.icon.minimise:before {
+	background-position:-12px -324px;
+}
+.red.icon.move:before, .blue.icon.move:before {
+	background-position:-12px -336px;
+}
+.red.icon.new-window:before, .blue.icon.new-window:before {
+	background-position:-12px -348px;
+}
+.red.next:after, .blue.next:after {
+	background-position:-12px -360px;
+}
+.red.icon.pin:before, .blue.icon.pin:before {
+	background-position:-12px -372px;
+}
+.red.prev:before, .blue.prev:before {
+	background-position:-12px -384px;
+}
+.red.icon.print:before, .blue.icon.print:before {
+	background-position:-12px -396px;
+}
+.red.icon.profile:before, .blue.icon.profile:before {
+	background-position:-12px -408px;
+}
+.red.icon.refresh:before, .blue.icon.refresh:before {
+	background-position:-12px -420px;
+}
+.red.icon.remove:before, .blue.icon.remove:before {
+	background-position:-12px -432px;
+}
+.red.icon.rss:before, .blue.icon.rss:before {
+	background-position:-12px -444px;
+}
+.red.icon.save:before, .blue.icon.save:before {
+	background-position:-12px -456px;
+}
+.red.icon.search:before, .blue.icon.search:before {
+	background-position:-12px -468px;
+}
+.red.icon.settings:before, .blue.icon.settings:before {
+	background-position:-12px -480px;
+}
+.red.icon.stats:before, .blue.icon.stats:before {
+	background-position:-12px -492px;
+}
+.red.icon.sync:before, .blue.icon.sync:before {
+	background-position:-12px -504px;
+}
+.red.icon.tag:before, .blue.icon.tag:before {
+	background-position:-12px -516px;
+}
+.red.icon.tools:before, .blue.icon.tools:before {
+	background-position:-12px -528px;
+}
+.red.icon.unlock:before, .blue.icon.unlock:before {
+	background-position:-12px -540px;
+}
+.red.icon.upload:before, .blue.icon.upload:before {
+	background-position:-12px -552px;
+}
+.red.icon.view:before, .blue.icon.view:before {
+	background-position:-12px -564px;
+}
+.red.icon.vol-mute:before, .blue.icon.vol-mute:before {
+	background-position:-12px -576px;
+}
+.red.icon.vol-low:before, .blue.icon.vol-low:before {
+	background-position:-12px -588px;
+}
+.red.icon.vol-mid:before, .blue.icon.vol-mid:before {
+	background-position:-12px -600px;
+}
+.red.icon.vol-high:before, .blue.icon.vol-high:before {
+	background-position:-12px -612px;
+}
+
+/*==================================================*/
+/*  $Colored-icons                                  */
+/*==================================================*/
+.red.icon:before,
+.blue.icon:before {
+	background-position:-12px 0;
+}
+.red.icon.add:before, 
+.blue.icon.add:before {
+	background-position:-12px 0;
+}
+.red.icon.apple:before, 
+.blue.icon.apple:before {
+	background-position:-12px -12px;
+}
+.red.icon.approve:before, 
+.blue.icon.approve:before {
+	background-position:-12px -24px;
+}
+.red.icon.attachment-1:before, 
+.blue.icon.attachment-1:before {
+	background-position:-12px -36px;
+}
+.red.icon.attachment-2:before, 
+.blue.icon.attachment-2:before {
+	background-position:-12px -48px;
+}
+.red.icon.bookmark:before, 
+.blue.icon.bookmark:before {
+	background-position:-12px -60px;
+}
+.red.icon.calendar:before, 
+.blue.icon.calendar:before {
+	background-position:-12px -72px;
+}
+.red.icon.cart:before, 
+.blue.icon.cart:before {
+	background-position:-12px -84px;
+}
+.red.icon.clipboard:before, 
+.blue.icon.clipboard:before{
+	background-position:-12px -96px;
+}
+.red.icon.close:before, 
+.blue.icon.close:before {
+	background-position:-12px -108px;
+}
+.red.icon.comment:before, .
+blue.icon.comment:before {
+	background-position:-12px -120px;
+}
+.red.icon.delete:before, 
+.blue.icon.delete:before {
+	background-position:-12px -132px;
+}
+.red.icon.download:before, 
+.blue.icon.download:before {
+	background-position:-12px -144px;
+}
+.red.icon.dropdown:before, 
+.blue.icon.dropdown:before {
+	background-position:-12px -156px;
+}
+.red.icon.edit:before, 
+.blue.icon.edit:before {
+	background-position:-12px -168px;
+}
+.red.icon.favourite:before, 
+.blue.icon.favourite:before {
+	background-position:-12px -180px;
+}
+.red.icon.folder:before, 
+.blue.icon.folder:before {
+	background-position:-12px -192px;
+}
+.red.icon.folder-plus:before, 
+.blue.icon.folder-plus:before {
+	background-position:-12px -204px;
+}
+.red.icon.folder-minus:before, 
+.blue.icon.folder-minus:before {
+	background-position:-12px -216px;
+}
+.red.icon.fork:before, 
+.blue.icon.fork:before {
+	background-position:-12px -228px;
+}
+.red.icon.home:before, 
+.blue.icon.home:before {
+	background-position:-12px -240px;
+}
+.red.icon.like:before, 
+.blue.icon.like:before {
+	background-position:-12px -252px;
+}
+.red.icon.link:before, 
+.blue.icon.link:before {
+	background-position:-12px -264px;
+}
+.red.icon.list:before, 
+.blue.icon.list:before {
+	background-position:-12px -276px;
+}
+.red.icon.lock:before, 
+.blue.icon.lock:before {
+	background-position:-12px -288px;
+}
+.red.icon.mail:before, 
+.blue.icon.mail:before {
+	background-position:-12px -300px;
+}
+.red.icon.maximise:before, 
+.blue.icon.maximise:before {
+	background-position:-12px -312px;
+}
+.red.icon.minimise:before, 
+.blue.icon.minimise:before {
+	background-position:-12px -324px;
+}
+.red.icon.move:before, 
+.blue.icon.move:before {
+	background-position:-12px -336px;
+}
+.red.icon.new-window:before, 
+.blue.icon.new-window:before {
+	background-position:-12px -348px;
+}
+.red.next:after, 
+.blue.next:after {
+	background-position:-12px -360px;
+}
+.red.icon.pin:before, 
+.blue.icon.pin:before {
+	background-position:-12px -372px;
+}
+.red.prev:before, 
+.blue.prev:before {
+	background-position:-12px -384px;
+}
+.red.icon.print:before, 
+.blue.icon.print:before {
+	background-position:-12px -396px;
+}
+.red.icon.profile:before, 
+.blue.icon.profile:before {
+	background-position:-12px -408px;
+}
+.red.icon.refresh:before, 
+.blue.icon.refresh:before {
+	background-position:-12px -420px;
+}
+.red.icon.remove:before, 
+.blue.icon.remove:before {
+	background-position:-12px -432px;
+}
+.red.icon.rss:before, 
+.blue.icon.rss:before {
+	background-position:-12px -444px;
+}
+.red.icon.save:before, 
+.blue.icon.save:before {
+	background-position:-12px -456px;
+}
+.red.icon.search:before, 
+.blue.icon.search:before {
+	background-position:-12px -468px;
+}
+.red.icon.settings:before, 
+.blue.icon.settings:before {
+	background-position:-12px -480px;
+}
+.red.icon.stats:before, 
+.blue.icon.stats:before {
+	background-position:-12px -492px;
+}
+.red.icon.sync:before, 
+.blue.icon.sync:before {
+	background-position:-12px -504px;
+}
+.red.icon.tag:before, 
+.blue.icon.tag:before {
+	background-position:-12px -516px;
+}
+.red.icon.tools:before, 
+.blue.icon.tools:before {
+	background-position:-12px -528px;
+}
+.red.icon.unlock:before, 
+.blue.icon.unlock:before {
+	background-position:-12px -540px;
+}
+.red.icon.upload:before, 
+.blue.icon.upload:before {
+	background-position:-12px -552px;
+}
+.red.icon.view:before, 
+.blue.icon.view:before {
+	background-position:-12px -564px;
+}
+.red.icon.vol-mute:before, 
+.blue.icon.vol-mute:before {
+	background-position:-12px -576px;
+}
+.red.icon.vol-low:before, 
+.blue.icon.vol-low:before {
+	background-position:-12px -588px;
+}
+.red.icon.vol-mid:before, 
+.blue.icon.vol-mid:before {
+	background-position:-12px -600px;
+}
+.red.icon.vol-high:before, 
+.blue.icon.vol-high:before {
+	background-position:-12px -612px;
+}
+/*==================================================*/
+/*  $Grouped                                        */
+/*==================================================*/
+.grouped {
+	display:inline-block;
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+.grouped li {
+	float:left;
+	margin:0;
+	padding:0;
+}
+.grouped .bttn {
+	float:left;
+	margin-left:-1px;
+}
+.grouped li:not(:first-child):not(:last-child) .bttn,
+.grouped > .bttn:not(:first-child):not(:last-child) {
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	-ms-border-radius:0;
+	-o-border-radius:0;
+	border-radius:0;
+}
+.grouped li:first-child .bttn,
+.grouped > .bttn:first-child {
+	margin-left:0;
+	-webkit-border-top-right-radius:0;
+	-webkit-border-bottom-right-radius:0;
+	-moz-border-radius-topright:0;
+	-moz-border-radius-bottomright:0;	
+	border-top-right-radius:0;
+	border-bottom-right-radius:0;			
+}
+.grouped li:last-child .bttn,
+.grouped > .bttn:last-child {
+	-webkit-border-top-left-radius:0;
+	-webkit-border-bottom-left-radius:0;
+	-moz-border-radius-topleft:0;
+	-moz-border-radius-bottomleft:0;	
+	border-top-left-radius:0;
+	border-bottom-left-radius:0;
+}

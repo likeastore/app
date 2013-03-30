@@ -1,0 +1,138 @@
+
+.login-deck {
+	text-align:center;
+	}
+	
+.login-deck .headline {
+	float:left;
+	text-align:left;
+	display:inline-block;
+	font-weight: 600;	
+	background:rgba(0,0,0,.8);
+	padding:.3em .8em;
+	color:#fff;
+	cursor:pointer;
+	margin-top:0;
+	
+	-vendor-animation-duration: 3s;
+    -vendor-animation-iteration-count: infinite;
+	}
+
+.login-deck .headline:hover {
+	background:rgba(43,86,155,.8);
+	}
+	
+
+.login-deck .login-content {
+	background:#fff;
+	max-width:650px;
+	top:50%;
+	position:absolute;
+	left:50%;
+	margin:-150px -315px 0;
+	padding:4em;
+	overflow:hidden;
+	color:#333;
+	text-align:left;
+	border-radius:5px;
+	border:1px solid #ccc;
+	
+	-vendor-animation-duration: 3s;
+    animation-delay:1s;
+	-webkit-animation-delay:1s; /* Safari and Chrome */
+	}
+	
+
+.login-deck label {
+	font-size:16px;
+	}
+	
+.login-deck .span3 {
+	width:224px;
+	margin-left:0px;
+	}
+.login-deck .span2 {
+	margin-top:22px;
+	width:100px;
+	}
+	
+.row-m {
+	margin-bottom:6px;
+	text-shadow:1px 0 1px #000;
+	}
+.row-dm {
+	margin-bottom:15px;
+	text-shadow:1px 0 1px #000;
+	}
+	
+.login-content .bttn {
+	font-size:16px;
+	height:34px;
+	line-height:32px;
+	letter-spacing:1px;
+	padding:0 14px;	
+	font-family: 'Open Sans', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	}
+	
+.form-login {
+	overflow:hidden;
+	margin:0 0 10px;
+	width:260px;
+	float:left;
+	}
+	
+.or-separator {
+	position:absolute;
+	left:289px;
+	padding-top:60px;
+	height:100px;
+	clear:both;
+	text-align:center;
+	margin:1.4em 0;
+	background: url(../img/or-sep.png) repeat-y;
+	}
+
+.or {
+	background:#fff;
+	border-radius:60px;
+	width:36px;
+	height:36px;
+	color:#333;
+	line-height:34px;
+	display:inline-block;
+	border:2px solid #ccc;
+	margin:0 0 0 -1px;
+	
+	}
+.soc-login {
+	width:220px;
+	float:right;
+	text-align:left;
+	margin:0 0 0 40px;
+	} 
+.soc-signup,
+.soc-signup:hover {
+	width:142px;
+	height:32px;
+	display:inline-block;
+	line-height:30px;
+	text-decoration: none;
+	color:#fff;
+	padding:0 0 0 40px;
+	font-size:12px;
+	margin:20px 10px 1px;
+	text-align:left;
+	}
+		
+.signup-fb {
+	background:url(../img/fb-signup.png) no-repeat;
+
+	}
+.signup-tw {
+	background:url(../img/tw-signup.png) no-repeat;
+	}
+.signup-git,
+.signup-git:hover {
+	background:url(../img/git-signup.png) no-repeat;
+	color:#000;
+	}
