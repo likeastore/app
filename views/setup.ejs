@@ -47,10 +47,6 @@
   $(document).ready(function() { 
     $('.setup-account').show().addClass('animated fadeInDown');
 
-    $('.selector').select(function () {
-      console.log('changed');
-    });
-
     $('input:checkbox').change(function () {
       var checkbox = $(this);
       var connector = checkbox.data('type');
@@ -58,16 +54,6 @@
         checkbox.parent().toggleClass('active');
       });
     });
-
-    // $(".selector").toggleSwitch({
-    //     highlight: false,
-    //     width: 25,
-    //     change: function(e) {
-    //       var selector = $(this);
-    //       selector.parent().parent().toggleClass('active');
-    //     } 
-    // });
-
 });
 </script>
 
