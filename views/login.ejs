@@ -33,7 +33,7 @@
         <div class="or-separator"><div class="or">OR</div></div>
         <div class="soc-login">
             <label>Sign in with social media: </label>
-            <a href="/auth/facebook" class="soc-signup signup-fb">Sign in with Facebook</a>
+            <!-- <a href="/auth/facebook" class="soc-signup signup-fb">Sign in with Facebook</a> -->
             <a href="/auth/twitter" class="soc-signup signup-tw">Sign in with Twitter</a>
             <a href="/auth/github" class="soc-signup signup-git">Sign in with Github</a>
         </div>
@@ -41,20 +41,7 @@
 </div>
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-<script src="js/jquery-ui.toggleSwitch.js"></script>
 <script src="js/custom.js"></script>
-<script>
-    $(document).ready(function() {
-        $(".selector").toggleSwitch({
-            highlight: false, // default
-            width: 25, // default
-            change: function(e) {
-                $(this).parent().parent().toggleClass('active');
-              } // default: null
-        });
-});
-</script>
 
 </body>
 </html>
