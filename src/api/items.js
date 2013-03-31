@@ -5,6 +5,7 @@ function items(app) {
 	app.get('/api/items', function (req, res) {
 		favorites.all(function (err, favs) {
 			if (err) {
+				console.log(err);
 				return res.send(500);
 			}
 
@@ -14,20 +15,35 @@ function items(app) {
 				}
 
 				var all = favs.concat(strs);
-				return res.json(all);
+				var response = [];
+				all.forEach(function (item) {
+					response.push(item.value);
+				});
+
+				return res.json(response);
 			});
 		});
 	});
 
 	app.get('/api/items/github', function (req, res) {
 		stars.all(function (err, strs) {
-			return res.json(strs);
+			var response = [];
+			strs.forEach(function (item) {
+				response.push(item.value);
+			});
+
+			return res.json(response);
 		});
 	});
 
 	app.get('/api/items/twitter', function (req, res) {
 		favorites.all(function (err, favs) {
-			return res.json(favs);
+			var response = [];
+			favs.forEach(function (item) {
+				response.push(item.value);
+			});
+
+			return res.json(response);
 		});
 	});
 }

@@ -29,7 +29,7 @@ function save(stars, callback) {
 
 function all(callback) {
 	db.view('stars/all', function (err, docs) {
-		return callback(docs);
+		return callback(err, docs);
 	});
 }
 

@@ -1,6 +1,11 @@
 $(function () {
-	var collection = new ItemsCollection([{description: 'aaaaaaaaaa'}]);
-	var view = new ItemsGridView({collection: collection});
+	var collection = new ItemsCollection();
+	var options = {
+		success: function (fetched) {
+			var view = new ItemsGridView({collection: fetched});
+			$('.app').html(view.render().el);
+		}
+	};
 
-	$('.app').html(view.render().el);
+	collection.fetch(options);
 });

@@ -15,39 +15,39 @@
 
 <body>
 <div class="login-deck">
-  <h1 class="logo"></h1>   
-        <div class="modal-store setup-account">
-      <h2>Turn on your social networks</h2>
-        <div class="turn-on-s">
-          <i class="icon-ok"></i>
-          <span>Turn on Twitter</span>
-          <input type="checkbox" claass="turn-soc" data-type="twitter"/>
-        </div>
-        <div class="turn-on-s">
-          <i class="icon-ok"></i>
-          <span>Turn on Github</span>
-          <input type="checkbox" claass="turn-soc" data-type="github"/>
-         </div>
-         
-         <button class="btn start-app">Start <i class="icon-chevron-right"></i></button>
-        
-    </div>
+	<h1 class="logo"></h1>   
+				<div class="modal-store setup-account">
+			<h2>Turn on your social networks</h2>
+				<div class="turn-on-s">
+				<i class="icon-ok"></i>
+					<span>Turn on Twitter</span>
+					<input type="checkbox" claass="turn-soc" data-type="twitter"/>
+				</div>
+				<div class="turn-on-s">
+				<i class="icon-ok"></i>
+					<span>Turn on Github</span>
+					<input type="checkbox" claass="turn-soc" data-type="github"/>
+				 </div>
+				 
+				 <a href="/dashboard" class="btn start-app">Start <i class="icon-chevron-right"></i></a>
+				
+		</div>
+
 </div>
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="js/custom.js"></script>
 <script>
-  $(document).ready(function() { 
-    $('.setup-account').show().addClass('animated fadeInDown');
+	$(document).ready(function() { 
+		$('.setup-account').show().addClass('animated fadeInDown');
 	
-    $('input:checkbox').change(function () {
-      var checkbox = $(this);
-      var connector = checkbox.data('type');
-	  $(this).parent().toggleClass('active');
-      $.post('/api/handshake/' + connector, function () {
-        checkbox.parent().toggleClass('active');
-      });
-    });
+		$('input:checkbox').change(function () {
+			var checkbox = $(this);
+			var connector = checkbox.data('type');
+			$.post('/api/handshake/' + connector, function () {
+				checkbox.parent().toggleClass('active');
+			});
+		});
 });
 </script>
 

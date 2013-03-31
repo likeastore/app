@@ -1,8 +1,8 @@
 var db = require('./db.js').collection('favorites');
 
 function save(favorites, callback) {
-	stars.forEach(function (fav, i) {
-		db.view('stars/byId', { key: fav.itemId }, function (err, docs) {
+	favorites.forEach(function (fav, i) {
+		db.view('favorites/byId', { key: fav.itemId }, function (err, docs) {
 			if (err) {
 				return callback(err);
 			}
@@ -29,7 +29,7 @@ function save(favorites, callback) {
 
 function all(callback) {
 	db.view('favorites/all', function (err, docs) {
-		return callback(docs);
+		return callback(err, docs);
 	});
 }
 
