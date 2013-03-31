@@ -10,6 +10,7 @@ var path = require('path');
 var everyauth = require('everyauth');
 var auth = require('./src/modules/auth.js')(everyauth);
 var handshake = require('./src/api/handshake.js');
+var items = require('./src/api/items.js');
 var github = require('./src/api/connector/github.js');
 var twitter = require('./src/api/connector/twitter.js');
 
@@ -38,8 +39,11 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/setup', routes.setup);
 
-// api routes
+// open api routes
 handshake(app);
+items(app);
+
+// private api routes
 github(app);
 twitter(app);
 
