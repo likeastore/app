@@ -8,7 +8,7 @@ var ItemsGridView = Backbone.View.extend({
 		}
 
 		this.collection.each(addItem, this);
-
+		$('.wrapper').hide();
 		this.$el.gridalicious({
 			animate: true,
 			gutter: 20
