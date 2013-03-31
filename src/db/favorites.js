@@ -4,6 +4,21 @@ function save(stars, callback) {
 	return callback(null);
 }
 
+function all(callback) {
+	return callback(null);
+}
+
+function top(count, callback) {
+	return callback(null);
+}
+
+function removeAll(callback) {
+	return callback(null);
+}
+
 module.exports = {
-	save: save
+	save: save,
+	all: all,
+	top: count,
+	removeAll: removeAll
 };
