@@ -9,9 +9,11 @@ function connector(app) {
 	});
 
 	app.post('/api/connector/twitter', function (req, res) {
-		var favorites = req.body;
+		var favorites = req.body.favorites;
 
-		repository.save(stars, function (err) {
+		console.log('Recieved ' + favorites.length + ' favorites');
+
+		repository.save(favorites, function (err) {
 			// TODO: if error return 500
 			return res.end();
 		});

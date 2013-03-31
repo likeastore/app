@@ -3,7 +3,7 @@ var request = require('request');
 
 module.exports = {
 	handshake: function (callback) {
-		var postUrl = 'http://localhost:3000/api/connector/github';
+		var postUrl = 'http://localhost:3000/api/connector/twitter';
 		var twitterConnectorUrl = 'http://localhost:3002/handshake';
 
 		console.log('Handshaking twitter on:' + twitterConnectorUrl);

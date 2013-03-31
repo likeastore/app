@@ -11,6 +11,7 @@ var everyauth = require('everyauth');
 var auth = require('./src/modules/auth.js')(everyauth);
 var handshake = require('./src/api/handshake.js');
 var github = require('./src/api/connector/github.js');
+var twitter = require('./src/api/connector/twitter.js');
 
 var routes = require('./routes')(everyauth);
 var app = express();
@@ -37,8 +38,10 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/setup', routes.setup);
 
+// api routes
 handshake(app);
 github(app);
+twitter(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
