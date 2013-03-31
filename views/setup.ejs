@@ -21,17 +21,17 @@
         <div class="turn-on-s">
           <i class="icon-ok"></i>
           <span>Turn on Facebook </span>
-          <input type="checkbox" data-type="facebook"/>
+          <input type="checkbox" claass="turn-soc" data-type="facebook"/>
         </div>
         <div class="turn-on-s">
         <i class="icon-ok"></i>
           <span>Turn on Twitter</span>
-          <input type="checkbox" data-type="twitter"/>
+          <input type="checkbox" claass="turn-soc" data-type="twitter"/>
         </div>
         <div class="turn-on-s">
         <i class="icon-ok"></i>
           <span>Turn on Github</span>
-          <input type="checkbox" data-type="github"/>
+          <input type="checkbox" claass="turn-soc" data-type="github"/>
          </div>
          
          <button class="btn start-app">Start <i class="icon-chevron-right"></i></button>
@@ -46,10 +46,11 @@
 <script>
   $(document).ready(function() { 
     $('.setup-account').show().addClass('animated fadeInDown');
-
+	
     $('input:checkbox').change(function () {
       var checkbox = $(this);
       var connector = checkbox.data('type');
+	  $(this).parent().toggleClass('active');
       $.post('/api/handshake/' + connector, function () {
         checkbox.parent().toggleClass('active');
       });
