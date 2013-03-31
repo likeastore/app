@@ -233,6 +233,9 @@
 .likeastore-app {
 	height:100%;
 	}
+.app {
+	background:#3a3e4c;
+}
 .likeastore-app .menu {
 	background:#3a3e4c;
 	width:15%;
@@ -293,11 +296,11 @@
 .current.inbox-ico {
 	background:#e5eef2 url(../img/inbox-sml-on.png) no-repeat 13px 46%;
 	} 
-	
+
 .dashboard {
 	margin-left:15%;
 	padding:2em;
-	background:url(../img/dash-bg.png) repeat-y 0 0;
+	background:#eee url(../img/dash-bg.png) repeat-y 0 0;
 	}
 	.dashboard .item {
 		border:1px solid #ddd;
@@ -357,7 +360,7 @@
 	}
 	.dashboard {
 		margin: 0px;
-		background: none;
+		background: #eee;
 	}
 	.logo {
 		display: none;
@@ -389,7 +392,7 @@
 	}
 	.dashboard {
 		margin: 0px;
-		background: none;
+		background: #eee;
 	}
 
 	.menu-res a {
@@ -436,7 +439,7 @@
 	}
 	.dashboard {
 		margin: 0px;
-		background: none;
+		background: #eee;
 	}
 
 	.menu-res a {
