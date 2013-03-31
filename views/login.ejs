@@ -15,33 +15,37 @@
 
 <body>
 <div class="login-deck">
-    <h1 class="logo"></h1>
-    <div class="modal-store login-content">
-        <div class="form-login">
-            <div class="span3">
-                <label>Email or Username</label>
-                <input type="text" />
-            </div>
-            <div class="span3">
-                <label>Password</label>
-                <input type="password" />
-            </div>
-            <div class="">
-                <Button class="btn btn-sbm">Sign in</Button>
-            </div>
-        </div>
-        <div class="or-separator"><div class="or">OR</div></div>
-        <div class="soc-login">
-            <label>Sign in with social media: </label>
-            <!-- <a href="/auth/facebook" class="soc-signup signup-fb">Sign in with Facebook</a> -->
-            <a href="/auth/twitter" class="soc-signup signup-tw">Sign in with Twitter</a>
-            <a href="/auth/github" class="soc-signup signup-git">Sign in with Github</a>
-        </div>
-    </div>    
+	<h1 class="logo"></h1>
+	<div class="modal-store login-content">
+		<div class="form-login">
+			<div class="span3">
+				<label>Email or Username</label>
+				<input type="text" />
+			</div>
+			<div class="span3">	
+				<label>Password</label>
+				<input type="password" />
+			</div>
+			<div class="">
+				<Button class="btn btn-sbm">Sign in</Button>
+			</div>
+		</div>
+		<div class="or-separator"><div class="or">OR</div></div>
+		<div class="soc-login">
+			<label>Sign in with social media: </label>
+			<!-- <a href="/auth/facebook" class="soc-signup signup-fb">Sign in with Facebook</a> -->
+			<a href="/auth/twitter" class="soc-signup signup-tw">Sign in with Twitter</a>
+			<a href="/auth/github" class="soc-signup signup-git">Sign in with Github</a>
+		</div>
+	</div>    
 </div>
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="js/custom.js"></script>
-
+<script type="text/javascript">
+	$(function () {
+		$('.login-content').show().addClass('animated fadeInDown');
+	});
+</script>
 </body>
 </html>

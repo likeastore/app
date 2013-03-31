@@ -1,5 +1,5 @@
 var ItemView = Backbone.View.extend({
-	template: '<%= model.description %> <div class="res-ico <%= type %>"></div>',
+	template: '<img src="<%= model.avatarUrl %>" /> <%= model.description %> <div class="res-ico <%= type %>"></div>',
 
 	className: 'item',
 

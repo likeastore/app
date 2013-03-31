@@ -23,7 +23,7 @@ function items(app) {
 					return new Date(b.date) - new Date(a.date);
 				});
 
-				return res.json(response);
+				return res.json(response.slice(0, 100));
 			});
 		});
 	});
