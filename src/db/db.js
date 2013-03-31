@@ -10,14 +10,14 @@ var connection = new cradle.Connection(
 		}
 });
 
-function getDb (dbname) {
-	if (!dbname || typeof dbname !== 'string') {
+function collection (name) {
+	if (!name || typeof name !== 'string') {
 		console.error('Incorrect database name');
 	}
 
-	return connection.database(dbname);
+	return connection.database(name);
 }
 
 module.exports = {
-	getDb: getDb
+	collection: collection
 };

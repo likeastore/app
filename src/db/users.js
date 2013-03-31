@@ -1,7 +1,7 @@
-var db = require('./db.js').getDb('likeastore');
+var db = require('./db.js').collection('appusers');
 
 function findOrCreateUser (user, promise) {
-	db.view('users/appUsers', { key: user.id }, function (err, docs) {
+	db.view('users/byId', { key: user.id }, function (err, docs) {
 		if (err) {
 			promise.fail(err);
 			console.error(err);
@@ -21,8 +21,10 @@ function findOrCreateUser (user, promise) {
 	});
 }
 
-function getAllUsers () {
-
+function getAllUsers (callback) {
+	db.view('users/all', function (err, docs) {
+		callback(err, docs);
+	});
 }
 
 module.exports = {

@@ -7,7 +7,10 @@ function connector(app) {
 		console.log('Recieved ' + favorites.length + ' favorites');
 
 		repository.save(favorites, function (err) {
-			// TODO: if error return 500
+			if (err) {
+				return res.send(500);
+			}
+
 			return res.end();
 		});
 	});

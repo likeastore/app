@@ -7,7 +7,10 @@ function connector(app) {
 		console.log('Recieved ' + stars.length + ' stars');
 
 		repository.save(stars, function (err) {
-			// TODO: if error return 500
+			if (err) {
+				return res.send(500);
+			}
+
 			return res.end();
 		});
 	});

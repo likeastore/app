@@ -16,69 +16,18 @@
 <body>
 <div class=" likeastore-app">
     <div class="menu">
-        <h1 class="logo hidden-phone hidden-tablet"></h1>
-		<h1 class="logo-sml visible-phone visible-tablet"></h1>
-        <div class="menu-res">
-        	<a class="m-item current inbox-ico"><span class="data-text hidden-phone">Inbox</span></a>
-        	<a class="m-item fb-ico"><span class="data-text hidden-phone">Facebook</span></a>
+		<h1 class="logo"></h1>
+        <h1 class="logo-sml"></h1>
+		<div class="menu-res">
+			<a class="m-item current inbox-ico"><span class="data-text hidden-phone">Inbox</span></a>
+            <a class="m-item fb-ico"><span class="data-text hidden-phone">Facebook</span></a>
             <a class="m-item tw-ico"><span class="data-text hidden-phone">Twitter</span></a>
             <a class="m-item git-ico"><span class="data-text hidden-phone">GitHub</span></a>
-        </div>
-    </div>
-    <div class="dashboard">
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-        <div class="res-ico git-wm"></div>
-        </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-        <div class="res-ico facebook-wm"></div>
-        </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry.c
-         <div class="res-ico facebook-wm"></div>
-         </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-         <div class="res-ico twitter-wm"></div>
-        </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of typec
-         <div class="res-ico git-wm"></div></div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-         <div class="res-ico git-wm"></div></div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-         <div class="res-ico git-wm"></div>
-         </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
-         <div class="res-ico git-wm"></div>
-         </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-        <div class="res-ico twitter-wm"></div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-        <div class="res-ico git-wm"></div>
-        </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-        <div class="res-ico facebook-wm"></div>
-        </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry.c
-         <div class="res-ico facebook-wm"></div>
-         </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-         <div class="res-ico twitter-wm"></div>
-        </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of typec
-         <div class="res-ico git-wm"></div></div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-         <div class="res-ico git-wm"></div></div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-         <div class="res-ico git-wm"></div>
-         </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
-         <div class="res-ico git-wm"></div>
-         </div>
-        <div class="item">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-        <div class="res-ico twitter-wm"></div>
-        </div>
-        <div class="item">Lorem Ipsum is simply dummy
-        	<div class="res-ico twitter-wm"></div>
-        </div>
-    </div>
+		</div>
+	</div>
+	<div class="app">
+	</div>
+
 </div>
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -86,14 +35,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script src="js/jquery-ui.toggleSwitch.js"></script>
 <script src="js/custom.js"></script>
-<script>
-$(document).ready(function() {
-	$(".dashboard").gridalicious({
-		animate: true,
-		gutter: 20
-	});
-});
-</script>
+
+<script src="js/underscore.js"></script>
+<script src="js/backbone.js"></script>
+<script src="js/app/models/item.js"></script>
+<script src="js/app/models/githubItemsCollection.js"></script>
+<script src="js/app/models/twitterItemsCollection.js"></script>
+<script src="js/app/models/itemsCollection.js"></script>
+<script src="js/app/views/itemsGridView.js"></script>
+<script src="js/app/views/itemView.js"></script>
+<script src="js/app/apps/dashboardApp.js"></script>
 
 </body>
 </html>

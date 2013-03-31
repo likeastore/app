@@ -23,6 +23,7 @@
 	color:#fff;
 	cursor:pointer;
 	margin-top:0;
+	display: none;
 	}
 
 .login-deck .headline:hover {
@@ -358,6 +359,12 @@
 		margin: 0px;
 		background: none;
 	}
+	.logo {
+		display: none;
+	}
+	.logo-sml {
+		display: block;
+	} 
 }
  @media (max-width: 767px) { 
  	body { padding:0;}
@@ -397,7 +404,12 @@
 	.current.ft-ico, .fb-ico { background-position: 0 40%;}
 	.current.tw-ico, .tw-ico { background-position: 0 40%;}
 	.current.git-ico, .git-ico { background-position: 0 40%;}
-	
+	.logo {
+		display: none;
+	}
+	.logo-sml {
+		display: block;
+	} 
 }
 
 /* Landscape phones and down */
@@ -439,6 +451,12 @@
 	.current.ft-ico, .fb-ico { background-position: 0 40%;}
 	.current.tw-ico, .tw-ico { background-position: 0 40%;}
 	.current.git-ico, .git-ico { background-position: 0 40%;}
+	.logo {
+		display: none;
+	}
+	.logo-sml {
+		display: block;
+	} 
 
 }
 
