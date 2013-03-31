@@ -245,6 +245,8 @@
 		text-decoration:none;
 		color:#fff;
 		overflow:hidden;
+		border-bottom:1px solid #3a3e4c;
+		border-top:1px solid #3a3e4c;
 		}
 	.menu-res .badge {
 		float:right;
