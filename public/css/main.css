@@ -300,10 +300,10 @@
 .dashboard {
 	margin-left:15%;
 	padding:2em;
-	background:#eee url(../img/dash-bg.png) repeat-y 0 0;
+	background:#f9f9f9 url(../img/dash-bg.png) repeat-y 0 0;
 	}
 	.dashboard .item {
-		border:1px solid #ddd;
+		border:1px solid #b8b8b8;
 		background: #f8f9f9;
 		padding:1em;
 		cursor:pointer;
@@ -312,6 +312,14 @@
 		position:relative;
 		min-height:50px;
 		}
+	.dashboard .item img {
+		width: 50px !important;
+		height: 50px !important;
+		border-radius: 60px;
+		margin: 0 10px 2px 0 !important;
+		display: inline-block !important;
+		float: left;
+	}
 	.dashboard .item:hover {
 		border:1px solid #2eadda;
 		background-color:#e8eff2;
@@ -361,7 +369,6 @@
 	}
 	.dashboard {
 		margin: 0px;
-		background: #eee;
 	}
 	.logo {
 		display: none;
@@ -393,7 +400,6 @@
 	}
 	.dashboard {
 		margin: 0px;
-		background: #eee;
 	}
 
 	.menu-res a {
@@ -440,7 +446,6 @@
 	}
 	.dashboard {
 		margin: 0px;
-		background: #eee;
 	}
 
 	.menu-res a {
