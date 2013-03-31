@@ -304,9 +304,10 @@
 	}
 	.dashboard .item {
 		border:1px solid #ddd;
-		padding:0.6em 0.6em 0.8em;
+		background: #f8f9f9;
+		padding:1em;
 		cursor:pointer;
-		font-size:13px;
+		font-size:16px;
 		border-radius:2px;
 		position:relative;
 		min-height:50px;
@@ -317,8 +318,8 @@
 		}
 	.dashboard .res-ico {
 		position:absolute;
-		right:5px;
-		bottom:5px;
+		right:2px;
+		bottom:2px;
 		width:30px;
 		height:30px;
 		opacity:.3;
