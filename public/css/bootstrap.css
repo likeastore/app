@@ -66,6 +66,7 @@ audio:not([controls]) {
 }
 
 html {
+  height:100%;
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
@@ -222,6 +223,8 @@ textarea {
 }
 
 body {
+  height: 100%; 
+  min-height: 100%;
   margin: 0;
   font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
   font-size: 12px;
@@ -5675,6 +5678,12 @@ a.badge:focus {
 .label-warning,
 .badge-warning {
   background-color: #f89406;
+}
+
+.label-wt,
+.badge-wt {
+  background-color: #fff;
+  color:#333;
 }
 
 .label-warning[href],

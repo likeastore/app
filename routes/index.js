@@ -8,8 +8,13 @@ function index(everyauth) {
 
 			res.render('login');
 		},
+
 		setup: function(req, res) {
 			res.render('setup');
+		},
+
+		dashboard: function(req, res) {
+			res.render('dashboard');
 		}
 	};
 }

@@ -3,11 +3,11 @@
 	text-align:center;
 	}
 	
-.login-deck .logo {
+.logo {
 	height:106px;
 	overflow:hidden;
 	text-indent:-999px;
-	background:#333745 url(../img/logo.png) no-repeat center center;
+	background:#3a3e4c url(../img/logo.png) no-repeat center center;
 	color:#fff;
 	cursor:pointer;
 	margin-top:0;
@@ -131,9 +131,9 @@
 	display:none;
 	margin:-150px -260px 0;
 	
-	-vendor-animation-duration: 0.5s;
-    animation-delay:0.5s;
-	-webkit-animation-delay:0.5s; /* Safari and Chrome */
+	-vendor-animation-duration: 1s;
+    animation-delay:2s;
+	-webkit-animation-delay:2s; /* Safari and Chrome */
 	}
 .setup-account h2 {
 	margin-bottom:1em;
@@ -216,5 +216,105 @@
 	}
 
 .start-app {
-	margin:8px 0 0;} 
+	margin:8px 0 0;
+	}
+
+.likeastore-app {
+	height:100%;
+	}
+.likeastore-app .menu {
+	background:#3a3e4c;
+	width:15%;
+	min-width:150px;
+	height:100%;
+	float:left;
+	}
+.likeastore-app .logo {
+	padding:1em 0 0;
+	}
+.menu-res {
+	margin:8em 0 0;
+	}
+	.menu-res a {
+		display:block;
+		padding:0 2em 0 50px;
+		line-height:42px;
+		font-size:14px;
+		cursor:pointer;
+		text-decoration:none;
+		color:#fff;
+		overflow:hidden;
+		}
+	.menu-res .badge {
+		float:right;
+		margin:12px;
+		}
+	.menu-res a.current {
+		color:#333;
+		background-color:#e5eef2;
+	}
+
+.menu-res a.current .badge-wt {
+	background:#333;
+	color:#fff;
+	}
+		
+.fb-ico {
+	background:url(../img/facebook-sml.png) no-repeat 10px 46%;
+	}
+.tw-ico {
+	background:url(../img/twitter-sml.png) no-repeat 10px 46%;
+	}
+
+.git-ico {
+	background:url(../img/github-sml.png) no-repeat 10px 46%;
+	}
+
+.inbox-ico {
+	background:url(../img/inbox-sml.png) no-repeat 13px 46%;
+	}
+.current.inbox-ico {
+	background:#e5eef2 url(../img/inbox-sml-on.png) no-repeat 13px 46%;
+	} 
+	
+.dashboard {
+	margin-left:15%;
+	padding:2em;
+	background:url(../img/dash-bg.png) repeat-y 0 0;
+	}
+	.dashboard .item {
+		border:1px solid #ddd;
+		padding:0.4em 0.6em;
+		cursor:pointer;
+		border-radius:2px;
+		position:relative;
+		min-height:50px;
+		}
+	.dashboard .item:hover {
+		border:1px solid #2eadda;
+		background-color:#e8eff2;
+		}
+	.dashboard .res-ico {
+		position:absolute;
+		right:5px;
+		bottom:5px;
+		width:30px;
+		height:30px;
+		opacity:.3;
+		}
+	.dashboard .item:hover .res-ico {
+		opacity:.7;
+		}
+	.dashboard .git-wm {
+		background: url(../img/github-sml.png) no-repeat 0 0;
+		}
+	.dashboard .facebook-wm {
+		background: url(../img/facebook-sml.png) no-repeat 0 0;
+		}
+	.dashboard .twitter-wm {
+		background: url(../img/twitter-sml.png) no-repeat 0 0;
+		}
+	
+	
+
 	

@@ -38,6 +38,7 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/setup', routes.setup);
+app.get('/dashboard', routes.dashboard);
 
 // open api routes
 handshake(app);
