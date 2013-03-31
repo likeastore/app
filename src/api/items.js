@@ -1,3 +1,6 @@
+var favorites = require('./../db/favorites.js');
+var stars = require('./../db/stars.js');
+
 function items(app) {
 	app.get('/api/items', function (req, res) {
 
