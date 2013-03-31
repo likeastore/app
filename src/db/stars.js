@@ -1,8 +1,8 @@
-var db = require('./db.js').getDb('likeastore');
+var db = require('./db.js').collection('stars');
 
-function save(data, callback) {
-	data.stars.forEach(function (star, i) {
-		db.view('stars/stars', { key: star.id }, function (err, docs) {
+function save(stars, callback) {
+	stars.forEach(function (star, i) {
+		db.view('stars/byId', { key: star.itemId }, function (err, docs) {
 			if (err) {
 				return callback(err);
 			}
@@ -28,12 +28,9 @@ function save(data, callback) {
 }
 
 function all(callback) {
-	db.view('stars/all', function (err, res) {
-		res.forEach(function (row) {
-			console.log(row);
-		});
+	db.view('stars/all', function (err, docs) {
+		return callback(docs);
 	});
-	return callback(null);
 }
 
 function top(count, callback) {
@@ -41,7 +38,19 @@ function top(count, callback) {
 }
 
 function removeAll(callback) {
-	return callback(null);
+	db.view('stars/all', function (err, docs) {
+		if (docs.length > 0) {
+			docs.forEach(function (star) {
+				db.remove(star._id, star._rev, function (err, res) {
+					if (err) {
+						return callback(err);
+					}
+					console.info('removed star with id:' + res.id);
+				});
+			});
+		}
+		return callback(null);
+	});
 }
 
 module.exports = {
