@@ -5,7 +5,6 @@ function items(app) {
 	app.get('/api/items', function (req, res) {
 		favorites.all(function (err, favs) {
 			if (err) {
-				console.log(err);
 				return res.send(500);
 			}
 
@@ -18,6 +17,10 @@ function items(app) {
 				var response = [];
 				all.forEach(function (item) {
 					response.push(item.value);
+				});
+
+				response = response.sort(function (a, b) {
+					return new Date(b.date) - new Date(a.date);
 				});
 
 				return res.json(response);
