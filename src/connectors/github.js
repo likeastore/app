@@ -3,6 +3,9 @@ var request = require('request');
 
 module.exports = {
 	handshake: function (callback) {
+		var postUrl = 'http://localhost:3000/api/connector/github';
+		var githubConnectorUrl = 'http://localhost:3001/handshake';
+
 		console.log('Handshaking github on:' + githubConnectorUrl);
 
 		repository.removeAll(serviceHandshake);
@@ -11,9 +14,6 @@ module.exports = {
 			if (err) {
 				return callback(err);
 			}
-
-			var postUrl = 'http://localhost:3000/api/connector/github';
-			var githubConnectorUrl = 'http://localhost:3001/handshake';
 
 			request.post(githubConnectorUrl, {form: {postUrl: postUrl}}, function(err, response) {
 				return callback(err, response);

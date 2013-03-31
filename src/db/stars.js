@@ -19,6 +19,6 @@ function removeAll(callback) {
 module.exports = {
 	save: save,
 	all: all,
-	top: count,
+	top: top,
 	removeAll: removeAll
 };
