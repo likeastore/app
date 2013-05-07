@@ -43,6 +43,7 @@ function findOrCreateByService (token, tokenSecret, profile, callback) {
 			callback(null, saved);
 		});
 	}
+
 }
 
 /*

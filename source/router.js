@@ -1,9 +1,12 @@
-var users = require('../services/usersFactory.js');
+var users = require('./services/usersFactory.js');
 
 /*
  * GET home page
  */
 function index (req, res) {
+	if (req.user) {
+		return res.redirect('/app');
+	}
 	res.render('index', { title: 'Likeastore sign up' });
 }
 
@@ -35,7 +38,7 @@ function logout (req, res) {
 /*
  * POST username and email setup for newcomers
  */
-function firstTimeSetup (req, res) {
+function makeSetup (req, res) {
 	users.accountSetup(req.user._id, req.body, function (err, saved) {
 		if (err) {
 			return res.send(500, err);
@@ -45,13 +48,12 @@ function firstTimeSetup (req, res) {
 }
 
 /*
- * Simple route middleware to ensure user is authenticated
+ * Route middleware to ensure user is authenticated
  */
 function ensureAuth (req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
 	}
-
 	res.redirect('/');
 }
 
@@ -60,6 +62,6 @@ module.exports = {
 	app: app,
 	setup: setup,
 	logout: logout,
-	firstTimeSetup: firstTimeSetup,
+	makeSetup: makeSetup,
 	ensureAuth: ensureAuth
 };
