@@ -1,0 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic);
+
+@import url(reset.css); /*Styles reset*/
+@import url(icons.css); /*All icons styles*/
+@import url(forms.css); /*All inputs, buttons styles*/
+@import url(global.css); /*global styles*/
+@import url(signup.css); /*Login/signup styles*/

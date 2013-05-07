@@ -1,0 +1,78 @@
+/*FORMS*/
+.textInput,
+textarea {
+	font-size: 14px;
+	padding:10px 8px;
+	border:1px solid #e7e7e7;
+	width: 100%;
+	resize: none;
+	float: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+}
+
+.textInput:focus {
+	border-color: #007fff;
+	box-shadow: inset 0 0 0 1px rgba(0,127,255,.5);
+	outline: none;
+	color: #007fff;
+}
+
+.textInput.error,
+.error .textInput {
+	border-color: #f94e37;
+	box-shadow: inset 0 0 0 1px rgba(249,78,55,.5);
+	color: #f94e37;
+}
+
+.field-group {
+	font-size: 0;
+	white-space: nowrap;
+	vertical-align: middle;
+	display: inline-block;
+}
+.field-group input {
+	vertical-align: top;
+	margin: 0;
+	position: relative;
+}
+
+.field-lbl {
+	display: inline-block;
+	background-color: #999;
+	width: 38px;
+	height: 38px;
+	margin: 0 -1px 0 0;
+}
+
+.active .field-lbl {
+	background-color: #007fff;
+}
+
+.error .field-lbl {
+	background-color: #f94e37;
+}
+
+/*Buttons*/
+.btn {
+	display: inline-block;
+	text-decoration: none;
+	vertical-align: middle;
+	cursor: pointer;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	line-height: 40px;
+	height: 40px;
+	font-size: 14px;
+	color: #fff;
+	border:none;
+	text-transform: uppercase;
+}
+
+.btn-prim {
+	padding: 0 20px;
+	background-color:#007fff;
+	text-shadow:1px 0 1px rgba(0,0,0,.2);
+}

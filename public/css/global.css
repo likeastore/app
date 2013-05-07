@@ -1,0 +1,34 @@
+html {
+  height:100%;
+}
+
+body {
+	background: #fbfbfb;
+	font:normal 1em/1.4 'Open Sans', sans-serif;
+	height:100%;
+}
+
+
+h3 {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.cell {
+	float: left;
+}
+
+.cellRight {
+	float: right;
+}
+
+/*Grid*/
+.main-footer {
+	position: absolute;
+	bottom:0;
+	left: 0;
+	color: #555;
+	font-size: 10px;
+	padding: 10px;
+}
+

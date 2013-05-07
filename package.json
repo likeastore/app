@@ -3,13 +3,23 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.0.0rc4",
-    "ejs": "*",
-    "everyauth": "~0.3.1",
-    "request": "~2.16.6",
-    "cradle": "~0.6.5"
+    "express": "~3.1.0",
+    "ejs": "~0.8.3",
+    "mongojs": "~0.7.3",
+    "underscore": "~1.4.4",
+    "async": "~0.2.6",
+    "passport": "~0.1.16",
+    "passport-twitter": "~0.1.4",
+    "passport-github": "~0.1.4",
+    "passport-facebook": "~0.1.5",
+    "bcrypt": "~0.7.5",
+    "ejs-locals": "~1.0.2",
+    "passport-local": "~0.1.6"
+  },
+  "engines": {
+    "node": "0.8.x"
   }
 }

@@ -1,55 +1,8 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Like a store</title>
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,800,700,400italic|PT+Serif:400,400italic" />
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/bootstrap-responsive.css">
-<link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/kiandra/jquery-ui.css">
-<link rel="stylesheet" href="css/jquery-ui.toggleSwitch.css">
-<script src="js/modernizr-2.0.6.min.js"></script>
-</head>
+<% layout('layout') -%>
 
-<body>
-<div class="login-deck">
-	<h1 class="logo"></h1>   
-				<div class="modal-store setup-account">
-			<h2>Turn on your social networks</h2>
-				<div class="turn-on-s">
-				<i class="icon-ok"></i>
-					<span>Turn on Twitter</span>
-					<input type="checkbox" claass="turn-soc" data-type="twitter"/>
-				</div>
-				<div class="turn-on-s">
-				<i class="icon-ok"></i>
-					<span>Turn on Github</span>
-					<input type="checkbox" claass="turn-soc" data-type="github"/>
-				 </div>
-				 
-				 <a href="/dashboard" class="btn start-app">Start <i class="icon-chevron-right"></i></a>
-				
-		</div>
-
-</div>
-
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="js/custom.js"></script>
-<script>
-	$(document).ready(function() { 
-		$('.setup-account').show().addClass('animated fadeInDown');
-	
-		$('input:checkbox').change(function () {
-			var checkbox = $(this);
-			var connector = checkbox.data('type');
-			$.post('/api/handshake/' + connector, function () {
-				checkbox.parent().toggleClass('active');
-			});
-		});
-});
-</script>
-
-</body>
-</html>
+<h2>First time account setup</h2>
+<form action="/setup" method="post" accept-charset="utf-8" class="form" novalidate>
+	<input type="text" name="username" value="<%= user.username %>" class="textInput username">
+	<input type="email" name="email" placeholder="Your email" class="textInput email">
+	<button>Send</button>
+</form>

@@ -1,33 +1,38 @@
-
 /**
  * Module dependencies.
  */
 
 var express = require('express');
+var routes = require('./source/routes');
 var http = require('http');
 var path = require('path');
+var passport = require('passport');
+var engine = require('ejs-locals');
 
-var everyauth = require('everyauth');
-var auth = require('./src/modules/auth.js')(everyauth);
-var handshake = require('./src/api/handshake.js');
-var items = require('./src/api/items.js');
-var github = require('./src/api/connector/github.js');
-var twitter = require('./src/api/connector/twitter.js');
+var loginRedirects = {
+  successReturnToOrRedirect: '/setup',
+  failureRedirect: '/'
+};
 
-var routes = require('./routes')(everyauth);
+// oauth init
+require('./source/utils/auth.js')(passport);
+
 var app = express();
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
+  app.engine('ejs', engine);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
-  app.use(express.cookieParser());
-  app.use(express.session({secret: 'secret'}));
   app.use(express.methodOverride());
-  app.use(everyauth.middleware());
+  app.use(express.cookieParser('likeastore_secret7'));
+  app.use(express.session({ secret: 'likeastore_secret'}));
+  app.use(express.compress());
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -37,16 +42,23 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/setup', routes.setup);
-app.get('/dashboard', routes.dashboard);
+app.get('/app', routes.ensureAuth, routes.app);
+app.get('/setup', routes.ensureAuth, routes.setup);
 
-// open api routes
-handshake(app);
-items(app);
+// Auth end-points
+app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('/auth/twitter/callback', passport.authenticate('twitter', loginRedirects));
 
-// private api routes
-github(app);
-twitter(app);
+app.get('/auth/github', passport.authenticate('github'));
+app.get('/auth/github/callback', passport.authenticate('github', loginRedirects));
+
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', loginRedirects));
+
+app.get('/logout', routes.logout);
+
+app.post('/register', passport.authenticate('local', { successReturnToOrRedirect: '/app' }));
+app.post('/setup', routes.firstTimeSetup);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

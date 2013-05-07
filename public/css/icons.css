@@ -1,0 +1,74 @@
+.ls-ico {
+	background-image: url(../img/ls-sprite.png);
+	display: inline-block;
+}
+
+.lst-sml {
+	width: 16px;
+	height: 16px;
+}
+
+.ico-fb-med {
+	background-position: 13px 6px;
+}
+
+.ico-tw-med {
+	background-position: -29px 5px;
+}
+
+.ico-git-med {
+	background-position: -77px 5px;
+}
+
+.user-login {
+	background-position: -126px 5px; 
+}
+
+.user-email {
+	background-position: -169px 5px;
+}
+
+.user-password {
+	background-position: -210px 4px;	
+}
+
+.table-view {
+	background-position:-251px 0;
+	margin: 0 10px 0 0;
+}
+
+.list-view {
+	background-position:-273px 0;
+}
+
+.dash-menu-ico {
+	background-color: #de6262;
+	background-position: 10px -30px;
+}
+
+.fb-menu-ico {
+	background-color: #3b5999;
+	background-position: -28px -30px;
+}
+
+.tw-menu-ico {
+	background-color: #2589c5;
+	background-position: -164px -28px;
+}
+
+.git-menu-ico {
+	background-color: #b2b2b2;
+	background-position: -74px -29px;
+}
+
+.gp-menu-ico {
+	background-color: #d95333;
+	background-position: -121px -29px;
+}
+
+.ls-logo {
+	background-position: -297px 0;
+	width: 100px;
+	height: 17px;
+	margin: 16px 0 0;
+}
