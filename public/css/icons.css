@@ -78,7 +78,7 @@
 .search-ico {
 	width: 17px;
 	height: 17px;
-	background-position: -299px -45px;
+	background-position: -305px -45px;
 	position: absolute;
 	top: 17px;
 	right: 10px;
@@ -86,5 +86,5 @@
 }
 
 .active-search .search-ico {
-	background-position: -319px -45px;
+	background-position: -325px -45px;
 } 
