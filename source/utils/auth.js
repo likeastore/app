@@ -1,4 +1,4 @@
-var config = require('../../config')();
+var services = require('../../config')().services;
 var users = require('../services/usersFactory.js');
 var nets = require('../services/networksFactory.js');
 var TwitterAuth = require('passport-twitter').Strategy;
@@ -20,23 +20,23 @@ module.exports = function (passport) {
 
 		var authTypes = {
 			twitter: new TwitterAuth({
-				consumerKey: config.twitter.consumerKey,
-				consumerSecret: config.twitter.consumerSecret,
+				consumerKey: services.twitter.consumerKey,
+				consumerSecret: services.twitter.consumerSecret,
 				callbackURL: options.url,
 				passReqToCallback: options.req
 			}, options.callback),
 
 			github: new GithubAuth({
-				clientID: config.github.appId,
-				clientSecret: config.github.appSecret,
+				clientID: services.github.appId,
+				clientSecret: services.github.appSecret,
 				callbackURL: options.url,
 				passReqToCallback: options.req,
 				customHeaders: {'User-Agent': 'likeastore'}
 			}, options.callback),
 
 			facebook: new FacebookAuth({
-				clientID: config.facebook.appId,
-				clientSecret: config.facebook.appSecret,
+				clientID: services.facebook.appId,
+				clientSecret: services.facebook.appSecret,
 				callbackURL:  options.url,
 				passReqToCallback: options.req
 			}, options.callback),
@@ -54,13 +54,7 @@ module.exports = function (passport) {
 			if (err) {
 				return done(err);
 			}
-
-			nets.saveNetwork(user, token, function (err, user) {
-				if (err) {
-					return done(err);
-				}
-				done(null, user);
-			});
+			done(null, user);
 		});
 	}
 
@@ -74,7 +68,7 @@ module.exports = function (passport) {
 	}
 
 	function saveServiceToNetworks (req, token, tokenSecret, profile, done) {
-		nets.saveNetwork(req.user, token, function (err, user) {
+		nets.saveNetwork(profile, token, tokenSecret, function (err, user) {
 			if (err) {
 				return done(err);
 			}
@@ -119,14 +113,12 @@ module.exports = function (passport) {
 	passport.use('twitter-authz', getAuth({
 		type: 'twitter',
 		url: '/connect/twitter/callback',
-		callback: saveServiceToNetworks,
-		req: true
+		callback: saveServiceToNetworks
 	}));
 
 	passport.use('github-authz', getAuth({
 		type: 'github',
 		url: '/connect/github/callback',
-		callback: saveServiceToNetworks,
-		req: true
+		callback: saveServiceToNetworks
 	}));
 };

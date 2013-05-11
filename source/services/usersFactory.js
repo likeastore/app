@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var bcrypt = require('bcrypt');
+var bcrypt = null;// disabled permanently because of win7 :( PLEASE enable it on LINUX OR MAC require('bcrypt');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('../utils/dbConnector.js').db;
 
@@ -114,12 +114,12 @@ function accountSetup (userId, data, callback) {
 			{ $set: { username: data.username, email: data.email }, $unset: { firstTimeUser: 1 }},
 			updatedUser);
 
-		function updatedUser (err, saved) {
-			if (err || !saved) {
+		function updatedUser (err) {
+			if (err) {
 				return callback(err);
 			}
 
-			callback(null, saved);
+			callback(null);
 		}
 	});
 }

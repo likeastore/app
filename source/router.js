@@ -1,4 +1,5 @@
 var users = require('./services/usersFactory.js');
+var nets = require('./services/networksFactory.js');
 
 /*
  * GET home page
@@ -39,11 +40,20 @@ function logout (req, res) {
  * POST username and email setup for newcomers
  */
 function makeSetup (req, res) {
-	users.accountSetup(req.user._id, req.body, function (err, saved) {
+	var user = req.user;
+
+	users.accountSetup(user._id, req.body, function (err, saved) {
 		if (err) {
 			return res.send(500, err);
 		}
-		res.send(200);
+
+		nets.saveNetwork(user, user.token, user.tokenSecret, function (err, user) {
+			if (err) {
+				return res.send(500, err);
+			}
+
+			res.send(200);
+		});
 	});
 }
 

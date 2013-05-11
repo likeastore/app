@@ -1,3 +1,4 @@
+var services = require('../../config')().services;
 var _ = require('underscore');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('../utils/dbConnector.js').db;
@@ -7,8 +8,8 @@ var db = require('../utils/dbConnector.js').db;
  * @param user {Object} - user data
  * @params token {String} - service user token
  */
-function saveNetwork (user, token, callback) {
-	db.networks.findOne({ userId: user._id }, function (err, net) {
+function saveNetwork (user, token, tokenSecret, callback) {
+	db.networks.findOne({ userId: user._id, token: token }, function (err, net) {
 		if (err) {
 			return callback(err);
 		}
@@ -21,15 +22,20 @@ function saveNetwork (user, token, callback) {
 
 		function save () {
 			var record = {
-				userId: user._id,
-				token: token
+				userId: user.id,
+				username: user.username,
+				accessToken: token,
+				accessTokenSecret: tokenSecret,
+				service: user.provider,
+				quotas: services[user.provider].quotas
 			};
 
-			db.networks.save(record, function (err, saved) {
-				if (err || !saved) {
+			db.networks.save(record, function (err) {
+				if (err) {
 					return callback(err);
 				}
-				callback(null, saved);
+
+				callback(null);
 			});
 		}
 	});
