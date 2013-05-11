@@ -25,7 +25,7 @@ var config = {
 			appSecret: 'bc86f2ab9afcb1227227146e5ea9ad44'
 		},
 
-		stackexchange: {
+		stackoverflow: {
 			clientId: '1533',
 			clientKey: 'J2wyheThU5jYFiOpGG22Eg((',
 			clientSecret: 'KOCBFY4OUP6OE7Q1xNw1wA((',

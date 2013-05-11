@@ -65,7 +65,7 @@ module.exports = function (passport) {
 	}));
 
 	passport.use('stackexchange-authz', getAuth({
-		type: 'stackexchange',
+		type: 'stackoverflow',
 		url: '/connect/stackexchange/callback',
 		callback: saveServiceToNetworks,
 		req: true
@@ -104,10 +104,10 @@ module.exports = function (passport) {
 				passReqToCallback: options.req
 			}, options.callback),
 
-			stackexchange: new StackAuth({
-				key: services.stackexchange.clientKey,
-				clientID: services.stackexchange.clientId,
-				clientSecret: services.stackexchange.clientSecret,
+			stackoverflow: new StackAuth({
+				key: services.stackoverflow.clientKey,
+				clientID: services.stackoverflow.clientId,
+				clientSecret: services.stackoverflow.clientSecret,
 				callbackURL:  options.url,
 				passReqToCallback: options.req
 			}, options.callback),
@@ -139,6 +139,7 @@ module.exports = function (passport) {
 	}
 
 	function saveServiceToNetworks (req, token, tokenSecret, profile, done) {
+		console.log(req);
 		nets.saveNetwork(req.user._id, profile, token, tokenSecret, function (err, user) {
 			if (err) {
 				return done(err);

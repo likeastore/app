@@ -36,7 +36,7 @@ var setupForms = {
 
 		$.post($form.attr('action'), $form.serializeObject())
 			.done(function (res) {
-				window.location = '/app';
+				window.location = '/dashboard';
 			})
 			.fail(function (err) {
 				handleErrors(err.responseText);

@@ -4,6 +4,7 @@
 
 var express = require('express');
 var routes = require('./source/router.js');
+var api = require('./source/api.js');
 var http = require('http');
 var path = require('path');
 var passport = require('passport');
@@ -43,7 +44,10 @@ app.configure('development', function(){
 
 // app main urls
 app.get('/', routes.index);
-app.get('/app', routes.ensureAuth, routes.app);
+app.get('/dashboard', routes.ensureAuth, routes.app);
+
+// angular view partials
+app.get('/partials/:name', routes.partials);
 
 // registration strategies
 app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -55,11 +59,11 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', loginRedire
 
 // authorization strategies
 app.get('/connect/twitter', passport.authorize('twitter-authz'));
-app.get('/connect/twitter/callback', passport.authorize('twitter-authz'), function (req, res) { res.redirect('/app'); });
+app.get('/connect/twitter/callback', passport.authorize('twitter-authz'), function (req, res) { res.redirect('/dashboard'); });
 app.get('/connect/github', passport.authorize('github-authz'));
-app.get('/connect/github/callback', passport.authorize('github-authz'), function (req, res) { res.redirect('/app'); });
+app.get('/connect/github/callback', passport.authorize('github-authz'), function (req, res) { res.redirect('/dashboard'); });
 app.get('/connect/stackexchange', passport.authorize('stackexchange-authz'));
-app.get('/connect/stackexchange/callback', passport.authorize('stackexchange-authz'), function (req, res) { res.redirect('/app'); });
+app.get('/connect/stackexchange/callback', passport.authorize('stackexchange-authz'), function (req, res) { res.redirect('/dashboard'); });
 
 
 // setup page
@@ -70,9 +74,14 @@ app.post('/setup', routes.makeSetup);
 app.post('/register', passport.authenticate('local', { successReturnToOrRedirect: '/app' }));
 app.post('/login', passport.authenticate('local', { successReturnToOrRedirect: '/app' }));
 
+// api
+app.get('/api/items/all', api.getAll);
+app.get('/api/items/twitter', api.getTwitter);
+app.get('/api/items/github', api.getGithub);
+
 // logout from app
 app.get('/logout', routes.logout);
-app.get('*', routes.ensureAuth, routes.app);
+//app.get('*', routes.ensureAuth, function (req, res) { res.redirect('/app'); });
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

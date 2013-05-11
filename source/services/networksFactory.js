@@ -21,6 +21,7 @@ function saveNetwork (userId, profile, token, tokenSecret, callback) {
 	// stackoverflow specific hack
 	if (profile.provider === 'stackexchange') {
 		profile.username = profile.user_id;
+		profile.provider = 'stackoverflow';
 	}
 
 	db.networks.findOne({ userId: userId, provider: profile.provider }, function (err, net) {
@@ -28,6 +29,7 @@ function saveNetwork (userId, profile, token, tokenSecret, callback) {
 			return callback(err);
 		}
 
+		console.log(net);
 		if (net) {
 			return callback('This service is already associated with this user.');
 		}
@@ -55,6 +57,9 @@ function saveNetwork (userId, profile, token, tokenSecret, callback) {
 	});
 }
 
+function removeNetwork (userId, service) {}
+
 module.exports = {
-	saveNetwork: saveNetwork
+	saveNetwork: saveNetwork,
+	removeNetwork: removeNetwork
 };

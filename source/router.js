@@ -6,16 +6,23 @@ var nets = require('./services/networksFactory.js');
  */
 function index (req, res) {
 	if (req.user) {
-		return res.redirect('/app');
+		return res.redirect('/dashboard');
 	}
-	res.render('index', { title: 'Likeastore signup' });
+	res.render('welcome', { title: 'Likeastore signup' });
 }
 
 /*
  * GET angular application
  */
 function app (req, res) {
-	res.render('app', { title: 'Likeastore app'});
+	res.render('app', { title: 'Likeastore app', user: req.user });
+}
+
+/*
+ * GET angular view partials
+ */
+function partials (req, res) {
+	res.render('partials/' + req.params.name);
 }
 
 /*
@@ -23,7 +30,7 @@ function app (req, res) {
  */
 function setup (req, res) {
 	if (!req.user.firstTimeUser) {
-		return res.redirect('/app');
+		return res.redirect('/dashboard');
 	}
 	res.render('setup', { title: 'Account setup', user: req.user });
 }
@@ -75,6 +82,7 @@ module.exports = {
 	app: app,
 	setup: setup,
 	logout: logout,
+	partials: partials,
 	makeSetup: makeSetup,
 	ensureAuth: ensureAuth
 };

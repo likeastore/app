@@ -1,0 +1,18 @@
+<section class="main-dashdoard">
+	<div class="dashboard-header">
+		<h1 class="cell">{{title}}</h1>
+		<div class="cellRight">
+			<div class="top-search-deck">
+				<input type="text" class="search-input" name="lsSearch" placeholder="Search items" ng-model="query">
+				<span class="ls-ico lst-sml search-ico"></span>
+			</div>
+		</div>
+	</div>
+
+	<ul>
+		<li class="dash-item" ng-repeat="item in items|filter:query">
+			<img src="{{item.avatarUrl}}">
+			{{item.description}}
+		</li>
+	</ul>
+</section>
