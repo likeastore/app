@@ -2,13 +2,17 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title><%= title %></title>
+
+	<link rel='stylesheet' href='/css/styles.css' />
+	<%- stylesheets %>
 </head>
 <body>
 
 <h2>HERE WILL BE OUR SUPER COOL ONE PAGE ANGULAR APP!</h2>
 <p>...but for now you can only <a href="/logout">logout</a>.</p>
 
-<p><a href="/connect/twitter">Connect twitter</a> | <a href="/connect/github">Connect github</a></p>
+<p><a href="/connect/twitter">Connect twitter</a> | <a href="/connect/github">Connect github</a> | <a href="/connect/stackexchange">Connect stackoverflow</a></p>
+	<%- scripts %>
 </body>
 </html>

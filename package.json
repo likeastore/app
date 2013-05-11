@@ -17,7 +17,8 @@
     "passport-facebook": "~0.1.5",
     "bcrypt": "~0.7.5",
     "ejs-locals": "~1.0.2",
-    "passport-local": "~0.1.6"
+    "passport-local": "~0.1.6",
+    "passport-stackexchange": "~0.1.0"
   },
   "engines": {
     "node": "0.8.x"

@@ -58,6 +58,8 @@ app.get('/connect/twitter', passport.authorize('twitter-authz'));
 app.get('/connect/twitter/callback', passport.authorize('twitter-authz'), function (req, res) { res.redirect('/app'); });
 app.get('/connect/github', passport.authorize('github-authz'));
 app.get('/connect/github/callback', passport.authorize('github-authz'), function (req, res) { res.redirect('/app'); });
+app.get('/connect/stackexchange', passport.authorize('stackexchange-authz'));
+app.get('/connect/stackexchange/callback', passport.authorize('stackexchange-authz'), function (req, res) { res.redirect('/app'); });
 
 
 // setup page

@@ -8,14 +8,14 @@ function index (req, res) {
 	if (req.user) {
 		return res.redirect('/app');
 	}
-	res.render('index', { title: 'Likeastore sign up' });
+	res.render('index', { title: 'Likeastore signup' });
 }
 
 /*
  * GET angular application
  */
 function app (req, res) {
-	res.render('app');
+	res.render('app', { title: 'Likeastore app'});
 }
 
 /*
@@ -25,7 +25,7 @@ function setup (req, res) {
 	if (!req.user.firstTimeUser) {
 		return res.redirect('/app');
 	}
-	res.render('setup', { title: 'Setup your account', user: req.user });
+	res.render('setup', { title: 'Account setup', user: req.user });
 }
 
 /*
@@ -37,24 +37,27 @@ function logout (req, res) {
 }
 
 /*
- * POST username and email setup for newcomers
+ * POST username and email setup for newcomers from services
+ * (also saving to networks)
  */
 function makeSetup (req, res) {
 	var user = req.user;
 
-	users.accountSetup(user._id, req.body, function (err, saved) {
+	users.accountSetup(user._id, req.body, saveFirstService);
+
+
+	function saveFirstService (err) {
 		if (err) {
 			return res.send(500, err);
 		}
 
-		nets.saveNetwork(user, user.token, user.tokenSecret, function (err, user) {
+		nets.saveNetwork(user._id, user, user.token, user.tokenSecret, function (err, user) {
 			if (err) {
 				return res.send(500, err);
 			}
-
 			res.send(200);
 		});
-	});
+	}
 }
 
 /*
