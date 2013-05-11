@@ -1,4 +1,28 @@
 /*FORMS*/
+input::-ms-clear {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+   color: #ccc;
+   font-style: italic;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #ccc;
+   font-style: italic;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #ccc;
+   font-style: italic;
+}
+
+:-ms-input-placeholder {  
+   color: #ccc;
+   font-style: italic;
+}
+
 .textInput,
 textarea {
 	font-size: 14px;

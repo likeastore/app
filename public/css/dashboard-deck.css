@@ -113,6 +113,26 @@
 	padding: 4px 0 0;
 }
 
+.top-search-deck {
+	float: left;
+	margin: -4px 25px 0;
+	position: relative;
+}
+
+.search-input {
+	border: 1px solid #dedede;
+	height: 28px;
+	padding: 0 30px 0 8px;
+	width: 200px;
+	resize: none;
+}
+
+.search-input:focus {
+	outline: none;
+	border:1px solid #007fff;
+	color: #007fff;
+}
+
 .dash-item {
 	vertical-align: top;
 	background: #fff;

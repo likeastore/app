@@ -35,10 +35,12 @@
 .table-view {
 	background-position:-251px 0;
 	margin: 0 10px 0 0;
+	cursor: pointer;
 }
 
 .list-view {
 	background-position:-273px 0;
+	cursor: pointer;
 }
 
 .dash-menu-ico {
@@ -72,3 +74,17 @@
 	height: 17px;
 	margin: 16px 0 0;
 }
+
+.search-ico {
+	width: 17px;
+	height: 17px;
+	background-position: -299px -45px;
+	position: absolute;
+	top: 17px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.active-search .search-ico {
+	background-position: -319px -45px;
+} 
