@@ -9,8 +9,8 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 		.when('/dashboard', { templateUrl: 'partials/dashboard', controller: DashboardCtrl })
 		.when('/dashboard/all', { templateUrl: 'partials/dashboard', controller: DashboardCtrl })
 		.when('/dashboard/github', { templateUrl: 'partials/dashboard', controller: GithubCtrl })
-		.when('/dashboard/twitter', { templateUrl: 'partials/dashboard', controller: TwitterCtrl });
-		//.otherwise({ redirectTo: '/dashboard' });
+		.when('/dashboard/twitter', { templateUrl: 'partials/dashboard', controller: TwitterCtrl })
+		.otherwise({ redirectTo: '/dashboard' });
 
 	$locationProvider.html5Mode(true);
 }]);

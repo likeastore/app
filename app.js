@@ -71,8 +71,8 @@ app.get('/setup', routes.ensureAuth, routes.setup);
 app.post('/setup', routes.makeSetup);
 
 // native register & login
-app.post('/register', passport.authenticate('local', { successReturnToOrRedirect: '/app' }));
-app.post('/login', passport.authenticate('local', { successReturnToOrRedirect: '/app' }));
+app.post('/register', passport.authenticate('local', { successReturnToOrRedirect: '/dashboard' }));
+app.post('/login', passport.authenticate('local', { successReturnToOrRedirect: '/dashboard' }));
 
 // api
 app.get('/api/items/all', api.getAll);
@@ -81,7 +81,7 @@ app.get('/api/items/github', api.getGithub);
 
 // logout from app
 app.get('/logout', routes.logout);
-//app.get('*', routes.ensureAuth, function (req, res) { res.redirect('/app'); });
+app.get('*', routes.ensureAuth, routes.app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

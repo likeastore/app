@@ -1,3 +1,5 @@
+<!--<nav class="cell dashboard-nav" ng-include src="'partials/nav'"></nav>-->
+
 <section class="main-dashdoard">
 	<div class="dashboard-header">
 		<h1 class="cell">{{title}}</h1>
@@ -12,7 +14,8 @@
 	<ul>
 		<li class="dash-item" ng-repeat="item in items|filter:query">
 			<img src="{{item.avatarUrl}}">
-			{{item.description}}
+			<a href="{{item.url || item.source}}" target="_blank">{{item.description}}</a>
 		</li>
 	</ul>
+	<div ng-show="!items.length">No items to display :(</div>
 </section>

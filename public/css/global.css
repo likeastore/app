@@ -4,10 +4,10 @@ html {
 
 body {
 	background: #fbfbfb;
-	font:normal 1em/1.4 'Open Sans', sans-serif;
+	font: normal 1em/1.4 'Open Sans', sans-serif;
 	height:100%;
+	overflow-x: hidden;
 }
-
 
 h3 {
 	font-weight: bold;
@@ -22,6 +22,18 @@ h3 {
 	float: right;
 }
 
+.clearfix {
+	display: block;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
 /*Grid*/
 .main-footer {
 	position: absolute;
@@ -31,4 +43,3 @@ h3 {
 	font-size: 10px;
 	padding: 10px;
 }
-

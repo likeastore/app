@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title><%= title %></title>
+	<base href="/">
 
 	<link rel='stylesheet' href='/css/dashboard.css' />
 	<%- stylesheets %>
@@ -12,11 +13,12 @@
 	<![endif]-->
 </head>
 <body>
-	<header class="main-header">
+	<header class="main-header clearfix">
 		<div class="cell header-left"><a class="ls-ico ls-logo cell"></a></div>
 		<div class="account-info cellRight">
 			<span class="account-name"><%= user.username %></span>
-			<a class="account-name" href="/logout">logout</a>
+  			<img src="<%= user.avatar %>" alt="<%= user.username %>">
+  			<span class="account-show"></span>
 		</div>
 	</header>
 
@@ -24,7 +26,7 @@
 
 	<div ng-view></div>
 
-	<p><a href="/connect/twitter">Connect twitter</a> | <a href="/connect/github">Connect github</a> | <a href="/connect/stackexchange">Connect stackoverflow</a></p>
+	<!--<p><a href="/connect/twitter" target="_self">Connect twitter</a> | <a href="/connect/github" target="_self">Connect github</a> | <a href="/connect/stackexchange" target="_self">Connect stackoverflow</a></p>-->
 
 	<script src="/js/libs/angular/angular.min.js"></script>
 	<script src="/js/libs/angular/angular-resource.min.js"></script>

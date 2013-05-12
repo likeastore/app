@@ -1,5 +1,6 @@
 var _ = require('underscore');
-var bcrypt = null;// disabled permanently because of win7 :( PLEASE enable it on LINUX OR MAC require('bcrypt');
+var grvtr = require('grvtr');
+var bcrypt = require('bcrypt');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('../utils/dbConnector.js').db;
 
@@ -32,6 +33,8 @@ function findOrCreateByService (token, tokenSecret, profile, callback) {
 		var record = _.extend(meta, {
 			token: token,
 			tokenSecret: tokenSecret,
+			avatar: profile._json.avatar_url || profile._json.profile_image_url,
+			name: profile.username,
 			registered: new Date(),
 			firstTimeUser: true
 		});
@@ -43,7 +46,6 @@ function findOrCreateByService (token, tokenSecret, profile, callback) {
 			callback(null, saved);
 		});
 	}
-
 }
 
 /*
@@ -73,9 +75,12 @@ function findOrCreateLocal (data, callback) {
 		}
 
 		function saveLocalUser() {
+			var gravatar_url = grvtr(data.email, { defaultImage: 'mm' });
+
 			var record = {
-				username: data.username,
+				name: data.username,
 				email: data.email,
+				avatar: gravatar_url,
 				provider: 'local',
 				registered: new Date()
 			};
@@ -100,7 +105,11 @@ function findOrCreateLocal (data, callback) {
  * @param data {Object} - form fields
  */
 function accountSetup (userId, data, callback) {
-	db.users.findOne({ _id: { $ne: ObjectId(userId) }, username: data.username }, function (err, user) {
+	db.users.findOne({
+		_id: { $ne: ObjectId(userId) },
+		username: data.username,
+		provider: data.provider
+	}, function (err, user) {
 		if (err) {
 			return callback(err);
 		}
@@ -111,14 +120,13 @@ function accountSetup (userId, data, callback) {
 
 		db.users.update(
 			{ _id: ObjectId(userId) },
-			{ $set: { username: data.username, email: data.email }, $unset: { firstTimeUser: 1 }},
+			{ $set: { name: data.username, email: data.email }, $unset: { firstTimeUser: 1 }},
 			updatedUser);
 
 		function updatedUser (err) {
 			if (err) {
 				return callback(err);
 			}
-
 			callback(null);
 		}
 	});

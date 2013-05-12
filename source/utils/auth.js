@@ -139,7 +139,6 @@ module.exports = function (passport) {
 	}
 
 	function saveServiceToNetworks (req, token, tokenSecret, profile, done) {
-		console.log(req);
 		nets.saveNetwork(req.user._id, profile, token, tokenSecret, function (err, user) {
 			if (err) {
 				return done(err);
