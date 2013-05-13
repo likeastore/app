@@ -1,4 +1,4 @@
-var db = require('./source/utils/dbConnector').db;
+var db = require('./source/db/dbConnector').db;
 
 console.log('cleaning up likestore db...')
 db.dropDatabase();
