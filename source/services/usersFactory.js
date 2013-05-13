@@ -59,18 +59,17 @@ function findOrCreateLocal (data, callback) {
 		}
 
 		if (user) {
-			// bcrypt.compare(data.password, user.password, function (err, res) {
-			// 	if (err) {
-			// 		return(err);
-			// 	}
+			bcrypt.compare(data.password, user.password, function (err, res) {
+				if (err) {
+					return(err);
+				}
 
-			// 	if (!res) {
-			// 		return callback('Username and password do not match!');
-			// 	}
+				if (!res) {
+					return callback('Username and password do not match!');
+				}
 
-			// 	return callback(null, user);
-			// });
-			return callback(null, user);
+				return callback(null, user);
+			});
 		} else {
 			saveLocalUser();
 		}
@@ -85,18 +84,12 @@ function findOrCreateLocal (data, callback) {
 				registered: new Date()
 			};
 
-<<<<<<< HEAD
-			// bcrypt.hash(data.password, 10, function (err, hash) {
-			// 	record.password = hash;
-				db.users.save(record, function (err, saved) {
-=======
 			bcrypt.genSalt(10, function (err, salt) {
 				if (err) {
 					return callback(err);
 				}
 
 				bcrypt.hash(data.password, salt, null, function (err, hash) {
->>>>>>> switch from bcrypt to bcrypt-node
 					if (err) {
 						return callback(err);
 					}
@@ -110,7 +103,7 @@ function findOrCreateLocal (data, callback) {
 						callback(null, saved);
 					});
 				});
-			// });
+			});
 		}
 	});
 }
