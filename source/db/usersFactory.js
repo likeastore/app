@@ -2,7 +2,7 @@ var _ = require('underscore');
 var grvtr = require('grvtr');
 var bcrypt = require('bcrypt-nodejs');
 var ObjectId = require('mongojs').ObjectId;
-var db = require('../utils/dbConnector.js').db;
+var db = require('./dbConnector').db;
 
 // fields from user metadata of diff services
 var metaFromServices = ['id', 'provider', 'username', 'displayName'];
