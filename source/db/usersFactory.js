@@ -1,8 +1,8 @@
 var _ = require('underscore');
 var grvtr = require('grvtr');
-//var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var ObjectId = require('mongojs').ObjectId;
-var db = require('./dbConnector').db;
+var db = require('../utils/dbConnector.js').db;
 
 // fields from user metadata of diff services
 var metaFromServices = ['id', 'provider', 'username', 'displayName'];
@@ -59,25 +59,23 @@ function findOrCreateLocal (data, callback) {
 		}
 
 		if (user) {
-			// bcrypt.compare(data.password, user.password, function (err, res) {
-			// 	if (err) {
-			// 		return(err);
-			// 	}
+			bcrypt.compare(data.password, user.password, function (err, res) {
+				if (err) {
+					return(err);
+				}
 
-			// 	if (!res) {
-			// 		return callback('Username and password do not match!');
-			// 	}
+				if (!res) {
+					return callback('Username and password do not match!');
+				}
 
-			// 	return callback(null, user);
-			// });
-			return callback(null, user);
+				return callback(null, user);
+			});
 		} else {
 			saveLocalUser();
 		}
 
 		function saveLocalUser() {
-			var gravatar_url = grvtr(data.email, { defaultImage: 'mm' });
-
+			var gravatar_url = grvtr.create(data.email, { defaultImage: 'mm' });
 			var record = {
 				name: data.username,
 				email: data.email,
@@ -86,16 +84,26 @@ function findOrCreateLocal (data, callback) {
 				registered: new Date()
 			};
 
-			// bcrypt.hash(data.password, 10, function (err, hash) {
-			// 	record.password = hash;
-				db.users.save(record, function (err, saved) {
+			bcrypt.genSalt(10, function (err, salt) {
+				if (err) {
+					return callback(err);
+				}
+
+				bcrypt.hash(data.password, salt, null, function (err, hash) {
 					if (err) {
 						return callback(err);
 					}
 
-					callback(null, saved);
+					record.password = hash;
+					db.users.save(record, function (err, saved) {
+						if (err) {
+							return callback(err);
+						}
+
+						callback(null, saved);
+					});
 				});
-			// });
+			});
 		}
 	});
 }
