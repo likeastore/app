@@ -1,6 +1,6 @@
 var _ = require('underscore');
 var grvtr = require('grvtr');
-//var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('../utils/dbConnector.js').db;
 
@@ -76,8 +76,7 @@ function findOrCreateLocal (data, callback) {
 		}
 
 		function saveLocalUser() {
-			var gravatar_url = grvtr(data.email, { defaultImage: 'mm' });
-
+			var gravatar_url = grvtr.create(data.email, { defaultImage: 'mm' });
 			var record = {
 				name: data.username,
 				email: data.email,
@@ -86,14 +85,30 @@ function findOrCreateLocal (data, callback) {
 				registered: new Date()
 			};
 
+<<<<<<< HEAD
 			// bcrypt.hash(data.password, 10, function (err, hash) {
 			// 	record.password = hash;
 				db.users.save(record, function (err, saved) {
+=======
+			bcrypt.genSalt(10, function (err, salt) {
+				if (err) {
+					return callback(err);
+				}
+
+				bcrypt.hash(data.password, salt, null, function (err, hash) {
+>>>>>>> switch from bcrypt to bcrypt-node
 					if (err) {
 						return callback(err);
 					}
 
-					callback(null, saved);
+					record.password = hash;
+					db.users.save(record, function (err, saved) {
+						if (err) {
+							return callback(err);
+						}
+
+						callback(null, saved);
+					});
 				});
 			// });
 		}
