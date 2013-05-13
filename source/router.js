@@ -1,5 +1,5 @@
-var users = require('./services/usersFactory.js');
-var nets = require('./services/networksFactory.js');
+var users = require('./db/usersFactory.js');
+var nets = require('./db/networksFactory.js');
 
 /*
  * GET home page

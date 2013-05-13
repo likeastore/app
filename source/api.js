@@ -1,4 +1,4 @@
-var users = require('./services/usersFactory.js');
+var users = require('./db/usersFactory');
 
 function getAll (req, res) {
 	users.getAllItems(req.user._id, function (err, items) {
