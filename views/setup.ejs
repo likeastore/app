@@ -1,8 +1,10 @@
 <% layout('layout') -%>
-
-<h2>First time account setup</h2>
-<form action="/setup" method="post" accept-charset="utf-8" class="form" novalidate>
-	<input type="text" name="username" value="<%= user.username %>" class="textInput username">
-	<input type="email" name="email" placeholder="Your email" class="textInput email">
-	<button>Send</button>
-</form>
+<div class="sign-up-ls set-up-page">
+	<h3>First time account setup</h3>
+	<form action="/setup" method="post" accept-charset="utf-8" class="form" novalidate>
+		<input type="text" name="username" value="<%= user.username %>" class="textInput username">
+		<input type="email" name="email" placeholder="Your email" class="textInput email">
+		<button class="btn btn-prim cellRight" type="submit">Send</button>
+	</form>
+</div>
+<footer class="main-footer">&copy 2013 Likeastore.</footer>

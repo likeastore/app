@@ -5,7 +5,7 @@
 	background: #fff;
 	width: 680px;
 	margin:-200px -350px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid #ddd;
 }
 
 .sign-up-ls h3 {
@@ -77,4 +77,17 @@
 
 .btn-fb {
 	background: #3b5999;
+}
+
+.set-up-page {
+	width: 500px;
+	margin:-200px -250px;
+}
+.set-up-page .form {
+	padding: 30px;
+	overflow: hidden;
+}
+
+.set-up-page input {
+	margin:0 0 15px;
 }

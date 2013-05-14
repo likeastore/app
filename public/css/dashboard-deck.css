@@ -40,6 +40,7 @@
 
 .menu-title {
 	text-transform: uppercase;
+	text-decoration: none;
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 50px;
@@ -91,8 +92,6 @@
 	background: #fafafa;
 	margin: 0 0 0 241px;
 	padding: 0 25px;
-	min-height: 100%;
-	position: relative;
 	vertical-align: top;
 }
 

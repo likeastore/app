@@ -27,7 +27,7 @@ input::-ms-clear {
 textarea {
 	font-size: 14px;
 	padding:10px 8px;
-	border:1px solid #e7e7e7;
+	border:1px solid #d3d3d3;
 	width: 100%;
 	resize: none;
 	float: none;
