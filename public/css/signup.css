@@ -89,5 +89,11 @@
 }
 
 .set-up-page input {
-	margin:0 0 15px;
+	margin:0 0 20px;
+}
+
+.set-up-page .field-group {
+	clear: both;
+	display: block;
+	width: 400px;
 }
