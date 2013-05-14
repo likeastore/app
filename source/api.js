@@ -7,8 +7,8 @@ var items = require('./db/items.js');
 var nets = require('./db/networks.js');
 
 var redirects = {
-	successReturnToOrRedirect: '/dashboard',
-	failureRedirect: '/'
+	successReturnToOrRedirect: '/',
+	failureRedirect: '/failed'
 };
 
 module.exports = function (app, passport) {
@@ -94,6 +94,6 @@ module.exports = function (app, passport) {
 
 	// special callback for networks authorization
 	function redirectToDashboard (req, res) {
-		res.redirect('/dashboard');
+		res.redirect('/');
 	}
 };

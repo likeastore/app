@@ -1,16 +1,28 @@
-/* Main app module */
+define(function (require) {
 
-'use strict'
+	var angular = require('angular');
+	var DashboadController = require('./controllers/dashboard-controller');
+	var GithubController = require('./controllers/github-controller');
+	var TwitterController = require('./controllers/twitter-controller');
 
-var app = angular.module('likeastore', ['likeastore.services']);
+	function initialize (doc) {
+		var app = angular.module('likeastore', ['likeastore.services']);
 
-app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-	$routeProvider
-		.when('/dashboard', { templateUrl: 'partials/dashboard', controller: DashboardCtrl })
-		.when('/dashboard/all', { templateUrl: 'partials/dashboard', controller: DashboardCtrl })
-		.when('/dashboard/github', { templateUrl: 'partials/dashboard', controller: GithubCtrl })
-		.when('/dashboard/twitter', { templateUrl: 'partials/dashboard', controller: TwitterCtrl })
-		.otherwise({ redirectTo: '/dashboard' });
+		app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+			$routeProvider
+				.when('/', { templateUrl: 'partials/dashboard', controller: DashboadController })
+				.when('/all', { templateUrl: 'partials/dashboard', controller: DashboadController })
+				.when('/github', { templateUrl: 'partials/dashboard', controller: GithubController })
+				.when('/twitter', { templateUrl: 'partials/dashboard', controller: TwitterController })
+				.otherwise({ redirectTo: '/dashboard' });
 
-	$locationProvider.html5Mode(true);
-}]);
+			$locationProvider.html5Mode(true);
+		}]);
+
+		angular.bootstrap(doc,['likeastore']);
+	}
+
+	return {
+		initialize: initialize
+	};
+});
