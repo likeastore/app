@@ -16,17 +16,19 @@
 	<header class="main-header clearfix">
 		<div class="cell header-left"><a class="ls-ico ls-logo cell"></a></div>
 		<div class="account-info cellRight">
-			<span class="account-name"><%= user.username %></span>
-  			<img src="<%= user.avatar %>" alt="<%= user.username %>">
+			<span class="account-name">
+				<% var name = user.name || user.username; %>
+				<%= name %>
+			</span>
+  			<img src="<%= user.avatar %>" alt="<%= name %>">
   			<span class="account-show"></span>
 		</div>
 	</header>
 
-	<nav class="cell dashboard-nav" ng-include src="'partials/nav'"></nav>
+	<div class="main-viewer" ng-view></div>
 
-	<div ng-view></div>
-
-	<!--<p><a href="/connect/twitter" target="_self">Connect twitter</a> | <a href="/connect/github" target="_self">Connect github</a> | <a href="/connect/stackexchange" target="_self">Connect stackoverflow</a></p>-->
+	<!--TO DO: will be moved to ng-directive modal
+	<p><a href="/connect/twitter" target="_self">Connect twitter</a> | <a href="/connect/github" target="_self">Connect github</a> | <a href="/connect/stackexchange" target="_self">Connect stackoverflow</a></p>-->
 
 	<script src="/js/libs/angular/angular.min.js"></script>
 	<script src="/js/libs/angular/angular-resource.min.js"></script>
