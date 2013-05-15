@@ -1,5 +1,6 @@
 .main-viewer {
-	height: 100%;
+	overflow: hidden;
+	zoom:1;
 }
 
 .main-header {
@@ -19,9 +20,9 @@
 .dashboard-nav {
 	width: 240px;
 	border-right: 1px solid #d4d5d0;
-	min-height: 100%;
-	position: relative;
 	background: #f2f2ea;
+	padding-bottom:10000px;
+    margin-bottom:-10000px;
 }
 
 .dashboard-nav li {
@@ -94,14 +95,16 @@
 
 .main-dashdoard {
 	background: #fafafa;
-	margin: 0 0 0 241px;
 	padding: 0 25px;
+	padding-bottom:10000px;
+    margin-bottom:-10000px;
 	vertical-align: top;
+	margin-left: 241px;
 }
 
 .dashboard-header {
 	background:#f7f6f2;
-	margin:-30px -25px 25px;
+	margin:0 -25px 25px;
 	padding:0 20px;
 	height: 50px;
 	line-height: 50px;
