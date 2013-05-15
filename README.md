@@ -59,3 +59,11 @@ Run collector,
 ```
 $ node app.js
 ```
+
+## Useful tools / tips
+
+* To quickly clean up developers database, run
+
+```
+$ node tools/cleanDb.js
+```
