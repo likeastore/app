@@ -10,7 +10,6 @@
 		"expect",
 		"iit",
 		"it",
-		"jasmine",
 		"runs",
 		"sinon",
 		"spyOn",
@@ -19,10 +18,9 @@
 		"xit",
 		"xdescribe",
 		"define",
-		"Router",
-		"window"
 	],
 
+	"node": true,
 	"asi" : false,
 	"bitwise" : true,
 	"boss" : false,
