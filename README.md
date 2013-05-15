@@ -1,19 +1,45 @@
-# Likeastore application
+# Likeastore.
 
-From scratch
+API and Web Client of awesome Likeastore. application.
 
-## How to run
+## How to install?
 
-First of all clone repo locally then install all dependencies with npm:
+Clone repo,
 
-```bash
-npm install
+```
+$ git clone git@github.com:likeastore/app.git
 ```
 
-After you can start the app
+Install few things required for development.
 
-```bash
-npm start
+Mocha is used for unit testing,
+
+```
+$ npm install -g mocha
 ```
 
-or use node / nodemon if you like
+Client package manager,
+
+```
+$ npm install -g bower
+```
+
+Grunt build system,
+
+```
+$ npm install -g grunt-cli
+```
+
+After all developer depedencies are installed,
+
+```
+$ npm install
+```
+
+```
+$ bower install
+```
+
+```
+$ grunt
+```
