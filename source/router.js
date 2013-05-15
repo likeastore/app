@@ -16,18 +16,10 @@ module.exports = function (app) {
 
 	// first login setup page
 	app.get('/setup', middleware.access.authenticated(), setup);
-
 	app.get('/logout', logout);
 
 	function welcome (req, res) {
 		res.render('welcome', { title: 'Likeastore. | Signup' });
-	}
-
-	function dashboard (req, res) {
-		if (req.user.firstTimeUser) {
-			return res.redirect('/setup');
-		}
-		res.render('app', { title: 'Likeastore.', user: req.user });
 	}
 
 	function partials (req, res) {
@@ -35,7 +27,7 @@ module.exports = function (app) {
 	}
 
 	function setup (req, res) {
-		res.render('setup', { title: 'Likeastore. | Setup', user: req.user });
+		return res.render('setup', { title: 'Likeastore. | Setup', user: req.user });
 	}
 
 	function logout (req, res) {

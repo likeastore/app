@@ -136,6 +136,7 @@ function accountSetup (userId, data, callback) {
 			if (err) {
 				return callback(err);
 			}
+
 			callback(null);
 		}
 	});

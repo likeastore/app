@@ -7,8 +7,8 @@ var items = require('./db/items.js');
 var nets = require('./db/networks.js');
 
 var redirects = {
-	successReturnToOrRedirect: '/',
-	failureRedirect: '/failed'
+	successReturnToOrRedirect: '/setup',
+	failureRedirect: '/'
 };
 
 module.exports = function (app, passport) {
@@ -69,7 +69,7 @@ module.exports = function (app, passport) {
 	function firstSetup (req, res) {
 		var user = req.user;
 
-		users.accountSetup(user._id, req.body, saveFirstService);
+		return users.accountSetup(user._id, req.body, saveFirstService);
 
 		function saveFirstService (err) {
 			if (err) {
