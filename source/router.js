@@ -27,6 +27,10 @@ module.exports = function (app) {
 	}
 
 	function setup (req, res) {
+		if (!req.user.firstTimeUser) {
+			return res.redirect('/');
+		}
+
 		return res.render('setup', { title: 'Likeastore. | Setup', user: req.user });
 	}
 

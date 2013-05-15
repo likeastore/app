@@ -5,7 +5,6 @@
 	<title><%= title %></title>
 	<base href="/">
 
-	<link rel='stylesheet' href='/css/dashboard.css' />
 	<link rel="stylesheet" type="text/css" href="<%= mainCss %>">
 
 	<!--[if lt IE 9]>
@@ -14,13 +13,6 @@
 </head>
 <body>
 	<header class="main-header clearfix">
-		<div class="cell header-left"><a class="ls-ico ls-logo cell"></a></div>
-		<!-- TODO: have be inialized as JS widget -->
-		<div class="account-info cellRight">
-			<span class="account-name"></span>
-			<img src="" alt="">
-			<span class="account-show"></span>
-		</div>
 	</header>
 
 	<div class="main-viewer" ng-view></div>
