@@ -32,7 +32,7 @@ $ bower install
 $ grunt
 ```
 
-Run application,
+Run application (make sure your mongod is running),
 
 ```
 $ node app.js
