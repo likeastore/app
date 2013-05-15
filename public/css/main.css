@@ -5,3 +5,5 @@
 @import url(forms.css); /*All inputs, buttons styles*/
 @import url(global.css); /*global styles*/
 @import url(signup.css); /*Login/signup styles*/
+@import url(dashboard-deck.css); /*global styles*/
+
