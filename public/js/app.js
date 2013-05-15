@@ -1,10 +1,11 @@
 define(function (require) {
 
 	var angular = require('angular');
+	var services = require('./services/services');
 	var controller = require('./controllers/controllers');
 
 	function initialize (doc) {
-		var app = angular.module('likeastore', ['likeastore.services', 'controllers']);
+		var app = angular.module('likeastore', ['services', 'controllers']);
 
 		app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 			$routeProvider

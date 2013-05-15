@@ -5,7 +5,7 @@ define(function (require) {
 	var TwitterController = require('./twitter-controller');
 	var HeaderController = require('./header-controller');
 
-	var controllers = angular.module('controllers', ['likeastore.services']);
+	var controllers = angular.module('controllers', ['services']);
 
 	controllers.controller('dashboardController', DashboadController);
 	controllers.controller('githubController', GithubController);

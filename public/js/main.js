@@ -20,7 +20,6 @@ require.config({
 	baseUrl: '/js'
 });
 
-require(['app', 'services/api'], function(app, api) {
-	api.initialize();
+require(['app'], function(app) {
 	app.initialize(window.document);
 });
