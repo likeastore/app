@@ -1,3 +1,4 @@
 module.exports = {
-	serveMaster: require('./serveMaster')
+	serveMaster: require('./serveMaster'),
+	access: require('./access')
 };

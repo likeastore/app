@@ -39,8 +39,6 @@ module.exports = function (app, passport) {
 	app.get('/api/items/twitter', getTwitter);
 	app.get('/api/items/github', getGithub);
 
-
-
 	function getAll (req, res) {
 		items.getAllItems(req.user._id, function (err, items) {
 			if (err) {

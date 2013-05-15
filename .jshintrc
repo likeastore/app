@@ -20,7 +20,6 @@
 		"define",
 	],
 
-	"node": true,
 	"asi" : false,
 	"bitwise" : true,
 	"boss" : false,

@@ -2,26 +2,24 @@
  * Static pages router
  */
 
+var middleware = require('./middleware');
+
 module.exports = function (app) {
 
-	app.get('/', ensureAuth);
+	app.get('/', middleware.access.authenticated());
 
 	// angular master page serves here
-	app.get('/welcome', guestAccess, welcome);
+	app.get('/welcome', middleware.access.guest(), welcome);
 
 	// angular view partials urls
 	app.get('/partials/:name', partials);
 
 	// first login setup page
-	app.get('/setup', ensureAuth, setup);
+	app.get('/setup', middleware.access.authenticated(), setup);
 
 	app.get('/logout', logout);
 
-
 	function welcome (req, res) {
-		if (req.user) {
-			return res.redirect('/');
-		}
 		res.render('welcome', { title: 'Likeastore. | Signup' });
 	}
 
@@ -43,18 +41,5 @@ module.exports = function (app) {
 	function logout (req, res) {
 		req.logout();
 		res.redirect('/');
-	}
-
-	// route middleware to ensure user is authenticated
-	function ensureAuth (req, res, next) {
-		if (req.isAuthenticated() || req.role === 'guest') {
-			return next();
-		}
-		res.redirect('/welcome');
-	}
-
-	function guestAccess (req, res, next) {
-		req.role === 'guest';
-		return next();
 	}
 };
