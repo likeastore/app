@@ -1,6 +1,6 @@
 define(function (require) {
-	var HeaderController = function ($scope) {
-		$scope.name = 'Anubius';
+	var HeaderController = function ($scope, api) {
+		$scope.user = api.get({ resource: 'user' });
 	}
 
 	return HeaderController;

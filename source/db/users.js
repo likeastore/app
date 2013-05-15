@@ -7,6 +7,17 @@ var db = require('./dbConnector').db;
 // fields from user metadata of diff services
 var metaFromServices = ['id', 'provider', 'username', 'displayName'];
 
+
+function findById(id, callback) {
+	db.users.findOne({ _id: new ObjectId(id) }, function (err, user) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null, user);
+	});
+}
+
 /*
  * Looks for account in db with 2 keys 'id' and 'provider' type
  * Adds new user if does not exist
@@ -143,6 +154,7 @@ function accountSetup (userId, data, callback) {
 }
 
 module.exports = {
+	findById: findById,
 	findOrCreateLocal: findOrCreateLocal,
 	findOrCreateByService: findOrCreateByService,
 	accountSetup: accountSetup
