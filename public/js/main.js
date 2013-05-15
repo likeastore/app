@@ -1,10 +1,10 @@
 require.config({
-	paths : {
+	paths: {
 		'jQuery': '../components/jquery/jquery',
 		'angular' : '../components/angular/angular',
 		'ngResource': '../components/angular-resource/angular-resource'
 	},
-	shim : {
+	shim: {
 		ngResource: {
 			deps: ['angular'],
 			exports: 'angular'
