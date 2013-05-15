@@ -115,7 +115,7 @@ function findOrCreateLocal (data, callback) {
  */
 function accountSetup (userId, data, callback) {
 	db.users.findOne({
-		_id: { $ne: ObjectId(userId) },
+		_id: { $ne: new ObjectId(userId) },
 		username: data.username,
 		provider: data.provider
 	}, function (err, user) {
@@ -128,7 +128,7 @@ function accountSetup (userId, data, callback) {
 		}
 
 		db.users.update(
-			{ _id: ObjectId(userId) },
+			{ _id: new ObjectId(userId) },
 			{ $set: { name: data.username, email: data.email }, $unset: { firstTimeUser: 1 }},
 			updatedUser);
 
