@@ -10,7 +10,7 @@ function skipMaster (req) {
 function hander(title, mainJs, mainCss) {
 	return function (req, res, next) {
 		if (skipMaster(req)) {
-			return next;
+			return next();
 		}
 
 		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss});
