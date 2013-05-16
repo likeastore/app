@@ -1,16 +1,11 @@
 define(function (require) {
 	var angular = require('angular');
-	var DashboadController = require('./dashboard-controller');
-	var GithubController = require('./github-controller');
-	var TwitterController = require('./twitter-controller');
-	var HeaderController = require('./header-controller');
-
 	var controllers = angular.module('controllers', ['services']);
 
-	controllers.controller('dashboardController', DashboadController);
-	controllers.controller('githubController', GithubController);
-	controllers.controller('twitterController', TwitterController);
-	controllers.controller('headerController', HeaderController);
+	controllers.controller('dashboardController', require('./dashboard-controller'));
+	controllers.controller('githubController', require('./github-controller'));
+	controllers.controller('twitterController', require('./twitter-controller'));
+	controllers.controller('headerController', require('./header-controller'));
 
 	return controllers;
 });
