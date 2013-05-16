@@ -1,6 +1,5 @@
 require.config({
 	paths: {
-		'jQuery': '../components/jquery/jquery',
 		'angular' : '../components/angular/angular',
 		'ngResource': '../components/angular-resource/angular-resource'
 	},
@@ -10,11 +9,7 @@ require.config({
 			exports: 'angular'
 		},
 		angular: {
-			deps: ['jQuery'],
 			exports : 'angular'
-		},
-		jQuery: {
-			exports: 'jQuery'
 		}
 	},
 	baseUrl: '/js'

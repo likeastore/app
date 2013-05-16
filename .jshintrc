@@ -19,7 +19,8 @@
 		"xdescribe",
 		"define",
 		"module",
-		"require"
+		"require",
+		"window"
 	],
 
 	"asi" : false,
