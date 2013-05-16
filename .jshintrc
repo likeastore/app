@@ -18,6 +18,8 @@
 		"xit",
 		"xdescribe",
 		"define",
+		"module",
+		"require"
 	],
 
 	"asi" : false,

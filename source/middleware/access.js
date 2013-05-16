@@ -4,14 +4,14 @@ function authenticated () {
 			return next();
 		}
 		res.redirect('/welcome');
-	}
+	};
 }
 
 function guest () {
 	return function (req, res, next) {
 		req.role === 'guest';
 		return next();
-	}
+	};
 }
 
 module.exports = {

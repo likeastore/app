@@ -3,5 +3,5 @@ define(function (require) {
 		return $resource('/api/:resource/:target', {}, {
 			update: { method: 'PUT' }
 		});
-	}
+	};
 });
