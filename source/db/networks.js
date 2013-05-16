@@ -14,7 +14,6 @@ var db = require('./dbConnector').db;
  */
 function saveNetwork (userId, profile, token, tokenSecret, callback) {
 	if (!userId || typeof userId !== 'string') {
-		console.error('userId is not properly specified');
 		return;
 	}
 
@@ -29,7 +28,6 @@ function saveNetwork (userId, profile, token, tokenSecret, callback) {
 			return callback(err);
 		}
 
-		console.log(net);
 		if (net) {
 			return callback('This service is already associated with this user.');
 		}

@@ -8,7 +8,8 @@ var config = {
 			appId: '3a3bd66d4ddb7b38588c',
 			appSecret: '07c869fe1c19c0278b7481acf4d8e988421fed06',
 			quotas: {
-				requests: { perMinute: 30 }
+				requests: { perMinute: 1 },
+				repeatAfterMinutes: 15
 			}
 		},
 
@@ -16,7 +17,8 @@ var config = {
 			consumerKey: 'dgwuxgGb07ymueGJF0ug',
 			consumerSecret: 'eusoZYiUldYqtI2SwK9MJNbiygCWOp9lQX7i5gnpWU',
 			quotas: {
-				requests: { perMinute: 1 }
+				requests: { perMinute: 1 },
+				repeatAfterMinutes: 15
 			}
 		},
 
@@ -30,7 +32,8 @@ var config = {
 			clientKey: 'J2wyheThU5jYFiOpGG22Eg((',
 			clientSecret: 'KOCBFY4OUP6OE7Q1xNw1wA((',
 			quotas: {
-				requests: { perMinute: 1 }
+				requests: { perMinute: 1 },
+				repeatAfterMinutes: 15
 			}
 		}
 	}
