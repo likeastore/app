@@ -14,7 +14,19 @@ function guest () {
 	};
 }
 
+function invite () {
+	return function (req, res, next) {
+		var cookies = req.cookies;
+		if (cookies['likeastore_invite_id']) {
+			return next ();
+		}
+
+		res.send(401);
+	};
+}
+
 module.exports = {
 	authenticated: authenticated,
-	guest: guest
+	guest: guest,
+	invite: invite
 };
