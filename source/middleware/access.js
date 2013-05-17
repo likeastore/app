@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var subscribers = require('./../db/subscribers');
 
 function authenticated () {
@@ -18,14 +19,12 @@ function guest () {
 
 function invite () {
 	return function (req, res, next) {
-		var cookies = req.cookies;
 		var inviteId = req.cookies['likeastore_invite_id'];
-		if (!inviteId) {
+
+		if (!inviteId || typeof inviteId !== 'string') {
 			console.log('no inviteId in cookies');
 			return res.send(401);
 		}
-
-		console.log(typeof inviteId);
 
 		subscribers.findOne({inviteId: inviteId}, function (err, subscription) {
 			if (err || !subscription || !subscription.activated) {
@@ -38,8 +37,24 @@ function invite () {
 	};
 }
 
+function ensureUser () {
+	return function (req, res, next) {
+		var urls = ['/api'];
+		var acceptUrl = _.any(urls, function (url) {
+			return req.url.substr(0, url.length) === url;
+		});
+
+		if (acceptUrl && !req.user) {
+			return res.send(401, 'Unauthorized');
+		}
+
+		return next();
+	};
+}
+
 module.exports = {
 	authenticated: authenticated,
 	guest: guest,
-	invite: invite
+	invite: invite,
+	ensureUser: ensureUser
 };

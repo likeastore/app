@@ -30,7 +30,7 @@ app.configure(function(){
 	app.use(express.compress());
 	app.use(passport.initialize());
 	app.use(passport.session());
-	// TODO: move to middleware..
+	app.use(middleware.access.ensureUser());
 	app.use(app.router);
 });
 

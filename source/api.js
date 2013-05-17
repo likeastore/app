@@ -38,6 +38,7 @@ module.exports = function (app, passport) {
 	app.get('/api/items/all', getAll);
 	app.get('/api/items/twitter', getTwitter);
 	app.get('/api/items/github', getGithub);
+	app.get('/api/items/stackoverflow', getStackoverflow);
 	app.get('/api/user', getUser);
 
 	function getAll (req, res) {
@@ -60,6 +61,15 @@ module.exports = function (app, passport) {
 
 	function getGithub (req, res) {
 		items.getItemsByType(req.user._id, 'github', function (err, items) {
+			if (err) {
+				return res.send(500, err);
+			}
+			res.json(items);
+		});
+	}
+
+	function getStackoverflow (req, res) {
+		items.getItemsByType(req.user._id, 'stackoverflow', function (err, items) {
 			if (err) {
 				return res.send(500, err);
 			}
