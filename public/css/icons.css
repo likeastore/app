@@ -21,7 +21,7 @@
 }
 
 .user-login {
-	background-position: -126px 5px; 
+	background-position: -126px 5px;
 }
 
 .user-email {
@@ -29,7 +29,7 @@
 }
 
 .user-password {
-	background-position: -210px 4px;	
+	background-position: -210px 4px;
 }
 
 .table-view {
@@ -68,10 +68,10 @@
 	background-position: -121px -29px;
 }
 
-.steck-menu-ico {
+.stack-menu-ico {
 	background-color: #f88b1f;
 	background-position: -343px -27px;
-} 
+}
 
 .ls-logo {
 	background-position: -297px 0;
@@ -92,4 +92,4 @@
 
 .active-search .search-ico {
 	background-position: -325px -45px;
-} 
+}

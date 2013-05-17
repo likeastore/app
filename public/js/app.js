@@ -10,10 +10,11 @@ define(function (require) {
 		app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 			$routeProvider
 				.when('/', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
-				.when('/all', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
+				.when('/inbox', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
-				.otherwise({ redirectTo: '/dashboard' });
+				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
+				.otherwise({ redirectTo: '/' });
 
 			$locationProvider.html5Mode(true);
 		}]);
