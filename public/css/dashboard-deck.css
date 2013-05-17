@@ -184,15 +184,23 @@
 }
 .item-info {
 	position: absolute;
-	width: 322px;
+	width: 302px;
 	bottom: 0;
 	left: 0;
-	padding:6px 10px;	
+	line-height:38px;
+	padding:0 10px;
+	font-size: 11px;	
+}
+
+.item-date {
+	float: right;
+	color: #666;
 }
 
 .item-type {
-	width: 30px;
-	height: 30px;
+	width: 27px;
+	height: 27px;
+	margin: 0 10px -8px 0;
 } 
 .dash-item.twitter .item-info {
 	background: rgba(37,137,197,.1);	
