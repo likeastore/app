@@ -1,7 +1,7 @@
 var _ = require('underscore');
 
 function skipMaster (req) {
-	var bypass = ['/api', '/components', '/css', '/js', '/build', '/auth', '/connect'];
+	var bypass = ['/api', '/components', '/css', '/js', '/build', '/auth', '/connect', '/utils'];
 	return _.any(bypass, function (url) {
 		return req.url.substr(0, url.length) === url;
 	});

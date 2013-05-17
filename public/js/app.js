@@ -20,6 +20,7 @@ define(function (require) {
 		}]);
 
 		angular.bootstrap(doc,['likeastore']);
+		return app;
 	}
 
 	return {
