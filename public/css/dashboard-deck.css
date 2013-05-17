@@ -100,6 +100,7 @@
     margin-bottom:-10000px;
 	vertical-align: top;
 	margin-left: 241px;
+	min-height: 600px;
 }
 
 .dashboard-header {
@@ -143,11 +144,11 @@
 .dash-item {
 	vertical-align: top;
 	background: #fff;
-	border:1px solid #eee;
-	padding:6px;
+	border:1px solid #ddd;
+	padding:6px 6px 20px;
 	margin:0 15px 20px 0;
 	font-size: 14px;
-	width: 230px;
+	width: 310px;
 	height: 115px;
 	overflow: hidden;
 	display: inline-block;
@@ -172,10 +173,41 @@
 	border-color:#61d9fb;
 }
 
-/*.dash-item:hover img {
-	box-shadow: 0 0 0 2px #61d9fb;
+.dash-item.twitter {
+	border-left:3px solid #2589c5;
 }
-*/
+.dash-item.github {
+	border-left:3px solid #b2b2b2;
+}
+.dash-item.stackoverflow {
+	border-left:3px solid #f88b1f;
+}
+.item-info {
+	position: absolute;
+	width: 322px;
+	bottom: 0;
+	left: 0;
+	padding:6px 10px;	
+}
+
+.item-type {
+	width: 30px;
+	height: 30px;
+} 
+.dash-item.twitter .item-info {
+	background: rgba(37,137,197,.1);	
+}
+.dash-item.stackoverflow .item-info {
+	background: rgba(248,139,31,.1);
+}
+.dash-item.github .item-info {
+	background: rgba(178,178,178,.1);
+}
+.dash-item.github .item-type {
+	background-position: 0 -88px;
+}
+
+
 /*compact nav column*/
 .bt-toggle {
 	display: block;
