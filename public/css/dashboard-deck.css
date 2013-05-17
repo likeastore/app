@@ -145,11 +145,11 @@
 	vertical-align: top;
 	background: #fff;
 	border:1px solid #ddd;
-	padding:6px 6px 20px;
+	padding:10px 10px 20px 6px;
 	margin:0 15px 20px 0;
 	font-size: 14px;
-	width: 310px;
-	height: 115px;
+	width: 315px;
+	height: 100px;
 	overflow: hidden;
 	display: inline-block;
 	position: relative;
@@ -160,7 +160,7 @@
 	border-radius:60px;
 	width: 50px;
 	height: 50px;
-	margin:4px 12px 0 4px;
+	margin:-2px 15px 0 4px;
 	border:2px solid #fff;
 	box-shadow: 0 0 0 2px #eee;
 }
@@ -184,7 +184,7 @@
 }
 .item-info {
 	position: absolute;
-	width: 302px;
+	width: 312px;
 	bottom: 0;
 	left: 0;
 	line-height:38px;
