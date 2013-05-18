@@ -14,7 +14,7 @@
 	<ul>
 		<li class="dash-item {{item.type}}" ng-repeat="item in items|filter:query">
 			<img src="{{item.avatarUrl}}">
-			<a href="{{item.url || item.source}}" class="desc" target="_blank">{{item.description}}</a>
+			<p>{{item.description}}</p>
 			<div class="item-info"><i class="ls-ico item-type"></i>
 			<span class="item-date">{{item.date | date: 'longDate'}}</span></div>
 		</li>
