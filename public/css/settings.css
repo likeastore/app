@@ -1,0 +1,23 @@
+.empty-results {
+	font-family: 'Lato', 'Open Sans', Arial, sans-serif;
+	margin: 100px 0 0;
+	text-align: center;
+}
+
+.empty-results h2 {
+	color: rgba(0,0,0,0.1);
+	margin-bottom: 25px;
+	font-size: 30px;
+	font-weight: 600;
+}
+
+.empty-results .settings-button {
+	display: inline-block;
+	background: #e74c3c;
+	color: #fff;
+	text-decoration: none;
+	font-size: 18px;
+	padding: 15px 20px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}

@@ -21,13 +21,16 @@
 	width: 240px;
 	border-right: 1px solid #d4d5d0;
 	background: #f2f2ea;
-	padding-bottom:10000px;
-	margin-bottom:-10000px;
+	padding-bottom: 10000px;
+	margin-bottom: -10000px;
+	box-shadow: 0 0 2px 1px #ddd;
+	/*transition: all 300ms ease-in-out;*/
 }
 
 .dashboard-nav li {
 	overflow: hidden;
 	cursor: pointer;
+	height: 51px;
 }
 
 .dashboard-nav li:hover .menu-title {
@@ -105,13 +108,27 @@
 
 .dashboard-header {
 	background:#f7f6f2;
-	margin:0 -25px 25px;
-	padding:0 20px;
+	margin: 0 -25px 25px;
+	padding: 0 20px;
 	height: 50px;
 	line-height: 50px;
-	border-bottom:1px solid #ceccc0;
+	border-bottom: 1px solid #ceccc0;
 	overflow: hidden;
+	border-top: 3px solid #de6262;
 }
+
+.dashboard-header.twitter {
+	border-color: #2589c5;
+}
+
+.dashboard-header.github {
+	border-color: #b2b2b2;
+}
+
+.dashboard-header.stackoverflow {
+	border-color: #f88b1f;
+}
+
 .dashboard-header h1 {
 	font-weight: bold;
 	color: #373737;

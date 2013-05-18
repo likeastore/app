@@ -14,7 +14,7 @@ var db = require('./dbConnector').db;
  */
 function saveNetwork (userId, profile, token, tokenSecret, callback) {
 	if (!userId || typeof userId !== 'string') {
-		return;
+		return callback('userId is not properly specified.');
 	}
 
 	// stackoverflow specific hack
@@ -55,9 +55,36 @@ function saveNetwork (userId, profile, token, tokenSecret, callback) {
 	});
 }
 
-function removeNetwork (userId, service) {}
+function removeNetworkByUserId (userId, service, callback) {
+	if (!userId || typeof userId !== 'string') {
+		return callback('userId is not properly specified.');
+	}
+
+	db.networks.remove({ userId: userId, service: service }, function (err) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null);
+	});
+}
+
+function findNetworksByUserId (userId, callback) {
+	if (!userId || typeof userId !== 'string') {
+		return callback('userId is not properly specified.');
+	}
+
+	db.networks.find({ userId: userId }).toArray(function (err, nets) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null, nets);
+	});
+}
 
 module.exports = {
 	saveNetwork: saveNetwork,
-	removeNetwork: removeNetwork
+	removeNetworkByUserId: removeNetworkByUserId,
+	findNetworksByUserId: findNetworksByUserId
 };

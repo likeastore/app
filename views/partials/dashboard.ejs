@@ -10,6 +10,7 @@
 			</div>
 		</div>
 	</div>
+
 	<ul>
 		<li class="dash-item {{item.type}}" ng-repeat="item in items|filter:query">
 			<img src="{{item.avatarUrl}}">
@@ -18,5 +19,11 @@
 			<span class="item-date">{{item.date | date: 'longDate'}}</span></div>
 		</li>
 	</ul>
-	<div ng-show="!items.length">No items to display :(</div>
+
+	<div class="empty-results" ng-show="loaded">
+		<div ng-show="!items.length">
+			<h2>You don't own any items to display yet..</h2>
+			<a href="/settings" class="block settings-button">Go to settings</a>
+		</div>
+	</div>
 </section>
