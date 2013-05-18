@@ -20,7 +20,8 @@
 		"define",
 		"module",
 		"require",
-		"window"
+		"window",
+		"process"
 	],
 
 	"asi" : false,
