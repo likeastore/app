@@ -1,8 +1,10 @@
 define(function (require) {
-	var DashboardController = function ($scope, api) {
+	'use strict';
+
+	function DashboardController ($scope, api) {
 		$scope.title = 'Inbox';
 		$scope.items = api.query({ resource: 'items', target: 'all' });
-	};
+	}
 
 	return DashboardController;
 });

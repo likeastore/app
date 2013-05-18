@@ -1,7 +1,11 @@
 define(function (require) {
-	return function ($resource) {
+	'use strict';
+
+	function api ($resource) {
 		return $resource('/api/:resource/:target', {}, {
 			update: { method: 'PUT' }
 		});
-	};
+	}
+
+	return api;
 });

@@ -1,14 +1,13 @@
 define(function (require) {
+	'use strict';
+
 	var angular = require('angular');
 	var resource = require('ngResource');
 
-	var api = require('./api');
-	var authInterceptor = require('./authInterceptor');
-
 	var services = angular.module('services', ['ngResource']);
 
-	services.factory('api', api);
-	services.factory('authInterceptor', authInterceptor);
+	services.factory('api', require('./api'));
+	services.factory('authInterceptor', require('./authInterceptor'));
 
 	return services;
 });

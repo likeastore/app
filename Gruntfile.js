@@ -9,6 +9,7 @@ module.exports = function(grunt) {
 				"asi" : false,
 				"bitwise" : true,
 				"boss" : false,
+				"browser": true,
 				"curly" : true,
 				"debug": false,
 				"devel": false,

@@ -1,5 +1,7 @@
 define(function (require) {
-	return function ($q, $window) {
+	'use strict';
+
+	function AuthInterceptor ($q, $window) {
 		return function (promise) {
 			var success = function (response) {
 				return response;
@@ -14,5 +16,7 @@ define(function (require) {
 
 			return promise.then(success, error);
 		};
-	};
+	}
+
+	return AuthInterceptor;
 });

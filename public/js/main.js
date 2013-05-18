@@ -15,6 +15,6 @@ require.config({
 	baseUrl: '/js'
 });
 
-require(['app'], function(app) {
-	app.initialize(window.document);
+require(['app'], function (app) {
+	app.init();
 });
