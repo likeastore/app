@@ -6,6 +6,7 @@ var GithubAuth = require('passport-github').Strategy;
 var FacebookAuth = require('passport-facebook').Strategy;
 var StackAuth = require('passport-stackexchange').Strategy;
 var LocalAuth = require('passport-local').Strategy;
+var logger = require('./logger');
 
 module.exports = function (passport) {
 
@@ -73,7 +74,7 @@ module.exports = function (passport) {
 
 	function getAuth (options) {
 		if (!options || typeof options !== 'object') {
-			console.error('Options are incorrect!');
+
 			return;
 		}
 

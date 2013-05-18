@@ -21,7 +21,8 @@
 		"module",
 		"require",
 		"window",
-		"process"
+		"process",
+		"console"
 	],
 
 	"asi" : false,

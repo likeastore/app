@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var subscribers = require('./../db/subscribers');
+var logger = require('./../utils/logger');
 
 function authenticated () {
 	return function (req, res, next) {
@@ -22,13 +23,13 @@ function invite () {
 		var inviteId = req.cookies.likeastoreInviteId || req.cookies.likeastore_invite_id;
 
 		if (!inviteId || typeof inviteId !== 'string') {
-			console.log('no inviteId in cookies');
+			logger.warning({message: 'No invite id in cookie', ip: req.ip});
 			return res.send(401, 'Missing authorization cookies');
 		}
 
 		subscribers.findOne({inviteId: inviteId}, function (err, subscription) {
 			if (err || !subscription || !subscription.activated) {
-				console.log('not find subscription by id' + err);
+				logger.warning({message: 'Subscription has not found', invite: inviteId});
 				return res.send(401, 'Missing user with such invite ' + err);
 			}
 
