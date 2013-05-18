@@ -5,8 +5,8 @@ var config = {
 	// api keys
 	services: {
 		github: {
-			appId: 'dc3c7a7050dccee24ed3',
-			appSecret: 'c18dde90f5e928a39b0f0432d5125a3e0a31a23d',
+			appId: process.env.GITHUB_APP_ID,
+			appSecret: process.env.GITHUB_APP_SECRET,
 			quotas: {
 				requests: { perMinute: 1 },
 				repeatAfterMinutes: 15
@@ -14,8 +14,8 @@ var config = {
 		},
 
 		twitter: {
-			consumerKey: 'dgwuxgGb07ymueGJF0ug',
-			consumerSecret: 'eusoZYiUldYqtI2SwK9MJNbiygCWOp9lQX7i5gnpWU',
+			consumerKey: process.env.TWITTER_CONSUMER_KEY,
+			consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
 			quotas: {
 				requests: { perMinute: 1 },
 				repeatAfterMinutes: 15
@@ -23,14 +23,14 @@ var config = {
 		},
 
 		facebook: {
-			appId: '394024317362081',
-			appSecret: 'bc86f2ab9afcb1227227146e5ea9ad44'
+			appId: process.env.FACEBOOK_APP_ID,
+			appSecret: process.env.FACEBOOK_APP_SECRET
 		},
 
 		stackoverflow: {
-			clientId: '1533',
-			clientKey: 'J2wyheThU5jYFiOpGG22Eg((',
-			clientSecret: 'KOCBFY4OUP6OE7Q1xNw1wA((',
+			clientId: process.env.STACKOVERFLOW_CLIENT_ID,
+			clientKey: process.env.STACKOVERFLOW_CLIENT_KEY,
+			clientSecret: process.env.STACKOVERFLOW_CLIENT_SECRET,
 			quotas: {
 				requests: { perMinute: 1 },
 				repeatAfterMinutes: 15
