@@ -1,5 +1,5 @@
 var config = {
-	connection: 'mongodb://localhost:27017/likeastoredb',
+	connection: process.env.MONGO_CONNECTION,
 	options: { auto_reconnect: true },
 
 	// api keys

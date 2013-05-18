@@ -23,13 +23,13 @@ function invite () {
 
 		if (!inviteId || typeof inviteId !== 'string') {
 			console.log('no inviteId in cookies');
-			return res.send(401);
+			return res.send(401, 'Missing authorization cookies');
 		}
 
 		subscribers.findOne({inviteId: inviteId}, function (err, subscription) {
 			if (err || !subscription || !subscription.activated) {
 				console.log('not find subscription by id' + err);
-				return res.send(401);
+				return res.send(401, 'Missing user with such invite ' + err);
 			}
 
 			return next();
