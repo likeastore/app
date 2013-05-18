@@ -211,10 +211,16 @@
 .dash-item.github .item-info {
 	background: rgba(178,178,178,.1);
 }
+
 .dash-item.github .item-type {
 	background-position: 0 -88px;
 }
-
+.dash-item.twitter .item-type {
+	background-position: -36px -87px;
+}
+.dash-item.stackoverflow .item-type {
+	background-position: -68px -87px;
+}
 
 /*compact nav column*/
 .bt-toggle {
