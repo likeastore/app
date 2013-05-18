@@ -24,7 +24,6 @@
 	padding-bottom: 10000px;
 	margin-bottom: -10000px;
 	box-shadow: 0 0 2px 1px #ddd;
-	/*transition: all 300ms ease-in-out;*/
 }
 
 .dashboard-nav li {
@@ -38,7 +37,7 @@
 }
 
 .dashboard-nav li:hover .menu-ico {
-	box-shadow:inset 0 0 2px 1px rgba(0,0,0,.2);
+	box-shadow: inset 0 0 2px 1px rgba(0,0,0,.2);
 }
 
 .menu-ico {
@@ -70,15 +69,14 @@
 	height: 30px;
 	overflow: hidden;
 	float: left;
+	-webkit-border-radius: 60px;
 	border-radius: 60px;
-	-webkit-box-shadow:  0px 0px 1px 2px #fff;
 	box-shadow:  0px 0px 1px 2px #fff;
 	margin: 9px 0 0;
 	cursor: pointer;
 }
 
 .account-info img:hover {
-	-webkit-box-shadow:  0px 0px 2px 3px #61d9fb;
 	box-shadow:  0px 0px 2px 3px #61d9fb;
 }
 
@@ -92,12 +90,12 @@
 	border-top: 7px solid #fff;
 	cursor: pointer;
 }
+
 .account-show:hover {
 	border-top:7px solid #61d9fb;
 }
 
 .main-dashdoard {
-	background: #fafafa;
 	padding: 0 25px;
 	padding-bottom:10000px;
     margin-bottom:-10000px;
@@ -110,7 +108,7 @@
 	background:#f7f6f2;
 	margin: 0 -25px 25px;
 	padding: 0 20px;
-	height: 50px;
+	height: 47px;
 	line-height: 50px;
 	border-bottom: 1px solid #ceccc0;
 	overflow: hidden;
@@ -118,15 +116,15 @@
 }
 
 .dashboard-header.twitter {
-	border-color: #2589c5;
+	border-top-color: #2589c5;
 }
 
 .dashboard-header.github {
-	border-color: #b2b2b2;
+	border-top-color: #b2b2b2;
 }
 
 .dashboard-header.stackoverflow {
-	border-color: #f88b1f;
+	border-top-color: #f88b1f;
 }
 
 .dashboard-header h1 {
@@ -161,17 +159,19 @@
 .dash-item {
 	vertical-align: top;
 	background: #fff;
-	border:1px solid #ddd;
-	padding:10px 10px 20px 6px;
-	margin:0 15px 20px 0;
+	/*border:1px solid #ddd;*/
+	border-bottom: 1px solid #ddd;
+	padding: 15px 10px 20px 10px;
+	margin: 0 25px 20px 0;
 	font-size: 14px;
-	width: 390px;
+	width: 343px;
 	height: 170px;
 	overflow: hidden;
 	display: inline-block;
 	position: relative;
 	transition: all .2s;
 }
+
 .dash-item img {
 	float: left;
 	border-radius:60px;
@@ -192,26 +192,29 @@
 }
 
 .dash-item a {
-	color: #116eb1;
+	color: #e74c3c;
 }
 
 .dash-item:hover {
 	background: #f7fcfd;
-	border-color:#61d9fb;
+	/*border-color:#61d9fb;*/
 }
 
 .dash-item.twitter {
-	border-left:3px solid #2589c5;
+	border-left: 3px solid #2589c5;
 }
+
 .dash-item.github {
-	border-left:3px solid #b2b2b2;
+	border-left: 3px solid #b2b2b2;
 }
+
 .dash-item.stackoverflow {
-	border-left:3px solid #f88b1f;
+	border-left: 3px solid #f88b1f;
 }
+
 .item-info {
 	position: absolute;
-	width: 390px;
+	width: 343px;
 	bottom: 0;
 	left: 0;
 	line-height:38px;
@@ -254,7 +257,7 @@
 	display: block;
 	width: 50px;
 	height: 50px;
-	position: absolute;
+	position: fixed;
 	bottom: 70px;
 	cursor: pointer;
 	background-color: #373737;
@@ -316,4 +319,23 @@
 }
 .gp-on {
 	background-color: #d95333;
+}
+
+.show-more {
+	display: block;
+	background: #dfdfdf;
+	color: rgba(0,0,0,0.3);
+	font-size: 14px;
+	padding: 14px 0;
+	text-align: center;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.show-more:hover {
+	background: #c1c1c1;
+}
+
+.dash-item:nth-child(3n+3) {
+	margin-right: 0;
 }

@@ -1,7 +1,7 @@
 <nav class="cell dashboard-nav" menu-slider ng-include src="'partials/nav'"></nav>
 
 <section class="main-dashdoard">
-	<div class="dashboard-header">
+	<div class="dashboard-header {{title|lowercase}}">
 		<h1 class="cell">{{title}}</h1>
 		<div class="cellRight">
 			<div class="top-search-deck">
@@ -12,13 +12,17 @@
 	</div>
 
 	<ul>
-		<li class="dash-item {{item.type}}" ng-repeat="item in items|filter:query">
+		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items|filter:query|limitTo:limit">
 			<img src="{{item.avatarUrl}}">
-			<p>{{item.description}}</p>
+			<p class="desc">
+				{{item.description}}
+				<span ng-show="!item.description" class="empty-desc">This item has no description :(</span>
+			</p>
 			<div class="item-info"><i class="ls-ico item-type"></i>
 			<span class="item-date">{{item.date | date: 'longDate'}}</span></div>
 		</li>
 	</ul>
+	<div class="show-more" ng-show="items.length > 30" ng-click="increaseLimit()">Show more</div>
 
 	<div class="empty-results" ng-show="loaded">
 		<div ng-show="!items.length">
