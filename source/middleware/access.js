@@ -19,7 +19,7 @@ function guest () {
 
 function invite () {
 	return function (req, res, next) {
-		var inviteId = req.cookies['likeastore_invite_id'];
+		var inviteId = req.cookies.likeastoreInviteId;
 
 		if (!inviteId || typeof inviteId !== 'string') {
 			console.log('no inviteId in cookies');
