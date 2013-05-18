@@ -22,7 +22,7 @@
 	border-right: 1px solid #d4d5d0;
 	background: #f2f2ea;
 	padding-bottom:10000px;
-    margin-bottom:-10000px;
+	margin-bottom:-10000px;
 }
 
 .dashboard-nav li {
@@ -164,6 +164,16 @@
 	border:2px solid #fff;
 	box-shadow: 0 0 0 2px #eee;
 }
+
+.dash-item .desc {
+	display: inline-block;
+	color: #333;
+	width: 240px;
+	height: 75px;
+	text-decoration: none;
+	overflow: hidden;
+}
+
 .dash-item a {
 	color: #116eb1;
 }
@@ -189,7 +199,7 @@
 	left: 0;
 	line-height:38px;
 	padding:0 10px;
-	font-size: 11px;	
+	font-size: 11px;
 }
 
 .item-date {
@@ -201,9 +211,9 @@
 	width: 27px;
 	height: 27px;
 	margin: 0 10px -8px 0;
-} 
+}
 .dash-item.twitter .item-info {
-	background: rgba(37,137,197,.1);	
+	background: rgba(37,137,197,.1);
 }
 .dash-item.stackoverflow .item-info {
 	background: rgba(248,139,31,.1);
@@ -248,10 +258,6 @@
 
 .compact-view .main-dashdoard {
 	margin: 0 0 0 50px;
-}
-
-.compact-view .dash-item {
-	width: 278px;
 }
 
 .tern-on-deck {

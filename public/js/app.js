@@ -4,8 +4,9 @@ define(function (require) {
 	var angular = require('angular');
 	var services = require('./services/services');
 	var controllers = require('./controllers/controllers');
+	var directives = require('./directives/directives');
 
-	var app = angular.module('likeastore', ['services', 'controllers']);
+	var app = angular.module('likeastore', ['services', 'controllers', 'directives']);
 
 	app.config(['$routeProvider', '$locationProvider', '$httpProvider',
 		function ($routeProvider, $locationProvider, $httpProvider) {
@@ -17,6 +18,7 @@ define(function (require) {
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
+				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController'})
 				.otherwise({ redirectTo: '/' });
 
 			$locationProvider.html5Mode(true);

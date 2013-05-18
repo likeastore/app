@@ -1,4 +1,4 @@
-<nav class="cell dashboard-nav" ng-include src="'partials/nav'"></nav>
+<nav class="cell dashboard-nav" menu-slider ng-include src="'partials/nav'"></nav>
 
 <section class="main-dashdoard">
 	<div class="dashboard-header">
@@ -13,9 +13,9 @@
 	<ul>
 		<li class="dash-item {{item.type}}" ng-repeat="item in items|filter:query">
 			<img src="{{item.avatarUrl}}">
-			<a href="{{item.url || item.source}}" target="_blank">{{item.description}}</a>
+			<a href="{{item.url || item.source}}" class="desc" target="_blank">{{item.description}}</a>
 			<div class="item-info"><i class="ls-ico item-type"></i>
-			<span class="item-date">{{item.date}}</span></div>
+			<span class="item-date">{{item.date | date: 'longDate'}}</span></div>
 		</li>
 	</ul>
 	<div ng-show="!items.length">No items to display :(</div>

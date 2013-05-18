@@ -8,6 +8,7 @@ define(function (require) {
 
 	services.factory('api', require('./api'));
 	services.factory('authInterceptor', require('./authInterceptor'));
+	services.factory('appLoader', require('./appLoader'));
 
 	return services;
 });

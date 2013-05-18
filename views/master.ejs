@@ -16,6 +16,7 @@
 	<header class="main-header clearfix" ng-include src="'partials/header'" ng-controller="headerController">
 	</header>
 	<div class="main-viewer" ng-view></div>
+	<div class="preloader" ng-hide="loaded">Loading...</div>
 
 	<script type="text/javascript" src="/components/requirejs/require.js" data-main="<%= mainJs %>"></script>
 

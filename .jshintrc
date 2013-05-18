@@ -47,7 +47,7 @@
 	"onevar": false,
 	"plusplus": false,
 	"regexp": false,
-	"strict": true,
+	"strict": false,
 	"globalstrict": true,
 	"sub": false,
 	"trailing" : true,
