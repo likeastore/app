@@ -4,6 +4,15 @@
 	text-align: center;
 }
 
+.empty-results .inbox-icon {
+	height: 100px;
+	width: 100px;
+	margin: 10px auto;
+	background: url(../img/inbox@2x.png) center center no-repeat;
+	background-size: 100px;
+	opacity: .1;
+}
+
 .empty-results h2 {
 	color: rgba(0,0,0,0.1);
 	margin-bottom: 25px;
