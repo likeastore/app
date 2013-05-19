@@ -4,7 +4,7 @@ define(function (require) {
 	function settingsController ($scope, api, appLoader) {
 		appLoader.loading();
 
-		$scope.title = 'Settings';
+		$scope.title = 'Account settings';
 		$scope.networks = api.query({ resource: 'user', target: 'networks' }, function (res) {
 			appLoader.ready();
 		});

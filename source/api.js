@@ -26,9 +26,8 @@ module.exports = function (app, passport) {
 	app.get('/connect/twitter/callback', passport.authorize('twitter-authz'), redirectToDashboard);
 	app.get('/connect/github', passport.authorize('github-authz'));
 	app.get('/connect/github/callback', passport.authorize('github-authz'), redirectToDashboard);
-	app.get('/connect/stackexchange', passport.authorize('stackexchange-authz'));
-	app.get('/connect/stackexchange/callback', passport.authorize('stackexchange-authz'), redirectToDashboard);
-	app.delete('/connect/:service', deleteNetwork);
+	app.get('/connect/stackoverflow', passport.authorize('stackexchange-authz'));
+	app.get('/connect/stackoverflow/callback', passport.authorize('stackexchange-authz'), redirectToDashboard);
 
 	// local local registration
 	app.post('/register', passport.authenticate('local', redirects));
@@ -42,6 +41,7 @@ module.exports = function (app, passport) {
 	app.get('/api/items/stackoverflow', getStackoverflow);
 	app.get('/api/user', getUser);
 	app.get('/api/user/networks', getNetworks);
+	app.delete('/api/user/:network', deleteNetwork);
 
 	function getAll (req, res) {
 		items.getAllItems(req.user._id, function (err, items) {
@@ -98,7 +98,7 @@ module.exports = function (app, passport) {
 	}
 
 	function deleteNetwork (req, res) {
-		nets.removeNetworkByUserId(req.user._id, req.params.service, function (err) {
+		nets.removeNetworkByUserId(req.user._id, req.params.network, function (err) {
 			if (err) {
 				return res.send(500, err);
 			}

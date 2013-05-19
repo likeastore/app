@@ -67,7 +67,7 @@ module.exports = function (passport) {
 
 	passport.use('stackexchange-authz', getAuth({
 		type: 'stackoverflow',
-		url: '/connect/stackexchange/callback',
+		url: '/connect/stackoverflow/callback',
 		callback: saveServiceToNetworks,
 		req: true
 	}));

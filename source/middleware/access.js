@@ -40,7 +40,7 @@ function invite () {
 
 function ensureUser () {
 	return function (req, res, next) {
-		var urls = ['/api'];
+		var urls = ['/api', '/connect'];
 		var acceptUrl = _.any(urls, function (url) {
 			return req.url.substr(0, url.length) === url;
 		});

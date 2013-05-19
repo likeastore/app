@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function AppLoader ($rootScope) {
+	function AppLoader ($timeout, $rootScope) {
 		var timer;
 
 		return {
@@ -10,15 +10,15 @@ define(function (require) {
 					return ready();
 				}
 
-				timer = setTimeout(ready, delay);
+				timer = $timeout(ready, delay);
 
 				function ready () {
-					clearTimeout(timer);
+					$timeout.cancel(timer);
 					$rootScope.loaded = true;
 				}
 			},
 			loading: function () {
-				clearTimeout(timer);
+				$timeout.cancel(timer);
 				$rootScope.loaded = false;
 			}
 		};

@@ -11,7 +11,7 @@
 		</div>
 	</div>
 
-	<ul>
+	<ul class="items-wrap">
 		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items|filter:query|limitTo:limit">
 			<img src="{{item.avatarUrl}}">
 			<p class="desc">
@@ -22,7 +22,8 @@
 			<span class="item-date">{{item.date | date: 'longDate'}}</span></div>
 		</li>
 	</ul>
-	<div class="show-more" ng-show="items.length > 30" ng-click="increaseLimit()">Show more</div>
+
+	<div class="show-more" ng-show="items.length > limit" ng-click="increaseLimit()">Show more</div>
 
 	<div class="empty-results" ng-show="loaded">
 		<div ng-show="!items.length">

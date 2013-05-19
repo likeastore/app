@@ -5,6 +5,7 @@ define(function (require) {
 	var directives = angular.module('directives', []);
 
 	directives.directive('menuSlider', require('./menuSlider'));
+	directives.directive('toggleSwitcher', require('./toggleSwitcher'));
 
 	return directives;
 });

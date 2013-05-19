@@ -1,12 +1,14 @@
 define(function (require) {
 	'use strict';
 
+	var config = require('config').dashboard;
+
 	function GithubController ($scope, api, appLoader) {
 		appLoader.loading();
 
-		$scope.limit = 30;
+		$scope.limit = config.limit;
 		$scope.increaseLimit = function () {
-			$scope.limit += 30;
+			$scope.limit += config.limit;
 		};
 
 		$scope.title = 'Github';

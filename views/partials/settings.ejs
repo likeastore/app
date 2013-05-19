@@ -1,6 +1,21 @@
 <div class="settings-page">
 	<h1>{{title}}</h1>
-	<ul ng-repeat="net in networks">
-		<li class="{{net.service}}-on"></li>
+
+	<ul class="networks-wrap">
+		<li class="network">
+			<div class="title">Twitter</div>
+			<div class="desc">Syncs all tweets that you've favorited.</div>
+			<div toggle-switcher="twitter" ng-model="networks"></div>
+		</li>
+		<li class="network">
+			<div class="title">Github</div>
+			<div class="desc">Syncs all repositories that you've starred.</div>
+			<div toggle-switcher="github" ng-model="networks"></div>
+		</li>
+		<li class="network">
+			<div class="title">Stackoverflow</div>
+			<div class="desc">Syncs all questions that you've favorited.</div>
+			<div toggle-switcher="stackoverflow" ng-model="networks"></div>
+		</li>
 	</ul>
 </div>

@@ -336,6 +336,7 @@
 	background: #c1c1c1;
 }
 
+/* temporary fix, TO DO: fluid layout needs to be implemented; */
 .dash-item:nth-child(3n+3) {
 	margin-right: 0;
 }

@@ -74,12 +74,20 @@ function findNetworksByUserId (userId, callback) {
 		return callback('userId is not properly specified.');
 	}
 
-	db.networks.find({ userId: userId }).toArray(function (err, nets) {
+	var nets = [];
+	var fieldsToPick = ['service', 'lastExecution', 'username'];
+
+	db.networks.find({ userId: userId }).forEach(function (err, doc) {
 		if (err) {
 			return callback(err);
 		}
 
-		callback(null, nets);
+		if (!doc) {
+			return callback(null, nets);
+		}
+
+		var network = _.pick(doc, fieldsToPick);
+		nets.push(network);
 	});
 }
 
