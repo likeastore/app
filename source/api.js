@@ -41,7 +41,7 @@ module.exports = function (app, passport) {
 	app.get('/api/items/stackoverflow', getStackoverflow);
 	app.get('/api/user', getUser);
 	app.get('/api/user/networks', getNetworks);
-	app.delete('/api/user/:network', deleteNetwork);
+	app.del('/api/user/:network', deleteNetwork);
 
 	function getAll (req, res) {
 		items.getAllItems(req.user._id, function (err, items) {

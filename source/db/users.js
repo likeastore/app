@@ -3,6 +3,7 @@ var grvtr = require('grvtr');
 var bcrypt = require('bcrypt-nodejs');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('./dbConnector').db;
+var util = require('util');
 
 // fields from user metadata of diff services
 var metaFromServices = ['id', 'provider', 'username', 'displayName'];
@@ -41,10 +42,11 @@ function findOrCreateByService (token, tokenSecret, profile, callback) {
 
 	function saveServiceUser () {
 		var meta = _.pick(profile, metaFromServices);
+		var avatar = profile._json.avatar_url || profile._json.profile_image_url || util.format('http://graph.facebook.com/%s/picture', meta.id);
 		var record = _.extend(meta, {
 			token: token,
 			tokenSecret: tokenSecret,
-			avatar: profile._json.avatar_url || profile._json.profile_image_url,
+			avatar: avatar,
 			name: profile.username,
 			registered: new Date(),
 			firstTimeUser: true
