@@ -6,7 +6,7 @@
 
 	$.fn.validate = function () {
 		var $target = $(this);
-		var regex = $target.hasClass('email') ? /^([\w.-]+)@([\w-]+)((.(\w){2,3})+)$/i : /^[0-9A-z-_.+=@!#()&%?]+$/;
+		var regex = $target.hasClass('email') ? /^([\w.-.+]+)@([\w-]+)((.(\w){2,3})+)$/i : /^[0-9A-z-_.+=@!#()&%?]+$/;
 
 		return regex.test($target.val());
 	};

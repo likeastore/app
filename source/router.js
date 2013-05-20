@@ -27,7 +27,7 @@ module.exports = function (app) {
 	}
 
 	function setup (req, res) {
-		if (!req.user.firstTimeUser) {
+		if (req.user.email) {
 			return res.redirect('/');
 		}
 
