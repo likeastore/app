@@ -168,7 +168,7 @@
 	margin: 0 25px 20px 0;
 	font-size: 14px;
 	width: 31%;
-	height: 140px;
+	height: 170px;
 	overflow: hidden;
 	display: inline-block;
 	position: relative;
@@ -184,7 +184,7 @@
 	font-weight: bold;
 	color: #333;
 	width: 75%	;
-	height: 115px;
+	height: 145px;
 	text-decoration: none;
 	overflow: hidden;
 }	
@@ -196,10 +196,20 @@
 	height: 50px;
 	margin:-2px 15px 0 4px;
 	border:2px solid #fff;
-	box-shadow: 0 0 0 2px #eee;
+	
 }
 
+.dash-item.github img {
+	box-shadow: 0 0 0 2px #b2b2b2;
+}
 
+.dash-item.twitter img {
+	box-shadow: 0 0 0 2px #2589c5;
+}
+
+.dash-item.stackoverflow img {
+	box-shadow: 0 0 0 2px #f88b1f;
+}
 
 .dash-item a {
 	color: #e74c3c;
@@ -207,7 +217,6 @@
 
 .dash-item:hover {
 	background: #f7fcfd;
-	/*border-color:#61d9fb;*/
 }
 
 .dash-item.twitter {
