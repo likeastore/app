@@ -168,7 +168,7 @@
 	margin: 0 25px 20px 0;
 	font-size: 14px;
 	width: 31%;
-	height: 170px;
+	height: 190px;
 	overflow: hidden;
 	display: inline-block;
 	position: relative;
@@ -183,10 +183,10 @@
 	display: inline-block;
 	color: #333;
 	width: 75%	;
-	height: 152px;
+	height: 172px;
 	text-decoration: none;
 	overflow: hidden;
-}	
+}
 
 .dash-item img {
 	float: left;
@@ -195,7 +195,7 @@
 	height: 50px;
 	margin:-2px 15px 0 4px;
 	border:2px solid #fff;
-	
+
 }
 
 .dash-item.github img {
