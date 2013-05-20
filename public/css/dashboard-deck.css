@@ -138,7 +138,7 @@
 
 .top-search-deck {
 	float: left;
-	margin: -4px 25px 0;
+	margin: -7px 25px 0;
 	position: relative;
 }
 
@@ -164,21 +164,30 @@
 .dash-item {
 	vertical-align: top;
 	background: #fff;
-	/*border:1px solid #ddd;
-	border-bottom: 1px solid #ddd;
-	width: 343px;
-	height: 170px;
-	*/
-	padding: 15px 10px 20px 10px;
+	padding: 15px 0 20px;
 	margin: 0 25px 20px 0;
 	font-size: 14px;
-	width: 310px;
+	width: 31%;
 	height: 140px;
 	overflow: hidden;
 	display: inline-block;
 	position: relative;
 	transition: all .2s;
 }
+
+.item-wrapp {
+	padding: 0 10px;
+}
+
+.dash-item .desc {
+	display: inline-block;
+	font-weight: bold;
+	color: #333;
+	width: 75%	;
+	height: 115px;
+	text-decoration: none;
+	overflow: hidden;
+}	
 
 .dash-item img {
 	float: left;
@@ -190,15 +199,7 @@
 	box-shadow: 0 0 0 2px #eee;
 }
 
-.dash-item .desc {
-	display: inline-block;
-	font-weight: bold;
-	color: #333;
-	width: 235px;
-	height: 75px;
-	text-decoration: none;
-	overflow: hidden;
-}	
+
 
 .dash-item a {
 	color: #e74c3c;
@@ -237,12 +238,14 @@
 
 .item-info {
 	position: absolute;
-	width: 310px;
+	width: 100%;
 	bottom: 0;
 	left: 0;
-	line-height:38px;
-	padding:0 10px;
+	line-height:38px;;
 	font-size: 11px;
+}
+.item-info-deck {
+	padding:0 10px;
 }
 
 .item-date {
