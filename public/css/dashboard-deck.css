@@ -144,6 +144,7 @@
 
 .search-input {
 	border: 1px solid #dedede;
+	border-radius: 2px;
 	height: 28px;
 	padding: 0 30px 0 8px;
 	width: 200px;
@@ -156,16 +157,23 @@
 	color: #007fff;
 }
 
+.search-input:focus + .search-ico {
+	background-position:-325px -45px;
+}
+
 .dash-item {
 	vertical-align: top;
 	background: #fff;
-	/*border:1px solid #ddd;*/
+	/*border:1px solid #ddd;
 	border-bottom: 1px solid #ddd;
+	width: 343px;
+	height: 170px;
+	*/
 	padding: 15px 10px 20px 10px;
 	margin: 0 25px 20px 0;
 	font-size: 14px;
-	width: 343px;
-	height: 170px;
+	width: 310px;
+	height: 140px;
 	overflow: hidden;
 	display: inline-block;
 	position: relative;
@@ -184,12 +192,13 @@
 
 .dash-item .desc {
 	display: inline-block;
+	font-weight: bold;
 	color: #333;
-	width: 240px;
+	width: 235px;
 	height: 75px;
 	text-decoration: none;
 	overflow: hidden;
-}
+}	
 
 .dash-item a {
 	color: #e74c3c;
@@ -211,10 +220,24 @@
 .dash-item.stackoverflow {
 	border-left: 3px solid #f88b1f;
 }
+.autor-item {
+	margin: 10px 0 0;
+}
+.dash-item.twitter .autor-item {
+	color: #2589c5;
+}
+
+.dash-item.github .autor-item {
+	color: #b2b2b2;
+}
+
+.dash-item.stackoverflow .autor-item {
+	color:#f88b1f;
+}
 
 .item-info {
 	position: absolute;
-	width: 343px;
+	width: 310px;
 	bottom: 0;
 	left: 0;
 	line-height:38px;
@@ -258,7 +281,7 @@
 	width: 50px;
 	height: 50px;
 	position: fixed;
-	bottom: 70px;
+	bottom: 30px;
 	cursor: pointer;
 	background-color: #373737;
 	background-position: -207px -28px;
