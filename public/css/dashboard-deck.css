@@ -388,3 +388,80 @@
 .dash-item:nth-child(3n+3) {
 	margin-right: 0;
 }
+
+/*Media queries*/
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+	.dashboard-nav,
+	.account-show,
+	.account-name {
+		display: none;
+	}
+
+	.main-dashdoard {
+		margin: 0;
+	}
+
+	.dash-item {
+		width: 100%;
+		margin: 0 0 15px;
+		display: block;
+	}
+
+	.dash-item.github img {
+		width: 60px;
+		height: 60px;
+		display: block;
+		margin: 0 auto 10px;
+		float: none;
+	}
+
+	.dash-item .desc {
+		display: block;
+		width: 100%;
+		height: 78px;
+	}
+}
+
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+	.menu-title,
+	.bt-toggle {
+		display: none;
+	}
+	.dashboard-nav {
+		width: 50px;
+	}
+	.main-dashdoard {
+		margin-left: 51px;
+	}
+	.dash-item .desc {
+		width: 70%;
+	}
+}
+ 
+/* iPads (landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : landscape) {
+	.menu-title,
+	.bt-toggle {
+		display: none;
+	}
+	.dashboard-nav {
+		width: 50px;
+	}
+	.main-dashdoard {
+		margin-left: 51px;
+	}
+	.dash-item .desc {
+		width: 70%;
+	}
+}
+
+
+/* Desktops and laptops ----------- */
+@media only screen and (max-width : 1300px) and (min-width : 1100px) {
+	.dash-item .desc {
+		width: 70%;
+	}
+}
