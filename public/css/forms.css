@@ -18,7 +18,7 @@ input::-ms-clear {
    font-style: italic;
 }
 
-:-ms-input-placeholder {  
+:-ms-input-placeholder {
    color: #ccc;
    font-style: italic;
 }
@@ -77,6 +77,12 @@ textarea {
 
 .error .field-lbl {
 	background-color: #f94e37;
+}
+
+.error-message {
+	font-size: 14px;
+	font-style: italic;
+	color: #f00;
 }
 
 /*Buttons*/

@@ -127,17 +127,20 @@ function findOrCreateLocal (data, callback) {
  * @param data {Object} - form fields
  */
 function accountSetup (userId, data, callback) {
+
 	db.users.findOne({
-		_id: { $ne: new ObjectId(userId) },
-		username: data.username,
-		provider: data.provider
+		_id: { $ne: new ObjectId(userId) }, $or: [{username: data.username}, {email: data.email }]
 	}, function (err, user) {
 		if (err) {
 			return callback(err);
 		}
 
-		if (user) {
-			return callback('User with such username already exists.');
+		if (user && user.username === data.username) {
+			return callback({field: 'username',  message: 'User with such username already exists.'});
+		}
+
+		if (user && user.email === data.email) {
+			return callback({field: 'email', message:'User with such email already exists.'});
 		}
 
 		db.users.update(

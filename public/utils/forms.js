@@ -38,8 +38,8 @@ var setupForms = {
 			.done(function (res) {
 				window.location = '/';
 			})
-			.fail(function (err) {
-				handleErrors(err.responseText);
+			.fail(function (err, response, a) {
+				handleErrors($('.' + err.responseJSON.field), err.responseJSON.message);
 			});
 
 		function handleErrors ($field, message) {
