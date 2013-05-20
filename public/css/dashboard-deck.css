@@ -181,10 +181,9 @@
 
 .dash-item .desc {
 	display: inline-block;
-	font-weight: bold;
 	color: #333;
 	width: 75%	;
-	height: 145px;
+	height: 152px;
 	text-decoration: none;
 	overflow: hidden;
 }	
@@ -246,15 +245,10 @@
 }
 
 .item-info {
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	left: 0;
 	line-height:38px;;
 	font-size: 11px;
-}
-.item-info-deck {
-	padding:0 10px;
+	margin: 0 -10px;
+	padding: 0 10px;
 }
 
 .item-date {
@@ -265,7 +259,7 @@
 .item-type {
 	width: 27px;
 	height: 27px;
-	margin: 0 10px -8px 0;
+	margin: 0 10px -9px 0;
 }
 .dash-item.twitter .item-info {
 	background: rgba(37,137,197,.1);
