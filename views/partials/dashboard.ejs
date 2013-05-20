@@ -13,19 +13,18 @@
 
 	<ul class="items-wrap">
 		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items|filter:query|limitTo:limit">
-			<a href="{{item.source}}" target="_blank">
-				<div class="item-wrapp">
-					<img src="{{item.avatarUrl}}">
-					<div class="desc">
-						{{item.description}}
-						<span ng-show="!item.description" class="empty-desc">This item has no description :(</span>
-						<div class="autor-item">by @{{item.authorName}}</div>
-					</div>
-					<div class="item-info">
-						<i class="ls-ico item-type"></i> <span class="item-date">{{item.date | date: 'longDate'}}</span>
-					</div>
+			<div class="item-wrapp">
+				<a href="{{item.source}}" class="source-link" target="_blank"></a>
+				<img src="{{item.avatarUrl}}">
+				<div class="desc">
+					<span linkify="item.description"></span>
+					<span ng-show="!item.description" class="empty-desc">This item has no description :(</span>
+					<div class="autor-item">by @{{item.authorName}}</div>
 				</div>
-			</a>
+				<div class="item-info">
+					<i class="ls-ico item-type"></i> <span class="item-date">{{item.date | date: 'longDate'}}</span>
+				</div>
+			</div>
 		</li>
 	</ul>
 

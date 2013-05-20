@@ -179,6 +179,16 @@
 	padding: 0 10px;
 }
 
+.dash-item .source-link {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
 .dash-item .desc {
 	display: inline-block;
 	color: #333;
@@ -188,6 +198,11 @@
 	overflow: hidden;
 }
 
+.dash-item .desc a {
+	position: relative;
+	z-index: 2;
+}
+
 .dash-item img {
 	float: left;
 	border-radius:60px;
@@ -195,7 +210,6 @@
 	height: 50px;
 	margin:-2px 15px 0 4px;
 	border:2px solid #fff;
-
 }
 
 .dash-item.github img {
@@ -212,6 +226,11 @@
 
 .dash-item a {
 	color: #e74c3c;
+	text-decoration: none;
+}
+
+.dash-item a:hover {
+	text-decoration: underline;
 }
 
 .dash-item:hover {

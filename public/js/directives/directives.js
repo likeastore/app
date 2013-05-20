@@ -6,6 +6,7 @@ define(function (require) {
 
 	directives.directive('menuSlider', require('./menuSlider'));
 	directives.directive('toggleSwitcher', require('./toggleSwitcher'));
+	directives.directive('linkify', require('./linkify'));
 
 	return directives;
 });
