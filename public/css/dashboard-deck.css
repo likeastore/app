@@ -26,6 +26,11 @@
 	box-shadow: 0 0 2px 1px #ddd;
 }
 
+.dashboard-nav.sticky {
+	position: fixed;
+	top: 0;
+}
+
 .dashboard-nav li {
 	overflow: hidden;
 	cursor: pointer;
@@ -57,11 +62,16 @@
 	border-bottom:1px solid #dfdfd7;
 }
 
+.account-info {
+	position: relative;
+}
+
 .account-info .account-name {
-	float: left;
-	padding: 0 15px 0 0;
 	color: #fff;
 	font-size: 14px;
+	font-family: 'Lato', 'Open Sans', Arial, sans-serif;
+	font-weight: 300;
+	padding: 0 15px 0 0;
 }
 
 .account-info img {
@@ -69,11 +79,11 @@
 	height: 30px;
 	overflow: hidden;
 	float: left;
+	margin: 9px 0 0;
+	cursor: pointer;
 	-webkit-border-radius: 60px;
 	border-radius: 60px;
 	box-shadow:  0px 0px 1px 2px #fff;
-	margin: 9px 0 0;
-	cursor: pointer;
 }
 
 .account-info img:hover {
@@ -81,12 +91,13 @@
 }
 
 .account-show {
-	margin: 22px 0 0 15px;
+	display: inline;
+	margin: 22px 0 0 10px;
 	float: left;
 	width: 0;
 	height: 0;
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
 	border-top: 7px solid #fff;
 	cursor: pointer;
 }
@@ -95,10 +106,47 @@
 	border-top:7px solid #61d9fb;
 }
 
+.active .dropdown {
+	visibility: visible;
+	opacity: 1;
+	top: 46px;
+}
+
+.dropdown {
+	background: #fff;
+	font: 14px/24px 'Lato', 'Open Sans', Arial, sans-serif;
+	font-weight: 300;
+	position: absolute;
+	top: 15px;
+	right: 0;
+	z-index: 10;
+	visibility: hidden;
+	opacity: 0;
+	box-shadow: 0 1px 3px 0px #ddd;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.dropdown .menu-link {
+	display: inline-block;
+	color: #333;
+	text-decoration: none;
+	padding: 10px 20px;
+	width: 120px;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-ms-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+
+.dropdown a:hover {
+	background: #ecf0f1;
+}
+
 .main-dashdoard {
 	padding: 0 25px;
-	padding-bottom:10000px;
-    margin-bottom:-10000px;
 	vertical-align: top;
 	margin-left: 241px;
 	min-height: 600px;
@@ -172,6 +220,9 @@
 	overflow: hidden;
 	display: inline-block;
 	position: relative;
+	-webkit-transition: all .2s;
+	-moz-transition: all .2s;
+	-ms-transition: all .2s;
 	transition: all .2s;
 }
 
@@ -340,7 +391,10 @@
 	display: inline-block;
 	margin:0 20px 0 0;
 	cursor: pointer;
-	transition:all .5s;
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	transition: all .5s;
 }
 
 .tern-on:hover {
@@ -443,7 +497,7 @@
 		width: 70%;
 	}
 }
- 
+
 /* iPads (landscape) ----------- */
 @media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : landscape) {
 	.menu-title,
