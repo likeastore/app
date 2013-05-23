@@ -7,7 +7,9 @@ define(function (require) {
 		return {
 			restrict: 'A',
 			replace: true,
-			scope: true,
+			scope: {
+				networks: '=model'
+			},
 			template: '\
 				<div class="toggle">\
 					<input type="checkbox" name="toggleSwitcher" ng-click="toggleNetwork()">\
@@ -39,7 +41,7 @@ define(function (require) {
 						});
 					}
 				}
-				scope.$watch(attrs.ngModel, listenToNetworks, true);
+				scope.$watch(attrs.model, listenToNetworks, true);
 			}
 		};
 	}

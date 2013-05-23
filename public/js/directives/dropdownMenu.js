@@ -5,16 +5,18 @@ define(function (require) {
 
 	function DropdownMenu ($document) {
 		return {
-			restrict: 'A',
-			replace: true,
+			restrict: 'C',
+			scope: {
+				user: '=model'
+			},
 			template: '\
-				<div class="account-show" ng-click="toggleMenu()">\
-					<ul class="dropdown">\
-						<li><a href="/inbox" class="menu-link">Inbox</a></li>\
-						<li><a href="/settings" class="menu-link">Account settings</a></li>\
-						<li><a href="/logout" class="menu-link" target="_self">Logout</a></li>\
-					</ul>\
-				</div>',
+				<img src="{{user.avatar}}" alt="{{user.name}}" ng-click="toggleMenu()">\
+				<div class="account-show" ng-click="toggleMenu()"></div>\
+				<ul class="dropdown">\
+					<li><a href="/inbox" class="menu-link">Inbox</a></li>\
+					<li><a href="/settings" class="menu-link">Account settings</a></li>\
+					<li><a href="/logout" class="menu-link" target="_self">Logout</a></li>\
+				</ul>',
 			link: function (scope, elem, attrs) {
 				var $parent = elem.parent();
 
@@ -23,7 +25,7 @@ define(function (require) {
 				};
 
 				$document.bind('click', function (e) {
-					var target = angular.element(e.target.parentElement).hasClass('account-info');
+					var target = angular.element(e.target.parentElement).hasClass('dropdown-menu');
 
 					if (!target) {
 						$parent.removeClass('active');
