@@ -1,4 +1,4 @@
-var services = require('../../config')().services;
+var services = require('likeastore-config').services;
 var _ = require('underscore');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('./dbConnector').db;

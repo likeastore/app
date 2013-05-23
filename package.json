@@ -22,7 +22,8 @@
     "bcrypt-nodejs": "0.0.3",
     "node-logentries": "~0.1.0",
     "colors": "~0.6.0-1",
-    "moment": "~2.0.0"
+    "moment": "~2.0.0",
+    "config": "git+ssh://git@github.com:likeastore/config.git"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.8",

@@ -1,7 +1,7 @@
 /**
  * Mongodb connector
  */
-var config = require('../../config')();
+var config = require('likeastore-config');
 var mongo = require('mongojs');
 
 // specify app collections here
