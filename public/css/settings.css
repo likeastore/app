@@ -4,13 +4,19 @@
 	text-align: center;
 }
 
-.empty-results .inbox-icon {
-	height: 100px;
-	width: 100px;
+.empty-results .big-icon {
 	margin: 10px auto;
+	opacity: .1;
+}
+
+.empty-results .inbox-icon {
 	background: url(../img/inbox@2x.png) center center no-repeat;
 	background-size: 90px;
-	opacity: .1;
+}
+
+.empty-results .annoyed-icon {
+	background: url(../img/no-results@2x.png) center center no-repeat;
+	background-size: 90px;
 }
 
 .empty-results h2 {
@@ -132,13 +138,13 @@
 }
 
 .toggle .texts:before {
-	content: 'On';
+	content: attr(data-on);
 	position: absolute;
 	left: 12px;
 }
 
 .toggle .texts:after {
-	content: 'Off';
+	content: attr(data-off);
 	position: absolute;
 	right: 9px;
 }

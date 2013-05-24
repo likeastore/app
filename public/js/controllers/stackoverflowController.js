@@ -3,7 +3,7 @@ define(function (require) {
 
 	var config = require('config').dashboard;
 
-	function StackoverflowController ($scope, api, appLoader) {
+	function StackoverflowController ($scope, api, appLoader, $filter) {
 		appLoader.loading();
 
 		$scope.limit = config.limit;
@@ -15,6 +15,10 @@ define(function (require) {
 		$scope.items = api.query({ resource: 'items', target: 'stackoverflow' }, function (res) {
 			appLoader.ready();
 		});
+
+		$scope.searching = function (query) {
+			$scope.search = $filter('filter')($scope.items, query);
+		};
 	}
 
 	return StackoverflowController;

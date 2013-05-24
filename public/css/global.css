@@ -35,6 +35,12 @@ h3 {
 	visibility: hidden;
 }
 
+.big-icon {
+	height: 100px;
+	width: 100px;
+	background-size: 90px;
+}
+
 /*Grid*/
 .main-footer {
 	position: absolute;
@@ -58,8 +64,8 @@ h3 {
 
 .loading:before {
 	display: block;
-	background: #555;
-	content: "";
+	background: #d3d3d3;
+	content: '';
 	position: absolute;
 	left: -4px;
 	top: -4px;
@@ -81,9 +87,11 @@ h3 {
 	left: 0;
 	-webkit-animation: ticktock 1s linear infinite;
 	-moz-animation: ticktock 1s linear infinite;
+	-ms-animation: ticktock 1s linear infinite;
 	animation: ticktock 1s linear infinite;
 	-webkit-transform-origin: 10px 16px;
 	-moz-transform-origin: 10px 16px;
+	-ms-transform-origin: 10px 16px;
 	transform-origin: 10px 16px;
 }
 
@@ -97,10 +105,12 @@ h3 {
 	height: 0;
 	border-top: 6px solid transparent;
 	border-bottom: 6px solid transparent;
-	border-left: 8px solid #555;
+	border-left: 8px solid #d3d3d3;
 	-webkit-transform: translate(0) rotate(-29deg);
+	-moz-transform: translate(0) rotate(-29deg);
+	-ms-transform: translate(0) rotate(-29deg);
+	transform: translate(0) rotate(-29deg);
 }
-
 
 @-webkit-keyframes ticktock {
 	0% {
@@ -109,5 +119,25 @@ h3 {
 
 	100% {
 		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes ticktock {
+	0% {
+		-moz-transform: rotate(0);
+	}
+
+	100% {
+		-moz-transform: rotate(360deg);
+	}
+}
+
+@keyframes ticktock {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
 	}
 }

@@ -14,7 +14,7 @@ define(function (require) {
 				<div class="toggle">\
 					<input type="checkbox" name="toggleSwitcher" ng-click="toggleNetwork()">\
 					<span class="btn"></span>\
-					<span class="texts"></span>\
+					<span class="texts" data-on="On" data-off="Off"></span>\
 					<span class="bg"></span>\
 				</div>',
 			link: function (scope, elem, attrs) {

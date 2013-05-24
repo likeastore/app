@@ -1,6 +1,5 @@
 .main-viewer {
-	overflow: hidden;
-	zoom:1;
+	height: 100%;
 }
 
 .main-header {
@@ -18,11 +17,10 @@
 }
 
 .dashboard-nav {
-	width: 240px;
 	border-right: 1px solid #d4d5d0;
 	background: #f2f2ea;
-	padding-bottom: 10000px;
-	margin-bottom: -10000px;
+	width: 240px;
+	height: 100%;
 	box-shadow: 0 0 2px 1px #ddd;
 }
 
@@ -149,6 +147,7 @@
 	padding: 0 25px;
 	vertical-align: top;
 	margin-left: 241px;
+	padding-bottom: 10px;
 	min-height: 600px;
 }
 
@@ -220,10 +219,15 @@
 	overflow: hidden;
 	display: inline-block;
 	position: relative;
-	-webkit-transition: all .2s;
-	-moz-transition: all .2s;
-	-ms-transition: all .2s;
-	transition: all .2s;
+	-webkit-transition: all 3s;
+	-moz-transition: all 3s;
+	-ms-transition: all 3s;
+	transition: all 3s;
+	opacity: 0;
+}
+
+.ready .dash-item {
+	opacity: 1;
 }
 
 .item-wrapp {

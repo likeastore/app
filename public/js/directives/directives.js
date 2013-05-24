@@ -9,6 +9,7 @@ define(function (require) {
 	directives.directive('linkify', require('./linkify'));
 	directives.directive('stickyAt', require('./stickyAt'));
 	directives.directive('dropdownMenu', require('./dropdownMenu'));
+	directives.directive('preloader', require('./preloader'));
 
 	return directives;
 });
