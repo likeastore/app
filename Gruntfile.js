@@ -68,13 +68,27 @@ module.exports = function(grunt) {
 					optimizeCss: 'default'
 				}
 			}
+		},
+
+		hashres: {
+			options: {
+				fileNameFormat: '${name}-${hash}.${ext}'
+			},
+			prod: {
+				src: [
+					'public/build/main.js',
+					'public/build/main.css'
+				],
+				dest: { src: 'tools/client/index.js', out: 'source/client/index.js' }
+			}
 		}
 	});
 
 	// Laoded tasks
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-hashres');
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'requirejs']);
+	grunt.registerTask('default', ['jshint', 'requirejs', 'hashres']);
 };

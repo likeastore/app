@@ -28,7 +28,8 @@
   "devDependencies": {
     "grunt-cli": "~0.1.8",
     "grunt-contrib-jshint": "~0.3.0",
-    "grunt-contrib-requirejs": "~0.4.0"
+    "grunt-contrib-requirejs": "~0.4.0",
+    "grunt-hashres": "git+ssh://git@github.com:alexanderbeletsky/grunt-hashres.git"
   },
   "engines": {
     "node": "0.8.x"
