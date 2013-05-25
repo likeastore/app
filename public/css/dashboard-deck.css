@@ -483,6 +483,14 @@
 		display: none;
 	}
 
+	.main-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 10;
+	}
+
 	.main-dashdoard {
 		margin: 0;
 	}
@@ -499,7 +507,7 @@
 		display: block;
 	}
 
-	.dash-item.github img {
+	.dash-item img {
 		width: 60px;
 		height: 60px;
 		display: block;
@@ -526,13 +534,26 @@
 		border-top-width: 6px;
 	}
 
+	.dashboard-header .cellRight {
+		width: 235px;
+	}
+
+	.main-viewer {
+		padding-top: 50px;
+	}
+
 	.settings-page {
-		width: auto;
+		width: auto !important; /* we need to move all media-queries styles in separate file and include it last */
 		padding: 0 20px 20px;
 	}
 
 	.network .desc {
 		font-size: 12px;
+	}
+
+	.search-input {
+		width: 180px;
+		-webkit-appearance: none;
 	}
 
 	/* login */
