@@ -474,7 +474,8 @@
 @media only screen and (max-device-width: 640px) {
 	.dashboard-nav,
 	.account-show,
-	.account-name {
+	.account-name,
+	.main-footer {
 		display: none;
 	}
 
