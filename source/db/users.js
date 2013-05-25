@@ -66,7 +66,7 @@ function findOrCreateByService (token, tokenSecret, profile, callback) {
  * @param data {Object} - request body, e.g. { username, email, password }
  */
 function findOrCreateLocal (data, callback) {
-	db.users.findOne({ username: data.username, provider: 'local' }, function (err, user) {
+	db.users.findOne({ name: data.username, email: data.email, provider: 'local' }, function (err, user) {
 		if (err) {
 			return callback(err);
 		}
@@ -78,7 +78,7 @@ function findOrCreateLocal (data, callback) {
 				}
 
 				if (!res) {
-					return callback('Username and password do not match!');
+					return callback({ field: 'password', message: 'Sorry, please check your password.'});
 				}
 
 				return callback(null, user);

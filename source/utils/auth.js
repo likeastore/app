@@ -74,7 +74,6 @@ module.exports = function (passport) {
 
 	function getAuth (options) {
 		if (!options || typeof options !== 'object') {
-
 			return;
 		}
 
