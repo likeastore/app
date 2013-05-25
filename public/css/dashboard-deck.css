@@ -211,6 +211,7 @@
 .dash-item {
 	vertical-align: top;
 	background: #fff;
+	border-left: 3px solid;
 	padding: 15px 0 20px;
 	margin: 0 25px 20px 0;
 	font-size: 14px;
@@ -219,15 +220,10 @@
 	overflow: hidden;
 	display: inline-block;
 	position: relative;
-	-webkit-transition: all 3s;
-	-moz-transition: all 3s;
-	-ms-transition: all 3s;
-	transition: all 3s;
-	_opacity: 0;
-}
-
-.ready .dash-item {
-	opacity: 1;
+	-webkit-transition: width background 3s ease-in-out;
+	-moz-transition: width background 3s ease-in-out;
+	-ms-transition: width background 3s ease-in-out;
+	transition: width background 3s ease-in-out;
 }
 
 .item-wrapp {
@@ -293,19 +289,21 @@
 }
 
 .dash-item.twitter {
-	border-left: 3px solid #2589c5;
+	border-color: #2589c5;
 }
 
 .dash-item.github {
-	border-left: 3px solid #b2b2b2;
+	border-color: #b2b2b2;
 }
 
 .dash-item.stackoverflow {
-	border-left: 3px solid #f88b1f;
+	border-color: #f88b1f;
 }
+
 .autor-item {
 	margin: 10px 0 0;
 }
+
 .dash-item.twitter .autor-item {
 	color: #2589c5;
 }
@@ -380,7 +378,7 @@
 }
 
 .compact-view .main-dashdoard {
-	margin: 0 0 0 50px;
+	margin: 0 0 0 51px;
 }
 
 .tern-on-deck {
