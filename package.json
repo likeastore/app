@@ -23,13 +23,13 @@
     "node-logentries": "~0.1.0",
     "colors": "~0.6.0-1",
     "moment": "~2.0.0",
-    "config": "git+ssh://git@github.com:likeastore/config.git"
+    "config": "git://github.com/likeastore/config.git"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.8",
     "grunt-contrib-jshint": "~0.3.0",
     "grunt-contrib-requirejs": "~0.4.0",
-    "grunt-hashres": "git+ssh://git@github.com:alexanderbeletsky/grunt-hashres.git"
+    "grunt-hashres": "git://github.com/alexanderbeletsky/grunt-hashres.git"
   },
   "engines": {
     "node": "0.8.x"
