@@ -447,9 +447,31 @@
 	margin-right: 0;
 }
 
+.mobile-menu {
+	display: none;
+	float: left;
+	overflow: hidden;
+	height: 50px;
+	font-size: 0px;
+	position: absolute;
+	left: 50%;
+	margin-left: -120px;
+}
+
+.mobile-menu li {
+	display:inline-block;
+	margin: 0 10px;
+}
+
 /*Media queries*/
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 320px), only screen and (max-device-width: 640px) {
+@media only screen and (max-width: 420px) {
+	.mobile-menu li {
+		margin: 0;
+	}
+
+}
+@media only screen and (max-width: 640px) {
 	.dashboard-nav,
 	.account-show,
 	.account-name {
@@ -458,6 +480,10 @@
 
 	.main-dashdoard {
 		margin: 0;
+	}
+
+	.mobile-menu {
+		display: block;
 	}
 
 	.dash-item {
@@ -481,6 +507,18 @@
 		width: 100%;
 		height: auto;
 		margin-bottom: 20px;
+	}
+
+	.header-left {
+		width: 110px;
+	}
+
+	.mobile-menu .menu-ico {
+		background-color: transparent;
+	}
+
+	.dashboard-header {
+		border-top-width: 6px;
 	}
 
 	/* login */
