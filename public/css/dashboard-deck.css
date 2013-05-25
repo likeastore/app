@@ -449,7 +449,7 @@
 
 /*Media queries*/
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (max-width: 480px), only screen and (max-device-width: 640px) {
+@media only screen and (min-device-width: 320px), only screen and (max-device-width: 640px) {
 	.dashboard-nav,
 	.account-show,
 	.account-name {
@@ -482,6 +482,58 @@
 		height: auto;
 		margin-bottom: 20px;
 	}
+
+	/* login */
+	.sign-up-ls {
+		position: inherit;
+		left: auto;
+		top: auto;
+		margin: 0;
+		border: none;
+	}
+
+	.sign-up-ls .cell {
+		float: none;
+		overflow: hidden;
+	}
+
+	.sign-up-ls .btn-s-big {
+		width: 366px;
+	}
+
+	.sign-up-ls .error-message {
+		padding: 10px 0;
+	} 
+
+	.signup-form {
+		margin: 15px auto 0;
+		padding:20px 0 40px;
+		text-align: center;
+		width: 100%;
+		border-bottom: 1px solid #eee;
+	}
+
+	.field-group {
+		padding:0 25px; 
+	}
+
+	.signup-form button[type=submit] {
+		float: none;
+		width: 366px;
+	}
+
+	.social-autorize {
+		width: auto;
+		min-height: auto;
+		padding: 40px 25px 20px;
+	} 
+
+	.signup-form input {
+		width: 330px;
+		margin: 0;
+	}
+
+
 }
 
 
