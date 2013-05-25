@@ -1,4 +1,5 @@
 module.exports = {
 	serveMaster: require('./serveMaster'),
-	access: require('./access')
+	access: require('./access'),
+	noCache: require('./noCache')
 };
