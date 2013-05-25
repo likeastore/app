@@ -5,7 +5,7 @@ var logentries = require('node-logentries');
 var log = logentries.logger({
 	token:process.env.LOGENTRIES_TOKEN
 });
-log.level('warning');
+log.level('info');
 
 module.exports = {
 	success: function (message) {
