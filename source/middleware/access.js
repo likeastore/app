@@ -1,6 +1,7 @@
 var _ = require('underscore');
 var subscribers = require('./../db/subscribers');
 var logger = require('./../utils/logger');
+var config = require('likeastore-config');
 
 function authenticated () {
 	return function (req, res, next) {
@@ -53,9 +54,26 @@ function ensureUser () {
 	};
 }
 
+function redirectUnauthorized() {
+	return function (req, res, next) {
+		var end = res.end;
+		res.end = function (data, encoding) {
+			res.end = end;
+			if (res.statusCode === 401) {
+				return res.redirect(config.siteUrl);
+			}
+
+			res.end(data, encoding);
+		};
+
+		next();
+	};
+}
+
 module.exports = {
 	authenticated: authenticated,
 	guest: guest,
 	invite: invite,
-	ensureUser: ensureUser
+	ensureUser: ensureUser,
+	redirectUnauthorized: redirectUnauthorized
 };

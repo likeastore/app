@@ -31,6 +31,7 @@ app.configure(function(){
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(middleware.access.ensureUser());
+	app.use(middleware.access.redirectUnauthorized());
 	app.use(app.router);
 });
 
