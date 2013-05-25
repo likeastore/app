@@ -466,11 +466,15 @@
 /*Media queries*/
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (max-device-width: 420px) {
+	.header-left {
+		display: none;
+	}
+
 	.mobile-menu li {
 		margin: 0;
 	}
-
 }
+
 @media only screen and (max-device-width: 640px) {
 	.dashboard-nav,
 	.account-show,
@@ -522,13 +526,23 @@
 		border-top-width: 6px;
 	}
 
+	.settings-page {
+		width: auto;
+		padding: 0 20px 20px;
+	}
+
+	.network .desc {
+		font-size: 12px;
+	}
+
 	/* login */
 	.sign-up-ls {
+		border: none;
 		position: inherit;
 		left: auto;
 		top: auto;
 		margin: 0;
-		border: none;
+		width: auto;
 	}
 
 	.sign-up-ls .cell {
@@ -537,44 +551,44 @@
 	}
 
 	.sign-up-ls .btn-s-big {
-		width: 366px;
+		width: auto;
 	}
 
 	.sign-up-ls .error-message {
 		padding: 10px 0;
-	} 
+	}
 
 	.signup-form {
 		margin: 15px auto 0;
-		padding:20px 0 40px;
+		padding: 20px 0 40px;
 		text-align: center;
-		width: 100%;
+		width: auto;
 		border-bottom: 1px solid #eee;
 	}
 
 	.field-group {
-		padding:0 25px; 
+		padding: 0 25px;
 	}
 
 	.signup-form button[type=submit] {
 		float: none;
-		width: 366px;
+		width: 215px;
 	}
 
 	.social-autorize {
 		width: auto;
 		min-height: auto;
 		padding: 40px 25px 20px;
-	} 
-
-	.signup-form input {
-		width: 330px;
-		margin: 0;
 	}
 
-
+	.signup-form input {
+		width: auto;
+		margin: 0;
+		-webkit-appearance: none;
+		-webkit-border-radius: 0;
+		border-radius: 0;
+	}
 }
-
 
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
