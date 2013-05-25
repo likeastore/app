@@ -223,7 +223,7 @@
 	-moz-transition: all 3s;
 	-ms-transition: all 3s;
 	transition: all 3s;
-	opacity: 0;
+	_opacity: 0;
 }
 
 .ready .dash-item {
