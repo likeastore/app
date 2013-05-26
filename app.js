@@ -8,6 +8,7 @@ var path = require('path');
 var passport = require('passport');
 var engine = require('ejs-locals');
 var middleware = require('./source/middleware');
+var config = require('likeastore-config');
 
 var oneMonth = 2678400000;
 
@@ -51,6 +52,7 @@ app.configure('production', function(){
 require('./source/api.js')(app, passport);
 require('./source/router.js')(app);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Likeastore app listening on port ' + app.get('port'));
+http.createServer(app).listen(app.get('port'), function() {
+	var env = process.env.NODE_ENV || 'development';
+  	console.log('Likeastore app listening on port ' + app.get('port') + ' ' + env + ' mongo: ' + config.connection);
 });

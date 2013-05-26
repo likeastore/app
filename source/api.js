@@ -66,6 +66,7 @@ module.exports = function (app, passport) {
 			if (err) {
 				return res.send(500, err);
 			}
+
 			res.json(items);
 		});
 	}
