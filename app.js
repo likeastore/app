@@ -9,8 +9,14 @@ var passport = require('passport');
 var engine = require('ejs-locals');
 var middleware = require('./source/middleware');
 var config = require('likeastore-config');
+var logger = require('./source/utils/logger');
 
 var oneMonth = 2678400000;
+
+process.on('uncaughtException', function (err) {
+	logger.error({msg:'Uncaught exception', error:err, stack:err.stack});
+	console.log("Uncaught exception", err, err.stack && err.stack.toString()); //extra log, makes stack track clickable in webstorm
+});
 
 // oauth init
 require('./source/utils/auth.js')(passport);
@@ -47,6 +53,7 @@ app.configure('production', function(){
 	app.use(express.compress());
 	app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
 	app.use(middleware.serveMaster.production());
+	app.use(middleware.errors.logErrors());
 });
 
 require('./source/api.js')(app, passport);
@@ -54,5 +61,5 @@ require('./source/router.js')(app);
 
 http.createServer(app).listen(app.get('port'), function() {
 	var env = process.env.NODE_ENV || 'development';
-  	console.log('Likeastore app listening on port ' + app.get('port') + ' ' + env + ' mongo: ' + config.connection);
+	logger.info('Likeastore app listening on port ' + app.get('port') + ' ' + env + ' mongo: ' + config.connection);
 });

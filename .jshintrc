@@ -22,7 +22,8 @@
 		"require",
 		"window",
 		"process",
-		"console"
+		"console",
+		"__dirname"
 	],
 
 	"asi" : false,
