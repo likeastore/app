@@ -10,6 +10,7 @@ var engine = require('ejs-locals');
 var middleware = require('./source/middleware');
 var config = require('likeastore-config');
 var logger = require('./source/utils/logger');
+var MongoStore = require('connect-mongo')(express);
 
 var oneMonth = 2678400000;
 var oneHour = 3600000;
@@ -34,7 +35,15 @@ app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.cookieParser('likeastore_secret7'));
-	app.use(express.cookieSession({ secret: 'likeastore_secret', cookie: { maxAge: oneHour }}));
+	app.use(express.session({
+		secret: 'likeastore_secret',
+		store: new MongoStore({
+			url: config.connection,
+			auto_reconnect: true,
+			clear_interval: 60*60
+		})
+	}));
+	//app.use(express.cookieSession({ secret: 'likeastore_secret', cookie: { maxAge: oneHour }}));
 	app.use(express.compress());
 	app.use(passport.initialize());
 	app.use(passport.session());

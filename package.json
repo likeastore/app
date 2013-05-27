@@ -23,7 +23,8 @@
     "node-logentries": "~0.1.0",
     "colors": "~0.6.0-1",
     "moment": "~2.0.0",
-    "config": "git://github.com/likeastore/config.git"
+    "config": "git://github.com/likeastore/config.git",
+    "connect-mongo": "~0.3.2"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.8",
