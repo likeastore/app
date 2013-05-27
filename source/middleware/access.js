@@ -47,7 +47,7 @@ function ensureUser () {
 		});
 
 		if (acceptUrl && !req.user) {
-			return res.redirect(config.siteUrl);
+			return res.send(401);
 		}
 
 		return next();
