@@ -47,7 +47,7 @@ function ensureUser () {
 		});
 
 		if (acceptUrl && !req.user) {
-			return res.send(401, 'Unauthorized');
+			return res.redirect(config.siteUrl);
 		}
 
 		return next();
