@@ -12,6 +12,7 @@ var config = require('likeastore-config');
 var logger = require('./source/utils/logger');
 
 var oneMonth = 2678400000;
+var oneHour = 3600000;
 
 process.on('uncaughtException', function (err) {
 	logger.error({msg:'Uncaught exception', error:err, stack:err.stack});
@@ -33,7 +34,7 @@ app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.cookieParser('likeastore_secret7'));
-	app.use(express.session({ secret: 'likeastore_secret'}));
+	app.use(express.cookieSession({ secret: 'likeastore_secret', cookie: { maxAge: oneHour }}));
 	app.use(express.compress());
 	app.use(passport.initialize());
 	app.use(passport.session());
