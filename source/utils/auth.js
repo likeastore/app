@@ -14,10 +14,12 @@ module.exports = function (passport) {
 	 * Serialize logined user to session
 	 */
 	passport.serializeUser(function(user, done) {
+		logger.info({message: 'passport: serializeUser', user: user});
 		done(null, user);
 	});
 
 	passport.deserializeUser(function(obj, done) {
+		logger.info({message: 'passport: deserializeUser', obj: obj});
 		done(null, obj);
 	});
 

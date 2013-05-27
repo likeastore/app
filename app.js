@@ -40,7 +40,7 @@ app.configure(function(){
 	app.use(passport.session());
 	// app.use(middleware.errors.logHttpErrors());
 	app.use(middleware.access.ensureUser());
-	app.use(middleware.access.redirectUnauthorized());
+	//app.use(middleware.access.redirectUnauthorized());
 	app.use(middleware.noCache());
 	app.use(app.router);
 });
