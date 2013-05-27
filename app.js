@@ -37,7 +37,7 @@ app.configure(function(){
 	app.use(express.compress());
 	app.use(passport.initialize());
 	app.use(passport.session());
-	app.use(middleware.errors.logHttpErrors());
+	// app.use(middleware.errors.logHttpErrors());
 	app.use(middleware.access.ensureUser());
 	app.use(middleware.access.redirectUnauthorized());
 	app.use(middleware.noCache());
@@ -54,7 +54,7 @@ app.configure('production', function(){
 	app.use(express.compress());
 	app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
 	app.use(middleware.serveMaster.production());
-	app.use(middleware.errors.logErrors());
+	// app.use(middleware.errors.logErrors());
 });
 
 require('./source/api.js')(app, passport);

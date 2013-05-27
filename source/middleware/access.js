@@ -19,7 +19,7 @@ function authenticated () {
 
 function guest () {
 	return function (req, res, next) {
-		logger.info({message: 'ensuring guest access for request', request: req});
+		logger.info({message: 'ensuring guest access for request'});
 		req.role === 'guest';
 		return next();
 	};
@@ -27,7 +27,7 @@ function guest () {
 
 function invite () {
 	return function (req, res, next) {
-		logger.info({message: 'checking invintation permissions for request', request: req});
+		logger.info({message: 'checking invintation permissions for request'});
 
 		var inviteId = req.cookies.likeastoreInviteId || req.cookies.likeastore_invite_id;
 
@@ -49,7 +49,7 @@ function invite () {
 
 function ensureUser () {
 	return function (req, res, next) {
-		logger.info({message: 'ensuring we have user in session', request: req, user: req.user });
+		logger.info({message: 'ensuring we have user in session', user: req.user });
 
 		var urls = ['/api', '/connect'];
 		var acceptUrl = _.any(urls, function (url) {
@@ -57,7 +57,7 @@ function ensureUser () {
 		});
 
 		if (acceptUrl && !req.user) {
-			logger.warning({message: 'unauthorized access (sending 401)', url: req.url, request: req});
+			logger.warning({message: 'unauthorized access (sending 401)', url: req.url});
 			return res.send(401);
 		}
 
@@ -71,7 +71,7 @@ function redirectUnauthorized() {
 		res.end = function (data, encoding) {
 			res.end = end;
 			if (res.statusCode === 401) {
-				logger.info({message: 'redirect unauthorized', request: req, user: req.user });
+				logger.info({message: 'redirect unauthorized', user: req.user });
 
 				return res.redirect(config.siteUrl);
 			}
