@@ -1,9 +1,10 @@
 {
   "name": "likeastore-app",
-  "version": "0.0.1-1",
+  "version": "0.0.1-4",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "postdeploy": "./node_modules/.bin/grunt build"
   },
   "dependencies": {
     "express": "~3.1.0",
@@ -24,7 +25,8 @@
     "colors": "~0.6.0-1",
     "moment": "~2.0.0",
     "config": "git://github.com/likeastore/config.git",
-    "connect-mongo": "~0.3.2"
+    "connect-mongo": "~0.3.2",
+    "bower": "~0.9.2"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.8",
