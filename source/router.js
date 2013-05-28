@@ -9,7 +9,8 @@ module.exports = function (app) {
 	app.get('/', middleware.access.authenticated());
 
 	// angular master page serves here
-	app.get('/welcome', middleware.access.invite(), welcome);
+	// app.get('/welcome', middleware.access.invite(), welcome);
+	app.get('/welcome', welcome);
 
 	// angular view partials urls
 	app.get('/partials/:name', partials);
