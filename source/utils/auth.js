@@ -15,12 +15,21 @@ module.exports = function (passport) {
 	 */
 	passport.serializeUser(function(user, done) {
 		logger.info({message: 'passport: serializeUser', user: user});
-		done(null, user);
+		done(null, user._id);
 	});
 
-	passport.deserializeUser(function(obj, done) {
-		logger.info({message: 'passport: deserializeUser', obj: obj});
-		done(null, obj);
+	passport.deserializeUser(function(id, done) {
+		logger.info({message: 'passport: deserializeUser', id: id});
+
+		users.findById (id, function (err, user) {
+			if (err) {
+				logger.error({message: 'passport: cant find user with id ' + id});
+				return done (err);
+			}
+
+			logger.info({message: 'passport: user deserialized', user: user});
+			done (null, user);
+		});
 	});
 
 	/*

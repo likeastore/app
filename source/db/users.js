@@ -10,7 +10,11 @@ var metaFromServices = ['id', 'provider', 'username', 'displayName'];
 
 
 function findById(id, callback) {
-	db.users.findOne({ _id: new ObjectId(id) }, function (err, user) {
+	if (typeof id === 'string') {
+		id = new ObjectId(id);
+	}
+
+	db.users.findOne({ _id: id }, function (err, user) {
 		if (err) {
 			return callback(err);
 		}

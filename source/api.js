@@ -5,6 +5,7 @@
 var users = require('./db/users.js');
 var items = require('./db/items.js');
 var nets = require('./db/networks.js');
+var logger = require('./utils/logger');
 
 var redirects = {
 	successReturnToOrRedirect: '/setup',
@@ -44,15 +45,20 @@ module.exports = function (app, passport) {
 	app.del('/api/user/:network', deleteNetwork);
 
 	function getAll (req, res) {
+		logger.info({message: 'requesting all items', user: req.user});
+
 		items.getAllItems(req.user._id, function (err, items) {
 			if (err) {
 				return res.send(500, err);
 			}
+
 			res.json(items);
 		});
 	}
 
 	function getTwitter (req, res) {
+		logger.info({message: 'requesting twitter items', user: req.user});
+
 		items.getItemsByType(req.user._id, 'twitter', function (err, items) {
 			if (err) {
 				return res.send(500, err);
@@ -62,6 +68,8 @@ module.exports = function (app, passport) {
 	}
 
 	function getGithub (req, res) {
+		logger.info({message: 'requesting github items', user: req.user});
+
 		items.getItemsByType(req.user._id, 'github', function (err, items) {
 			if (err) {
 				return res.send(500, err);
@@ -72,6 +80,8 @@ module.exports = function (app, passport) {
 	}
 
 	function getStackoverflow (req, res) {
+		logger.info({message: 'requesting stackoverflow items', user: req.user});
+
 		items.getItemsByType(req.user._id, 'stackoverflow', function (err, items) {
 			if (err) {
 				return res.send(500, err);
@@ -81,6 +91,8 @@ module.exports = function (app, passport) {
 	}
 
 	function getUser (req, res) {
+		logger.info({message: 'requesting user', user: req.user});
+
 		users.findById(req.user._id, function (err, user) {
 			if (err) {
 				return res.send(500, err);

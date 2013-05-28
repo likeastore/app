@@ -35,23 +35,26 @@ app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.cookieParser('likeastore_secret7'));
-	app.use(express.session({
-		secret: 'likeastore_secret',
-		store: new MongoStore({
-			url: config.connection,
-			auto_reconnect: true,
-			clear_interval: 60*60
-		})
-	}));
-	//app.use(express.cookieSession({ secret: 'likeastore_secret', cookie: { maxAge: oneHour }}));
+
+	// app.use(express.session({
+	// 	secret: 'likeastore_secret',
+	// 	store: new MongoStore({
+	// 		url: config.connection,
+	// 		auto_reconnect: true,
+	// 		clear_interval: 60*60
+	// 	})
+	// }));
+
+	app.use(express.cookieSession({ secret: 'likeastore_secret', cookie: { maxAge: oneHour }}));
 	app.use(express.compress());
 	app.use(passport.initialize());
 	app.use(passport.session());
-	// app.use(middleware.errors.logHttpErrors());
+	app.use(middleware.errors.logHttpErrors());
 	app.use(middleware.access.ensureUser());
-	//app.use(middleware.access.redirectUnauthorized());
+	app.use(middleware.access.redirectUnauthorized());
 	app.use(middleware.noCache());
 	app.use(app.router);
+	app.use(middleware.errors.logErrors());
 });
 
 app.configure('development', function(){
@@ -64,7 +67,6 @@ app.configure('production', function(){
 	app.use(express.compress());
 	app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
 	app.use(middleware.serveMaster.production());
-	// app.use(middleware.errors.logErrors());
 });
 
 require('./source/api.js')(app, passport);

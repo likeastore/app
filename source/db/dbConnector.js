@@ -3,11 +3,13 @@
  */
 var config = require('likeastore-config');
 var mongo = require('mongojs');
+var logger = require('./../utils/logger');
 
 // specify app collections here
 var collections = ['users', 'networks', 'items', 'subscribers'];
 
 // get db with default collections list
+logger.info({message: 'connecting to mongo'});
 var db = mongo.connect(config.connection, collections);
 
 /*
