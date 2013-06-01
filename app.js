@@ -25,8 +25,10 @@ require('./source/utils/auth.js')(passport);
 
 var app = express();
 
+app.enable('trust proxy');
+
 app.configure(function(){
-	app.set('port', process.env.PORT || 3001);
+	app.set('port', process.env.VCAP_APP_PORT || 3001);
 	app.engine('ejs', engine);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'ejs');
@@ -35,16 +37,6 @@ app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.cookieParser('likeastore_secret7'));
-
-	// app.use(express.session({
-	// 	secret: 'likeastore_secret',
-	// 	store: new MongoStore({
-	// 		url: config.connection,
-	// 		auto_reconnect: true,
-	// 		clear_interval: 60*60
-	// 	})
-	// }));
-
 	app.use(express.cookieSession({ secret: 'likeastore_secret', cookie: { maxAge: oneHour }}));
 	app.use(express.compress());
 	app.use(passport.initialize());
