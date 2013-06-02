@@ -21,9 +21,9 @@ define(function (require) {
 				var service = attrs.toggleSwitcher;
 
 				scope.toggleNetwork = function () {
-					var isOn = angular.element(elem).hasClass('on');
+					var isOn = elem.hasClass('on');
 
-					angular.element(elem).toggleClass('on');
+					elem.toggleClass('on');
 
 					if (isOn) {
 						api.remove({ resource: 'user', target: service });
@@ -36,7 +36,7 @@ define(function (require) {
 					if (value) {
 						angular.forEach(value, function (row, i) {
 							if (service === row.service) {
-								angular.element(elem).addClass('on');
+								elem.addClass('on');
 							}
 						});
 					}
