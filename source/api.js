@@ -102,6 +102,8 @@ module.exports = function (app, passport) {
 	}
 
 	function getNetworks (req, res) {
+		logger.info({message: 'requesting networks', user: req.user});
+
 		nets.findNetworksByUserId(req.user._id, function (err, nets) {
 			if (err) {
 				return res.send(500, err);

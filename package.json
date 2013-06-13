@@ -1,6 +1,6 @@
 {
   "name": "likeastore-app",
-  "version": "0.0.1-4",
+  "version": "0.0.1-6",
   "private": true,
   "scripts": {
     "start": "node app.js",
@@ -14,9 +14,9 @@
     "ejs": "~0.8.3",
     "mongojs": "~0.7.3",
     "underscore": "~1.4.4",
-    "async": "~0.2.6",
+    "async": "~0.2.9",
     "passport": "~0.1.16",
-    "passport-twitter": "~0.1.4",
+    "passport-twitter": "~0.1.5",
     "passport-github": "~0.1.4",
     "passport-facebook": "~0.1.5",
     "ejs-locals": "~1.0.2",
@@ -27,7 +27,7 @@
     "node-logentries": "~0.1.0",
     "colors": "~0.6.0-1",
     "moment": "~2.0.0",
-    "config": "git://github.com/likeastore/config.git",
+    "config": "~0.2.5",
     "connect-mongo": "~0.3.2",
     "bower": "~0.9.2"
   },

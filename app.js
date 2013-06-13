@@ -38,7 +38,6 @@ app.configure(function(){
 	app.use(express.methodOverride());
 	app.use(express.cookieParser('likeastore_secret7'));
 	app.use(express.cookieSession({ secret: 'likeastore_secret', cookie: { maxAge: oneHour }}));
-	app.use(express.compress());
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(middleware.errors.logHttpErrors());

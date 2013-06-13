@@ -21,7 +21,7 @@ module.exports = function (passport) {
 	passport.deserializeUser(function(id, done) {
 		logger.info({message: 'passport: deserializeUser', id: id});
 
-		users.findById (id, function (err, user) {
+		users.findById(id, function (err, user) {
 			if (err) {
 				logger.error({message: 'passport: cant find user with id ' + id});
 				return done (err);

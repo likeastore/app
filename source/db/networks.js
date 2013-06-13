@@ -13,16 +13,13 @@ var db = require('./dbConnector').db;
  * @param callback {Function} - returns 'error' in arguments
  */
 function saveNetwork (userId, profile, token, tokenSecret, callback) {
-	if (!userId || typeof userId !== 'string') {
-		return callback('userId is not properly specified.');
-	}
-
 	// stackoverflow specific hack
 	if (profile.provider === 'stackexchange') {
 		profile.username = profile.user_id;
 		profile.provider = 'stackoverflow';
 	}
 
+	userId = userId.toString();
 	db.networks.findOne({ userId: userId, provider: profile.provider }, function (err, net) {
 		if (err) {
 			return callback(err);
@@ -56,11 +53,7 @@ function saveNetwork (userId, profile, token, tokenSecret, callback) {
 }
 
 function removeNetworkByUserId (userId, service, callback) {
-	if (!userId || typeof userId !== 'string') {
-		return callback('userId is not properly specified.');
-	}
-
-	db.networks.remove({ userId: userId, service: service }, function (err) {
+	db.networks.remove({ userId: userId.toString(), service: service }, function (err) {
 		if (err) {
 			return callback(err);
 		}
@@ -70,14 +63,10 @@ function removeNetworkByUserId (userId, service, callback) {
 }
 
 function findNetworksByUserId (userId, callback) {
-	if (!userId || typeof userId !== 'string') {
-		return callback('userId is not properly specified.');
-	}
-
 	var nets = [];
 	var fieldsToPick = ['service', 'lastExecution', 'username'];
 
-	db.networks.find({ userId: userId }).forEach(function (err, doc) {
+	db.networks.find({ userId: userId.toString() }).forEach(function (err, doc) {
 		if (err) {
 			return callback(err);
 		}
