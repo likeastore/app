@@ -3,7 +3,8 @@
   "version": "0.0.1-8",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "node runMocha"
   },
   "domains": [
     "app.likeastore.com"
@@ -27,7 +28,12 @@
     "grunt-cli": "~0.1.8",
     "grunt-contrib-jshint": "~0.3.0",
     "grunt-contrib-requirejs": "~0.4.0",
-    "grunt-hashres": "git://github.com/alexanderbeletsky/grunt-hashres.git"
+    "grunt-hashres": "git://github.com/alexanderbeletsky/grunt-hashres.git",
+    "mocha": "~1.10.0",
+    "chai": "~1.6.1",
+    "sinon": "~1.7.2",
+    "sinon-chai": "~2.4.0",
+    "request": "~2.21.0"
   },
   "engines": {
     "node": "0.8.x"
