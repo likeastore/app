@@ -11,7 +11,6 @@ var config = require('likeastore-config');
 var logger = require('./source/utils/logger');
 
 var oneMonth = 2678400000;
-var oneHour = 3600000;
 
 process.on('uncaughtException', function (err) {
 	logger.error({msg:'Uncaught exception', error:err, stack:err.stack});
@@ -30,7 +29,6 @@ app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(middleware.errors.logHttpErrors());
-	app.use(middleware.access.ensureUser());
 	app.use(middleware.access.redirectUnauthorized());
 	app.use(middleware.noCache());
 	app.use(app.router);
