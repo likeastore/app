@@ -9,6 +9,5 @@ module.exports = function (app) {
 		res.render('partials/' + req.params.name);
 	};
 
-	app.get('/', middleware.access.authenticated());
 	app.get('/partials/:name', partials);
 };

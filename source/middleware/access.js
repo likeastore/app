@@ -7,13 +7,13 @@ function authenticated () {
 	return function (req, res, next) {
 		logger.info({message: 'authentication check'});
 
-		if (req.isAuthenticated() || req.role === 'guest') {
-			logger.info({message: 'user is ' + (req.role === 'guest' ? 'guest' : 'authenticated')});
+		if (req.user || req.guestAccess) {
+			logger.info({message: 'user is ' + (req.guestAccess ? 'guest' : 'authenticated')});
 			return next();
 		}
 
-		logger.info({message: 'user is not authenticated and will be redirected', url: req.url, body: req.body });
-		res.redirect(config.siteUrl + '/login');
+		logger.info({message: 'user is not authenticated', url: req.url, body: req.body });
+		res.send(401);
 	};
 }
 

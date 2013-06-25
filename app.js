@@ -28,8 +28,8 @@ app.configure(function(){
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
+	app.use(middleware.access.authenticated());
 	app.use(middleware.errors.logHttpErrors());
-	app.use(middleware.access.redirectUnauthorized());
 	app.use(middleware.noCache());
 	app.use(app.router);
 	app.use(middleware.errors.logErrors());
