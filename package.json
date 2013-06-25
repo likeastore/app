@@ -20,7 +20,6 @@
     "passport-github": "~0.1.4",
     "passport-facebook": "~0.1.5",
     "ejs-locals": "~1.0.2",
-    "passport-local": "~0.1.6",
     "passport-stackexchange": "~0.1.0",
     "grvtr": "~0.1.2",
     "bcrypt-nodejs": "0.0.3",

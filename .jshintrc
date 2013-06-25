@@ -19,6 +19,7 @@
 		"xdescribe",
 		"define",
 		"module",
+		"exports",
 		"require",
 		"window",
 		"process",

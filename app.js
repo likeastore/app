@@ -10,7 +10,6 @@ var engine = require('ejs-locals');
 var middleware = require('./source/middleware');
 var config = require('likeastore-config');
 var logger = require('./source/utils/logger');
-var MongoStore = require('connect-mongo')(express);
 
 var oneMonth = 2678400000;
 var oneHour = 3600000;

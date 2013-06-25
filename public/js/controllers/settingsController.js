@@ -5,7 +5,7 @@ define(function (require) {
 		appLoader.loading();
 
 		$scope.title = 'Account settings';
-		$scope.networks = api.query({ resource: 'user', target: 'networks' }, function (res) {
+		$scope.networks = api.query({ resource: 'networks', target: 'all' }, function (res) {
 			appLoader.ready();
 		});
 	}

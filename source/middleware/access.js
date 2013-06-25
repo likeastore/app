@@ -13,7 +13,7 @@ function authenticated () {
 		}
 
 		logger.info({message: 'user is not authenticated and will be redirected', url: req.url, body: req.body });
-		res.redirect('/welcome');
+		res.redirect(config.siteUrl + '/login');
 	};
 }
 

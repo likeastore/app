@@ -6,37 +6,16 @@ var middleware = require('./middleware');
 
 module.exports = function (app) {
 
-	app.get('/', middleware.access.authenticated());
-
-	// angular master page serves here
-	// app.get('/welcome', middleware.access.invite(), welcome);
-	app.get('/welcome', welcome);
-
-	// angular view partials urls
-	app.get('/partials/:name', partials);
-
-	// first login setup page
-	app.get('/setup', middleware.access.authenticated(), setup);
-	app.get('/logout', logout);
-
-	function welcome (req, res) {
-		res.render('welcome', { title: 'Likeastore. | Signup' });
-	}
-
-	function partials (req, res) {
+	var partials = function (req, res) {
 		res.render('partials/' + req.params.name);
-	}
+	};
 
-	function setup (req, res) {
-		if (req.user.email) {
-			return res.redirect('/');
-		}
-
-		return res.render('setup', { title: 'Likeastore. | Setup', user: req.user });
-	}
-
-	function logout (req, res) {
+	var quit = function (req, res) {
 		req.logout();
 		res.redirect('/');
-	}
+	};
+
+	app.get('/', middleware.access.authenticated());
+	app.get('/partials/:name', partials);
+	app.get('/logout', quit);
 };

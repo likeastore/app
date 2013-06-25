@@ -26,7 +26,7 @@ define(function (require) {
 					elem.toggleClass('on');
 
 					if (isOn) {
-						api.remove({ resource: 'user', target: service });
+						api.remove({ resource: 'networks', target: scope.networks[service].id });
 						return;
 					}
 					$window.location = '/connect/' + service;

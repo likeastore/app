@@ -1,160 +1,44 @@
-var services = require('likeastore-config').services;
-var users = require('../db/users.js');
-var nets = require('../db/networks.js');
+var config = require('likeastore-config');
+var services = config.services;
+var networks = require('../db/networks.js');
 var TwitterAuth = require('passport-twitter').Strategy;
 var GithubAuth = require('passport-github').Strategy;
-var FacebookAuth = require('passport-facebook').Strategy;
 var StackAuth = require('passport-stackexchange').Strategy;
-var LocalAuth = require('passport-local').Strategy;
+var FacebookAuth = require('passport-facebook').Strategy;
 var logger = require('./logger');
 
 module.exports = function (passport) {
 
-	/*
-	 * Serialize logined user to session
-	 */
-	passport.serializeUser(function(user, done) {
-		logger.info({message: 'passport: serializeUser', user: user});
-		done(null, user._id);
-	});
-
-	passport.deserializeUser(function(id, done) {
-		logger.info({message: 'passport: deserializeUser', id: id});
-
-		users.findById(id, function (err, user) {
-			if (err) {
-				logger.error({message: 'passport: cant find user with id ' + id});
-				return done (err);
-			}
-
-			logger.info({message: 'passport: user deserialized', user: user});
-			done (null, user);
-		});
-	});
-
-	/*
-	 * App register/login strategies
-	 */
-	passport.use(getAuth({
-		type: 'twitter',
-		url: '/auth/twitter/callback',
-		callback: getServiceUser
-	}));
-
-	passport.use(getAuth({
-		type: 'github',
-		url: '/auth/github/callback',
-		callback: getServiceUser
-	}));
-
-	passport.use(getAuth({
-		type: 'facebook',
-		url: '/auth/facebook/callback',
-		callback: getServiceUser
-	}));
-
-	passport.use(getAuth({
-		type: 'local',
-		callback: getLocalUser,
-		req: true
-	}));
-
-	/*
-	 * Connector's authorization strategies
-	 */
-	passport.use('twitter-authz', getAuth({
-		type: 'twitter',
-		url: '/connect/twitter/callback',
-		callback: saveServiceToNetworks,
-		req: true
-	}));
-
-	passport.use('github-authz', getAuth({
-		type: 'github',
-		url: '/connect/github/callback',
-		callback: saveServiceToNetworks,
-		req: true
-	}));
-
-	passport.use('stackexchange-authz', getAuth({
-		type: 'stackoverflow',
-		url: '/connect/stackoverflow/callback',
-		callback: saveServiceToNetworks,
-		req: true
-	}));
-
-	function getAuth (options) {
-		if (!options || typeof options !== 'object') {
-			return;
-		}
-
-		if (!options.req) {
-			options.req = false;
-		}
-
-		var authTypes = {
-			twitter: new TwitterAuth({
-				consumerKey: services.twitter.consumerKey,
-				consumerSecret: services.twitter.consumerSecret,
-				callbackURL: options.url,
-				passReqToCallback: options.req
-			}, options.callback),
-
-			github: new GithubAuth({
-				clientID: services.github.appId,
-				clientSecret: services.github.appSecret,
-				callbackURL: options.url,
-				passReqToCallback: options.req,
-				customHeaders: {'User-Agent': 'likeastore'}
-			}, options.callback),
-
-			facebook: new FacebookAuth({
-				clientID: services.facebook.appId,
-				clientSecret: services.facebook.appSecret,
-				callbackURL:  options.url,
-				passReqToCallback: options.req
-			}, options.callback),
-
-			stackoverflow: new StackAuth({
-				key: services.stackoverflow.clientKey,
-				clientID: services.stackoverflow.clientId,
-				clientSecret: services.stackoverflow.clientSecret,
-				callbackURL:  options.url,
-				passReqToCallback: options.req
-			}, options.callback),
-
-			local: new LocalAuth({
-				passReqToCallback: options.req
-			}, options.callback)
-		};
-
-		return authTypes[options.type];
-	}
-
-	function getServiceUser (token, tokenSecret, profile, done) {
-		users.findOrCreateByService(token, tokenSecret, profile, function (err, user) {
+	var saveServiceToNetworks = function (req, token, tokenSecret, profile, done) {
+		networks.save(req.user._id, profile, token, tokenSecret, function (err, user) {
 			if (err) {
 				return done(err);
 			}
 			done(null, user);
 		});
-	}
+	};
 
-	function getLocalUser (req, username, password, done) {
-		users.findOrCreateLocal(req.body, function (err, user) {
-			if (err) {
-				return done(err);
-			}
-			done(null, user);
-		});
-	}
+	passport.use('twitter-authz', new TwitterAuth({
+		consumerKey: services.twitter.consumerKey,
+		consumerSecret: services.twitter.consumerSecret,
+		callbackURL: config.applicationUrl + '/connect/twitter/callback',
+		passReqToCallback: true
+	}, saveServiceToNetworks));
 
-	function saveServiceToNetworks (req, token, tokenSecret, profile, done) {
-		nets.saveNetwork(req.user._id, profile, token, tokenSecret, function (err, user) {
-			if (err) {
-				return done(err);
-			}
-			done(null, user);
-		});
-	}
+	passport.use('github-authz', new GithubAuth({
+		clientID: services.github.appId,
+		clientSecret: services.github.appSecret,
+		callbackURL: config.applicationUrl + '/connect/github/callback',
+		passReqToCallback: true,
+		customHeaders: { 'User-Agent': 'likeastore' }
+	}, saveServiceToNetworks));
+
+	passport.use('stackexchange-authz', new StackAuth({
+		key: services.stackoverflow.clientKey,
+		clientID: services.stackoverflow.clientId,
+		clientSecret: services.stackoverflow.clientSecret,
+		callbackURL:  config.applicationUrl + '/connect/stackoverflow/callback',
+		passReqToCallback: true
+	}, saveServiceToNetworks));
+
 };
