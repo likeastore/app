@@ -2,7 +2,7 @@
 
 API and Web Client of awesome Likeastore. application.
 
-## How to install?
+## Installation
 
 Install few things required for development.
 
@@ -24,7 +24,7 @@ Grunt build system,
 $ npm install -g grunt-cli
 ```
 
-After all developer depedencies are installed,
+After all developer dependencies are installed,
 
 ```
 $ npm install
@@ -38,7 +38,15 @@ Run application (make sure your mongod is running),
 $ node app.js
 ```
 
-## Running collector
+## Testing
+
+To run full test suite,
+
+```
+$ npm test
+```
+
+## Pre-requisites
 
 Application requires `collector` component to be up and running, to collect users data.
 
@@ -51,7 +59,7 @@ $ git clone git@github.com:likeastore/collector.git
 Run tests,
 
 ```
-$ mocha
+$ npm test
 ```
 
 Run collector,
