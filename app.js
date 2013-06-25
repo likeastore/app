@@ -5,7 +5,6 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var passport = require('passport');
 var engine = require('ejs-locals');
 var middleware = require('./source/middleware');
 var config = require('likeastore-config');
@@ -19,12 +18,7 @@ process.on('uncaughtException', function (err) {
 	console.log("Uncaught exception", err, err.stack && err.stack.toString()); //extra log, makes stack track clickable in webstorm
 });
 
-// oauth init
-require('./source/utils/auth.js')(passport);
-
 var app = express();
-
-app.enable('trust proxy');
 
 app.configure(function(){
 	app.set('port', process.env.VCAP_APP_PORT || 3001);
@@ -35,10 +29,6 @@ app.configure(function(){
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
-	app.use(express.cookieParser('likeastore_secret7'));
-	app.use(express.cookieSession({ secret: 'likeastore_secret', cookie: { maxAge: oneHour }}));
-	app.use(passport.initialize());
-	app.use(passport.session());
 	app.use(middleware.errors.logHttpErrors());
 	app.use(middleware.access.ensureUser());
 	app.use(middleware.access.redirectUnauthorized());
@@ -59,8 +49,8 @@ app.configure('production', function(){
 	app.use(middleware.serveMaster.production());
 });
 
-require('./source/api.js')(app, passport);
-require('./source/router.js')(app);
+require('./source/api')(app);
+require('./source/router')(app);
 
 http.createServer(app).listen(app.get('port'), function() {
 	var env = process.env.NODE_ENV || 'development';
