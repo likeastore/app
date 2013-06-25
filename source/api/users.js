@@ -1,9 +1,9 @@
-var users = require('./db/users.js');
-var items = require('./db/items.js');
-var nets = require('./db/networks.js');
-var logger = require('./utils/logger');
+var users = require('../db/users.js');
+var items = require('../db/items.js');
+var nets = require('../db/networks.js');
+var logger = require('../utils/logger');
 
-function users(app) {
+function usersService (app) {
 	app.get('/api/user', getUser);
 
 	function getUser(req, res) {
@@ -16,4 +16,4 @@ function users(app) {
 	}
 }
 
-module.exports = users;
+module.exports = usersService;

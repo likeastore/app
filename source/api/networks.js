@@ -1,9 +1,9 @@
-var users = require('./db/users.js');
-var items = require('./db/items.js');
-var nets = require('./db/networks.js');
-var logger = require('./utils/logger');
+var users = require('../db/users.js');
+var items = require('../db/items.js');
+var nets = require('../db/networks.js');
+var logger = require('../utils/logger');
 
-function networks(app) {
+function networksService (app) {
 	app.get('/api/networks/all', getAllNetworks);
 	app.del('/api/network/:id', deleteNetwork);
 
@@ -25,3 +25,5 @@ function networks(app) {
 		});
 	}
 }
+
+module.exports = networksService;
