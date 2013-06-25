@@ -1,4 +1,4 @@
-var services = require('likeastore-config').services;
+var services = require('../../config').services;
 var _ = require('underscore');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('./dbConnector').db;
@@ -23,8 +23,7 @@ exports.save = function  (userId, profile, token, tokenSecret, callback) {
 			username: profile.username,
 			accessToken: token,
 			accessTokenSecret: tokenSecret,
-			service: profile.provider,
-			quotas: services[profile.provider].quotas
+			service: profile.provider
 		};
 
 		db.networks.save(record, function (err, saved) {

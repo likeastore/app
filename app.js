@@ -7,7 +7,7 @@ var http = require('http');
 var path = require('path');
 var engine = require('ejs-locals');
 var middleware = require('./source/middleware');
-var config = require('likeastore-config');
+var config = require('./config');
 var logger = require('./source/utils/logger');
 
 var oneMonth = 2678400000;

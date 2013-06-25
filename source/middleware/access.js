@@ -1,7 +1,7 @@
 var _ = require('underscore');
-var subscribers = require('./../db/subscribers');
-var logger = require('./../utils/logger');
-var config = require('likeastore-config');
+var subscribers = require('../db/subscribers');
+var logger = require('../utils/logger');
+var config = require('../../config');
 
 function authenticated () {
 	return function (req, res, next) {

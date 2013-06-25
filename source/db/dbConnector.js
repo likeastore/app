@@ -1,7 +1,7 @@
 /**
  * Mongodb connector
  */
-var config = require('likeastore-config');
+var config = require('../../config');
 var mongo = require('mongojs');
 var logger = require('./../utils/logger');
 
