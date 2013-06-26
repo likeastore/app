@@ -7,18 +7,18 @@ function authService(app) {
 		middleware.access.guest(),
 		validateRequest,
 		checkUser,
-		middleware.auth.createToken,
+		middleware.auth.createToken(),
 		returnToken);
 
 	app.get('/api/auth/validate',
 		middleware.access.guest(),
-		middleware.auth.validateToken,
+		middleware.auth.validateToken(),
 		returnOk
 	);
 
 	app.post('/api/auth/logout',
 		middleware.access.guest(),
-		middleware.auth.validateToken,
+		middleware.auth.validateToken(),
 		returnOk
 	);
 
