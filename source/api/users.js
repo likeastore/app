@@ -4,13 +4,14 @@ var nets = require('../db/networks.js');
 var logger = require('../utils/logger');
 
 function usersService (app) {
-	app.get('/api/user', getUser);
+	app.get('/api/users', getUser);
 
 	function getUser(req, res) {
-		users.findById(req.user._id, function (err, user) {
+		users.findByEmail(req.user, function (err, user) {
 			if (err) {
 				return res.send(500, err);
 			}
+
 			res.json(user);
 		});
 	}

@@ -1,26 +1,20 @@
 var _ = require('underscore');
+var auth = require('./auth');
 var subscribers = require('../db/subscribers');
 var logger = require('../utils/logger');
 var config = require('../../config');
 
+
 function authenticatedAccess () {
 	return function (req, res, next) {
-		logger.info({message: 'authentication check'});
-
-		if (req.user || req.guestAccess) {
-			logger.info({message: 'user is ' + (req.guestAccess ? 'guest' : 'authenticated')});
-			return next();
-		}
-
-		logger.info({message: 'user is not authenticated', url: req.url, body: req.body });
-		res.send(401);
+		var validateToken = auth.validateToken();
+		validateToken(req, res, next);
 	};
 }
 
 function guest () {
 	return function _guest (req, res, next) {
 		req.guestAccess = true;
-
 		next ();
 	};
 }

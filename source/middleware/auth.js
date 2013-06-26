@@ -21,7 +21,7 @@ function createToken() {
 	};
 }
 
-function validateToken (req, res, next) {
+function validateToken () {
 	return function (req, res, next) {
 		var basic = express.basicAuth(hmacAuthentication);
 		return basic(req, res, next);

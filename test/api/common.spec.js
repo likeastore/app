@@ -55,7 +55,7 @@ describe('common.spec.js', function () {
 
 		describe('when requesting api', function () {
 			beforeEach(function () {
-				url = root + '/api/user';
+				url = root + '/api/users';
 			});
 
 			beforeEach(function (done) {
