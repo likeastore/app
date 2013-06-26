@@ -1,5 +1,7 @@
 var request = require('request');
 var testUtils = require('../utils');
+var moment = require('moment');
+var crypto = require('crypto');
 
 describe('auth.spec.js', function () {
 	var authUrl, url, payload, error, response, body;
@@ -36,28 +38,156 @@ describe('auth.spec.js', function () {
 
 			describe('missing email', function () {
 				beforeEach(function () {
-
+					payload = { apiToken: '123' };
 				});
 
-				it ('should get 412 (bad request)', function () {
+				beforeEach(function (done) {
+					request.post({url: url, body: payload, json: true}, function (err, resp) {
+						error = error;
+						response = resp;
+						body = resp.body;
+						done();
+					});
+				});
 
+				it('should return 412 (bad request)', function () {
+					expect(response.statusCode).to.equal(412);
 				});
 			});
 
 			describe('missing apiToken', function () {
-				it ('should get 412 (bad request)', function () {
+				beforeEach(function () {
+					payload = { email: '123@2.com' };
+				});
 
+				beforeEach(function (done) {
+					request.post({url: url, body: payload, json: true}, function (err, resp) {
+						error = error;
+						response = resp;
+						body = resp.body;
+						done();
+					});
+				});
+
+				it('should return 412 (bad request)', function () {
+					expect(response.statusCode).to.equal(412);
+				});
+			});
+
+			describe('wrong credentials', function () {
+				beforeEach(function () {
+					payload = { email: '123@2.com', apiToken: '1234234322' };
+				});
+
+				beforeEach(function (done) {
+					request.post({url: url, body: payload, json: true}, function (err, resp) {
+						error = error;
+						response = resp;
+						body = resp.body;
+						done();
+					});
+				});
+
+				it('should return 401 (unauthorized)', function () {
+					expect(response.statusCode).to.equal(401);
 				});
 			});
 		});
 
 		describe('provides right credentials', function () {
-			it ('should get access token', function () {
+			var user;
 
+			beforeEach(function (done) {
+				testUtils.createTestUser(function (err, createdUser) {
+					user = createdUser;
+					done();
+				});
 			});
 
-			it ('should be valid token', function () {
+			beforeEach(function () {
+				payload = { email: user.email, apiToken: user.apiToken };
+			});
 
+			beforeEach(function (done) {
+				request.post({url: url, body: payload, json: true}, function (err, resp) {
+					error = error;
+					response = resp;
+					body = resp.body;
+					done();
+				});
+			});
+
+			it('should return 201 (token created)', function () {
+				expect(response.statusCode).to.equal(201);
+			});
+
+			it ('should get access token', function () {
+				expect(body.token).to.be.ok;
+			});
+
+			describe('and try to validate token', function () {
+				var token;
+
+				beforeEach(function () {
+					url = authUrl + '/validate';
+				});
+
+				describe('invalid token', function () {
+					beforeEach(function () {
+						token = 'iam_compeletely_invalid_token';
+					});
+
+					beforeEach(function (done) {
+						request.get({url: url, auth: {user: 'username', password: token}}, function (err, resp) {
+							error = err;
+							response = resp;
+							done();
+						});
+					});
+
+					it ('should return 401 (unauthorized)', function () {
+						expect(response.statusCode).to.equal(401);
+					});
+				});
+
+				describe('faked token', function () {
+					beforeEach(function () {
+						var key = 'i_dont_know_which_key_used_on_server';
+						var username = 'user', timespamp = moment().valueOf();
+						var message = username + ';' + timespamp;
+						var hmac = crypto.createHmac('sha1', key).update(message).digest('hex');
+
+						token = new Buffer(username + ';' + timespamp + ';' + hmac).toString('base64');
+					});
+
+					beforeEach(function (done) {
+						request.get({url: url, auth: {user: 'username', password: token}}, function (err, resp) {
+							error = err;
+							response = resp;
+							done();
+						});
+					});
+
+					it ('should return 404 (unauthorized)', function () {
+						expect(response.statusCode).to.equal(401);
+					});
+				});
+
+				describe('valid token', function () {
+					var signup;
+
+					beforeEach(function (done) {
+						request.get({url: url, auth: {user: user.email, password: body.token}}, function (err, resp) {
+							error = err;
+							response = resp;
+							done();
+						});
+					});
+
+					it ('should return 200 (authenticated)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+				});
 			});
 		});
 	});

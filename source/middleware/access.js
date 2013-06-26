@@ -5,8 +5,6 @@ var config = require('../../config');
 
 function authenticatedAccess () {
 	return function (req, res, next) {
-		console.log('authenticatedAccess');
-
 		logger.info({message: 'authentication check'});
 
 		if (req.user || req.guestAccess) {

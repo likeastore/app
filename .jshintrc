@@ -24,7 +24,8 @@
 		"window",
 		"process",
 		"console",
-		"__dirname"
+		"__dirname",
+		"Buffer"
 	],
 
 	"asi" : false,
