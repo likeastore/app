@@ -27,7 +27,29 @@ describe('common.spec.js', function () {
 			});
 
 			it ('should return master page', function () {
-				console.log(response.body);
+				expect(response.body.indexOf('<!doctype html>')).to.equal(0);
+			});
+		});
+
+		describe('when requesting any route', function () {
+			beforeEach(function () {
+				url = root + '/anything';
+			});
+
+			beforeEach(function (done) {
+				request(url, function (err, resp) {
+					error = err;
+					response = resp;
+					done();
+				});
+			});
+
+			it ('should respond with 200', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it ('should return master page', function () {
+				expect(response.body.indexOf('<!doctype html>')).to.equal(0);
 			});
 		});
 
