@@ -193,8 +193,43 @@ describe('auth.spec.js', function () {
 	});
 
 	describe('when user logs off', function () {
-		it ('should invalidate his access token', function () {
+		var user, loginUrl, logoutUrl, body;
 
+		beforeEach(function () {
+			loginUrl = authUrl + '/login';
+			logoutUrl = authUrl + '/logout';
+		});
+
+		beforeEach(function (done) {
+			testUtils.createTestUser(function (err, createdUser) {
+				user = createdUser;
+				done();
+			});
+		});
+
+		beforeEach(function () {
+			payload = { email: user.email, apiToken: user.apiToken };
+		});
+
+		beforeEach(function (done) {
+			request.post({url: loginUrl, body: payload, json: true}, function (err, resp) {
+				error = error;
+				response = resp;
+				body = resp.body;
+				done();
+			});
+		});
+
+		beforeEach(function (done) {
+			request.post({url: logoutUrl, auth: {user: user.email, password: body.token}}, function (err, resp) {
+				error = error;
+				response = resp;
+				done();
+			});
+		});
+
+		it ('should respond with 200', function () {
+			expect(response.statusCode).to.equal(200);
 		});
 	});
 });

@@ -16,6 +16,12 @@ function authService(app) {
 		returnOk
 	);
 
+	app.post('/api/auth/logout',
+		middleware.access.guest(),
+		middleware.auth.validateToken,
+		returnOk
+	);
+
 	function validateRequest(req, res, next) {
 		var signup = req.body;
 
