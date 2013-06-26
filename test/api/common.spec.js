@@ -27,6 +27,7 @@ describe('common.spec.js', function () {
 			});
 
 			it ('should return master page', function () {
+				console.log(response.body);
 			});
 		});
 
