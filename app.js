@@ -25,7 +25,6 @@ app.configure(function(){
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'ejs');
 	app.use(express.favicon());
-	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(middleware.access.authenticated());
@@ -36,12 +35,14 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
+	app.use(express.logger('dev'));
 	app.use(express.errorHandler());
 	app.use(express.static(path.join(__dirname, 'public')));
 	app.use(middleware.serveMaster.development());
 });
 
 app.configure('production', function(){
+	app.use(express.logger('short'));
 	app.use(express.compress());
 	app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
 	app.use(middleware.serveMaster.production());

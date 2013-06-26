@@ -16,7 +16,6 @@ describe('common.spec.js', function () {
 
 			beforeEach(function (done) {
 				request(url, function (err, resp) {
-					console.log(err);
 					error = err;
 					response = resp;
 					done();
@@ -35,7 +34,6 @@ describe('common.spec.js', function () {
 
 			beforeEach(function (done) {
 				request(url, function (err, resp) {
-					console.log(err);
 					error = err;
 					response = resp;
 					done();
@@ -54,7 +52,6 @@ describe('common.spec.js', function () {
 
 			beforeEach(function (done) {
 				request(url, function (err, resp) {
-					console.log(err);
 					error = err;
 					response = resp;
 					done();

@@ -2,12 +2,14 @@ var util = require('util');
 var colors = require('colors');
 var moment = require('moment');
 var logentries = require('node-logentries');
+var sinon = require('sinon');
+
 var log = logentries.logger({
 	token:process.env.LOGENTRIES_TOKEN
 });
 log.level('info');
 
-module.exports = {
+var logger = {
 	success: function (message) {
 		message = typeof message === 'string' ? message : JSON.stringify(message);
 		console.log(this.timestamptMessage(util.format('SUCCESS: %s', message)).green);
@@ -55,3 +57,9 @@ module.exports = {
 		return util.format('[%s] %s', moment(), message);
 	}
 };
+
+function loggerFactory (env) {
+	return env === 'test' ? sinon.stub (logger) : logger;
+}
+
+module.exports = loggerFactory(process.env.NODE_ENV);
