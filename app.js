@@ -7,7 +7,7 @@ var http = require('http');
 var path = require('path');
 var engine = require('ejs-locals');
 var middleware = require('./source/middleware');
-var secureAppRoutes = require('./source/utils/secureAppRoutes');
+var applyAuthentication = require('./source/utils/applyAuthentication');
 var config = require('./config');
 var logger = require('./source/utils/logger');
 
@@ -50,7 +50,7 @@ app.configure('production', function(){
 require('./source/api')(app);
 require('./source/router')(app);
 
-secureAppRoutes(app, ['/api']);
+applyAuthentication(app, ['/api']);
 
 http.createServer(app).listen(app.get('port'), function() {
 	var env = process.env.NODE_ENV || 'development';
