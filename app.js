@@ -7,6 +7,7 @@ var http = require('http');
 var path = require('path');
 var engine = require('ejs-locals');
 var middleware = require('./source/middleware');
+var secureAppRoutes = require('./source/utils/secureAppRoutes');
 var config = require('./config');
 var logger = require('./source/utils/logger');
 
@@ -27,10 +28,8 @@ app.configure(function(){
 	app.use(express.favicon());
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
-	app.use(middleware.access.authenticated());
 	app.use(middleware.errors.logHttpErrors());
 	app.use(middleware.noCache());
-	app.use(app.router);
 	app.use(middleware.errors.logErrors());
 });
 
@@ -50,6 +49,8 @@ app.configure('production', function(){
 
 require('./source/api')(app);
 require('./source/router')(app);
+
+secureAppRoutes(app, ['/api']);
 
 http.createServer(app).listen(app.get('port'), function() {
 	var env = process.env.NODE_ENV || 'development';

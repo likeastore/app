@@ -62,4 +62,4 @@ function loggerFactory (env) {
 	return env === 'test' ? sinon.stub (logger) : logger;
 }
 
-module.exports = loggerFactory(process.env.NODE_ENV);
+module.exports = loggerFactory(process.env.TEST_ENV);

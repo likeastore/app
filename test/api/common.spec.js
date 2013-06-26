@@ -22,14 +22,18 @@ describe('common.spec.js', function () {
 				});
 			});
 
-			it ('should respond with 401', function () {
-				expect(response.statusCode).to.equal(401);
+			it ('should respond with 200', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it ('should return master page', function () {
 			});
 		});
 
 		describe('when requesting api', function () {
 			beforeEach(function () {
 				url = root + '/api/user';
+				console.log(url);
 			});
 
 			beforeEach(function (done) {
@@ -58,8 +62,8 @@ describe('common.spec.js', function () {
 				});
 			});
 
-			it ('should respond with 401', function () {
-				expect(response.statusCode).to.equal(401);
+			it ('should respond with 200', function () {
+				expect(response.statusCode).to.equal(200);
 			});
 		});
 	});

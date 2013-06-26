@@ -3,8 +3,10 @@ var subscribers = require('../db/subscribers');
 var logger = require('../utils/logger');
 var config = require('../../config');
 
-function authenticated () {
+function authenticatedAccess () {
 	return function (req, res, next) {
+		console.log('authenticatedAccess');
+
 		logger.info({message: 'authentication check'});
 
 		if (req.user || req.guestAccess) {
@@ -18,10 +20,10 @@ function authenticated () {
 }
 
 function guest () {
-	return function (req, res, next) {
-		logger.info({message: 'ensuring guest access for request'});
-		req.role === 'guest';
-		return next();
+	return function _guest (req, res, next) {
+		req.guestAccess = true;
+
+		next ();
 	};
 }
 
@@ -84,7 +86,7 @@ function redirectUnauthorized() {
 }
 
 module.exports = {
-	authenticated: authenticated,
+	authenticatedAccess: authenticatedAccess,
 	guest: guest,
 	invite: invite,
 	ensureUser: ensureUser,
