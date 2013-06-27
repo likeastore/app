@@ -19,8 +19,12 @@ describe('users.spec.js', function () {
 		url = testUtils.getRootUrl() + '/api/users';
 	});
 
-	describe.only('when getting user', function () {
+	describe('when getting user', function () {
 		var response, body;
+
+		beforeEach(function () {
+			url += '/me';
+		});
 
 		beforeEach(function (done) {
 			request.get({url: url, auth: auth, json: true}, function (err, resp, bod) {
