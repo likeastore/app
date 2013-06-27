@@ -6,7 +6,7 @@ var crypto = require('crypto');
 describe('users.spec.js', function () {
 	var token, user, url, auth;
 
-	before(function (done) {
+	beforeEach(function (done) {
 		testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
 			token = accessToken;
 			user = createdUser;

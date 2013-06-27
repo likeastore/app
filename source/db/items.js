@@ -1,7 +1,7 @@
 var db = require('./dbConnector').db;
 
-exports.getAllItems = function (userId, callback) {
-	db.items.find({ userId: userId }).sort({date: -1}, function (err, items) {
+exports.getAllItems = function (user, callback) {
+	db.items.find({ user: user }).sort({date: -1}, function (err, items) {
 		if (err) {
 			return callback(err);
 		}
@@ -10,8 +10,8 @@ exports.getAllItems = function (userId, callback) {
 	});
 };
 
-exports.getItemsByType = function (userId, type, callback) {
-	db.items.find({ userId: userId, type: type }).sort({ date: -1 }, function (err, items) {
+exports.getItemsByType = function (user, type, callback) {
+	db.items.find({ user: user, type: type }).sort({ date: -1 }, function (err, items) {
 		if (err) {
 			return callback(err);
 		}

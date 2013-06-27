@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var crypto = require('crypto');
 var config = require('../config');
 var db = require('../source/db/dbConnector').db;
@@ -34,8 +35,50 @@ function createTestUserAndLoginToApi (callback) {
 	});
 }
 
+function createTestItems (user, size, callback) {
+	if (typeof size === 'function') {
+		callback = size;
+		size = 10;
+	}
+
+	var types = ['github', 'twitter', 'stackoverflow'];
+
+	var range = _.range(size);
+	var items = range.map (function (index) {
+		return {
+			userId: user._id,
+			user: user.email,
+			type: types[index % 3],
+			itemId: index
+		};
+	});
+
+	db.items.insert(items, callback);
+}
+
+function createTestItemsOfType(user, type, size, callback) {
+	if (typeof size === 'function') {
+		callback = size;
+		size = 10;
+	}
+
+	var range = _.range(size);
+	var items = range.map (function (index) {
+		return {
+			userId: user._id,
+			user: user.email,
+			type: type,
+			itemId: index
+		};
+	});
+
+	db.items.insert(items, callback);
+}
+
 module.exports = {
 	getRootUrl: getRootUrl,
 	createTestUser: createTestUser,
-	createTestUserAndLoginToApi: createTestUserAndLoginToApi
+	createTestUserAndLoginToApi: createTestUserAndLoginToApi,
+	createTestItems: createTestItems,
+	createTestItemsOfType: createTestItemsOfType
 };
