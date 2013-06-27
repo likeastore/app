@@ -2,7 +2,7 @@ var request = require('request');
 var testUtils = require('../utils');
 var moment = require('moment');
 
-describe.only('items.spec.js', function () {
+describe('items.spec.js', function () {
 	var token, user, url, auth;
 
 	beforeEach(function (done) {
