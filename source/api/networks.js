@@ -15,18 +15,27 @@ function networksService (app) {
 	app.post('/api/networks/twitter',
 		middleware.networks.twitter());
 
+	app.post('/api/networks/github',
+		middleware.networks.github());
+
+	app.post('/api/networks/stackoverflow',
+		middleware.networks.stackoverflow());
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
 		registerNetwork,
 		returnOk);
 
-	app.post('/api/networks/github',
-		middleware.networks.github());
-
 	app.get('/api/networks/github/callback',
 		middleware.access.guest(),
 		middleware.networks.githubCallback(),
+		registerNetwork,
+		returnOk);
+
+	app.get('/api/networks/stackoverflow/callback',
+		middleware.access.guest(),
+		middleware.networks.stackoverflowCallback(),
 		registerNetwork,
 		returnOk);
 
