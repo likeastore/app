@@ -21,6 +21,15 @@ function networksService (app) {
 		registerNetwork,
 		returnOk);
 
+	app.post('/api/networks/github',
+		middleware.networks.github());
+
+	app.get('/api/networks/github/callback',
+		middleware.access.guest(),
+		middleware.networks.githubCallback(),
+		registerNetwork,
+		returnOk);
+
 	function registerNetwork(req, res, next) {
 		var network = req.network;
 		networks.save(network, next);

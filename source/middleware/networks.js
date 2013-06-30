@@ -1,4 +1,5 @@
-var OAuth= require('oauth').OAuth;
+var OAuth = require('oauth').OAuth;
+var OAuth2 = require('oauth').OAuth2;
 var config = require('../../config');
 
 function twitter() {
@@ -51,7 +52,42 @@ function twitterCallback () {
 	};
 }
 
+function github() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/github/callback';
+		var oauth = new OAuth2(config.services.github.appId,
+							config.services.github.appSecret,
+							"https://github.com/login");
+
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user });
+		res.redirect(authorizeUrl);
+	};
+}
+
+function githubCallback() {
+	return function (req, res, next) {
+		var oauth = new OAuth2(config.services.github.appId,
+							config.services.github.appSecret,
+							"https://github.com/login");
+
+		var code = req.query.code;
+		var user = req.query.state;
+
+		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code'}, function (err, accessToken) {
+			if (err) {
+				return next({message: 'failed to get accessToken from twitter', error: err, status: 500});
+			}
+
+			req.network = {accessToken: accessToken, accessTokenSecret: null, user: user, service: 'github'};
+
+			next();
+		});
+	};
+}
+
 module.exports = {
 	twitter: twitter,
-	twitterCallback: twitterCallback
+	twitterCallback: twitterCallback,
+	github: github,
+	githubCallback: githubCallback
 };
