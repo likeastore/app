@@ -37,14 +37,14 @@ function twitterCallback () {
 		var verifier = req.query.oauth_verifier;
 		var requestTokenSecret = req.cookies['oauth_' + requestToken].secret;
 		var user = req.cookies['oauth_' + requestToken].user;
-		res.clearCookie('oauth_' + requestToken);
+		res.clearCookie('oauth_' + requestToken, {path: '/'});
 
 		oauth.getOAuthAccessToken(requestToken, requestTokenSecret, verifier, function (err, accessToken, accessTokenSecret) {
 			if (err) {
 				return next({message: 'failed to get accessToken from twitter', error: err, status: 500});
 			}
 
-			req.network = {accessToken: accessToken, accessTokenSecret: accessTokenSecret, user: user};
+			req.network = {accessToken: accessToken, accessTokenSecret: accessTokenSecret, user: user, service: 'twitter'};
 
 			next();
 		});
