@@ -28,6 +28,7 @@ app.configure(function(){
 	app.use(express.favicon());
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
+	app.use(express.cookieParser());
 	app.use(middleware.errors.logHttpErrors());
 	app.use(middleware.noCache());
 	app.use(middleware.errors.logErrors());

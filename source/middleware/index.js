@@ -3,5 +3,6 @@ module.exports = {
 	access: require('./access'),
 	noCache: require('./noCache'),
 	errors: require('./errors'),
-	auth: require('./auth')
+	auth: require('./auth'),
+	networks: require('./networks')
 };

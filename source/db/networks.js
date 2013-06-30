@@ -3,30 +3,17 @@ var _ = require('underscore');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('./dbConnector').db;
 
-exports.save = function  (userId, profile, token, tokenSecret, callback) {
-	if (profile.provider === 'stackexchange') {
-		profile.username = profile.user_id;
-		profile.provider = 'stackoverflow';
-	}
-
-	db.networks.findOne({ userId: userId, provider: profile.provider }, function (err, net) {
+exports.save = function (network, callback) {
+	db.networks.findOne({ user: network.user, service: network.service }, function (err, net) {
 		if (err) {
 			return callback(err);
 		}
 
 		if (net) {
-			return callback('This service is already associated with this user.');
+			return callback('This network is already associated with this user.');
 		}
 
-		var record = {
-			userId: userId,
-			username: profile.username,
-			accessToken: token,
-			accessTokenSecret: tokenSecret,
-			service: profile.provider
-		};
-
-		db.networks.save(record, function (err, saved) {
+		db.networks.save(network, function (err, saved) {
 			if (err || !saved) {
 				return callback(err);
 			}
@@ -36,8 +23,8 @@ exports.save = function  (userId, profile, token, tokenSecret, callback) {
 	});
 };
 
-exports.removeNetworkByUserId = function (userId, service, callback) {
-	db.networks.remove({ userId: userId, service: service }, function (err) {
+exports.removeNetwork = function (user, service, callback) {
+	db.networks.remove({ user: user, service: service }, function (err) {
 		if (err) {
 			return callback(err);
 		}
@@ -46,11 +33,11 @@ exports.removeNetworkByUserId = function (userId, service, callback) {
 	});
 };
 
-exports.findNetworksByUserId = function (userId, callback) {
+exports.findNetworks = function (user, callback) {
 	var nets = [];
-	var fieldsToPick = ['service', 'lastExecution', 'username'];
+	var fieldsToPick = ['service', 'lastExecution'];
 
-	db.networks.find({ userId: userId }).forEach(function (err, doc) {
+	db.networks.find({ user: user }).forEach(function (err, doc) {
 		if (err) {
 			return callback(err);
 		}
