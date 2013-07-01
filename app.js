@@ -8,6 +8,7 @@ var path = require('path');
 var engine = require('ejs-locals');
 var middleware = require('./source/middleware');
 var applyAuthentication = require('./source/utils/applyAuthentication');
+var applyErrorLogging = require('./source/utils/applyErrorLogging');
 var config = require('./config');
 var logger = require('./source/utils/logger');
 
@@ -29,13 +30,18 @@ app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.cookieParser());
-	app.use(middleware.errors.logHttpErrors());
 	app.use(middleware.noCache());
-	//app.use(middleware.errors.logErrors());
+	app.use(middleware.errors.logHttpErrors());
 });
 
 app.configure('development', function(){
 	app.use(express.logger('dev'));
+	app.use(express.errorHandler());
+	app.use(express.static(path.join(__dirname, 'public')));
+	app.use(middleware.serveMaster.development());
+});
+
+app.configure('test', function(){
 	app.use(express.errorHandler());
 	app.use(express.static(path.join(__dirname, 'public')));
 	app.use(middleware.serveMaster.development());
@@ -52,6 +58,7 @@ require('./source/api')(app);
 require('./source/router')(app);
 
 applyAuthentication(app, ['/api']);
+applyErrorLogging(app);
 
 http.createServer(app).listen(app.get('port'), function() {
 	var env = process.env.NODE_ENV || 'development';
