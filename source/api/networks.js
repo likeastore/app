@@ -9,43 +9,45 @@ var config = require('../../config');
 
 function networksService (app) {
 
-	app.get('/api/networks/all', getAllNetworks);
+	app.get('/api/networks', getAllNetworks);
 	app.del('/api/network/:id', deleteNetwork);
 
 	app.post('/api/networks/twitter',
-		middleware.networks.twitter());
+		middleware.networks.twitter(),
+		returnAuthUrl
+	);
 
 	app.post('/api/networks/github',
-		middleware.networks.github());
+		middleware.networks.github(),
+		returnAuthUrl
+	);
 
 	app.post('/api/networks/stackoverflow',
-		middleware.networks.stackoverflow());
+		middleware.networks.stackoverflow(),
+		returnAuthUrl
+	);
 
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
 		registerNetwork,
-		returnOk);
+		redirectToApp);
 
 	app.get('/api/networks/github/callback',
 		middleware.access.guest(),
 		middleware.networks.githubCallback(),
 		registerNetwork,
-		returnOk);
+		redirectToApp);
 
 	app.get('/api/networks/stackoverflow/callback',
 		middleware.access.guest(),
 		middleware.networks.stackoverflowCallback(),
 		registerNetwork,
-		returnOk);
+		redirectToApp);
 
 	function registerNetwork(req, res, next) {
 		var network = req.network;
 		networks.save(network, next);
-	}
-
-	function returnOk(req, res, next) {
-		res.send(200);
 	}
 
 	function getAllNetworks(req, res) {
@@ -64,6 +66,14 @@ function networksService (app) {
 			}
 			res.send(200);
 		});
+	}
+
+	function returnAuthUrl(req, res) {
+		res.json({authUrl: req.authUrl});
+	}
+
+	function redirectToApp(req, res) {
+		res.redirect(config.applicationUrl);
 	}
 }
 

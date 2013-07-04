@@ -6,10 +6,10 @@ var logger = require('../utils/logger');
 function usersService (app) {
 	app.get('/api/users/me', getUser);
 
-	function getUser(req, res) {
+	function getUser(req, res, next) {
 		users.findByEmail(req.user, function (err, user) {
 			if (err) {
-				return res.send(500, err);
+				return next(err);
 			}
 
 			res.json(user);

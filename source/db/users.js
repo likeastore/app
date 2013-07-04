@@ -30,7 +30,31 @@ function findByEmail (email, callback) {
 	});
 }
 
+function findByRequestToken (requestToken, callback) {
+	db.users.findOne({twitterRequestToken: requestToken}, function (err, user) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (!user) {
+			return callback({message: 'User not found', status: 404});
+		}
+
+		callback(null, user);
+	});
+}
+
+function updateUser(email, attributes, callback) {
+	db.users.findAndModify({
+		query: { email: email },
+		update: { $set: attributes },
+		"new": true
+	}, callback);
+}
+
 module.exports = {
 	findById: findById,
-	findByEmail: findByEmail
+	findByEmail: findByEmail,
+	update: updateUser,
+	findByRequestToken: findByRequestToken
 };

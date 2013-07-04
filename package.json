@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "test": "node runMocha"
+    "test": "node runMocha",
+    "watch": "nodemon --watch source --watch config app.js"
   },
   "domains": [
     "app.likeastore.com"

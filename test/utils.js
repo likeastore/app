@@ -75,10 +75,15 @@ function createTestItemsOfType(user, type, size, callback) {
 	db.items.insert(items, callback);
 }
 
+function getUserFromDb(user, callback) {
+	db.users.findOne({email: user.email}, callback);
+}
+
 module.exports = {
 	getRootUrl: getRootUrl,
 	createTestUser: createTestUser,
 	createTestUserAndLoginToApi: createTestUserAndLoginToApi,
 	createTestItems: createTestItems,
-	createTestItemsOfType: createTestItemsOfType
+	createTestItemsOfType: createTestItemsOfType,
+	getUserFromDb: getUserFromDb
 };

@@ -1,6 +1,7 @@
 var OAuth = require('oauth').OAuth;
 var OAuth2 = require('oauth').OAuth2;
 var config = require('../../config');
+var users = require('../db/users');
 
 function twitter() {
 	return function (req, res, next) {
@@ -18,8 +19,14 @@ function twitter() {
 				return next({message: 'failed to get request token from twitter', error: err, status: 500});
 			}
 
-			res.cookie('oauth_' + requestToken, {secret: requestTokenSecret, user: req.user });
-			res.redirect('https://api.twitter.com/oauth/authenticate?oauth_token=' + requestToken);
+			users.update(req.user, {twitterRequestToken: requestToken, twitterRequestTokenSecret: requestTokenSecret}, function (err) {
+				if (err) {
+					return next({message: 'failed to update user', error: err, status: 500});
+				}
+
+				req.authUrl = 'https://api.twitter.com/oauth/authenticate?oauth_token=' + requestToken;
+				next();
+			});
 		});
 	};
 }
@@ -36,19 +43,23 @@ function twitterCallback () {
 
 		var requestToken = req.query.oauth_token;
 		var verifier = req.query.oauth_verifier;
-		var requestTokenSecret = req.cookies['oauth_' + requestToken].secret;
-		var user = req.cookies['oauth_' + requestToken].user;
-		res.clearCookie('oauth_' + requestToken, {path: '/'});
 
-		oauth.getOAuthAccessToken(requestToken, requestTokenSecret, verifier, function (err, accessToken, accessTokenSecret) {
+		users.findByRequestToken(requestToken, userFound);
+
+		function userFound (err, user) {
 			if (err) {
-				return next({message: 'failed to get accessToken from twitter', error: err, status: 500});
+				return next(err);
 			}
 
-			req.network = {accessToken: accessToken, accessTokenSecret: accessTokenSecret, user: user, service: 'twitter'};
+			oauth.getOAuthAccessToken(requestToken, user.twitterRequestTokenSecret, verifier, function (err, accessToken, accessTokenSecret) {
+				if (err) {
+					return next({message: 'failed to get accessToken from twitter', error: err, status: 500});
+				}
 
-			next();
-		});
+				req.network = {accessToken: accessToken, accessTokenSecret: accessTokenSecret, user: user.email, service: 'twitter'};
+				next();
+			});
+		}
 	};
 }
 
@@ -60,7 +71,8 @@ function github() {
 							'https://github.com/login');
 
 		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user });
-		res.redirect(authorizeUrl);
+		req.authUrl = authorizeUrl;
+		next();
 	};
 }
 
@@ -79,7 +91,6 @@ function githubCallback() {
 			}
 
 			req.network = {accessToken: accessToken, accessTokenSecret: null, user: user, service: 'github'};
-
 			next();
 		});
 	};
@@ -94,7 +105,8 @@ function stackoverflow() {
 							'/oauth');
 
 		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user });
-		res.redirect(authorizeUrl);
+		req.authUrl = authorizeUrl;
+		next();
 	};
 }
 
