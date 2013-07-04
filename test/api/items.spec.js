@@ -3,59 +3,41 @@ var testUtils = require('../utils');
 var moment = require('moment');
 
 describe('items.spec.js', function () {
-	var token, user, url, auth;
-
-	beforeEach(function (done) {
-		testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
-			token = accessToken;
-			user = createdUser;
-			auth = {user: createdUser.email, password: accessToken};
-			done();
-		});
-	});
+	var token, user, url, auth, response, results;
 
 	beforeEach(function () {
 		url = testUtils.getRootUrl() + '/api/items';
 	});
 
-	describe('when getting all items', function () {
-		var response, results;
-
+	describe('non authorized', function () {
 		beforeEach(function (done) {
-			testUtils.createTestItems(user, function (err, items) {
-				done();
-			});
-		});
-
-		beforeEach(function (done) {
-			request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
+			request.get({url: url, json: true}, function (err, resp, body) {
 				response = resp;
 				results = body;
 				done();
 			});
 		});
 
-		it ('should respond with 200 (ok)', function () {
-			expect(response.statusCode).to.equal(200);
-		});
-
-		it ('should return all items', function () {
-			expect(results.length).to.equal(10);
+		it ('should not be authorized', function () {
+			expect(response.statusCode).to.equal(401);
 		});
 	});
 
-	describe('when getting items by type', function () {
-		var response, results;
+	describe('authorized', function () {
+		beforeEach(function (done) {
+			testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+				token = accessToken;
+				user = createdUser;
+				auth = {user: createdUser.email, password: accessToken};
+				done();
+			});
+		});
 
-		describe('for twitter', function () {
+		describe('when getting all items', function () {
 			beforeEach(function (done) {
-				testUtils.createTestItemsOfType(user, 'twitter', function (err, items) {
+				testUtils.createTestItems(user, function (err, items) {
 					done();
 				});
-			});
-
-			beforeEach(function () {
-				url += '/twitter';
 			});
 
 			beforeEach(function (done) {
@@ -75,64 +57,96 @@ describe('items.spec.js', function () {
 			});
 		});
 
-		describe('for github', function () {
-			beforeEach(function (done) {
-				testUtils.createTestItemsOfType(user, 'github', function (err, items) {
-					done();
+		describe('when getting items by type', function () {
+			var response, results;
+
+			describe('for twitter', function () {
+				beforeEach(function (done) {
+					testUtils.createTestItemsOfType(user, 'twitter', function (err, items) {
+						done();
+					});
+				});
+
+				beforeEach(function () {
+					url += '/twitter';
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done();
+					});
+				});
+
+				it ('should respond with 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it ('should return all items', function () {
+					expect(results.length).to.equal(10);
 				});
 			});
 
-			beforeEach(function () {
-				url += '/github';
-			});
+			describe('for github', function () {
+				beforeEach(function (done) {
+					testUtils.createTestItemsOfType(user, 'github', function (err, items) {
+						done();
+					});
+				});
 
-			beforeEach(function (done) {
-				request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
-					response = resp;
-					results = body;
-					done();
+				beforeEach(function () {
+					url += '/github';
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done();
+					});
+				});
+
+				it ('should respond with 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it ('should return all items', function () {
+					expect(results.length).to.equal(10);
 				});
 			});
 
-			it ('should respond with 200 (ok)', function () {
-				expect(response.statusCode).to.equal(200);
-			});
+			describe('for stackoverflow', function () {
+				beforeEach(function (done) {
+					testUtils.createTestItemsOfType(user, 'stackoverflow', function (err, items) {
+						done();
+					});
+				});
 
-			it ('should return all items', function () {
-				expect(results.length).to.equal(10);
+				beforeEach(function () {
+					url += '/stackoverflow';
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done();
+					});
+				});
+
+				it ('should respond with 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it ('should return all items', function () {
+					expect(results.length).to.equal(10);
+				});
 			});
 		});
 
-		describe('for stackoverflow', function () {
-			beforeEach(function (done) {
-				testUtils.createTestItemsOfType(user, 'stackoverflow', function (err, items) {
-					done();
-				});
-			});
+		describe('when paging results', function () {
 
-			beforeEach(function () {
-				url += '/stackoverflow';
-			});
-
-			beforeEach(function (done) {
-				request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
-					response = resp;
-					results = body;
-					done();
-				});
-			});
-
-			it ('should respond with 200 (ok)', function () {
-				expect(response.statusCode).to.equal(200);
-			});
-
-			it ('should return all items', function () {
-				expect(results.length).to.equal(10);
-			});
 		});
-	});
-
-	describe('when paging results', function () {
-
 	});
 });
