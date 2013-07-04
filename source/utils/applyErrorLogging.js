@@ -1,4 +1,3 @@
-var _ = require('underscore');
 var middleware = require('../middleware');
 
 function applyErrorLogging(app) {

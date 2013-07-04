@@ -16,7 +16,6 @@ var oneMonth = 2678400000;
 
 process.on('uncaughtException', function (err) {
 	logger.error({msg:'Uncaught exception', error:err, stack:err.stack});
-	console.log("Uncaught exception", err, err.stack && err.stack.toString()); //extra log, makes stack track clickable in webstorm
 });
 
 var app = express();
