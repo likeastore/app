@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function Auth ($location, $window, $http, $cookies) {
+	function Auth ($location, $window, $http, $cookies, $cookieStore) {
 		return {
 			getToken: function () {
 				var params = $location.search();
@@ -14,12 +14,17 @@ define(function (require) {
 				}
 
 				if (!$cookies.token) {
-					$window.location = '/api/auth/logout';
-					return false;
+					this.logout();
 				}
 
-				$http.defaults.headers.common['Authorization'] = $cookies.token;
+				$http.defaults.headers.common.Authorization = $cookies.token;
+			},
+
+			logout: function () {
+				$cookieStore.remove('token');
+				$window.location = '/api/auth/logout';
 			}
+
 		};
 	}
 

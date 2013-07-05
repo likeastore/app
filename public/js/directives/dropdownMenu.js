@@ -15,7 +15,7 @@ define(function (require) {
 				<ul class="dropdown">\
 					<li><a href="/inbox" class="menu-link">Inbox</a></li>\
 					<li><a href="/settings" class="menu-link">Account settings</a></li>\
-					<li><a href="/api/auth/logout" class="menu-link" target="_self">Logout</a></li>\
+					<li><a href="#" class="menu-link" ng-click="$root.logout()">Logout</a></li>\
 				</ul>',
 			link: function (scope, elem, attrs) {
 				var $parent = elem.parent();

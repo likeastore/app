@@ -192,7 +192,7 @@ describe('auth.spec.js', function () {
 		});
 	});
 
-	describe('when user logs off', function () {
+	xdescribe('when user logs off', function () {
 		var user, loginUrl, logoutUrl, body;
 
 		beforeEach(function () {

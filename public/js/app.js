@@ -29,8 +29,10 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function ($window, auth) {
+	app.run(function ($window, $rootScope, auth) {
 		auth.getToken();
+		$rootScope.logout = auth.logout;
+
 		if ($window.location.hash === '#_=_') {
 			$window.location.hash = '';
 		}
