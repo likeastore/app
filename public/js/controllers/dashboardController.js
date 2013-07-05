@@ -12,7 +12,7 @@ define(function (require) {
 		};
 
 		$scope.title = 'Inbox';
-		$scope.items = api.query({ resource: 'items', target: 'all' }, function (res) {
+		$scope.items = api.query({ resource: 'items' }, function (res) {
 			appLoader.ready();
 		});
 

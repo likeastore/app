@@ -8,6 +8,10 @@ define(function (require) {
 
 	var app = angular.module('likeastore', ['services', 'controllers', 'directives']);
 
+	app.init = function () {
+		angular.bootstrap(document, ['likeastore']);
+	};
+
 	app.config(['$routeProvider', '$locationProvider', '$httpProvider',
 		function ($routeProvider, $locationProvider, $httpProvider) {
 			$httpProvider.responseInterceptors.push('authInterceptor');
@@ -25,11 +29,8 @@ define(function (require) {
 		}
 	]);
 
-	app.init = function () {
-		angular.bootstrap(document, ['likeastore']);
-	};
-
-	app.run(function ($window) {
+	app.run(function ($window, auth) {
+		auth.getToken();
 		if ($window.location.hash === '#_=_') {
 			$window.location.hash = '';
 		}

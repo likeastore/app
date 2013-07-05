@@ -5,7 +5,6 @@ var crypto = require('crypto');
 var TOKEN_TTL_MINUTES = 1440;
 var AUTH_SIGN_KEY = 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662';
 
-
 function createToken() {
 	return function (req, res, next) {
 		var username = req.user.username;

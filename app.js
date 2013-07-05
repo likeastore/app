@@ -31,6 +31,7 @@ app.configure(function(){
 	app.use(express.methodOverride());
 	app.use(express.cookieParser());
 	app.use(middleware.noCache());
+	app.use(app.router);
 	app.use(middleware.errors.logHttpErrors());
 });
 

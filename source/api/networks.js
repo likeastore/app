@@ -9,8 +9,9 @@ var config = require('../../config');
 
 function networksService (app) {
 
-	app.get('/api/networks', getAllNetworks);
-	app.del('/api/network/:id', deleteNetwork);
+	app.get('/api/networks/all', getAllNetworks);
+
+	app.del('/api/networks/:network', deleteNetwork);
 
 	app.post('/api/networks/twitter',
 		middleware.networks.twitter(),
@@ -46,8 +47,7 @@ function networksService (app) {
 		redirectToApp);
 
 	function registerNetwork(req, res, next) {
-		var network = req.network;
-		networks.save(network, next);
+		networks.save(req.network, next);
 	}
 
 	function getAllNetworks(req, res) {

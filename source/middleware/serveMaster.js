@@ -20,10 +20,10 @@ function hander(title, mainJs, mainCss) {
 
 module.exports = {
 	development: function () {
-		return hander('Likeastore.', '/js/main.js', '/css/main.css');
+		return hander('likeastore.', '/js/main.js', '/css/main.css');
 	},
 
 	production: function () {
-		return hander('Likeastore.', client.js, client.css);
+		return hander('likeastore.', client.js, client.css);
 	}
 };

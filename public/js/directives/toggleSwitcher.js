@@ -26,10 +26,13 @@ define(function (require) {
 					elem.toggleClass('on');
 
 					if (isOn) {
-						api.remove({ resource: 'networks', target: scope.networks[service].id });
+						api.remove({ resource: 'networks', target: service });
 						return;
 					}
-					$window.location = '/connect/' + service;
+
+					api.save({ resource: 'networks', target: service}, {}, function (res) {
+						$window.location.href = res.redirectUrl;
+					});
 				};
 
 				function listenToNetworks (value) {

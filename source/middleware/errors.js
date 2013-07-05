@@ -36,7 +36,7 @@ function logHttpErrors () {
 				logger.error(message);
 			}
 
-			end.call (res, data, encoding);
+			end.call(res, data, encoding);
 		};
 
 		function warning (status) {

@@ -1,5 +1,6 @@
 var middleware = require('../middleware');
 var users = require('../db/users');
+var config = require('../../config');
 
 function authService(app) {
 
@@ -16,10 +17,9 @@ function authService(app) {
 		returnOk
 	);
 
-	app.post('/api/auth/logout',
+	app.get('/api/auth/logout',
 		middleware.access.guest(),
-		middleware.auth.validateToken(),
-		returnOk
+		redirectToLogin
 	);
 
 	function validateRequest(req, res, next) {
@@ -58,6 +58,10 @@ function authService(app) {
 
 	function returnOk(req, res, next) {
 		res.send(200);
+	}
+
+	function redirectToLogin(req, res, next) {
+		res.redirect(config.siteUrl + '/login');
 	}
 }
 
