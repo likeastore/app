@@ -9,7 +9,7 @@ define(function (require) {
 				if (params.email && params.apiToken) {
 					$http.post('/api/auth/login', params).success(function (res) {
 						$cookies.token = 'Basic ' + $window.btoa(params.email + ':' + res.token);
-						$window.location = $location.host;
+						$window.location.href = $location.host;
 					});
 				}
 

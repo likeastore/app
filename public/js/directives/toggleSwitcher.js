@@ -31,7 +31,7 @@ define(function (require) {
 					}
 
 					api.save({ resource: 'networks', target: service}, {}, function (res) {
-						$window.location.href = res.redirectUrl;
+						$window.location = res.authUrl;
 					});
 				};
 
