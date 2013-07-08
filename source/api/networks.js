@@ -9,7 +9,7 @@ var config = require('../../config');
 
 function networksService (app) {
 
-	app.get('/api/networks/all', getAllNetworks);
+	app.get('/api/networks', getAllNetworks);
 
 	app.del('/api/networks/:network', deleteNetwork);
 
@@ -73,7 +73,7 @@ function networksService (app) {
 	}
 
 	function redirectToApp(req, res) {
-		res.redirect(config.applicationUrl);
+		res.redirect(config.applicationUrl + '/settings');
 	}
 }
 

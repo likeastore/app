@@ -7,10 +7,11 @@ define(function (require) {
 
 	var services = angular.module('services', ['ngResource', 'ngCookies']);
 
-	services.factory('auth', require('./auth'));
 	services.factory('api', require('./api'));
+	services.factory('auth', require('./auth'));
 	services.factory('authInterceptor', require('./authInterceptor'));
 	services.factory('appLoader', require('./appLoader'));
+	services.factory('user', require('./user'));
 
 	return services;
 });

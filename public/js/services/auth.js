@@ -1,28 +1,34 @@
 define(function (require) {
 	'use strict';
 
-	function Auth ($location, $window, $http, $cookies, $cookieStore) {
+	function Auth ($http, $location, $window, $cookies, $cookieStore) {
 		return {
-			getToken: function () {
+			checkAccessToken: function (callback) {
 				var params = $location.search();
 
 				if (params.email && params.apiToken) {
 					$http.post('/api/auth/login', params).success(function (res) {
 						$cookies.token = 'Basic ' + $window.btoa(params.email + ':' + res.token);
-						$window.location.href = $location.host;
+						$window.location = $window.location.origin;
 					});
-				}
-
-				if (!$cookies.token) {
+				} else if (!$cookies.token) {
 					this.logout();
+				} else {
+					callback();
 				}
+			},
 
+			setAuthorizationHeaders: function () {
 				$http.defaults.headers.common.Authorization = $cookies.token;
+			},
+
+			isLoggedIn: function () {
+				return $http.defaults.headers.common.Authorization === $cookies.token;
 			},
 
 			logout: function () {
 				$cookieStore.remove('token');
-				$window.location = '/api/auth/logout';
+				$window.location = '/logout';
 			}
 
 		};

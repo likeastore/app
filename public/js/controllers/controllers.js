@@ -4,9 +4,6 @@ define(function (require) {
 	var angular = require('angular');
 	var controllers = angular.module('controllers', ['services']);
 
-	// header
-	controllers.controller('headerController', require('./headerController'));
-
 	// user settings
 	controllers.controller('settingsController', require('./settingsController'));
 

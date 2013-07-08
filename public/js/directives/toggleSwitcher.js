@@ -19,6 +19,10 @@ define(function (require) {
 				</div>',
 			link: function (scope, elem, attrs) {
 				var service = attrs.toggleSwitcher;
+				var urlOptions = {
+					resource: 'networks',
+					target: service
+				};
 
 				scope.toggleNetwork = function () {
 					var isOn = elem.hasClass('on');
@@ -26,11 +30,11 @@ define(function (require) {
 					elem.toggleClass('on');
 
 					if (isOn) {
-						api.remove({ resource: 'networks', target: service });
+						api.remove(urlOptions);
 						return;
 					}
 
-					api.save({ resource: 'networks', target: service}, {}, function (res) {
+					api.save(urlOptions, {}, function (res) {
 						$window.location = res.authUrl;
 					});
 				};

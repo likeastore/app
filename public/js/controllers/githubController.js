@@ -3,8 +3,7 @@ define(function (require) {
 
 	var config = require('config').dashboard;
 
-	function GithubController ($scope, api, appLoader, $filter) {
-		appLoader.loading();
+	function GithubController ($scope, $filter, items) {
 
 		$scope.limit = config.limit;
 		$scope.increaseLimit = function () {
@@ -12,14 +11,28 @@ define(function (require) {
 		};
 
 		$scope.title = 'Github';
-		$scope.items = api.query({ resource: 'items', target: 'github' }, function (res) {
-			appLoader.ready();
-		});
+		$scope.items = items;
 
 		$scope.searching = function (query) {
 			$scope.search = $filter('filter')($scope.items, query);
 		};
 	}
+
+	GithubController.resolve = {
+		items: function ($q, appLoader, api, auth) {
+			var deferred = $q.defer();
+
+			appLoader.loading();
+			auth.checkAccessToken(function () {
+				api.query({ resource: 'items', target: 'github' }, function (res) {
+					appLoader.ready();
+					deferred.resolve(res);
+				});
+			});
+
+			return deferred.promise;
+		}
+	};
 
 	return GithubController;
 });

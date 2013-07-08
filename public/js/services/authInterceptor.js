@@ -8,8 +8,8 @@ define(function (require) {
 			};
 
 			var error = function (response) {
-				if (response.status === (400 || 401 || 412 || 418)) {
-					$window.location = '/api/auth/logout';
+				if (response.status === 401) {
+					$window.location = '/logout';
 				}
 				return $q.reject(response);
 			};

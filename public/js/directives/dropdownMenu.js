@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function DropdownMenu ($document) {
+	function DropdownMenu ($document, auth) {
 		return {
 			restrict: 'C',
 			scope: {
@@ -15,13 +15,17 @@ define(function (require) {
 				<ul class="dropdown">\
 					<li><a href="/inbox" class="menu-link">Inbox</a></li>\
 					<li><a href="/settings" class="menu-link">Account settings</a></li>\
-					<li><a href="#" class="menu-link" ng-click="$root.logout()">Logout</a></li>\
+					<li><a href="#" class="menu-link" ng-click="logout()">Logout</a></li>\
 				</ul>',
 			link: function (scope, elem, attrs) {
 				var $parent = elem.parent();
 
 				scope.toggleMenu = function () {
 					$parent.toggleClass('active');
+				};
+
+				scope.logout = function () {
+					auth.logout();
 				};
 
 				$document.bind('click', function (e) {
