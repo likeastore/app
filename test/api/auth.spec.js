@@ -3,7 +3,7 @@ var testUtils = require('../utils');
 var moment = require('moment');
 var crypto = require('crypto');
 
-describe('auth.spec.js', function () {
+describe.only('auth.spec.js', function () {
 	var authUrl, url, payload, error, response, body;
 
 	beforeEach(function () {
@@ -177,7 +177,7 @@ describe('auth.spec.js', function () {
 					var signup;
 
 					beforeEach(function (done) {
-						request.get({url: url, auth: {user: user.email, password: body.token}}, function (err, resp) {
+						request.get({url: url, headers: {'X-Access-Token': body.token}}, function (err, resp) {
 							error = err;
 							response = resp;
 							done();
@@ -221,7 +221,7 @@ describe('auth.spec.js', function () {
 		});
 
 		beforeEach(function (done) {
-			request.post({url: logoutUrl, auth: {user: user.email, password: body.token}}, function (err, resp) {
+			request.post({url: logoutUrl, headers: {'X-Access-Token': body.token}}, function (err, resp) {
 				error = error;
 				response = resp;
 				done();

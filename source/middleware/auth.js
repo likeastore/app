@@ -22,12 +22,21 @@ function createToken() {
 
 function validateToken () {
 	return function (req, res, next) {
-		var basic = express.basicAuth(hmacAuthentication);
-		return basic(req, res, next);
+		var token = req.headers['x-access-token'] || req.query.accessToken;
 
-		function hmacAuthentication(user, password) {
-			var token = new Buffer(password, 'base64').toString();
-			var parsed = token.split(';');
+		if (!token) {
+			return next({message: 'Access token is missing', status: 401});
+		}
+
+		if (!hmacAuthentication(token)) {
+			return next({message: 'User is not authorized', status: 401});
+		}
+
+		return next();
+
+		function hmacAuthentication(token) {
+			var decoded = new Buffer(token, 'base64').toString();
+			var parsed = decoded.split(';');
 
 			if (parsed.length !== 3) {
 				return false;
@@ -45,6 +54,8 @@ function validateToken () {
 			if (recievedTimespamp.diff(currentTimespamp, 'minutes') > TOKEN_TTL_MINUTES) {
 				return false;
 			}
+
+			req.user = username;
 
 			return true;
 		}
