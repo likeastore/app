@@ -106,14 +106,35 @@ function githubCallback() {
 		var code = req.query.code;
 		var user = req.query.state;
 
-		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code'}, function (err, accessToken) {
+		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code'}, gotAccessToken);
+
+		function gotAccessToken(err, accessToken) {
 			if (err) {
 				return next({message: 'failed to get accessToken from github', error: err, status: 500});
 			}
 
-			req.network = {accessToken: accessToken, accessTokenSecret: null, user: user, service: 'github'};
-			next();
-		});
+			var userProfile = 'https://api.github.com/user';
+			oauth.get(userProfile, accessToken, gotUserProfile);
+
+			function gotUserProfile(err, profileJson) {
+				if (err) {
+					return next({message: 'failed to get user profile from github', error: err, status: 500});
+				}
+
+				var profile = JSON.parse(profileJson);
+				var username = profile.login;
+
+				req.network = {
+					accessToken: accessToken,
+					accessTokenSecret: null,
+					user: user,
+					username: username,
+					service: 'github'
+				};
+
+				next();
+			}
+		}
 	};
 }
 
