@@ -174,10 +174,24 @@ describe.only('auth.spec.js', function () {
 				});
 
 				describe('valid token', function () {
-					var signup;
-
 					beforeEach(function (done) {
 						request.get({url: url, headers: {'X-Access-Token': body.token}}, function (err, resp) {
+							error = err;
+							response = resp;
+							done();
+						});
+					});
+
+					it ('should return 200 (authenticated)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+				});
+
+				describe('with token in query', function () {
+					beforeEach(function (done) {
+						url += '?accessToken=' + body.token;
+
+						request.get({url: url }, function (err, resp) {
 							error = err;
 							response = resp;
 							done();
