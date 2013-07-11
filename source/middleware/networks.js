@@ -2,6 +2,7 @@ var OAuth = require('oauth').OAuth;
 var OAuth2 = require('oauth').OAuth2;
 var config = require('../../config');
 var users = require('../db/users');
+var zlib = require('zlib');
 
 function twitter() {
 	return function (req, res, next) {
@@ -58,27 +59,14 @@ function twitterCallback () {
 					return next({message: 'failed to get accessToken from twitter', error: err, status: 500});
 				}
 
-				var userProfile = 'https://api.twitter.com/1.1/users/show.json?user_id=' + params.user_id;
-				oauth.get(userProfile, accessToken, accessTokenSecret, gotUserProfile);
+				req.network = {
+					accessToken: accessToken,
+					accessTokenSecret: accessTokenSecret,
+					user: user.email,
+					service: 'twitter'
+				};
 
-				function gotUserProfile (err, profileJson) {
-					if (err) {
-						return next({message: 'failed to get user profile from twitter', error: err, status: 500});
-					}
-
-					var profile = JSON.parse(profileJson);
-					var username = profile.screen_name;
-
-					req.network = {
-						accessToken: accessToken,
-						accessTokenSecret: accessTokenSecret,
-						user: user.email,
-						username: username,
-						service: 'twitter'
-					};
-
-					next();
-				}
+				next();
 			}
 		}
 	};
@@ -113,27 +101,14 @@ function githubCallback() {
 				return next({message: 'failed to get accessToken from github', error: err, status: 500});
 			}
 
-			var userProfile = 'https://api.github.com/user';
-			oauth.get(userProfile, accessToken, gotUserProfile);
+			req.network = {
+				accessToken: accessToken,
+				accessTokenSecret: null,
+				user: user,
+				service: 'github'
+			};
 
-			function gotUserProfile(err, profileJson) {
-				if (err) {
-					return next({message: 'failed to get user profile from github', error: err, status: 500});
-				}
-
-				var profile = JSON.parse(profileJson);
-				var username = profile.login;
-
-				req.network = {
-					accessToken: accessToken,
-					accessTokenSecret: null,
-					user: user,
-					username: username,
-					service: 'github'
-				};
-
-				next();
-			}
+			next();
 		}
 	};
 }
@@ -163,15 +138,22 @@ function stackoverflowCallback() {
 		var code = req.query.code;
 		var user = req.query.state;
 
-		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, function (err, accessToken) {
+		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
+
+		function gotAccessToken(err, accessToken) {
 			if (err) {
 				return next({message: 'failed to get accessToken from stackoverflow', error: err, status: 500});
 			}
 
-			req.network = {accessToken: accessToken, accessTokenSecret: null, user: user, service: 'stackoverflow'};
+			req.network = {
+				accessToken: accessToken,
+				accessTokenSecret: null,
+				user: user,
+				service: 'stackoverflow'
+			};
 
 			next();
-		});
+		}
 	};
 }
 
