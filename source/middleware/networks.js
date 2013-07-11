@@ -51,14 +51,35 @@ function twitterCallback () {
 				return next(err);
 			}
 
-			oauth.getOAuthAccessToken(requestToken, user.twitterRequestTokenSecret, verifier, function (err, accessToken, accessTokenSecret) {
+			oauth.getOAuthAccessToken(requestToken, user.twitterRequestTokenSecret, verifier, gotAccessToken);
+
+			function gotAccessToken (err, accessToken, accessTokenSecret, params) {
 				if (err) {
 					return next({message: 'failed to get accessToken from twitter', error: err, status: 500});
 				}
 
-				req.network = {accessToken: accessToken, accessTokenSecret: accessTokenSecret, user: user.email, service: 'twitter'};
-				next();
-			});
+				var userProfile = 'https://api.twitter.com/1.1/users/show.json?user_id=' + params.user_id;
+				oauth.get(userProfile, accessToken, accessTokenSecret, gotUserProfile);
+
+				function gotUserProfile (err, profileJson) {
+					if (err) {
+						return next({message: 'failed to get user profile from twitter', error: err, status: 500});
+					}
+
+					var profile = JSON.parse(profileJson);
+					var username = profile.screen_name;
+
+					req.network = {
+						accessToken: accessToken,
+						accessTokenSecret: accessTokenSecret,
+						user: user.email,
+						username: username,
+						service: 'twitter'
+					};
+
+					next();
+				}
+			}
 		}
 	};
 }

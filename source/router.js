@@ -1,7 +1,7 @@
 /**
  * Static pages router
  */
-var config = require('../../config');
+var config = require('../config');
 
 module.exports = function (app) {
 	var partials = function (req, res) {

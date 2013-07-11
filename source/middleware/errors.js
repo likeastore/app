@@ -4,10 +4,11 @@ function logErrors () {
 	return function logErrors(err, req, res, next) {
 		req.unhandledError = err;
 
-		var message = err.message || err;
+		var message = err.message;
+		var error = err.error || err;
 		var status = err.status || 500;
 
-		res.json({message: message}, status);
+		res.json({message: message, error: error}, status);
 	};
 }
 
