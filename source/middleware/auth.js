@@ -7,7 +7,7 @@ var AUTH_SIGN_KEY = 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662';
 
 function createToken() {
 	return function (req, res, next) {
-		var username = req.user.username;
+		var username = req.user.email;
 		var timespamp = moment();
 		var message = username + ';' + timespamp.valueOf();
 		var hmac = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');

@@ -3,7 +3,7 @@ var testUtils = require('../utils');
 var moment = require('moment');
 var crypto = require('crypto');
 
-describe.only('auth.spec.js', function () {
+describe('auth.spec.js', function () {
 	var authUrl, url, payload, error, response, body;
 
 	beforeEach(function () {
@@ -191,7 +191,7 @@ describe.only('auth.spec.js', function () {
 					beforeEach(function (done) {
 						url += '?accessToken=' + body.token;
 
-						request.get({url: url }, function (err, resp) {
+						request.get({ url: url }, function (err, resp) {
 							error = err;
 							response = resp;
 							done();

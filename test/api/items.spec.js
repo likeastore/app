@@ -2,8 +2,8 @@ var request = require('request');
 var testUtils = require('../utils');
 var moment = require('moment');
 
-describe('items.spec.js', function () {
-	var token, user, url, auth, response, results;
+describe.only('items.spec.js', function () {
+	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
 		url = testUtils.getRootUrl() + '/api/items';
@@ -28,7 +28,7 @@ describe('items.spec.js', function () {
 			testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
 				token = accessToken;
 				user = createdUser;
-				auth = {user: createdUser.email, password: accessToken};
+				headers = {'X-Access-Token': accessToken};
 				done();
 			});
 		});
@@ -41,7 +41,7 @@ describe('items.spec.js', function () {
 			});
 
 			beforeEach(function (done) {
-				request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
+				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 					response = resp;
 					results = body;
 					done();
@@ -72,7 +72,7 @@ describe('items.spec.js', function () {
 				});
 
 				beforeEach(function (done) {
-					request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 						response = resp;
 						results = body;
 						done();
@@ -100,7 +100,7 @@ describe('items.spec.js', function () {
 				});
 
 				beforeEach(function (done) {
-					request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 						response = resp;
 						results = body;
 						done();
@@ -128,7 +128,7 @@ describe('items.spec.js', function () {
 				});
 
 				beforeEach(function (done) {
-					request.get({url: url, auth: auth, json: true}, function (err, resp, body) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 						response = resp;
 						results = body;
 						done();
