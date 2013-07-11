@@ -75,6 +75,20 @@ function createTestItemsOfType(user, type, size, callback) {
 	db.items.insert(items, callback);
 }
 
+function createTestNetworks(user, callback) {
+	var range = _.range(3);
+	var networks = range.map(function (index) {
+		return {
+			userId: user._id,
+			user: user.email,
+			service: 'github',
+			accessToken: 'test-token'
+		};
+	});
+
+	db.networks.insert(networks, callback);
+}
+
 function getUserFromDb(user, callback) {
 	db.users.findOne({email: user.email}, callback);
 }
@@ -85,5 +99,6 @@ module.exports = {
 	createTestUserAndLoginToApi: createTestUserAndLoginToApi,
 	createTestItems: createTestItems,
 	createTestItemsOfType: createTestItemsOfType,
+	createTestNetworks: createTestNetworks,
 	getUserFromDb: getUserFromDb
 };
