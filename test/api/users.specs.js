@@ -3,7 +3,7 @@ var testUtils = require('../utils');
 var moment = require('moment');
 var crypto = require('crypto');
 
-describe('users.spec.js', function () {
+describe.only('users.spec.js', function () {
 	var token, user, url, auth, response, body;
 
 	beforeEach(function () {
