@@ -6,12 +6,6 @@ define(function (require) {
 	var controllers = require('./controllers/controllers');
 	var directives = require('./directives/directives');
 
-	var dashboardController = require('./controllers/dashboardController');
-	var githubController = require('./controllers/githubController');
-	var twitterController = require('./controllers/twitterController');
-	var stackoverflowController = require('./controllers/stackoverflowController');
-	var settingsController = require('./controllers/settingsController');
-
 	var app = angular.module('likeastore', ['services', 'controllers', 'directives']);
 
 	app.init = function () {
@@ -25,33 +19,27 @@ define(function (require) {
 			$routeProvider
 				.when('/', {
 					templateUrl: 'partials/dashboard',
-					controller: dashboardController,
-					resolve: dashboardController.resolve
+					controller: 'dashboardController'
 				})
 				.when('/inbox', {
 					templateUrl: 'partials/dashboard',
-					controller: dashboardController,
-					resolve: dashboardController.resolve
+					controller: 'dashboardController'
 				})
 				.when('/github', {
 					templateUrl: 'partials/dashboard',
-					controller: githubController,
-					resolve: githubController.resolve
+					controller: 'githubController'
 				})
 				.when('/twitter', {
 					templateUrl: 'partials/dashboard',
-					controller: twitterController,
-					resolve: twitterController.resolve
+					controller: 'twitterController'
 				})
 				.when('/stackoverflow', {
 					templateUrl: 'partials/dashboard',
-					controller: stackoverflowController,
-					resolve: stackoverflowController.resolve
+					controller: 'stackoverflowController'
 				})
 				.when('/settings', {
 					templateUrl: 'partials/settings',
-					controller: settingsController,
-					resolve: settingsController.resolve
+					controller: 'settingsController'
 				})
 				.otherwise({ redirectTo: '/' });
 

@@ -17,6 +17,7 @@ define(function (require) {
 					$rootScope.loaded = true;
 				}
 			},
+
 			loading: function () {
 				$timeout.cancel(timer);
 				$rootScope.loaded = false;

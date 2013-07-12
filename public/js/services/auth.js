@@ -3,7 +3,7 @@ define(function (require) {
 
 	function Auth ($http, $location, $window, $cookies, $cookieStore) {
 		return {
-			checkAccessToken: function (callback) {
+			setAuthorizationHeaders: function () {
 				var params = $location.search();
 
 				if (params.email && params.apiToken) {
@@ -11,19 +11,9 @@ define(function (require) {
 						$cookies.token = 'Basic ' + $window.btoa(params.email + ':' + res.token);
 						$window.location = $window.location.origin;
 					});
-				} else if (!$cookies.token) {
-					this.logout();
-				} else {
-					callback();
 				}
-			},
 
-			setAuthorizationHeaders: function () {
-				$http.defaults.headers.common.Authorization = $cookies.token;
-			},
-
-			isLoggedIn: function () {
-				return $http.defaults.headers.common.Authorization === $cookies.token;
+				$http.defaults.headers.common['X-Access-Token'] = $cookies.token;
 			},
 
 			logout: function () {

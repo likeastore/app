@@ -3,35 +3,23 @@ define(function (require) {
 
 	var config = require('config').dashboard;
 
-	function StackoverflowController ($scope, $filter, items) {
+	function StackoverflowController ($scope, $filter, appLoader, api) {
+		appLoader.loading();
+
 		$scope.limit = config.limit;
 		$scope.increaseLimit = function () {
 			$scope.limit += config.limit;
 		};
 
 		$scope.title = 'Stackoverflow';
-		$scope.items = items;
+		$scope.items = api.query({ resource: 'items', target: 'stackoverflow' }, function (res) {
+			appLoader.ready();
+		});
 
 		$scope.searching = function (query) {
 			$scope.search = $filter('filter')($scope.items, query);
 		};
 	}
-
-	StackoverflowController.resolve = {
-		items: function ($q, appLoader, api, auth) {
-			var deferred = $q.defer();
-
-			appLoader.loading();
-			auth.checkAccessToken(function () {
-				api.query({ resource: 'items', target: 'stackoverflow' }, function (res) {
-					appLoader.ready();
-					deferred.resolve(res);
-				});
-			});
-
-			return deferred.promise;
-		}
-	};
 
 	return StackoverflowController;
 });

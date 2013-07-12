@@ -1,26 +1,14 @@
 define(function (require) {
 	'use strict';
 
-	function SettingsController ($scope, networks) {
+	function SettingsController ($scope, appLoader, api) {
+		appLoader.loading();
+
 		$scope.title = 'Account settings';
-		$scope.networks = networks;
+		$scope.networks = api.query({ resource: 'networks' }, function (res) {
+			appLoader.ready();
+		});
 	}
-
-	SettingsController.resolve = {
-		networks: function ($q, appLoader, api, auth) {
-			var deferred = $q.defer();
-
-			appLoader.loading();
-			auth.checkAccessToken(function () {
-				api.query({ resource: 'networks' }, function (res) {
-					appLoader.ready();
-					deferred.resolve(res);
-				});
-			});
-
-			return deferred.promise;
-		}
-	};
 
 	return SettingsController;
 });
