@@ -9,7 +9,7 @@ define(function (require) {
 				this.request('POST', '/api/auth/login', params, function (res) {
 					if (res.status === 201) {
 						document.cookie = 'token=' +  res.token;
-						window.location.href = window.location.origin;
+						window.location = window.location.origin;
 					} else {
 						window.location = res.error.redirectUrl + '/login';
 					}
