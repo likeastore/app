@@ -1,5 +1,6 @@
 var middleware = require('../middleware');
 var users = require('../db/users');
+var config = require('../../config');
 
 function authService(app) {
 
@@ -26,11 +27,11 @@ function authService(app) {
 		var signup = req.body;
 
 		if (!signup.email) {
-			return next({message: 'email is missing', body: signup, status: 412});
+			return next({ message: 'email is missing', body: signup, status: 412, redirectUrl: config.siteUrl });
 		}
 
 		if (!signup.apiToken) {
-			return next({message: 'apiToken is missing', body: signup, status: 412});
+			return next({ message: 'apiToken is missing', body: signup, status: 412, redirectUrl: config.siteUrl });
 		}
 
 		next();

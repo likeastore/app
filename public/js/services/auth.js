@@ -1,18 +1,13 @@
 define(function (require) {
 	'use strict';
 
-	function Auth ($http, $location, $window, $cookies, $cookieStore) {
+	function Auth ($http, $window, $location, $cookies, $cookieStore) {
 		return {
 			setAuthorizationHeaders: function () {
 				var params = $location.search();
-
 				if (params.email && params.apiToken) {
-					$http.post('/api/auth/login', params).success(function (res) {
-						$cookies.token = 'Basic ' + $window.btoa(params.email + ':' + res.token);
-						$window.location = $window.location.origin;
-					});
+					$window.location.href = $window.location.origin;
 				}
-
 				$http.defaults.headers.common['X-Access-Token'] = $cookies.token;
 			},
 

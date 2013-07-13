@@ -17,30 +17,12 @@ define(function (require) {
 			$httpProvider.responseInterceptors.push('authInterceptor');
 
 			$routeProvider
-				.when('/', {
-					templateUrl: 'partials/dashboard',
-					controller: 'dashboardController'
-				})
-				.when('/inbox', {
-					templateUrl: 'partials/dashboard',
-					controller: 'dashboardController'
-				})
-				.when('/github', {
-					templateUrl: 'partials/dashboard',
-					controller: 'githubController'
-				})
-				.when('/twitter', {
-					templateUrl: 'partials/dashboard',
-					controller: 'twitterController'
-				})
-				.when('/stackoverflow', {
-					templateUrl: 'partials/dashboard',
-					controller: 'stackoverflowController'
-				})
-				.when('/settings', {
-					templateUrl: 'partials/settings',
-					controller: 'settingsController'
-				})
+				.when('/', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
+				.when('/inbox', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
+				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
+				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
+				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
+				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.otherwise({ redirectTo: '/' });
 
 			$locationProvider.html5Mode(true);

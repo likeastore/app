@@ -20,6 +20,8 @@ require.config({
 	baseUrl: '/js'
 });
 
-require(['app'], function (app) {
-	app.init();
+require(['app', 'boot'], function (app, boot) {
+	boot.getAccessToken(function () {
+		app.init();
+	});
 });
