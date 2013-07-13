@@ -9,7 +9,7 @@ define(function (require) {
 				this.request('POST', '/api/auth/login', params, function (res) {
 					if (res.status === 201) {
 						document.cookie = 'token=' +  res.token;
-						callback();
+						window.location.href = window.location.origin;
 					} else {
 						window.location = res.error.redirectUrl + '/login';
 					}
@@ -55,7 +55,7 @@ define(function (require) {
 				obj[param] = value;
 			}
 
-			return !(query.length === 1 && query[0] === '') ? obj : null;
+			return obj;
 		}
 	};
 
