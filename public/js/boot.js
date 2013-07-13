@@ -1,36 +1,64 @@
 define(function (require) {
 	'use strict';
 
-	return {
+	var boot = {
 		getAccessToken: function (callback) {
-			var params = {
-				email: getParamByName('email'),
-				apiToken: getParamByName('apiToken')
-			};
+			var params = this.getQueryParams();
 
 			if (params.email && params.apiToken) {
-				var xhr = new XMLHttpRequest();
-				xhr.open('POST', '/api/auth/login');
-				xhr.setRequestHeader('Content-Type', 'application/json');
-				xhr.onload = function () {
-					var response = JSON.parse(this.response);
-					if (this.status === 201) {
-						document.cookie = 'token=' +  response.token;
+				this.request('POST', '/api/auth/login', params, function (res) {
+					if (res.status === 201) {
+						document.cookie = 'token=' +  res.token;
 						callback();
 					} else {
-						window.location = response.error.redirectUrl + '/login';
+						window.location = res.error.redirectUrl + '/login';
 					}
-				};
-				xhr.send(JSON.stringify(params));
+				});
 			} else {
 				callback();
 			}
+		},
 
-			function getParamByName (name) {
-				var match = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-				return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+		request: function (type, url, opts, callback) {
+			var xhr = new XMLHttpRequest();
+			var data;
+
+			if (typeof opts === 'function') {
+				callback = opts;
+				opts = null;
 			}
+
+			xhr.open(type, url);
+
+			if (type === 'POST' && opts) {
+				data = JSON.stringify(opts);
+				xhr.setRequestHeader('Content-Type', 'application/json');
+			}
+
+			xhr.onload = function () {
+				var response = JSON.parse(xhr.response);
+
+				response.status = xhr.status;
+				callback(response);
+			};
+
+			xhr.send(opts ? data : null);
+		},
+
+		getQueryParams: function () {
+			var query = window.location.search.replace('?', '').split('&');
+			var obj = {};
+
+			for (var i = 0; i < query.length; i++) {
+				var param = query[i].split('=')[0];
+				var value = query[i].split('=')[1];
+				obj[param] = value;
+			}
+
+			return !(query.length === 1 && query[0] === '') ? obj : null;
 		}
 	};
+
+	return boot;
 
 });

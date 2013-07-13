@@ -41,11 +41,11 @@ function authService(app) {
 		var login = req.body;
 		users.findByEmail(login.email, function (err, user) {
 			if (err) {
-				return next({message: 'User not found', status: 401});
+				return next({ message: 'User not found', status: 401, redirectUrl: config.siteUrl });
 			}
 
 			if (user.apiToken !== login.apiToken) {
-				return next({message: 'apiToken match failure', status: 401});
+				return next({ message: 'apiToken match failure', status: 401, redirectUrl: config.siteUrl });
 			}
 
 			req.user = user;
@@ -54,7 +54,7 @@ function authService(app) {
 	}
 
 	function returnToken(req, res, next) {
-		res.json(201, {token: req.token});
+		res.json(201, { token: req.token });
 	}
 
 	function returnOk(req, res, next) {

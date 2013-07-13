@@ -25,7 +25,6 @@ define(function (require) {
 				};
 
 				scope.logout = function () {
-					console.log('logout')
 					auth.logout();
 				};
 
