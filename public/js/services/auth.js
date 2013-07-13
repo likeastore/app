@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function Auth ($http, $window, $rootScope, $cookies, $cookieStore) {
+	function Auth ($http, $window, $cookies, $cookieStore) {
 		return {
 			setAuthorizationHeaders: function () {
 				$http.defaults.headers.common['X-Access-Token'] = $cookies.token;
