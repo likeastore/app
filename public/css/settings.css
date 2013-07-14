@@ -1,42 +1,3 @@
-.empty-results {
-	font-family: 'Lato', 'Open Sans', Arial, sans-serif;
-	margin: 100px 0 0;
-	text-align: center;
-}
-
-.empty-results .big-icon {
-	margin: 10px auto;
-	opacity: .1;
-}
-
-.empty-results .inbox-icon {
-	background: url(../img/inbox@2x.png) center center no-repeat;
-	background-size: 90px;
-}
-
-.empty-results .annoyed-icon {
-	background: url(../img/no-results@2x.png) center center no-repeat;
-	background-size: 90px;
-}
-
-.empty-results h2 {
-	color: rgba(0,0,0,0.1);
-	margin-bottom: 25px;
-	font-size: 30px;
-	font-weight: 600;
-}
-
-.empty-results .settings-button {
-	display: inline-block;
-	background: #e74c3c;
-	color: #fff;
-	text-decoration: none;
-	font-size: 18px;
-	padding: 15px 20px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-}
-
 .settings-page {
 	width: 700px;
 	font-family: 'Lato', 'Open Sans', Arial, sans-serif;
@@ -81,7 +42,7 @@
 	right: 25px;
 }
 
-/* Toggle checkboxes */
+/* Toggle network checkboxes */
 .toggle {
 	position: relative;
 	width: 80px;
@@ -121,7 +82,6 @@
 	transition: left .25s ease-in-out;
 }
 
-/*.toggle input[type="checkbox"]:checked ~ .btn,*/
 .toggle.on .btn {
 	left: 44px;
 }
@@ -167,7 +127,6 @@
 	transition: left .25s ease-in;
 }
 
-/*.toggle input[type="checkbox"]:checked ~ .bg,*/
 .toggle.on .bg {
 	background: #48C893;
 }
