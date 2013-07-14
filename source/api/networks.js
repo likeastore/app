@@ -3,7 +3,6 @@ var items = require('../db/items.js');
 var networks = require('../db/networks.js');
 var logger = require('../utils/logger');
 var middleware = require('../middleware');
-var createPassport = require('../utils/createPassport');
 var OAuth= require('oauth').OAuth;
 var config = require('../../config');
 
