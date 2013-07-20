@@ -4,11 +4,38 @@
 	margin: 0 auto;
 }
 
-.settings-page h1 {
-	border-bottom: 1px solid #ddd;
+.userinfo-wrap .title {
+	font: 700 20px 'proxima-nova-bold', 'Lato', 'Open Sans', Arial, sans-serif;
+	text-transform: uppercase;
+	margin-bottom: 25px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #bbb;
+	vertical-align: top;
+	line-height: 28px;
+}
+
+.userinfo-wrap .title .pref {
+	font-size: 26px;
+	margin-right: 8px;
+}
+
+.userinfo-wrap {
+	margin-top: 20px;
+	padding: 15px 0 0;
 	color: #555;
-	font-size: 30px;
-	padding: 20px 0 10px;
+}
+
+.info-item {
+	margin: 10px 0;
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.info-item.date {
+	color: #aaa;
+	font-size: 12px;
+	text-transform: none;
 }
 
 .networks-wrap {
@@ -16,18 +43,16 @@
 }
 
 .networks-wrap .network {
-	background: #f9f9f9;
-	border-bottom: 1px solid #ddd;
-	color: #333;
-	font-weight: 300;
+	background: #fff;
 	margin-bottom: 15px;
 	padding: 15px;
 	position: relative;
 }
 
-.network .title {
-	font-size: 20px;
-	margin-bottom: 30px
+.title {
+	color: #555;
+	font: 700 18px 'Lato', 'Open Sans', Arial, sans-serif;
+	margin-bottom: 30px;
 }
 
 .network .desc {

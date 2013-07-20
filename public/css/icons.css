@@ -1,95 +1,54 @@
-.ls-ico {
-	background-image: url(../img/ls-sprite-25-05-2013.png);
-	display: inline-block;
+.logo {
+	color: #1abc9c;
+	font: 1.4em 'proxima-nova-bold', 'Open Sans', Arial, sans-serif;
+	font-weight: 400;
+	padding: 9px 0 0 5px;
+	text-transform: lowercase;
+	text-decoration: none;
 }
 
-.lst-sml {
-	width: 16px;
-	height: 16px;
+.logo:hover {
+	text-decoration: none;
 }
 
-.ico-fb-med {
-	background-position: 5px 6px;
+[data-icon]:before,
+.font-icon:before {
+	font-family: 'icon-font';
+	content: attr(data-icon);
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+	line-height: 1;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
 }
 
-.ico-tw-med {
-	background-position: -29px 5px;
+.github-icon:before {
+	content: 'd';
 }
 
-.ico-git-med {
-	background-position: -77px 5px;
+.twitter-icon:before {
+	content: 'b';
 }
 
-.user-login {
-	background-position: -126px 5px;
+.stackoverflow-icon:before {
+	content: 'a';
 }
 
-.user-email {
-	background-position: -169px 5px;
+.date-icon:before {
+	content: 'o';
 }
 
-.user-password {
-	background-position: -210px 4px;
+.full-star-icon:before {
+	content: 's';
 }
 
-.table-view {
-	background-position:-251px 0;
-	margin: 0 10px 0 0;
-	cursor: pointer;
+.settings-icon:before {
+	content: 'u';
 }
 
-.list-view {
-	background-position:-273px 0;
-	cursor: pointer;
-}
-
-.dash-menu-ico {
-	background-color: #de6262;
-	background-position: 10px -30px;
-}
-
-.fb-menu-ico {
-	background-color: #3b5999;
-	background-position: -28px -30px;
-}
-
-.tw-menu-ico {
-	background-color: #2589c5;
-	background-position: -164px -28px;
-}
-
-.git-menu-ico {
-	background-color: #b2b2b2;
-	background-position: -74px -29px;
-}
-
-.gp-menu-ico {
-	background-color: #d95333;
-	background-position: -121px -29px;
-}
-
-.stack-menu-ico {
-	background-color: #f88b1f;
-	background-position: -343px -27px;
-}
-
-.ls-logo {
-	background-position: -297px 0;
+.big-icon {
+	height: 100px;
 	width: 100px;
-	height: 17px;
-	margin: 16px 0 0;
-}
-
-.search-ico {
-	width: 17px;
-	height: 17px;
-	background-position: -305px -45px;
-	position: absolute;
-	top: 17px;
-	right: 10px;
-	cursor: pointer;
-}
-
-.active-search .search-ico {
-	background-position: -325px -45px;
+	background-size: 90px;
 }

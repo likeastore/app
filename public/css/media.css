@@ -1,0 +1,207 @@
+/*Media queries*/
+/* Smartphones (portrait and landscape) ----------- */
+/*@media only screen and (max-device-width: 420px) {
+	.header-left {
+		display: none;
+	}
+
+	.mobile-menu li {
+		margin: 0;
+	}
+}
+
+@media only screen and (max-device-width: 640px) {
+	.dashboard-nav,
+	.account-show,
+	.account-name,
+	.main-footer {
+		display: none;
+	}
+
+	.main-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 10;
+	}
+
+	.main-dashdoard {
+		margin: 0;
+	}
+
+	.mobile-menu {
+		display: block;
+	}
+
+	.dash-item {
+		width: 100%;
+		height: auto;
+		margin: 0 0 15px;
+		padding-bottom: 0;
+		display: block;
+	}
+
+	.dash-item img {
+		width: 60px;
+		height: 60px;
+		display: block;
+		margin: 0 auto 10px;
+		float: none;
+	}
+
+	.dash-item .desc {
+		display: block;
+		width: 100%;
+		height: auto;
+		margin-bottom: 20px;
+	}
+
+	.header-left {
+		width: 110px;
+	}
+
+	.mobile-menu .menu-ico {
+		background-color: transparent;
+	}
+
+	.main-viewer {
+		padding-top: 50px;
+	}
+
+	.settings-page {
+		width: auto !important;
+		padding: 0 20px 20px;
+	}
+
+	.network .desc {
+		font-size: 12px;
+	}
+
+	.search-input {
+		width: 180px;
+		-webkit-appearance: none;
+	}
+	.sign-up-ls {
+		border: none;
+		position: inherit;
+		left: auto;
+		top: auto;
+		margin: 0;
+		width: auto;
+	}
+
+	.sign-up-ls .cell {
+		float: none;
+		overflow: hidden;
+	}
+
+	.sign-up-ls .btn-s-big {
+		width: auto;
+	}
+
+	.sign-up-ls .error-message {
+		padding: 10px 0;
+	}
+
+	.signup-form {
+		margin: 15px auto 0;
+		padding: 20px 0 40px;
+		text-align: center;
+		width: auto;
+		border-bottom: 1px solid #eee;
+	}
+
+	.field-group {
+		padding: 0 25px;
+	}
+
+	.signup-form button[type=submit] {
+		float: none;
+		width: 215px;
+	}
+
+	.social-autorize {
+		width: auto;
+		min-height: auto;
+		padding: 40px 25px 20px;
+	}
+
+	.signup-form input {
+		width: auto;
+		margin: 0;
+		-webkit-appearance: none;
+		-webkit-border-radius: 0;
+		border-radius: 0;
+	}
+}*/
+
+/* iPads (portrait and landscape) ----------- */
+/*@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+	.menu-title,
+	.bt-toggle {
+		display: none;
+	}
+	.dashboard-nav {
+		width: 50px;
+	}
+	.main-dashdoard {
+		margin-left: 51px;
+	}
+	.dash-item .desc {
+		width: 70%;
+	}
+}*/
+
+/* iPads (landscape) ----------- */
+/*@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+	.main-dashdoard {
+		margin-left: 51px;
+	}
+
+	.dash-item {
+		width: 46%;
+	}
+
+	.dash-item .desc {
+		width: 70%;
+	}
+}*/
+
+/* Desktops and laptops ----------- */
+@media (max-width: 1800px) and (min-width: 1201px) {
+	.main-dashdoard {
+		margin-left: 245px;
+	}
+
+	.dash-item {
+		width: 31%;
+	}
+
+	.dash-item:nth-child(3n+3) {
+		margin-right: 0;
+	}
+}
+
+@media (max-width: 1200px) and (min-width: 901px) {
+	.dash-item {
+		width: 46%;
+	}
+
+	.dash-item .desc {
+		font-size: 14px;
+		width: 70%;
+	}
+
+	.dash-item:nth-child(2n) {
+		margin-right: 0;
+	}
+}
+
+@media (max-width: 1400px) and (min-width: 1200px) {
+	.dash-item .desc {
+		font-size: 14px;
+		width: 65%;
+	}
+}

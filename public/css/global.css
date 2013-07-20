@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 @font-face {
-	font-family: 'Proxima Nova Bold';
+	font-family: 'proxima-nova-bold';
 	src: url('../fonts/proximanova-bold-webfont.eot');
 	src: url('../fonts/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('../fonts/proximanova-bold-webfont.woff') format('woff'),
@@ -30,24 +30,14 @@
 	background-color: #feffc3;
 }
 
-[data-icon]:before {
-	font-family: 'icon-font';
-	content: attr(data-icon);
-	font-style: normal;
-	font-weight: normal;
-	speak: none;
-	line-height: 1;
-	text-transform: none;
-	-webkit-font-smoothing: antialiased;
-}
-
 html {
 	height: 100%;
 }
 
 body {
-	background: #f0f0f0;
-	font: normal 1em/1.4 'Open Sans', sans-serif;
+	color: #333;
+	background: #f7f7f7;
+	font: normal 1em/1.4 'Lato', 'Open Sans', Arial, sans-serif;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -58,13 +48,13 @@ h3 {
 	font-size: 18px;
 }
 
-.logo {
-	color: #fff;
-	font: 24px 'Proxima Nova Bold', 'Open Sans', Arial, sans-serif;
-	font-weight: 400;
-	padding: 10px 0 0;
-	text-transform: lowercase;
+a {
+	color: #ff3535;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 .cell {
@@ -73,12 +63,6 @@ h3 {
 
 .cellRight {
 	float: right;
-}
-
-.big-icon {
-	height: 100px;
-	width: 100px;
-	background-size: 90px;
 }
 
 /* App preloader */
@@ -173,15 +157,15 @@ h3 {
 	}
 }
 
-/* Empty results // no networks */
+/* Empty results or no items on page */
 .empty-results {
 	font-family: 'Lato', 'Open Sans', Arial, sans-serif;
-	margin: 100px 0 0;
+	padding: 100px 0 0;
 	text-align: center;
 }
 
 .empty-results .big-icon {
-	margin: 10px auto;
+	margin: 0 auto;
 	opacity: .1;
 }
 
@@ -196,19 +180,20 @@ h3 {
 }
 
 .empty-results h2 {
-	color: #f2f2f2;
-	margin-bottom: 25px;
+	color: #d9d9d9;
+	margin: 5px auto 25px;
 	font-size: 30px;
-	font-weight: 600;
+	font-weight: 700;
 }
 
 .empty-results .settings-button {
 	display: inline-block;
-	background: #e74c3c;
 	color: #fff;
+	background: #e74c3c;
+	border-bottom: 6px solid #c0392b;
+	font-size: 20px;
+	padding: 12px 25px;
 	text-decoration: none;
-	font-size: 18px;
-	padding: 15px 20px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
 }

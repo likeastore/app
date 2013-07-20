@@ -1,20 +1,25 @@
 <div class="settings-page">
-	<h1>{{title}}</h1>
+
+	<div class="userinfo-wrap">
+		<div class="title"><i class="font-icon settings-icon pref"></i>{{title}}</div>
+		<div class="info-item">{{user.displayName || user.name}} &middot; {{user.email}}</div>
+		<div class="info-item date">*registered on {{user.registered|date: 'fullDate'}}</div>
+	</div>
 
 	<ul class="networks-wrap">
 		<li class="network">
 			<div class="title">Twitter</div>
-			<div class="desc">Syncs all tweets that you've favorited.</div>
+			<div class="desc">Sync all tweets that you've favorited.</div>
 			<div toggle-switcher="twitter" model="networks"></div>
 		</li>
 		<li class="network">
 			<div class="title">Github</div>
-			<div class="desc">Syncs all repositories that you've starred.</div>
+			<div class="desc">Sync all repositories that you've starred.</div>
 			<div toggle-switcher="github" model="networks"></div>
 		</li>
 		<li class="network">
 			<div class="title">Stackoverflow</div>
-			<div class="desc">Syncs all questions that you've favorited.</div>
+			<div class="desc">Sync all questions that you've favorited.</div>
 			<div toggle-switcher="stackoverflow" model="networks"></div>
 		</li>
 	</ul>
