@@ -257,7 +257,7 @@
 	font-size: 16px;
 	padding: 15px 0 20px;
 	margin: 0 25px 20px 0;
-	width: 90%;
+	width: 95%;
 	height: 190px;
 	overflow: hidden;
 	position: relative;
@@ -279,7 +279,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 1;
+	z-index: 10;
 }
 
 .dash-item .desc {
@@ -319,13 +319,15 @@
 }
 
 .dash-item:hover {
-	background: #fce37e;
+	background: #ffec9e;
 }
 
 .item-info {
 	line-height: 38px;
 	margin: 0 -12px;
 	padding: 0 12px;
+	position: relative;
+	z-index: 1;
 }
 
 .item-type {
@@ -334,7 +336,8 @@
 	font-size: 80px;
 	position: absolute;
 	right: -8px;
-	bottom: -35px
+	bottom: -35px;
+	z-index: 0;
 }
 
 .autor-item {
@@ -373,7 +376,7 @@
 }
 
 .dash-item:hover .item-type {
-	color: #f1c40f;
+	color: #fce37e;
 }
 
 .dash-item:hover .item-date,
