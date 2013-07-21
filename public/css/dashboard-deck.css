@@ -396,9 +396,12 @@
 .show-more {
 	display: block;
 	background: #dfdfdf;
+	border-bottom: 5px solid #bbb;
 	color: rgba(0,0,0,0.3);
 	font-size: 14px;
 	padding: 14px 0;
+	margin: 10px 0 20px;
+	width: 98%;
 	text-align: center;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -406,6 +409,7 @@
 
 .show-more:hover {
 	background: #c1c1c1;
+	border-bottom: 5px solid #aaa;
 }
 
 .mobile-menu {

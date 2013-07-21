@@ -12,6 +12,10 @@
 	.main-dashdoard {
 		margin-left: 245px;
 	}
+
+	.show-more {
+		width: 97.4%;
+	}
 }
 
 @media (max-width: 1400px) and (min-width: 1300px) {
@@ -61,7 +65,14 @@
 	}
 
 	.main-dashdoard {
-		margin-left: 215px;
+		margin-left: 200px;
+	}
+}
+
+@media (max-width: 800px) {
+	.dash-item {
+		width: 98%;
+		margin-right: 0;
 	}
 }
 
