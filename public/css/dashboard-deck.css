@@ -411,19 +411,3 @@
 	background: #c1c1c1;
 	border-bottom: 5px solid #aaa;
 }
-
-.mobile-menu {
-	display: none;
-	float: left;
-	overflow: hidden;
-	height: 50px;
-	font-size: 0px;
-	position: absolute;
-	left: 50%;
-	margin-left: -120px;
-}
-
-.mobile-menu li {
-	display:inline-block;
-	margin: 0 10px;
-}
