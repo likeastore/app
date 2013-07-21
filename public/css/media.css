@@ -194,13 +194,8 @@
 
 @media (max-width: 1400px) and (min-width: 1100px) {
 	.dash-item .desc {
-		width: 65%;
-	}
-}
-
-@media (max-width: 1300px) and (min-width: 1100px) {
-	.dash-item .desc {
 		font-size: 14px;
+		width: 65%;
 	}
 }
 
