@@ -15,6 +15,7 @@
 	width: 220px;
 	height: 100%;
 	position: relative;
+	overflow: hidden;
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-ms-transition: all .3s ease-in-out;
@@ -26,7 +27,7 @@
 	top: 0;
 }
 
-.dashboard-nav li {
+.networks-menu li {
 	padding: 2px 10px;
 	overflow: hidden;
 	cursor: pointer;
