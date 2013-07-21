@@ -67,7 +67,7 @@ a:hover {
 
 /* App preloader */
 .loading {
-	background: #f0f0f0;
+	background: #f7f7f7;
 	margin: 80px auto;
 	position: relative;
 	width: 20px;

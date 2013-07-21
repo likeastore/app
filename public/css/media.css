@@ -65,6 +65,18 @@
 	}
 }
 
+@media (max-width: 700px) {
+	.settings-page {
+		width: 100%;
+		padding: 0 20px 30px;
+	}
+
+	.networks-wrap,
+	.userinfo-wrap {
+		width: 92%;
+	}
+}
+
 @media (max-width: 640px) {
 	.main-header {
 		padding: 0 9px;
@@ -122,6 +134,10 @@
 	.promo-line {
 		display: none;
 	}
+
+	.network .desc {
+		font-size: 11px;
+	}
 }
 
 @media (max-width: 420px) {
@@ -131,5 +147,14 @@
 
 	.search-input {
 		width: 105px;
+	}
+
+	.networks-wrap,
+	.userinfo-wrap {
+		width: 89%;
+	}
+
+	.network .toggle {
+		right: 10px;
 	}
 }
