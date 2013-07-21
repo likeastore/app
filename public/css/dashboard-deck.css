@@ -15,6 +15,10 @@
 	width: 220px;
 	height: 100%;
 	position: relative;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
 }
 
 .dashboard-nav.sticky {
@@ -87,6 +91,10 @@
 	top: 215px;
 	overflow: hidden;
 	text-align: center;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
 }
 
 .promo-line .promo-text {

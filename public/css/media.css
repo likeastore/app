@@ -211,11 +211,29 @@
 
 	.dash-item .desc {
 		font-size: 14px;
-		width: 70%;
+		width: 62%;
 	}
 
 	.dash-item:nth-child(2n) {
 		margin-right: 0;
+	}
+}
+
+@media (max-width: 800px) and (min-width: 640px) {
+	.dashboard-nav {
+		width: 190px;
+	}
+
+	.search-input {
+		width: 132px;
+	}
+
+	.promo-line {
+		width: 140px;
+	}
+
+	.main-dashdoard {
+		margin-left: 215px;
 	}
 }
 

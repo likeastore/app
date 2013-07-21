@@ -96,7 +96,7 @@ a:hover {
 	height: 0;
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
-	border-top: 16px solid #f0f0f0;
+	border-top: 16px solid #f7f7f7;
 	top: -5px;
 	left: 0;
 	-webkit-animation: ticktock 1s linear infinite;
