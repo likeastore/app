@@ -15,6 +15,7 @@ define(function (require) {
 					}
 				});
 			} else {
+				document.getElementById('resource-loader').style.display = 'none';
 				callback();
 			}
 		},

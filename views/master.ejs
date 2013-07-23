@@ -14,9 +14,11 @@
 	<![endif]-->
 </head>
 <body>
-	<header class="main-header clearfix" ng-include src="'partials/header'"></header>
+	<header class="main-header clearfix" style="display:none" ng-show="user" ng-include src="'partials/header'"></header>
 
 	<div class="main-viewer" ng-view></div>
+
+	<div id="resource-loader" class="spin"></div>
 
 	<script type="text/javascript" src="/components/requirejs/require.js" data-main="<%= mainJs %>"></script>
 
