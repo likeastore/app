@@ -22,7 +22,7 @@ process.on('uncaughtException', function (err) {
 var app = express();
 
 app.configure(function(){
-	app.set('port', process.env.VCAP_APP_PORT || 3001);
+	app.set('port', process.env.PORT || 3001);
 	app.engine('ejs', engine);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'ejs');
@@ -35,20 +35,27 @@ app.configure(function(){
 	app.use(app.router);
 });
 
-app.configure('development', function(){
+app.configure('development', function() {
 	app.use(express.logger('dev'));
 	app.use(express.errorHandler());
 	app.use(express.static(path.join(__dirname, 'public')));
 	app.use(middleware.serveMaster.development());
 });
 
-app.configure('test', function(){
+app.configure('staging', function() {
+	app.use(express.logger('dev'));
 	app.use(express.errorHandler());
 	app.use(express.static(path.join(__dirname, 'public')));
 	app.use(middleware.serveMaster.development());
 });
 
-app.configure('production', function(){
+app.configure('test', function() {
+	app.use(express.errorHandler());
+	app.use(express.static(path.join(__dirname, 'public')));
+	app.use(middleware.serveMaster.development());
+});
+
+app.configure('production', function() {
 	app.use(express.logger('short'));
 	app.use(express.compress());
 	app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
