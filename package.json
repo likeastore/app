@@ -23,6 +23,7 @@
     "colors": "~0.6.0-1",
     "moment": "~2.0.0",
     "connect-mongo": "~0.3.2",
+    "sinon": "~1.7.2",
     "bower": "~0.9.2",
     "oauth": "~0.9.10"
   },
@@ -33,7 +34,6 @@
     "grunt-hashres": "git://github.com/alexanderbeletsky/grunt-hashres.git",
     "mocha": "~1.10.0",
     "chai": "~1.6.1",
-    "sinon": "~1.7.2",
     "sinon-chai": "~2.4.0",
     "request": "~2.21.0"
   },
