@@ -35,6 +35,30 @@
 	content: 'a';
 }
 
+.facebook-icon:before {
+	content: 'g';
+}
+
+.dribbble-icon:before {
+	content: 'y';
+}
+
+.instagram-icon:before {
+	content: 'z';
+}
+
+.pinterest-icon:before {
+	content: 'A';
+}
+
+.bitbucket-icon:before {
+	content: 'B';
+}
+
+.vimeo-icon:before {
+	content: 'C';
+}
+
 .date-icon:before {
 	content: 'o';
 }
