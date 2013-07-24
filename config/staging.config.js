@@ -8,24 +8,24 @@ var config = {
 	// api keys
 	services: {
 		github: {
-			appId: 'dc3c7a7050dccee24ed3',
-			appSecret: 'c18dde90f5e928a39b0f0432d5125a3e0a31a23d'
+			appId: '47974c5d6fefbe07881e',
+			appSecret: 'f1008ace415b3892bd36ef97443452a39dd7c29f'
 		},
 
 		twitter: {
-			consumerKey: 'dgwuxgGb07ymueGJF0ug',
-			consumerSecret: 'eusoZYiUldYqtI2SwK9MJNbiygCWOp9lQX7i5gnpWU'
+			consumerKey: 'XDCQAahVo1EjhFqGoh5c2Q',
+			consumerSecret: 'LppQuUU5FDTRwFJRwnlhfGj3IMDDTKmVCUm1JTHkA'
 		},
 
 		facebook: {
-			appId: '394024317362081',
-			appSecret: 'bc86f2ab9afcb1227227146e5ea9ad44'
+			appId: '554634024574376',
+			appSecret: 'a8d2c5e643b67cdf80ed8b8832634b2c'
 		},
 
 		stackoverflow: {
-			clientId: '1533',
-			clientKey: 'J2wyheThU5jYFiOpGG22Eg((',
-			clientSecret: 'KOCBFY4OUP6OE7Q1xNw1wA(('
+			clientId: '1801',
+			clientKey: 'DadJ5kAh3YWlj0wv7EHqDg((',
+			clientSecret: 'L)KUpw85QEW105j43oik8g(('
 		}
 	},
 
