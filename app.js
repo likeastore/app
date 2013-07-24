@@ -42,17 +42,17 @@ app.configure('development', function() {
 	app.use(middleware.serveMaster.development());
 });
 
-app.configure('staging', function() {
-	app.use(express.logger('dev'));
+app.configure('test', function() {
 	app.use(express.errorHandler());
 	app.use(express.static(path.join(__dirname, 'public')));
 	app.use(middleware.serveMaster.development());
 });
 
-app.configure('test', function() {
-	app.use(express.errorHandler());
-	app.use(express.static(path.join(__dirname, 'public')));
-	app.use(middleware.serveMaster.development());
+app.configure('staging', function() {
+	app.use(express.logger('short'));
+	app.use(express.compress());
+	app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
+	app.use(middleware.serveMaster.production());
 });
 
 app.configure('production', function() {
