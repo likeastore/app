@@ -1,7 +1,7 @@
 var db = require('./dbConnector').db;
 
 function getAllItems(user, callback) {
-	db.items.find({ user: user }).sort({ createdDate: -1 }, function (err, items) {
+	db.items.find({ user: user }).sort({ created: -1 }, function (err, items) {
 		if (err) {
 			return callback(err);
 		}
@@ -11,7 +11,7 @@ function getAllItems(user, callback) {
 }
 
 function getItemsByType(user, type, callback) {
-	db.items.find({ user: user, type: type }).sort({ createdDate: -1 }, function (err, items) {
+	db.items.find({ user: user, type: type }).sort({ created: -1 }, function (err, items) {
 		if (err) {
 			return callback(err);
 		}
