@@ -24,8 +24,8 @@ var config = {
 
 		stackoverflow: {
 			clientId: '1801',
-			clientKey: 'DadJ5kAh3YWlj0wv7EHqDg((',
-			clientSecret: 'L)KUpw85QEW105j43oik8g(('
+			clientKey: 'L)KUpw85QEW105j43oik8g((',
+			clientSecret: 'DadJ5kAh3YWlj0wv7EHqDg(('
 		}
 	},
 
