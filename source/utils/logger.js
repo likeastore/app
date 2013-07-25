@@ -4,10 +4,12 @@ var colors = require('colors');
 var moment = require('moment');
 var logentries = require('node-logentries');
 var sinon = require('sinon');
+var config = require('../../config');
 
 var log = logentries.logger({
-	token:process.env.LOGENTRIES_TOKEN
+	token: config.logentries.token
 });
+
 log.level('info');
 
 var logger = {

@@ -33,6 +33,10 @@ var config = {
 		token: process.env.MANDRILL_TOKEN
 	},
 
+	logentries: {
+		token: process.env.LOGENTRIES_TOKEN
+	},
+
 	collector: {
 		// scheduler cycle
 		schedulerRestart: 1000,
