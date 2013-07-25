@@ -291,6 +291,15 @@
 	z-index: 5;
 }
 
+.dash-item .repo {
+	font-size: 13px;
+	font-weight: 700;
+	margin-bottom: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .dash-item .desc {
 	display: inline-block;
 	color: #555;
@@ -331,14 +340,6 @@
 	background: #ffec9e;
 }
 
-.item-info {
-	line-height: 38px;
-	margin: 0 -12px;
-	padding: 0 12px;
-	position: relative;
-	z-index: 1;
-}
-
 .item-type {
 	display: inline-block;
 	color: #f9f9f9;
@@ -369,9 +370,10 @@
 .item-date {
 	color: #bdc3c7;
 	font-size: 12px;
-	float: left;
-	margin: 0 0 0 10px;
 	text-transform: uppercase;
+	position: absolute;
+	bottom: 10px;
+	left: 20px;
 }
 
 /* item hover color transitions */

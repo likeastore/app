@@ -33,16 +33,14 @@
 			<div class="item-wrapp">
 				<a href="{{item.source}}" class="source-link" target="_blank"></a>
 				<img src="{{item.avatarUrl}}">
+				<div class="repo" ng-show="item.repo">{{item.repo}}</div>
 				<div class="desc">
 					<span linkify="item.description"></span>
 					<span ng-show="!item.description" class="empty-desc">This item has no description :(</span>
 					<div class="autor-item">by @{{item.authorName}}</div>
 				</div>
-				<div class="item-info">
-					<span class="item-date">{{item.type}} &#8226; {{item.created|date: 'longDate'}}</span>
-				</div>
-
-				<i class="font-icon item-type {{item.type}}-icon"></i>
+				<div class="item-date">{{item.type}} &#8226; {{item.created|date: 'longDate'}}</div>
+				<i class="item-type font-icon {{item.type}}-icon"></i>
 			</div>
 		</li>
 	</ul>
