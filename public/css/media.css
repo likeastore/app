@@ -113,6 +113,10 @@
 		position: relative;
 	}
 
+	.search-bar-wrap {
+		float: left;
+	}
+
 	.search-input {
 		margin: 5px;
 		padding-left: 30px;
