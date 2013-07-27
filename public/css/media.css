@@ -1,4 +1,4 @@
-@media (max-width: 1800px) and (min-width: 1100px) {
+@media (max-width: 1920px) and (min-width: 1100px) {
 	.dash-item {
 		width: 31%;
 	}
@@ -8,7 +8,7 @@
 	}
 }
 
-@media (max-width: 1800px) and (min-width: 1400px) {
+@media (max-width: 1920px) and (min-width: 1400px) {
 	.main-dashdoard {
 		margin-left: 245px;
 	}
