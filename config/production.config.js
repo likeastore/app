@@ -2,8 +2,8 @@ var config = {
 	connection: process.env.MONGO_CONNECTION,
 	options: { auto_reconnect: true },
 
-	applicationUrl: 'http://app.likeastore.com',
-	siteUrl: 'http://likeastore.com',
+	applicationUrl: 'https://app.likeastore.com',
+	siteUrl: 'https://likeastore.com',
 
 	// api keys
 	services: {
