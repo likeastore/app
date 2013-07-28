@@ -304,8 +304,13 @@
 	display: inline-block;
 	color: #555;
 	width: 75%	;
-	height: 172px;
+	height: 150px;
 	text-decoration: none;
+	overflow: hidden;
+}
+
+.dash-item .desc .desc-text {
+	max-height: 115px;
 	overflow: hidden;
 }
 
@@ -353,6 +358,10 @@
 .autor-item {
 	font-size: 12px;
 	margin: 10px 0 0;
+	width: 165px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .dash-item.twitter .autor-item {
