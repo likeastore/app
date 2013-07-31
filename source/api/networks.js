@@ -22,6 +22,11 @@ function networksService (app) {
 		returnAuthUrl
 	);
 
+	app.post('/api/networks/gist',
+		middleware.networks.github('gist'),
+		returnAuthUrl
+	);
+
 	app.post('/api/networks/stackoverflow',
 		middleware.networks.stackoverflow(),
 		returnAuthUrl
@@ -36,6 +41,12 @@ function networksService (app) {
 	app.get('/api/networks/github/callback',
 		middleware.access.guest(),
 		middleware.networks.githubCallback(),
+		registerNetwork,
+		redirectToApp);
+
+	app.get('/api/networks/gist/callback',
+		middleware.access.guest(),
+		middleware.networks.githubCallback('gist'),
 		registerNetwork,
 		redirectToApp);
 

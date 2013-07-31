@@ -72,9 +72,10 @@ function twitterCallback () {
 	};
 }
 
-function github() {
+function github(type) {
+	type = type || 'github';
 	return function (req, res, next) {
-		var callbackUrl = config.applicationUrl + '/api/networks/github/callback';
+		var callbackUrl = config.applicationUrl + '/api/networks/' + type + '/callback';
 		var oauth = new OAuth2(config.services.github.appId,
 							config.services.github.appSecret,
 							'https://github.com/login');
@@ -85,8 +86,9 @@ function github() {
 	};
 }
 
-function githubCallback() {
+function githubCallback(type) {
 	return function (req, res, next) {
+		type = type || 'github';
 		var oauth = new OAuth2(config.services.github.appId,
 							config.services.github.appSecret,
 							'https://github.com/login');
@@ -105,7 +107,7 @@ function githubCallback() {
 				accessToken: accessToken,
 				accessTokenSecret: null,
 				user: user,
-				service: 'github'
+				service: type
 			};
 
 			next();
