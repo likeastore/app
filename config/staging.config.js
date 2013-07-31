@@ -30,7 +30,7 @@ var config = {
 	},
 
 	mandrill: {
-		token: '2kXX0stV1Hf56y9DYZts3A'
+		token: null
 	},
 
 	logentries: {
