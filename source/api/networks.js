@@ -57,7 +57,7 @@ function networksService (app) {
 		redirectToApp);
 
 	function registerNetwork(req, res, next) {
-		networks.save(req.network, next);
+		networks.createOrUpdate(req.network, next);
 	}
 
 	function getAllNetworks(req, res) {

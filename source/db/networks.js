@@ -3,24 +3,12 @@ var _ = require('underscore');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('./dbConnector').db;
 
-exports.save = function (network, callback) {
-	db.networks.findOne({ user: network.user, service: network.service }, function (err, net) {
-		if (err) {
-			return callback(err);
-		}
-
-		if (net) {
-			return callback('This network is already associated with this user.');
-		}
-
-		db.networks.save(network, function (err, saved) {
-			if (err || !saved) {
-				return callback(err);
-			}
-
-			callback(null, saved);
-		});
-	});
+exports.createOrUpdate = function (network, callback) {
+	db.networks.update(
+		{user: network.user, service: network.service},
+		{$set: network, $unset: {disabled: ''}},
+		{safe: true, upsert: true, 'new': true},
+		callback);
 };
 
 exports.removeNetwork = function (user, service, callback) {
@@ -35,7 +23,7 @@ exports.removeNetwork = function (user, service, callback) {
 
 exports.findNetworks = function (user, callback) {
 	var nets = [];
-	var fieldsToPick = ['service', 'lastExecution'];
+	var fieldsToPick = ['service', 'lastExecution', 'disabled'];
 
 	db.networks.find({ user: user }).forEach(function (err, doc) {
 		if (err) {
@@ -50,4 +38,8 @@ exports.findNetworks = function (user, callback) {
 		network.id = doc._id.toString();
 		nets.push(network);
 	});
+};
+
+exports.enable = function (id, callback) {
+	db.networks.update({_id: new ObjectId(id)}, { disabled: '' }, callback);
 };
