@@ -1,5 +1,5 @@
 var config = {
-	connection: 'mongodb://localhost:27017/likeastoredb',
+	connection: 'mongodb://localhost:27017/likeastoredbtest',
 	options: { auto_reconnect: true },
 
 	applicationUrl: 'http://localhost:3001',
@@ -30,7 +30,11 @@ var config = {
 	},
 
 	mandrill: {
-		token: '2kXX0stV1Hf56y9DYZts3A'
+		token: null
+	},
+
+	logentries: {
+		token: null
 	},
 
 	collector: {

@@ -104,6 +104,31 @@ describe('networks.spec.js', function () {
 				});
 			});
 
+			describe('for gist', function () {
+				beforeEach(function () {
+					url += '/gist';
+				});
+
+				describe('post', function () {
+					beforeEach(function (done) {
+						request.post({url: url, headers: headers, json: true}, function (err, resp, body) {
+							error = err;
+							response = resp;
+							results = body;
+							done();
+						});
+					});
+
+					it ('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it ('should return auth url', function () {
+						expect(results.authUrl).to.be.ok;
+					});
+				});
+			});
+
 			describe('for stackoverflow', function () {
 				beforeEach(function () {
 					url += '/stackoverflow';
@@ -151,5 +176,4 @@ describe('networks.spec.js', function () {
 			});
 		});
 	});
-
 });

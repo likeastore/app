@@ -2,6 +2,7 @@ var OAuth = require('oauth').OAuth;
 var OAuth2 = require('oauth').OAuth2;
 var config = require('../../config');
 var users = require('../db/users');
+var networks = require('../db/networks');
 var zlib = require('zlib');
 
 function twitter() {

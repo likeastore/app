@@ -15,7 +15,7 @@ function createTestUser (callback) {
 	var apiToken = crypto.createHash('sha1').update(email + ';' + password).digest('hex');
 
 	var user = {email: email, password: password, apiToken: apiToken};
-	db.users.save(user, callback);
+	db.users.save(user, {safe: true}, callback);
 }
 
 function createTestUserAndLoginToApi (callback) {
@@ -53,7 +53,7 @@ function createTestItems (user, size, callback) {
 		};
 	});
 
-	db.items.insert(items, callback);
+	db.items.insert(items, {safe: true}, callback);
 }
 
 function createTestItemsOfType(user, type, size, callback) {
@@ -72,21 +72,25 @@ function createTestItemsOfType(user, type, size, callback) {
 		};
 	});
 
-	db.items.insert(items, callback);
+	db.items.insert(items, {safe: true}, callback);
 }
 
-function createTestNetworks(user, callback) {
+function createTestNetworks(user, props, callback) {
+	if (typeof props === 'function') {
+		callback = props;
+		props = {};
+	}
+
 	var range = _.range(3);
 	var networks = range.map(function (index) {
-		return {
-			userId: user._id,
+		return _.extend({
 			user: user.email,
 			service: 'github',
 			accessToken: 'test-token'
-		};
+		}, props);
 	});
 
-	db.networks.insert(networks, callback);
+	db.networks.insert(networks, {safe: true}, callback);
 }
 
 function getUserFromDb(user, callback) {
