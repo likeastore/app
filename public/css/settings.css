@@ -181,7 +181,22 @@
 	text-transform: uppercase;
 	position: absolute;
 	top: 19px;
+}
+
+.github .expired-token-notifier {
 	left: 75px;
+}
+
+.gist .expired-token-notifier {
+	left: 54px;
+}
+
+.twitter .expired-token-notifier {
+	left: 81px;
+}
+
+.stackoverflow .expired-token-notifier {
+	left: 138px;
 }
 
 /* "NEW" corner ribbon */
