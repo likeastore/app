@@ -156,8 +156,36 @@
 	background: #48C893;
 }
 
+.network-error-stripe {
+	color: #e74c3c;
+	font-size: 14px;
+	margin: 20px 0 -20px;
+}
+
+.network-error-stripe .icon {
+	font-size: 22px;
+	margin-right: 2px;
+}
+
+.network-error-stripe .message {
+	line-height: 27px;
+	vertical-align: top;
+}
+
+.expired-token-notifier {
+	background: #e74c3c;
+	color: #fff;
+	padding: 2px 7px 1px;
+	font-size: 9px;
+	border-radius: 1px;
+	text-transform: uppercase;
+	position: absolute;
+	top: 19px;
+	left: 75px;
+}
+
 /* "NEW" corner ribbon */
-.orange-ribbon-wrap {
+.new-ribbon-wrap {
 	width: 45px;
 	height: 45px;
 	overflow: hidden;
@@ -166,8 +194,8 @@
 	left: -3px;
 }
 
-.orange-ribbon {
-	background: #ff3858;
+.new-ribbon {
+	background: #48C893;
 	color: #fff;
 	font: 700 8px 'Lato', 'Open Sans', Arial, sans-serif;
 	padding: 3px 0;
@@ -184,19 +212,19 @@
 	transform: rotate(-45deg);
 }
 
-.orange-ribbon:before, .orange-ribbon:after {
+.new-ribbon:before, .new-ribbon:after {
 	content: '';
-	border-top: 2px solid #e094a4;
+	border-top: 2px solid #2ba874;
 	border-left: 2px solid transparent;
 	border-right: 2px solid transparent;
 	position: absolute;
 	bottom: -2px;
 }
 
-.orange-ribbon:before {
+.new-ribbon:before {
 	left: 0;
 }
 
-.orange-ribbon:after {
+.new-ribbon:after {
 	right: 0;
 }

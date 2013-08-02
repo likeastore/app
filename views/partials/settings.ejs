@@ -4,6 +4,11 @@
 		<div class="title"><i class="font-icon settings-icon pref"></i>{{title}}</div>
 		<div class="info-item">{{user.displayName || user.name}} &middot; {{user.email}}</div>
 		<div class="info-item date">*registered on {{user.registered|date: 'fullDate'}}</div>
+
+		<div class="network-error-stripe" ng-show="user.warning">
+			<i data-icon="E" class="icon"></i>
+			<span class="message">Our robot reports the issue with one of your networks. Please help him by simply re-enabling the network.</span>
+		</div>
 	</div>
 
 	<ul class="networks-wrap">
@@ -18,7 +23,7 @@
 			<div toggle-switcher="github" model="networks"></div>
 		</li>
 		<li class="network">
-			<div class="orange-ribbon-wrap"><div class="orange-ribbon">NEW</div></div>
+			<div class="new-ribbon-wrap"><div class="new-ribbon">NEW</div></div>
 			<div class="title">Gist</div>
 			<div class="desc">Sync all gists that you've starred.</div>
 			<div toggle-switcher="gist" model="networks"></div>

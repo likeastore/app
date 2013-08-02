@@ -42,8 +42,14 @@ define(function (require) {
 				function listenToNetworks (value) {
 					if (value) {
 						angular.forEach(value, function (row, i) {
-							if (service === row.service) {
+							if (!row.disabled && service === row.service) {
 								elem.addClass('on');
+							}
+
+							if (row.disabled && service === row.service) {
+								var parent = elem.parent();
+								parent.addClass('disabled');
+								parent.append('<div class="expired-token-notifier">Temporary disabled</div>');
 							}
 						});
 					}
