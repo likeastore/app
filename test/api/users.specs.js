@@ -59,6 +59,30 @@ describe('users.spec.js', function () {
 				expect(body.email).to.equal(user.email);
 				expect(body.apiToken).to.equal(user.apiToken);
 			});
+
+			it ('should have no warnings', function () {
+				expect(body.warning).to.not.be.ok;
+			});
+
+			describe('when there is disabled network', function () {
+				beforeEach(function (done) {
+					testUtils.createTestNetworks(user, {disabled: true}, function (err) {
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done();
+					});
+				});
+
+				it ('should user contain warning flag', function () {
+					expect(body.warning).to.be.true;
+				});
+			});
 		});
 	});
 });
