@@ -210,7 +210,7 @@
 }
 
 .new-ribbon {
-	background: #48C893;
+	background: #f90;
 	color: #fff;
 	font: 700 8px 'Lato', 'Open Sans', Arial, sans-serif;
 	padding: 3px 0;
@@ -229,7 +229,7 @@
 
 .new-ribbon:before, .new-ribbon:after {
 	content: '';
-	border-top: 2px solid #2ba874;
+	border-top: 2px solid #e67e22;
 	border-left: 2px solid transparent;
 	border-right: 2px solid transparent;
 	position: absolute;
