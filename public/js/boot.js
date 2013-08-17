@@ -61,5 +61,4 @@ define(function (require) {
 	};
 
 	return boot;
-
 });
