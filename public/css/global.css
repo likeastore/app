@@ -78,12 +78,12 @@ a:hover {
 }
 
 .empty-results .inbox-icon {
-	background: url(../img/inbox@2x.png) center center no-repeat;
+	background: url(../img/inbox.png) center center no-repeat;
 	background-size: 90px;
 }
 
 .empty-results .annoyed-icon {
-	background: url(../img/no-results@2x.png) center center no-repeat;
+	background: url(../img/no-results.png) center center no-repeat;
 	background-size: 90px;
 }
 
