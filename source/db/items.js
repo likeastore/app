@@ -31,7 +31,7 @@ function getItemsByQuery (user, query, callback) {
 
 		var items = [];
 		doc.results.forEach(function (row, i) {
-			if (row.user === user.email) {
+			if (row.obj.user === user) {
 				items.push(row.obj);
 			}
 		});

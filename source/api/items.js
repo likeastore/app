@@ -28,6 +28,7 @@ function itemsService (app) {
 
 	function getItemsByType (req, res, next) {
 		var type = req.params.type;
+
 		items.getItemsByType(req.user, type, function (err, items) {
 			if (err) {
 				return next({message: 'failed to get items for user by type', user: req.user, type: type, error: err, status: 500});
