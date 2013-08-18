@@ -12,8 +12,8 @@ function itemsService (app) {
 		getItemsByType);
 
 	// (!) early alpha of full-text search
-	// e.g. POST /api/items/search?text={your query text goes here}
-	app.post('/api/items/search',
+	// e.g. GET /api/items/search?text={your query text goes here}
+	app.get('/api/items/search',
 		getItemsByQuery);
 
 	function getItems (req, res, next) {
