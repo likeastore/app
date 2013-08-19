@@ -8,13 +8,13 @@ function itemsService (app) {
 		getItems);
 
 
-	app.get('/api/items/:type',
-		getItemsByType);
-
 	// (!) early alpha of full-text search
 	// e.g. GET /api/items/search?text={your query text goes here}
 	app.get('/api/items/search',
 		getItemsByQuery);
+
+	app.get('/api/items/:type',
+		getItemsByType);
 
 	function getItems (req, res, next) {
 		items.getAllItems(req.user, function (err, items) {
