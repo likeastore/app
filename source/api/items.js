@@ -7,7 +7,6 @@ function itemsService (app) {
 	app.get('/api/items',
 		getItems);
 
-
 	// (!) early alpha of full-text search
 	// e.g. GET /api/items/search?text={your query text goes here}
 	app.get('/api/items/search',
