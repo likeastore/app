@@ -12,7 +12,7 @@ function facebook() {
 							config.services.facebook.appSecret,
 							'https://graph.facebook.com');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'user_likes', state: req.user });
 		req.authUrl = authorizeUrl;
 		next();
 	};

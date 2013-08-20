@@ -10,6 +10,7 @@ define(function (require) {
 	// items
 	controllers.controller('dashboardController', require('./dashboardController'));
 	controllers.controller('githubController', require('./githubController'));
+	controllers.controller('facebookController', require('./facebookController'));
 	controllers.controller('twitterController', require('./twitterController'));
 	controllers.controller('stackoverflowController', require('./stackoverflowController'));
 
