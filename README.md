@@ -38,6 +38,10 @@ Run application (make sure your mongod is running),
 $ node app.js
 ```
 
+## Working
+
+Please keep in mind that all current work commits are pushed to **development** branch.
+
 ## Testing
 
 To run full test suite,
