@@ -246,6 +246,7 @@
 	background-color: #232529;
 	background-color: rgba(0,0,0,.0);
 	outline: none;
+	text-transform: none;
 }
 
 .hover-background {
@@ -265,7 +266,11 @@
 	width: 100%;
 }
 
-.search-input::-webkit-input-placeholder { /* WebKit browsers */
+.search-input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+.search-input::-webkit-input-placeholder {
 	color: #fff;
 }
 
@@ -277,7 +282,7 @@
 	color: #fff;
 }
 
-.search-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+.search-input:-ms-input-placeholder {
 	color: #fff;
 }
 
