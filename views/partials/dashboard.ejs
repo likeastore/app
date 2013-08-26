@@ -1,10 +1,6 @@
 <!-- navigation -->
 <nav class="cell dashboard-nav {{title|lowercase}}" sticky-at="50">
-	<div class="search-bar-wrap">
-		<i data-icon="i" class="search-icon"></i>
-		<input type="text" class="search-input" name="search" placeholder="Search" ng-model="query" ng-change="searching(query);">
-		<div class="hover-background"></div>
-	</div>
+	<div class="search-bar-wrap" text-search="query"></div>
 
 	<ul class="networks-menu">
 		<li>
@@ -33,7 +29,7 @@
 <!-- dashboard -->
 <section class="main-dashdoard {{title|lowercase}}">
 	<ul class="items-wrap">
-		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items|filter:query|limitTo:limit">
+		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items|limitTo: limit">
 			<div class="item-wrapp">
 				<a href="{{item.source}}" class="source-link" target="_blank"></a>
 				<img src="{{item.avatarUrl}}">
@@ -53,12 +49,12 @@
 		<div class="show-more" ng-show="items.length > limit" ng-click="increaseLimit()">Show more</div>
 	</div>
 
-	<div class="empty-results" ng-show="items.length > 0 && search && search.length == 0">
+	<div class="empty-results" ng-show="!items.length && search">
 		<div class="annoyed-icon big-icon"></div>
 		<h2>Ooops.. no matching search results!</h2>
 	</div>
 
-	<div class="empty-results" ng-show="loaded && !items.length">
+	<div class="empty-results" ng-show="loaded && !items.length && !search">
 		<div class="inbox-icon big-icon"></div>
 		<h2>You don't own any items to display yet..</h2>
 		<a href="/settings" class="block settings-button">Go to settings</a>

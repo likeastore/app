@@ -3,7 +3,7 @@ define(function (require) {
 
 	var config = require('config').dashboard;
 
-	function GithubController ($scope, $filter, appLoader, api) {
+	function GithubController ($scope, appLoader, api) {
 		appLoader.loading();
 
 		$scope.limit = config.limit;
@@ -15,10 +15,6 @@ define(function (require) {
 		$scope.items = api.query({ resource: 'items', target: 'github' }, function (res) {
 			appLoader.ready();
 		});
-
-		$scope.searching = function (query) {
-			$scope.search = $filter('filter')($scope.items, query);
-		};
 	}
 
 	return GithubController;
