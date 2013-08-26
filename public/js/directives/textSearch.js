@@ -6,10 +6,13 @@ define(function () {
 	function TextSearch ($timeout, $window, api) {
 		return {
 			restrict: 'A',
+			replace: true,
 			template: '\
-				<i data-icon="i" class="search-icon"></i>\
-				<input type="text" class="search-input" name="search" placeholder="Search" ng-model="query">\
-				<div class="hover-background"></div>\
+				<div class="search-bar-wrap">\
+					<i data-icon="i" class="search-icon"></i>\
+					<input type="text" class="search-input" name="search" placeholder="Search" ng-model="query">\
+					<div class="hover-background"></div>\
+				</div>\
 			',
 			link: function (scope, elem, attrs) {
 				var delay = attrs.delay || 1000;
