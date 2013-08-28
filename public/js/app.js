@@ -23,6 +23,7 @@ define(function (require) {
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
+				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.otherwise({ redirectTo: '/' });
 

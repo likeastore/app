@@ -3,7 +3,7 @@ define(function () {
 
 	var angular = require('angular');
 
-	function TextSearch ($timeout, $window, api) {
+	function TextSearch ($timeout, $window, appLoader, api) {
 		return {
 			restrict: 'A',
 			replace: true,
@@ -30,8 +30,13 @@ define(function () {
 						if (value) {
 							$window.scrollTo(0,0);
 							makeItemsBackupOnce();
-							scope.items = api.query({ resource: 'search', text: value });
 							scope.search = true;
+
+							appLoader.loading();
+
+							scope.items = api.query({ resource: 'search', text: value }, function (res) {
+								appLoader.ready();
+							});
 						} else if (backup) {
 							scope.items = scope.backup;
 							scope.search = false;

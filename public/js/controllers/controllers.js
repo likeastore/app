@@ -14,5 +14,8 @@ define(function (require) {
 	controllers.controller('twitterController', require('./twitterController'));
 	controllers.controller('stackoverflowController', require('./stackoverflowController'));
 
+	// search
+	controllers.controller('searchController', require('./searchController'));
+
 	return controllers;
 });

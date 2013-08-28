@@ -7,7 +7,7 @@ db.items.ensureIndex(
 
 function fullTextItemSearch (user, query, callback) {
 	if (!query) {
-		return callback({ message: 'Text query is not specified', status: 500 });
+		return callback(null, []);
 	}
 
 	db.items.runCommand('text', { search: query.toString() }, function (err, doc) {

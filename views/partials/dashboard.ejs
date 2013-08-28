@@ -49,7 +49,7 @@
 		<div class="show-more" ng-show="items.length > limit" ng-click="increaseLimit()">Show more</div>
 	</div>
 
-	<div class="empty-results" ng-show="!items.length && search">
+	<div class="empty-results" ng-show="loaded && !items.length && search">
 		<div class="annoyed-icon big-icon"></div>
 		<h2>Ooops.. no matching search results!</h2>
 	</div>
