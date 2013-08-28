@@ -8,11 +8,11 @@ define(function () {
 			restrict: 'A',
 			replace: true,
 			template: '\
-				<div class="search-bar-wrap">\
+				<form action="/search" class="search-bar-wrap">\
 					<i data-icon="i" class="search-icon"></i>\
-					<input type="text" class="search-input" name="search" placeholder="Search" ng-model="query">\
+					<input type="text" class="search-input" name="text" placeholder="Search" ng-model="query">\
 					<div class="hover-background"></div>\
-				</div>\
+				</form>\
 			',
 			link: function (scope, elem, attrs) {
 				var delay = attrs.delay || 1000;
@@ -29,9 +29,9 @@ define(function () {
 					timer = $timeout(function () {
 						if (value) {
 							$window.scrollTo(0,0);
-							makeItemsBackupOnce();
-							scope.search = true;
 
+							scope.search = true;
+							makeItemsBackupOnce();
 							appLoader.loading();
 
 							scope.items = api.query({ resource: 'search', text: value }, function (res) {
