@@ -3,12 +3,12 @@ define(function () {
 
 	var angular = require('angular');
 
-	function TextSearch ($timeout, $window, appLoader, api) {
+	function TextSearch ($timeout, $window, $location, appLoader, api) {
 		return {
 			restrict: 'A',
 			replace: true,
 			template: '\
-				<form action="/search" class="search-bar-wrap">\
+				<form ng-submit="goToSearch()" class="search-bar-wrap">\
 					<i data-icon="i" class="search-icon"></i>\
 					<input type="text" class="search-input" name="text" placeholder="Search" ng-model="query">\
 					<div class="hover-background"></div>\
@@ -18,6 +18,10 @@ define(function () {
 				var delay = attrs.delay || 1000;
 				var timer = false;
 				var backup;
+
+				scope.goToSearch = function () {
+					$location.url('/search?text=' + scope.query);
+				};
 
 				scope.$watch('query', searching);
 
