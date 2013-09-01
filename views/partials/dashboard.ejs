@@ -29,7 +29,7 @@
 <!-- dashboard -->
 <section class="main-dashdoard {{title|lowercase}}">
 	<ul class="items-wrap">
-		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items|limitTo: limit">
+		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items">
 			<div class="item-wrapp">
 				<a href="{{item.source}}" class="source-link" target="_blank"></a>
 				<img src="{{item.avatarUrl}}">
@@ -45,9 +45,7 @@
 		</li>
 	</ul>
 
-	<div ng-hide="search.length < limit">
-		<div class="show-more" ng-show="items.length > limit" ng-click="increaseLimit()">Show more</div>
-	</div>
+	<div class="show-more" ng-click="showMore()">Show more</div>
 
 	<div class="empty-results" ng-show="loaded && !items.length && search">
 		<div class="annoyed-icon big-icon"></div>

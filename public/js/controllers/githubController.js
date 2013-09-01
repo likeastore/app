@@ -6,13 +6,22 @@ define(function (require) {
 	function GithubController ($scope, appLoader, api) {
 		appLoader.loading();
 
-		$scope.limit = config.limit;
-		$scope.increaseLimit = function () {
-			$scope.limit += config.limit;
+		$scope.page = 1;
+		$scope.items = [];
+
+		$scope.showMore = function () {
+			appLoader.loading();
+			$scope.page += 1;
+			api.query({ resource: 'items', target: 'github', page: $scope.page }, function (res) {
+				$scope.items = $scope.items.concat(res);
+				appLoader.ready();
+			});
+
 		};
 
 		$scope.title = 'Github';
-		$scope.items = api.query({ resource: 'items', target: 'github' }, function (res) {
+		api.query({ resource: 'items', target: 'github', page: $scope.page }, function (res) {
+			$scope.items = res;
 			appLoader.ready();
 		});
 	}
