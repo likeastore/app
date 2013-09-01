@@ -11,7 +11,7 @@ function itemsService (app) {
 		getItemsByType);
 
 	function getItems (req, res, next) {
-		items.getAllItems(req.user, function (err, items) {
+		items.getAllItems(req.user, req.query.page, function (err, items) {
 			if (err) {
 				return next({message: 'failed to get items for user', user: req.user, error: err, status: 500});
 			}
@@ -22,8 +22,7 @@ function itemsService (app) {
 
 	function getItemsByType (req, res, next) {
 		var type = req.params.type;
-
-		items.getItemsByType(req.user, type, function (err, items) {
+		items.getItemsByType(req.user, type, req.query.page, function (err, items) {
 			if (err) {
 				return next({message: 'failed to get items for user by type', user: req.user, type: type, error: err, status: 500});
 			}
