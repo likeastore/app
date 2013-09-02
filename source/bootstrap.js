@@ -1,10 +1,9 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 var exec = require('child_process').exec;
 var logger = require('./utils/logger');
 
 function bootstrapApp(callback) {
-	if (process.env.NODE_ENV === 'development') {
+	var env = process.env.NODE_ENV || 'development';
+	if (env === 'development') {
 		return callback (null);
 	}
 
