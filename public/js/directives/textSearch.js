@@ -38,7 +38,9 @@ define(function () {
 							makeItemsBackupOnce();
 							appLoader.loading();
 
-							scope.items = api.query({ resource: 'search', text: value }, function (res) {
+							api.query({ resource: 'search', text: value }, function (res) {
+								scope.items = res.data;
+								scope.nextPage = res.nextPage;
 								appLoader.ready();
 							});
 						} else if (backup) {
