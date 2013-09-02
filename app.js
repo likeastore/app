@@ -11,6 +11,7 @@ var applyAuthentication = require('./source/utils/applyAuthentication');
 var applyErrorLogging = require('./source/utils/applyErrorLogging');
 var config = require('./config');
 var logger = require('./source/utils/logger');
+var bootstrap = require('./source/bootstrap');
 
 var oneMonth = 2678400000;
 
@@ -68,7 +69,11 @@ require('./source/router')(app);
 applyAuthentication(app, ['/api']);
 applyErrorLogging(app);
 
-http.createServer(app).listen(app.get('port'), function() {
-	var env = process.env.NODE_ENV || 'development';
-	logger.info('Likeastore app listening on port ' + app.get('port') + ' ' + env + ' mongo: ' + config.connection);
-});
+bootstrap.app(startApplicationServer);
+
+function startApplicationServer () {
+	http.createServer(app).listen(app.get('port'), function() {
+		var env = process.env.NODE_ENV || 'development';
+		logger.info('Likeastore app listening on port ' + app.get('port') + ' ' + env + ' mongo: ' + config.connection);
+	});
+}
