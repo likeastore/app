@@ -14,7 +14,7 @@ function getAllItems (user, page, callback) {
 			return callback(err);
 		}
 
-		callback(null, items);
+		callback(null, {data: items, nextPage: items.length === pageSize});
 	}
 }
 
@@ -31,7 +31,7 @@ function getItemsByType (user, type, page, callback) {
 			return callback(err);
 		}
 
-		callback(null, items);
+		callback(null, {data: items, nextPage: items.length === pageSize});
 	}
 }
 

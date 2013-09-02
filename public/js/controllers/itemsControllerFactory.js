@@ -2,32 +2,19 @@ define(function (require) {
 	'use strict';
 
 	function itemsControllerFactory (title, target) {
-
 		var config = require('config').dashboard;
 
 		function ItemsController($scope, appLoader, api) {
-			appLoader.loading();
-
+			$scope.title = title;
 			$scope.page = 1;
-			$scope.haveMore = true;
 			$scope.items = [];
 
+			loadPage();
+
 			$scope.showMore = function () {
-				appLoader.loading();
 				$scope.page += 1;
-				api.query(createQuery(), function (res) {
-					$scope.items = $scope.items.concat(res);
-					$scope.haveMore = res.length === config.limit;
-					appLoader.ready();
-				});
-
+				loadPage();
 			};
-
-			$scope.title = title;
-			api.query(createQuery(), function (res) {
-				$scope.items = res;
-				appLoader.ready();
-			});
 
 			function createQuery () {
 				var query = { resource: 'items', page: $scope.page };
@@ -36,6 +23,17 @@ define(function (require) {
 				}
 
 				return query;
+			}
+
+			function loadPage () {
+				appLoader.loading();
+				api.query(createQuery(), handleResults);
+			}
+
+			function handleResults (res) {
+				$scope.items = $scope.items.concat(res.data);
+				$scope.haveMore = res.nextPage;
+				appLoader.ready();
 			}
 		}
 

@@ -6,12 +6,12 @@ define(function (require) {
 	function SearchController ($scope, $routeParams, appLoader, api) {
 		appLoader.loading();
 
-		$scope.haveMore = false;
-
 		$scope.search = true;
 		$scope.title = 'Search';
 
-		$scope.items = api.query({ resource: 'search', text: $routeParams.text }, function (res) {
+		api.query({ resource: 'search', text: $routeParams.text }, function (res) {
+			$scope.items = res.data;
+			$scope.haveMore = res.nextPage;
 			appLoader.ready();
 		});
 	}
