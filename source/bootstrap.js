@@ -1,7 +1,13 @@
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 var exec = require('child_process').exec;
 var logger = require('./utils/logger');
 
 function bootstrapApp(callback) {
+	if (process.env.NODE_ENV === 'development') {
+		return callback (null);
+	}
+
 	logger.info('bootrapping application...');
 	logger.info('running grunt build...');
 
@@ -12,7 +18,7 @@ function bootstrapApp(callback) {
 		}
 
 		logger.info('build js and css sources done.');
-		callback (null);
+		return callback (null);
 	});
 }
 
