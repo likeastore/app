@@ -6,10 +6,7 @@ define(function (require) {
 	function SearchController ($scope, $routeParams, appLoader, api) {
 		appLoader.loading();
 
-		$scope.limit = config.limit;
-		$scope.increaseLimit = function () {
-			$scope.limit += config.limit;
-		};
+		$scope.haveMore = false;
 
 		$scope.search = true;
 		$scope.title = 'Search';

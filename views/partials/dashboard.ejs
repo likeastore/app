@@ -45,7 +45,9 @@
 		</li>
 	</ul>
 
-	<div class="show-more" ng-click="showMore()">Show more</div>
+	<div ng-show="haveMore">
+		<div class="show-more" ng-click="showMore()">Show more</div>
+	</div>
 
 	<div class="empty-results" ng-show="loaded && !items.length && search">
 		<div class="annoyed-icon big-icon"></div>
