@@ -17,7 +17,7 @@ define(function () {
 			link: function (scope, elem, attrs) {
 				var delay = attrs.delay || 1000;
 				var timer = false;
-				var backup;
+				var backup, pages;
 
 				scope.goToSearch = function () {
 					$location.url('/search?text=' + scope.query);
@@ -45,6 +45,7 @@ define(function () {
 							});
 						} else if (backup) {
 							scope.items = scope.backup;
+							scope.nextPage = pages;
 							scope.search = false;
 						}
 					}, delay);
@@ -53,6 +54,7 @@ define(function () {
 				function makeItemsBackupOnce () {
 					if (!backup) {
 						scope.backup = angular.copy(scope.items);
+						pages = scope.nextPage;
 						backup = true;
 					}
 				}
