@@ -78,7 +78,7 @@ module.exports = function(grunt) {
 					'public/build/main.js',
 					'public/build/main.css'
 				],
-				dest: { src: 'tools/client/index.js', out: 'source/client/index.js' }
+				dest: { src: 'tools/client/index.js', out: 'client/index.js' }
 			}
 		}
 	});

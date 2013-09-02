@@ -5,7 +5,7 @@ function bootstrapApp(callback) {
 	logger.info('bootrapping application...');
 	logger.info('running grunt build...');
 
-	exec('grunt build', function (err) {
+	exec('./node_modules/grunt-cli/bin/grunt build', function (err) {
 		if (err) {
 			logger.error({message: 'failed to run grunt build.', err: err});
 			process.exit(1);
