@@ -32,7 +32,7 @@ define(function (require) {
 
 			function handleResults (res) {
 				$scope.items = $scope.items.concat(res.data);
-				$scope.haveMore = res.nextPage;
+				$scope.nextPage = res.nextPage;
 				appLoader.ready();
 			}
 		}

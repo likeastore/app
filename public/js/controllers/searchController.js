@@ -8,10 +8,11 @@ define(function (require) {
 
 		$scope.search = true;
 		$scope.title = 'Search';
+		$scope.items = [];
 
 		api.query({ resource: 'search', text: $routeParams.text }, function (res) {
 			$scope.items = res.data;
-			$scope.haveMore = res.nextPage;
+			$scope.nextPage = res.nextPage;
 			appLoader.ready();
 		});
 	}
