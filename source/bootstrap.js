@@ -4,9 +4,9 @@ var exec = require('child_process').exec;
 var logger = require('./utils/logger');
 
 function bootstrapApp(callback) {
-	// if (process.env.NODE_ENV === 'development') {
-	// 	return callback (null);
-	// }
+	if (process.env.NODE_ENV === 'development') {
+		return callback (null);
+	}
 
 	logger.info('bootrapping application...');
 	logger.info('running grunt build...');
