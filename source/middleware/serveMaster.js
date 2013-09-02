@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var client = require('./../../client');
+var client = require('./../../public/build');
 
 function skipMaster (req) {
 	var bypass = ['/api', '/components', '/css', '/js', '/build', '/auth', '/connect', '/utils'];
