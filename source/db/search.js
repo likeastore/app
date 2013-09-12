@@ -26,7 +26,7 @@ function fullTextItemSearch (user, query, callback) {
 			}
 		});
 
-		callback(null, {data: items, haveMore: false});
+		callback(null, { data: items, nextPage: false });
 	});
 }
 

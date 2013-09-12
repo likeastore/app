@@ -11,7 +11,7 @@ define(function (require) {
 		$scope.items = [];
 
 		api.query({ resource: 'search', text: $routeParams.text }, function (res) {
-			$scope.items = res.data;
+			$scope.items = $scope.items.concat(res.data);
 			$scope.nextPage = res.nextPage;
 			appLoader.ready();
 		});
