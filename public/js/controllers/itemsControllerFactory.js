@@ -27,7 +27,7 @@ define(function (require) {
 
 			function loadPage () {
 				appLoader.loading();
-				api.query(createQuery(), handleResults);
+				api.get(createQuery(), handleResults);
 			}
 
 			function handleResults (res) {
