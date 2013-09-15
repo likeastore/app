@@ -23,7 +23,6 @@
 .userinfo-wrap {
 	margin-top: 20px;
 	padding: 15px 0 0;
-	color: #555;
 }
 
 .info-item {
@@ -33,7 +32,7 @@
 }
 
 .info-item.date {
-	color: #aaa;
+	color: #8592a2;
 	font-size: 12px;
 	text-transform: none;
 }
@@ -44,19 +43,20 @@
 
 .networks-wrap .network {
 	background: #fff;
+	border-bottom: 1px solid #e2e2e2;
 	margin-bottom: 15px;
 	padding: 15px;
 	position: relative;
 }
 
 .title {
-	color: #555;
+	color: #333;
 	font: 700 18px 'Lato', 'Open Sans', Arial, sans-serif;
 	margin-bottom: 30px;
 }
 
 .network .desc {
-	color: #999;
+	color: #8592a2;
 	font-size: 13px;
 	text-transform: lowercase;
 }
@@ -157,7 +157,7 @@
 }
 
 .network-error-stripe {
-	color: #e74c3c;
+	color: #e76049;
 	font-size: 14px;
 	margin: 20px 0 -20px;
 }
@@ -173,7 +173,7 @@
 }
 
 .expired-token-notifier {
-	background: #e74c3c;
+	background: #e76049;
 	color: #fff;
 	padding: 2px 7px 1px;
 	font-size: 9px;

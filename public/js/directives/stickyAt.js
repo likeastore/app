@@ -5,6 +5,7 @@ define(function (require) {
 		return {
 			restrict: 'A',
 			link: function (scope, elem, attrs) {
+				console.dir(elem);
 				function scrollTop () {
 					return ($window.pageYOffset !== undefined) ? $window.pageYOffset : (document.documentElement || document.body).scrollTop;
 				}
