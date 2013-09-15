@@ -38,7 +38,7 @@
 	display: inline-block;
 	color: #fff;
 	font-size: 18px;
-	line-height: 26px;
+	line-height: 1;
 	vertical-align: top;
 	margin-right: 10px;
 }
@@ -47,9 +47,9 @@
 	display: block;
 	color: #fff;
 	font-size: 12px;
-	line-height: 26px;
+	line-height: 20px;
 	vertical-align: top;
-	padding: 0 10px;
+	padding: 3px 10px;
 	text-transform: uppercase;
 	text-decoration: none;
 	-webkit-transition: all .3s ease-in-out;
