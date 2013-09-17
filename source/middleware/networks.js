@@ -167,7 +167,7 @@ function stackoverflow() {
 							'https://stackexchange.com',
 							'/oauth');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user, scope: 'no_expiry' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
