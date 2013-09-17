@@ -368,7 +368,7 @@
 
 .loading:before {
 	display: block;
-	background: #8592a2;
+	background: #bdc3c7;
 	content: '';
 	position: absolute;
 	left: -4px;
@@ -410,7 +410,7 @@
 	height: 0;
 	border-top: 6px solid transparent;
 	border-bottom: 6px solid transparent;
-	border-left: 8px solid #8592a2;
+	border-left: 8px solid #bdc3c7;
 	-webkit-transform: translate(0) rotate(-29deg);
 	-moz-transform: translate(0) rotate(-29deg);
 	-ms-transform: translate(0) rotate(-29deg);
@@ -449,7 +449,7 @@
 
 /* Simple spin loader */
 .spin {
-	border: 5px solid #ddd;
+	border: 5px solid #bdc3c7;
 	width: 30px;
 	height: 30px;
 	margin-top: -20px;
