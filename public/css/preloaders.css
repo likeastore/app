@@ -1,6 +1,6 @@
 /* Icon loader */
 .icon-loader {
-	background-color: #f7f7f7;
+	background-color: #eaedf1;
 	width: 57px;
 	height: 57px;
 	margin: -47px 0 0 -47px;
@@ -357,7 +357,7 @@
 
 /* Arrow loader */
 .loading {
-	background: #f7f7f7;
+	background: #eaedf1;
 	margin: 80px auto;
 	position: relative;
 	width: 20px;
@@ -368,7 +368,7 @@
 
 .loading:before {
 	display: block;
-	background: #d3d3d3;
+	background: #8592a2;
 	content: '';
 	position: absolute;
 	left: -4px;
@@ -386,7 +386,7 @@
 	height: 0;
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
-	border-top: 16px solid #f7f7f7;
+	border-top: 16px solid #eaedf1;
 	top: -5px;
 	left: 0;
 	-webkit-animation: ticktock 1s linear infinite;
@@ -410,7 +410,7 @@
 	height: 0;
 	border-top: 6px solid transparent;
 	border-bottom: 6px solid transparent;
-	border-left: 8px solid #d3d3d3;
+	border-left: 8px solid #8592a2;
 	-webkit-transform: translate(0) rotate(-29deg);
 	-moz-transform: translate(0) rotate(-29deg);
 	-ms-transform: translate(0) rotate(-29deg);
@@ -467,7 +467,7 @@
 	position: absolute;
 	width: 40px;
 	height: 10px;
-	background: #f7f7f7;
+	background: #eaedf1;
 	top: 10px;
 	left: -5px;
 	-webkit-animation: spin 1.2s infinite;
