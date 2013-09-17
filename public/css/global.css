@@ -74,16 +74,15 @@ a:hover {
 
 .empty-results .big-icon {
 	margin: 0 auto;
-	opacity: .1;
 }
 
 .empty-results .inbox-icon {
-	background: url(../img/inbox.png) center center no-repeat;
+	background: url(../img/square-robot.png) center center no-repeat;
 	background-size: 90px;
 }
 
 .empty-results .annoyed-icon {
-	background: url(../img/no-results.png) center center no-repeat;
+	background: url(../img/no-results-grey.png) center center no-repeat;
 	background-size: 90px;
 }
 

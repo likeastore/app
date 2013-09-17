@@ -3,21 +3,20 @@
 }
 
 .main-header {
-	color: #edf0f2;
-	background: #1abc9c;
-	border-bottom: 3px solid #fff;
+	background: #fff;
+	border-top: 3px solid #1abc9c;
+	border-bottom: 1px solid #ddd;
 	height: 45px;
 	line-height: 45px;
 	padding: 0 20px;
 	position: relative;
-	z-index: 1000;
-	-webkit-transition: all .3s ease-in;
 }
 
 .dashboard-nav {
 	background: #1f282d;
 	width: 220px;
 	height: 100%;
+	margin-top: -1px;
 	position: relative;
 	overflow: hidden;
 	-webkit-transition: all .3s ease-in-out;
@@ -39,7 +38,7 @@
 
 .networks-menu li.menu-subtitle {
 	padding: 25px 0 5px 20px;
-	color: #3c4d57;
+	color: #64747d;
 	font-size: 12px;
 	text-transform: uppercase;
 	font-family: 'proxima-nova-bold';
@@ -169,13 +168,13 @@
 	float: left;
 	margin: 8px 0 0;
 	cursor: pointer;
-	box-shadow: 0px 0px 1px 2px #edf0f2;
+	box-shadow: 0px 0px 1px 2px #fff;
 	-webkit-border-radius: 60px;
 	border-radius: 60px;
 }
 
 .account-info img:hover {
-	box-shadow: 0px 0px 1px 2px #e76049;
+	box-shadow: 0px 0px 1px 2px #1abc9c;
 }
 
 .account-show {
@@ -186,12 +185,12 @@
 	height: 0;
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-top: 5px solid #edf0f2;
+	border-top: 5px solid #333;
 	cursor: pointer;
 }
 
 .account-show:hover {
-	border-top-color: #e76049;
+	border-top-color: #1abc9c;
 }
 
 .active .dropdown {
