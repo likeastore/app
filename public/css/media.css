@@ -61,6 +61,10 @@
 	.dash-item:nth-child(2n) {
 		margin-right: 0;
 	}
+
+	.show-more {
+		width: 97%;
+	}
 }
 
 @media (max-width: 800px) and (min-width: 640px) {
@@ -78,6 +82,10 @@
 
 	.main-dashdoard {
 		margin-left: 200px;
+	}
+
+	.show-more {
+		width: 98.4%;
 	}
 }
 
