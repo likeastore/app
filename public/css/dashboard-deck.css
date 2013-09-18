@@ -88,7 +88,7 @@
 }
 
 .menu-title.inbox:hover {
-	background-color: #e74c3c;
+	background-color: #e76049;
 }
 
 .menu-title.facebook:hover {
@@ -108,48 +108,46 @@
 }
 
 .promo-line {
-	visibility: hidden;
-	background: #3d414d;
-	color: #fff;
-	border-top: 1px solid #474e61;
-	border-bottom: 1px solid #474e61;
-	font-size: 15px;
+	background: rgba(0,0,0,0.2);
+	color: #edf0f2;
 	font-weight: 300;
-	padding: 10px 25px 20px;
+	padding: 15px 25px 25px;
 	position: absolute;
-	width: 170px;
-	top: 245px;
+	width: 180px;
+	top: 325px;
 	overflow: hidden;
-	text-align: center;
-	-webkit-transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
 }
 
 .promo-line .promo-text {
-	margin: 4px 0 0;
+	margin: 5px 0 10px;
+	font-size: 14px;
+	text-align: center;
 }
 
 .promo-line .rocket-icon {
 	font-size: 20px;
 	float: left;
-	margin-right: 7px;
+	margin-right: 8px;
 }
 
 .promo-line a {
 	display: block;
 	color: #edf0f2;
-	background: #e74c3c;
-	font-size: 12px;
-	padding: 5px 11px 5px 8px;
-	margin: 14px auto 0;
+	background: #1abc9c;
+	font-size: 11px;
+	padding: 5px 4px 5px 10px;
+	margin: 15px auto 0;
 	width: 105px;
 	line-height: 21px;
 	text-transform: uppercase;
 	text-decoration: none;
+	cursor: pointer;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
+}
+
+.promo-line a:hover {
+	background: #16a085;
 }
 
 .account-info {

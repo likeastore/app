@@ -51,6 +51,10 @@ h3 {
 a {
 	color: #e76049;
 	text-decoration: none;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
 }
 
 a:hover {
@@ -63,6 +67,16 @@ a:hover {
 
 .cellRight {
 	float: right;
+}
+
+.press-button:hover {
+	margin-top: 1px;
+	border-bottom-width: 5px;
+}
+
+.press-button:active {
+	margin-top: 3px;
+	border-bottom-width: 3px;
 }
 
 /* Empty results or no items on page */
