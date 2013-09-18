@@ -122,6 +122,7 @@
 	.search-input {
 		margin: 5px;
 		padding-left: 30px;
+		width: 150px;
 	}
 
 	.search-icon {
@@ -129,10 +130,14 @@
 		left: 12px;
 	}
 
+	.hover-background {
+		top: 5px;
+	}
+
 	.networks-menu {
 		float: right;
-		margin-top: 7px;
-		width: 165px;
+		margin-top: 8px;
+		width: 220px;
 	}
 
 	.networks-menu li {
@@ -145,8 +150,14 @@
 		padding: 5px 10px;
 	}
 
+	.networks-menu .menu-subtitle,
+	.networks-menu .new-notifier {
+		display: none;
+	}
+
 	.menu-title .icon {
 		margin-right: 0;
+		font-size: 20px;
 	}
 
 	.main-dashdoard {
