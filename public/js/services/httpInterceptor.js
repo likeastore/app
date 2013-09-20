@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function AuthInterceptor ($q, $window) {
+	function HttpInterceptor ($q, $window, $rootScope) {
 		return function (promise) {
 			var success = function (response) {
 				return response;
@@ -18,5 +18,5 @@ define(function (require) {
 		};
 	}
 
-	return AuthInterceptor;
+	return HttpInterceptor;
 });

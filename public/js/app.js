@@ -14,7 +14,7 @@ define(function (require) {
 
 	app.config(['$routeProvider', '$locationProvider', '$httpProvider',
 		function ($routeProvider, $locationProvider, $httpProvider) {
-			$httpProvider.responseInterceptors.push('authInterceptor');
+			$httpProvider.responseInterceptors.push('httpInterceptor');
 
 			$routeProvider
 				.when('/', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
