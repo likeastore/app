@@ -1,10 +1,5 @@
 var db = require('./dbConnector').db;
 
-db.items.ensureIndex(
-	{ description: 'text', authorName: 'text', repo: 'text' },
-	{ name: 'ItemsTextIndex' }
-);
-
 function fullTextItemSearch (user, query, callback) {
 	if (!query) {
 		return callback(null, []);
