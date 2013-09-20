@@ -44,6 +44,12 @@
 	}
 }
 
+@media (max-width: 1100px) {
+	.icon-loader {
+		margin-left: -30px;
+	}
+}
+
 @media (max-width: 1100px) and (min-width: 801px) {
 	.main-dashdoard {
 		margin-left: 240px;
