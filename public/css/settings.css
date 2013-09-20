@@ -77,6 +77,14 @@
 	border-radius: 40px;
 }
 
+.toggle.disabled {
+	opacity: .6;
+	-webkit-transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-ms-transition: opacity .25s ease-in-out;
+	transition: opacity .25s ease-in-out;
+}
+
 .toggle input[type="checkbox"] {
 	opacity: 0;
 	cursor: pointer;

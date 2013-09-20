@@ -26,6 +26,11 @@ define(function (require) {
 
 				scope.toggleNetwork = function () {
 					var isOn = elem.hasClass('on');
+					var isDisabled = elem.hasClass('disabled');
+
+					if (isDisabled) {
+						return;
+					}
 
 					elem.toggleClass('on');
 
@@ -34,6 +39,7 @@ define(function (require) {
 						return;
 					}
 
+					elem.addClass('disabled');
 					api.save(urlOptions, {}, function (res) {
 						$window.location = res.authUrl;
 					});
