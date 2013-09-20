@@ -505,3 +505,18 @@
 		transform: rotate(360deg);
 	}
 }
+
+/* ngProgress */
+#ngProgress-container {
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 99999;
+}
+
+#ngProgress {
+	height: 3px !important;
+}

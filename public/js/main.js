@@ -2,7 +2,8 @@ require.config({
 	paths: {
 		'angular' : '../components/angular/angular',
 		'ngResource': '../components/angular-resource/angular-resource',
-		'ngCookies': '../components/angular-cookies/angular-cookies'
+		'ngCookies': '../components/angular-cookies/angular-cookies',
+		'ngProgress': '../components/ngprogress/build/ngProgress'
 	},
 	shim: {
 		ngResource: {
@@ -12,6 +13,9 @@ require.config({
 		ngCookies: {
 			deps: ['angular'],
 			exports: 'angular'
+		},
+		ngProgress: {
+			deps: ['angular']
 		},
 		angular: {
 			exports : 'angular'

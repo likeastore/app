@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function ToggleSwitcher ($window, api) {
+	function ToggleSwitcher ($window, api, ngProgress) {
 		return {
 			restrict: 'A',
 			replace: true,
@@ -39,11 +39,17 @@ define(function (require) {
 						return;
 					}
 
+					ngProgress.color('#e76049');
+					ngProgress.start();
+
 					elem.addClass('disabled');
 					api.save(urlOptions, {}, function (res) {
+						ngProgress.complete();
 						$window.location = res.authUrl;
 					});
 				};
+
+				scope.$watch(attrs.model, listenToNetworks, true);
 
 				function listenToNetworks (value) {
 					if (value) {
@@ -60,7 +66,6 @@ define(function (require) {
 						});
 					}
 				}
-				scope.$watch(attrs.model, listenToNetworks, true);
 			}
 		};
 	}
