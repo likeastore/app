@@ -30,25 +30,25 @@ define(function () {
 						$timeout.cancel(timer);
 					}
 
-					timer = $timeout(function () {
-						if (value) {
-							$window.scrollTo(0,0);
+					if (value) {
+						timer = $timeout(function () {
+								$window.scrollTo(0,0);
 
-							scope.search = true;
-							makeItemsBackupOnce();
-							appLoader.loading();
+								scope.search = true;
+								makeItemsBackupOnce();
+								appLoader.loading();
 
-							api.get({ resource: 'search', text: value }, function (res) {
-								scope.items = res.data;
-								scope.nextPage = res.nextPage;
-								appLoader.ready();
-							});
-						} else if (backup) {
-							scope.items = scope.backup;
-							scope.nextPage = pages;
-							scope.search = false;
-						}
-					}, delay);
+								api.get({ resource: 'search', text: value }, function (res) {
+									scope.items = res.data;
+									scope.nextPage = res.nextPage;
+									appLoader.ready();
+								});
+						}, delay);
+					} else if (backup) {
+						scope.items = scope.backup;
+						scope.nextPage = pages;
+						scope.search = false;
+					}
 				}
 
 				function makeItemsBackupOnce () {
