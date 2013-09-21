@@ -1,10 +1,10 @@
-@media (max-width: 2000px) and (min-width: 1801px) {
+@media (max-width: 2600px) and (min-width: 1801px) {
 	.dash-item {
-		width: 31.6%;
+		width: 31.4%;
 	}
 
 	.show-more {
-		width: 98.5%;
+		width: 98%;
 	}
 }
 
