@@ -8,6 +8,7 @@ define(function (require) {
 
 		$scope.search = true;
 		$scope.title = 'Search';
+		$scope.query = $routeParams.text;
 		$scope.items = [];
 
 		api.get({ resource: 'search', text: $routeParams.text }, function (res) {

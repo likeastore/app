@@ -10,7 +10,7 @@ define(function () {
 			template: '\
 				<form ng-submit="goToSearch()" class="search-bar-wrap">\
 					<i data-icon="i" class="search-icon"></i>\
-					<input type="text" class="search-input" name="text" placeholder="Search" ng-model="query">\
+					<input type="text" class="search-input" name="text" placeholder="SEARCH" ng-model="query">\
 					<div class="hover-background"></div>\
 				</form>\
 			',

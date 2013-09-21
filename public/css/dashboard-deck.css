@@ -111,9 +111,9 @@
 	background: rgba(0,0,0,0.2);
 	color: #edf0f2;
 	font-weight: 300;
-	padding: 15px 11px 25px;
+	padding: 15px 10px 25px;
 	position: absolute;
-	width: 198px;
+	width: 200px;
 	top: 325px;
 	overflow: hidden;
 }
@@ -137,7 +137,7 @@
 	font-size: 11px;
 	padding: 5px 4px 5px 10px;
 	margin: 15px auto 0;
-	width: 105px;
+	width: 106px;
 	line-height: 21px;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -261,7 +261,6 @@
 	width: 162px;
 	height: 30px;
 	resize: none;
-	text-transform: uppercase;
 	position: relative;
 	z-index: 1;
 	-webkit-transition: all .3s ease-in-out;
