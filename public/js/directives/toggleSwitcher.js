@@ -43,6 +43,7 @@ define(function (require) {
 					ngProgress.start();
 
 					elem.addClass('disabled');
+
 					api.save(urlOptions, {}, function (res) {
 						ngProgress.complete();
 						$window.location = res.authUrl;
