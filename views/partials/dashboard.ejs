@@ -1,14 +1,20 @@
 <!-- navigation -->
 <nav class="cell dashboard-nav {{title|lowercase}}" sticky-at="50">
-	<div class="search-bar-wrap">
-		<i data-icon="i" class="search-icon"></i>
-		<input type="text" class="search-input" name="search" placeholder="Search" ng-model="query" ng-change="searching(query);">
-		<div class="hover-background"></div>
-	</div>
+	<div text-search="query"></div>
 
 	<ul class="networks-menu">
+		<li class="menu-subtitle">
+			Folders
+		</li>
 		<li>
-			<a href="/inbox" class="menu-title inbox"><i data-icon="c" class="icon"></i>Inbox</a>
+			<a href="/inbox" class="menu-title inbox"><i data-icon="M" class="icon"></i> Inbox</a>
+		</li>
+		<li class="menu-subtitle">
+			Services
+		</li>
+		<li>
+			<div class="new-notifier">new!</div>
+			<a href="/facebook" class="menu-title facebook"><i data-icon="g" class="icon"></i> Facebook</a>
 		</li>
 		<li>
 			<a href="/twitter" class="menu-title twitter"><i data-icon="b" class="icon"></i> Twitter</a>
@@ -30,7 +36,7 @@
 <!-- dashboard -->
 <section class="main-dashdoard {{title|lowercase}}">
 	<ul class="items-wrap">
-		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items|filter:query|limitTo:limit">
+		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items">
 			<div class="item-wrapp">
 				<a href="{{item.source}}" class="source-link" target="_blank"></a>
 				<img src="{{item.avatarUrl}}">
@@ -46,19 +52,19 @@
 		</li>
 	</ul>
 
-	<div ng-hide="search.length < limit">
-		<div class="show-more" ng-show="items.length > limit" ng-click="increaseLimit()">Show more</div>
+	<div ng-show="nextPage">
+		<div class="show-more" ng-click="showMore()">Show more</div>
 	</div>
 
-	<div class="empty-results" ng-show="items.length > 0 && search && search.length == 0">
+	<div class="empty-results" ng-show="loaded && !items.length && search">
 		<div class="annoyed-icon big-icon"></div>
 		<h2>Ooops.. no matching search results!</h2>
 	</div>
 
-	<div class="empty-results" ng-show="loaded && !items.length">
+	<div class="empty-results" ng-show="loaded && !items.length && !search">
 		<div class="inbox-icon big-icon"></div>
 		<h2>You don't own any items to display yet..</h2>
-		<a href="/settings" class="block settings-button">Go to settings</a>
+		<a href="/settings" class="block settings-button press-button">Go to settings</a>
 	</div>
 
 	<div class="loading" ng-hide="loaded"><span class="mask"></span></div>

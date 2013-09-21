@@ -10,7 +10,7 @@ define(function (require) {
 			link: function (scope, elem, attr) {
 				var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 
-				var result = scope.text.replace(urlRegex, function (url) {
+				var result = scope.text && scope.text.replace(urlRegex, function (url) {
 					return '<a href="' + url + '" target="_blank">' + url + '</a>';
 				});
 

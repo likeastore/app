@@ -32,6 +32,11 @@ function networksService (app) {
 		returnAuthUrl
 	);
 
+	app.post('/api/networks/facebook',
+		middleware.networks.facebook(),
+		returnAuthUrl
+	);
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
@@ -53,6 +58,12 @@ function networksService (app) {
 	app.get('/api/networks/stackoverflow/callback',
 		middleware.access.guest(),
 		middleware.networks.stackoverflowCallback(),
+		registerNetwork,
+		redirectToApp);
+
+	app.get('/api/networks/facebook/callback',
+		middleware.access.guest(),
+		middleware.networks.facebookCallback(),
 		registerNetwork,
 		redirectToApp);
 

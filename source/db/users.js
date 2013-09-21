@@ -17,7 +17,7 @@ function findById (id, callback) {
 }
 
 function findByEmail (email, callback) {
-	db.users.findOne({email: email}, function (err, user) {
+	db.users.findOne({ email: email }, function (err, user) {
 		if (err) {
 			return callback(err);
 		}
@@ -31,7 +31,7 @@ function findByEmail (email, callback) {
 }
 
 function findByRequestToken (requestToken, callback) {
-	db.users.findOne({twitterRequestToken: requestToken}, function (err, user) {
+	db.users.findOne({ twitterRequestToken: requestToken }, function (err, user) {
 		if (err) {
 			return callback(err);
 		}
@@ -48,7 +48,7 @@ function updateUser(email, attributes, callback) {
 	db.users.findAndModify({
 		query: { email: email },
 		update: { $set: attributes },
-		"new": true
+		'new': true
 	}, callback);
 }
 

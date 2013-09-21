@@ -5,6 +5,49 @@ var users = require('../db/users');
 var networks = require('../db/networks');
 var zlib = require('zlib');
 
+function facebook() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/facebook/callback';
+		var oauth = new OAuth2(config.services.facebook.appId,
+							config.services.facebook.appSecret,
+							'https://graph.facebook.com');
+
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'user_likes', state: req.user });
+		req.authUrl = authorizeUrl;
+		next();
+	};
+
+}
+
+function facebookCallback() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/facebook/callback';
+		var oauth = new OAuth2(config.services.facebook.appId,
+							config.services.facebook.appSecret,
+							'https://graph.facebook.com');
+
+		var code = req.query.code;
+		var user = req.query.state;
+
+		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
+
+		function gotAccessToken(err, accessToken) {
+			if (err) {
+				return next({message: 'failed to get accessToken from facebook', error: err, status: 500});
+			}
+
+			req.network = {
+				accessToken: accessToken,
+				accessTokenSecret: null,
+				user: user,
+				service: 'facebook'
+			};
+
+			next();
+		}
+	};
+}
+
 function twitter() {
 	return function (req, res, next) {
 		var callbackUrl = config.applicationUrl + '/api/networks/twitter/callback';
@@ -124,7 +167,7 @@ function stackoverflow() {
 							'https://stackexchange.com',
 							'/oauth');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user, scope: 'no_expiry' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
@@ -161,6 +204,8 @@ function stackoverflowCallback() {
 }
 
 module.exports = {
+	facebook: facebook,
+	facebookCallback: facebookCallback,
 	twitter: twitter,
 	twitterCallback: twitterCallback,
 	github: github,

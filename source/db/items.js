@@ -1,47 +1,41 @@
 var db = require('./dbConnector').db;
+var pageSize = 30;
 
-// setup full-text on search fields
-db.items.ensureIndex({ description: 'text' });
+function getAllItems (user, page, callback) {
+	var query = db.items.find({ user: user }).limit(pageSize);
+	if (page) {
+		query = query.skip(pageSize * (page - 1));
+	}
 
-function getAllItems (user, callback) {
-	db.items.find({ user: user }).sort({ created: -1 }, function (err, items) {
+	query.sort({ created: -1 }, returnResults);
+
+	function returnResults(err, items) {
 		if (err) {
 			return callback(err);
 		}
 
-		callback(null, items);
-	});
+		callback(null, {data: items, nextPage: items.length === pageSize});
+	}
 }
 
-function getItemsByType (user, type, callback) {
-	db.items.find({ user: user, type: type }).sort({ created: -1 }, function (err, items) {
+function getItemsByType (user, type, page, callback) {
+	var query = db.items.find({ user: user, type: type }).limit(pageSize);
+	if (page) {
+		query = query.skip(pageSize * (page - 1));
+	}
+
+	query.sort({ created: -1 }, returnResults);
+
+	function returnResults(err, items) {
 		if (err) {
 			return callback(err);
 		}
 
-		callback(null, items);
-	});
-}
-
-function getItemsByQuery (user, query, callback) {
-	db.items.runCommand('text', { search: query.toString() }, function (err, doc) {
-		if (err) {
-			return callback(err);
-		}
-
-		var items = [];
-		doc.results.forEach(function (row, i) {
-			if (row.obj.user === user) {
-				items.push(row.obj);
-			}
-		});
-
-		callback(null, items);
-	});
+		callback(null, {data: items, nextPage: items.length === pageSize});
+	}
 }
 
 module.exports = {
 	getAllItems: getAllItems,
-	getItemsByType: getItemsByType,
-	getItemsByQuery: getItemsByQuery
+	getItemsByType: getItemsByType
 };

@@ -14,14 +14,16 @@ define(function (require) {
 
 	app.config(['$routeProvider', '$locationProvider', '$httpProvider',
 		function ($routeProvider, $locationProvider, $httpProvider) {
-			$httpProvider.responseInterceptors.push('authInterceptor');
+			$httpProvider.responseInterceptors.push('httpInterceptor');
 
 			$routeProvider
 				.when('/', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
 				.when('/inbox', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
+				.when('/facebook', { templateUrl: 'partials/dashboard', controller: 'facebookController' })
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
+				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.otherwise({ redirectTo: '/' });
 

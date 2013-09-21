@@ -3,7 +3,9 @@
 }
 
 .main-header {
-	background-color: #fff;
+	background: #fff;
+	border-top: 3px solid #1abc9c;
+	border-bottom: 1px solid #ddd;
 	height: 45px;
 	line-height: 45px;
 	padding: 0 20px;
@@ -11,9 +13,10 @@
 }
 
 .dashboard-nav {
-	background: #2a2e38;
+	background: #1f282d;
 	width: 220px;
 	height: 100%;
+	margin-top: -1px;
 	position: relative;
 	overflow: hidden;
 	-webkit-transition: all .3s ease-in-out;
@@ -28,27 +31,48 @@
 }
 
 .networks-menu li {
-	padding: 2px 10px;
+	position: relative;
 	overflow: hidden;
 	cursor: pointer;
 }
 
+.networks-menu li.menu-subtitle {
+	padding: 25px 0 5px 20px;
+	color: #64747d;
+	font-size: 12px;
+	text-transform: uppercase;
+	font-family: 'proxima-nova-bold';
+}
+
+.networks-menu .new-notifier {
+	color: #edf0f2;
+	background: #e76049;
+	font-size: 8px;
+	padding: 2px 5px;
+	text-transform: uppercase;
+	position: absolute;
+	right: 20px;
+	top: 7px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
 .menu-title .icon {
 	display: inline-block;
-	color: #fff;
+	color: #edf0f2;
 	font-size: 18px;
-	line-height: 26px;
+	line-height: 1;
 	vertical-align: top;
 	margin-right: 10px;
 }
 
 .menu-title {
 	display: block;
-	color: #fff;
-	font-size: 12px;
-	line-height: 26px;
+	color: #edf0f2;
+	font-size: 11px;
+	line-height: 20px;
 	vertical-align: top;
-	padding: 0 10px;
+	padding: 5px 20px;
 	text-transform: uppercase;
 	text-decoration: none;
 	-webkit-transition: all .3s ease-in-out;
@@ -64,7 +88,11 @@
 }
 
 .menu-title.inbox:hover {
-	background-color: #e74c3c;
+	background-color: #e76049;
+}
+
+.menu-title.facebook:hover {
+	background-color: #3b5998;
 }
 
 .menu-title.twitter:hover {
@@ -80,47 +108,46 @@
 }
 
 .promo-line {
-	background: #3d414d;
-	color: #fff;
-	border-top: 1px solid #474e61;
-	border-bottom: 1px solid #474e61;
-	font-size: 15px;
+	background: rgba(0,0,0,0.2);
+	color: #edf0f2;
 	font-weight: 300;
-	padding: 10px 25px 20px;
+	padding: 15px 15px 25px;
 	position: absolute;
-	width: 170px;
-	top: 215px;
+	width: 190px;
+	top: 325px;
 	overflow: hidden;
-	text-align: center;
-	-webkit-transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
 }
 
 .promo-line .promo-text {
-	margin: 4px 0 0;
+	margin: 5px 0 10px;
+	font-size: 14px;
+	text-align: center;
 }
 
 .promo-line .rocket-icon {
 	font-size: 20px;
 	float: left;
-	margin-right: 7px;
+	margin-right: 8px;
 }
 
 .promo-line a {
 	display: block;
-	color: #fff;
-	background: #e74c3c;
-	font-size: 12px;
-	padding: 5px 11px 5px 8px;
-	margin: 14px auto 0;
+	color: #edf0f2;
+	background: #1abc9c;
+	font-size: 11px;
+	padding: 5px 4px 5px 10px;
+	margin: 15px auto 0;
 	width: 105px;
 	line-height: 21px;
 	text-transform: uppercase;
 	text-decoration: none;
+	cursor: pointer;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
+}
+
+.promo-line a:hover {
+	background: #16a085;
 }
 
 .account-info {
@@ -139,6 +166,7 @@
 	float: left;
 	margin: 8px 0 0;
 	cursor: pointer;
+	box-shadow: 0px 0px 1px 2px #fff;
 	-webkit-border-radius: 60px;
 	border-radius: 60px;
 }
@@ -207,7 +235,7 @@
 }
 
 .main-dashdoard {
-	padding: 35px 25px;
+	padding: 40px 25px;
 	vertical-align: top;
 	margin-left: 230px;
 	padding-bottom: 10px;
@@ -215,7 +243,7 @@
 }
 
 .search-icon {
-	color: #fff;
+	color: #edf0f2;
 	font-size: 18px;
 	position: absolute;
 	top: 25px;
@@ -226,10 +254,10 @@
 .search-input {
 	border: 0;
 	background-color: rgba(0,0,0,.0);
-	color: #fff;
-	font: 12px 'Lato', 'Open Sans', Arial, sans-serif;
+	color: #edf0f2;
+	font: 11px 'Lato', 'Open Sans', Arial, sans-serif;
 	padding: 5px 10px 5px 48px;
-	margin: 15px 0;
+	margin: 15px 0 0;
 	width: 162px;
 	height: 30px;
 	resize: none;
@@ -246,10 +274,11 @@
 	background-color: #232529;
 	background-color: rgba(0,0,0,.0);
 	outline: none;
+	text-transform: none;
 }
 
 .hover-background {
-	background-color: #232529;
+	background-color: #3b454b;
 	width: 0;
 	height: 40px;
 	position: absolute;
@@ -265,7 +294,11 @@
 	width: 100%;
 }
 
-.search-input::-webkit-input-placeholder { /* WebKit browsers */
+.search-input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+.search-input::-webkit-input-placeholder {
 	color: #fff;
 }
 
@@ -277,16 +310,17 @@
 	color: #fff;
 }
 
-.search-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+.search-input:-ms-input-placeholder {
 	color: #fff;
 }
 
 .dash-item {
 	display: inline-block;
 	background: #fff;
-	font-size: 16px;
+	border-bottom: 1px solid #e2e2e2;
+	font-size: 14px;
 	padding: 15px 0 20px;
-	margin: 0 25px 20px 0;
+	margin: 0 30px 20px 0;
 	width: 95%;
 	height: 190px;
 	overflow: hidden;
@@ -323,7 +357,7 @@
 
 .dash-item .desc {
 	display: inline-block;
-	color: #555;
+	color: #333;
 	width: 75%	;
 	height: 150px;
 	text-decoration: none;
@@ -354,7 +388,7 @@
 }
 
 .dash-item a {
-	color: #e74c3c;
+	color: #e76049;
 	text-decoration: none;
 }
 
@@ -389,8 +423,12 @@
 	color: #3498db;
 }
 
+.dash-item.facebook .autor-item {
+	color: #3b5998;
+}
+
 .dash-item.github .autor-item {
-	color: #bdc3c7;
+	color: #8592a2;
 }
 
 .dash-item.stackoverflow .autor-item {
@@ -398,7 +436,7 @@
 }
 
 .item-date {
-	color: #bdc3c7;
+	color: #8592a2;
 	font-size: 12px;
 	text-transform: uppercase;
 	position: absolute;
@@ -421,15 +459,16 @@
 }
 
 .dash-item:hover .item-date,
-.dash-item:hover .autor-item {
-	color: #555;
+.dash-item:hover .autor-item,
+.dash-item:hover .repo {
+	color: #333;
 }
 
 .show-more {
 	display: block;
-	background: #dfdfdf;
-	border-bottom: 5px solid #bbb;
-	color: rgba(0,0,0,0.3);
+	background: #bdc3c7;
+	border-bottom: 5px solid #a9b2b9;
+	color: #fff;
 	font-size: 14px;
 	padding: 14px 0;
 	margin: 10px 0 20px;
@@ -440,6 +479,6 @@
 }
 
 .show-more:hover {
-	background: #c1c1c1;
-	border-bottom: 5px solid #aaa;
+	background: #c5ccd1;
+	border-bottom-color: #b2bbc4
 }
