@@ -18,5 +18,8 @@ define(function (require) {
 	// search
 	controllers.controller('searchController', require('./searchController'));
 
+	// errors
+	controllers.controller('errorController', require('./errorController'));
+
 	return controllers;
 });

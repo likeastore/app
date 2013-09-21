@@ -25,6 +25,7 @@ define(function (require) {
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
+				.when('/ooops', { templateUrl: 'partials/dashboard', controller: 'errorController' })
 				.otherwise({ redirectTo: '/' });
 
 			$locationProvider.html5Mode(true);

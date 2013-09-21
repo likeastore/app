@@ -100,6 +100,16 @@ a:hover {
 	background-size: 90px;
 }
 
+.empty-results .error-icon {
+	background: url(../img/ooops-robot.png) center center no-repeat;
+	background-size: 180px;
+}
+
+.empty-results .error-icon.big-icon {
+	height: 120px;
+	width: 200px;
+}
+
 .empty-results h2 {
 	color: #bdc3c7;
 	margin: 5px auto 25px;
