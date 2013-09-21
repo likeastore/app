@@ -35,10 +35,6 @@ define(function (require) {
 	app.run(function ($window, auth, user) {
 		auth.setAuthorizationHeaders();
 		user.initialize();
-
-		if ($window.location.hash === '#_=_') {
-			$window.location.hash = '';
-		}
 	});
 
 	return app;

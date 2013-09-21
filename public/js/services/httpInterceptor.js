@@ -4,6 +4,9 @@ define(function (require) {
 	function HttpInterceptor ($q, $window, $location) {
 		return function (promise) {
 			var success = function (response) {
+				if ($location.hash() === '_=_') {
+					$location.hash('');
+				}
 				return response;
 			};
 
