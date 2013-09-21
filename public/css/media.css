@@ -1,4 +1,8 @@
 @media (max-width: 2600px) and (min-width: 1801px) {
+	.main-dashdoard {
+		margin-left: 245px;
+	}
+
 	.dash-item {
 		width: 31.4%;
 	}
