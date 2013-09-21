@@ -20,6 +20,9 @@ define(function () {
 				var backup, pages;
 
 				scope.goToSearch = function () {
+					if (!scope.query) {
+						return;
+					}
 					$location.url('/search?text=' + scope.query);
 				};
 
