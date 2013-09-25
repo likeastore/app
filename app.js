@@ -69,9 +69,13 @@ require('./source/router')(app);
 applyAuthentication(app, ['/api']);
 applyErrorLogging(app);
 
-//bootstrap.app(startApplicationServer);
+bootstrap.app(function (err) {
+	if (err) {
+		return logger.error({message: 'failed to bootstrap application', err: err});
+	}
 
-startApplicationServer();
+	startApplicationServer();
+});
 
 function startApplicationServer () {
 	http.createServer(app).listen(app.get('port'), function() {

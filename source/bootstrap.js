@@ -12,8 +12,7 @@ function bootstrapApp(callback) {
 
 	exec('./node_modules/grunt-cli/bin/grunt build', function (err) {
 		if (err) {
-			logger.error({message: 'failed to run grunt build.', err: err});
-			process.exit(1);
+			return callback(err);
 		}
 
 		logger.info('build js and css sources done.');
