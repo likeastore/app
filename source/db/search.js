@@ -5,7 +5,7 @@ function fullTextItemSearch (user, query, callback) {
 		return callback(null, { data: [], nextPage: false });
 	}
 
-	db.items.runCommand('text', { search: query.toString() }, function (err, doc) {
+	db.items.runCommand('text', { search: query.toString(), filter: {user: user }}, function (err, doc) {
 		if (err) {
 			return callback(err);
 		}
@@ -14,11 +14,8 @@ function fullTextItemSearch (user, query, callback) {
 			return callback(doc.errmsg);
 		}
 
-		var items = [];
-		doc.results.forEach(function (row, i) {
-			if (row.obj.user === user) {
-				items.push(row.obj);
-			}
+		var items = doc.results.map(function (result) {
+			return result.obj;
 		});
 
 		callback(null, { data: items, nextPage: false });
