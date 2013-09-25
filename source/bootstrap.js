@@ -10,7 +10,7 @@ function bootstrapApp(callback) {
 	logger.info('bootrapping application in: ' + __dirname);
 	logger.info('running grunt build...');
 
-	exec('./node_modules/grunt-cli/bin/grunt build', function (err) {
+	exec('../node_modules/grunt-cli/bin/grunt build', function (err) {
 		if (err) {
 			return callback(err);
 		}
