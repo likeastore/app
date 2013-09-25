@@ -1,5 +1,4 @@
 var _ = require('underscore');
-var client = require('./../../public/build');
 
 function skipMaster (req) {
 	var bypass = ['/api', '/components', '/css', '/js', '/build', '/auth', '/connect', '/utils'];
@@ -24,6 +23,7 @@ module.exports = {
 	},
 
 	production: function () {
+		var client = require('./../../public/build');
 		return hander('likeastore.', client.js, client.css);
 	}
 };
