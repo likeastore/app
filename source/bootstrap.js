@@ -7,7 +7,7 @@ function bootstrapApp(callback) {
 		return callback (null);
 	}
 
-	logger.info('bootrapping application in: ' + __dirname);
+	logger.info('bootrapping application in: ' + process.cwd());
 	logger.info('running grunt build...');
 
 	exec('../node_modules/grunt-cli/bin/grunt build', function (err) {
