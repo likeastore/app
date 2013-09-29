@@ -37,6 +37,10 @@ var config = {
 		token: null
 	},
 
+	analytics: {
+		url: 'http://localhost:3005'
+	},
+
 	collector: {
 		// scheduler cycle
 		schedulerRestart: 1000,
