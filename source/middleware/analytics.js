@@ -4,7 +4,8 @@ var logger = require('../utils/logger');
 function track(event, data) {
 	return function (req, res, next) {
 		if (data.param) {
-			data[data.param] = req.param[data.param];
+			data[data.param] = req.params[data.param];
+			delete data.param;
 		}
 
 		analytics(event, data, function (err) {
