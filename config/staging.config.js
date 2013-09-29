@@ -37,6 +37,10 @@ var config = {
 		token: '5c58b5f9-31b0-432d-92e0-efe0561b2416'
 	},
 
+	analytics: {
+		url: 'http://analytics.stage.likeastore.com'
+	},
+
 	collector: {
 		// scheduler cycle
 		schedulerRestart: 1000,

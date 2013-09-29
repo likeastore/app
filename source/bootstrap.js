@@ -3,7 +3,7 @@ var logger = require('./utils/logger');
 
 function bootstrapApp(callback) {
 	var env = process.env.NODE_ENV || 'development';
-	if (env === 'development') {
+	if (env === 'development' || env === 'test') {
 		return callback (null);
 	}
 

@@ -1,8 +1,9 @@
 var search = require('../db/search.js');
-var logger = require('../utils/logger.js');
+var middleware = require('../middleware');
 
 function searchService (app) {
 	app.get('/api/search',
+		middleware.analytics.track('search'),
 		searchItemsByText);
 
 	function searchItemsByText (req, res, next) {

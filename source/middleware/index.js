@@ -4,5 +4,6 @@ module.exports = {
 	noCache: require('./noCache'),
 	errors: require('./errors'),
 	auth: require('./auth'),
-	networks: require('./networks')
+	networks: require('./networks'),
+	analytics: require('./analytics')
 };

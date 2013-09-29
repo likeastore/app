@@ -1,16 +1,14 @@
-var users = require('../db/users.js');
-var items = require('../db/items.js');
 var networks = require('../db/networks.js');
-var logger = require('../utils/logger');
 var middleware = require('../middleware');
-var OAuth= require('oauth').OAuth;
 var config = require('../../config');
 
 function networksService (app) {
 
 	app.get('/api/networks', getAllNetworks);
 
-	app.del('/api/networks/:network', deleteNetwork);
+	app.del('/api/networks/:network',
+		middleware.analytics.track('network deleted', {param: 'network'}),
+		deleteNetwork);
 
 	app.post('/api/networks/twitter',
 		middleware.networks.twitter(),
@@ -41,30 +39,35 @@ function networksService (app) {
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
 		registerNetwork,
+		middleware.analytics.track('network created', {service: 'twitter'}),
 		redirectToApp);
 
 	app.get('/api/networks/github/callback',
 		middleware.access.guest(),
 		middleware.networks.githubCallback(),
 		registerNetwork,
+		middleware.analytics.track('network created', {service: 'github'}),
 		redirectToApp);
 
 	app.get('/api/networks/gist/callback',
 		middleware.access.guest(),
 		middleware.networks.githubCallback('gist'),
 		registerNetwork,
+		middleware.analytics.track('network created', {service: 'gist'}),
 		redirectToApp);
 
 	app.get('/api/networks/stackoverflow/callback',
 		middleware.access.guest(),
 		middleware.networks.stackoverflowCallback(),
 		registerNetwork,
+		middleware.analytics.track('network created', {service: 'stackoverflow'}),
 		redirectToApp);
 
 	app.get('/api/networks/facebook/callback',
 		middleware.access.guest(),
 		middleware.networks.facebookCallback(),
 		registerNetwork,
+		middleware.analytics.track('network created', {service: 'facebook'}),
 		redirectToApp);
 
 	function registerNetwork(req, res, next) {

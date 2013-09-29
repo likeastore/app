@@ -53,7 +53,7 @@ describe('items.spec.js', function () {
 			});
 
 			it ('should return all items', function () {
-				expect(results.length).to.equal(10);
+				expect(results.data.length).to.equal(10);
 			});
 		});
 
@@ -84,7 +84,7 @@ describe('items.spec.js', function () {
 				});
 
 				it ('should return all items', function () {
-					expect(results.length).to.equal(10);
+					expect(results.data.length).to.equal(10);
 				});
 			});
 
@@ -112,7 +112,7 @@ describe('items.spec.js', function () {
 				});
 
 				it ('should return all items', function () {
-					expect(results.length).to.equal(10);
+					expect(results.data.length).to.equal(10);
 				});
 			});
 
@@ -140,7 +140,7 @@ describe('items.spec.js', function () {
 				});
 
 				it ('should return all items', function () {
-					expect(results.length).to.equal(10);
+					expect(results.data.length).to.equal(10);
 				});
 			});
 		});

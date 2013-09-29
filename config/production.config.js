@@ -37,6 +37,10 @@ var config = {
 		token: process.env.LOGENTRIES_TOKEN
 	},
 
+	analytics: {
+		url: 'https://analytics.likeastore.com'
+	},
+
 	collector: {
 		// scheduler cycle
 		schedulerRestart: 1000,
