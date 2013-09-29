@@ -54,5 +54,6 @@
 	"globalstrict": true,
 	"sub": false,
 	"trailing" : true,
-	"undef": true
+	"undef": true,
+	"unused": "vars"
 }

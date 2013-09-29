@@ -7,13 +7,13 @@ function bootstrapApp(callback) {
 		return callback (null);
 	}
 
-	logger.info('bootrapping application...');
+	logger.info('bootrapping application in: ' + process.cwd());
 	logger.info('running grunt build...');
 
-	exec('./node_modules/grunt-cli/bin/grunt build', function (err) {
+	exec('./node_modules/grunt-cli/bin/grunt build', function (err, stdout, stderr) {
 		if (err) {
-			logger.error({message: 'failed to run grunt build.', err: err});
-			process.exit(1);
+			logger.info('stderr: ' + stderr);
+			return callback(err);
 		}
 
 		logger.info('build js and css sources done.');

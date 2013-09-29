@@ -33,6 +33,7 @@ module.exports = function(grunt) {
 				"sub": false,
 				"trailing" : true,
 				"undef": true,
+				"unused": true,
 				globals: {
 					jQuery: true,
 					Backbone: true,
@@ -89,6 +90,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-hashres');
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'requirejs', 'hashres']);
+	grunt.registerTask('default', ['jshint']);
 	grunt.registerTask('build', ['requirejs', 'hashres']);
 };

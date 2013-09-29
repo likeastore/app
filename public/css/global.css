@@ -110,8 +110,11 @@ a:hover {
 	width: 200px;
 }
 
-.empty-results h2 {
+.empty-results h1, .empty-results h2, .empty-results h3, .empty-results h4 {
 	color: #bdc3c7;
+}
+
+.empty-results h2 {
 	margin: 5px auto 25px;
 	font-size: 30px;
 	font-weight: 700;
