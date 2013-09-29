@@ -9,6 +9,7 @@ function authService(app) {
 		validateRequest,
 		checkUser,
 		middleware.auth.createToken(),
+		middleware.analytics.track('user logged on'),
 		returnToken);
 
 	app.get('/api/auth/validate',
@@ -20,6 +21,7 @@ function authService(app) {
 	app.post('/api/auth/logout',
 		middleware.access.guest(),
 		middleware.auth.validateToken(),
+		middleware.analytics.track('user logged out'),
 		returnOk
 	);
 
