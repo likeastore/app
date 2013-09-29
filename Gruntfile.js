@@ -33,6 +33,7 @@ module.exports = function(grunt) {
 				"sub": false,
 				"trailing" : true,
 				"undef": true,
+				"unused": true,
 				globals: {
 					jQuery: true,
 					Backbone: true,
