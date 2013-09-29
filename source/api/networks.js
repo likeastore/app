@@ -6,7 +6,9 @@ function networksService (app) {
 
 	app.get('/api/networks', getAllNetworks);
 
-	app.del('/api/networks/:network', deleteNetwork);
+	app.del('/api/networks/:network',
+		middleware.analytics.track('network deleted', {param: 'network'}),
+		deleteNetwork);
 
 	app.post('/api/networks/twitter',
 		middleware.networks.twitter(),
