@@ -8,6 +8,11 @@ function track(event, data) {
 			delete data.param;
 		}
 
+		if (data && data.query) {
+			data[data.query] = req.query[data.query];
+			delete data.query;
+		}
+
 		analytics(event, data, function (err) {
 			if (err) {
 				logger.error({message: 'analytics event post error', err: err});

@@ -3,7 +3,7 @@ var middleware = require('../middleware');
 
 function searchService (app) {
 	app.get('/api/search',
-		middleware.analytics.track('search'),
+		middleware.analytics.track('search', {query: 'text'}),
 		searchItemsByText);
 
 	function searchItemsByText (req, res, next) {
