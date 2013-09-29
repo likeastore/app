@@ -37,35 +37,35 @@ function networksService (app) {
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
 		registerNetwork,
-		middleware.analytics.track('twitter network created'),
+		middleware.analytics.track('network created', {service: 'twitter'}),
 		redirectToApp);
 
 	app.get('/api/networks/github/callback',
 		middleware.access.guest(),
 		middleware.networks.githubCallback(),
 		registerNetwork,
-		middleware.analytics.track('github network created'),
+		middleware.analytics.track('network created', {service: 'github'}),
 		redirectToApp);
 
 	app.get('/api/networks/gist/callback',
 		middleware.access.guest(),
 		middleware.networks.githubCallback('gist'),
 		registerNetwork,
-		middleware.analytics.track('gist network created'),
+		middleware.analytics.track('network created', {service: 'gist'}),
 		redirectToApp);
 
 	app.get('/api/networks/stackoverflow/callback',
 		middleware.access.guest(),
 		middleware.networks.stackoverflowCallback(),
 		registerNetwork,
-		middleware.analytics.track('stackoverflow network created'),
+		middleware.analytics.track('network created', {service: 'stackoverflow'}),
 		redirectToApp);
 
 	app.get('/api/networks/facebook/callback',
 		middleware.access.guest(),
 		middleware.networks.facebookCallback(),
 		registerNetwork,
-		middleware.analytics.track('facebook network created'),
+		middleware.analytics.track('network created', {service: 'facebook'}),
 		redirectToApp);
 
 	function registerNetwork(req, res, next) {
