@@ -14,17 +14,18 @@ define(function () {
 					<div class="hover-background"></div>\
 				</form>\
 			',
+			controller: function ($scope) {
+				$scope.goToSearch = function () {
+					if (!$scope.query) {
+						return;
+					}
+					$location.url('/search?text=' + $scope.query);
+				};
+			},
 			link: function (scope, elem, attrs) {
 				var delay = attrs.delay || 1000;
 				var timer = false;
 				var backup, pages;
-
-				scope.goToSearch = function () {
-					if (!scope.query) {
-						return;
-					}
-					$location.url('/search?text=' + scope.query);
-				};
 
 				scope.$watch('query', searching);
 
