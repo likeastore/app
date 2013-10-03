@@ -40,7 +40,7 @@ define(function (require) {
 					}
 
 					ngProgress.color('#e76049');
-					ngProgress.start();
+					ngProgress.set(30);
 
 					elem.addClass('disabled');
 
