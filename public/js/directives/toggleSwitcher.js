@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function ToggleSwitcher ($window, api, ngProgress) {
+	function ToggleSwitcher ($window, api, ngProgressLite) {
 		return {
 			restrict: 'A',
 			replace: true,
@@ -39,14 +39,12 @@ define(function (require) {
 						return;
 					}
 
-					ngProgress.color('#e76049');
-					ngProgress.set(30);
-
 					elem.addClass('disabled');
 
+					ngProgressLite.start();
 					api.save(urlOptions, {}, function (res) {
-						ngProgress.complete();
 						$window.location = res.authUrl;
+						ngProgressLite.set(0.99);
 					});
 				};
 

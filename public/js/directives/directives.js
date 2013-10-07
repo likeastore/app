@@ -2,8 +2,8 @@ define(function (require) {
 	'use strict';
 
 	var angular = require('angular');
-	var ngProgress = require('ngProgress');
-	var directives = angular.module('directives', ['ngProgress']);
+	var ngProgress = require('ngProgressLite');
+	var directives = angular.module('directives', ['ngProgressLite']);
 
 	directives.directive('menuSlider', require('./menuSlider'));
 	directives.directive('toggleSwitcher', require('./toggleSwitcher'));

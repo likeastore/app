@@ -1,0 +1,33 @@
+{
+  "name": "ngprogress-lite",
+  "version": "1.0.0",
+  "description": "Angular provider for slim progress bars",
+  "keywords": [
+    "ui",
+    "bar",
+    "ngprogress-lite",
+    "ngProgressLite",
+    "angular",
+    "progress"
+  ],
+  "main": "./ngprogress-lite.js",
+  "author": {
+    "name": "Dmitri Voronianski",
+    "email": "dmitri.voronianski@gmail.com",
+    "web": "http://pixelhunter.me",
+    "twitter": "voronianski"
+  },
+  "homepage": "http://labs.voronianski.com/ngprogress-lite.js",
+  "bugs": "https://github.com/voronianski/ngprogress-lite/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/voronianski/ngprogress-lite.git"
+  },
+  "readmeFilename": "README.md",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-uglify": "~0.2.4"
+  }
+}

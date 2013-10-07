@@ -1,0 +1,27 @@
+{
+  "name": "ngprogress-lite",
+  "main": "ngprogress-lite.js",
+  "version": "1.0.0",
+  "description": "Angular provider for slim progress bars",
+  "homepage": "https://github.com/voronianski/ngprogress-lite",
+  "authors": [
+    "Dmitri Voronianski <dmitri.voronianski@gmail.com>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/voronianski/ngprogress-lite.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "example",
+    "Gruntfile.js"
+  ],
+  "dependencies": {
+    "angular": "~1.0.8"
+  }
+}

@@ -3,7 +3,7 @@ require.config({
 		'angular' : '../components/angular/angular',
 		'ngResource': '../components/angular-resource/angular-resource',
 		'ngCookies': '../components/angular-cookies/angular-cookies',
-		'ngProgress': '../components/ngprogress/build/ngProgress'
+		'ngProgressLite': '../components/ngprogress-lite/ngprogress-lite'
 	},
 	shim: {
 		ngResource: {
