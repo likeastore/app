@@ -197,11 +197,24 @@
 
 @media (max-width: 420px) {
 	.main-dashdoard {
-		margin-left: 10px;
+		margin-left: 0;
 	}
 
 	.search-input {
-		width: 105px;
+		width: 50px;
+	}
+
+	.dash-item {
+		width: 99.3%;
+	}
+
+	.dash-item img {
+		width: 50px;
+		height: 50px;
+	}
+
+	.empty-results h2 {
+		font-size: 24px;
 	}
 
 	.networks-wrap,

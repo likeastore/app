@@ -2,7 +2,7 @@ define(function (require) {
 	'use strict';
 
 	var angular = require('angular');
-	var ngProgress = require('ngProgressLite');
+	var ngProgressLite = require('ngProgressLite');
 	var directives = angular.module('directives', ['ngProgressLite']);
 
 	directives.directive('menuSlider', require('./menuSlider'));

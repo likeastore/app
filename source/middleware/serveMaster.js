@@ -7,23 +7,23 @@ function skipMaster (req) {
 	});
 }
 
-function hander(title, mainJs, mainCss) {
+function handler (title, mainJs, mainCss) {
 	return function (req, res, next) {
 		if (skipMaster(req)) {
 			return next();
 		}
 
-		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss});
+		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss });
 	};
 }
 
 module.exports = {
 	development: function () {
-		return hander('likeastore.', '/js/main.js', '/css/main.css');
+		return handler('likeastore.', '/js/main.js', '/css/main.css');
 	},
 
 	production: function () {
 		var build = require('./../../public/build');
-		return hander('likeastore.', build.js, build.css);
+		return handler('likeastore.', build.js, build.css);
 	}
 };

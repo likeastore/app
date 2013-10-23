@@ -15,7 +15,8 @@ require.config({
 			exports: 'angular'
 		},
 		ngProgress: {
-			deps: ['angular']
+			deps: ['angular'],
+			exports: 'angular'
 		},
 		angular: {
 			exports : 'angular'
