@@ -1,16 +1,16 @@
 var analytics = require('../utils/analytics');
 var logger = require('../utils/logger');
 
-function track(event, data) {
+function track(event, options) {
 	return function (req, res, next) {
-		if (data && data.param) {
-			data[data.param] = req.params[data.param];
-			delete data.param;
+		var data = {};
+
+		if (options && options.param) {
+			data[options.param] = req.params[options.param];
 		}
 
-		if (data && data.query) {
-			data[data.query] = req.query[data.query];
-			delete data.query;
+		if (options && options.query) {
+			data[options.query] = req.query[options.query];
 		}
 
 		analytics(event, data, function (err) {
