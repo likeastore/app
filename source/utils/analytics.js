@@ -4,4 +4,11 @@ var config = require('../../config');
 var env = process.env.NODE_ENV || 'development';
 var app = 'likeastore-' + env;
 
-module.exports = analytics(app, config.analytics.url);
+var options = {
+	server: config.analytics.url,
+	// TODO: move to config
+	username: 'alexanderbeletsky',
+	token: 'ebf6140a6314d7508a02300961636e9feffa73da'
+};
+
+module.exports = analytics(app, options);
