@@ -1,8 +1,6 @@
 define(function (require) {
 	'use strict';
 
-	var config = require('config').dashboard;
-
 	function SearchController ($scope, $routeParams, appLoader, api) {
 		appLoader.loading();
 

@@ -1,4 +1,3 @@
-var _ = require('underscore');
 var ObjectId = require('mongojs').ObjectId;
 var db = require('./dbConnector').db;
 

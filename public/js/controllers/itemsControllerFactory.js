@@ -1,8 +1,7 @@
-define(function (require) {
+define(function () {
 	'use strict';
 
 	function itemsControllerFactory (title, target) {
-		var config = require('config').dashboard;
 
 		function ItemsController($scope, appLoader, api) {
 			$scope.title = title;

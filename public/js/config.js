@@ -2,7 +2,7 @@
  * Client-side config
  */
 
-define(function (require) {
+define(function () {
 	'use strict';
 
 	return {

@@ -1,8 +1,6 @@
 var _ = require('underscore');
 var users = require('../db/users.js');
-var items = require('../db/items.js');
 var networks = require('../db/networks.js');
-var logger = require('../utils/logger');
 
 function usersService (app) {
 	app.get('/api/users/me',

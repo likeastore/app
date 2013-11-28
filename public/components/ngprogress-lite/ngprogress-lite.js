@@ -87,12 +87,16 @@
 						}, settings.speed);
 					}
 
-					return this;
+					return publicMethods;
+				},
+
+				get: function() {
+					return status;
 				},
 
 				start: function () {
 					if (!status) {
-						this.set(0);
+						publicMethods.set(0);
 					}
 
 					var worker = function () {
@@ -104,14 +108,14 @@
 					};
 
 					worker();
-					return this;
+					return publicMethods;
 				},
 
 				inc: function (amount) {
 					var n = status;
 
 					if (!n) {
-						return this.start();
+						return publicMethods.start();
 					}
 
 					if (typeof amount !== 'number') {
@@ -119,11 +123,13 @@
 					}
 
 					n = privateMethods.clamp(n + amount, 0, 0.994);
-					return this.set(n);
+					return publicMethods.set(n);
 				},
 
 				done: function () {
-					this.inc(0.3 + 0.5 * Math.random()).set(1);
+					if (status) {
+						publicMethods.inc(0.3 + 0.5 * Math.random()).set(1);
+					}
 				}
 			};
 

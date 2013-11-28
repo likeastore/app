@@ -1,6 +1,7 @@
+require('colors');
+
 var _ = require('underscore');
 var util = require('util');
-var colors = require('colors');
 var moment = require('moment');
 var logentries = require('node-logentries');
 var sinon = require('sinon');

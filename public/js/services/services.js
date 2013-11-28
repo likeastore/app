@@ -1,10 +1,10 @@
 define(function (require) {
 	'use strict';
 
-	var angular = require('angular');
-	var resource = require('ngResource');
-	var cookies = require('ngCookies');
+	require('ngResource');
+	require('ngCookies');
 
+	var angular = require('angular');
 	var services = angular.module('services', ['ngResource', 'ngCookies']);
 
 	services.factory('api', require('./api'));

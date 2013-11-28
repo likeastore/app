@@ -1,4 +1,4 @@
-define(function (require) {
+define(function () {
 	'use strict';
 
 	var boot = {
@@ -16,6 +16,7 @@ define(function (require) {
 				});
 			} else {
 				document.getElementById('resource-loader').style.display = 'none';
+				document.getElementById('header').style.display = 'block';
 				callback();
 			}
 		},

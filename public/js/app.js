@@ -1,12 +1,13 @@
 define(function (require) {
 	'use strict';
 
-	var angular = require('angular');
-	var services = require('./services/services');
-	var controllers = require('./controllers/controllers');
-	var directives = require('./directives/directives');
+	require('ngRoute');
+	require('./services/services');
+	require('./controllers/controllers');
+	require('./directives/directives');
 
-	var app = angular.module('likeastore', ['services', 'controllers', 'directives']);
+	var angular = require('angular');
+	var app = angular.module('likeastore', ['ngRoute', 'services', 'controllers', 'directives']);
 
 	app.init = function () {
 		angular.bootstrap(document, ['likeastore']);
@@ -14,7 +15,7 @@ define(function (require) {
 
 	app.config(['$routeProvider', '$locationProvider', '$httpProvider',
 		function ($routeProvider, $locationProvider, $httpProvider) {
-			$httpProvider.responseInterceptors.push('httpInterceptor');
+			$httpProvider.interceptors.push('httpInterceptor');
 
 			$routeProvider
 				.when('/', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })

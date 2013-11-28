@@ -4,8 +4,9 @@
   "dependencies": {
     "underscore": "~1.4.4",
     "requirejs": "~2.1.5",
-    "angular": "~1.0.7",
-    "angular-resource": "~1.0.7",
-    "angular-cookies": "~1.0.7"
+    "angular": "~1.2.3",
+    "angular-resource": "~1.2.3",
+    "angular-route": "~1.2.3",
+    "angular-cookies": "~1.2.3"
   }
 }

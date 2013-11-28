@@ -1,7 +1,4 @@
-var users = require('../db/users.js');
 var items = require('../db/items.js');
-var nets = require('../db/networks.js');
-var logger = require('../utils/logger.js');
 
 function itemsService (app) {
 	app.get('/api/items',
