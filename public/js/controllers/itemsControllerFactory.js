@@ -3,7 +3,9 @@ define(function () {
 
 	function itemsControllerFactory (title, target) {
 
-		function ItemsController($scope, appLoader, api) {
+		function ItemsController($scope, $window, appLoader, api) {
+			$window.scrollTo(0,0);
+
 			$scope.title = title;
 			$scope.page = 1;
 			$scope.items = [];
