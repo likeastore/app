@@ -38,7 +38,7 @@ var config = {
 	},
 
 	analytics: {
-		url: 'http://analytics.stage.likeastore.com'
+		url: 'https://analytics.stage.likeastore.com'
 	},
 
 	collector: {
