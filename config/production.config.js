@@ -38,7 +38,9 @@ var config = {
 	},
 
 	analytics: {
-		url: 'https://analytics.likeastore.com'
+		url: 'https://analytics.likeastore.com',
+		username: 'likeastore',
+		password: 'likeadmin7analitics'
 	},
 
 	collector: {

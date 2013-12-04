@@ -38,7 +38,9 @@ var config = {
 	},
 
 	analytics: {
-		url: 'http://localhost:3005'
+		url: 'http://localhost:3005',
+		username: 'likeastore',
+		password: 'mypass'
 	},
 
 	collector: {
