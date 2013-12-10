@@ -1,4 +1,4 @@
-var analytics = require('analytics');
+var analytics = require('seismo-client');
 var config = require('../../config');
 
 var env = process.env.NODE_ENV || 'development';

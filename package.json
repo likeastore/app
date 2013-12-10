@@ -29,7 +29,7 @@
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-requirejs": "~0.4.0",
     "grunt-hashres": "git://github.com/alexanderbeletsky/grunt-hashres.git",
-    "analytics": "git://github.com/likeastore/analytics.git"
+    "seismo-client": "0.0.4"
   },
   "devDependency": {
     "mocha": "~1.10.0",
