@@ -33,7 +33,7 @@ bootstrap.app(function (err) {
 		app.engine('ejs', engine);
 		app.set('views', __dirname + '/views');
 		app.set('view engine', 'ejs');
-		app.use(express.favicon());
+		app.use(express.favicon(path.join(__dirname, 'public/img/favicon.png')));
 		app.use(express.json());
 		app.use(express.urlencoded());
 		app.use(express.methodOverride());
