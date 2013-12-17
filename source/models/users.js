@@ -1,5 +1,7 @@
+var config = require('../../config');
+var db = require('../db')(config);
+
 var ObjectId = require('mongojs').ObjectId;
-var db = require('./dbConnector').db;
 
 function findById (id, callback) {
 	if (typeof id === 'string') {

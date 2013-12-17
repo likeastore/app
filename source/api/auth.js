@@ -1,5 +1,5 @@
 var middleware = require('../middleware');
-var users = require('../db/users');
+var users = require('../models/users');
 var config = require('../../config');
 
 function authService(app) {

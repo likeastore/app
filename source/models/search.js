@@ -1,4 +1,5 @@
-var db = require('./dbConnector').db;
+var config = require('../../config');
+var db = require('../db')(config);
 
 function fullTextItemSearch (user, query, callback) {
 	if (!query) {

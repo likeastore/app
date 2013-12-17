@@ -1,4 +1,4 @@
-var items = require('../db/items.js');
+var items = require('../models/items');
 
 function itemsService (app) {
 	app.get('/api/items',

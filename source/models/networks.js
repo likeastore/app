@@ -1,6 +1,7 @@
 var _ = require('underscore');
 var ObjectId = require('mongojs').ObjectId;
-var db = require('./dbConnector').db;
+var config = require('../../config');
+var db = require('../db')(config);
 
 exports.createOrUpdate = function (network, callback) {
 	db.networks.update(

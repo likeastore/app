@@ -1,4 +1,4 @@
-var search = require('../db/search.js');
+var search = require('../models/search');
 var middleware = require('../middleware');
 
 function searchService (app) {

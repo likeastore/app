@@ -1,4 +1,6 @@
-var db = require('./dbConnector').db;
+var config = require('../../config');
+var db = require('../db')(config);
+
 var pageSize = 30;
 
 function getAllItems (user, page, callback) {

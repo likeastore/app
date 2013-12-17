@@ -1,6 +1,5 @@
 var _ = require('underscore');
 var auth = require('./auth');
-var subscribers = require('../db/subscribers');
 var logger = require('../utils/logger');
 var config = require('../../config');
 
@@ -19,32 +18,8 @@ function guest () {
 	};
 }
 
-function invite () {
-	return function (req, res, next) {
-		logger.info({message: 'checking invintation permissions for request'});
-
-		var inviteId = req.cookies.likeastoreInviteId || req.cookies.likeastore_invite_id;
-
-		if (!inviteId || typeof inviteId !== 'string') {
-			logger.warning({message: 'No invite id in cookie', ip: req.ip});
-			return res.send(401, 'Missing authorization cookies');
-		}
-
-		subscribers.findOne({inviteId: inviteId}, function (err, subscription) {
-			if (err || !subscription || !subscription.activated) {
-				logger.warning({message: 'Subscription has not found', invite: inviteId});
-				return res.send(401, 'Missing user with such invite ' + err);
-			}
-
-			return next();
-		});
-	};
-}
-
 function ensureUser () {
 	return function (req, res, next) {
-		logger.info({message: 'ensuring we have user in session', user: req.user });
-
 		var urls = ['/api', '/connect'];
 		var acceptUrl = _.any(urls, function (url) {
 			return req.url.substr(0, url.length) === url;
@@ -80,7 +55,6 @@ function redirectUnauthorized() {
 module.exports = {
 	authenticatedAccess: authenticatedAccess,
 	guest: guest,
-	invite: invite,
 	ensureUser: ensureUser,
 	redirectUnauthorized: redirectUnauthorized
 };

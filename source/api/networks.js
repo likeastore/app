@@ -1,4 +1,4 @@
-var networks = require('../db/networks.js');
+var networks = require('../models/networks');
 var middleware = require('../middleware');
 var config = require('../../config');
 
