@@ -35,10 +35,7 @@ module.exports = function(grunt) {
 				"undef": true,
 				"unused": "vars",
 				globals: {
-					jQuery: true,
-					Backbone: true,
-					_: true,
-					$: true,
+					angular: true,
 					require: true,
 					define: true
 				}

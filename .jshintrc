@@ -1,7 +1,7 @@
 {
 	"predef": [
+		"angular",
 		"after",
-		"afterEach",
 		"afterEach",
 		"before",
 		"beforeEach",
