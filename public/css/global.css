@@ -23,11 +23,13 @@
 }
 
 ::selection {
-	background-color: #feffc3;
+	background-color: #e74c3c;
+	color: #fff;
 }
 
 ::-moz-selection {
-	background-color: #feffc3;
+	background-color: #e74c3c;
+	color: #fff;
 }
 
 html {
@@ -37,7 +39,7 @@ html {
 body {
 	color: #333;
 	background: #eaedf1;
-	font: normal 1em/1.4 'Lato', 'Open Sans', Arial, sans-serif;
+	font: normal 1em/1.4 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -81,7 +83,7 @@ a:hover {
 
 /* Empty results or no items on page */
 .empty-results {
-	font-family: 'Lato', 'Open Sans', Arial, sans-serif;
+	font-family: 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	padding: 100px 0 0;
 	text-align: center;
 }

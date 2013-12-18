@@ -119,12 +119,13 @@
 }
 
 .promo-line .promo-text {
-	margin: 5px 0 10px;
+	margin: 5px auto 10px;
 	font-size: 14px;
 	text-align: center;
+	max-width: 190px;
 }
 
-.promo-line .rocket-icon {
+.promo-line .side-btn-icon {
 	font-size: 20px;
 	float: left;
 	margin-right: 8px;
@@ -135,7 +136,7 @@
 	color: #edf0f2;
 	background: #1abc9c;
 	font-size: 11px;
-	padding: 5px 4px 5px 10px;
+	padding: 6px 4px 6px 10px;
 	margin: 15px auto 0;
 	width: 106px;
 	line-height: 21px;
@@ -480,4 +481,37 @@
 .show-more:hover {
 	background: #c5ccd1;
 	border-bottom-color: #b2bbc4
+}
+
+/* Footer links */
+.footer-links {
+	color: #ecf0f1;
+	font-size: 10px;
+	font-weight: 300;
+	text-transform: uppercase;
+	padding: 5px 0 0 10px;
+	position: fixed;
+	bottom: 5px;
+	right: 0;
+	left: 0;
+}
+
+.footer-links li {
+	display: inline;
+	margin-right: 5px;
+}
+
+.footer-links li:before {
+	display: inline;
+	content: '·';
+	margin-right: 5px;
+}
+
+.footer-links li:first-child:before {
+	content: '';
+	margin-right: 0;
+}
+
+.footer-links li a {
+	color: #ecf0f1;
 }
