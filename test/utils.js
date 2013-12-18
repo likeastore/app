@@ -1,7 +1,7 @@
 var _ = require('underscore');
 var crypto = require('crypto');
 var config = require('../config');
-var db = require('../source/db/dbConnector').db;
+var db = require('../source/db')(config);
 var moment = require('moment');
 var request = require('request');
 
