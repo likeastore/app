@@ -1,6 +1,6 @@
 {
   "name": "underscore",
-  "homepage": "https://github.com/documentcloud/underscore",
+  "homepage": "https://github.com/jashkenas/underscore",
   "version": "1.4.4",
   "_release": "1.4.4",
   "_resolution": {
@@ -8,6 +8,7 @@
     "tag": "1.4.4",
     "commit": "484bdb43ec4a9dd6a40e60a2d25317bec7aeb43f"
   },
-  "_source": "git://github.com/documentcloud/underscore.git",
-  "_target": "~1.4.4"
+  "_source": "git://github.com/jashkenas/underscore.git",
+  "_target": "~1.4.4",
+  "_originalSource": "underscore"
 }
