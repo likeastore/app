@@ -1,6 +1,6 @@
 var items = require('../models/items');
 
-function itemsService (app) {
+function itemsService(app) {
 	app.get('/api/items',
 		getItems);
 
