@@ -84,6 +84,32 @@ describe.only('inbox.spec.js', function () {
 		});
 
 		describe('when nothing new is added', function () {
+			beforeEach(function (done) {
+				var viewedUrl = url + '/viewed';
+				request.post({url: viewedUrl, headers: headers, json: true}, function (err, resp, body) {
+					error = err;
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+					error = err;
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok) status', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return empty list', function () {
+				expect(results.data.length).to.equal(0);
+			});
 
 		});
 
