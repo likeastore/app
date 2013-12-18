@@ -1,6 +1,5 @@
 var request = require('request');
 var testUtils = require('../utils');
-var moment = require('moment');
 
 describe('networks.spec.js', function () {
 	var token, user, url, headers, response, results, error;
@@ -46,7 +45,7 @@ describe('networks.spec.js', function () {
 							error = err;
 							response = resp;
 							results = body;
-							done();
+							done(error);
 						});
 					});
 
@@ -64,7 +63,7 @@ describe('networks.spec.js', function () {
 						beforeEach(function (done) {
 							testUtils.getUserFromDb(user, function (err, read) {
 								userFromDb = read;
-								done();
+								done(err);
 							});
 						});
 
@@ -90,7 +89,7 @@ describe('networks.spec.js', function () {
 							error = err;
 							response = resp;
 							results = body;
-							done();
+							done(err);
 						});
 					});
 
@@ -115,7 +114,7 @@ describe('networks.spec.js', function () {
 							error = err;
 							response = resp;
 							results = body;
-							done();
+							done(err);
 						});
 					});
 
@@ -140,7 +139,7 @@ describe('networks.spec.js', function () {
 							error = err;
 							response = resp;
 							results = body;
-							done();
+							done(err);
 						});
 					});
 
@@ -160,14 +159,14 @@ describe('networks.spec.js', function () {
 
 			beforeEach(function (done) {
 				testUtils.createTestNetworks(user, function (err, items) {
-					done();
+					done(err);
 				});
 			});
 
 			beforeEach(function (done) {
 				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 					networks = body;
-					done();
+					done(err);
 				});
 			});
 
