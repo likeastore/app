@@ -114,8 +114,41 @@ describe.only('inbox.spec.js', function () {
 		});
 
 		describe('when new items added', function () {
+			beforeEach(function (done) {
+				var viewedUrl = url + '/viewed';
+				request.post({url: viewedUrl, headers: headers, json: true}, function (err, resp, body) {
+					error = err;
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
 
+			beforeEach(function (done) {
+				// give a bit of timeout to pass from last viewed...
+				setTimeout(createTestItems, 500);
+
+				function createTestItems() {
+					testUtils.createTestItems(user, done);
+				}
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+					error = err;
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok) status', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return newly added items', function () {
+				expect(results.data.length).to.equal(10);
+			});
 		});
-
 	});
 });
