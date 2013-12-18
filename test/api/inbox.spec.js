@@ -1,11 +1,11 @@
 var request = require('request');
 var testUtils = require('../utils');
 
-describe.only('inbox.spec.js', function () {
+describe('inbox.spec.js', function () {
 	var token, user, url, headers, response, results, error;
 
 	beforeEach(function () {
-		url = testUtils.getRootUrl() + '/api/inbox';
+		url = testUtils.getRootUrl() + '/api/items/inbox';
 	});
 
 	describe('non authorized', function () {
@@ -23,16 +23,20 @@ describe.only('inbox.spec.js', function () {
 	});
 
 	describe('authorized', function () {
-		beforeEach(function (done) {
-			testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
-				token = accessToken;
-				user = createdUser;
-				headers = {'X-Access-Token': accessToken};
-				done(err);
+		describe('when logs on first time', function () {
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					user = createdUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
 			});
-		});
 
-		describe('when have no last viewed date', function () {
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, 60, done);
+			});
+
 			beforeEach(function (done) {
 				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 					error = err;
@@ -46,12 +50,98 @@ describe.only('inbox.spec.js', function () {
 				expect(response.statusCode).to.equal(200);
 			});
 
-			it('should return empty list', function () {
-				expect(results.data.length).to.equal(0);
+			it('should return latest 30 results', function () {
+				expect(results.data.length).to.equal(30);
 			});
-
 		});
 
+		describe('when logs on, and some items added between', function () {
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					user = createdUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, 5, done);
+			});
+
+			beforeEach(function (done) {
+				setTimeout(done, 300);
+			});
+
+			beforeEach(function (done) {
+				testUtils.loginToApi(user, function (err, updatedUser, accessToken) {
+					token = accessToken;
+					user = updatedUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+					error = err;
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok) status', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return empty results', function () {
+				expect(results.data.length).to.equal(5);
+			});
+		});
+
+		describe('when logs on, but nothing is added', function () {
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					user = createdUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				setTimeout(done, 300);
+			});
+
+			beforeEach(function (done) {
+				testUtils.loginToApi(user, function (err, updatedUser, accessToken) {
+					token = accessToken;
+					user = updatedUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+					error = err;
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok) status', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return empty results', function () {
+				expect(results.data.length).to.equal(0);
+			});
+		});
+
+		/*
 		describe('when inbox is viewed', function () {
 			beforeEach(function () {
 				url += '/viewed';
@@ -150,5 +240,7 @@ describe.only('inbox.spec.js', function () {
 				expect(results.data.length).to.equal(10);
 			});
 		});
+		*/
+
 	});
 });

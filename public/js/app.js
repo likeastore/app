@@ -19,7 +19,7 @@ define(function (require) {
 
 			$routeProvider
 				.when('/', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
-				.when('/inbox', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
+				.when('/inbox', { templateUrl: 'partials/dashboard', controller: 'inboxController' })
 				.when('/facebook', { templateUrl: 'partials/dashboard', controller: 'facebookController' })
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })

@@ -35,6 +35,17 @@ function createTestUserAndLoginToApi (callback) {
 	});
 }
 
+function loginToApi(user, callback) {
+	var url = getRootUrl() + '/api/auth/login';
+	request.post({url: url, body: {email: user.email, apiToken: user.apiToken}, json: true}, function (err, response, body) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback (null, user, body.token);
+	});
+}
+
 function createTestItems (user, size, callback) {
 	if (typeof size === 'function') {
 		callback = size;
@@ -103,6 +114,7 @@ module.exports = {
 	getRootUrl: getRootUrl,
 	createTestUser: createTestUser,
 	createTestUserAndLoginToApi: createTestUserAndLoginToApi,
+	loginToApi: loginToApi,
 	createTestItems: createTestItems,
 	createTestItemsOfType: createTestItemsOfType,
 	createTestNetworks: createTestNetworks,
