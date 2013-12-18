@@ -53,7 +53,34 @@ describe.only('inbox.spec.js', function () {
 		});
 
 		describe('when inbox is viewed', function () {
+			beforeEach(function () {
+				url += '/viewed';
+			});
 
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, json: true}, function (err, resp, body) {
+					error = err;
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				var userApiUrl = testUtils.getRootUrl() + '/api/users/me';
+				request.get({url: userApiUrl, headers: headers, json: true}, function (err, resp, body) {
+					user = body;
+					done(err);
+				});
+			});
+
+			it('should respond with 201 (created)', function () {
+				expect(response.statusCode).to.equal(201);
+			});
+
+			it('should update user with inboxLastViewed field', function () {
+				expect(user.inboxLastViewed).to.be.ok;
+			});
 		});
 
 		describe('when nothing new is added', function () {

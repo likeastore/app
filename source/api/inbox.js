@@ -8,18 +8,23 @@ function inboxService(app) {
 		markInboxViewed);
 
 	function getInbox(req, res, next) {
-		res.json({data: []});
-		// inbox.getUserInbox(req.user, function (err, items) {
-		// 	if (err) {
-		// 		return next({message: 'failed to get inbox for user', user: req.user, err: err, status: 500});
-		// 	}
+		inbox.getUserInbox(req.user, function (err, items) {
+			if (err) {
+				return next({message: 'failed to get inbox for user', user: req.user, err: err, status: 500});
+			}
 
-		// 	res.json(items);
-		// });
+			res.json(items);
+		});
 	}
 
-	function markInboxViewed(req, res) {
-		res.send(500);
+	function markInboxViewed(req, res, next) {
+		inbox.viewedByUser(req.user, function (err, user) {
+			if (err) {
+				return next({message: 'failed to update inbox viewed', user: req.user, err: err, status: 500});
+			}
+
+			res.send(201);
+		});
 	}
 }
 
