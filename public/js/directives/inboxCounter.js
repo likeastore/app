@@ -1,13 +1,14 @@
 define(function (require) {
 	'use strict';
 
+	var angular = require('angular');
 	var count;
 
 	function InboxCounter(api) {
 		return {
 			restrict: 'A',
 			link: function (scope, elem) {
-				if (count) {
+				if (!angular.isUndefined(count)) {
 					elem.text('(' + format(count) + ')');
 				} else {
 					api.get({resource: 'items', target: 'inbox', verb: 'count'}, function(res) {
