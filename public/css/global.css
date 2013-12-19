@@ -23,11 +23,13 @@
 }
 
 ::selection {
-	background-color: #feffc3;
+	background-color: #e74c3c;
+	color: #fff;
 }
 
 ::-moz-selection {
-	background-color: #feffc3;
+	background-color: #e74c3c;
+	color: #fff;
 }
 
 html {
@@ -35,9 +37,9 @@ html {
 }
 
 body {
-	color: #333;
+	color: #1f282d;
 	background: #eaedf1;
-	font: normal 1em/1.4 'Lato', 'Open Sans', Arial, sans-serif;
+	font: normal 1em/1.4 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -69,6 +71,69 @@ a:hover {
 	float: right;
 }
 
+.btn,
+.btn:focus {
+	display: inline-block;
+	font: 13px 'Lato', 'Helvetica', Arial, sans-serif;
+	border: 0;
+	padding: 0;
+	line-height: 21px;
+	width: 100%;
+	height: 39px;
+	text-transform: uppercase;
+	text-decoration: none;
+	cursor: pointer;
+	outline: none;
+	-webkit-appearance: none;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-transition: all .2s ease-out;
+	-moz-transition: all .2s ease-out;
+	-ms-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+}
+
+.green-btn {
+	color: #edf0f2;
+	background: #1abc9c;
+}
+
+.green-btn:hover,
+.green-btn:focus {
+	background: #16a085;
+}
+
+.field {
+	background: #eee;
+	border: 0;
+	border-radius: 0;
+	color: #ccc;
+	font: 12px 'Lato', 'Helvetica', Arial, sans-serif;
+	font-weight: 400;
+	padding: 12px 15px;
+	margin: 0;
+	box-shadow: none;
+	outline: none;
+	width: 100%;
+	-webkit-appearance: none;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: background-color .3s ease-in;
+	-moz-transition: background-color .3s ease-in;
+	-ms-transition: background-color .3s ease-in;
+	transition: background-color .3s ease-in;
+}
+
+.field:focus {
+	background: #ddd;
+	color: #1f1f1f;
+}
+
 .press-button:hover {
 	margin-top: 1px;
 	border-bottom-width: 5px;
@@ -81,7 +146,7 @@ a:hover {
 
 /* Empty results or no items on page */
 .empty-results {
-	font-family: 'Lato', 'Open Sans', Arial, sans-serif;
+	font-family: 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	padding: 100px 0 0;
 	text-align: center;
 }
