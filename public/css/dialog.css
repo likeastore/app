@@ -1,0 +1,254 @@
+/* Common dialog styles */
+@-webkit-keyframes lsd-fadein {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes lsd-fadeout {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes lsd-flipin-horizontal {
+	0% {
+		opacity: 0;
+		transform: rotateY(-90deg);
+		-webkit-transform: rotateY(-90deg);
+		-moz-transform: rotateY(-90deg);
+		-ms-transform: rotateY(-90deg);
+		-o-transform: rotateY(-90deg);
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotateY(0deg);
+		-webkit-transform: rotateY(0deg);
+		-moz-transform: rotateY(0deg);
+		-ms-transform: rotateY(0deg);
+		-o-transform: rotateY(0deg);
+	}
+}
+
+@-webkit-keyframes lsd-flipout-horizontal {
+	0% {
+		opacity: 1;
+		transform: rotateY(0deg);
+		-webkit-transform: rotateY(0deg);
+		-moz-transform: rotateY(0deg);
+		-ms-transform: rotateY(0deg);
+		-o-transform: rotateY(0deg);
+	}
+
+	100% {
+		opacity: 0;
+		transform: rotateY(90deg);
+		-webkit-transform: rotateY(90deg);
+		-moz-transform: rotateY(90deg);
+		-ms-transform: rotateY(90deg);
+		-o-transform: rotateY(90deg);
+	}
+}
+
+.lsd {
+	position: fixed;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	z-index: 10000;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.lsd, .lsd *, .lsd *:before, .lsd *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.lsd-overlay {
+	position: fixed;
+	background: rgba(0, 0, 0, 0.4);
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 20000px;
+	-webkit-backface-visibility: hidden;
+	-webkit-animation: lsd-fadein 0.5s;
+	-moz-animation: lsd-fadein 0.5s;
+	-ms-animation: lsd-fadein 0.5s;
+	animation: lsd-fadein 0.5s;
+}
+
+.lsd.lsd-closing .lsd-overlay {
+  -webkit-backface-visibility: hidden;
+  -webkit-animation: lsd-fadeout 0.5s;
+  -moz-animation: lsd-fadeout 0.5s;
+  -ms-animation: lsd-fadeout 0.5s;
+  animation: lsd-fadeout 0.5s;
+}
+
+body.lsd-open {
+	overflow: hidden;
+}
+
+/* Dialog themes */
+.lsd.lsd-theme-default {
+	padding-top: 160px;
+	padding-bottom: 160px;
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	-ms-perspective: 1300px;
+	-o-perspective: 1300px;
+	perspective: 1300px;
+	-webkit-perspective-origin: 50% 150px;
+	-moz-perspective-origin: 50% 150px;
+	-ms-perspective-origin: 50% 150px;
+	-o-perspective-origin: 50% 150px;
+	perspective-origin: 50% 150px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	font-size: 1.5em;
+}
+
+.lsd.lsd-theme-default .lsd-content {
+	font-weight: 300;
+	background: white;
+	color: #1f282d;
+	padding: 1.2em;
+	line-height: 1.5em;
+	text-align: center;
+	position: relative;
+	margin: 0 auto;
+	max-width: 100%;
+	width: 450px;
+}
+
+.lsd.lsd-theme-default .lsd-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+
+.lsd.lsd-theme-default .lsd-close:before {
+	position: absolute;
+	content: "\00D7";
+	font-size: 26px;
+	font-weight: normal;
+	line-height: 30px;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	top: 3px;
+	right: 3px;
+	color: #1abc9c;
+	background: transparent;
+}
+
+.lsd.lsd-theme-default .lsd-content h1,
+.lsd.lsd-theme-default .lsd-content h2,
+.lsd.lsd-theme-default .lsd-content h3 {
+	color: #1f282d;
+	font-family: 'proxima-nova-bold';
+	margin-bottom: 10px;
+}
+
+.lsd.lsd-theme-default.lsd-closing .lsd-content {
+	animation: lsd-flipout-horizontal 0.5s;
+	-webkit-animation: lsd-flipout-horizontal 0.5s;
+	-moz-animation: lsd-flipout-horizontal 0.5s;
+	-ms-animation: lsd-flipout-horizontal 0.5s;
+	-o-animation: lsd-flipout-horizontal 0.5s;
+	-webkit-backface-visibility: hidden;
+}
+
+.lsd.lsd-theme-default .lsd-content {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	animation: lsd-flipin-horizontal 0.5s;
+	-webkit-animation: lsd-flipin-horizontal 0.5s;
+	-moz-animation: lsd-flipin-horizontal 0.5s;
+	-ms-animation: lsd-flipin-horizontal 0.5s;
+	-o-animation: lsd-flipin-horizontal 0.5s;
+	-webkit-backface-visibility: hidden;
+}
+
+/* Adjust styles for share modal */
+.lsd.share-dialog .lsd-content {
+	width: 390px;
+	padding: 1.4em 1.6em;
+}
+
+.lsd.share-dialog .lsd-content input.field {
+	margin-bottom: 15px;
+}
+
+.lsd.share-dialog .lsd-content textarea.field {
+	margin-bottom: 4px;
+}
+
+.lsd.share-dialog .lsd-content .btn {
+	font-size: 11px;
+}
+
+.lsd.share-dialog .lsd-content h2 {
+	color: #7f8c8d;
+	font-size: .9em;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.lsd.share-dialog .lsd-content .mail-icon {
+	font-size: 20px;
+	line-height: 41px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 5px;
+	height: 28px;
+}
+
+.lsd.share-dialog .lsd-content .social-desc {
+	color: #8592a2;
+	font-size: 11px;
+	font-weight: 700;
+	border-top: 1px dotted #ddd;
+	margin: 25px 0 5px;
+	text-transform: uppercase;
+	padding-top: 8px;
+}
+
+.lsd.share-dialog .lsd-content .social-share .btn {
+	display: inline;
+	color: #fff;
+	width: 150px;
+}
+
+.lsd.share-dialog .lsd-content .social-share .fb-btn {
+	background: #3b5998;
+	margin-right: 7px;
+}
+
+.lsd.share-dialog .lsd-content .social-share .fb-btn:hover {
+	background: #2a4580;
+}
+
+.lsd.share-dialog .lsd-content .social-share .tw-btn {
+	background: #3498db;
+}
+
+.lsd.share-dialog .lsd-content .social-share .tw-btn:hover {
+	background: #2481bf;
+}
