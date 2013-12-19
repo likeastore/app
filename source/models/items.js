@@ -48,7 +48,7 @@ function getInbox(user, previousLogin, page, callback) {
 		query = query.skip(pageSize * (page - 1));
 	}
 
-	query.sort({ created: -1 }, returnResults);
+	query.sort({ date: -1 }, returnResults);
 
 	function returnResults(err, items) {
 		if (err) {
