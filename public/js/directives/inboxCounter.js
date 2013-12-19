@@ -2,7 +2,7 @@ define(function (require) {
 	'use strict';
 
 	var angular = require('angular');
-	var count = '1000+';
+	var count;
 
 	function InboxCounter(api) {
 		return {
