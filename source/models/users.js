@@ -53,9 +53,18 @@ function updateUser(email, attributes, callback) {
 	}, callback);
 }
 
+function deactivate(email, callback) {
+	db.users.findAndModify({
+		query: { email: email },
+		update: { $set: { deactivated: true } },
+		'new': true
+	}, callback);
+}
+
 module.exports = {
 	findById: findById,
 	findByEmail: findByEmail,
 	update: updateUser,
-	findByRequestToken: findByRequestToken
+	findByRequestToken: findByRequestToken,
+	deactivate: deactivate
 };

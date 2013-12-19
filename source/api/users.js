@@ -9,6 +9,9 @@ function usersService(app) {
 		returnUser
 	);
 
+	app.del('/api/users/me',
+		deleteUser);
+
 	function getUser(req, res, next) {
 		users.findByEmail(req.user, function (err, user) {
 			if (err) {
@@ -32,6 +35,16 @@ function usersService(app) {
 			});
 
 			next();
+		});
+	}
+
+	function deleteUser(req, res, next) {
+		users.deactivate(req.user, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(200);
 		});
 	}
 

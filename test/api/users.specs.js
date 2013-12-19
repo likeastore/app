@@ -1,24 +1,23 @@
 var request = require('request');
 var testUtils = require('../utils');
-var moment = require('moment');
-var crypto = require('crypto');
 
-describe('users.spec.js', function () {
-	var token, user, url, headers, response, body;
+describe.only('users.spec.js', function () {
+	var token, user, url, headers, response, body, error;
 
 	beforeEach(function () {
 		url = testUtils.getRootUrl() + '/api/users';
 	});
 
+	beforeEach(function () {
+		url += '/me';
+	});
+
 	describe('non authorized', function () {
-		beforeEach(function () {
-			url += '/me';
-		});
 
 		beforeEach(function (done) {
 			request.get({url: url, json: true}, function (err, resp, body) {
 				response = resp;
-				done();
+				done(err);
 			});
 		});
 
@@ -33,20 +32,16 @@ describe('users.spec.js', function () {
 				token = accessToken;
 				user = createdUser;
 				headers = {'X-Access-Token': accessToken};
-				done();
+				done(err);
 			});
 		});
 
 		describe('when getting user', function () {
-			beforeEach(function () {
-				url += '/me';
-			});
-
 			beforeEach(function (done) {
 				request.get({url: url, headers: headers, json: true}, function (err, resp, bod) {
 					response = resp;
 					body = bod;
-					done();
+					done(err);
 				});
 			});
 
@@ -75,12 +70,49 @@ describe('users.spec.js', function () {
 					request.get({url: url, headers: headers, json: true}, function (err, resp, bod) {
 						response = resp;
 						body = bod;
-						done();
+						done(err);
 					});
 				});
 
 				it ('should user contain warning flag', function () {
 					expect(body.warning).to.be.true;
+				});
+			});
+		});
+
+		describe('when deleting user', function () {
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					user = createdUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.del({url: url, headers: headers, json: true}, function (err, resp, bod) {
+					response = resp;
+					body = bod;
+					done(err);
+				});
+			});
+
+			it('should respond 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			describe('and try to login after', function () {
+				beforeEach(function (done) {
+					testUtils.loginToApi(user, function (err, user, toke) {
+						error = err;
+						token = toke;
+						done();
+					});
+				});
+
+				it('should reject user', function () {
+					expect(token).to.not.be.ok;
 				});
 			});
 		});
