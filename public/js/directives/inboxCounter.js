@@ -2,18 +2,18 @@ define(function (require) {
 	'use strict';
 
 	var angular = require('angular');
-	var count;
+	var count = '1000+';
 
 	function InboxCounter(api) {
 		return {
 			restrict: 'A',
 			link: function (scope, elem) {
 				if (!angular.isUndefined(count)) {
-					elem.text('(' + format(count) + ')');
+					elem.html(format(count));
 				} else {
 					api.get({resource: 'items', target: 'inbox', verb: 'count'}, function(res) {
 						count = res.count;
-						elem.text('(' + format(res.count) + ')');
+						elem.text(format(res.count));
 					});
 				}
 
