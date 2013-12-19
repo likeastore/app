@@ -19,11 +19,11 @@ function handler (title, mainJs, mainCss) {
 
 module.exports = {
 	development: function () {
-		return handler('likeastore.', '/js/main.js', '/css/main.css');
+		return handler('Likeastore', '/js/main.js', '/css/main.css');
 	},
 
 	production: function () {
 		var build = require('./../../public/build');
-		return handler('likeastore.', build.js, build.css);
+		return handler('Likeastore', build.js, build.css);
 	}
 };

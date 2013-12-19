@@ -1,5 +1,5 @@
 <!-- navigation -->
-<nav class="cell dashboard-nav {{title|lowercase}}" sticky-at="50">
+<nav class="cell dashboard-nav" sticky-at="50">
 	<div text-search="query"></div>
 
 	<ul class="networks-menu">
@@ -8,7 +8,6 @@
 		</li>
 		<li>
 			<a href="/inbox" class="menu-title inbox"><i data-icon="M" class="icon"></i> Inbox <inbox-counter /></a>
-
 		</li>
 		<li>
 			<a href="/all" class="menu-title likes"><i data-icon="s" class="icon"></i> All Likes</a>
@@ -79,7 +78,7 @@
 	<div class="empty-results" ng-show="error">
 		<div class="error-icon big-icon"></div>
 		<h2>Robot panic.. we are experiencing troubles!</h2>
-		<h3>Sorry for that. The error is logged and team already notified, will be fixed soon.</h3>
+		<h3>Sorry for that. The error is logged and team already notified, it will be fixed soon.</h3>
 	</div>
 
 	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>

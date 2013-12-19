@@ -1,10 +1,10 @@
 define(function () {
 	'use strict';
 
-	function SettingsController ($scope, appLoader, api) {
+	function SettingsController ($scope, $rootScope, appLoader, api) {
 		appLoader.loading();
 
-		$scope.title = 'Account settings';
+		$rootScope.title = 'Account settings';
 		$scope.networks = api.query({ resource: 'networks' }, function (res) {
 			appLoader.ready();
 		});

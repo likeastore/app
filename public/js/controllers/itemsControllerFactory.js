@@ -3,10 +3,10 @@ define(function () {
 
 	function itemsControllerFactory (title, target) {
 
-		function ItemsController($scope, $window, appLoader, api) {
+		function ItemsController($scope, $rootScope, $window, appLoader, api) {
 			$window.scrollTo(0,0);
 
-			$scope.title = title;
+			$rootScope.title = title;
 			$scope.page = 1;
 			$scope.items = [];
 			$scope.inbox = title === 'Inbox';

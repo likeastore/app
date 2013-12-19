@@ -2,23 +2,27 @@ define(function (require) {
 	'use strict';
 
 	var angular = require('angular');
-	var count;
+	var countSession;
 
 	function InboxCounter(api) {
 		return {
 			restrict: 'E',
 			link: function (scope, elem, attr) {
-				if (!angular.isUndefined(count)) {
-					elem.html('<span class="inbox-counter">' + format(count) + '</span>');
+				if (!angular.isUndefined(countSession)) {
+					elem.html(format(countSession));
 				} else {
 					api.get({ resource: 'items', target: 'inbox', verb: 'count' }, function (res) {
-						count = res.count;
-						elem.html('<span class="inbox-counter">' + format(res.count) + '</span>');
+						countSession = res.count;
+						elem.html(format(countSession));
 					});
 				}
 
 				function format(count) {
-					return count <= 1000 ? count : '1000 +';
+					if (count === 0) {
+						return;
+					}
+
+					return '<span class="inbox-counter">' + (count <= 1000 ? count : '1000 +') + '</span>';
 				}
 			}
 		};
