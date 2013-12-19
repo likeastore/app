@@ -34,6 +34,9 @@ define(function () {
 			function handleResults (res) {
 				$scope.items = $scope.items.concat(res.data);
 				$scope.nextPage = res.nextPage;
+				if (title === 'Inbox') {
+					$scope.count = $scope.items.length;
+				}
 				appLoader.ready();
 			}
 		}

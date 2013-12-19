@@ -53,6 +53,10 @@ describe('inbox.spec.js', function () {
 			it('should return latest 30 results', function () {
 				expect(results.data.length).to.equal(30);
 			});
+
+			it('should not have next page', function () {
+				expect(results.nextPage).to.equal(false);
+			});
 		});
 
 		describe('when logs on, and some items added between', function () {

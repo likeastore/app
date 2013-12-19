@@ -55,7 +55,7 @@ function getInbox(user, previousLogin, page, callback) {
 			return callback(err);
 		}
 
-		callback(null, {data: items, nextPage: items.length === pageSize});
+		callback(null, {data: items, nextPage: previousLogin ? items.length === pageSize : false});
 	}
 }
 
