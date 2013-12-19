@@ -12,13 +12,13 @@ define(function (require) {
 			},
 			template: '\
 				<div class="toggle">\
-					<input type="checkbox" id="toggleSwitcher" name="toggleSwitcher" ng-click="toggleNetwork()">\
-					<label for="toggleSwitcher" class="btn"></label>\
+					<input type="checkbox" id="{{service}}ToggleSwitcher" ng-click="toggleNetwork()">\
+					<label for="{{service}}ToggleSwitcher" class="btn"></label>\
 					<span class="texts" data-on="On" data-off="Off"></span>\
 					<span class="bg"></span>\
 				</div>',
 			link: function (scope, elem, attrs) {
-				var service = attrs.toggleSwitcher;
+				var service = scope.service = attrs.toggleSwitcher;
 				var urlOptions = {
 					resource: 'networks',
 					target: service
