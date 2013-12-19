@@ -1,7 +1,7 @@
 var request = require('request');
 var testUtils = require('../utils');
 
-describe.only('users.spec.js', function () {
+describe('users.spec.js', function () {
 	var token, user, url, headers, response, body, error;
 
 	beforeEach(function () {
