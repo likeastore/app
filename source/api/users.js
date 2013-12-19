@@ -1,6 +1,8 @@
 var _ = require('underscore');
+
 var users = require('../models/users');
 var networks = require('../models/networks');
+var middleware = require('../middleware');
 
 function usersService(app) {
 	app.get('/api/users/me',
@@ -10,6 +12,7 @@ function usersService(app) {
 	);
 
 	app.del('/api/users/me',
+		middleware.analytics.track('account deactivated'),
 		deleteUser);
 
 	function getUser(req, res, next) {
