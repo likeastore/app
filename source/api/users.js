@@ -2,7 +2,7 @@ var _ = require('underscore');
 var users = require('../models/users');
 var networks = require('../models/networks');
 
-function usersService (app) {
+function usersService(app) {
 	app.get('/api/users/me',
 		getUser,
 		disabledNetworksWarning,

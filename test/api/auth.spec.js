@@ -121,7 +121,7 @@ describe('auth.spec.js', function () {
 				expect(response.statusCode).to.equal(201);
 			});
 
-			it ('should get access token', function () {
+			it('should get access token', function () {
 				expect(body.token).to.be.ok;
 			});
 

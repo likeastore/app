@@ -9,6 +9,7 @@ define(function () {
 			$scope.title = title;
 			$scope.page = 1;
 			$scope.items = [];
+			$scope.inbox = title === 'Inbox';
 
 			loadPage();
 
@@ -34,6 +35,9 @@ define(function () {
 			function handleResults (res) {
 				$scope.items = $scope.items.concat(res.data);
 				$scope.nextPage = res.nextPage;
+				if (title === 'Inbox') {
+					$scope.count = $scope.items.length;
+				}
 				appLoader.ready();
 			}
 		}

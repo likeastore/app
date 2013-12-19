@@ -44,17 +44,15 @@
 	font-family: 'proxima-nova-bold';
 }
 
-.networks-menu .new-notifier {
+.networks-menu .inbox-counter {
 	color: #edf0f2;
-	background: #e76049;
-	font-size: 8px;
+	background: #7f8c8d;
+	font-size: 10px;
 	padding: 2px 5px;
 	text-transform: uppercase;
-	position: absolute;
-	right: 20px;
-	top: 7px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
+	margin-left: 45px;
 }
 
 .menu-title .icon {
