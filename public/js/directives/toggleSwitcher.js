@@ -12,8 +12,8 @@ define(function (require) {
 			},
 			template: '\
 				<div class="toggle">\
-					<input type="checkbox" name="toggleSwitcher" ng-click="toggleNetwork()">\
-					<span class="btn"></span>\
+					<input type="checkbox" id="toggleSwitcher" name="toggleSwitcher" ng-click="toggleNetwork()">\
+					<label for="toggleSwitcher" class="btn"></label>\
 					<span class="texts" data-on="On" data-off="Off"></span>\
 					<span class="bg"></span>\
 				</div>',
