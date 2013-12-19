@@ -50,12 +50,12 @@ describe('inbox.spec.js', function () {
 				expect(response.statusCode).to.equal(200);
 			});
 
-			it('should return latest 30 results', function () {
+			it('should return first page 30 results', function () {
 				expect(results.data.length).to.equal(30);
 			});
 
-			it('should not have next page', function () {
-				expect(results.nextPage).to.equal(false);
+			it('should have next page', function () {
+				expect(results.nextPage).to.equal(true);
 			});
 		});
 

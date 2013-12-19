@@ -61,6 +61,7 @@ function createTestItems (user, size, callback) {
 			user: user.email,
 			type: types[index % 3],
 			created: moment().toDate(),
+			date: moment().toDate(),
 			itemId: index
 		};
 	});
@@ -81,6 +82,7 @@ function createTestItemsOfType(user, type, size, callback) {
 			user: user.email,
 			type: type,
 			created: moment().toDate(),
+			date: moment().toDate(),
 			itemId: index
 		};
 	});

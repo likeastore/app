@@ -40,7 +40,7 @@ function getItemsByType(user, type, page, callback) {
 function getInbox(user, previousLogin, page, callback) {
 	var criteria = {user: user};
 	if (previousLogin) {
-		criteria.created = { $gt: previousLogin };
+		criteria.date = { $gt: previousLogin };
 	}
 
 	var query = db.items.find(criteria).limit(pageSize);
@@ -55,14 +55,14 @@ function getInbox(user, previousLogin, page, callback) {
 			return callback(err);
 		}
 
-		callback(null, {data: items, nextPage: previousLogin ? items.length === pageSize : false});
+		callback(null, {data: items, nextPage: items.length === pageSize});
 	}
 }
 
 function getInboxCount(user, previousLogin, page, callback) {
 	var criteria = {user: user};
 	if (previousLogin) {
-		criteria.created = { $gt: previousLogin };
+		criteria.date = { $gt: previousLogin };
 	}
 
 	db.items.find(criteria).count(function (err, count) {
