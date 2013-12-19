@@ -74,7 +74,7 @@ describe('inbox.spec.js', function () {
 			});
 
 			beforeEach(function (done) {
-				setTimeout(done, 300);
+				setTimeout(done, 100);
 			});
 
 			beforeEach(function (done) {
@@ -99,7 +99,7 @@ describe('inbox.spec.js', function () {
 				expect(response.statusCode).to.equal(200);
 			});
 
-			it('should return empty results', function () {
+			it('should return new results', function () {
 				expect(results.data.length).to.equal(5);
 			});
 		});
@@ -115,7 +115,7 @@ describe('inbox.spec.js', function () {
 			});
 
 			beforeEach(function (done) {
-				setTimeout(done, 300);
+				setTimeout(done, 100);
 			});
 
 			beforeEach(function (done) {
@@ -145,51 +145,35 @@ describe('inbox.spec.js', function () {
 			});
 		});
 
-		/*
-		describe('when inbox is viewed', function () {
-			beforeEach(function () {
-				url += '/viewed';
-			});
-
+		describe('when getting inbox count', function () {
 			beforeEach(function (done) {
-				request.post({url: url, headers: headers, json: true}, function (err, resp, body) {
-					error = err;
-					response = resp;
-					results = body;
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					user = createdUser;
+					headers = {'X-Access-Token': accessToken};
 					done(err);
 				});
 			});
 
 			beforeEach(function (done) {
-				var userApiUrl = testUtils.getRootUrl() + '/api/users/me';
-				request.get({url: userApiUrl, headers: headers, json: true}, function (err, resp, body) {
-					user = body;
-					done(err);
-				});
+				testUtils.createTestItems(user, 5, done);
 			});
 
-			it('should respond with 201 (created)', function () {
-				expect(response.statusCode).to.equal(201);
-			});
-
-			it('should update user with inboxLastViewed field', function () {
-				expect(user.inboxLastViewed).to.be.ok;
-			});
-		});
-
-		describe('when nothing new is added', function () {
 			beforeEach(function (done) {
-				var viewedUrl = url + '/viewed';
-				request.post({url: viewedUrl, headers: headers, json: true}, function (err, resp, body) {
-					error = err;
-					response = resp;
-					results = body;
+				setTimeout(done, 100);
+			});
+
+			beforeEach(function (done) {
+				testUtils.loginToApi(user, function (err, updatedUser, accessToken) {
+					token = accessToken;
+					user = updatedUser;
+					headers = {'X-Access-Token': accessToken};
 					done(err);
 				});
 			});
 
 			beforeEach(function (done) {
-				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+				request.get({url: url + '/count', headers: headers, json: true}, function (err, resp, body) {
 					error = err;
 					response = resp;
 					results = body;
@@ -201,50 +185,9 @@ describe('inbox.spec.js', function () {
 				expect(response.statusCode).to.equal(200);
 			});
 
-			it('should return empty list', function () {
-				expect(results.data.length).to.equal(0);
-			});
-
-		});
-
-		describe('when new items added', function () {
-			beforeEach(function (done) {
-				var viewedUrl = url + '/viewed';
-				request.post({url: viewedUrl, headers: headers, json: true}, function (err, resp, body) {
-					error = err;
-					response = resp;
-					results = body;
-					done(err);
-				});
-			});
-
-			beforeEach(function (done) {
-				// give a bit of timeout to pass from last viewed...
-				setTimeout(createTestItems, 500);
-
-				function createTestItems() {
-					testUtils.createTestItems(user, done);
-				}
-			});
-
-			beforeEach(function (done) {
-				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
-					error = err;
-					response = resp;
-					results = body;
-					done(err);
-				});
-			});
-
-			it('should respond with 200 (ok) status', function () {
-				expect(response.statusCode).to.equal(200);
-			});
-
-			it('should return newly added items', function () {
-				expect(results.data.length).to.equal(10);
+			it('should return count', function () {
+				expect(results.count).to.equal(5);
 			});
 		});
-		*/
-
 	});
 });

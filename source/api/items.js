@@ -8,6 +8,9 @@ function itemsService(app) {
 	app.get('/api/items/inbox',
 		getInbox);
 
+	app.get('/api/items/inbox/count',
+		getInboxCount);
+
 	app.get('/api/items/:type',
 		getItemsByType);
 
@@ -33,6 +36,22 @@ function itemsService(app) {
 				}
 
 				res.json(items);
+			});
+		});
+	}
+
+	function getInboxCount(req, res, next) {
+		users.findByEmail(req.user, function (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			items.getInboxCount(user.email, user.loginPreviousDate, req.query.page, function (err, result) {
+				if (err) {
+					return next({message: 'failed to get items inbox', user: req.user, err: err, status: 500});
+				}
+
+				res.json(result);
 			});
 		});
 	}

@@ -59,8 +59,24 @@ function getInbox(user, previousLogin, page, callback) {
 	}
 }
 
+function getInboxCount(user, previousLogin, page, callback) {
+	var criteria = {user: user};
+	if (previousLogin) {
+		criteria.created = { $gt: previousLogin };
+	}
+
+	db.items.find(criteria).count(function (err, count) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null, {count: count});
+	});
+}
+
 module.exports = {
 	getAllItems: getAllItems,
 	getItemsByType: getItemsByType,
-	getInbox: getInbox
+	getInbox: getInbox,
+	getInboxCount: getInboxCount
 };
