@@ -1,5 +1,5 @@
 <!-- navigation -->
-<nav class="cell dashboard-nav" sticky-at="50">
+<nav class="left dashboard-nav" sticky-at="50">
 	<div text-search="query"></div>
 
 	<ul class="networks-menu">
@@ -28,7 +28,7 @@
 	<div class="promo-line">
 		<div class="promo-text">Invite your friends to stay tuned with their likes!</div>
 
-		<a href="#" ng-dialog="shareDialogId" ng-dialog-class="lsd-theme-default share-dialog"><i data-icon="S" class="side-btn-icon"></i> Share love</a>
+		<a href="#" class="btn green-btn" ng-dialog="shareDialogId" ng-dialog-class="lsd-theme-default share-dialog"><i data-icon="S" class="side-btn-icon"></i> Share love</a>
 
 		<script type="text/ng-template" id="shareDialogId">
 			<h2>
@@ -95,7 +95,7 @@
 	<div class="empty-results" ng-show="loaded && !items.length && !search && !inbox">
 		<div class="robot-icon big-icon"></div>
 		<h2>You don't own any items to display yet..</h2>
-		<a href="/settings" class="block settings-button press-button">Go to settings</a>
+		<a href="/settings" class="red-press-btn">Go to settings</a>
 	</div>
 
 	<div class="empty-results" ng-show="error">

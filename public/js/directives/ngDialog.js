@@ -5,7 +5,8 @@ define(function (require) {
 		return {
 			restrict: 'A',
 			link: function (scope, elem, attr) {
-				elem.on('click', function () {
+				elem.on('click', function (e) {
+					e.preventDefault();
 					dialog.open({ className: attr.ngDialogClass, template: attr.ngDialog });
 				});
 			}
