@@ -45,14 +45,17 @@
 }
 
 .networks-menu .inbox-counter {
-	color: #edf0f2;
-	background: #7f8c8d;
+	background: #8592a2;
+	color: #fff;
 	font-size: 10px;
-	padding: 2px 5px;
-	text-transform: uppercase;
+	padding: 0 6px;
+	height: 16px;
+	line-height: 16px;
+	position: absolute;
+	right: 20px;
+	top: 6px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
-	margin-left: 45px;
 }
 
 .menu-title .icon {
@@ -89,6 +92,15 @@
 	background-color: #e76049;
 }
 
+.menu-title.inbox:hover .inbox-counter {
+	background: #fff;
+	color: #e76049;
+}
+
+.menu-title.likes:hover {
+	background-color: #1abc9c;
+}
+
 .menu-title.facebook:hover {
 	background-color: #3b5998;
 }
@@ -112,7 +124,7 @@
 	padding: 15px 12px 25px 8px;
 	position: absolute;
 	width: 200px;
-	top: 325px;
+	top: 350px;
 	overflow: hidden;
 }
 

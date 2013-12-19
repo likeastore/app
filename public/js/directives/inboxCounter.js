@@ -6,19 +6,19 @@ define(function (require) {
 
 	function InboxCounter(api) {
 		return {
-			restrict: 'A',
-			link: function (scope, elem) {
+			restrict: 'E',
+			link: function (scope, elem, attr) {
 				if (!angular.isUndefined(count)) {
-					elem.html(format(count));
+					elem.html('<span class="inbox-counter">' + format(count) + '</span>');
 				} else {
-					api.get({resource: 'items', target: 'inbox', verb: 'count'}, function(res) {
+					api.get({ resource: 'items', target: 'inbox', verb: 'count' }, function (res) {
 						count = res.count;
-						elem.text(format(res.count));
+						elem.html('<span class="inbox-counter">' + format(res.count) + '</span>');
 					});
 				}
 
 				function format(count) {
-					return count <= 1000 ? count : '1000+';
+					return count <= 1000 ? count : '1000 +';
 				}
 			}
 		};

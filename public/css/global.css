@@ -90,26 +90,6 @@ a:hover {
 	margin: 0 auto;
 }
 
-.empty-results .inbox-icon {
-	background: url(../img/square-robot.png) center center no-repeat;
-	background-size: 90px;
-}
-
-.empty-results .annoyed-icon {
-	background: url(../img/no-results-grey.png) center center no-repeat;
-	background-size: 90px;
-}
-
-.empty-results .error-icon {
-	background: url(../img/ooops-robot.png) center center no-repeat;
-	background-size: 180px;
-}
-
-.empty-results .error-icon.big-icon {
-	height: 120px;
-	width: 200px;
-}
-
 .empty-results h1, .empty-results h2, .empty-results h3, .empty-results h4 {
 	color: #bdc3c7;
 }

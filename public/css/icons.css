@@ -74,5 +74,29 @@
 .big-icon {
 	height: 100px;
 	width: 100px;
+}
+
+.box-icon {
+	background: url(../img/box.png) center center no-repeat;
 	background-size: 90px;
+}
+
+.robot-icon {
+	background: url(../img/square-robot.png) center center no-repeat;
+	background-size: 90px;
+}
+
+.annoyed-icon {
+	background: url(../img/no-results-grey.png) center center no-repeat;
+	background-size: 90px;
+}
+
+.error-icon {
+	background: url(../img/ooops-robot.png) center center no-repeat;
+	background-size: 180px;
+}
+
+.error-icon.big-icon {
+	height: 120px;
+	width: 200px;
 }
