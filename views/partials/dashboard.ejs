@@ -60,7 +60,13 @@
 		<h2>Ooops.. no matching search results!</h2>
 	</div>
 
-	<div class="empty-results" ng-show="loaded && !items.length && !search">
+	<div class="empty-results" ng-show="loaded && !items.length && inbox">
+		<div class="inbox-icon big-icon"></div>
+		<h2>Your inbox is empty..</h2>
+		<h3>No new likes are collected since your last visit, be more active!</h3>
+	</div>
+
+	<div class="empty-results" ng-show="loaded && !items.length && !search && !inbox">
 		<div class="inbox-icon big-icon"></div>
 		<h2>You don't own any items to display yet..</h2>
 		<a href="/settings" class="block settings-button press-button">Go to settings</a>

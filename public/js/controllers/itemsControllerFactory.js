@@ -9,6 +9,7 @@ define(function () {
 			$scope.title = title;
 			$scope.page = 1;
 			$scope.items = [];
+			$scope.inbox = title === 'Inbox';
 
 			loadPage();
 
