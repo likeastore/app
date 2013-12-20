@@ -108,13 +108,27 @@
 
 @media (max-width: 700px) {
 	.settings-page {
-		width: 100%;
-		padding: 0 20px 30px;
+		width: 500px;
 	}
 
 	.networks-wrap,
-	.userinfo-wrap {
-		width: 92%;
+	.userinfo-wrap,
+	.danger-wrap {
+		width: 100%;
+	}
+
+	.danger-wrap .info-item {
+		float: none;
+		font-size: 11px;
+		margin-bottom: 20px;
+		text-align: center;
+		width: 100%;
+	}
+
+	.danger-wrap .btn {
+		display: block;
+		float: none;
+		margin: 0 auto;
 	}
 }
 
@@ -140,7 +154,7 @@
 	.search-input {
 		margin: 5px;
 		padding-left: 30px;
-		width: 150px;
+		width: 100px;
 	}
 
 	.search-icon {
@@ -155,12 +169,21 @@
 	.networks-menu {
 		float: right;
 		margin-top: 8px;
-		width: 220px;
+		width: 260px;
 	}
 
 	.networks-menu li {
 		display: inline-block;
 		padding: 0;
+		overflow: visible;
+	}
+
+	.networks-menu .inbox-counter {
+		font-size: 9px;
+		line-height: 12px;
+		min-width: 8px;
+		height: 11px;
+		top: 25px;
 	}
 
 	.networks-menu .menu-title {
@@ -200,8 +223,25 @@
 		margin-left: 0;
 	}
 
+	.settings-page {
+		width: 290px;
+	}
+
 	.search-input {
 		width: 50px;
+	}
+
+	.networks-menu {
+		width: 200px;
+	}
+
+	.networks-menu .menu-title {
+		padding: 3px 7px;
+	}
+
+	.menu-title .icon {
+		font-size: 16px;
+		vertical-align: bottom;
 	}
 
 	.dash-item {
@@ -215,11 +255,6 @@
 
 	.empty-results h2 {
 		font-size: 24px;
-	}
-
-	.networks-wrap,
-	.userinfo-wrap {
-		width: 89%;
 	}
 
 	.network .toggle {
