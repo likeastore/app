@@ -13,7 +13,7 @@ function handler (title, mainJs, mainCss) {
 			return next();
 		}
 
-		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss });
+		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss});
 	};
 }
 
