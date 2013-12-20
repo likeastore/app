@@ -366,7 +366,7 @@ body.lsd-open {
 	-webkit-backface-visibility: hidden;
 }
 
-/* Adjust styles for share modal */
+/* Share modal */
 .lsd.share-dialog .lsd-content {
 	width: 390px;
 	padding: 1.4em 1.6em;
@@ -431,4 +431,27 @@ body.lsd-open {
 
 .lsd.share-dialog .lsd-content .social-share .tw-btn:hover {
 	background: #2481bf;
+}
+
+/* Delete modal */
+.lsd.delete-user-dialog .lsd-content {
+	width: 385px;
+}
+
+.lsd.delete-user-dialog .lsd-content .tip {
+	color: #8592a2;
+	font-size: 16px;
+	line-height: 24px;
+	max-width: 300px;
+	margin: 0 auto 35px;
+}
+
+.lsd.delete-user-dialog .lsd-content .green-btn {
+	margin-right: 10px;
+}
+
+.lsd.delete-user-dialog .lsd-content .btn {
+	display: inline;
+	font-size: 11px;
+	width: 125px;
 }
