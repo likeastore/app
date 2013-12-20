@@ -31,7 +31,7 @@
     "seismo-client": "0.0.4",
     "node-mandrill": "~1.0.1"
   },
-  "devDependency": {
+  "devDependencies": {
     "mocha": "~1.10.0",
     "chai": "~1.6.1",
     "sinon-chai": "~2.4.0",

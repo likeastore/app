@@ -31,6 +31,16 @@
 	background: #16a085;
 }
 
+.red-btn {
+	color: #edf0f2;
+	background: #e74c3c;
+}
+
+.red-btn:hover,
+.red-btn:focus {
+	background: #c0392b;
+}
+
 .red-press-btn {
 	display: inline-block;
 	color: #fff;

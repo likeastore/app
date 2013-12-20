@@ -1,3 +1,4 @@
+var async = require('async');
 var config = require('../../config');
 var db = require('../db')(config);
 
@@ -54,11 +55,25 @@ function updateUser(email, attributes, callback) {
 }
 
 function deactivate(email, callback) {
-	db.users.findAndModify({
-		query: { email: email },
-		update: { $set: { deactivated: true } },
-		'new': true
-	}, callback);
+	var deleteTasks = [
+		deleteItems,
+		deleteNetworks,
+		deleteUser
+	];
+
+	async.parallel(deleteTasks, callback);
+
+	function deleteItems(next) {
+		db.users.remove({ 'user': email }, next);
+	}
+
+	function deleteNetworks(next) {
+		db.users.remove({ 'user': email }, next);
+	}
+
+	function deleteUser(next) {
+		db.users.remove({ 'email': email }, next);
+	}
 }
 
 module.exports = {

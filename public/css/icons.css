@@ -71,6 +71,14 @@
 	content: 'u';
 }
 
+.main-icon:before {
+	content: 'w';
+}
+
+.delete-icon:before {
+	content: 'v';
+}
+
 .big-icon {
 	height: 100px;
 	width: 100px;

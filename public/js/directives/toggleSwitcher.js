@@ -19,10 +19,7 @@ define(function (require) {
 				</div>',
 			link: function (scope, elem, attrs) {
 				var service = scope.service = attrs.toggleSwitcher;
-				var urlOptions = {
-					resource: 'networks',
-					target: service
-				};
+				var urlOptions = { resource: 'networks', target: service };
 
 				scope.toggleNetwork = function () {
 					var isOn = elem.hasClass('on');

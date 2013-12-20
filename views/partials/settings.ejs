@@ -1,7 +1,7 @@
 <div class="settings-page">
 
 	<div class="userinfo-wrap">
-		<div class="title"><i class="font-icon settings-icon pref"></i>{{title}}</div>
+		<div class="main-title"><i class="font-icon settings-icon"></i>{{title}}</div>
 		<div class="info-item">{{user.displayName || user.name}} &middot; {{user.email}}</div>
 		<div class="info-item date">*registered on {{user.registered|date: 'fullDate'}}</div>
 
@@ -38,4 +38,17 @@
 			<div toggle-switcher="stackoverflow" model="networks"></div>
 		</li>
 	</ul>
+
+	<div class="danger-wrap clearfix">
+		<div class="main-title"><i class="font-icon delete-icon"></i>Delete account</div>
+		<div class="info-item left">Once you delete an account, there is no going back.<br> This action <b>CANNOT</b> be undone and will delete all likes permanently.</div>
+		<button type="button" class="btn red-btn delete-btn right" ng-dialog="deleteAccountDialog" ng-dialog-class="lsd-theme-default">Delete my account</button>
+
+		<script type="text/ng-template" id="deleteAccountDialog">
+			<div ng-controller="deleteUserController">
+				<h2>Are you ABSOLUTELY sure?</h2>
+				<button type="button" ng-click="deleteAccount()" class="btn red-btn">Yes, delete please</button>
+			</div>
+		</script>
+	</div>
 </div>

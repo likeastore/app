@@ -2,20 +2,20 @@
 	width: 700px;
 	font-family: 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	margin: 0 auto;
-	padding-bottom: 50px;
+	padding-bottom: 60px;
 }
 
-.userinfo-wrap .title {
+.settings-page .main-title {
 	font: 700 20px 'proxima-nova-bold', 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	text-transform: uppercase;
 	margin-bottom: 25px;
 	padding-bottom: 5px;
-	border-bottom: 1px solid #bbb;
+	border-bottom: 1px solid #bdc3c7;
 	vertical-align: top;
 	line-height: 28px;
 }
 
-.userinfo-wrap .title .pref {
+.main-title .font-icon {
 	font-size: 26px;
 	margin-right: 8px;
 }
@@ -38,7 +38,7 @@
 }
 
 .networks-wrap {
-	margin: 30px 0;
+	margin: 30px auto 40px;
 }
 
 .networks-wrap .network {
@@ -49,7 +49,7 @@
 	position: relative;
 }
 
-.title {
+.network .title {
 	color: #333;
 	font: 700 18px 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	margin-bottom: 30px;
@@ -65,6 +65,21 @@
 	position: absolute;
 	top: 15px;
 	right: 25px;
+}
+
+/* Delete user block */
+.danger-wrap .info-item {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+	margin: 0;
+	width: 500px;
+}
+
+.danger-wrap .delete-btn {
+	font-size: 11px;
+	font-weight: 300;
+	width: 165px;
 }
 
 /* Toggle network checkboxes */
@@ -164,6 +179,7 @@
 	background: #48C893;
 }
 
+/* Network errors */
 .network-error-stripe {
 	color: #e76049;
 	font-size: 14px;

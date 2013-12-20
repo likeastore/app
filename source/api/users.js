@@ -13,7 +13,8 @@ function usersService(app) {
 
 	app.del('/api/users/me',
 		middleware.analytics.track('account deactivated'),
-		deleteUser);
+		deleteUser
+	);
 
 	function getUser(req, res, next) {
 		users.findByEmail(req.user, function (err, user) {
