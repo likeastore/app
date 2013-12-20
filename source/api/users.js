@@ -1,12 +1,19 @@
 var _ = require('underscore');
-var users = require('../db/users.js');
-var networks = require('../db/networks.js');
 
-function usersService (app) {
+var users = require('../models/users');
+var networks = require('../models/networks');
+var middleware = require('../middleware');
+
+function usersService(app) {
 	app.get('/api/users/me',
 		getUser,
 		disabledNetworksWarning,
 		returnUser
+	);
+
+	app.del('/api/users/me',
+		middleware.analytics.track('account deactivated'),
+		deleteUser
 	);
 
 	function getUser(req, res, next) {
@@ -32,6 +39,16 @@ function usersService (app) {
 			});
 
 			next();
+		});
+	}
+
+	function deleteUser(req, res, next) {
+		users.deactivate(req.user, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(200);
 		});
 	}
 

@@ -4,4 +4,5 @@ module.exports = function (app) {
 	require('./networks')(app);
 	require('./users')(app);
 	require('./search')(app);
+	require('./emails')(app);
 };

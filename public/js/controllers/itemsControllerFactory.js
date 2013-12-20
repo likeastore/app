@@ -3,12 +3,13 @@ define(function () {
 
 	function itemsControllerFactory (title, target) {
 
-		function ItemsController($scope, $window, appLoader, api) {
+		function ItemsController($scope, $rootScope, $window, appLoader, api) {
 			$window.scrollTo(0,0);
 
-			$scope.title = title;
+			$rootScope.title = title;
 			$scope.page = 1;
 			$scope.items = [];
+			$scope.inbox = title === 'Inbox';
 
 			loadPage();
 
@@ -34,6 +35,9 @@ define(function () {
 			function handleResults (res) {
 				$scope.items = $scope.items.concat(res.data);
 				$scope.nextPage = res.nextPage;
+				if (title === 'Inbox') {
+					$scope.count = $scope.items.length;
+				}
 				appLoader.ready();
 			}
 		}

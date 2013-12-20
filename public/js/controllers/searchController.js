@@ -1,11 +1,11 @@
 define(function (require) {
 	'use strict';
 
-	function SearchController ($scope, $routeParams, appLoader, api) {
+	function SearchController ($scope, $rootScope, $routeParams, appLoader, api) {
 		appLoader.loading();
 
+		$rootScope.title = 'Search';
 		$scope.search = true;
-		$scope.title = 'Search';
 		$scope.query = $routeParams.text;
 		$scope.items = [];
 

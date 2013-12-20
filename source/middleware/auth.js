@@ -1,6 +1,7 @@
 var moment = require('moment');
 var crypto = require('crypto');
 
+// TODO: move both to config
 var TOKEN_TTL_MINUTES = 1440;
 var AUTH_SIGN_KEY = 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662';
 

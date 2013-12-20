@@ -12,17 +12,14 @@ define(function (require) {
 			},
 			template: '\
 				<div class="toggle">\
-					<input type="checkbox" name="toggleSwitcher" ng-click="toggleNetwork()">\
-					<span class="btn"></span>\
+					<input type="checkbox" id="{{service}}ToggleSwitcher" ng-click="toggleNetwork()">\
+					<label for="{{service}}ToggleSwitcher" class="btn"></label>\
 					<span class="texts" data-on="On" data-off="Off"></span>\
 					<span class="bg"></span>\
 				</div>',
 			link: function (scope, elem, attrs) {
-				var service = attrs.toggleSwitcher;
-				var urlOptions = {
-					resource: 'networks',
-					target: service
-				};
+				var service = scope.service = attrs.toggleSwitcher;
+				var urlOptions = { resource: 'networks', target: service };
 
 				scope.toggleNetwork = function () {
 					var isOn = elem.hasClass('on');

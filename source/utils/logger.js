@@ -1,71 +1,78 @@
 require('colors');
 
-var _ = require('underscore');
 var util = require('util');
 var moment = require('moment');
 var logentries = require('node-logentries');
-var sinon = require('sinon');
 var config = require('../../config');
+var stub = require('./stub');
 
 var log = logentries.logger({
-	token: config.logentries.token
+	token: config.logentries.token,
+	printerror: false
 });
 
 log.level('info');
 
 var logger = {
-	colorsMap: {
-		'success': 'green',
-		'warning': 'yellow',
-		'err': 'red',
-		'info': 'grey'
-	},
-
 	success: function (message) {
-		this.log('success', message);
+		message = typeof message === 'string' ? message : JSON.stringify(message);
+		console.log(this.timestamptMessage(util.format('SUCCESS: %s', message)).green);
+		log.log('info', message);
 	},
 
 	warning: function (message) {
-		this.log('warning', message);
+		message = typeof message === 'string' ? message : JSON.stringify(message);
+		console.log(this.timestamptMessage(util.format('WARNING: %s', message)).yellow);
+		log.log('warning', message);
 	},
 
 	error: function (message) {
-		this.log('err', message);
+		message = typeof message === 'string' ? message : JSON.stringify(message);
+		console.log(this.timestamptMessage(util.format('ERROR: %s', message)).red);
+		log.log('err', message);
+	},
+
+	fatal: function (message) {
+		message = typeof message === 'string' ? message : JSON.stringify(message);
+		console.log(this.timestamptMessage(util.format('ERROR: %s', message)).red);
+		log.log('emerg', message);
 	},
 
 	info: function (message) {
-		this.log('info', message);
+		message = typeof message === 'string' ? message : JSON.stringify(message);
+		console.log(this.timestamptMessage(message));
+		log.log('info', message);
 	},
 
-	log: function (type, message) {
-		var record = this.timestamptMessage(util.format('%s: %s', type.toUpperCase(), this.formatMessage(message)));
-		console.log(record[this.colorsMap[type]]);
-	},
+	connector: function (name) {
+		var me = this;
 
-	formatMessage: function (message) {
-		return typeof message === 'string' ? message : JSON.stringify(message);
+		return {
+			info: function (message) {
+				me.info('connector ' + name + ': ' + message);
+			},
+			warning: function (message) {
+				me.warning('connector ' + name + ': ' + message);
+			},
+			error: function (message) {
+				me.error('connector ' + name + ': ' + message);
+			},
+			success: function (message) {
+				me.success('connector ' + name + ': ' + message);
+			}
+		};
 	},
 
 	timestamptMessage: function (message) {
 		return util.format('[%s] %s', moment(), message);
 	}
-
 };
 
-var logentriesLogger = (function (_super) {
-	var child = {
-		log: function (type, message) {
-			_super.log(type, message);
-			log.log(type, message);
-		}
-	};
+module.exports = module.exports = (function () {
+	var env = process.env.NODE_ENV || 'development';
+	if (env === 'test') {
+		return stub(logger);
+	}
 
-	return _.extend(Object.create(_super), child);
-})(logger);
-
-
-function loggerFactory (env) {
-	return env === 'test' ? sinon.stub (logentriesLogger) : logentriesLogger;
-}
-
-module.exports = loggerFactory(process.env.TEST_ENV);
+	return logger;
+})();

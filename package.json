@@ -22,16 +22,16 @@
     "node-logentries": "~0.1.2",
     "colors": "~0.6.2",
     "moment": "~2.0.0",
-    "sinon": "~1.7.3",
     "bower": "~0.9.2",
     "oauth": "~0.9.10",
     "grunt-cli": "~0.1.8",
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-requirejs": "~0.4.0",
     "grunt-hashres": "git://github.com/alexanderbeletsky/grunt-hashres.git",
-    "seismo-client": "0.0.4"
+    "seismo-client": "0.0.4",
+    "node-mandrill": "~1.0.1"
   },
-  "devDependency": {
+  "devDependencies": {
     "mocha": "~1.10.0",
     "chai": "~1.6.1",
     "sinon-chai": "~2.4.0",

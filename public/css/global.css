@@ -23,11 +23,13 @@
 }
 
 ::selection {
-	background-color: #feffc3;
+	background-color: #e74c3c;
+	color: #fff;
 }
 
 ::-moz-selection {
-	background-color: #feffc3;
+	background-color: #e74c3c;
+	color: #fff;
 }
 
 html {
@@ -35,9 +37,9 @@ html {
 }
 
 body {
-	color: #333;
+	color: #1f282d;
 	background: #eaedf1;
-	font: normal 1em/1.4 'Lato', 'Open Sans', Arial, sans-serif;
+	font: normal 1em/1.4 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -61,27 +63,17 @@ a:hover {
 	text-decoration: underline;
 }
 
-.cell {
+.left {
 	float: left;
 }
 
-.cellRight {
+.right {
 	float: right;
-}
-
-.press-button:hover {
-	margin-top: 1px;
-	border-bottom-width: 5px;
-}
-
-.press-button:active {
-	margin-top: 3px;
-	border-bottom-width: 3px;
 }
 
 /* Empty results or no items on page */
 .empty-results {
-	font-family: 'Lato', 'Open Sans', Arial, sans-serif;
+	font-family: 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	padding: 100px 0 0;
 	text-align: center;
 }
@@ -90,47 +82,14 @@ a:hover {
 	margin: 0 auto;
 }
 
-.empty-results .inbox-icon {
-	background: url(../img/square-robot.png) center center no-repeat;
-	background-size: 90px;
-}
-
-.empty-results .annoyed-icon {
-	background: url(../img/no-results-grey.png) center center no-repeat;
-	background-size: 90px;
-}
-
-.empty-results .error-icon {
-	background: url(../img/ooops-robot.png) center center no-repeat;
-	background-size: 180px;
-}
-
-.empty-results .error-icon.big-icon {
-	height: 120px;
-	width: 200px;
-}
-
 .empty-results h1, .empty-results h2, .empty-results h3, .empty-results h4 {
 	color: #bdc3c7;
 }
 
 .empty-results h2 {
-	margin: 5px auto 25px;
+	margin: 5px auto 20px;
 	font-size: 30px;
 	font-weight: 700;
-}
-
-.empty-results .settings-button {
-	display: inline-block;
-	color: #fff;
-	background: #e76049;
-	border-bottom: 6px solid #c0392b;
-	font-size: 20px;
-	padding: 12px 25px;
-	text-decoration: none;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	border-radius: 2px;
 }
 
 .network-error {

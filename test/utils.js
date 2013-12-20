@@ -1,7 +1,7 @@
 var _ = require('underscore');
 var crypto = require('crypto');
 var config = require('../config');
-var db = require('../source/db/dbConnector').db;
+var db = require('../source/db')(config);
 var moment = require('moment');
 var request = require('request');
 
@@ -35,6 +35,17 @@ function createTestUserAndLoginToApi (callback) {
 	});
 }
 
+function loginToApi(user, callback) {
+	var url = getRootUrl() + '/api/auth/login';
+	request.post({url: url, body: {email: user.email, apiToken: user.apiToken}, json: true}, function (err, response, body) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback (null, user, body.token);
+	});
+}
+
 function createTestItems (user, size, callback) {
 	if (typeof size === 'function') {
 		callback = size;
@@ -49,6 +60,8 @@ function createTestItems (user, size, callback) {
 			userId: user._id,
 			user: user.email,
 			type: types[index % 3],
+			created: moment().toDate(),
+			date: moment().toDate(),
 			itemId: index
 		};
 	});
@@ -68,6 +81,8 @@ function createTestItemsOfType(user, type, size, callback) {
 			userId: user._id,
 			user: user.email,
 			type: type,
+			created: moment().toDate(),
+			date: moment().toDate(),
 			itemId: index
 		};
 	});
@@ -101,6 +116,7 @@ module.exports = {
 	getRootUrl: getRootUrl,
 	createTestUser: createTestUser,
 	createTestUserAndLoginToApi: createTestUserAndLoginToApi,
+	loginToApi: loginToApi,
 	createTestItems: createTestItems,
 	createTestItemsOfType: createTestItemsOfType,
 	createTestNetworks: createTestNetworks,

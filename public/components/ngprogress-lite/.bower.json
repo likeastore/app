@@ -1,7 +1,7 @@
 {
   "name": "ngprogress-lite",
   "main": "ngprogress-lite.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Angular provider for slim progress bars",
   "homepage": "https://github.com/voronianski/ngprogress-lite",
   "authors": [
@@ -24,11 +24,11 @@
   "dependencies": {
     "angular": "~1"
   },
-  "_release": "1.0.3",
+  "_release": "1.0.4",
   "_resolution": {
     "type": "version",
-    "tag": "1.0.3",
-    "commit": "b64e92a193bfbc6799e2ab196366344e06864dcb"
+    "tag": "1.0.4",
+    "commit": "65a3c05399724d559d0b22c8bc8b664fbd26b02a"
   },
   "_source": "git://github.com/voronianski/ngprogress-lite.git",
   "_target": "~1.0.1",

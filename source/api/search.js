@@ -1,12 +1,12 @@
-var search = require('../db/search.js');
+var search = require('../models/search');
 var middleware = require('../middleware');
 
-function searchService (app) {
+function searchService(app) {
 	app.get('/api/search',
 		middleware.analytics.track('search', {query: 'text'}),
 		searchItemsByText);
 
-	function searchItemsByText (req, res, next) {
+	function searchItemsByText(req, res, next) {
 		var query = req.query.text;
 
 		search.fullTextItemSearch(req.user, query, function (err, items) {

@@ -1,17 +1,16 @@
 <!-- navigation -->
-<nav class="cell dashboard-nav {{title|lowercase}}" sticky-at="50">
+<nav class="left dashboard-nav" sticky-at="50">
 	<div text-search="query"></div>
 
 	<ul class="networks-menu">
-		<li class="menu-subtitle">
-			Folders
+		<li class="menu-subtitle">Folders</li>
+		<li>
+			<a href="/inbox" class="menu-title inbox"><i data-icon="M" class="icon"></i> Inbox <inbox-counter /></a>
 		</li>
 		<li>
-			<a href="/inbox" class="menu-title inbox"><i data-icon="M" class="icon"></i> Inbox</a>
+			<a href="/all" class="menu-title likes"><i data-icon="s" class="icon"></i> All Likes</a>
 		</li>
-		<li class="menu-subtitle">
-			Services
-		</li>
+		<li class="menu-subtitle">Services</li>
 		<li>
 			<a href="/facebook" class="menu-title facebook"><i data-icon="g" class="icon"></i> Facebook</a>
 		</li>
@@ -27,9 +26,38 @@
 	</ul>
 
 	<div class="promo-line">
-		<div class="promo-text">Tell about your favourite services to store</div>
-		<a href="mailto:info@likeastore.com?subject=Please add support for.."><i data-icon="j" class="rocket-icon"></i> Speak to us</a>
+		<div class="promo-text">Invite your friends to stay tuned with their likes!</div>
+
+		<a href="#" class="btn green-btn" ng-dialog="shareDialogId" ng-dialog-class="lsd-theme-default share-dialog"><i data-icon="S" class="side-btn-icon"></i> Share love</a>
+
+		<script type="text/ng-template" id="shareDialogId">
+			<h2>
+				<i data-icon="w" class="icon"></i>
+				 Invite your friends
+			</h2>
+			<form ng-controller="shareWithFriendController" ng-submit="send()">
+				<div class="send-error" ng-show="error">We are experiencing troubles, please try again later</div>
+				<div>
+					<input type="email" class="field" placeholder="Email" ng-model="email" required>
+				</div>
+				<div>
+					<textarea class="field" rows="6" ng-model="message" required>
+					</textarea>
+				</div>
+				<button type="submit" class="btn green-btn" ng-disabled="sendText == 'Sending'">{{sendText}}</button>
+			</form>
+			<div class="social-desc">Spread a word through social services</div>
+			<div class="social-share">
+				<button type="button" class="btn fb-btn" share-on="facebook">Share on facebook</button>
+				<button type="button" class="btn tw-btn" share-on="twitter">Share on twitter</button>
+			</div>
+		</script>
 	</div>
+
+	<ul class="footer-links">
+		<li><a href="http://blog.likeastore.com" target="_blank">Read blog</a></li>
+		<li><a href="mailto:info@likeastore.com">Send feedback</a></li>
+	</ul>
 </nav>
 
 <!-- dashboard -->
@@ -60,16 +88,22 @@
 		<h2>Ooops.. no matching search results!</h2>
 	</div>
 
-	<div class="empty-results" ng-show="loaded && !items.length && !search">
-		<div class="inbox-icon big-icon"></div>
+	<div class="empty-results" ng-show="loaded && !items.length && inbox">
+		<div class="box-icon big-icon"></div>
+		<h2>Your inbox is empty..</h2>
+		<h3>No new likes were collected since your last visit, be more active!</h3>
+	</div>
+
+	<div class="empty-results" ng-show="loaded && !items.length && !search && !inbox">
+		<div class="robot-icon big-icon"></div>
 		<h2>You don't own any items to display yet..</h2>
-		<a href="/settings" class="block settings-button press-button">Go to settings</a>
+		<a href="/settings" class="red-press-btn">Go to settings</a>
 	</div>
 
 	<div class="empty-results" ng-show="error">
 		<div class="error-icon big-icon"></div>
 		<h2>Robot panic.. we are experiencing troubles!</h2>
-		<h3>Sorry for that. The error is logged and team already notified, will be fixed soon.</h3>
+		<h3>Sorry for that. The error is logged and team already notified, it will be fixed soon.</h3>
 	</div>
 
 	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>

@@ -1,5 +1,7 @@
+var moment = require('moment');
+
 var middleware = require('../middleware');
-var users = require('../db/users');
+var users = require('../models/users');
 var config = require('../../config');
 
 function authService(app) {
@@ -10,6 +12,7 @@ function authService(app) {
 		checkUser,
 		middleware.auth.createToken(),
 		middleware.analytics.track('user logged on'),
+		updateStats,
 		returnToken);
 
 	app.get('/api/auth/validate',
@@ -50,7 +53,28 @@ function authService(app) {
 				return next({ message: 'apiToken match failure', status: 401, redirectUrl: config.siteUrl });
 			}
 
+			if (user.deactivated) {
+				return next({message: 'user account deactivated', status: 401, redirectUrl: config.siteUrl});
+			}
+
 			req.user = user;
+			next();
+		});
+	}
+
+	function updateStats(req, res, next) {
+		var user = req.user;
+		var update = { loginLastDate: moment().toDate() };
+		if (user.loginLastDate) {
+			update.loginPreviousDate = user.loginLastDate;
+		}
+
+		users.update(user.email, update, function (err, updated) {
+			if (err) {
+				return next(err);
+			}
+
+			req.user = updated;
 			next();
 		});
 	}

@@ -1,8 +1,8 @@
-var networks = require('../db/networks.js');
+var networks = require('../models/networks');
 var middleware = require('../middleware');
 var config = require('../../config');
 
-function networksService (app) {
+function networksService(app) {
 
 	app.get('/api/networks', getAllNetworks);
 

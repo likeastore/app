@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title><%= title %></title>
+	<title ng-bind="title + ' • ' + user.displayName || user.name"><%= title %></title>
 	<base href="/">
 
 	<link rel="stylesheet" type="text/css" href="<%= mainCss %>">
@@ -32,5 +32,16 @@
 		ga('create', 'UA-41034999-2', 'likeastore.com');
 		ga('send', 'pageview');
 	</script>
+
+	<script type="text/ng-template" id="intercomTemplate">
+		window.intercomSettings = {
+			email: "[email]",
+			created_at: [timestamp],
+			app_id: "8aa471d88de92f2f1f1a2fc08438fc69f4d9146e"
+		};
+		(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://static.intercomcdn.com/intercom.v1.js';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}};})()
+	</script>
+
+	<script ng-bind="intercom"></script>
 </body>
 </html>

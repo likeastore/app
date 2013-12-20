@@ -11,6 +11,10 @@ define(function (require) {
 	directives.directive('linkify', require('./linkify'));
 	directives.directive('stickyAt', require('./stickyAt'));
 	directives.directive('dropdownMenu', require('./dropdownMenu'));
+	directives.directive('inboxCounter', require('./inboxCounter'));
+	directives.directive('ngDialog', require('./ngDialog'));
+	directives.directive('shareOn', require('./shareOn'));
+	directives.directive('intercom', require('./intercom'));
 
 	return directives;
 });

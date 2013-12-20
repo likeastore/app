@@ -1,5 +1,8 @@
+var async = require('async');
+var config = require('../../config');
+var db = require('../db')(config);
+
 var ObjectId = require('mongojs').ObjectId;
-var db = require('./dbConnector').db;
 
 function findById (id, callback) {
 	if (typeof id === 'string') {
@@ -51,9 +54,32 @@ function updateUser(email, attributes, callback) {
 	}, callback);
 }
 
+function deactivate(email, callback) {
+	var deleteTasks = [
+		deleteNetworks,
+		deleteItems,
+		deleteUser
+	];
+
+	async.series(deleteTasks, callback);
+
+	function deleteNetworks(next) {
+		db.networks.remove({ 'user': email }, next);
+	}
+
+	function deleteItems(next) {
+		db.items.remove({ 'user': email }, next);
+	}
+
+	function deleteUser(next) {
+		db.users.remove({ 'email': email }, next);
+	}
+}
+
 module.exports = {
 	findById: findById,
 	findByEmail: findByEmail,
 	update: updateUser,
-	findByRequestToken: findByRequestToken
+	findByRequestToken: findByRequestToken,
+	deactivate: deactivate
 };
