@@ -36,14 +36,15 @@
 				 Invite your friends
 			</h2>
 			<form ng-controller="shareWithFriendController" ng-submit="send()">
+				<div class="send-error" ng-show="error">We are experiencing troubles, please try again later</div>
 				<div>
-					<input class="field" placeholder="Email" ng-model="email" required>
+					<input type="email" class="field" placeholder="Email" ng-model="email" required>
 				</div>
 				<div>
 					<textarea class="field" rows="6" ng-model="message" required>
 					</textarea>
 				</div>
-				<button type="submit" class="btn green-btn">Send</button>
+				<button type="submit" class="btn green-btn" ng-disabled="sendText == 'Sending'">{{sendText}}</button>
 			</form>
 			<div class="social-desc">Spread a word through social services</div>
 			<div class="social-share">

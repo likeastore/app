@@ -410,6 +410,13 @@ body.lsd-open {
 	padding-top: 8px;
 }
 
+.lsd.share-dialog .lsd-content .send-error {
+	color: #e74c3c;
+	font-size: 12px;
+	line-height: 12px;
+	height: 18px;
+}
+
 .lsd.share-dialog .lsd-content .social-share .btn {
 	display: inline;
 	color: #fff;

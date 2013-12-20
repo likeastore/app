@@ -21,6 +21,10 @@
 	transition: all .2s ease-out;
 }
 
+.btn[disabled] {
+	opacity: 0.5;
+}
+
 .green-btn {
 	color: #edf0f2;
 	background: #1abc9c;
@@ -69,7 +73,7 @@
 	background: #eee;
 	border: 0;
 	border-radius: 0;
-	color: #ccc;
+	color: #aaa;
 	font: 12px 'Lato', 'Helvetica', Arial, sans-serif;
 	font-weight: 400;
 	padding: 12px 15px;
