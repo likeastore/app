@@ -29,7 +29,11 @@ function emailsService(app) {
 
 	function sendShareEmail(req, res, next) {
 		var email = {email: req.body.to};
-		var merge = {FROM: req.body.from, USERNAME: req.body.username, MESSAGE: req.body.message};
+		var merge = [
+			{name: 'FROM', content: req.body.from},
+			{name: 'USERNAME', content: req.body.username},
+			{name: 'MESSAGE', content: req.body.message}
+		];
 
 		emails.sendTemplate([email], 'share-with-friend', merge, function (err) {
 			if (err) {

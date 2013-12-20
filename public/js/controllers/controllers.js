@@ -19,6 +19,9 @@ define(function (require) {
 	// search
 	controllers.controller('searchController', require('./searchController'));
 
+	// share with friend
+	controllers.controller('shareWithFriendController', require('./shareWithFriendController'));
+
 	// errors
 	controllers.controller('errorController', require('./errorController'));
 

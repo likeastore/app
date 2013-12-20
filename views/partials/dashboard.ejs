@@ -35,17 +35,12 @@
 				<i data-icon="w" class="mail-icon"></i>
 				 Invite your friends
 			</h2>
-			<form>
+			<form ng-controller="shareWithFriendController" ng-submit="send()">
 				<div>
-					<input class="field" placeholder="Email" required>
+					<input class="field" placeholder="Email" ng-model="email" required>
 				</div>
 				<div>
-					<textarea class="field" rows="8" required>
-Hi,
-
-Want to share Likeastore with you. It helps me to connect to all my social networks, like twitter and facebook and keep all my interests in one place.
-
-https://likeastore.com
+					<textarea class="field" rows="6" ng-model="message" required>
 					</textarea>
 				</div>
 				<button type="submit" class="btn green-btn">Send</button>
