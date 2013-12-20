@@ -56,19 +56,19 @@ function updateUser(email, attributes, callback) {
 
 function deactivate(email, callback) {
 	var deleteTasks = [
-		deleteItems,
 		deleteNetworks,
+		deleteItems,
 		deleteUser
 	];
 
-	async.parallel(deleteTasks, callback);
-
-	function deleteItems(next) {
-		db.users.remove({ 'user': email }, next);
-	}
+	async.series(deleteTasks, callback);
 
 	function deleteNetworks(next) {
-		db.users.remove({ 'user': email }, next);
+		db.networks.remove({ 'user': email }, next);
+	}
+
+	function deleteItems(next) {
+		db.items.remove({ 'user': email }, next);
 	}
 
 	function deleteUser(next) {
