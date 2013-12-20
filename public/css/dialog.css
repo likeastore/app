@@ -462,3 +462,13 @@ body.lsd-open {
 	font-size: 11px;
 	width: 125px;
 }
+
+@media (max-width: 440px) {
+	.lsd.delete-user-dialog .lsd-content {
+		width: 265px;
+	}
+
+	.lsd.delete-user-dialog .lsd-content .green-btn {
+		margin: 0 0 10px;
+	}
+}

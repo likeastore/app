@@ -179,11 +179,13 @@
 	}
 
 	.networks-menu .inbox-counter {
-		font-size: 9px;
-		line-height: 12px;
+		font-size: 8px;
+		line-height: 11px;
 		min-width: 8px;
 		height: 11px;
 		top: 25px;
+		right: 2px;
+		left: 2px;
 	}
 
 	.networks-menu .menu-title {
@@ -237,6 +239,10 @@
 
 	.networks-menu .menu-title {
 		padding: 3px 7px;
+	}
+
+	.networks-menu .inbox-counter {
+		top: 22px;
 	}
 
 	.menu-title .icon {
