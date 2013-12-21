@@ -5,8 +5,9 @@ var config = require('../../config');
 var users = require('../models/users');
 
 function authenticatedAccess () {
+	var validateToken = auth.validateToken();
+
 	return function (req, res, next) {
-		var validateToken = auth.validateToken();
 		validateToken(req, res, validateUser);
 
 		function validateUser(err) {
@@ -14,7 +15,6 @@ function authenticatedAccess () {
 				return next(err);
 			}
 
-			// ensure that user record still exists in db
 			users.findByEmail(req.user, function (err, user) {
 				if (err || !user) {
 					return next({message: 'User is not authorized', status: 401});
