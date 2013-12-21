@@ -11,11 +11,7 @@ function authService(app) {
 		validateRequest,
 		checkUser,
 		middleware.auth.createToken(),
-<<<<<<< HEAD
-		middleware.analytics.track('user logged on'),
-=======
 		middleware.analytics.track('user logged on', {request: 'user', property: 'email'}),
->>>>>>> development
 		updateStats,
 		returnToken);
 
