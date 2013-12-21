@@ -24,8 +24,7 @@ function authService(app) {
 	app.post('/api/auth/logout',
 		middleware.access.guest(),
 		middleware.auth.validateToken(),
-		middleware.analytics.track('user logged out'),
-		middleware.analytics.track('user logged on', {request: 'user', property: 'email'}),
+		middleware.analytics.track('user logged out', {request: 'user'}),
 		returnOk
 	);
 
