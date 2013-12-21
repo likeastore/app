@@ -53,6 +53,10 @@ function authService(app) {
 				return next({ message: 'apiToken match failure', status: 401, redirectUrl: config.siteUrl });
 			}
 
+			if (user.deactivated) {
+				return next({message: 'user account deactivated', status: 401, redirectUrl: config.siteUrl});
+			}
+
 			req.user = user;
 			next();
 		});
