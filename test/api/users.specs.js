@@ -115,6 +115,20 @@ describe.only('users.spec.js', function () {
 					expect(token).to.not.be.ok;
 				});
 			});
+
+			describe('and try to access user', function () {
+				beforeEach(function (done) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp) {
+						error = err;
+						response = resp;
+						done(err);
+					});
+				});
+
+				it('should respond with 401 (unauthorized)', function () {
+					expect(response.statusCode).to.equal(401);
+				});
+			});
 		});
 	});
 });
