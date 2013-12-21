@@ -6,11 +6,15 @@ function track(event, options) {
 		var data = {};
 
 		if (options && options.param) {
-			data[options.param] = req.params[options.param];
+			data[options.param] = options.property ? req.params[options.param][options.property] : req.params[options.param];
 		}
 
 		if (options && options.query) {
-			data[options.query] = req.query[options.query];
+			data[options.query] = options.property ? req.query[options.query][options.property] : req.query[options.query];
+		}
+
+		if (options && options.request) {
+			data[options.request] = options.property ? req[options.request][options.property] : req[options.request];
 		}
 
 		analytics(event, data, function (err) {

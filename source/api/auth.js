@@ -11,7 +11,7 @@ function authService(app) {
 		validateRequest,
 		checkUser,
 		middleware.auth.createToken(),
-		middleware.analytics.track('user logged on'),
+		middleware.analytics.track('user logged on', {request: 'user', property: 'email'}),
 		updateStats,
 		returnToken);
 
@@ -25,6 +25,7 @@ function authService(app) {
 		middleware.access.guest(),
 		middleware.auth.validateToken(),
 		middleware.analytics.track('user logged out'),
+		middleware.analytics.track('user logged on', {request: 'user', property: 'email'}),
 		returnOk
 	);
 
@@ -51,10 +52,6 @@ function authService(app) {
 
 			if (user.apiToken !== login.apiToken) {
 				return next({ message: 'apiToken match failure', status: 401, redirectUrl: config.siteUrl });
-			}
-
-			if (user.deactivated) {
-				return next({message: 'user account deactivated', status: 401, redirectUrl: config.siteUrl});
 			}
 
 			req.user = user;
