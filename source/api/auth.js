@@ -11,7 +11,11 @@ function authService(app) {
 		validateRequest,
 		checkUser,
 		middleware.auth.createToken(),
+<<<<<<< HEAD
 		middleware.analytics.track('user logged on'),
+=======
+		middleware.analytics.track('user logged on', {request: 'user', property: 'email'}),
+>>>>>>> development
 		updateStats,
 		returnToken);
 
@@ -24,7 +28,7 @@ function authService(app) {
 	app.post('/api/auth/logout',
 		middleware.access.guest(),
 		middleware.auth.validateToken(),
-		middleware.analytics.track('user logged out'),
+		middleware.analytics.track('user logged out', {request: 'user'}),
 		returnOk
 	);
 

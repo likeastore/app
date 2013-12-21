@@ -2,12 +2,27 @@ var _ = require('underscore');
 var auth = require('./auth');
 var logger = require('../utils/logger');
 var config = require('../../config');
-
+var users = require('../models/users');
 
 function authenticatedAccess () {
+	var validateToken = auth.validateToken();
+
 	return function (req, res, next) {
-		var validateToken = auth.validateToken();
-		validateToken(req, res, next);
+		validateToken(req, res, validateUser);
+
+		function validateUser(err) {
+			if (err) {
+				return next(err);
+			}
+
+			users.findByEmail(req.user, function (err, user) {
+				if (err || !user) {
+					return next({message: 'User is not authorized', status: 401});
+				}
+
+				next();
+			});
+		}
 	};
 }
 

@@ -101,6 +101,34 @@ describe('users.spec.js', function () {
 			it('should respond 200 (ok)', function () {
 				expect(response.statusCode).to.equal(200);
 			});
+
+			describe('and try to login after', function () {
+				beforeEach(function (done) {
+					testUtils.loginToApi(user, function (err, user, toke) {
+						error = err;
+						token = toke;
+						done();
+					});
+				});
+
+				it('should reject user', function () {
+					expect(token).to.not.be.ok;
+				});
+			});
+
+			describe('and try to access user', function () {
+				beforeEach(function (done) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp) {
+						error = err;
+						response = resp;
+						done(err);
+					});
+				});
+
+				it('should respond with 401 (unauthorized)', function () {
+					expect(response.statusCode).to.equal(401);
+				});
+			});
 		});
 	});
 });
