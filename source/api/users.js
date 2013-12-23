@@ -16,6 +16,11 @@ function usersService(app) {
 		deleteUser
 	);
 
+	app.post('/api/users/me/resetpasswordrequest',
+		middleware.analytics.track('password reset requested'),
+		createResetPasswordRequest
+	);
+
 	function getUser(req, res, next) {
 		users.findByEmail(req.user, function (err, user) {
 			if (err) {
@@ -52,7 +57,18 @@ function usersService(app) {
 		});
 	}
 
+	function createResetPasswordRequest(req, res, next) {
+		users.resetPasswordRequest(req.user, function (err, request) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(201, request);
+		});
+	}
+
 	function returnUser(req, res, next) {
+		// TODO: use transform function to omit fields not used on client
 		res.json(req.readUser);
 	}
 }

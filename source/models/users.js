@@ -1,4 +1,7 @@
 var async = require('async');
+var crypto = require('crypto');
+var moment = require('moment');
+
 var config = require('../../config');
 var db = require('../db')(config);
 
@@ -76,10 +79,31 @@ function deactivate(email, callback) {
 	}
 }
 
+function resetPasswordRequest(email, callback) {
+	var current = moment();
+	var id = crypto.createHash('sha256').update(email + ':' + current.valueOf()).digest('hex');
+	var request = {id: id, timestamp: current.toDate()};
+
+	db.users.findAndModify({
+		query: { email: email },
+		update: { $push:{resetPasswordRequests: request} },
+		'new': true
+	}, deleteRequestedPushed);
+
+	function deleteRequestedPushed(err) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null, request);
+	}
+}
+
 module.exports = {
 	findById: findById,
 	findByEmail: findByEmail,
 	update: updateUser,
 	findByRequestToken: findByRequestToken,
-	deactivate: deactivate
+	deactivate: deactivate,
+	resetPasswordRequest: resetPasswordRequest
 };

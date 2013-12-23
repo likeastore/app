@@ -14,7 +14,7 @@ function createTestUser (callback) {
 	var password = 'password';
 	var apiToken = crypto.createHash('sha1').update(email + ';' + password).digest('hex');
 
-	var user = {email: email, password: password, apiToken: apiToken};
+	var user = {email: email, password: password, apiToken: apiToken, provider: 'local'};
 	db.users.save(user, {safe: true}, callback);
 }
 

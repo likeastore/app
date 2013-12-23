@@ -132,7 +132,32 @@ describe.only('users.spec.js', function () {
 		});
 
 		describe('when resetting password', function () {
+			var requestId, newPassword;
 
+			beforeEach(function () {
+				url += '/resetpasswordrequest';
+			});
+
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, json: true}, function (err, resp, bod) {
+					error = err;
+					response = resp;
+					body = bod;
+					done(err);
+				});
+			});
+
+			it('should respond 201(created)', function () {
+				expect(response.statusCode).to.equal(201);
+			});
+
+			it('should create reset password request', function () {
+				expect(body.id).to.be.ok;
+				expect(body.timestamp).to.be.ok;
+			});
+
+			describe('and using wrong request id', function () {
+			});
 		});
 	});
 });
