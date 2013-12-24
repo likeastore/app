@@ -26,6 +26,11 @@ var config = {
 			clientId: process.env.STACKOVERFLOW_CLIENT_ID,
 			clientKey: process.env.STACKOVERFLOW_CLIENT_KEY,
 			clientSecret: process.env.STACKOVERFLOW_CLIENT_SECRET
+		},
+
+		vimeo: {
+			clientId: process.env.VIMEO_CLIENT_ID,
+			clientSecret: process.env.VIMEO_CLIENT_SECRET
 		}
 	},
 

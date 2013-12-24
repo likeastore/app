@@ -26,6 +26,11 @@ var config = {
 			clientId: '1801',
 			clientKey: 'L)KUpw85QEW105j43oik8g((',
 			clientSecret: 'DadJ5kAh3YWlj0wv7EHqDg(('
+		},
+
+		vimeo: {
+			clientId: 'c83157e81d0bd1f4a20ffed96c1b9f8d4d97a9dd',
+			clientSecret: '34a99e44d55d78cad9e842caf376501a9547028d'
 		}
 	},
 
