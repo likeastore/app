@@ -87,7 +87,7 @@ function twitterCallback () {
 		var requestToken = req.query.oauth_token;
 		var verifier = req.query.oauth_verifier;
 
-		users.findByRequestToken(requestToken, userFound);
+		users.findByRequestToken('twitterRequestToken', requestToken, userFound);
 
 		function userFound (err, user) {
 			if (err) {
@@ -242,14 +242,14 @@ return function (req, res, next) {
 		var requestToken = req.query.oauth_token;
 		var verifier = req.query.oauth_verifier;
 
-		users.findByRequestToken(requestToken, userFound);
+		users.findByRequestToken('vimeoRequestToken', requestToken, userFound);
 
 		function userFound (err, user) {
 			if (err) {
 				return next(err);
 			}
 
-			oauth.getOAuthAccessToken(requestToken, user.twitterRequestTokenSecret, verifier, gotAccessToken);
+			oauth.getOAuthAccessToken(requestToken, user.vimeoRequestTokenSecret, verifier, gotAccessToken);
 
 			function gotAccessToken (err, accessToken, accessTokenSecret, params) {
 				if (err) {

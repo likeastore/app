@@ -32,8 +32,11 @@ function findByEmail (email, callback) {
 	});
 }
 
-function findByRequestToken (requestToken, callback) {
-	db.users.findOne({ twitterRequestToken: requestToken }, function (err, user) {
+function findByRequestToken (tokenName, tokenValue, callback) {
+	var query = {};
+	query[tokenName] = tokenValue;
+
+	db.users.findOne(query, function (err, user) {
 		if (err) {
 			return callback(err);
 		}
