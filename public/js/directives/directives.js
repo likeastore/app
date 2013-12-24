@@ -14,7 +14,6 @@ define(function (require) {
 	directives.directive('inboxCounter', require('./inboxCounter'));
 	directives.directive('ngDialog', require('./ngDialog'));
 	directives.directive('shareOn', require('./shareOn'));
-	directives.directive('intercom', require('./intercom'));
 
 	return directives;
 });
