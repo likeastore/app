@@ -272,12 +272,16 @@ return function (req, res, next) {
 module.exports = {
 	facebook: facebook,
 	facebookCallback: facebookCallback,
+
 	twitter: twitter,
 	twitterCallback: twitterCallback,
+
 	github: github,
 	githubCallback: githubCallback,
+
 	stackoverflow: stackoverflow,
 	stackoverflowCallback: stackoverflowCallback,
+
 	vimeo: vimeo,
 	vimeoCallback: vimeoCallback
 };
