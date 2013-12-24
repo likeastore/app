@@ -1,7 +1,7 @@
 var request = require('request');
 var testUtils = require('../utils');
 
-describe('networks.spec.js', function () {
+describe.only('networks.spec.js', function () {
 	var token, user, url, headers, response, results, error;
 
 	beforeEach(function () {
@@ -149,6 +149,50 @@ describe('networks.spec.js', function () {
 
 					it ('should return auth url', function () {
 						expect(results.authUrl).to.be.ok;
+					});
+				});
+			});
+
+			describe('for vimeo', function () {
+				beforeEach(function () {
+					url += '/vimeo';
+				});
+
+				describe('post', function () {
+					beforeEach(function (done) {
+						request.post({url: url, headers: headers, json: true}, function (err, resp, body) {
+							error = err;
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it ('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it ('should return auth url', function () {
+						expect(results.authUrl).to.be.ok;
+					});
+
+					describe('request token', function () {
+						var userFromDb;
+
+						beforeEach(function (done) {
+							testUtils.getUserFromDb(user, function (err, read) {
+								userFromDb = read;
+								done(err);
+							});
+						});
+
+						it ('should requestToken be saved to user record', function () {
+							expect(userFromDb.vimeoRequestToken).to.be.ok;
+						});
+
+						it ('should requestToken secret be saved to user record', function () {
+							expect(userFromDb.vimeoRequestTokenSecret).to.be.ok;
+						});
 					});
 				});
 			});

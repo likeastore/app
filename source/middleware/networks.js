@@ -201,6 +201,74 @@ function stackoverflowCallback() {
 	};
 }
 
+function vimeo() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/vimeo/callback';
+		var oauth = new OAuth('https://vimeo.com/oauth/request_token',
+							'https://vimeo.com/oauth/access_token',
+							config.services.vimeo.clientId,
+							config.services.vimeo.clientSecret,
+							'1.0',
+							callbackUrl,
+							'HMAC-SHA1');
+
+		oauth.getOAuthRequestToken(function (err, requestToken, requestTokenSecret) {
+			if (err) {
+				return next({message: 'failed to get request token from vimeo', error: err, status: 500});
+			}
+
+			users.update(req.user, {vimeoRequestToken: requestToken, vimeoRequestTokenSecret: requestTokenSecret}, function (err) {
+				if (err) {
+					return next({message: 'failed to update user', error: err, status: 500});
+				}
+
+				req.authUrl = 'https://vimeo.com/oauth/authorize?oauth_token=' + requestToken;
+				next();
+			});
+		});
+	};
+}
+
+function vimeoCallback() {
+return function (req, res, next) {
+		var oauth = new OAuth('https://vimeo.com/oauth/request_token',
+							'https://vimeo.com/oauth/access_token',
+							config.services.vimeo.clientId,
+							config.services.vimeo.clientSecret,
+							'1.0',
+							null,
+							'HMAC-SHA1');
+
+		var requestToken = req.query.oauth_token;
+		var verifier = req.query.oauth_verifier;
+
+		users.findByRequestToken(requestToken, userFound);
+
+		function userFound (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			oauth.getOAuthAccessToken(requestToken, user.twitterRequestTokenSecret, verifier, gotAccessToken);
+
+			function gotAccessToken (err, accessToken, accessTokenSecret, params) {
+				if (err) {
+					return next({message: 'failed to get accessToken from vimeo', error: err, status: 500});
+				}
+
+				req.network = {
+					accessToken: accessToken,
+					accessTokenSecret: accessTokenSecret,
+					user: user.email,
+					service: 'vimeo'
+				};
+
+				next();
+			}
+		}
+	};
+}
+
 module.exports = {
 	facebook: facebook,
 	facebookCallback: facebookCallback,
@@ -209,5 +277,7 @@ module.exports = {
 	github: github,
 	githubCallback: githubCallback,
 	stackoverflow: stackoverflow,
-	stackoverflowCallback: stackoverflowCallback
+	stackoverflowCallback: stackoverflowCallback,
+	vimeo: vimeo,
+	vimeoCallback: vimeoCallback
 };
