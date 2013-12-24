@@ -134,11 +134,8 @@ describe.only('users.spec.js', function () {
 		describe('when resetting password', function () {
 			var requestId, newPassword;
 
-			beforeEach(function () {
-				url += '/resetpasswordrequest';
-			});
-
 			beforeEach(function (done) {
+				url += '/resetpasswordrequest';
 				request.post({url: url, headers: headers, json: true}, function (err, resp, bod) {
 					error = err;
 					response = resp;
@@ -157,6 +154,24 @@ describe.only('users.spec.js', function () {
 			});
 
 			describe('and using wrong request id', function () {
+				beforeEach(function () {
+					requestId = 'wrong-request-id';
+					newPassword = 'new password';
+				});
+
+				beforeEach(function (done) {
+					url += '/resetpassword';
+					request.post({url: url, body: {id: requestId, email: user.email, password: newPassword}, json: true}, function (err, resp, bod) {
+						error = err;
+						response = resp;
+						body = body;
+						done(err);
+					});
+				});
+
+				it('should respond 403(forbidden)', function () {
+					expect(response.statusCode).to.equal(403);
+				});
 			});
 		});
 	});

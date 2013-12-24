@@ -17,7 +17,6 @@ function usersService(app) {
 	);
 
 	app.post('/api/users/me/resetpasswordrequest',
-		middleware.analytics.track('password reset requested'),
 		createResetPasswordRequest
 	);
 
@@ -65,6 +64,24 @@ function usersService(app) {
 
 			res.json(201, request);
 		});
+	}
+
+	function validateRequest(req, res, next) {
+		var request = req.body;
+
+		if (!request.id) {
+			return next({message: 'missing request id', status: 412});
+		}
+
+		if (!request.email) {
+			return next({message: 'missing email', status: 412});
+		}
+
+		if (!request.newPassword) {
+			return next({message: 'missing new password', status: 412});
+		}
+
+		next();
 	}
 
 	function returnUser(req, res, next) {

@@ -28,7 +28,7 @@ function findByEmail (email, callback) {
 		}
 
 		if (!user) {
-			return callback({message: 'User not found', status: 404});
+			return callback({message: 'user not found', status: 404});
 		}
 
 		callback(null, user);
@@ -42,7 +42,7 @@ function findByRequestToken (requestToken, callback) {
 		}
 
 		if (!user) {
-			return callback({message: 'User not found', status: 404});
+			return callback({message: 'user not found', status: 404});
 		}
 
 		callback(null, user);
@@ -86,7 +86,7 @@ function resetPasswordRequest(email, callback) {
 
 	db.users.findAndModify({
 		query: { email: email },
-		update: { $push:{resetPasswordRequests: request} },
+		update: { $set: {resetPasswordRequest: request} },
 		'new': true
 	}, deleteRequestedPushed);
 
