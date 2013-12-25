@@ -240,6 +240,10 @@
 		padding-left: 20px;
 	}
 
+	.search-icon {
+		top: 15px;
+	}
+
 	.search-input:focus {
 		width: 280px;
 		padding-left: 30px;
