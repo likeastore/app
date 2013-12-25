@@ -31,6 +31,11 @@ var config = {
 		vimeo: {
 			clientId: process.env.VIMEO_CLIENT_ID,
 			clientSecret: process.env.VIMEO_CLIENT_SECRET
+		},
+
+		youtube: {
+			clientId: process.env.YOUTUBE_CLIENT_ID,
+			clientSecret: process.env.YOUTUBE_CLIENT_SECRET
 		}
 	},
 
