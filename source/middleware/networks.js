@@ -269,6 +269,50 @@ return function (req, res, next) {
 	};
 }
 
+function youtube() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/youtube/callback';
+		var oauth = new OAuth2(config.services.youtube.clientId,
+							config.services.facebook.clientSecret,
+							'https://accounts.google.com/o/oauth2/auth');
+
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', state: req.user });
+		req.authUrl = authorizeUrl;
+		next();
+	};
+
+}
+
+function youtubeCallback() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/youtube/callback';
+		var oauth = new OAuth2(config.services.youtube.clientId,
+							config.services.youtube.clientSecret,
+							'https://accounts.google.com/o/oauth2/token');
+
+		var code = req.query.code;
+		var user = req.query.state;
+
+		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
+
+		function gotAccessToken(err, accessToken) {
+			if (err) {
+				return next({message: 'failed to get accessToken from facebook', error: err, status: 500});
+			}
+
+			req.network = {
+				accessToken: accessToken,
+				accessTokenSecret: null,
+				user: user,
+				service: 'facebook'
+			};
+
+			next();
+		}
+	};
+}
+
+
 module.exports = {
 	facebook: facebook,
 	facebookCallback: facebookCallback,
@@ -283,5 +327,8 @@ module.exports = {
 	stackoverflowCallback: stackoverflowCallback,
 
 	vimeo: vimeo,
-	vimeoCallback: vimeoCallback
+	vimeoCallback: vimeoCallback,
+
+	youtube: youtube,
+	youtubeCallback: youtubeCallback
 };
