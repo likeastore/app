@@ -31,6 +31,11 @@ var config = {
 		vimeo: {
 			clientId: 'd445a0de20a3b178b0422ad0c6d5891bdfd00b97',
 			clientSecret: 'e8e0008413ae1d1ed3e45d8c89d7943ad3937167'
+		},
+
+		youtube: {
+			clientId: '955769903356-5f1407fo9efvljm3hhl5b8mbhos61blq.apps.googleusercontent.com',
+			clientSecret: 'QtlyTnCusfX7G7fbjaEkdmHK'
 		}
 	},
 
