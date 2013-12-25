@@ -348,7 +348,7 @@
 }
 
 .item-bg {
-	width: 100%;
+	width: 101%;
 	height: 225px;
 	background-size: cover;
 	background-position: center center;
@@ -470,7 +470,8 @@
 	z-index: 0;
 }
 
-.item-type.vimeo-icon {
+.item-type.vimeo-icon,
+.item-type.youtube-icon {
 	color: rgba(255,255,255,.2);
 }
 
