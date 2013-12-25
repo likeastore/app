@@ -208,7 +208,8 @@
 	top: 19px;
 }
 
-.github .expired-token-notifier {
+.github .expired-token-notifier,
+.vimeo .expired-token-notifier {
 	left: 75px;
 }
 
@@ -222,6 +223,14 @@
 
 .stackoverflow .expired-token-notifier {
 	left: 138px;
+}
+
+.youtube .expired-token-notifier {
+	left: 90px;
+}
+
+.facebook .expired-token-notifier {
+	left: 100px;
 }
 
 /* "NEW" corner ribbon */

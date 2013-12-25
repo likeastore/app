@@ -23,6 +23,8 @@ define(function (require) {
 				.when('/inbox', { templateUrl: 'partials/dashboard', controller: 'inboxController' })
 				.when('/facebook', { templateUrl: 'partials/dashboard', controller: 'facebookController' })
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
+				.when('/vimeo', { templateUrl: 'partials/dashboard', controller: 'vimeoController' })
+				.when('/youtube', { templateUrl: 'partials/dashboard', controller: 'youtubeController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })

@@ -87,7 +87,7 @@ function twitterCallback () {
 		var requestToken = req.query.oauth_token;
 		var verifier = req.query.oauth_verifier;
 
-		users.findByRequestToken(requestToken, userFound);
+		users.findByRequestToken('twitterRequestToken', requestToken, userFound);
 
 		function userFound (err, user) {
 			if (err) {
@@ -201,13 +201,138 @@ function stackoverflowCallback() {
 	};
 }
 
+function vimeo() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/vimeo/callback';
+		var oauth = new OAuth('https://vimeo.com/oauth/request_token',
+							'https://vimeo.com/oauth/access_token',
+							config.services.vimeo.clientId,
+							config.services.vimeo.clientSecret,
+							'1.0',
+							callbackUrl,
+							'HMAC-SHA1');
+
+		oauth.getOAuthRequestToken(function (err, requestToken, requestTokenSecret) {
+			if (err) {
+				return next({message: 'failed to get request token from vimeo', error: err, status: 500});
+			}
+
+			users.update(req.user, {vimeoRequestToken: requestToken, vimeoRequestTokenSecret: requestTokenSecret}, function (err) {
+				if (err) {
+					return next({message: 'failed to update user', error: err, status: 500});
+				}
+
+				req.authUrl = 'https://vimeo.com/oauth/authorize?oauth_token=' + requestToken;
+				next();
+			});
+		});
+	};
+}
+
+function vimeoCallback() {
+return function (req, res, next) {
+		var oauth = new OAuth('https://vimeo.com/oauth/request_token',
+							'https://vimeo.com/oauth/access_token',
+							config.services.vimeo.clientId,
+							config.services.vimeo.clientSecret,
+							'1.0',
+							null,
+							'HMAC-SHA1');
+
+		var requestToken = req.query.oauth_token;
+		var verifier = req.query.oauth_verifier;
+
+		users.findByRequestToken('vimeoRequestToken', requestToken, userFound);
+
+		function userFound (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			oauth.getOAuthAccessToken(requestToken, user.vimeoRequestTokenSecret, verifier, gotAccessToken);
+
+			function gotAccessToken (err, accessToken, accessTokenSecret, params) {
+				if (err) {
+					return next({message: 'failed to get accessToken from vimeo', error: err, status: 500});
+				}
+
+				req.network = {
+					accessToken: accessToken,
+					accessTokenSecret: accessTokenSecret,
+					user: user.email,
+					service: 'vimeo'
+				};
+
+				next();
+			}
+		}
+	};
+}
+
+function youtube() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/youtube/callback';
+		var oauth = new OAuth2(config.services.youtube.clientId,
+							config.services.facebook.clientSecret,
+							'https://accounts.google.com/o',
+							'/oauth2/auth',
+							'/oauth2/token');
+
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', state: req.user, response_type: 'code' });
+		req.authUrl = authorizeUrl;
+		next();
+	};
+
+}
+
+function youtubeCallback() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/youtube/callback';
+		var oauth = new OAuth2(config.services.youtube.clientId,
+							config.services.youtube.clientSecret,
+							'https://accounts.google.com/o',
+							'/oauth2/auth',
+							'/oauth2/token');
+
+		var code = req.query.code;
+		var user = req.query.state;
+
+		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
+
+		function gotAccessToken(err, accessToken) {
+			if (err) {
+				return next({message: 'failed to get accessToken from facebook', error: err, status: 500});
+			}
+
+			req.network = {
+				accessToken: accessToken,
+				accessTokenSecret: null,
+				user: user,
+				service: 'youtube'
+			};
+
+			next();
+		}
+	};
+}
+
+
 module.exports = {
 	facebook: facebook,
 	facebookCallback: facebookCallback,
+
 	twitter: twitter,
 	twitterCallback: twitterCallback,
+
 	github: github,
 	githubCallback: githubCallback,
+
 	stackoverflow: stackoverflow,
-	stackoverflowCallback: stackoverflowCallback
+	stackoverflowCallback: stackoverflowCallback,
+
+	vimeo: vimeo,
+	vimeoCallback: vimeoCallback,
+
+	youtube: youtube,
+	youtubeCallback: youtubeCallback
 };

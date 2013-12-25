@@ -27,6 +27,14 @@ define(function () {
 				var timer = false;
 				var backup, pages;
 
+				// fix iOS input position:fixed bug
+				var isIOS = (/(ipad|iphone|ipod)/g).test(navigator.userAgent.toLowerCase());
+				if (isIOS) {
+					elem.find('input').on('focus', function () {
+						window.scrollTo(0,0);
+					});
+				}
+
 				scope.$watch('query', searching);
 
 				function searching (value) {

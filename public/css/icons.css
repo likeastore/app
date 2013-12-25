@@ -59,6 +59,10 @@
 	content: 'C';
 }
 
+.youtube-icon:before {
+	content: 'O';
+}
+
 .date-icon:before {
 	content: 'o';
 }
@@ -77,6 +81,10 @@
 
 .delete-icon:before {
 	content: 'v';
+}
+
+.play-icon:before {
+	content: '▶';
 }
 
 .big-icon {

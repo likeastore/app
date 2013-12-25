@@ -152,6 +152,75 @@ describe('networks.spec.js', function () {
 					});
 				});
 			});
+
+			describe('for vimeo', function () {
+				beforeEach(function () {
+					url += '/vimeo';
+				});
+
+				describe('post', function () {
+					beforeEach(function (done) {
+						request.post({url: url, headers: headers, json: true}, function (err, resp, body) {
+							error = err;
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it ('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it ('should return auth url', function () {
+						expect(results.authUrl).to.be.ok;
+					});
+
+					describe('request token', function () {
+						var userFromDb;
+
+						beforeEach(function (done) {
+							testUtils.getUserFromDb(user, function (err, read) {
+								userFromDb = read;
+								done(err);
+							});
+						});
+
+						it ('should requestToken be saved to user record', function () {
+							expect(userFromDb.vimeoRequestToken).to.be.ok;
+						});
+
+						it ('should requestToken secret be saved to user record', function () {
+							expect(userFromDb.vimeoRequestTokenSecret).to.be.ok;
+						});
+					});
+				});
+			});
+
+			describe('for youtube', function () {
+				beforeEach(function () {
+					url += '/youtube';
+				});
+
+				describe('post', function () {
+					beforeEach(function (done) {
+						request.post({url: url, headers: headers, json: true}, function (err, resp, body) {
+							error = err;
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it ('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it ('should return auth url', function () {
+						expect(results.authUrl).to.be.ok;
+					});
+				});
+			});
 		});
 
 		describe('when getting all networks', function () {

@@ -143,10 +143,6 @@
 		margin-bottom: 35px;
 	}
 
-	.dashboard-nav.sticky {
-		position: relative;
-	}
-
 	.search-bar-wrap {
 		float: left;
 	}
@@ -154,7 +150,7 @@
 	.search-input {
 		margin: 5px;
 		padding-left: 30px;
-		width: 100px;
+		width: 150px;
 	}
 
 	.search-icon {
@@ -169,7 +165,7 @@
 	.networks-menu {
 		float: right;
 		margin-top: 8px;
-		width: 260px;
+		width: 350px;
 	}
 
 	.networks-menu li {
@@ -220,7 +216,17 @@
 	}
 }
 
-@media (max-width: 420px) {
+@media (max-width: 560px) {
+	.search-input {
+		width: 42px;
+	}
+
+	.search-input:focus {
+		width: 300px;
+	}
+}
+
+@media (max-width: 440px) {
 	.main-dashdoard {
 		margin-left: 0;
 	}
@@ -230,11 +236,21 @@
 	}
 
 	.search-input {
-		width: 50px;
+		width: 0;
+		padding-left: 20px;
+	}
+
+	.search-input:focus {
+		width: 280px;
+		padding-left: 30px;
 	}
 
 	.networks-menu {
-		width: 200px;
+		width: 393px;
+	}
+
+	.networks-menu li:nth-child(3) {
+		margin-right: 125px;
 	}
 
 	.networks-menu .menu-title {
@@ -265,5 +281,40 @@
 
 	.network .toggle {
 		right: 10px;
+	}
+
+	.expired-token-notifier {
+		top: 40px;
+		left: 10px !important;
+	}
+}
+
+@media (max-width: 420px) {
+	.networks-menu {
+		width: 362px;
+	}
+
+	.networks-menu li:nth-child(3) {
+		margin-right: 95px;
+	}
+}
+
+@media (max-width: 400px) {
+	.networks-menu {
+		width: 340px;
+	}
+
+	.networks-menu li:nth-child(3) {
+		margin-right: 74px;
+	}
+}
+
+@media (max-width: 380px) {
+	.networks-menu {
+		width: 280px;
+	}
+
+	.networks-menu li:nth-child(3) {
+		margin-right: 15px;
 	}
 }
