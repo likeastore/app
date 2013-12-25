@@ -282,6 +282,10 @@
 	.network .toggle {
 		right: 10px;
 	}
+
+	.expired-token-notifier {
+		top: 30px;
+	}
 }
 
 @media (max-width: 420px) {
