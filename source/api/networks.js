@@ -40,6 +40,11 @@ function networksService(app) {
 		returnAuthUrl
 	);
 
+	app.post('/api/networks/youtube',
+		middleware.networks.youtube(),
+		returnAuthUrl
+	);
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
@@ -78,6 +83,13 @@ function networksService(app) {
 	app.get('/api/networks/vimeo/callback',
 		middleware.access.guest(),
 		middleware.networks.vimeoCallback(),
+		registerNetwork,
+		middleware.analytics.track('network created', {service: 'vimeo'}),
+		redirectToApp);
+
+	app.get('/api/networks/youtube/callback',
+		middleware.access.guest(),
+		middleware.networks.youtubeCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'vimeo'}),
 		redirectToApp);
