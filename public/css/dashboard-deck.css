@@ -222,7 +222,7 @@
 	position: absolute;
 	top: 15px;
 	right: 0;
-	z-index: 10;
+	z-index: 1001;
 	visibility: hidden;
 	opacity: 0;
 	-webkit-transition: all .3s ease-in-out;

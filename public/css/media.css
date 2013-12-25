@@ -245,12 +245,12 @@
 		padding-left: 30px;
 	}
 
-	.search-icon {
-		top: 15px;
+	/*.search-icon {
+		top: 12px;
 	}
-
+*/
 	.networks-menu {
-		float: none;
+		float: right;
 		width: 350px;
 	}
 
