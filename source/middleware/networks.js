@@ -274,9 +274,11 @@ function youtube() {
 		var callbackUrl = config.applicationUrl + '/api/networks/youtube/callback';
 		var oauth = new OAuth2(config.services.youtube.clientId,
 							config.services.facebook.clientSecret,
-							'https://accounts.google.com/o/oauth2/auth');
+							'https://accounts.google.com/o',
+							'/oauth2/auth',
+							'/oauth2/token');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', state: req.user });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', state: req.user, response_type: 'code' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
@@ -288,7 +290,9 @@ function youtubeCallback() {
 		var callbackUrl = config.applicationUrl + '/api/networks/youtube/callback';
 		var oauth = new OAuth2(config.services.youtube.clientId,
 							config.services.youtube.clientSecret,
-							'https://accounts.google.com/o/oauth2/token');
+							'https://accounts.google.com/o',
+							'/oauth2/auth',
+							'/oauth2/token');
 
 		var code = req.query.code;
 		var user = req.query.state;
@@ -304,7 +308,7 @@ function youtubeCallback() {
 				accessToken: accessToken,
 				accessTokenSecret: null,
 				user: user,
-				service: 'facebook'
+				service: 'youtube'
 			};
 
 			next();
