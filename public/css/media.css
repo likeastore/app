@@ -250,7 +250,7 @@
 	}
 */
 	.networks-menu {
-		float: right;
+		float: none;
 		width: 350px;
 	}
 
