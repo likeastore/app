@@ -123,6 +123,10 @@
 	background-color: #62a0ad;
 }
 
+.menu-title.youtube:hover {
+	background-color: #c0392b;
+}
+
 .promo-line {
 	background: rgba(0,0,0,0.2);
 	color: #edf0f2;
@@ -130,7 +134,7 @@
 	padding: 15px 12px 25px 8px;
 	position: absolute;
 	width: 200px;
-	top: 385px;
+	top: 405px;
 	overflow: hidden;
 }
 

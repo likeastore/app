@@ -16,6 +16,7 @@ define(function (require) {
 	controllers.controller('twitterController', itemsControllerFactory('Twitter', 'twitter'));
 	controllers.controller('stackoverflowController', itemsControllerFactory('Stackoverflow', 'stackoverflow'));
 	controllers.controller('vimeoController', itemsControllerFactory('Vimeo', 'vimeo'));
+	controllers.controller('youtubeController', itemsControllerFactory('Youtube', 'youtube'));
 
 	// search
 	controllers.controller('searchController', require('./searchController'));
