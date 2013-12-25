@@ -519,7 +519,8 @@
 	transition: all .3s ease-in-out;
 }
 
-.dash-item.vimeo:hover {
+.dash-item.vimeo:hover,
+.dash-item.youtube:hover {
 	background: #1f282d;
 }
 
