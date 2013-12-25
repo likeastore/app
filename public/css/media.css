@@ -285,7 +285,7 @@
 
 	.expired-token-notifier {
 		top: 35px;
-		left: 10px;
+		left: 10px !important;
 	}
 }
 

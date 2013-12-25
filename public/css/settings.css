@@ -229,6 +229,10 @@
 	left: 90px;
 }
 
+.facebook .expired-token-notifier {
+	left: 100px;
+}
+
 /* "NEW" corner ribbon */
 .new-ribbon-wrap {
 	width: 45px;
