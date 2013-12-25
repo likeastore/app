@@ -79,6 +79,10 @@
 	content: 'v';
 }
 
+.play-icon:before {
+	content: '▶';
+}
+
 .big-icon {
 	height: 100px;
 	width: 100px;

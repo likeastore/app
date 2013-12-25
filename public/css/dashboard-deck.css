@@ -119,6 +119,10 @@
 	background-color: #bdc3c7;
 }
 
+.menu-title.vimeo:hover {
+	background-color: #62a0ad;
+}
+
 .promo-line {
 	background: rgba(0,0,0,0.2);
 	color: #edf0f2;
@@ -126,7 +130,7 @@
 	padding: 15px 12px 25px 8px;
 	position: absolute;
 	width: 200px;
-	top: 350px;
+	top: 385px;
 	overflow: hidden;
 }
 
@@ -335,8 +339,57 @@
 	transition: all .3s ease-in-out;
 }
 
-.item-wrapp {
+.item-text-wrap {
 	padding: 0 12px;
+}
+
+.item-bg {
+	width: 100%;
+	height: 225px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 0;
+}
+
+.item-bg-info {
+	position: relative;
+	color: #fff;
+	color: rgba(255,255,255,.9);
+	width: 100%;
+	padding: 157px 12px 20px;
+	background: url('../img/gradient.png') repeat-x center center;
+	background-size: 100% 100%;
+}
+
+.item-thumb-wrap .play-icon {
+	border: 2px solid;
+	font-size: 14px;
+	float: left;
+	line-height: 33px;
+	margin: 8px 10px 0 0;
+	padding-left: 3px;
+	text-align: center;
+	width: 30px;
+	height: 32px;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+}
+
+.item-thumb-wrap .title {
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 3px;
+	width: 65%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.item-thumb-wrap .item-date {
+	font-size: 10px;
+	text-transform: uppercase;
 }
 
 .dash-item .source-link {
@@ -413,6 +466,10 @@
 	z-index: 0;
 }
 
+.item-type.vimeo-icon {
+	color: rgba(255,255,255,.2);
+}
+
 .autor-item {
 	font-size: 12px;
 	margin: 10px 0 0;
@@ -438,7 +495,7 @@
 	color: #e67e22;
 }
 
-.item-date {
+.item-text-wrap .item-date {
 	color: #8592a2;
 	font-size: 12px;
 	text-transform: uppercase;
@@ -448,6 +505,7 @@
 }
 
 /* item hover color transitions */
+.dash-item:hover .item-bg,
 .dash-item:hover .item-type,
 .dash-item:hover .item-date,
 .dash-item:hover .autor-item {
@@ -457,13 +515,21 @@
 	transition: all .3s ease-in-out;
 }
 
-.dash-item:hover .item-type {
+.dash-item.vimeo:hover {
+	background: #1f282d;
+}
+
+.dash-item:hover .item-bg {
+	opacity: .6;
+}
+
+.dash-item:hover .item-text-wrap .item-type {
 	color: #fce37e;
 }
 
-.dash-item:hover .item-date,
-.dash-item:hover .autor-item,
-.dash-item:hover .repo {
+.dash-item:hover .item-text-wrap .item-date,
+.dash-item:hover .item-text-wrap .autor-item,
+.dash-item:hover .item-text-wrap .repo {
 	color: #333;
 }
 

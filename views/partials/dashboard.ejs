@@ -18,7 +18,7 @@
 			<a href="/twitter" class="menu-title twitter"><i data-icon="b" class="icon"></i> Twitter</a>
 		</li>
 		<li>
-			<a href="/vimeo" class="menu-title vimeo"><i data-icon="b" class="icon"></i> Vimeo</a>
+			<a href="/vimeo" class="menu-title vimeo"><i data-icon="C" class="icon"></i> Vimeo</a>
 		</li>
 		<li>
 			<a href="/github" class="menu-title github"><i data-icon="d" class="icon"></i> Github</a>
@@ -67,8 +67,18 @@
 <section class="main-dashdoard {{title|lowercase}}">
 	<ul class="items-wrap">
 		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items">
-			<div class="item-wrapp">
-				<a href="{{item.source}}" class="source-link" target="_blank"></a>
+			<a href="{{item.source}}" class="source-link" target="_blank"></a>
+
+			<div ng-if="item.thumbnail" class="item-thumb-wrap">
+				<div class="item-bg" style="background-image: url({{item.thumbnail}})" ng-show="item.thumbnail"></div>
+				<div class="item-bg-info">
+					<i class="play-icon"></i>
+					<h2 class="title">{{item.title}}</h2>
+					<div class="item-date">{{item.type}} &#8226; {{item.created|date: 'longDate'}}</div>
+				</div>
+			</div>
+
+			<div ng-if="!item.thumbnail" class="item-text-wrap">
 				<img src="{{item.avatarUrl}}">
 				<div class="repo" ng-show="item.repo">{{item.repo}}</div>
 				<div class="desc">
@@ -77,8 +87,9 @@
 					<div class="autor-item">by @{{item.authorName}}</div>
 				</div>
 				<div class="item-date">{{item.type}} &#8226; {{item.created|date: 'longDate'}}</div>
-				<i class="item-type font-icon {{item.type}}-icon"></i>
 			</div>
+
+			<i class="item-type font-icon {{item.type}}-icon"></i>
 		</li>
 	</ul>
 
