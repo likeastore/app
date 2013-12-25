@@ -19,6 +19,7 @@
 	margin-top: -1px;
 	position: relative;
 	overflow: hidden;
+	z-index: 1000;
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-ms-transition: all .3s ease-in-out;
