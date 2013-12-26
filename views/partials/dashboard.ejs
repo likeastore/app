@@ -69,13 +69,13 @@
 <!-- dashboard -->
 <section class="main-dashdoard {{title|lowercase}}">
 	<ul class="items-wrap">
-		<li class="dash-item {{item.type}} item{{$index+1}}" ng-repeat="item in items">
+		<li class="dash-item {{item.type}} item{{$index+1}}" ng-class="item.thumbnail ? 'thumbed' : ''" ng-repeat="item in items">
 			<a href="{{item.source}}" class="source-link" target="_blank"></a>
 
 			<div ng-if="item.thumbnail" class="item-thumb-wrap">
 				<div class="item-bg" style="background-image: url({{item.thumbnail}})" ng-show="item.thumbnail"></div>
 				<div class="item-bg-info">
-					<i class="play-icon"></i>
+					<i class="font-icon play-icon"></i>
 					<h2 class="title">{{item.title}}</h2>
 					<div class="item-date">{{item.type}} &#8226; {{item.created|date: 'longDate'}}</div>
 				</div>
