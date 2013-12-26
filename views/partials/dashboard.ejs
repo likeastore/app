@@ -34,14 +34,14 @@
 	<div class="promo-line">
 		<div class="promo-text">Invite your friends to stay tuned with their likes!</div>
 
-		<a href="#" class="btn green-btn" ng-dialog="shareDialogId" ng-dialog-class="lsd-theme-default share-dialog"><i data-icon="S" class="side-btn-icon"></i> Share love</a>
+		<a href="#" class="btn green-btn" ng-dialog="shareDialogId" ng-dialog-class="lsd-theme share-dialog" ng-dialog-controller="shareWithFriendController"><i data-icon="S" class="side-btn-icon"></i> Share love</a>
 
 		<script type="text/ng-template" id="shareDialogId">
 			<h2>
 				<i data-icon="w" class="icon"></i>
 				 Invite your friends
 			</h2>
-			<form ng-controller="shareWithFriendController" ng-submit="send()">
+			<form ng-submit="send()">
 				<div class="send-error" ng-show="error">We are experiencing troubles, please try again later</div>
 				<div>
 					<input type="email" class="field" placeholder="Email" ng-model="email" required>

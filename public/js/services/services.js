@@ -12,7 +12,6 @@ define(function (require) {
 	services.factory('httpInterceptor', require('./httpInterceptor'));
 	services.factory('appLoader', require('./appLoader'));
 	services.factory('user', require('./user'));
-	services.factory('dialog', require('./dialog'));
 
 	return services;
 });
