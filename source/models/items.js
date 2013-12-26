@@ -9,7 +9,7 @@ var itemsCountCache;
 var itemsCountCacheTTL = 15;
 
 function getAllItems(user, page, callback) {
-	var query = db.items.find({ user: user }).limit(pageSize);
+	var query = db.items.find({ user: user, hidden: {$exists: false} }).limit(pageSize);
 	if (page) {
 		query = query.skip(pageSize * (page - 1));
 	}
@@ -50,7 +50,7 @@ function getItemsCount(callback) {
 }
 
 function getItemsByType(user, type, page, callback) {
-	var query = db.items.find({ user: user, type: type }).limit(pageSize);
+	var query = db.items.find({ user: user, type: type, hidden: {$exists: false} }).limit(pageSize);
 	if (page) {
 		query = query.skip(pageSize * (page - 1));
 	}
@@ -67,7 +67,7 @@ function getItemsByType(user, type, page, callback) {
 }
 
 function getInbox(user, previousLogin, page, callback) {
-	var criteria = {user: user};
+	var criteria = {user: user, hidden: {$exists: false}};
 	if (previousLogin) {
 		criteria.date = { $gt: previousLogin };
 	}
@@ -89,7 +89,7 @@ function getInbox(user, previousLogin, page, callback) {
 }
 
 function getInboxCount(user, previousLogin, page, callback) {
-	var criteria = {user: user};
+	var criteria = {user: user, hidden: {$exists: false}};
 	if (previousLogin) {
 		criteria.date = { $gt: previousLogin };
 	}
@@ -103,10 +103,19 @@ function getInboxCount(user, previousLogin, page, callback) {
 	});
 }
 
+function hideItem(user, id, callback) {
+	db.items.findAndModify({
+		query: {_id: new db.ObjectId(id), user: user},
+		update: {$set: {hidden: true}},
+		'new': true
+	}, callback);
+}
+
 module.exports = {
 	getAllItems: getAllItems,
 	getItemsByType: getItemsByType,
 	getInbox: getInbox,
 	getInboxCount: getInboxCount,
-	getItemsCount: getItemsCount
+	getItemsCount: getItemsCount,
+	hideItem: hideItem
 };
