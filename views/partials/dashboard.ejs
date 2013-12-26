@@ -72,6 +72,13 @@
 		<li class="dash-item {{item.type}} item{{$index+1}}" ng-class="item.thumbnail ? 'thumbed' : ''" ng-repeat="item in items">
 			<a href="{{item.source}}" class="source-link" target="_blank"></a>
 
+			<!-- card action buttons -->
+			<div class="item-action-buttons">
+				<a href="#" class="share-btn"><i class="font-icon share-icon"></i></a>
+				<a href="#" class="delete-btn"><i class="font-icon delete-icon"></i></a>
+			</div>
+
+			<!-- card with thumbnail -->
 			<div ng-if="item.thumbnail" class="item-thumb-wrap">
 				<div class="item-bg" style="background-image: url({{item.thumbnail}})" ng-show="item.thumbnail"></div>
 				<div class="item-bg-info">
@@ -81,6 +88,7 @@
 				</div>
 			</div>
 
+			<!-- text only card -->
 			<div ng-if="!item.thumbnail" class="item-text-wrap">
 				<img src="{{item.avatarUrl}}">
 				<div class="repo" ng-show="item.repo">{{item.repo}}</div>

@@ -87,6 +87,14 @@
 	content: 'W';
 }
 
+.share-icon:before {
+	content: 'Y';
+}
+
+.close-icon:before {
+	content: '0';
+}
+
 .big-icon {
 	height: 100px;
 	width: 100px;

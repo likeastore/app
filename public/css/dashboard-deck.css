@@ -545,6 +545,39 @@
 	color: #333;
 }
 
+.item-action-buttons {
+	visibility: hidden;
+	background: #fff;
+	background: rgba(255,255,255,.9);
+	padding: 0 10px;
+	position: absolute;
+	right: 10px;
+	top: -30px;
+	z-index: 10;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.dash-item:hover .item-action-buttons {
+	visibility: visible;
+	top: 0;
+}
+
+.item-action-buttons a,
+.item-action-buttons a:hover {
+	display: inline-block;
+	color: #7f8c8d;
+	font-size: 16px;
+	margin: 5px 0 3px 5px;
+	text-decoration: none;
+}
+
+.item-action-buttons a:first-child {
+	margin-left: 0;
+}
+
 .show-more {
 	display: block;
 	background: #bdc3c7;
