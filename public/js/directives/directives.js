@@ -13,6 +13,7 @@ define(function (require) {
 	directives.directive('dropdownMenu', require('./dropdownMenu'));
 	directives.directive('inboxCounter', require('./inboxCounter'));
 	directives.directive('shareOn', require('./shareOn'));
+	directives.directive('preventDefault', require('./preventDefault'));
 
 	return directives;
 });
