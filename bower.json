@@ -8,6 +8,7 @@
     "angular-resource": "1.2.5",
     "angular-route": "1.2.5",
     "angular-cookies": "1.2.5",
-    "ngDialog": "*"
+    "ngDialog": "~0.1.0",
+    "hashids": "0.3.0"
   }
 }
