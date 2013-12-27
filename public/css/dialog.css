@@ -276,6 +276,10 @@
 	margin-right: 2px;
 }
 
+.ngdialog.share-dialog.share-like .ngdialog-content input {
+	color: #1f282d;
+}
+
 .ngdialog.share-dialog.share-like .ngdialog-content .social-desc {
 	margin-top: 10px;
 }
