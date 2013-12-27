@@ -6,7 +6,7 @@ var db = require('../db')(config);
 var pageSize = 30;
 
 var itemsCountCache;
-var itemsCountCacheTTL = 15;
+var itemsCountCacheTTL = 5;
 
 function getAllItems(user, page, callback) {
 	var query = db.items.find({ user: user, hidden: {$exists: false} }).limit(pageSize);
