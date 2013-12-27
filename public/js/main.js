@@ -5,7 +5,8 @@ require.config({
 		'ngRoute': '../components/angular-route/angular-route',
 		'ngCookies': '../components/angular-cookies/angular-cookies',
 		'ngProgressLite': '../components/ngprogress-lite/ngprogress-lite',
-		'ngDialog': '../components/ngDialog/js/ngDialog'
+		'ngDialog': '../components/ngDialog/js/ngDialog',
+		'hashids': '../components/hashids/lib/hashids'
 	},
 	shim: {
 		ngResource: {
@@ -29,7 +30,10 @@ require.config({
 			exports: 'angular'
 		},
 		angular: {
-			exports : 'angular'
+			exports: 'angular'
+		},
+		hashids: {
+			exports: 'Hashids'
 		}
 	},
 	baseUrl: '/js'

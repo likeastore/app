@@ -5,6 +5,10 @@ var config = {
 	applicationUrl: 'https://app.likeastore.com',
 	siteUrl: 'https://likeastore.com',
 
+	hashids: {
+		salt: '0b208b34946d64c41a11bab4eb34a7c6515ac2e9'
+	},
+
 	// api keys
 	services: {
 		github: {

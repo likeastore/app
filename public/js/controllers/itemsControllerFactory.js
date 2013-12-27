@@ -3,7 +3,7 @@ define(function () {
 
 	function itemsControllerFactory (title, target) {
 
-		function ItemsController($scope, $rootScope, $window, appLoader, api) {
+		function ItemsController($scope, $rootScope, $window, appLoader, api, links) {
 			$window.scrollTo(0,0);
 
 			$rootScope.title = title;
