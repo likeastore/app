@@ -74,7 +74,14 @@
 
 			<!-- card action buttons -->
 			<div class="item-action-buttons">
-				<a href="#" class="share-btn"><i class="font-icon share-icon"></i></a>
+
+				<a href="#" class="share-btn" ng-dialog="shareItemDialog" ng-dialog-class="lsd-theme share-dialog">
+					<i class="font-icon share-icon"></i>
+				</a>
+				<script type="text/ng-template" id="shareItemDialog">
+				<div>Share item</div>
+				</script>
+
 				<a href="#" class="delete-btn"><i class="font-icon delete-icon"></i></a>
 			</div>
 

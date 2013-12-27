@@ -574,6 +574,10 @@
 	text-decoration: none;
 }
 
+.item-action-buttons a:hover {
+	color: #1f282d;
+}
+
 .item-action-buttons a:first-child {
 	margin-left: 0;
 }
