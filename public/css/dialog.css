@@ -304,6 +304,11 @@
 }
 
 @media (max-width: 440px) {
+	.ngdialog.share-dialog .ngdialog-content .social-share .btn {
+		font-size: 9px;
+		width: 115px;
+	}
+
 	.ngdialog.delete-user-dialog .ngdialog-content {
 		width: 265px;
 	}

@@ -43,6 +43,10 @@
 	content: 'y';
 }
 
+.behance-icon:before {
+	content: '4';
+}
+
 .instagram-icon:before {
 	content: 'z';
 }
