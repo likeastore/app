@@ -355,7 +355,7 @@
 
 .item-bg {
 	width: 101%;
-	height: 225px;
+	height: 100%;
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -374,14 +374,16 @@
 }
 
 .item-thumb-wrap .play-icon {
+	display: inline-block;
 	border: 2px solid;
 	font-size: 14px;
 	float: left;
-	line-height: 33px;
+	line-height: 34px;
+	vertical-align: middle;
 	margin: 8px 10px 0 0;
-	padding-left: 3px;
+	text-indent: 3px;
 	text-align: center;
-	width: 30px;
+	width: 32px;
 	height: 32px;
 	-webkit-border-radius: 100%;
 	border-radius: 100%;
@@ -476,8 +478,7 @@
 	z-index: 0;
 }
 
-.item-type.vimeo-icon,
-.item-type.youtube-icon {
+.dash-item.thumbed .item-type {
 	color: rgba(255,255,255,.2);
 }
 
@@ -526,8 +527,7 @@
 	transition: all .3s ease-in-out;
 }
 
-.dash-item.vimeo:hover,
-.dash-item.youtube:hover {
+.dash-item.thumbed:hover {
 	background: #1f282d;
 }
 
@@ -543,6 +543,43 @@
 .dash-item:hover .item-text-wrap .autor-item,
 .dash-item:hover .item-text-wrap .repo {
 	color: #333;
+}
+
+.item-action-buttons {
+	visibility: hidden;
+	background: #fff;
+	background: rgba(255,255,255,.9);
+	padding: 0 10px;
+	position: absolute;
+	right: 10px;
+	top: -30px;
+	z-index: 10;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.dash-item:hover .item-action-buttons {
+	visibility: visible;
+	top: 0;
+}
+
+.item-action-buttons a,
+.item-action-buttons a:hover {
+	display: inline-block;
+	color: #7f8c8d;
+	font-size: 16px;
+	margin: 5px 0 3px 5px;
+	text-decoration: none;
+}
+
+.item-action-buttons a:hover {
+	color: #1f282d;
+}
+
+.item-action-buttons a:first-child {
+	margin-left: 0;
 }
 
 .show-more {

@@ -19,6 +19,9 @@ function itemsService(app) {
 	app.get('/api/items/:type',
 		getItemsByType);
 
+	app.del('/api/items/:id',
+		hideItem);
+
 	function getItems (req, res, next) {
 		items.getAllItems(req.user, req.query.page, function (err, items) {
 			if (err) {
@@ -79,6 +82,16 @@ function itemsService(app) {
 
 				res.json(result);
 			});
+		});
+	}
+
+	function hideItem(req, res, next) {
+		items.hideItem(req.user, req.params.id, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(200);
 		});
 	}
 }

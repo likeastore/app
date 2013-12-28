@@ -5,6 +5,11 @@
 
 	.dash-item {
 		width: 31.4%;
+		height: 230px;
+	}
+
+	.item-bg-info {
+		padding-top: 197px;
 	}
 
 	.show-more {

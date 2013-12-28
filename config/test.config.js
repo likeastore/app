@@ -5,6 +5,10 @@ var config = {
 	applicationUrl: 'http://localhost:3001',
 	siteUrl: 'http://localhost:3000',
 
+	hashids: {
+		salt: '0b208b34946d64c41a11bab4eb34a7c6515ac2e9'
+	},
+
 	// api keys
 	services: {
 		github: {

@@ -43,6 +43,10 @@
 	content: 'y';
 }
 
+.behance-icon:before {
+	content: '4';
+}
+
 .instagram-icon:before {
 	content: 'z';
 }
@@ -84,7 +88,15 @@
 }
 
 .play-icon:before {
-	content: '▶';
+	content: 'W';
+}
+
+.share-icon:before {
+	content: 'Y';
+}
+
+.close-icon:before {
+	content: '0';
 }
 
 .big-icon {

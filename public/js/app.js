@@ -2,12 +2,13 @@ define(function (require) {
 	'use strict';
 
 	require('ngRoute');
+	require('ngDialog');
 	require('./services/services');
 	require('./controllers/controllers');
 	require('./directives/directives');
 
 	var angular = require('angular');
-	var app = angular.module('likeastore', ['ngRoute', 'services', 'controllers', 'directives']);
+	var app = angular.module('likeastore', ['ngRoute', 'ngDialog', 'services', 'controllers', 'directives']);
 
 	app.init = function () {
 		angular.bootstrap(document, ['likeastore']);

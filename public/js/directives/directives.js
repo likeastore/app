@@ -12,8 +12,8 @@ define(function (require) {
 	directives.directive('stickyAt', require('./stickyAt'));
 	directives.directive('dropdownMenu', require('./dropdownMenu'));
 	directives.directive('inboxCounter', require('./inboxCounter'));
-	directives.directive('ngDialog', require('./ngDialog'));
 	directives.directive('shareOn', require('./shareOn'));
+	directives.directive('touchy', require('./touchy'));
 
 	return directives;
 });

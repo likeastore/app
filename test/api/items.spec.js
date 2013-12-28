@@ -1,8 +1,7 @@
 var request = require('request');
 var testUtils = require('../utils');
-var moment = require('moment');
 
-describe('items.spec.js', function () {
+describe.only('items.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -14,7 +13,7 @@ describe('items.spec.js', function () {
 			request.get({url: url, json: true}, function (err, resp, body) {
 				response = resp;
 				results = body;
-				done();
+				done(err);
 			});
 		});
 
@@ -29,14 +28,14 @@ describe('items.spec.js', function () {
 				token = accessToken;
 				user = createdUser;
 				headers = {'X-Access-Token': accessToken};
-				done();
+				done(err);
 			});
 		});
 
 		describe('when getting all items', function () {
 			beforeEach(function (done) {
 				testUtils.createTestItems(user, function (err, items) {
-					done();
+					done(err);
 				});
 			});
 
@@ -44,7 +43,7 @@ describe('items.spec.js', function () {
 				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 					response = resp;
 					results = body;
-					done();
+					done(err);
 				});
 			});
 
@@ -63,7 +62,7 @@ describe('items.spec.js', function () {
 			describe('for twitter', function () {
 				beforeEach(function (done) {
 					testUtils.createTestItemsOfType(user, 'twitter', function (err, items) {
-						done();
+						done(err);
 					});
 				});
 
@@ -75,7 +74,7 @@ describe('items.spec.js', function () {
 					request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 						response = resp;
 						results = body;
-						done();
+						done(err);
 					});
 				});
 
@@ -91,7 +90,7 @@ describe('items.spec.js', function () {
 			describe('for github', function () {
 				beforeEach(function (done) {
 					testUtils.createTestItemsOfType(user, 'github', function (err, items) {
-						done();
+						done(err);
 					});
 				});
 
@@ -103,7 +102,7 @@ describe('items.spec.js', function () {
 					request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 						response = resp;
 						results = body;
-						done();
+						done(err);
 					});
 				});
 
@@ -119,7 +118,7 @@ describe('items.spec.js', function () {
 			describe('for stackoverflow', function () {
 				beforeEach(function (done) {
 					testUtils.createTestItemsOfType(user, 'stackoverflow', function (err, items) {
-						done();
+						done(err);
 					});
 				});
 
@@ -131,7 +130,7 @@ describe('items.spec.js', function () {
 					request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
 						response = resp;
 						results = body;
-						done();
+						done(err);
 					});
 				});
 
@@ -145,8 +144,30 @@ describe('items.spec.js', function () {
 			});
 		});
 
-		describe('when paging results', function () {
+		describe('when item hidden', function () {
+			var items;
 
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, function (err, itms) {
+					items = itms;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.del({url: url + '/' + items[0]._id, headers: headers, json: true}, done);
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+					results = body.data;
+					done(err);
+				});
+			});
+
+			it('one should disappear', function () {
+				expect(results.length).to.equal(9);
+			});
 		});
 	});
 });

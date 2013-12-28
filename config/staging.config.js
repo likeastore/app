@@ -5,6 +5,10 @@ var config = {
 	applicationUrl: 'https://app-stage.likeastore.com',
 	siteUrl: 'https://stage.likeastore.com',
 
+	hashids: {
+		salt: '0b208b34946d64c41a11bab4eb34a7c6515ac2e9'
+	},
+
 	// api keys
 	services: {
 		github: {

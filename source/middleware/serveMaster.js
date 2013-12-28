@@ -1,4 +1,5 @@
 var _ = require('underscore');
+var config = require('../../config');
 
 function skipMaster (req) {
 	var bypass = ['/api', '/components', '/css', '/js', '/build', '/auth', '/connect', '/utils'];
@@ -13,7 +14,15 @@ function handler (title, mainJs, mainCss) {
 			return next();
 		}
 
-		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss});
+		var appConfig = {
+			siteUrl: config.siteUrl,
+			applicationUrl: config.applicationUrl,
+			hashids: {
+				salt: config.hashids.salt
+			}
+		};
+
+		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss, appConfig: appConfig });
 	};
 }
 

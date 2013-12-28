@@ -18,6 +18,12 @@ define(function () {
 				loadPage();
 			};
 
+			$scope.hideLike = function (id, index) {
+				api.delete({ resource: 'items', target: id }, function (res) {
+					$scope.items.splice(index, 1);
+				});
+			};
+
 			function createQuery () {
 				var query = { resource: 'items', page: $scope.page };
 				if (target) {
