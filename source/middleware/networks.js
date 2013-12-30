@@ -281,7 +281,7 @@ function youtube() {
 							'/oauth2/auth',
 							'/oauth2/token');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', state: req.user, response_type: 'code' });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', access_type: 'offline', state: req.user,  response_type: 'code' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
@@ -302,9 +302,9 @@ function youtubeCallback() {
 
 		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
 
-		function gotAccessToken(err, accessToken, refreshToken) {
+		function gotAccessToken(err, accessToken, refreshToken, results) {
 			if (err) {
-				return next({message: 'failed to get accessToken from facebook', error: err, status: 500});
+				return next({message: 'failed to get accessToken from youtube', error: err, status: 500});
 			}
 
 			req.network = {
