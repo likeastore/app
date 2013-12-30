@@ -29,7 +29,7 @@ function facebookCallback() {
 
 		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
 
-		function gotAccessToken(err, accessToken) {
+		function gotAccessToken(err, accessToken, refreshToken) {
 			if (err) {
 				return next({message: 'failed to get accessToken from facebook', error: err, status: 500});
 			}
@@ -37,6 +37,7 @@ function facebookCallback() {
 			req.network = {
 				accessToken: accessToken,
 				accessTokenSecret: null,
+				refreshToken: refreshToken,
 				user: user,
 				service: 'facebook'
 			};
@@ -140,7 +141,7 @@ function githubCallback(type) {
 
 		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code'}, gotAccessToken);
 
-		function gotAccessToken(err, accessToken) {
+		function gotAccessToken(err, accessToken, refreshToken) {
 			if (err) {
 				return next({message: 'failed to get accessToken from github', error: err, status: 500});
 			}
@@ -148,6 +149,7 @@ function githubCallback(type) {
 			req.network = {
 				accessToken: accessToken,
 				accessTokenSecret: null,
+				refreshToken: refreshToken,
 				user: user,
 				service: type
 			};
@@ -184,7 +186,7 @@ function stackoverflowCallback() {
 
 		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
 
-		function gotAccessToken(err, accessToken) {
+		function gotAccessToken(err, accessToken, refreshToken) {
 			if (err) {
 				return next({message: 'failed to get accessToken from stackoverflow', error: err, status: 500});
 			}
@@ -192,6 +194,7 @@ function stackoverflowCallback() {
 			req.network = {
 				accessToken: accessToken,
 				accessTokenSecret: null,
+				refreshToken: refreshToken,
 				user: user,
 				service: 'stackoverflow'
 			};
@@ -230,7 +233,7 @@ function vimeo() {
 }
 
 function vimeoCallback() {
-return function (req, res, next) {
+	return function (req, res, next) {
 		var oauth = new OAuth('https://vimeo.com/oauth/request_token',
 							'https://vimeo.com/oauth/access_token',
 							config.services.vimeo.clientId,
@@ -278,7 +281,7 @@ function youtube() {
 							'/oauth2/auth',
 							'/oauth2/token');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', state: req.user, response_type: 'code' });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', access_type: 'offline', state: req.user,  response_type: 'code' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
@@ -299,14 +302,15 @@ function youtubeCallback() {
 
 		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
 
-		function gotAccessToken(err, accessToken) {
+		function gotAccessToken(err, accessToken, refreshToken, results) {
 			if (err) {
-				return next({message: 'failed to get accessToken from facebook', error: err, status: 500});
+				return next({message: 'failed to get accessToken from youtube', error: err, status: 500});
 			}
 
 			req.network = {
 				accessToken: accessToken,
 				accessTokenSecret: null,
+				refreshToken: refreshToken,
 				user: user,
 				service: 'youtube'
 			};
