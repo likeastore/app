@@ -29,7 +29,8 @@
     "grunt-contrib-requirejs": "~0.4.0",
     "grunt-hashres": "git://github.com/alexanderbeletsky/grunt-hashres.git",
     "seismo-client": "0.0.4",
-    "node-mandrill": "~1.0.1"
+    "node-mandrill": "~1.0.1",
+    "respawn": "~0.1.7"
   },
   "devDependencies": {
     "mocha": "~1.10.0",
