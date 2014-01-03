@@ -18,10 +18,13 @@
 			<a href="/twitter" class="menu-title twitter"><i data-icon="b" class="icon"></i> Twitter</a>
 		</li>
 		<li>
-			<a href="/vimeo" class="menu-title vimeo"><i data-icon="C" class="icon"></i> Vimeo <span class="new-notifier">New</span></a>
+			<a href="/vimeo" class="menu-title vimeo"><i data-icon="C" class="icon"></i> Vimeo </a>
 		</li>
 		<li>
-			<a href="/youtube" class="menu-title youtube"><i data-icon="O" class="icon"></i> Youtube <span class="new-notifier">New</span></a>
+			<a href="/youtube" class="menu-title youtube"><i data-icon="O" class="icon"></i> Youtube </a>
+		</li>
+		<li>
+			<a href="/dribbble" class="menu-title dribbble"><i data-icon="y" class="icon"></i> Dribbble <span class="new-notifier">New</span> </a>
 		</li>
 		<li>
 			<a href="/github" class="menu-title github"><i data-icon="d" class="icon"></i> Github</a>
@@ -97,7 +100,7 @@
 			<div ng-if="item.thumbnail" class="item-thumb-wrap">
 				<div class="item-bg" style="background-image: url({{item.thumbnail}})" ng-show="item.thumbnail"></div>
 				<div class="item-bg-info">
-					<i class="font-icon play-icon"></i>
+					<i class="font-icon play-icon" ng-show="item.type === 'youtube' || item.type === 'vimeo'"></i>
 					<h2 class="title">{{item.title}}</h2>
 					<div class="item-date">{{item.type}} &#8226; {{item.created|date: 'longDate'}}</div>
 				</div>

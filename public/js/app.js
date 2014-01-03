@@ -26,6 +26,7 @@ define(function (require) {
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
 				.when('/vimeo', { templateUrl: 'partials/dashboard', controller: 'vimeoController' })
 				.when('/youtube', { templateUrl: 'partials/dashboard', controller: 'youtubeController' })
+				.when('/dribbble', { templateUrl: 'partials/dashboard', controller: 'dribbbleController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
