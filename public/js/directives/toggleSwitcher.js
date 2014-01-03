@@ -29,20 +29,34 @@ define(function (require) {
 						return;
 					}
 
-					elem.toggleClass('on');
+					var useDialog = elem.attrs('data-auth') === 'dialog' && elem.attrs('data-dialog');
 
-					if (isOn) {
-						api.remove(urlOptions);
-						return;
+					if (useDialog) {
+						return dialogAuth();
 					}
 
-					elem.addClass('disabled');
+					return redirectAuth();
 
-					ngProgressLite.start();
-					api.save(urlOptions, {}, function (res) {
-						$window.location = res.authUrl;
-						ngProgressLite.set(0.99);
-					});
+					function redirectAuth() {
+						elem.toggleClass('on');
+
+						if (isOn) {
+							api.remove(urlOptions);
+							return;
+						}
+
+						elem.addClass('disabled');
+
+						ngProgressLite.start();
+						api.save(urlOptions, {}, function (res) {
+							$window.location = res.authUrl;
+							ngProgressLite.set(0.99);
+						});
+					}
+
+					function dialogAuth() {
+						// TODO: call ngDialog
+					}
 				};
 
 				scope.$watch(attrs.model, listenToNetworks, true);
