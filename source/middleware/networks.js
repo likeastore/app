@@ -348,7 +348,7 @@ function behance() {
 							'/oauth/authenticate',
 							'/oauth/token');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'activity_read', access_type: 'offline', state: req.user,  response_type: 'code' });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'activity_read', state: req.user,  response_type: 'code' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
