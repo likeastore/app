@@ -320,6 +320,25 @@ function youtubeCallback() {
 	};
 }
 
+function dribbble() {
+	return function (req, res, next) {
+		var user = req.user;
+		var username = req.body.username;
+
+		if (!username) {
+			return next({message: 'missing dribbble username', status: 412});
+		}
+
+		req.network = {
+			username: username,
+			user: user,
+			service: 'dribbble'
+		};
+
+		next();
+	};
+}
+
 
 module.exports = {
 	facebook: facebook,
@@ -338,5 +357,7 @@ module.exports = {
 	vimeoCallback: vimeoCallback,
 
 	youtube: youtube,
-	youtubeCallback: youtubeCallback
+	youtubeCallback: youtubeCallback,
+
+	dribbble: dribbble
 };

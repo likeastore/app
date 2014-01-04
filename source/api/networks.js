@@ -45,6 +45,13 @@ function networksService(app) {
 		returnAuthUrl
 	);
 
+	app.post('/api/networks/dribbble',
+		middleware.networks.dribbble(),
+		registerNetwork,
+		middleware.analytics.track('network created', {service: 'dribbble'}),
+		redirectToApp
+	);
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
