@@ -339,6 +339,54 @@ function dribbble() {
 	};
 }
 
+function behance() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback';
+		var oauth = new OAuth2(config.services.behance.clientId,
+							config.services.behance.clientSecret,
+							'https://www.behance.net/v2',
+							'/oauth/authenticate',
+							'/oauth/token');
+
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'activity_read', access_type: 'offline', state: req.user,  response_type: 'code' });
+		req.authUrl = authorizeUrl;
+		next();
+	};
+}
+
+function behanceCallback() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback';
+		var oauth = new OAuth2(config.services.behance.clientId,
+							config.services.behance.clientSecret,
+							'https://www.behance.net/v2',
+							'/oauth/authenticate',
+							'/oauth/token');
+
+		var code = req.query.code;
+		var user = req.query.state;
+
+		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
+
+		function gotAccessToken(err, accessToken, refreshToken, results) {
+			if (err) {
+				return next({message: 'failed to get accessToken from youtube', error: err, status: 500});
+			}
+
+			req.network = {
+				accessToken: accessToken,
+				accessTokenSecret: null,
+				refreshToken: null,
+				user: user,
+				service: 'behance'
+			};
+
+			next();
+		}
+
+	};
+}
+
 
 module.exports = {
 	facebook: facebook,
@@ -359,5 +407,8 @@ module.exports = {
 	youtube: youtube,
 	youtubeCallback: youtubeCallback,
 
-	dribbble: dribbble
+	dribbble: dribbble,
+
+	behance: behance,
+	behanceCallback: behanceCallback
 };

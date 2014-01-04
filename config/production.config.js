@@ -40,6 +40,11 @@ var config = {
 		youtube: {
 			clientId: process.env.YOUTUBE_CLIENT_ID,
 			clientSecret: process.env.YOUTUBE_CLIENT_SECRET
+		},
+
+		behance: {
+			clientId: process.env.BEHANCE_CLIENT_ID,
+			clientSecret: process.env.BEHANCE_CLIENT_SECRET
 		}
 	},
 

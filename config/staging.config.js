@@ -40,6 +40,11 @@ var config = {
 		youtube: {
 			clientId: '448353031199-vm7a5vrs3m0frtm7rrpnnsson3cha3a2.apps.googleusercontent.com',
 			clientSecret: 'nag018PB5ijVec9ZWcpsnyRd'
+		},
+
+		behance: {
+			clientId: 'uzBD0GX9Q0CwE3tE9hw69wTpI6P1VBu1',
+			clientSecret: 'baScisHRs3Af11.E7OlC4q2jyrD7fj._'
 		}
 	},
 

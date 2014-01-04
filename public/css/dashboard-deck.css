@@ -134,6 +134,14 @@
 	background-color: #c0392b;
 }
 
+.menu-title.dribbble:hover {
+	background-color: #db4b82;
+}
+
+.menu-title.behance:hover {
+	background-color: #0d7ba3;
+}
+
 .promo-line {
 	background: rgba(0,0,0,0.2);
 	color: #edf0f2;
@@ -141,7 +149,6 @@
 	padding: 15px 12px 25px 8px;
 	position: absolute;
 	width: 200px;
-	top: 405px;
 	overflow: hidden;
 }
 

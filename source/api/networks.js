@@ -52,6 +52,11 @@ function networksService(app) {
 		redirectToSettings
 	);
 
+	app.post('/api/networks/behance',
+		middleware.networks.behance(),
+		returnAuthUrl
+	);
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
@@ -99,6 +104,13 @@ function networksService(app) {
 		middleware.networks.youtubeCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'vimeo'}),
+		redirectToSettings);
+
+	app.get('/api/networks/behance/callback',
+		middleware.access.guest(),
+		middleware.networks.behanceCallback(),
+		registerNetwork,
+		middleware.analytics.track('network created', {service: 'behance'}),
 		redirectToSettings);
 
 	function registerNetwork(req, res, next) {
