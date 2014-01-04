@@ -29,6 +29,15 @@ define(function (require) {
 						return;
 					}
 
+					elem.toggleClass('on');
+
+					if (isOn) {
+						api.remove(urlOptions);
+						return;
+					}
+
+					elem.addClass('disabled');
+
 					var template = elem.attr('data-dialog-template');
 
 					if (template) {
@@ -38,15 +47,6 @@ define(function (require) {
 					return redirectAuth();
 
 					function redirectAuth() {
-						elem.toggleClass('on');
-
-						if (isOn) {
-							api.remove(urlOptions);
-							return;
-						}
-
-						elem.addClass('disabled');
-
 						ngProgressLite.start();
 						api.save(urlOptions, {}, function (res) {
 							$window.location = res.authUrl;

@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function DribbbleNetworkController($scope, api, ngProgressLite, ngDialog) {
+	function DribbbleNetworkController($scope, $location, api, ngProgressLite, ngDialog) {
 		$scope.turnOn = function () {
 			var payload = {username: this.username};
 			var urlOptions = { resource: 'networks', target: 'dribbble' };
@@ -10,6 +10,7 @@ define(function (require) {
 			api.save(urlOptions, payload, function () {
 				ngProgressLite.done();
 				ngDialog.close();
+				$location.path('/');
 			});
 
 		};

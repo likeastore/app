@@ -49,7 +49,7 @@ function networksService(app) {
 		middleware.networks.dribbble(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'dribbble'}),
-		redirectToApp
+		redirectToSettings
 	);
 
 	app.get('/api/networks/twitter/callback',
@@ -57,49 +57,49 @@ function networksService(app) {
 		middleware.networks.twitterCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'twitter'}),
-		redirectToApp);
+		redirectToSettings);
 
 	app.get('/api/networks/github/callback',
 		middleware.access.guest(),
 		middleware.networks.githubCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'github'}),
-		redirectToApp);
+		redirectToSettings);
 
 	app.get('/api/networks/gist/callback',
 		middleware.access.guest(),
 		middleware.networks.githubCallback('gist'),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'gist'}),
-		redirectToApp);
+		redirectToSettings);
 
 	app.get('/api/networks/stackoverflow/callback',
 		middleware.access.guest(),
 		middleware.networks.stackoverflowCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'stackoverflow'}),
-		redirectToApp);
+		redirectToSettings);
 
 	app.get('/api/networks/facebook/callback',
 		middleware.access.guest(),
 		middleware.networks.facebookCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'facebook'}),
-		redirectToApp);
+		redirectToSettings);
 
 	app.get('/api/networks/vimeo/callback',
 		middleware.access.guest(),
 		middleware.networks.vimeoCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'vimeo'}),
-		redirectToApp);
+		redirectToSettings);
 
 	app.get('/api/networks/youtube/callback',
 		middleware.access.guest(),
 		middleware.networks.youtubeCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'vimeo'}),
-		redirectToApp);
+		redirectToSettings);
 
 	function registerNetwork(req, res, next) {
 		networks.createOrUpdate(req.network, next);
@@ -127,7 +127,7 @@ function networksService(app) {
 		res.json({authUrl: req.authUrl});
 	}
 
-	function redirectToApp(req, res) {
+	function redirectToSettings(req, res) {
 		res.redirect(config.applicationUrl + '/settings');
 	}
 }
