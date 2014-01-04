@@ -10,6 +10,7 @@ define(function (require) {
 			api.save(urlOptions, payload, function () {
 				ngProgressLite.done();
 				ngDialog.close();
+				// TODO: Fix me, instead of redirect - it should be update on models on settings page..
 				$location.path('/');
 			});
 
