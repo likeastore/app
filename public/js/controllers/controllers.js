@@ -30,5 +30,8 @@ define(function (require) {
 	// errors
 	controllers.controller('errorController', require('./errorController'));
 
+	// custom networks
+	controllers.controller('dribbbleNetworkController', require('./dribbbleNetworkController'));
+
 	return controllers;
 });

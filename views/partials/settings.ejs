@@ -36,7 +36,7 @@
 			<div class="new-ribbon-wrap"><div class="new-ribbon">New</div></div>
 			<div class="title">Dribbble</div>
 			<div class="desc">Sync all dribbble images that you've favorited.</div>
-			<div toggle-switcher="dribbble" model="networks" data-auth="dialog" data-dialog="dribble"></div>
+			<div toggle-switcher="dribbble" model="networks" data-dialog-template="dribbleConnect"></div>
 		</li>
 		<li class="network github">
 			<div class="title">Github</div>
@@ -68,3 +68,15 @@
 		</script>
 	</div>
 </div>
+
+<script type="text/ng-template" id="dribbleConnect">
+	<form ng-controller="dribbbleNetworkController" ng-submit="turnOn()">
+		<div class="ngdialog-message">
+			<h2>Hello, get ready to connect to Dribbble network.</h2>
+			<input type="text" class="field" placeholder="Dribbble username..." ng-model="username" required/>
+		</div>
+		<div class="ngdialog-buttons mt">
+			<button type="submit" class="btn">Connect to dribbble</button>
+		</div>
+	</form>
+</script>

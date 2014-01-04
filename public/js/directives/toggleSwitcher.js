@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function ToggleSwitcher ($window, api, ngProgressLite) {
+	function ToggleSwitcher ($window, api, ngProgressLite, ngDialog) {
 		return {
 			restrict: 'A',
 			replace: true,
@@ -29,10 +29,10 @@ define(function (require) {
 						return;
 					}
 
-					var useDialog = elem.attrs('data-auth') === 'dialog' && elem.attrs('data-dialog');
+					var template = elem.attr('data-dialog-template');
 
-					if (useDialog) {
-						return dialogAuth();
+					if (template) {
+						return dialogAuth(template);
 					}
 
 					return redirectAuth();
@@ -54,8 +54,14 @@ define(function (require) {
 						});
 					}
 
-					function dialogAuth() {
-						// TODO: call ngDialog
+					function dialogAuth(template) {
+						var contoller = elem.attr('data-dialog-controller');
+
+						ngDialog.open({
+							template: template,
+							className: 'lsd-theme share-dialog',
+							contoller: contoller
+						});
 					}
 				};
 
