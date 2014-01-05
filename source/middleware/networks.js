@@ -348,7 +348,7 @@ function behance() {
 							'/oauth/authenticate',
 							'/oauth/token');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'activity_read', state: req.user,  response_type: 'code' });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'activity_read', state: req.user, response_type: 'code' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
@@ -370,20 +370,20 @@ function behanceCallback() {
 
 		function gotAccessToken(err, accessToken, refreshToken, results) {
 			if (err) {
-				return next({message: 'failed to get accessToken from youtube', error: err, status: 500});
+				return next({message: 'failed to get accessToken from behance', error: err, status: 500});
 			}
 
 			req.network = {
 				accessToken: accessToken,
 				accessTokenSecret: null,
 				refreshToken: null,
+				username: results.user.username,
 				user: user,
 				service: 'behance'
 			};
 
 			next();
 		}
-
 	};
 }
 
