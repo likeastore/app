@@ -17,6 +17,5 @@
   },
   "_source": "git://github.com/ivanakimov/hashids.js.git",
   "_target": "*",
-  "_originalSource": "hashids",
-  "_direct": true
+  "_originalSource": "hashids"
 }

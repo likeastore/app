@@ -1,0 +1,24 @@
+{
+  "name": "seismo",
+  "version": "0.0.3",
+  "main": "seismo.js",
+  "ignore": [
+    "test",
+    "node_modules",
+    "src",
+    "Gruntfile.js",
+    "package.json"
+  ],
+  "issues": "https://github.com/seismolabs/seismo-browser-client/issues",
+  "homepage": "https://github.com/seismolabs/seismo-browser-client",
+  "_release": "0.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.3",
+    "commit": "c724a09a54a574a26a6cbfefc2d6cd7aaa1fc071"
+  },
+  "_source": "git://github.com/seismolabs/seismo-browser-client.git",
+  "_target": "~0.0.3",
+  "_originalSource": "seismo",
+  "_direct": true
+}

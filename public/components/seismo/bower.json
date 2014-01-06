@@ -1,0 +1,13 @@
+{
+  "name": "seismo",
+  "version": "0.0.2",
+  "main": "seismo.js",
+  "ignore": [
+    "test",
+    "node_modules",
+    "src",
+    "Gruntfile.js",
+    "package.json"
+  ],
+  "issues": "https://github.com/seismolabs/seismo-browser-client/issues"
+}

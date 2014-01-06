@@ -31,6 +31,7 @@
     "commit": "65a3c05399724d559d0b22c8bc8b664fbd26b02a"
   },
   "_source": "git://github.com/voronianski/ngprogress-lite.git",
-  "_target": "~1.0.1",
-  "_originalSource": "ngprogress-lite"
+  "_target": "~1.0.4",
+  "_originalSource": "ngprogress-lite",
+  "_direct": true
 }
