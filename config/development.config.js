@@ -49,7 +49,7 @@ var config = {
 	},
 
 	mandrill: {
-		token: null
+		token: '2kXX0stV1Hf56y9DYZts3A'
 	},
 
 	logentries: {
@@ -58,6 +58,7 @@ var config = {
 
 	analytics: {
 		url: 'http://localhost:3005',
+		application: 'likeastore-development',
 		username: 'likeastore',
 		password: 'mypass'
 	},

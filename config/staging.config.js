@@ -58,6 +58,7 @@ var config = {
 
 	analytics: {
 		url: 'http://analytics.stage.likeastore.com',
+		application: 'likeastore-staging',
 		username: 'likeastore',
 		password: 'likeadmin7analitics'
 	},

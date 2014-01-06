@@ -58,6 +58,7 @@ var config = {
 
 	analytics: {
 		url: 'http://localhost:3005',
+		application: 'likeastore-test',
 		username: 'likeastore',
 		password: 'mypass'
 	},

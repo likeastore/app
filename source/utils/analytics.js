@@ -1,9 +1,6 @@
 var analytics = require('seismo-client');
 var config = require('../../config');
 
-var env = process.env.NODE_ENV || 'development';
-var app = 'likeastore-' + env;
-
 var options = {
 	server: config.analytics.url,
 	credentials: {
@@ -12,4 +9,4 @@ var options = {
 	}
 };
 
-module.exports = analytics(app, options);
+module.exports = analytics(config.analytics.application, options);

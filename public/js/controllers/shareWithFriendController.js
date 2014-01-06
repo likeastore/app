@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function ShareWithFriendController($rootScope, $scope, $timeout, api) {
+	function ShareWithFriendController($rootScope, $scope, $timeout, api, analytics) {
 		$scope.sendText = 'Send';
 		$scope.message = '\
 I want to share Likeastore with you. It helps me to connect to all my social networks, like twitter and facebook and keep all my interests in one place.\
@@ -25,6 +25,8 @@ https://likeastore.com';
 				function (res) {
 					$scope.email = '';
 					changeSendText('Thank you!');
+					analytics.track('share-with-friend', {via: 'email'});
+
 					$timeout(function () {
 						changeSendText('Send');
 					}, 3000);

@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function Share ($window) {
+	function Share ($window, analytics) {
 		return {
 			restrict: 'A',
 			link: function (scope, elem, attr) {
@@ -12,6 +12,9 @@ define(function (require) {
 
 				elem.on('click', function () {
 					$window.open(services[attr.shareOn], 'Share', 'width=600,height=400,resizable=yes');
+					if (attr.shareOnEvent) {
+						analytics.track(attr.shareOnEvent, {via: attr.shareOn});
+					}
 				});
 			}
 		};

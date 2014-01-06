@@ -17,9 +17,8 @@ function handler (title, mainJs, mainCss) {
 		var appConfig = {
 			siteUrl: config.siteUrl,
 			applicationUrl: config.applicationUrl,
-			hashids: {
-				salt: config.hashids.salt
-			}
+			hashids: config.hashids,
+			analytics: config.analytics
 		};
 
 		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss, appConfig: appConfig });

@@ -62,8 +62,8 @@
 			</form>
 			<div class="social-desc">Spread a word through social services</div>
 			<div class="social-share">
-				<button type="button" class="btn fb-btn" share-on="facebook">Share on facebook</button>
-				<button type="button" class="btn tw-btn" share-on="twitter">Share on twitter</button>
+				<button type="button" class="btn fb-btn" share-on-event="share-with-friend" share-on="facebook">Share on facebook</button>
+				<button type="button" class="btn tw-btn" share-on-event="share-with-friend" share-on="twitter">Share on twitter</button>
 			</div>
 		</script>
 	</div>
@@ -93,8 +93,8 @@
 					<input id="likeUrl" class="field" ng-model="link">
 					<div class="social-desc">Or share it through social services</div>
 					<div class="social-share">
-						<button type="button" class="btn fb-btn" share-on="facebook" share-on-text="{{link}}">Share on facebook</button>
-						<button type="button" class="btn tw-btn" share-on="twitter" share-on-text="Check my saved like here - {{link}} via @likeastore ">Share on twitter</button>
+						<button type="button" class="btn fb-btn" share-on="facebook" share-on-event="share-like" share-on-text="{{link}}">Share on facebook</button>
+						<button type="button" class="btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="Check my saved like here - {{link}} via @likeastore ">Share on twitter</button>
 					</div>
 				</script>
 
