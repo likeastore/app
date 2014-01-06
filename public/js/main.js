@@ -6,7 +6,8 @@ require.config({
 		'ngCookies': '../components/angular-cookies/angular-cookies',
 		'ngProgressLite': '../components/ngprogress-lite/ngprogress-lite',
 		'ngDialog': '../components/ngDialog/js/ngDialog',
-		'hashids': '../components/hashids/lib/hashids'
+		'hashids': '../components/hashids/lib/hashids',
+		'seismo': '../components/seismo/seismo'
 	},
 	shim: {
 		ngResource: {
@@ -34,6 +35,9 @@ require.config({
 		},
 		hashids: {
 			exports: 'Hashids'
+		},
+		seismo: {
+			exports: 'seismo'
 		}
 	},
 	baseUrl: '/js'
