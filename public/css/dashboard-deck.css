@@ -350,10 +350,10 @@
 	overflow: hidden;
 	position: relative;
 	vertical-align: top;
-	-webkit-transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	transition: all .3s ease-in;
 }
 
 .item-text-wrap {
@@ -368,6 +368,10 @@
 	background-repeat: no-repeat;
 	position: absolute;
 	top: 0;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
 }
 
 .item-bg-info {
@@ -377,7 +381,7 @@
 	width: 100%;
 	padding: 157px 12px 20px;
 	background: url('../img/gradient.png') repeat-x center center;
-	background-size: 100% 100%;
+	background-size: 100% 150%;
 }
 
 .item-thumb-wrap .play-icon {
@@ -387,7 +391,7 @@
 	float: left;
 	line-height: 34px;
 	vertical-align: middle;
-	margin: 8px 10px 0 0;
+	margin: 5px 10px 0 0;
 	text-indent: 3px;
 	text-align: center;
 	width: 32px;
@@ -397,7 +401,7 @@
 }
 
 .item-thumb-wrap .title {
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 700;
 	margin-bottom: 3px;
 	width: 65%;
@@ -486,7 +490,7 @@
 }
 
 .dash-item.thumbed .item-type {
-	color: rgba(255,255,255,.2);
+	color: rgba(255,255,255,.1);
 }
 
 .autor-item {
@@ -516,7 +520,7 @@
 
 .item-text-wrap .item-date {
 	color: #8592a2;
-	font-size: 12px;
+	font-size: 11px;
 	text-transform: uppercase;
 	position: absolute;
 	bottom: 10px;
@@ -524,7 +528,6 @@
 }
 
 /* item hover color transitions */
-.dash-item:hover .item-bg,
 .dash-item:hover .item-type,
 .dash-item:hover .item-date,
 .dash-item:hover .autor-item {
@@ -539,7 +542,7 @@
 }
 
 .dash-item:hover .item-bg {
-	opacity: .6;
+	opacity: .8;
 }
 
 .dash-item:hover .item-text-wrap .item-type {
@@ -555,10 +558,9 @@
 .item-action-buttons {
 	visibility: hidden;
 	background: #fff;
-	background: rgba(255,255,255,.9);
 	padding: 0 10px;
 	position: absolute;
-	right: 10px;
+	right: 0px;
 	top: -30px;
 	z-index: 10;
 	-webkit-transition: all .3s ease-in-out;
@@ -581,8 +583,12 @@
 	text-decoration: none;
 }
 
-.item-action-buttons a:hover {
-	color: #1f282d;
+.item-action-buttons .share-btn:hover {
+	color: #1abc9c;
+}
+
+.item-action-buttons .delete-btn:hover {
+	color: #e74c3c;
 }
 
 .item-action-buttons a:first-child {

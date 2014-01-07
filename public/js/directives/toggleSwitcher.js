@@ -8,7 +8,8 @@ define(function (require) {
 			restrict: 'A',
 			replace: true,
 			scope: {
-				networks: '=model'
+				networks: '=model',
+				switched: '=?switched'
 			},
 			template: '\
 				<div class="toggle">\
@@ -56,10 +57,17 @@ define(function (require) {
 						ngDialog.open({
 							template: dialogTmpl,
 							className: 'lsd-theme share-dialog ' + service + '-connect-dialog',
-							controller: attrs.dialogController
+							controller: attrs.dialogController,
+							scope: scope
 						});
 					}
 				};
+
+				scope.$watch('switched', function (value) {
+					if (value) {
+						elem.toggleClass('on');
+					}
+				});
 
 				scope.$watch(attrs.model, listenToNetworks, true);
 

@@ -24,19 +24,19 @@
 		</li>
 		<li class="network vimeo">
 			<div class="title">Vimeo</div>
-			<div class="desc">Sync all vimeo videos that you've favorited.</div>
+			<div class="desc">Sync all vimeo videos that you've liked.</div>
 			<div toggle-switcher="vimeo" model="networks"></div>
 		</li>
 		<li class="network youtube">
 			<div class="title">Youtube</div>
-			<div class="desc">Sync all youtube videos that you've favorited.</div>
+			<div class="desc">Sync all youtube videos that you've liked.</div>
 			<div toggle-switcher="youtube" model="networks"></div>
 		</li>
 		<li class="network dribbble">
 			<div class="new-ribbon-wrap"><div class="new-ribbon">New</div></div>
 			<div class="title">Dribbble</div>
-			<div class="desc">Sync all dribbble images that you've favorited.</div>
-			<div toggle-switcher="dribbble" model="networks" data-dialog-template="dribbleConnect" data-dialog-controller="dribbbleNetworkController"></div>
+			<div class="desc">Sync all dribbble images that you've liked.</div>
+			<div toggle-switcher="dribbble" model="networks" data-dialog-template="dribbbleConnect" data-dialog-controller="dribbbleNetworkController"></div>
 		</li>
 		<!--
 		<li class="network behance">
@@ -77,7 +77,7 @@
 	</div>
 </div>
 
-<script type="text/ng-template" id="dribbleConnect">
+<script type="text/ng-template" id="dribbbleConnect">
 	<form ng-submit="turnOn()">
 		<img src="/img/dribbble-logo.png" class="dribbble-logo">
 		<div class="ngdialog-message">

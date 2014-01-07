@@ -20,11 +20,10 @@ define(function (require) {
 			ngProgressLite.start();
 
 			api.save({ resource: 'networks', target: 'dribbble' }, { username: $scope.username }, function () {
-				ngProgressLite.set(0.99);
+				ngProgressLite.done();
 				ngDialog.close();
-				window.location = '/settings';
+				$scope.$parent.switched = true;
 			});
-
 		};
 	}
 

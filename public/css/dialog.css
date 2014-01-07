@@ -325,6 +325,7 @@
 /* Connect dribbble dialog */
 .ngdialog.dribbble-connect-dialog .dribbble-logo {
 	width: 200px;
+	height: 50px;
 }
 
 .ngdialog.dribbble-connect-dialog .ngdialog-content {
