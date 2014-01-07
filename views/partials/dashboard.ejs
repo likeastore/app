@@ -83,7 +83,7 @@
 			<!-- card action buttons -->
 			<div class="item-action-buttons" touchy>
 
-				<a href="" class="share-btn" ng-dialog="shareLikeDialog" ng-dialog-class="lsd-theme share-dialog share-like" ng-dialog-controller="shareLikeController" ng-dialog-data="{{item._id}}"><i class="font-icon share-icon"></i></a>
+				<a href="" class="share-btn" ng-dialog="shareLikeDialog" ng-dialog-class="lsd-theme share-dialog share-like" ng-dialog-controller="shareLikeController" ng-dialog-data="{{item}}"><i class="font-icon share-icon"></i></a>
 
 				<script type="text/ng-template" id="shareLikeDialog">
 					<h2>
@@ -94,7 +94,7 @@
 					<div class="social-desc">Or share it through social services</div>
 					<div class="social-share">
 						<button type="button" class="btn fb-btn" share-on="facebook" share-on-event="share-like" share-on-text="{{link}}">Share on facebook</button>
-						<button type="button" class="btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="Check my saved like here - {{link}} via @likeastore ">Share on twitter</button>
+						<button type="button" class="btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="{{title}} on @{{service}} - {{link}}, shared via @likeastore ">Share on twitter</button>
 					</div>
 				</script>
 
