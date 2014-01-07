@@ -36,10 +36,10 @@
 			<div class="new-ribbon-wrap"><div class="new-ribbon">New</div></div>
 			<div class="title">Dribbble</div>
 			<div class="desc">Sync all dribbble images that you've favorited.</div>
-			<div toggle-switcher="dribbble" model="networks" data-dialog-template="dribbleConnect"></div>
+			<div toggle-switcher="dribbble" model="networks" data-dialog-template="dribbleConnect" data-dialog-controller="dribbbleNetworkController"></div>
 		</li>
 		<!--
-		<li class="network behabce">
+		<li class="network behance">
 			<div class="new-ribbon-wrap"><div class="new-ribbon">New</div></div>
 			<div class="title">Behance</div>
 			<div class="desc">Sync all behance appreciations.</div>
@@ -78,10 +78,15 @@
 </div>
 
 <script type="text/ng-template" id="dribbleConnect">
-	<form ng-controller="dribbbleNetworkController" ng-submit="turnOn()">
+	<form ng-submit="turnOn()">
+		<img src="/img/dribbble-logo.png" class="dribbble-logo">
 		<div class="ngdialog-message">
-			<h2>Hello, get ready to connect to Dribbble network.</h2>
-			<input type="text" class="field" placeholder="Dribbble username..." ng-model="username" required/>
+			<div class="info-text">Start to collect likes of your favourite designers.</div>
+			<div class="dribbble-user" ng-show="dribbbleUser.avatar_url">
+				<img src="{{dribbbleUser.avatar_url}}">
+				<span>{{dribbbleUser.name}}, is it you?</span>
+			</div>
+			<input type="text" class="field" placeholder="Dribbble username" ng-model="username" required/>
 		</div>
 		<div class="ngdialog-buttons mt">
 			<button type="submit" class="btn">Connect to dribbble</button>

@@ -321,3 +321,51 @@
 		margin: 0 0 10px;
 	}
 }
+
+/* Connect dribbble dialog */
+.ngdialog.dribbble-connect-dialog .dribbble-logo {
+	width: 200px;
+}
+
+.ngdialog.dribbble-connect-dialog .ngdialog-content {
+	background: #333;
+}
+
+.ngdialog.dribbble-connect-dialog .ngdialog-close:before {
+	color: #8aba56;
+}
+
+.ngdialog.dribbble-connect-dialog .ngdialog-content .info-text,
+.ngdialog.dribbble-connect-dialog .ngdialog-content .dribbble-user span {
+	color: #999;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 22px;
+}
+
+.ngdialog.dribbble-connect-dialog .ngdialog-content .info-text {
+	margin: 10px 0 5px;
+}
+
+.ngdialog.dribbble-connect-dialog .ngdialog-content .dribbble-user span  {
+	vertical-align: top;
+	line-height: 34px;
+	margin-left: 3px;
+}
+
+.ngdialog.dribbble-connect-dialog .ngdialog-content .dribbble-user img {
+	width: 20px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.ngdialog.dribbble-connect-dialog .ngdialog-content input.field {
+	background: #fff;
+	color: #333;
+	margin-top: 10px;
+}
+
+.ngdialog.dribbble-connect-dialog .ngdialog-content .btn {
+	background: #ea4c89;
+	color: #fff;
+}

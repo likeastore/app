@@ -83,6 +83,12 @@
 						var $dialog;
 
 						$q.when(loadTemplate(options.template)).then(function (template) {
+							template = angular.isString(template) ?
+								template :
+								template.data && angular.isString( template.data ) ?
+									template.data :
+									'';
+
 							if (options.showClose) {
 								template += '<div class="ngdialog-close"></div>';
 							}
@@ -96,6 +102,10 @@
 
 							if (options.className) {
 								$dialog.addClass(options.className);
+							}
+
+							if (options.data && angular.isString(options.data)) {
+								scope.ngDialogData = options.data.replace(/^\s*/, '')[0] === '{' ? angular.fromJson(options.data) : options.data;
 							}
 
 							$timeout(function () {
@@ -181,6 +191,7 @@
 						template: attrs.ngDialog,
 						className: attrs.ngDialogClass,
 						controller: attrs.ngDialogController,
+						data: attrs.ngDialogData,
 						showClose: attrs.ngDialogShowClose === 'false' ? false : true,
 						closeByDocument: attrs.ngDialogCloseByDocument === 'false' ? false : true,
 						closeByEscape: attrs.ngDialogCloseByKeyup === 'false' ? false : true

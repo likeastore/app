@@ -1,4 +1,5 @@
 var _ = require('underscore');
+var request = require('request');
 var ObjectId = require('mongojs').ObjectId;
 var config = require('../../config');
 var db = require('../db')(config);
@@ -42,4 +43,17 @@ exports.findNetworks = function (user, callback) {
 
 exports.enable = function (id, callback) {
 	db.networks.update({_id: new ObjectId(id)}, { disabled: '' }, callback);
+};
+
+exports.getDribbbleUser = function (username, callback) {
+	if (!username || typeof username !== 'string') {
+		return callback({ message: 'username is invalid' });
+	}
+
+	request('http://api.dribbble.com/players/' + username.toLowerCase(), function (err, resp, body) {
+		if (err) {
+			return callback(err);
+		}
+		callback(null, JSON.parse(body));
+	});
 };

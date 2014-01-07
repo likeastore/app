@@ -29,24 +29,22 @@ define(function (require) {
 						return;
 					}
 
-					elem.toggleClass('on');
-
 					if (isOn) {
+						elem.toggleClass('on');
 						api.remove(urlOptions);
 						return;
 					}
 
-					elem.addClass('disabled');
-
-					var template = elem.attr('data-dialog-template');
-
-					if (template) {
-						return dialogAuth(template);
+					if (attrs.dialogTemplate) {
+						return dialogAuth(attrs.dialogTemplate);
 					}
 
 					return redirectAuth();
 
 					function redirectAuth() {
+						elem.toggleClass('on');
+						elem.addClass('disabled');
+
 						ngProgressLite.start();
 						api.save(urlOptions, {}, function (res) {
 							$window.location = res.authUrl;
@@ -54,13 +52,11 @@ define(function (require) {
 						});
 					}
 
-					function dialogAuth(template) {
-						var contoller = elem.attr('data-dialog-controller');
-
+					function dialogAuth(dialogTmpl) {
 						ngDialog.open({
-							template: template,
-							className: 'lsd-theme share-dialog',
-							contoller: contoller
+							template: dialogTmpl,
+							className: 'lsd-theme share-dialog ' + service + '-connect-dialog',
+							controller: attrs.dialogController
 						});
 					}
 				};

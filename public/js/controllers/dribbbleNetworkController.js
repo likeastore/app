@@ -1,17 +1,28 @@
 define(function (require) {
 	'use strict';
 
-	function DribbbleNetworkController($scope, $location, api, ngProgressLite, ngDialog) {
-		$scope.turnOn = function () {
-			var payload = {username: this.username};
-			var urlOptions = { resource: 'networks', target: 'dribbble' };
+	function DribbbleNetworkController($scope, $timeout, api, ngProgressLite, ngDialog) {
+		var timer;
 
+		$scope.$watch('username', function (value) {
+			if (timer) {
+				$timeout.cancel(timer);
+			}
+
+			if (value) {
+				timer = $timeout(function () {
+					$scope.dribbbleUser = api.get({ resource: 'networks', target: 'dribbble', verb: $scope.username });
+				}, 500);
+			}
+		});
+
+		$scope.turnOn = function () {
 			ngProgressLite.start();
-			api.save(urlOptions, payload, function () {
-				ngProgressLite.done();
+
+			api.save({ resource: 'networks', target: 'dribbble' }, { username: $scope.username }, function () {
+				ngProgressLite.set(0.99);
 				ngDialog.close();
-				// TODO: Fix me, instead of redirect - it should be update on models on settings page..
-				$location.path('/');
+				window.location = '/settings';
 			});
 
 		};

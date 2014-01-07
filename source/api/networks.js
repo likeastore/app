@@ -52,6 +52,10 @@ function networksService(app) {
 		redirectToSettings
 	);
 
+	app.get('/api/networks/dribbble/:username',
+		getDribbbleUser
+	);
+
 	app.post('/api/networks/behance',
 		middleware.networks.behance(),
 		returnAuthUrl
@@ -141,6 +145,15 @@ function networksService(app) {
 
 	function redirectToSettings(req, res) {
 		res.redirect(config.applicationUrl + '/settings');
+	}
+
+	function getDribbbleUser(req, res) {
+		networks.getDribbbleUser(req.params.username, function (err, user) {
+			if (err) {
+				return res.send(500, err);
+			}
+			res.json(user);
+		});
 	}
 }
 

@@ -135,7 +135,7 @@
 }
 
 .menu-title.dribbble:hover {
-	background-color: #db4b82;
+	background-color: #ea4c89;
 }
 
 .menu-title.behance:hover {
@@ -147,7 +147,7 @@
 	color: #edf0f2;
 	font-weight: 300;
 	padding: 15px 12px 25px 8px;
-	position: absolute;
+	margin-top: 20px;
 	width: 200px;
 	overflow: hidden;
 }
