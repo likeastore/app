@@ -18,7 +18,7 @@ define(function (require) {
 	controllers.controller('vimeoController', itemsControllerFactory('Vimeo', 'vimeo'));
 	controllers.controller('youtubeController', itemsControllerFactory('Youtube', 'youtube'));
 	controllers.controller('dribbbleController', itemsControllerFactory('Dribbble', 'dribbble'));
-	//controllers.controller('behanceController', itemsControllerFactory('Behance', 'behance'));
+	controllers.controller('behanceController', itemsControllerFactory('Behance', 'behance'));
 
 	// search
 	controllers.controller('searchController', require('./searchController'));
