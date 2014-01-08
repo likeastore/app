@@ -1,11 +1,13 @@
 define(function (require) {
 	'use strict';
 
+	var offset;
+
 	function StickyAt ($window, $rootScope) {
 		return {
 			restrict: 'A',
 			link: function (scope, elem, attrs) {
-				var offset = scope.$eval(attrs.stickyAt);
+				offset = scope.$eval(attrs.stickyAt);
 
 				$rootScope.$watch('user.warningHidden', function (value) {
 					if (value) {
