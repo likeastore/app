@@ -9,7 +9,7 @@
     "angular-route": "1.2.5",
     "angular-cookies": "1.2.5",
     "ngDialog": "~0.1.0",
-    "hashids": "*",
+    "hashids": "0.3.0",
     "seismo": "~0.0.3",
     "ngprogress-lite": "~1.0.4"
   }
