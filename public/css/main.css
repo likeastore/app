@@ -6,6 +6,7 @@
 @import url(forms.css);
 @import url(dashboard-deck.css);
 @import url(../components/ngDialog/css/ngDialog.css);
+@import url(../components/animate.css/animate.css);
 @import url(dialog.css);
 @import url(settings.css);
 @import url(media.css);
