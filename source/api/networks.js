@@ -150,7 +150,7 @@ function networksService(app) {
 	function getDribbbleUser(req, res) {
 		networks.getDribbbleUser(req.params.username, function (err, user) {
 			if (err) {
-				return res.send(500, err);
+				return res.send(404, err);
 			}
 			res.json(user);
 		});

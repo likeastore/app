@@ -75,7 +75,10 @@ exports.getDribbbleUser = function (username, callback) {
 				return callback({ message: 'scout not found'});
 			}
 
-			callback(null, { name: username });
+			callback(null, {
+				name: username,
+				avatar_url: '/img/dribbble-avatar.gif'
+			});
 		});
 	}
 };

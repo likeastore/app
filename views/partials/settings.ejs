@@ -89,7 +89,7 @@
 			<input type="text" class="field" placeholder="Dribbble username" ng-model="username" required/>
 		</div>
 		<div class="ngdialog-buttons mt">
-			<button type="submit" class="btn">Connect to dribbble</button>
+			<button type="submit" class="btn" ng-disabled="!dribbbleUser.name">Connect to dribbble</button>
 		</div>
 	</form>
 </script>
