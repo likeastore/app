@@ -2,7 +2,6 @@ var OAuth = require('oauth').OAuth;
 var OAuth2 = require('oauth').OAuth2;
 var config = require('../../config');
 var users = require('../models/users');
-var request = require('request');
 
 function facebook() {
 	return function (req, res, next) {
