@@ -83,7 +83,7 @@
 		<div class="ngdialog-message">
 			<div class="info-text">Start to collect likes of your favourite designers.</div>
 			<div class="dribbble-user" ng-show="dribbbleUser.avatar_url">
-				<img src="{{dribbbleUser.avatar_url}}">
+				<img ng-if="dribbbleUser.avatar_url" src="{{dribbbleUser.avatar_url}}">
 				<span>{{dribbbleUser.name}}, is it you?</span>
 			</div>
 			<input type="text" class="field" placeholder="Dribbble username" ng-model="username" required/>
