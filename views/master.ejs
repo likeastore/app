@@ -20,7 +20,7 @@
 	<div id="likeastoreApp" style="display:none;">
 		<div ng-show="user.warning" ng-class="{'animated fadeInDown': user.warning, 'closed': user.warningHidden}" class="network-error">
 			Some connections have expired, new items are not collected. <a href="/settings">Click here to continue collecting.</a>
-			<a href="" class="hide-network-error" ng-click="user.warningHidden=true"></a>
+			<a href="" class="hide-network-error" ng-click="user.warning=false"></a>
 		</div>
 
 		<header class="main-header clearfix" ng-show="user" ng-include="'partials/header'"></header>
