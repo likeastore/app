@@ -17,6 +17,10 @@
 	<script type="text/javascript" async src="https://static.intercomcdn.com/intercom.v1.js"></script>
 </head>
 <body>
+	<div ng-if="user.warning" class="network-error">
+		Some connections have expired, new items are not collected. <a href="/settings">Click here to continue collecting.</a>
+	</div>
+
 	<header id="header" class="main-header clearfix" style="display:none;" ng-show="user" ng-include="'partials/header'"></header>
 
 	<div class="main-viewer" ng-view></div>

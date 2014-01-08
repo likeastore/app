@@ -93,44 +93,28 @@ a:hover {
 }
 
 .network-error {
-	color: #e74c3c;
-	font-size: 18px;
+	background: #16a085;
+	color: #fff;
+	font-size: 15px;
 	font-weight: 700;
+	padding: 10px 5px;
 	text-align: center;
-	position: absolute;
-	top: -9px;
-	right: 4px;
-	-webkit-transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-ms-transition: all .3s ease-in-out;
-	transition: all .3s ease-in-out;
+}
+
+.network-error a {
+	color: #ffec9e;
+	text-decoration: underline;
+}
+
+.network-error a:hover {
+	text-decoration: none;
+}
+
+.blink {
 	-webkit-animation: blink .8s linear;
 	-moz-animation: blink .8s linear;
 	-ms-animation: blink .8s linear;
 	animation: blink .8s linear;
-}
-
-.network-error span {
-	display: block;
-	width: 10px;
-	height: 10px;
-	background: #fff;
-	position: absolute;
-	top: 16px;
-	left: 5px;
-	z-index: -1;
-	-webkit-border-radius: 100%;
-	border-radius: 100%;
-}
-
-.network-error:hover {
-	text-decoration: none;
-	opacity: .8;
-}
-
-.network-error.disable {
-	opacity: 0;
-	visibility: hidden;
 }
 
 @-webkit-keyframes blink {
