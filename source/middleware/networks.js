@@ -2,6 +2,7 @@ var OAuth = require('oauth').OAuth;
 var OAuth2 = require('oauth').OAuth2;
 var config = require('../../config');
 var users = require('../models/users');
+var request = require('request');
 
 function facebook() {
 	return function (req, res, next) {
@@ -341,7 +342,7 @@ function dribbble() {
 
 function behance() {
 	return function (req, res, next) {
-		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback/';
+		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback';
 		var oauth = new OAuth2(config.services.behance.clientId,
 							config.services.behance.clientSecret,
 							'https://www.behance.net/v2',
@@ -356,12 +357,13 @@ function behance() {
 
 function behanceCallback() {
 	return function (req, res, next) {
-		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback/';
+		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback';
 		var oauth = new OAuth2(config.services.behance.clientId,
 							config.services.behance.clientSecret,
 							'https://www.behance.net/v2',
 							'/oauth/authenticate',
-							'/oauth/token');
+							'/oauth/token',
+							{'User-Agent': 'likeastore/app'});
 
 		var code = req.query.code;
 		var user = req.query.state;
