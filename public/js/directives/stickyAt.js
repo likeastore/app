@@ -8,7 +8,7 @@ define(function (require) {
 			restrict: 'A',
 			link: function (scope, elem, attrs) {
 				offset = scope.$eval(attrs.stickyAt);
-
+				debugger;
 				$rootScope.$watch('user.warningHidden', function (value) {
 					if (value) {
 						offset = 50;
