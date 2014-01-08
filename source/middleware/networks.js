@@ -341,7 +341,7 @@ function dribbble() {
 
 function behance() {
 	return function (req, res, next) {
-		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback';
+		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback/';
 		var oauth = new OAuth2(config.services.behance.clientId,
 							config.services.behance.clientSecret,
 							'https://www.behance.net/v2',
@@ -356,7 +356,7 @@ function behance() {
 
 function behanceCallback() {
 	return function (req, res, next) {
-		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback';
+		var callbackUrl = config.applicationUrl + '/api/networks/behance/callback/';
 		var oauth = new OAuth2(config.services.behance.clientId,
 							config.services.behance.clientSecret,
 							'https://www.behance.net/v2',
@@ -366,7 +366,7 @@ function behanceCallback() {
 		var code = req.query.code;
 		var user = req.query.state;
 
-		oauth.getOAuthAccessToken(code, {redirect_uri: callbackUrl}, gotAccessToken);
+		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
 
 		function gotAccessToken(err, accessToken, refreshToken, results) {
 			if (err) {
