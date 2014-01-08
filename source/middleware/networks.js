@@ -366,7 +366,7 @@ function behanceCallback() {
 		var code = req.query.code;
 		var user = req.query.state;
 
-		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
+		oauth.getOAuthAccessToken(code, {redirect_uri: callbackUrl}, gotAccessToken);
 
 		function gotAccessToken(err, accessToken, refreshToken, results) {
 			if (err) {
