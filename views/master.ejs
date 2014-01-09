@@ -17,17 +17,21 @@
 	<script type="text/javascript" async src="https://static.intercomcdn.com/intercom.v1.js"></script>
 </head>
 <body>
-	<header id="header" class="main-header clearfix" style="display:none;" ng-show="user" ng-include="'partials/header'"></header>
+	<div id="likeastoreApp" style="display:none;">
+		<div ng-show="user.warning" ng-class="{'animated fadeInDown': user.warning, 'closed': user.warningHidden}" class="network-error">
+			Some connections have expired, new likes are not collected. <a href="/settings">Click here to continue collecting.</a>
+			<a href="" class="hide-network-error" ng-click="user.warning=false"></a>
+		</div>
 
-	<div class="main-viewer" ng-view></div>
+		<header class="main-header clearfix" ng-show="user" ng-include="'partials/header'"></header>
+		<div class="main-viewer" ng-view></div>
+	</div>
 
 	<%- partial('partials/icon-preloader') %>
 
 	<script type="text/javascript" src="/components/requirejs/require.js" data-main="<%= mainJs %>"></script>
 
-	<script>
-		window.appConfig = <%- JSON.stringify(appConfig) %>;
-	</script>
+	<script>window.appConfig = <%- JSON.stringify(appConfig) %>;</script>
 
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

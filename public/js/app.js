@@ -2,13 +2,14 @@ define(function (require) {
 	'use strict';
 
 	require('ngRoute');
+	require('ngAnimate');
 	require('ngDialog');
 	require('./services/services');
 	require('./controllers/controllers');
 	require('./directives/directives');
 
 	var angular = require('angular');
-	var app = angular.module('likeastore', ['ngRoute', 'ngDialog', 'services', 'controllers', 'directives']);
+	var app = angular.module('likeastore', ['ngRoute', 'ngAnimate', 'ngDialog', 'services', 'controllers', 'directives']);
 
 	app.init = function () {
 		angular.bootstrap(document, ['likeastore']);
@@ -27,7 +28,7 @@ define(function (require) {
 				.when('/vimeo', { templateUrl: 'partials/dashboard', controller: 'vimeoController' })
 				.when('/youtube', { templateUrl: 'partials/dashboard', controller: 'youtubeController' })
 				.when('/dribbble', { templateUrl: 'partials/dashboard', controller: 'dribbbleController' })
-				//.when('/behance', { templateUrl: 'partials/dashboard', controller: 'behanceController' })
+				.when('/behance', { templateUrl: 'partials/dashboard', controller: 'behanceController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })

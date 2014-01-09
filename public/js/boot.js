@@ -15,8 +15,8 @@ define(function () {
 					}
 				});
 			} else {
-				document.getElementById('resource-loader').style.display = 'none';
-				document.getElementById('header').style.display = 'block';
+				document.getElementById('resourceLoader').style.display = 'none';
+				document.getElementById('likeastoreApp').style.display = 'block';
 				callback();
 			}
 		},

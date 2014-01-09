@@ -361,7 +361,8 @@ function behanceCallback() {
 							config.services.behance.clientSecret,
 							'https://www.behance.net/v2',
 							'/oauth/authenticate',
-							'/oauth/token');
+							'/oauth/token',
+							{'User-Agent': 'likeastore/app'});
 
 		var code = req.query.code;
 		var user = req.query.state;

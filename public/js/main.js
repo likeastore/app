@@ -4,6 +4,7 @@ require.config({
 		'ngResource': '../components/angular-resource/angular-resource',
 		'ngRoute': '../components/angular-route/angular-route',
 		'ngCookies': '../components/angular-cookies/angular-cookies',
+		'ngAnimate': '../components/angular-animate/angular-animate',
 		'ngProgressLite': '../components/ngprogress-lite/ngprogress-lite',
 		'ngDialog': '../components/ngDialog/js/ngDialog',
 		'hashids': '../components/hashids/lib/hashids',
@@ -19,6 +20,10 @@ require.config({
 			exports: 'angular'
 		},
 		ngCookies: {
+			deps: ['angular'],
+			exports: 'angular'
+		},
+		ngAnimate: {
 			deps: ['angular'],
 			exports: 'angular'
 		},

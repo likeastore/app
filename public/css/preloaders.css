@@ -17,7 +17,7 @@
 	animation: loader 4800ms infinite;
 }
 
-.animated {
+.icon-animated {
 	width: 37px;
 	height: 37px;
 	margin: 10px;
@@ -27,7 +27,7 @@
 	animation: anim 800ms infinite;
 }
 
-.animated i {
+.icon-animated i {
 	display: block;
 	color: #fff;
 	font-size: 30px;
@@ -36,49 +36,49 @@
 	left: 4px;
 }
 
-.animated i:first-child {
+.icon-animated i:first-child {
 	-webkit-animation: one 4800ms infinite;
 	-moz-animation: one 4800ms infinite;
 	-ms-animation: one 4800ms infinite;
 	animation: one 4800ms infinite;
 }
 
-.animated i:nth-child(2) {
+.icon-animated i:nth-child(2) {
 	-webkit-animation: two 4800ms infinite;
 	-moz-animation: two 4800ms infinite;
 	-ms-animation: two 4800ms infinite;
 	animation: two 4800ms infinite;
 }
 
-.animated i:nth-child(3) {
+.icon-animated i:nth-child(3) {
 	-webkit-animation: three 4800ms infinite;
 	-moz-animation: three 4800ms infinite;
 	-ms-animation: three 4800ms infinite;
 	animation: three 4800ms infinite;
 }
 
-.animated i:nth-child(4) {
+.icon-animated i:nth-child(4) {
 	-webkit-animation: four 4800ms infinite;
 	-moz-animation: four 4800ms infinite;
 	-ms-animation: four 4800ms infinite;
 	animation: four 4800ms infinite;
 }
 
-.animated i:nth-child(5) {
+.icon-animated i:nth-child(5) {
 	-webkit-animation: five 4800ms infinite;
 	-moz-animation: five 4800ms infinite;
 	-ms-animation: five 4800ms infinite;
 	animation: five 4800ms infinite;
 }
 
-.animated i:nth-child(6) {
+.icon-animated i:nth-child(6) {
 	-webkit-animation: six 4800ms infinite;
 	-moz-animation: six 4800ms infinite;
 	-ms-animation: six 4800ms infinite;
 	animation: six 4800ms infinite;
 }
 
-.animated i:nth-child(7) {
+.icon-animated i:nth-child(7) {
 	-webkit-animation: seven 4800ms infinite;
 	-moz-animation: seven 4800ms infinite;
 	-ms-animation: seven 4800ms infinite;

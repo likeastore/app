@@ -50,10 +50,35 @@ exports.getDribbbleUser = function (username, callback) {
 		return callback({ message: 'username is invalid' });
 	}
 
-	request('http://api.dribbble.com/players/' + username.toLowerCase(), function (err, resp, body) {
+	username = username.toLowerCase();
+
+	request('http://api.dribbble.com/players/' + username, function (err, resp, body) {
 		if (err) {
 			return callback(err);
 		}
-		callback(null, JSON.parse(body));
+
+		if (resp.statusCode === 404) {
+			getScout();
+		} else {
+			callback(null, JSON.parse(body));
+		}
+
 	});
+
+	function getScout() {
+		request('http://dribbble.com/' + username, function (err, resp, page) {
+			if (err) {
+				return callback(err);
+			}
+
+			if (resp.statusCode !== 200) {
+				return callback({ message: 'scout not found'});
+			}
+
+			callback(null, {
+				name: username,
+				avatar_url: '/img/dribbble-avatar.gif'
+			});
+		});
+	}
 };

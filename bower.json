@@ -4,13 +4,15 @@
   "dependencies": {
     "underscore": "~1.4.4",
     "requirejs": "~2.1.5",
-    "angular": "1.2.5",
-    "angular-resource": "1.2.5",
-    "angular-route": "1.2.5",
-    "angular-cookies": "1.2.5",
+    "angular": "1.2.7",
+    "angular-resource": "1.2.7",
+    "angular-route": "1.2.7",
+    "angular-cookies": "1.2.7",
+    "angular-animate": "1.2.7",
     "ngDialog": "~0.1.0",
-    "hashids": "*",
+    "hashids": "0.3.0",
     "seismo": "~0.0.3",
-    "ngprogress-lite": "~1.0.4"
+    "ngprogress-lite": "~1.0.4",
+    "animate.css": "~3.0.0"
   }
 }
