@@ -225,7 +225,9 @@
 	left: 138px;
 }
 
-.youtube .expired-token-notifier {
+.youtube .expired-token-notifier,
+.dribbble .expired-token-notifier,
+.behance .expired-token-notifier {
 	left: 90px;
 }
 
