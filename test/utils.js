@@ -112,7 +112,12 @@ function getUserFromDb(user, callback) {
 	db.users.findOne({email: user.email}, callback);
 }
 
+function getDb() {
+	return db;
+}
+
 module.exports = {
+	// common
 	getRootUrl: getRootUrl,
 	createTestUser: createTestUser,
 	createTestUserAndLoginToApi: createTestUserAndLoginToApi,
@@ -120,5 +125,8 @@ module.exports = {
 	createTestItems: createTestItems,
 	createTestItemsOfType: createTestItemsOfType,
 	createTestNetworks: createTestNetworks,
-	getUserFromDb: getUserFromDb
+	getUserFromDb: getUserFromDb,
+
+	// infa
+	getDb: getDb
 };

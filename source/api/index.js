@@ -5,4 +5,5 @@ module.exports = function (app) {
 	require('./users')(app);
 	require('./search')(app);
 	require('./emails')(app);
+	require('./feed')(app);
 };

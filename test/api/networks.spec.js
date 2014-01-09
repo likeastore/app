@@ -222,7 +222,7 @@ describe('networks.spec.js', function () {
 				});
 			});
 
-			describe.only('for behance', function () {
+			describe('for behance', function () {
 				beforeEach(function () {
 					url += '/behance';
 				});
