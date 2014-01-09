@@ -8,12 +8,14 @@ function getForUser(user, callback) {
 			$match: { user: user },
 		},
 		{
-			$group: { _id: {service: '$type', date: '$date'}, count: {$sum: 1}}
+			$group: { _id: {service: '$type'}, count: {$sum: 1}, _date: '$date'}
 		}
 	], function (err, results) {
 		if (err) {
 			return callback(err);
 		}
+
+		console.log(results);
 
 		var feed = results.map(function (e) {
 			return {
