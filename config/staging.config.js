@@ -64,7 +64,7 @@ var config = {
 	},
 
 	newrelic: {
-		application: 'likeastore-app',
+		application: 'likeastore-app-staging',
 		licenseKey: 'e5862474ee62b99898c861dddfbfa8a89ac54f49'
 	},
 

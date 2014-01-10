@@ -64,7 +64,7 @@ var config = {
 	},
 
 	newrelic: {
-		application: 'likeastore-app',
+		application: 'likeastore-app-development',
 		licenseKey: null
 	},
 
