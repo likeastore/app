@@ -1,30 +1,34 @@
 var config = require('../../config');
 var db = require('../db')(config);
-var moment = require('moment');
 
 function getForUser(user, callback) {
 	db.items.aggregate([
 		{
-			$match: { user: user },
+			$match: { user: user }
 		},
 		{
-			$group: { _id: {service: '$type'}, count: {$sum: 1}, _date: '$date'}
+			$group: {
+				_id: {date: '$date'},
+				github: { $sum: { $cond: [ {$eq: ['$type', 'github'] }, 1, 0] } },
+				twitter: { $sum: { $cond: [ {$eq: ['$type', 'twitter'] }, 1, 0] } },
+				facebook: { $sum: { $cond: [ {$eq: ['$type', 'facebook'] }, 1, 0] } },
+				stackoverflow: { $sum: { $cond: [ {$eq: ['$type', 'stackoverflow'] }, 1, 0] } }
+			}
+		},
+		{
+			$project: {
+				_id: 0,
+				date: '$_id.date',
+				github: '$github',
+				twitter: '$twitter',
+				facebook: '$facebook',
+				stackoverflow: '$stackoverflow'
+			}
 		}
-	], function (err, results) {
+	], function (err, feed) {
 		if (err) {
 			return callback(err);
 		}
-
-		console.log(results);
-
-		var feed = results.map(function (e) {
-			return {
-				user: user,
-				service: e._id.service,
-				date: moment(e._id.date).format('YYYY-MM-DD'),
-				count: e.count
-			};
-		});
 
 		callback(err, {data: feed});
 	});
