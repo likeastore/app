@@ -52,7 +52,7 @@ exports.getDribbbleUser = function (username, callback) {
 
 	username = username.toLowerCase();
 
-	request('http://api.dribbble.com/players/' + username, function (err, resp, body) {
+	request({url: 'http://api.dribbble.com/players/' + username, json: true}, function (err, resp, body) {
 		if (err) {
 			return callback(err);
 		}
@@ -60,9 +60,8 @@ exports.getDribbbleUser = function (username, callback) {
 		if (resp.statusCode === 404) {
 			getScout();
 		} else {
-			callback(null, JSON.parse(body));
+			callback(null, body);
 		}
-
 	});
 
 	function getScout() {
