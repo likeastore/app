@@ -31,7 +31,8 @@
     "seismo-client": "0.0.4",
     "node-mandrill": "~1.0.1",
     "respawn": "~0.1.7",
-    "request": "~2.30.0"
+    "request": "~2.30.0",
+    "newrelic": "~1.2.0"
   },
   "devDependencies": {
     "mocha": "~1.10.0",

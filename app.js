@@ -2,6 +2,8 @@
  * Module dependencies.
  */
 
+require('newrelic');
+
 var config = require('./config');
 var logger = require('./source/utils/logger');
 var bootstrap = require('./source/bootstrap');
