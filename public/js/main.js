@@ -7,6 +7,7 @@ require.config({
 		'ngAnimate': '../components/angular-animate/angular-animate',
 		'ngProgressLite': '../components/ngprogress-lite/ngprogress-lite',
 		'ngDialog': '../components/ngDialog/js/ngDialog',
+		'angularLocalStorage': '../components/angularLocalStorage/src/angularLocalStorage',
 		'hashids': '../components/hashids/lib/hashids',
 		'seismo': '../components/seismo/seismo'
 	},
@@ -32,6 +33,10 @@ require.config({
 			exports: 'angular'
 		},
 		ngDialog: {
+			deps: ['angular'],
+			exports: 'angular'
+		},
+		angularLocalStorage: {
 			deps: ['angular'],
 			exports: 'angular'
 		},

@@ -8,7 +8,13 @@ define(function () {
 			if (params.email && params.apiToken) {
 				this.request('POST', '/api/auth/login', params, function (res) {
 					if (res.status === 201) {
-						document.cookie = 'token=' +  res.token;
+
+						if (window.localStorage) {
+							window.localStorage.token = res.token;
+						} else {
+							document.cookie = 'token=' +  res.token;
+						}
+
 						window.location = window.location.origin;
 					} else {
 						window.location = res.error.redirectUrl + '/login';

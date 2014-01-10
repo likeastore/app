@@ -13,6 +13,7 @@
     "hashids": "0.3.0",
     "seismo": "~0.0.3",
     "ngprogress-lite": "~1.0.4",
-    "animate.css": "~3.0.0"
+    "animate.css": "~3.0.0",
+    "angularLocalStorage": "~0.1.7"
   }
 }
