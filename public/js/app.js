@@ -40,9 +40,10 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function ($window, auth, user) {
+	app.run(function ($window, auth, user, intercom) {
 		auth.setAuthorizationHeaders();
 		user.initialize();
+		intercom.boot();
 	});
 
 	return app;

@@ -15,6 +15,7 @@ function handler (title, mainJs, mainCss) {
 		}
 
 		var appConfig = {
+			env: process.env.NODE_ENV || 'development',
 			siteUrl: config.siteUrl,
 			applicationUrl: config.applicationUrl,
 			hashids: config.hashids,

@@ -14,6 +14,7 @@ define(function (require) {
 	services.factory('user', require('./user'));
 	services.factory('links', require('./links'));
 	services.factory('analytics', require('./analytics'));
+	services.factory('intercom', require('./intercom'));
 
 	return services;
 });
