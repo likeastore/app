@@ -63,6 +63,11 @@ var config = {
 		password: 'mypass'
 	},
 
+	newrelic: {
+		application: 'likeastore-app-test',
+		licenseKey: null
+	},
+
 	collector: {
 		// scheduler cycle
 		schedulerRestart: 1000,

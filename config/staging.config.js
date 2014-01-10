@@ -63,6 +63,11 @@ var config = {
 		password: 'likeadmin7analitics'
 	},
 
+	newrelic: {
+		application: 'likeastore-app',
+		licenseKey: 'e5862474ee62b99898c861dddfbfa8a89ac54f49'
+	},
+
 	collector: {
 		// scheduler cycle
 		schedulerRestart: 1000,
