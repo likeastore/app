@@ -12,7 +12,7 @@ define(function () {
 						var domain = window.appConfig.env = 'development' ? '' : '.likeastore.com';
 
 						date.setTime(date.getTime() + (30*24*60*60*1000)); // set cookie for one month
-						document.cookie = 'token=' +  res.token + '; expires=' + date.toGMTString() + '; domain=' + domain;
+						document.cookie = 'token=' +  res.token + '; domain=' + domain + '; expires=' + date.toGMTString();
 
 						window.location = window.location.origin;
 					} else {
