@@ -4,7 +4,7 @@ define(function (require) {
 	function Auth ($http, $window, $cookies, $cookieStore, storage, api) {
 		return {
 			setAuthorizationHeaders: function () {
-				$http.defaults.headers.common['X-Access-Token'] = storage.get('token');
+				$http.defaults.headers.common['X-Access-Token'] = $cookies.token || storage.get('token');
 			},
 
 			logout: function () {

@@ -8,12 +8,9 @@ define(function () {
 			if (params.email && params.apiToken) {
 				this.request('POST', '/api/auth/login', params, function (res) {
 					if (res.status === 201) {
-
-						if (window.localStorage) {
-							window.localStorage.token = res.token;
-						} else {
-							document.cookie = 'token=' +  res.token;
-						}
+						var date = new Date();
+						date.setTime(date.getTime() + (30*24*60*60*1000)); // set cookie for one month
+						document.cookie = 'token=' +  res.token + '; expires=' + date.toGMTString();
 
 						window.location = window.location.origin;
 					} else {
