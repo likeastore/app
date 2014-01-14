@@ -84,7 +84,8 @@ function authService(app) {
 	function createTokenCookie(req, res, next) {
 		res.cookie('token', req.token, {
 			domain: config.domain,
-			maxAge: new Date(Date.now() + (30*24*60*60*1000))
+			expires: new Date(Date.now() + (30*24*60*60*1000)),
+			httpOnly: true
 		});
 
 		next();
