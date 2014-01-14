@@ -1,25 +1,34 @@
 var respawn = require('respawn');
+var util = require('util');
+var logger = require('./source/utils/logger');
 
-var monitor = respawn(['node', 'app.js'], {
-	cwd: '.',
-	maxRestarts: 10,
-	sleep: 500,
+function monitor(mode) {
+	var proc = respawn(['node', 'app.js'], {
+		cwd: '.',
+		maxRestarts: 10,
+		sleep: 1000,
+	});
+
+	proc.on('spawn', function () {
+		util.print('application monitor started...');
+	});
+
+	proc.on('exit', function (code, signal) {
+		logger.fatal({msg: 'process exited, code: ' + code + ' signal: ' + signal});
+	});
+
+	proc.on('stdout', function (data) {
+		util.print(data.toString());
+	});
+
+	proc.on('stderr', function (data) {
+		logger.error({msg: 'process error', data: data.toString()});
+	});
+
+	return proc;
+}
+
+[monitor()].forEach(function (m) {
+	m.start();
 });
 
-monitor.on('spawn', function () {
-	console.log('application monitor started...');
-});
-
-monitor.on('exit', function (code, signal) {
-	console.log('process exited, code: ' + code + ' signal: ' + signal);
-});
-
-monitor.on('stdout', function (data) {
-	console.log(data.toString());
-});
-
-monitor.on('stderr', function (data) {
-	console.error(data.toString());
-});
-
-monitor.start();
