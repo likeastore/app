@@ -2,7 +2,7 @@ var request = require('request');
 var testUtils = require('../utils');
 var moment = require('moment');
 
-describe.only('feed.spec.js', function () {
+describe('feed.spec.js', function () {
 	var token, user, url, headers, response, results, error;
 
 	beforeEach(function () {
@@ -75,11 +75,8 @@ describe.only('feed.spec.js', function () {
 			});
 
 			it('should have have proper data', function () {
-				expect(results.data[0].date).to.equal(moment().format('YYYY-MM-DD'));
-				expect(results.data[0].count).to.equal(1);
-				expect(results.data[0].services.length).to.equal(1);
-				expect(results.data[0].services[0].count).to.equal(1);
-				expect(results.data[0].services[0].service).to.equal('twitter');
+				expect(moment(results.data[0].date).format('YYYY-MM-DD')).to.equal(moment().format('YYYY-MM-DD'));
+				expect(results.data[0].twitter).to.equal(1);
 			});
 		});
 
@@ -109,39 +106,33 @@ describe.only('feed.spec.js', function () {
 				expect(results.data.length).to.equal(1);
 			});
 
-			// it('should have proper data - facebook', function () {
-			// 	expect(results.data[0].user).to.equal(user.email);
-			// 	expect(results.data[0].service).to.equal('facebook');
-			// 	expect(results.data[0].date).to.equal(moment().format('YYYY-MM-DD'));
-			// 	expect(results.data[0].count).to.equal(1);
-			// });
+			it('should have have proper data - twitter', function () {
+				expect(moment(results.data[0].date).format('YYYY-MM-DD')).to.equal(moment().format('YYYY-MM-DD'));
+				expect(results.data[0].twitter).to.equal(2);
+			});
 
-			// it('should have proper data - github', function () {
-			// 	expect(results.data[1].user).to.equal(user.email);
-			// 	expect(results.data[1].service).to.equal('github');
-			// 	expect(results.data[1].date).to.equal(moment().format('YYYY-MM-DD'));
-			// 	expect(results.data[1].count).to.equal(1);
-			// });
+			it('should have have proper data - github', function () {
+				expect(moment(results.data[0].date).format('YYYY-MM-DD')).to.equal(moment().format('YYYY-MM-DD'));
+				expect(results.data[0].github).to.equal(1);
+			});
 
-			// it('should have proper data - twitter', function () {
-			// 	expect(results.data[2].user).to.equal(user.email);
-			// 	expect(results.data[2].service).to.equal('twitter');
-			// 	expect(results.data[2].date).to.equal(moment().format('YYYY-MM-DD'));
-			// 	expect(results.data[2].count).to.equal(2);
-			// });
-
+			it('should have have proper data - facebook', function () {
+				expect(moment(results.data[0].date).format('YYYY-MM-DD')).to.equal(moment().format('YYYY-MM-DD'));
+				expect(results.data[0].facebook).to.equal(1);
+			});
 		});
 
 		describe('when user have today and yesterday items', function () {
 			beforeEach(function (done) {
 				var db = testUtils.getDb();
+
 				var items = [
 					{ user: user.email, type: 'twitter', created: moment().toDate(), date: moment().toDate() },
 					{ user: user.email, type: 'twitter', created: moment().toDate(), date: moment().toDate() },
-					{ user: user.email, type: 'github', created: moment().subtract('days', 1).toDate(), date: moment().toDate() },
-					{ user: user.email, type: 'facebook', created: moment().subtract('days', 1).toDate(), date: moment().toDate() }
+					{ user: user.email, type: 'github', created: moment().subtract('days', 1).toDate(), date: moment().subtract('days', 1).toDate() },
+					{ user: user.email, type: 'facebook', created: moment().subtract('days', 1).toDate(), date: moment().subtract('days', 1).toDate() }
 				];
-				db.items.insert(items, done);
+				db.items.insert(items, {safe: true}, done);
 			});
 
 			beforeEach(function (done) {
@@ -153,6 +144,21 @@ describe.only('feed.spec.js', function () {
 				});
 			});
 
+			it('should return grouped feed', function () {
+				expect(results.data.length).to.equal(2);
+			});
+
+
+			it('should have proper data for today', function () {
+				expect(moment(results.data[0].date).format('YYYY-MM-DD')).to.equal(moment().format('YYYY-MM-DD'));
+				expect(results.data[0].twitter).to.equal(2);
+			});
+
+			it('should have proper data for yesterday', function () {
+				expect(moment(results.data[1].date).format('YYYY-MM-DD')).to.equal(moment().subtract('days', 1).format('YYYY-MM-DD'));
+				expect(results.data[1].github).to.equal(1);
+				expect(results.data[1].facebook).to.equal(1);
+			});
 		});
 
 		describe('when user have two weeks items', function () {
