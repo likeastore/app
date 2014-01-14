@@ -19,7 +19,7 @@ function track(event, options) {
 
 		analytics(event, data, function (err) {
 			if (err) {
-				logger.error({message: 'analytics event post error', err: err});
+				logger.warning({message: 'analytics event post error'});
 			}
 		});
 

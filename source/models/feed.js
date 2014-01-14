@@ -51,16 +51,34 @@ function getForUser(user, callback) {
 		}
 
 		feed = feed.map(function (f) {
-			f.date = f.year + '-' + f.month + '-' + f.day;
+			f.date = f.year + '-' + format(f.month) + '-' + format(f.day);
 			delete f.year;
 			delete f.month;
 			delete f.day;
 
-			return f;
+			return strip(f);
 		});
 
 		callback(err, {data: feed});
 	});
+
+	function format(m) {
+		if (m < 10) {
+			return '0' + m;
+		}
+
+		return m;
+	}
+
+	function strip(f) {
+		Object.keys(f).forEach(function (k) {
+			if (f[k] === 0) {
+				delete f[k];
+			}
+		});
+
+		return f;
+	}
 }
 
 module.exports = {
