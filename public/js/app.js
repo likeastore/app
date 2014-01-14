@@ -41,8 +41,7 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function ($window, auth, user, intercom) {
-		auth.setAuthorizationHeaders();
+	app.run(function (user, intercom) {
 		user.initialize();
 		intercom.boot();
 	});

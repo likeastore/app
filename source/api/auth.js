@@ -13,6 +13,7 @@ function authService(app) {
 		middleware.auth.createToken(),
 		middleware.analytics.track('user logged on', {request: 'user', property: 'email'}),
 		updateStats,
+		createTokenCookie,
 		returnToken);
 
 	app.get('/api/auth/validate',
@@ -24,6 +25,7 @@ function authService(app) {
 	app.post('/api/auth/logout',
 		middleware.access.guest(),
 		middleware.auth.validateToken(),
+		deleteTokenCookie,
 		middleware.analytics.track('user logged out', {request: 'user'}),
 		returnOk
 	);
@@ -77,6 +79,20 @@ function authService(app) {
 			req.user = updated;
 			next();
 		});
+	}
+
+	function createTokenCookie(req, res, next) {
+		res.cookie('token', req.token, {
+			domain: config.domain,
+			maxAge: new Date(Date.now() + (30*24*60*60*1000))
+		});
+
+		next();
+	}
+
+	function deleteTokenCookie(req, res, next) {
+		res.clearCookie('token');
+		next();
 	}
 
 	function returnToken(req, res, next) {

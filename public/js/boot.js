@@ -8,12 +8,6 @@ define(function () {
 			if (params.email && params.apiToken) {
 				this.request('POST', '/api/auth/login', params, function (res) {
 					if (res.status === 201) {
-						var date = new Date();
-						var domain = window.appConfig.env === 'development' ? '' : '.likeastore.com';
-
-						date.setTime(date.getTime() + (30*24*60*60*1000)); // set cookie for one month
-						document.cookie = 'token=' +  res.token + ';domain=' + domain + ';expires=' + date.toGMTString();
-
 						window.location = window.location.origin;
 					} else {
 						window.location = res.error.redirectUrl + '/login';
