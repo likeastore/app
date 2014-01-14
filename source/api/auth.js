@@ -82,7 +82,7 @@ function authService(app) {
 	}
 
 	function createTokenCookie(req, res, next) {
-		res.cookie('token', req.token, {
+		res.cookie(config.authCookie, req.token, {
 			domain: config.domain,
 			expires: new Date(Date.now() + (30*24*60*60*1000)),
 			httpOnly: true
@@ -92,7 +92,7 @@ function authService(app) {
 	}
 
 	function deleteTokenCookie(req, res, next) {
-		res.clearCookie('token', {
+		res.clearCookie(config.authCookie, {
 			domain: config.domain
 		});
 		next();

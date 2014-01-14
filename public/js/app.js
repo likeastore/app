@@ -31,7 +31,7 @@ define(function (require) {
 				.when('/dribbble', { templateUrl: 'partials/dashboard', controller: 'dribbbleController' })
 				.when('/behance', { templateUrl: 'partials/dashboard', controller: 'behanceController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
-				.when('/feed', { templateUrl: 'partials/dashboard', controller: 'feedController' })
+				//.when('/history', { templateUrl: 'partials/dashboard', controller: 'historyController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })

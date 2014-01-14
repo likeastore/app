@@ -2,11 +2,11 @@ var request = require('request');
 var testUtils = require('../utils');
 var moment = require('moment');
 
-describe('feed.spec.js', function () {
+describe('history.spec.js', function () {
 	var token, user, url, headers, response, results, error;
 
 	beforeEach(function () {
-		url = testUtils.getRootUrl() + '/api/feed';
+		url = testUtils.getRootUrl() + '/api/history';
 	});
 
 	describe('non authorized', function () {
