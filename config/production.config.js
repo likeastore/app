@@ -65,6 +65,11 @@ var config = {
 		password: 'likeadmin7analitics'
 	},
 
+	ga: {
+		id: 'UA-41034999-1',
+		domain: 'likeastore.com'
+	},
+
 	newrelic: {
 		application: 'likeastore-app',
 		licenseKey: 'e5862474ee62b99898c861dddfbfa8a89ac54f49'

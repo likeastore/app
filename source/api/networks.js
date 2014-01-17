@@ -49,6 +49,7 @@ function networksService(app) {
 		middleware.networks.dribbble(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'dribbble'}),
+		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings
 	);
 
@@ -66,6 +67,7 @@ function networksService(app) {
 		middleware.networks.twitterCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'twitter'}),
+		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings);
 
 	app.get('/api/networks/github/callback',
@@ -73,6 +75,7 @@ function networksService(app) {
 		middleware.networks.githubCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'github'}),
+		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings);
 
 	app.get('/api/networks/gist/callback',
@@ -80,6 +83,7 @@ function networksService(app) {
 		middleware.networks.githubCallback('gist'),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'gist'}),
+		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings);
 
 	app.get('/api/networks/stackoverflow/callback',
@@ -87,6 +91,7 @@ function networksService(app) {
 		middleware.networks.stackoverflowCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'stackoverflow'}),
+		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings);
 
 	app.get('/api/networks/facebook/callback',
@@ -94,6 +99,7 @@ function networksService(app) {
 		middleware.networks.facebookCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'facebook'}),
+		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings);
 
 	app.get('/api/networks/vimeo/callback',
@@ -101,6 +107,7 @@ function networksService(app) {
 		middleware.networks.vimeoCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'vimeo'}),
+		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings);
 
 	app.get('/api/networks/youtube/callback',
@@ -108,6 +115,7 @@ function networksService(app) {
 		middleware.networks.youtubeCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'vimeo'}),
+		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings);
 
 	app.get('/api/networks/behance/callback',
@@ -115,6 +123,7 @@ function networksService(app) {
 		middleware.networks.behanceCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'behance'}),
+		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings);
 
 	function registerNetwork(req, res, next) {

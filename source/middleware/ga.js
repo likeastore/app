@@ -1,7 +1,7 @@
-var analytics = require('../utils/analytics');
+var ga = require('../utils/ga');
 var logger = require('../utils/logger');
 
-function track(event, options) {
+function track(category, action, label, options) {
 	return function (req, res, next) {
 		var data = {};
 
@@ -17,9 +17,9 @@ function track(event, options) {
 			data[options.request] = options.property ? req[options.request][options.property] : req[options.request];
 		}
 
-		analytics(event, data, function (err) {
+		ga.trackEvent(category, action, label, data, function (err) {
 			if (err) {
-				logger.warning({message: 'analytics event post error', err: err});
+				logger.warning({message: 'ga event post error', err: err});
 			}
 		});
 

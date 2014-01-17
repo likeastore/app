@@ -65,6 +65,11 @@ var config = {
 		password: 'mypass'
 	},
 
+	ga: {
+		id: 'UA-41034999-1',
+		domain: 'localhost'
+	},
+
 	newrelic: {
 		application: 'likeastore-app-test',
 		licenseKey: null

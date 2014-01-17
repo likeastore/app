@@ -5,5 +5,6 @@ module.exports = {
 	errors: require('./errors'),
 	auth: require('./auth'),
 	networks: require('./networks'),
-	analytics: require('./analytics')
+	analytics: require('./analytics'),
+	ga: require('./ga')
 };
