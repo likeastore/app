@@ -10,11 +10,6 @@ var bootstrap = require('./source/bootstrap');
 
 var oneMonth = 2678400000;
 
-process.on('uncaughtException', function (err) {
-	logger.error({msg:'Uncaught exception', error:err, stack:err.stack});
-	console.log({msg:'Uncaught exception', error:err, stack:err.stack});
-});
-
 bootstrap.app(function (err) {
 	if (err) {
 		throw err;
