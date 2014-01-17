@@ -6,4 +6,5 @@ module.exports = function (app) {
 	require('./search')(app);
 	require('./emails')(app);
 	require('./history')(app);
+	require('./monitor')(app);
 };
