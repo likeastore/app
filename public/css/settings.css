@@ -198,6 +198,7 @@
 }
 
 .expired-token-notifier {
+	display: none;
 	background: #e76049;
 	color: #fff;
 	padding: 2px 7px 1px;
@@ -206,6 +207,10 @@
 	text-transform: uppercase;
 	position: absolute;
 	top: 19px;
+}
+
+.disabled .expired-token-notifier {
+	display: block;
 }
 
 .github .expired-token-notifier,

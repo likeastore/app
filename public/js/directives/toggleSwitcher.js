@@ -21,6 +21,7 @@ define(function (require) {
 			link: function (scope, elem, attrs) {
 				var service = scope.service = attrs.toggleSwitcher;
 				var urlOptions = { resource: 'networks', target: service };
+				var parent = elem.parent();
 
 				scope.toggleNetwork = function () {
 					var isOn = elem.hasClass('on');
@@ -76,10 +77,10 @@ define(function (require) {
 						angular.forEach(value, function (row, i) {
 							if (!row.disabled && service === row.service) {
 								elem.addClass('on');
+								parent.removeClass('disabled');
 							}
 
 							if (row.disabled && service === row.service) {
-								var parent = elem.parent();
 								parent.addClass('disabled');
 								parent.append('<div class="expired-token-notifier">Temporary disabled</div>');
 							}

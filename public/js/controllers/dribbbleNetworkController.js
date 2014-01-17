@@ -1,7 +1,9 @@
 define(function (require) {
 	'use strict';
 
-	function DribbbleNetworkController($scope, $timeout, api, ngProgressLite, ngDialog) {
+	var angular = require('angular');
+
+	function DribbbleNetworkController($scope, $rootScope, $timeout, api, ngProgressLite, ngDialog) {
 		var timer;
 
 		$scope.$watch('username', function (value) {
@@ -20,9 +22,19 @@ define(function (require) {
 			ngProgressLite.start();
 
 			api.save({ resource: 'networks', target: 'dribbble' }, { username: $scope.username }, function () {
+				var parentScope = $scope.$parent;
+
 				ngProgressLite.done();
 				ngDialog.close();
-				$scope.$parent.switched = true;
+
+				$rootScope.user.warning = false;
+				parentScope.switched = true;
+
+				angular.forEach(parentScope.networks, function (row) {
+					if (row.service === 'dribbble' && row.disabled) {
+						row.disabled = false;
+					}
+				});
 			});
 		};
 	}
