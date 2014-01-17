@@ -457,13 +457,19 @@
 	z-index: 6;
 }
 
-.dash-item img {
+.dash-item .image {
 	float: left;
 	width: 60px;
 	height: 60px;
 	margin: 2px 15px 0 4px;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
+}
+
+.dash-item .image.facebook-img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 80px;
 }
 
 .dash-item a {

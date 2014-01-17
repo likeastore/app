@@ -116,7 +116,8 @@
 
 			<!-- text only card -->
 			<div ng-if="!item.thumbnail" class="item-text-wrap">
-				<img src="{{item.avatarUrl}}">
+				<img ng-if="item.kind != 'link'" class="image" src="{{item.avatarUrl}}">
+				<div ng-if="item.kind == 'link'" class="image facebook-img" style="background-image: url({{item.avatarUrl}});"></div>
 				<div class="repo" ng-show="item.repo">{{item.repo}}</div>
 				<div class="desc">
 					<div linkify="item.description" class="desc-text"></div>
