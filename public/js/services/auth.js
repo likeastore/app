@@ -9,9 +9,7 @@ define(function (require) {
 
 			logout: function () {
 				api.save({ resource: 'auth', target: 'logout' }, {}, function () {
-					// keep it for safety for early users
 					$http.defaults.headers.common['X-Access-Token'] = null;
-
 					$window.location = '/logout';
 				});
 			}

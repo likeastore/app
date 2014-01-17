@@ -92,9 +92,7 @@ function authService(app) {
 	}
 
 	function deleteTokenCookie(req, res, next) {
-		res.clearCookie(config.authCookie, {
-			domain: config.domain
-		});
+		res.clearCookie('token', { domain: config.domain });
 		next();
 	}
 
