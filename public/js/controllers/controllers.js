@@ -34,8 +34,8 @@ define(function (require) {
 	// custom networks
 	controllers.controller('dribbbleNetworkController', require('./dribbbleNetworkController'));
 
-	// feed
-	controllers.controller('feedController', require('./feedController'));
+	// history
+	controllers.controller('historyController', require('./historyController'));
 
 	return controllers;
 });
