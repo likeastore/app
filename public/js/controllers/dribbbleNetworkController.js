@@ -23,18 +23,26 @@ define(function (require) {
 
 			api.save({ resource: 'networks', target: 'dribbble' }, { username: $scope.username }, function () {
 				var parentScope = $scope.$parent;
+				var persistWarningFor = [];
 
 				ngProgressLite.done();
 				ngDialog.close();
-
-				$rootScope.user.warning = false;
-				parentScope.switched = true;
 
 				angular.forEach(parentScope.networks, function (row) {
 					if (row.service === 'dribbble' && row.disabled) {
 						row.disabled = false;
 					}
+
+					if (row.disabled) {
+						persistWarningFor.push(row);
+					}
 				});
+
+				if (persistWarningFor.length === 0) {
+					$rootScope.user.warning = false;
+				}
+
+				parentScope.switched = true;
 			});
 		};
 	}
