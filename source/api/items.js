@@ -1,6 +1,5 @@
 var items = require('../models/items');
 var middlware = require('../middleware');
-var users = require('../models/users');
 
 function itemsService(app) {
 	app.get('/api/items',
@@ -62,21 +61,6 @@ function itemsService(app) {
 
 			res.json(items);
 		});
-
-
-		// users.findByEmail(req.user, function (err, user) {
-		// 	if (err) {
-		// 		return next(err);
-		// 	}
-
-		// 	items.getInbox(user.email, user.loginPreviousDate, req.query.page, function (err, items) {
-		// 		if (err) {
-		// 			return next({message: 'failed to get items inbox', user: req.user, err: err, status: 500});
-		// 		}
-
-		// 		res.json(items);
-		// 	});
-		// });
 	}
 
 	function getInboxCount(req, res, next) {
@@ -88,20 +72,6 @@ function itemsService(app) {
 
 			res.json(result);
 		});
-
-		// users.findByEmail(req.user, function (err, user) {
-		// 	if (err) {
-		// 		return next(err);
-		// 	}
-
-		// 	items.getInboxCount(user.email, user.loginPreviousDate, req.query.page, function (err, result) {
-		// 		if (err) {
-		// 			return next({message: 'failed to get items inbox', user: req.user, err: err, status: 500});
-		// 		}
-
-		// 		res.json(result);
-		// 	});
-		// });
 	}
 
 	function hideItem(req, res, next) {
