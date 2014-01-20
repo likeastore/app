@@ -12,7 +12,16 @@ define(function (require) {
 	require('./directives/directives');
 
 	var angular = require('angular');
-	var app = angular.module('likeastore', ['ngRoute', 'ngAnimate', 'ngDialog', 'angularLocalStorage', 'ngIntercom', 'services', 'controllers', 'directives']);
+	var app = angular.module('likeastore', [
+		'ngRoute',
+		'ngAnimate',
+		'ngDialog',
+		'ngIntercom',
+		'angularLocalStorage',
+		'services',
+		'controllers',
+		'directives'
+	]);
 
 	app.init = function () {
 		angular.bootstrap(document, ['likeastore']);

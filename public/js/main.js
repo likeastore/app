@@ -7,39 +7,35 @@ require.config({
 		'ngAnimate': '../components/angular-animate/angular-animate',
 		'ngProgressLite': '../components/ngprogress-lite/ngprogress-lite',
 		'ngDialog': '../components/ngDialog/js/ngDialog',
+		'ngIntercom': '../components/angular-intercom/angular-intercom',
 		'angularLocalStorage': '../components/angularLocalStorage/src/angularLocalStorage',
 		'hashids': '../components/hashids/lib/hashids',
-		'seismo': '../components/seismo/seismo',
-		'ngIntercom': '../components/angular-intercom/angular-intercom'
+		'seismo': '../components/seismo/seismo'
 	},
 	shim: {
 		ngResource: {
-			deps: ['angular'],
-			exports: 'angular'
+			deps: ['angular']
 		},
 		ngRoute: {
-			deps: ['angular'],
-			exports: 'angular'
+			deps: ['angular']
 		},
 		ngCookies: {
-			deps: ['angular'],
-			exports: 'angular'
+			deps: ['angular']
 		},
 		ngAnimate: {
-			deps: ['angular'],
-			exports: 'angular'
+			deps: ['angular']
 		},
 		ngProgressLite: {
-			deps: ['angular'],
-			exports: 'angular'
+			deps: ['angular']
 		},
 		ngDialog: {
-			deps: ['angular'],
-			exports: 'angular'
+			deps: ['angular']
+		},
+		ngIntercom: {
+			deps: ['angular']
 		},
 		angularLocalStorage: {
-			deps: ['angular'],
-			exports: 'angular'
+			deps: ['angular']
 		},
 		angular: {
 			exports: 'angular'
@@ -49,9 +45,6 @@ require.config({
 		},
 		seismo: {
 			exports: 'seismo'
-		},
-		ngIntercom: {
-			deps: ['angular']
 		}
 	},
 	baseUrl: '/js'
