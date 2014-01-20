@@ -10,7 +10,7 @@ function facebook() {
 							config.services.facebook.appSecret,
 							'https://graph.facebook.com');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'user_likes', state: req.user });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'user_likes', state: req.user.email });
 		req.authUrl = authorizeUrl;
 		next();
 	};
@@ -123,7 +123,7 @@ function github(type) {
 							config.services.github.appSecret,
 							'https://github.com/login');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user.email });
 		req.authUrl = authorizeUrl;
 		next();
 	};
@@ -167,7 +167,7 @@ function stackoverflow() {
 							'https://stackexchange.com',
 							'/oauth');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user, scope: 'no_expiry' });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user.email, scope: 'no_expiry' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
@@ -281,7 +281,7 @@ function youtube() {
 							'/oauth2/auth',
 							'/oauth2/token');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', access_type: 'offline', state: req.user,  response_type: 'code' });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'https://www.googleapis.com/auth/youtube.readonly', access_type: 'offline', state: req.user.email,  response_type: 'code' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
@@ -348,7 +348,7 @@ function behance() {
 							'/oauth/authenticate',
 							'/oauth/token');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'activity_read', state: req.user, response_type: 'code' });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'activity_read', state: req.user.email, response_type: 'code' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
