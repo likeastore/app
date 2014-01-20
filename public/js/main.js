@@ -9,7 +9,8 @@ require.config({
 		'ngDialog': '../components/ngDialog/js/ngDialog',
 		'angularLocalStorage': '../components/angularLocalStorage/src/angularLocalStorage',
 		'hashids': '../components/hashids/lib/hashids',
-		'seismo': '../components/seismo/seismo'
+		'seismo': '../components/seismo/seismo',
+		'ngIntercom': '../components/angular-intercom/angular-intercom'
 	},
 	shim: {
 		ngResource: {
@@ -48,6 +49,9 @@ require.config({
 		},
 		seismo: {
 			exports: 'seismo'
+		},
+		ngIntercom: {
+			deps: ['angular']
 		}
 	},
 	baseUrl: '/js'

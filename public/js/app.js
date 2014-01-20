@@ -4,20 +4,22 @@ define(function (require) {
 	require('ngRoute');
 	require('ngAnimate');
 	require('ngDialog');
+	require('ngIntercom');
 	require('angularLocalStorage');
+
 	require('./services/services');
 	require('./controllers/controllers');
 	require('./directives/directives');
 
 	var angular = require('angular');
-	var app = angular.module('likeastore', ['ngRoute', 'ngAnimate', 'ngDialog', 'angularLocalStorage', 'services', 'controllers', 'directives']);
+	var app = angular.module('likeastore', ['ngRoute', 'ngAnimate', 'ngDialog', 'angularLocalStorage', 'ngIntercom', 'services', 'controllers', 'directives']);
 
 	app.init = function () {
 		angular.bootstrap(document, ['likeastore']);
 	};
 
-	app.config(['$routeProvider', '$locationProvider', '$httpProvider',
-		function ($routeProvider, $locationProvider, $httpProvider) {
+	app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'IntercomServiceProvider',
+		function ($routeProvider, $locationProvider, $httpProvider, intercomServiceProvider) {
 			$httpProvider.interceptors.push('httpInterceptor');
 
 			$routeProvider
@@ -39,6 +41,8 @@ define(function (require) {
 				.otherwise({ redirectTo: '/' });
 
 			$locationProvider.html5Mode(true);
+
+			intercomServiceProvider.asyncLoading(true);
 		}
 	]);
 
