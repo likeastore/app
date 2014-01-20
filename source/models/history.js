@@ -7,7 +7,7 @@ function getForUser(user, callback) {
 
 	db.items.aggregate([
 		{
-			$match: { user: user, date: {$gte: twoWeeks.toDate()} }
+			$match: { user: user.email, date: {$gte: twoWeeks.toDate()} }
 		},
 		{
 			$sort: { date: 1 }

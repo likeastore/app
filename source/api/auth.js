@@ -60,6 +60,7 @@ function authService(app) {
 			}
 
 			req.user = user;
+
 			next();
 		});
 	}
@@ -77,6 +78,7 @@ function authService(app) {
 			}
 
 			req.user = updated;
+
 			next();
 		});
 	}

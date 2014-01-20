@@ -49,15 +49,15 @@ function findByRequestToken (tokenName, tokenValue, callback) {
 	});
 }
 
-function updateUser(email, attributes, callback) {
+function updateUser(user, attributes, callback) {
 	db.users.findAndModify({
-		query: { email: email },
+		query: { email: user.email },
 		update: { $set: attributes },
 		'new': true
 	}, callback);
 }
 
-function deactivate(email, callback) {
+function deactivate(user, callback) {
 	var deleteTasks = [
 		deleteNetworks,
 		deleteItems,
@@ -67,15 +67,15 @@ function deactivate(email, callback) {
 	async.series(deleteTasks, callback);
 
 	function deleteNetworks(next) {
-		db.networks.remove({ 'user': email }, next);
+		db.networks.remove({ 'user': user.email }, next);
 	}
 
 	function deleteItems(next) {
-		db.items.remove({ 'user': email }, next);
+		db.items.remove({ 'user': user.email }, next);
 	}
 
 	function deleteUser(next) {
-		db.users.remove({ 'email': email }, next);
+		db.users.remove({ 'email': user.email }, next);
 	}
 }
 

@@ -6,7 +6,6 @@ var middleware = require('../middleware');
 
 function usersService(app) {
 	app.get('/api/users/me',
-		getUser,
 		disabledNetworksWarning,
 		returnUser
 	);
@@ -16,25 +15,13 @@ function usersService(app) {
 		deleteUser
 	);
 
-	function getUser(req, res, next) {
-		users.findByEmail(req.user, function (err, user) {
-			if (err) {
-				return next(err);
-			}
-
-			req.readUser = user;
-
-			next();
-		});
-	}
-
 	function disabledNetworksWarning(req, res, next) {
 		networks.findNetworks(req.user, function (err, networks) {
 			if (err) {
 				return next(err);
 			}
 
-			req.readUser.warning = _.any(networks, function (network) {
+			req.user.warning = _.any(networks, function (network) {
 				return network.disabled;
 			});
 
@@ -53,7 +40,7 @@ function usersService(app) {
 	}
 
 	function returnUser(req, res, next) {
-		res.json(req.readUser);
+		res.json(req.user);
 	}
 }
 

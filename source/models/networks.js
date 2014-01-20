@@ -13,7 +13,7 @@ exports.createOrUpdate = function (network, callback) {
 };
 
 exports.removeNetwork = function (user, service, callback) {
-	db.networks.remove({ user: user, service: service }, function (err) {
+	db.networks.remove({ user: user.email, service: service }, function (err) {
 		if (err) {
 			return callback(err);
 		}
@@ -26,7 +26,7 @@ exports.findNetworks = function (user, callback) {
 	var nets = [];
 	var fieldsToPick = ['service', 'lastExecution', 'disabled'];
 
-	db.networks.find({ user: user }).forEach(function (err, doc) {
+	db.networks.find({ user: user.email }).forEach(function (err, doc) {
 		if (err) {
 			return callback(err);
 		}

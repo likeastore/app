@@ -7,11 +7,11 @@ var AUTH_SIGN_KEY = 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662';
 
 function createToken() {
 	return function (req, res, next) {
-		var username = req.user.email;
+		var email = req.user.email;
 		var timespamp = moment();
-		var message = username + ';' + timespamp.valueOf();
+		var message = email + ';' + timespamp.valueOf();
 		var hmac = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');
-		var token = username + ';' + timespamp.valueOf() + ';' + hmac;
+		var token = email + ';' + timespamp.valueOf() + ';' + hmac;
 		var tokenBase64 = new Buffer(token).toString('base64');
 
 		req.token = tokenBase64;
@@ -42,8 +42,8 @@ function validateToken () {
 				return false;
 			}
 
-			var username = parsed[0], timespamp = parsed[1], recievedHmac = parsed[2];
-			var message = username + ';' + timespamp;
+			var email = parsed[0], timespamp = parsed[1], recievedHmac = parsed[2];
+			var message = email + ';' + timespamp;
 			var computedHmac = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');
 
 			if (recievedHmac !== computedHmac) {
@@ -55,7 +55,7 @@ function validateToken () {
 				return false;
 			}
 
-			req.user = username;
+			req.user = email;
 
 			return true;
 		}

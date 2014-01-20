@@ -20,6 +20,8 @@ function authenticatedAccess () {
 					return next({message: 'User is not authorized', status: 401});
 				}
 
+				req.user = user;
+
 				next();
 			});
 		}

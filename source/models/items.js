@@ -9,7 +9,7 @@ var itemsCountCache;
 var itemsCountCacheTTL = 5;
 
 function getAllItems(user, page, callback) {
-	var query = db.items.find({ user: user, hidden: {$exists: false} }).limit(pageSize);
+	var query = db.items.find({ user: user.email, hidden: {$exists: false} }).limit(pageSize);
 	if (page) {
 		query = query.skip(pageSize * (page - 1));
 	}
@@ -50,7 +50,7 @@ function getItemsCount(callback) {
 }
 
 function getItemsByType(user, type, page, callback) {
-	var query = db.items.find({ user: user, type: type, hidden: {$exists: false} }).limit(pageSize);
+	var query = db.items.find({ user: user.email, type: type, hidden: {$exists: false} }).limit(pageSize);
 	if (page) {
 		query = query.skip(pageSize * (page - 1));
 	}
@@ -66,10 +66,10 @@ function getItemsByType(user, type, page, callback) {
 	}
 }
 
-function getInbox(user, previousLogin, page, callback) {
-	var criteria = {user: user, hidden: {$exists: false}};
-	if (previousLogin) {
-		criteria.date = { $gt: previousLogin };
+function getInbox(user, page, callback) {
+	var criteria = {user: user.email, hidden: {$exists: false}};
+	if (user.previousLogin) {
+		criteria.date = { $gt: user.previousLogin };
 	}
 
 	var query = db.items.find(criteria).limit(pageSize);
@@ -88,10 +88,10 @@ function getInbox(user, previousLogin, page, callback) {
 	}
 }
 
-function getInboxCount(user, previousLogin, page, callback) {
-	var criteria = {user: user, hidden: {$exists: false}};
-	if (previousLogin) {
-		criteria.date = { $gt: previousLogin };
+function getInboxCount(user, page, callback) {
+	var criteria = {user: user.email, hidden: {$exists: false}};
+	if (user.previousLogin) {
+		criteria.date = { $gt: user.previousLogin };
 	}
 
 	db.items.find(criteria).count(function (err, count) {
@@ -105,7 +105,7 @@ function getInboxCount(user, previousLogin, page, callback) {
 
 function hideItem(user, id, callback) {
 	db.items.findAndModify({
-		query: {_id: new db.ObjectId(id), user: user},
+		query: {_id: new db.ObjectId(id), user: user.email},
 		update: {$set: {hidden: true}},
 		'new': true
 	}, callback);

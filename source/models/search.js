@@ -6,7 +6,7 @@ function fullTextItemSearch (user, query, callback) {
 		return callback(null, { data: [], nextPage: false });
 	}
 
-	db.items.runCommand('text', { search: query.toString(), filter: {user: user }}, function (err, doc) {
+	db.items.runCommand('text', { search: query.toString(), filter: {user: user.email }}, function (err, doc) {
 		if (err) {
 			return callback(err);
 		}

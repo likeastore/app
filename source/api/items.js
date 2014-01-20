@@ -54,35 +54,54 @@ function itemsService(app) {
 	}
 
 	function getInbox(req, res, next) {
-		users.findByEmail(req.user, function (err, user) {
+		var user = req.user;
+		items.getInbox(user, req.query.page, function (err, items) {
 			if (err) {
-				return next(err);
+				return next({message: 'failed to get items inbox', user: req.user, err: err, status: 500});
 			}
 
-			items.getInbox(user.email, user.loginPreviousDate, req.query.page, function (err, items) {
-				if (err) {
-					return next({message: 'failed to get items inbox', user: req.user, err: err, status: 500});
-				}
-
-				res.json(items);
-			});
+			res.json(items);
 		});
+
+
+		// users.findByEmail(req.user, function (err, user) {
+		// 	if (err) {
+		// 		return next(err);
+		// 	}
+
+		// 	items.getInbox(user.email, user.loginPreviousDate, req.query.page, function (err, items) {
+		// 		if (err) {
+		// 			return next({message: 'failed to get items inbox', user: req.user, err: err, status: 500});
+		// 		}
+
+		// 		res.json(items);
+		// 	});
+		// });
 	}
 
 	function getInboxCount(req, res, next) {
-		users.findByEmail(req.user, function (err, user) {
+		var user = req.user;
+		items.getInboxCount(user, req.query.page, function (err, result) {
 			if (err) {
-				return next(err);
+				return next({message: 'failed to get items inbox', user: req.user, err: err, status: 500});
 			}
 
-			items.getInboxCount(user.email, user.loginPreviousDate, req.query.page, function (err, result) {
-				if (err) {
-					return next({message: 'failed to get items inbox', user: req.user, err: err, status: 500});
-				}
-
-				res.json(result);
-			});
+			res.json(result);
 		});
+
+		// users.findByEmail(req.user, function (err, user) {
+		// 	if (err) {
+		// 		return next(err);
+		// 	}
+
+		// 	items.getInboxCount(user.email, user.loginPreviousDate, req.query.page, function (err, result) {
+		// 		if (err) {
+		// 			return next({message: 'failed to get items inbox', user: req.user, err: err, status: 500});
+		// 		}
+
+		// 		res.json(result);
+		// 	});
+		// });
 	}
 
 	function hideItem(req, res, next) {
