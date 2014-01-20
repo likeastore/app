@@ -1,0 +1,58 @@
+<div text-search="query"></div>
+
+<ul class="networks-menu">
+	<li class="menu-subtitle">Folders</li>
+	<li>
+		<a href="/inbox" class="menu-title inbox"><i data-icon="M" class="icon"></i> Inbox <inbox-counter /></a>
+	</li>
+<!--
+	<li>
+		<a href="/history" class="menu-title inbox"><i data-icon="M" class="icon"></i> History </a>
+	</li>
+-->
+	<li>
+		<a href="/all" class="menu-title likes"><i data-icon="s" class="icon"></i> All Likes</a>
+	</li>
+</ul>
+
+<ul class="networks-menu actual-networks-list">
+	<li class="menu-subtitle">Services</li>
+	<li ng-repeat="network in networks">
+		<a href="/{{network.service}}" class="menu-title {{network.service}}" ng-if="network.service != 'gist'"><i class="font-icon {{network.service}}-icon"></i> {{network.service}}</a>
+	</li>
+	<li><a href="/settings" class="add-network-btn">+ Add network</a></li>
+</ul>
+
+<div class="promo-line">
+	<div class="promo-text">Invite your friends to stay tuned with their likes!</div>
+
+	<a href="" class="btn green-btn" ng-dialog="shareDialogId" ng-dialog-class="lsd-theme share-dialog" ng-dialog-controller="shareWithFriendController"><i data-icon="S" class="side-btn-icon"></i> Share love</a>
+
+	<script type="text/ng-template" id="shareDialogId">
+		<h2>
+			<i data-icon="w" class="icon"></i>
+			 Invite your friends
+		</h2>
+		<form ng-submit="send()">
+			<div class="send-error" ng-show="error">We are experiencing troubles, please try again later</div>
+			<div>
+				<input type="email" class="field" placeholder="Email" ng-model="email" required>
+			</div>
+			<div>
+				<textarea class="field" rows="6" ng-model="message" required>
+				</textarea>
+			</div>
+			<button type="submit" class="btn green-btn" ng-disabled="sendText == 'Sending'">{{sendText}}</button>
+		</form>
+		<div class="social-desc">Spread a word through social services</div>
+		<div class="social-share">
+			<button type="button" class="btn fb-btn" share-on-event="share-with-friend" share-on="facebook">Share on facebook</button>
+			<button type="button" class="btn tw-btn" share-on-event="share-with-friend" share-on="twitter">Share on twitter</button>
+		</div>
+	</script>
+</div>
+
+<ul class="footer-links">
+	<li><a href="http://blog.likeastore.com" target="_blank">Read blog</a></li>
+	<li><a href="mailto:info@likeastore.com">Send feedback</a></li>
+</ul>

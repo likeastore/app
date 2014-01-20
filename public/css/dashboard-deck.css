@@ -31,6 +31,9 @@
 	top: 0;
 }
 
+.networks-menu.actual-networks-list {
+}
+
 .networks-menu li {
 	position: relative;
 	overflow: hidden;
@@ -67,7 +70,30 @@
 	font-size: 8px;
 }
 
-.menu-title .icon {
+.networks-menu .add-network-btn {
+	display: block;
+	background: #3b454b;
+	color: #fff;
+	font-size: 10px;
+	font-weight: 300;
+	line-height: 16px;
+	margin-top: 10px;
+	padding: 5px;
+	width: 96px;
+	height: 16px;
+	margin-left: 20px;
+	border-radius: 2px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.networks-menu .add-network-btn:hover {
+	background: #47535c;
+}
+
+.menu-title .icon,
+.menu-title .font-icon {
 	display: inline-block;
 	color: #edf0f2;
 	font-size: 18px;
@@ -147,7 +173,7 @@
 	color: #edf0f2;
 	font-weight: 300;
 	padding: 15px 12px 25px 8px;
-	margin-top: 20px;
+	margin-top: 25px;
 	width: 200px;
 	overflow: hidden;
 }

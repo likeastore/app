@@ -21,14 +21,10 @@ define(function (require) {
 		$scope.turnOn = function () {
 			ngProgressLite.start();
 
-			api.save({ resource: 'networks', target: 'dribbble' }, { username: $scope.username }, function () {
-				var parentScope = $scope.$parent;
+			api.save({ resource: 'networks', target: 'dribbble' }, { username: $scope.username }, function (res) {
 				var persistWarningFor = [];
 
-				ngProgressLite.done();
-				ngDialog.close();
-
-				angular.forEach(parentScope.networks, function (row) {
+				angular.forEach($rootScope.networks, function (row) {
 					if (row.service === 'dribbble' && row.disabled) {
 						row.disabled = false;
 					}
@@ -42,7 +38,10 @@ define(function (require) {
 					$rootScope.user.warning = false;
 				}
 
-				parentScope.switched = true;
+				$rootScope.networks.push({ service: 'dribbble' });
+
+				ngProgressLite.done();
+				ngDialog.close();
 			});
 		};
 	}

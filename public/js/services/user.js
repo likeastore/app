@@ -7,6 +7,12 @@ define(function (require) {
 				api.get({ resource: 'users', target: 'me' }, function (user) {
 					$rootScope.user = user;
 				});
+			},
+
+			getActiveNetworks: function () {
+				api.query({ resource: 'networks' }, function (networks) {
+					$rootScope.networks = networks;
+				});
 			}
 		};
 	}

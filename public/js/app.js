@@ -57,6 +57,7 @@ define(function (require) {
 
 	app.run(function (user, intercom) {
 		user.initialize();
+		user.getActiveNetworks();
 		intercom.boot();
 	});
 

@@ -322,7 +322,7 @@ function youtubeCallback() {
 
 function dribbble() {
 	return function (req, res, next) {
-		var user = req.user;
+		var user = req.user.email;
 		var username = req.body.username;
 
 		if (!username) {

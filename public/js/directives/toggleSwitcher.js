@@ -3,14 +3,11 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function ToggleSwitcher ($window, api, ngProgressLite, ngDialog) {
+	function ToggleSwitcher ($window, $rootScope, api, ngProgressLite, ngDialog) {
 		return {
 			restrict: 'A',
 			replace: true,
-			scope: {
-				networks: '=model',
-				switched: '=?switched'
-			},
+			scope: {},
 			template: '\
 				<div class="toggle">\
 					<input type="checkbox" id="{{service}}ToggleSwitcher" ng-click="toggleNetwork()">\
@@ -22,6 +19,7 @@ define(function (require) {
 				var service = scope.service = attrs.toggleSwitcher;
 				var urlOptions = { resource: 'networks', target: service };
 				var parent = elem.parent();
+				var index;
 
 				scope.toggleNetwork = function () {
 					var isOn = elem.hasClass('on');
@@ -32,8 +30,12 @@ define(function (require) {
 					}
 
 					if (isOn) {
-						elem.toggleClass('on');
-						api.remove(urlOptions);
+						elem.addClass('disabled');
+						api.remove(urlOptions, function (res) {
+							$rootScope.networks.splice(index, 1);
+							elem.toggleClass('on');
+							elem.removeClass('disabled');
+						});
 						return;
 					}
 
@@ -64,17 +66,15 @@ define(function (require) {
 					}
 				};
 
-				scope.$watch('switched', function (value) {
-					if (value) {
-						elem.toggleClass('on');
-					}
-				});
-
-				scope.$watch(attrs.model, listenToNetworks, true);
+				$rootScope.$watch('networks', listenToNetworks, true);
 
 				function listenToNetworks (value) {
 					if (value) {
 						angular.forEach(value, function (row, i) {
+							if (service === row.service){
+								index = i;
+							}
+
 							if (!row.disabled && service === row.service) {
 								elem.addClass('on');
 								parent.removeClass('disabled');
