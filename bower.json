@@ -15,6 +15,7 @@
     "ngprogress-lite": "~1.0.4",
     "animate.css": "~3.0.0",
     "angularLocalStorage": "~0.1.7",
-    "angular-intercom": "~0.0.5"
+    "angular-intercom": "~0.0.5",
+    "angulartics": "~0.8.7"
   }
 }

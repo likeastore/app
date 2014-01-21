@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function DribbbleNetworkController($scope, $rootScope, $timeout, api, ngProgressLite, ngDialog) {
+	function DribbbleNetworkController($scope, $rootScope, $timeout, api, ngProgressLite, ngDialog, $analytics) {
 		var timer;
 
 		$scope.$watch('username', function (value) {
@@ -40,6 +40,7 @@ define(function (require) {
 
 				$rootScope.networks.push({ service: 'dribbble' });
 
+				$analytics.eventTrack('network enabled');
 				ngProgressLite.done();
 				ngDialog.close();
 			});

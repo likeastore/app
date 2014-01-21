@@ -6,6 +6,8 @@ define(function (require) {
 	require('ngDialog');
 	require('ngIntercom');
 	require('angularLocalStorage');
+	require('angulartics');
+	require('angulartics.mixpanel');
 
 	require('./services/services');
 	require('./controllers/controllers');
@@ -16,8 +18,10 @@ define(function (require) {
 		'ngRoute',
 		'ngAnimate',
 		'ngDialog',
-		'ngIntercom',
 		'angularLocalStorage',
+		'ngIntercom',
+		'angulartics',
+		'angulartics.mixpanel',
 		'services',
 		'controllers',
 		'directives'

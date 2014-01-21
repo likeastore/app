@@ -9,16 +9,16 @@ define(function (require) {
 	controllers.controller('settingsController', require('./settingsController'));
 
 	// items
-	controllers.controller('dashboardController', itemsControllerFactory('All Likes'));
-	controllers.controller('inboxController', itemsControllerFactory('Inbox', 'inbox'));
-	controllers.controller('githubController', itemsControllerFactory('Github', 'github'));
-	controllers.controller('facebookController', itemsControllerFactory('Facebook', 'facebook'));
-	controllers.controller('twitterController', itemsControllerFactory('Twitter', 'twitter'));
-	controllers.controller('stackoverflowController', itemsControllerFactory('Stackoverflow', 'stackoverflow'));
-	controllers.controller('vimeoController', itemsControllerFactory('Vimeo', 'vimeo'));
-	controllers.controller('youtubeController', itemsControllerFactory('Youtube', 'youtube'));
-	controllers.controller('dribbbleController', itemsControllerFactory('Dribbble', 'dribbble'));
-	controllers.controller('behanceController', itemsControllerFactory('Behance', 'behance'));
+	controllers.controller('dashboardController', itemsControllerFactory('All Likes', null, 'dashboard opened'));
+	controllers.controller('inboxController', itemsControllerFactory('Inbox', 'inbox', 'inbox opened'));
+	controllers.controller('githubController', itemsControllerFactory('Github', 'github', 'github opened'));
+	controllers.controller('facebookController', itemsControllerFactory('Facebook', 'facebook', 'facebook opened'));
+	controllers.controller('twitterController', itemsControllerFactory('Twitter', 'twitter', 'twitter opened'));
+	controllers.controller('stackoverflowController', itemsControllerFactory('Stackoverflow', 'stackoverflow', 'stackoverflow opened'));
+	controllers.controller('vimeoController', itemsControllerFactory('Vimeo', 'vimeo', 'vimeo opened'));
+	controllers.controller('youtubeController', itemsControllerFactory('Youtube', 'youtube', 'youtube opened'));
+	controllers.controller('dribbbleController', itemsControllerFactory('Dribbble', 'dribbble', 'dribbble opened'));
+	controllers.controller('behanceController', itemsControllerFactory('Behance', 'behance', 'behance opened'));
 
 	// search
 	controllers.controller('searchController', require('./searchController'));
