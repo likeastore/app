@@ -84,3 +84,40 @@
 		left: 0;
 	}
 }
+
+.slideInPositionRight {
+	-webkit-animation-name: slideInPositioRight;
+	-moz-animation-name: slideInPositionRight;
+	-ms-animation-name: slideInPositionRight;
+	animation-name: slideInPositionRight;
+}
+
+@-webkit-keyframes slideInPositionRight {
+	0% {
+		right: -2000px;
+	}
+
+	100% {
+		right: 0;
+	}
+}
+
+@-moz-keyframes slideInPositionRight {
+	0% {
+		right: -2000px;
+	}
+
+	100% {
+		right: 0;
+	}
+}
+
+@keyframes slideInPositionRight {
+	0% {
+		right: -2000px;
+	}
+
+	100% {
+		right: 0;
+	}
+}

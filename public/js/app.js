@@ -3,6 +3,7 @@ define(function (require) {
 
 	require('ngRoute');
 	require('ngAnimate');
+	require('ngTouch');
 	require('ngDialog');
 	require('ngIntercom');
 	require('angularLocalStorage');
@@ -17,6 +18,7 @@ define(function (require) {
 	var app = angular.module('likeastore', [
 		'ngRoute',
 		'ngAnimate',
+		'ngTouch',
 		'ngDialog',
 		'angularLocalStorage',
 		'ngIntercom',

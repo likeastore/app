@@ -5,6 +5,7 @@ require.config({
 		'ngRoute': '../components/angular-route/angular-route',
 		'ngCookies': '../components/angular-cookies/angular-cookies',
 		'ngAnimate': '../components/angular-animate/angular-animate',
+		'ngTouch': '../components/angular-touch/angular-touch',
 		'ngProgressLite': '../components/ngprogress-lite/ngprogress-lite',
 		'ngDialog': '../components/ngDialog/js/ngDialog',
 		'ngIntercom': '../components/angular-intercom/angular-intercom',
@@ -25,6 +26,9 @@ require.config({
 			deps: ['angular']
 		},
 		ngAnimate: {
+			deps: ['angular']
+		},
+		ngTouch: {
 			deps: ['angular']
 		},
 		ngProgressLite: {

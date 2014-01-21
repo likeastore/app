@@ -221,7 +221,35 @@
 		margin: 0;
 		padding-bottom: 50px;
 		overflow-y: scroll;
+		-webkit-transform: translateX(2000px);
+		-moz-transform: translateX(2000px);
+		-ms-transform: translateX(2000px);
+		transform: translateX(2000px);
+		-webkit-transition: all .5s;
+		-moz-transition: all .5s;
+		-ms-transition: all .5s;
+		transition: all .5s;
 		z-index: 1000;
+	}
+
+	.networks-menu.actual-networks-list .menu-subtitle .turn-off {
+		display: block;
+		color: #fff;
+		font-size: 25px;
+		line-height: 28px;
+		text-indent: 6px;
+		width: 26px;
+		height: 26px;
+		position: absolute;
+		top: 14px;
+		right: 10px;
+	}
+
+	.actual-networks-list.turn-on {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		-ms-transform: translateX(0px);
+		transform: translateX(0px);
 	}
 
 	.networks-menu.actual-networks-list li {

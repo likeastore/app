@@ -4,11 +4,11 @@
   "dependencies": {
     "underscore": "~1.4.4",
     "requirejs": "~2.1.5",
-    "angular": "1.2.7",
-    "angular-resource": "1.2.7",
-    "angular-route": "1.2.7",
-    "angular-cookies": "1.2.7",
-    "angular-animate": "1.2.7",
+    "angular": "1.2.9",
+    "angular-resource": "1.2.9",
+    "angular-route": "1.2.9",
+    "angular-cookies": "1.2.9",
+    "angular-animate": "1.2.9",
     "ngDialog": "~0.1.0",
     "hashids": "0.3.0",
     "seismo": "~0.0.3",
@@ -16,6 +16,7 @@
     "animate.css": "~3.0.0",
     "angularLocalStorage": "~0.1.7",
     "angular-intercom": "~0.0.5",
-    "angulartics": "~0.8.7"
+    "angulartics": "~0.8.7",
+    "angular-touch": "~1.2.9"
   }
 }
