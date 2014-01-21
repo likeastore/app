@@ -1,0 +1,86 @@
+.stop-animate {
+	-webkit-animation: none !important;
+	-moz-animation: none !important;
+	-ms-animation: none !important;
+	animation: none !important;
+}
+
+.blink {
+	-webkit-animation: blink .8s linear;
+	-moz-animation: blink .8s linear;
+	-ms-animation: blink .8s linear;
+	animation: blink .8s linear;
+}
+
+@-webkit-keyframes blink {
+	from {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	to {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+@-moz-keyframes blink {
+	from {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	to {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+@keyframes blink {
+	from {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	to {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.slideInPositionLeft {
+	-webkit-animation-name: slideInPositionLeft;
+	-moz-animation-name: slideInPositionLeft;
+	-ms-animation-name: slideInPositionLeft;
+	animation-name: slideInPositionLeft;
+}
+
+@-webkit-keyframes slideInPositionLeft {
+	0% {
+		left: -2000px;
+	}
+
+	100% {
+		left: 0;
+	}
+}
+
+@-moz-keyframes slideInPositionLeft {
+	0% {
+		left: -2000px;
+	}
+
+	100% {
+		left: 0;
+	}
+}
+
+@keyframes slideInPositionLeft {
+	0% {
+		left: -2000px;
+	}
+
+	100% {
+		left: 0;
+	}
+}
