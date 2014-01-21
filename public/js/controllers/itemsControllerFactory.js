@@ -1,10 +1,12 @@
 define(function () {
 	'use strict';
 
-	function itemsControllerFactory (title, target) {
+	function itemsControllerFactory (title, target, event) {
 
-		function ItemsController($scope, $rootScope, $window, appLoader, api) {
+		function ItemsController($scope, $rootScope, $window, appLoader, api, $analytics) {
 			$window.scrollTo(0,0);
+
+			event && $analytics.eventTrack(event);
 
 			$rootScope.title = title;
 			$scope.page = 1;

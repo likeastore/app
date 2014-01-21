@@ -6,13 +6,25 @@ define(function (require) {
 	require('ngDialog');
 	require('ngIntercom');
 	require('angularLocalStorage');
+	require('angulartics');
+	require('angulartics.mixpanel');
 
 	require('./services/services');
 	require('./controllers/controllers');
 	require('./directives/directives');
 
 	var angular = require('angular');
-	var app = angular.module('likeastore', ['ngRoute', 'ngAnimate', 'ngDialog', 'angularLocalStorage', 'ngIntercom', 'services', 'controllers', 'directives']);
+	var app = angular.module('likeastore', [
+		'ngRoute',
+		'ngAnimate',
+		'ngDialog',
+		'angularLocalStorage',
+		'ngIntercom',
+		'services',
+		'angulartics',
+		'angulartics.mixpanel',
+		'controllers',
+		'directives']);
 
 	app.init = function () {
 		angular.bootstrap(document, ['likeastore']);

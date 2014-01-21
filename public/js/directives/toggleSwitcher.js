@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function ToggleSwitcher ($window, api, ngProgressLite, ngDialog) {
+	function ToggleSwitcher ($window, api, ngProgressLite, ngDialog, $analytics) {
 		return {
 			restrict: 'A',
 			replace: true,
@@ -50,6 +50,7 @@ define(function (require) {
 						ngProgressLite.start();
 						api.save(urlOptions, {}, function (res) {
 							$window.location = res.authUrl;
+							$analytics.eventTrack('network enabled');
 							ngProgressLite.set(0.99);
 						});
 					}

@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function DribbbleNetworkController($scope, $rootScope, $timeout, api, ngProgressLite, ngDialog) {
+	function DribbbleNetworkController($scope, $rootScope, $timeout, api, ngProgressLite, ngDialog, $analytics) {
 		var timer;
 
 		$scope.$watch('username', function (value) {
@@ -24,6 +24,8 @@ define(function (require) {
 			api.save({ resource: 'networks', target: 'dribbble' }, { username: $scope.username }, function () {
 				var parentScope = $scope.$parent;
 				var persistWarningFor = [];
+
+				$analytics.eventTrack('network enabled');
 
 				ngProgressLite.done();
 				ngDialog.close();

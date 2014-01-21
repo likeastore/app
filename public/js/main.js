@@ -10,7 +10,9 @@ require.config({
 		'angularLocalStorage': '../components/angularLocalStorage/src/angularLocalStorage',
 		'hashids': '../components/hashids/lib/hashids',
 		'seismo': '../components/seismo/seismo',
-		'ngIntercom': '../components/angular-intercom/angular-intercom'
+		'ngIntercom': '../components/angular-intercom/angular-intercom',
+		'angulartics': '../components/angulartics/src/angulartics',
+		'angulartics.mixpanel': '../components/angulartics/src/angulartics-mixpanel'
 	},
 	shim: {
 		ngResource: {
@@ -51,6 +53,12 @@ require.config({
 			exports: 'seismo'
 		},
 		ngIntercom: {
+			deps: ['angular']
+		},
+		angulartics: {
+			deps: ['angular']
+		},
+		'angulartics.mixpanel': {
 			deps: ['angular']
 		}
 	},
