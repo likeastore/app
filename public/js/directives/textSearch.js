@@ -24,6 +24,7 @@ define(function () {
 			},
 			link: function (scope, elem, attrs) {
 				var delay = attrs.delay || 1000;
+				var parentScope = scope.$parent;
 				var timer = false;
 				var backup, pages;
 
@@ -36,29 +37,29 @@ define(function () {
 
 					if (value) {
 						timer = $timeout(function () {
-								$window.scrollTo(0,0);
+							$window.scrollTo(0,0);
 
-								scope.$parent.search = true;
-								makeItemsBackupOnce();
-								appLoader.loading();
+							parentScope.search = true;
+							makeItemsBackupOnce();
+							appLoader.loading();
 
-								api.get({ resource: 'search', text: value }, function (res) {
-									scope.$parent.items = res.data;
-									scope.$parent.nextPage = res.nextPage;
-									appLoader.ready();
-								});
+							api.get({ resource: 'search', text: value }, function (res) {
+								parentScope.items = res.data;
+								parentScope.nextPage = res.nextPage;
+								appLoader.ready();
+							});
 						}, delay);
 					} else if (backup) {
-						scope.$parent.items = scope.backup;
-						scope.$parent.nextPage = pages;
-						scope.$parent.search = false;
+						parentScope.items = scope.backup;
+						parentScope.nextPage = pages;
+						parentScope.search = false;
 					}
 				}
 
 				function makeItemsBackupOnce () {
 					if (!backup) {
-						scope.$parent.backup = angular.copy(scope.$parent.items);
-						pages = scope.$parent.nextPage;
+						parentScope.backup = angular.copy(parentScope.items);
+						pages = parentScope.nextPage;
 						backup = true;
 					}
 				}
