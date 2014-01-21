@@ -152,14 +152,18 @@
 		margin-bottom: 35px;
 	}
 
+	.more-for-mobile {
+		display: block;
+	}
+
 	.search-bar-wrap {
 		float: left;
 	}
 
 	.search-input {
+		background: transparent;
 		margin: 5px;
-		padding-left: 30px;
-		width: 150px;
+		padding-left: 35px;
 	}
 
 	.search-icon {
@@ -173,13 +177,11 @@
 
 	.networks-menu {
 		float: right;
-		margin-top: 8px;
-		width: 350px;
+		margin: 8px 6px 0 0;
 	}
 
 	.networks-menu li {
 		display: inline-block;
-		padding: 0;
 		overflow: visible;
 	}
 
@@ -195,11 +197,16 @@
 
 	.networks-menu .menu-title {
 		font-size: 0;
-		padding: 5px 10px;
+		padding: 6px 10px 5px;
+		height: 22px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
 	}
 
 	.networks-menu .menu-subtitle,
-	.networks-menu .new-notifier {
+	.networks-menu .new-notifier,
+	.actual-networks-list,
+	.promo-line {
 		display: none;
 	}
 
@@ -216,10 +223,6 @@
 		width: 62%;
 	}
 
-	.promo-line {
-		display: none;
-	}
-
 	.network .desc {
 		font-size: 11px;
 	}
@@ -228,16 +231,6 @@
 @media (max-width: 640px) and (orientation: landscape) {
 	.network-error {
 		font-size: 7px !important;
-	}
-}
-
-@media (max-width: 560px) {
-	.search-input {
-		width: 42px;
-	}
-
-	.search-input:focus {
-		width: 300px;
 	}
 }
 
@@ -250,26 +243,12 @@
 		width: 290px;
 	}
 
-	.search-input {
-		width: 0;
-		padding-left: 20px;
-	}
-
-	.search-icon {
-		top: 15px;
-	}
-
-	.search-input:focus {
-		width: 280px;
-		padding-left: 30px;
-	}
-
 	.networks-menu {
-		width: 393px;
+		margin-top: 8px;
 	}
 
-	.networks-menu li:nth-child(3) {
-		margin-right: 125px;
+	.search-input {
+		width: 100px;
 	}
 
 	.networks-menu .menu-title {
@@ -282,7 +261,7 @@
 
 	.menu-title .icon {
 		font-size: 16px;
-		vertical-align: bottom;
+		line-height: 24px;
 	}
 
 	.dash-item {
@@ -305,35 +284,5 @@
 	.expired-token-notifier {
 		top: 40px;
 		left: 10px !important;
-	}
-}
-
-@media (max-width: 420px) {
-	.networks-menu {
-		width: 362px;
-	}
-
-	.networks-menu li:nth-child(3) {
-		margin-right: 95px;
-	}
-}
-
-@media (max-width: 400px) {
-	.networks-menu {
-		width: 340px;
-	}
-
-	.networks-menu li:nth-child(3) {
-		margin-right: 74px;
-	}
-}
-
-@media (max-width: 380px) {
-	.networks-menu {
-		width: 280px;
-	}
-
-	.networks-menu li:nth-child(3) {
-		margin-right: 15px;
 	}
 }

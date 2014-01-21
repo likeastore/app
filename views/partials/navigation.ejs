@@ -1,6 +1,6 @@
 <div text-search="query"></div>
 
-<ul class="networks-menu">
+<ul class="networks-menu folders-list">
 	<li class="menu-subtitle">Folders</li>
 	<li>
 		<a href="/inbox" class="menu-title inbox"><i data-icon="M" class="icon"></i> Inbox <inbox-counter /></a>
@@ -13,6 +13,9 @@
 	<li>
 		<a href="/all" class="menu-title likes"><i data-icon="s" class="icon"></i> All Likes</a>
 	</li>
+	<li class="more-for-mobile">
+		<a href="#" class="menu-title more-for-mobile"><i data-icon="J" class="icon"></i></a>
+	</li>
 </ul>
 
 <ul class="networks-menu actual-networks-list">
@@ -21,8 +24,8 @@
 		<a href="/{{type}}" class="menu-title {{type}}"><i class="font-icon {{type}}-icon"></i> {{type}}</a>
 	</li>
 	<li ng-if="!networks.length" class="no-networks-msg">You have 0 connected networks.</li>
+	<li><a href="/settings" class="add-network-btn">+ Add network</a></li>
 </ul>
-<a href="/settings" class="add-network-btn">+ Add network</a>
 
 <div class="promo-line">
 	<div class="promo-text">Invite your friends to stay tuned with their likes!</div>

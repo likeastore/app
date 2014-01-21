@@ -93,6 +93,10 @@
 	text-decoration: none;
 }
 
+.more-for-mobile {
+	display: none;
+}
+
 .networks-menu .no-networks-msg {
 	color: #fff;
 	font-size: 13px;
@@ -143,6 +147,10 @@
 
 .menu-title.likes:hover {
 	background-color: #1abc9c;
+}
+
+.more-for-mobile .menu-title:hover {
+	background-color: #3498db;
 }
 
 .menu-title.facebook:hover {
@@ -308,12 +316,12 @@
 	position: absolute;
 	top: 25px;
 	left: 20px;
-	z-index: 1;
+	z-index: 2;
 }
 
 .search-input {
 	border: 0;
-	background-color: rgba(0,0,0,.0);
+	background-color: #3b454b;
 	color: #edf0f2;
 	font: 11px 'Lato', 'Open Sans', Arial, sans-serif;
 	padding: 5px 10px 5px 48px;
@@ -337,7 +345,7 @@
 }
 
 .hover-background {
-	background-color: #3b454b;
+	background-color: #47535c;
 	width: 0;
 	height: 40px;
 	position: absolute;
