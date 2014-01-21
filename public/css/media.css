@@ -150,6 +150,7 @@
 		width: 100%;
 		height: 50px;
 		margin-bottom: 35px;
+		overflow: visible;
 	}
 
 	.more-for-mobile {
@@ -175,12 +176,18 @@
 		top: 5px;
 	}
 
-	.networks-menu {
+	.networks-menu.folders-list .menu-subtitle,
+	.networks-menu.folders-list .new-notifier,
+	.promo-line {
+		display: none;
+	}
+
+	.networks-menu.folders-list {
 		float: right;
 		margin: 8px 6px 0 0;
 	}
 
-	.networks-menu li {
+	.networks-menu.folders-list li {
 		display: inline-block;
 		overflow: visible;
 	}
@@ -195,19 +202,38 @@
 		left: 2px;
 	}
 
-	.networks-menu .menu-title {
+	.networks-menu.folders-list .menu-title {
 		font-size: 0;
-		padding: 6px 10px 5px;
 		height: 22px;
+		padding: 6px 10px 5px;
 		-webkit-border-radius: 2px;
 		border-radius: 2px;
 	}
 
-	.networks-menu .menu-subtitle,
-	.networks-menu .new-notifier,
-	.actual-networks-list,
-	.promo-line {
-		display: none;
+	.networks-menu.actual-networks-list {
+		background: #1f282d;
+		width: 300px;
+		height: auto;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		margin: 0;
+		padding-bottom: 50px;
+		overflow-y: scroll;
+		z-index: 1000;
+	}
+
+	.networks-menu.actual-networks-list li {
+		border-top: 1px solid #343434;
+	}
+
+	.networks-menu.actual-networks-list .menu-subtitle {
+		padding: 20px 20px 10px;
+	}
+
+	.networks-menu.actual-networks-list .add-network-btn {
+		margin-top: 15px;
 	}
 
 	.menu-title .icon {
@@ -235,6 +261,14 @@
 }
 
 @media (max-width: 440px) {
+	.account-info .account-name {
+		max-width: 120px;
+		height: 35px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
 	.main-dashdoard {
 		margin-left: 0;
 	}
@@ -251,7 +285,7 @@
 		width: 100px;
 	}
 
-	.networks-menu .menu-title {
+	.folders-list .menu-title {
 		padding: 3px 7px;
 	}
 
