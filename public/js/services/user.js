@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function User ($rootScope, $timeout, api) {
+	function User ($rootScope, api) {
 		return {
 			initialize: function () {
 				api.get({ resource: 'users', target: 'me' }, function (user) {
@@ -14,9 +14,6 @@ define(function (require) {
 			getActiveNetworks: function () {
 				api.query({ resource: 'networks' }, function (networks) {
 					$rootScope.networks = networks;
-					$timeout(function () {
-						$rootScope.networksLoaded = true;
-					}, 1000);
 				});
 
 				return this;
