@@ -68,14 +68,6 @@ a:hover {
 	text-decoration: underline;
 }
 
-.left {
-	float: left;
-}
-
-.right {
-	float: right;
-}
-
 /* Empty results or no items on page */
 .empty-results {
 	font-family: 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;

@@ -70,7 +70,7 @@
 	font-size: 8px;
 }
 
-.networks-menu .add-network-btn {
+.add-network-btn {
 	display: block;
 	background: #3b454b;
 	color: #fff;
@@ -88,8 +88,17 @@
 	text-transform: uppercase;
 }
 
-.networks-menu .add-network-btn:hover {
+.add-network-btn:hover {
 	background: #47535c;
+	text-decoration: none;
+}
+
+.networks-menu .no-networks-msg {
+	color: #fff;
+	font-size: 13px;
+	font-weight: 300;
+	margin: 5px 0 10px 20px;
+	width: 80%;
 }
 
 .menu-title .icon,
