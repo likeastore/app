@@ -284,7 +284,12 @@
 
 @media (max-width: 640px) and (orientation: landscape) {
 	.network-error {
-		font-size: 7px !important;
+		font-size: 10px !important;
+	}
+
+	.expired-token-notifier {
+		top: 45px;
+		left: 15px !important;
 	}
 }
 

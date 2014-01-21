@@ -332,6 +332,7 @@
 	resize: none;
 	position: relative;
 	z-index: 1;
+	border-radius: 0;
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-ms-transition: all .3s ease-in-out;
@@ -620,7 +621,8 @@
 	transition: all .3s ease-in-out;
 }
 
-.dash-item:hover .item-action-buttons {
+.dash-item:hover .item-action-buttons,
+.item-action-buttons.show-on-mobile {
 	visibility: visible;
 	top: 0;
 }
