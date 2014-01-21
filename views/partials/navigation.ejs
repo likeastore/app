@@ -13,10 +13,10 @@
 	<li>
 		<a href="/all" class="menu-title likes"><i data-icon="s" class="icon"></i> All Likes</a>
 	</li>
-	<li class="menu-subtitle">Services</li>
 </ul>
 
 <ul class="networks-menu actual-networks-list">
+	<li class="menu-subtitle">Services</li>
 	<li ng-repeat="network in networks" ng-init="type = network.service == 'gist' ? 'github' : network.service">
 		<a href="/{{type}}" class="menu-title {{type}}"><i class="font-icon {{type}}-icon"></i> {{type}}</a>
 	</li>

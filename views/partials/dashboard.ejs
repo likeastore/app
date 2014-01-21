@@ -1,5 +1,5 @@
 <!-- navigation -->
-<nav ng-include="'partials/navigation'" class="left dashboard-nav" sticky-at="user.warning ? 90 : 50"></nav>
+<nav ng-include="'partials/navigation'" class="left dashboard-nav animated slideInLeft" sticky-at="user.warning ? 90 : 50" ng-class="{'stop-animate': networksLoaded}"></nav>
 
 <!-- dashboard -->
 <section class="main-dashdoard {{title|lowercase}}">

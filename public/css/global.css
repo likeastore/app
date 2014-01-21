@@ -130,6 +130,13 @@ a:hover {
 	cursor: pointer;
 }
 
+.stop-animate {
+	-webkit-animation: none !important;
+	-moz-animation: none !important;
+	-ms-animation: none !important;
+	animation: none !important;
+}
+
 .blink {
 	-webkit-animation: blink .8s linear;
 	-moz-animation: blink .8s linear;
