@@ -27,14 +27,6 @@ define(function () {
 				var timer = false;
 				var backup, pages;
 
-				// fix iOS input position:fixed bug
-				var isIOS = (/(ipad|iphone|ipod)/g).test(navigator.userAgent.toLowerCase());
-				if (isIOS) {
-					elem.find('input').on('focus', function () {
-						window.scrollTo(0,0);
-					});
-				}
-
 				scope.$watch('query', searching);
 
 				function searching (value) {
@@ -46,27 +38,27 @@ define(function () {
 						timer = $timeout(function () {
 								$window.scrollTo(0,0);
 
-								scope.search = true;
+								scope.$parent.search = true;
 								makeItemsBackupOnce();
 								appLoader.loading();
 
 								api.get({ resource: 'search', text: value }, function (res) {
-									scope.items = res.data;
-									scope.nextPage = res.nextPage;
+									scope.$parent.items = res.data;
+									scope.$parent.nextPage = res.nextPage;
 									appLoader.ready();
 								});
 						}, delay);
 					} else if (backup) {
-						scope.items = scope.backup;
-						scope.nextPage = pages;
-						scope.search = false;
+						scope.$parent.items = scope.backup;
+						scope.$parent.nextPage = pages;
+						scope.$parent.search = false;
 					}
 				}
 
 				function makeItemsBackupOnce () {
 					if (!backup) {
-						scope.backup = angular.copy(scope.items);
-						pages = scope.nextPage;
+						scope.$parent.backup = angular.copy(scope.$parent.items);
+						pages = scope.$parent.nextPage;
 						backup = true;
 					}
 				}
