@@ -28,16 +28,21 @@ define(function () {
 				var timer = false;
 				var backup, pages;
 
-				scope.$watch('query', searching);
+				scope.$watch('query', searching, true);
 
 				function searching (value) {
 					if (timer) {
 						$timeout.cancel(timer);
 					}
 
-					if (value) {
+					if (value && value !== parentScope.query) {
 						timer = $timeout(function () {
 							$window.scrollTo(0,0);
+
+							// ignore these requests on search page
+							if (parentScope.title === 'Search') {
+								return;
+							}
 
 							parentScope.search = true;
 							makeItemsBackupOnce();
