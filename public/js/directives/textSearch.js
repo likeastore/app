@@ -28,7 +28,7 @@ define(function () {
 				var timer = false;
 				var backup, pages;
 
-				scope.$watch('query', searching);
+				scope.$watch('query', searching, true);
 
 				function searching (value) {
 					if (timer) {
