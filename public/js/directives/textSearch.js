@@ -35,9 +35,14 @@ define(function () {
 						$timeout.cancel(timer);
 					}
 
-					if (value) {
+					if (value && value !== parentScope.query) {
 						timer = $timeout(function () {
 							$window.scrollTo(0,0);
+
+							// ignore these requests on search page
+							if (parentScope.title === 'Search') {
+								return;
+							}
 
 							parentScope.search = true;
 							makeItemsBackupOnce();
