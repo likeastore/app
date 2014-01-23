@@ -3,7 +3,8 @@ var history = require('../models/history');
 function historyService (app) {
 
 	app.get('/api/history',
-		getUsersFeed);
+		getUsersFeed
+	);
 
 	function getUsersFeed(req, res, next) {
 		history.getForUser(req.user, function (err, data) {
