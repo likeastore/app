@@ -11,7 +11,6 @@ define(function (require) {
 	directives.directive('linkify', require('./linkify'));
 	directives.directive('stickyAt', require('./stickyAt'));
 	directives.directive('dropdownMenu', require('./dropdownMenu'));
-	directives.directive('inboxCounter', require('./inboxCounter'));
 	directives.directive('shareOn', require('./shareOn'));
 	directives.directive('touchy', require('./touchy'));
 

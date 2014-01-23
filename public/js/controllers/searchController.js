@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function SearchController ($scope, $rootScope, $routeParams, appLoader, api, $analytics) {
+	function SearchController ($scope, $rootScope, $routeParams, appLoader, api, user, $analytics) {
 		appLoader.loading();
 
 		$analytics.eventTrack('search opened');
@@ -13,6 +13,7 @@ define(function (require) {
 
 		$scope.hideLike = function (id, index) {
 			api.delete({ resource: 'items', target: id }, function (res) {
+				user.getInboxCount();
 				$scope.items.splice(index, 1);
 			});
 		};
