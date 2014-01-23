@@ -2,27 +2,48 @@ var moment = require('moment');
 
 var config = require('../../config');
 var db = require('../db')(config);
+var networks = require('./networks');
 
 var pageSize = 30;
 
 var itemsCountCache;
 var itemsCountCacheTTL = 5;
 
-function getAllItems(user, page, callback) {
-	var query = db.items.find({ user: user.email, hidden: {$exists: false} }).limit(pageSize);
-	if (page) {
-		query = query.skip(pageSize * (page - 1));
-	}
-
-	query.sort({ created: -1 }, returnResults);
-
-	function returnResults(err, items) {
+function ensureNetworkEnabled(user, type, callback) {
+	networks.findNetworks(user, function (err, networks) {
 		if (err) {
 			return callback(err);
 		}
 
-		callback(null, {data: items, nextPage: items.length === pageSize});
-	}
+		var findByType = function (network) {
+			return network.service === type;
+		};
+
+		callback(null, networks.some(findByType));
+	});
+}
+
+function getAllItems(user, page, callback) {
+	networks.findNetworks(user, function (err, networks) {
+		var enabled = networks.map(function (network) {
+			return network.service;
+		});
+
+		var query = db.items.find({ user: user.email, hidden: {$exists: false}, type: {$in: enabled} }).limit(pageSize);
+		if (page) {
+			query = query.skip(pageSize * (page - 1));
+		}
+
+		query.sort({ created: -1 }, returnResults);
+
+		function returnResults(err, items) {
+			if (err) {
+				return callback(err);
+			}
+
+			callback(null, {data: items, nextPage: items.length === pageSize});
+		}
+	});
 }
 
 function getItemsCount(callback) {
@@ -50,20 +71,30 @@ function getItemsCount(callback) {
 }
 
 function getItemsByType(user, type, page, callback) {
-	var query = db.items.find({ user: user.email, type: type, hidden: {$exists: false} }).limit(pageSize);
-	if (page) {
-		query = query.skip(pageSize * (page - 1));
-	}
-
-	query.sort({ created: -1 }, returnResults);
-
-	function returnResults(err, items) {
+	ensureNetworkEnabled(user, type, function (err, enabled) {
 		if (err) {
 			return callback(err);
 		}
 
-		callback(null, {data: items, nextPage: items.length === pageSize});
-	}
+		if (!enabled) {
+			return callback({message: 'network disabled for user', status: 404});
+		}
+
+		var query = db.items.find({ user: user.email, type: type, hidden: {$exists: false} }).limit(pageSize);
+		if (page) {
+			query = query.skip(pageSize * (page - 1));
+		}
+
+		query.sort({ created: -1 }, returnResults);
+
+		function returnResults(err, items) {
+			if (err) {
+				return callback(err);
+			}
+
+			callback(null, {data: items, nextPage: items.length === pageSize});
+		}
+	});
 }
 
 function getInbox(user, page, callback) {

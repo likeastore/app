@@ -34,6 +34,10 @@ describe('items.spec.js', function () {
 
 		describe('when getting all items', function () {
 			beforeEach(function (done) {
+				testUtils.createTestNetworks(user, {}, done);
+			});
+
+			beforeEach(function (done) {
 				testUtils.createTestItems(user, function (err, items) {
 					done(err);
 				});
@@ -54,12 +58,38 @@ describe('items.spec.js', function () {
 			it ('should return all items', function () {
 				expect(results.data.length).to.equal(10);
 			});
+
+			describe('and network is absent', function () {
+				beforeEach(function (done) {
+					testUtils.removeTestNetwork(user, 'twitter', done);
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it ('should respond with 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it ('should return all items without twitter', function () {
+					expect(results.data.length).to.lessThan(10);
+				});
+			});
 		});
 
 		describe('when getting items by type', function () {
 			var response, results;
 
 			describe('for twitter', function () {
+				beforeEach(function (done) {
+					testUtils.createTestNetwork(user, 'twitter', done);
+				});
+
 				beforeEach(function (done) {
 					testUtils.createTestItemsOfType(user, 'twitter', function (err, items) {
 						done(err);
@@ -89,6 +119,10 @@ describe('items.spec.js', function () {
 
 			describe('for github', function () {
 				beforeEach(function (done) {
+					testUtils.createTestNetwork(user, 'github', done);
+				});
+
+				beforeEach(function (done) {
 					testUtils.createTestItemsOfType(user, 'github', function (err, items) {
 						done(err);
 					});
@@ -117,6 +151,10 @@ describe('items.spec.js', function () {
 
 			describe('for stackoverflow', function () {
 				beforeEach(function (done) {
+					testUtils.createTestNetwork(user, 'stackoverflow', done);
+				});
+
+				beforeEach(function (done) {
 					testUtils.createTestItemsOfType(user, 'stackoverflow', function (err, items) {
 						done(err);
 					});
@@ -142,10 +180,38 @@ describe('items.spec.js', function () {
 					expect(results.data.length).to.equal(10);
 				});
 			});
+
+			describe('and network is absent', function () {
+				beforeEach(function (done) {
+					testUtils.createTestItemsOfType(user, 'stackoverflow', function (err, items) {
+						done(err);
+					});
+				});
+
+				beforeEach(function () {
+					url += '/stackoverflow';
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it ('should respond with 404 (notFound)', function () {
+					expect(response.statusCode).to.equal(404);
+				});
+			});
 		});
 
 		describe('when item hidden', function () {
 			var items;
+
+			beforeEach(function (done) {
+				testUtils.createTestNetworks(user, {}, done);
+			});
 
 			beforeEach(function (done) {
 				testUtils.createTestItems(user, function (err, itms) {

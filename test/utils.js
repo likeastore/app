@@ -52,14 +52,14 @@ function createTestItems (user, size, callback) {
 		size = 10;
 	}
 
-	var types = ['github', 'twitter', 'stackoverflow'];
+	var networks = ['github', 'twitter', 'stackoverflow'];
 
 	var range = _.range(size);
 	var items = range.map (function (index) {
 		return {
 			userId: user._id,
 			user: user.email,
-			type: types[index % 3],
+			type: networks[index % 3],
 			created: moment().toDate(),
 			date: moment().toDate(),
 			itemId: index
@@ -69,7 +69,7 @@ function createTestItems (user, size, callback) {
 	db.items.insert(items, {safe: true}, callback);
 }
 
-function createTestItemsOfType(user, type, size, callback) {
+function createTestItemsOfType(user, network, size, callback) {
 	if (typeof size === 'function') {
 		callback = size;
 		size = 10;
@@ -80,7 +80,7 @@ function createTestItemsOfType(user, type, size, callback) {
 		return {
 			userId: user._id,
 			user: user.email,
-			type: type,
+			type: network,
 			created: moment().toDate(),
 			date: moment().toDate(),
 			itemId: index
@@ -90,6 +90,19 @@ function createTestItemsOfType(user, type, size, callback) {
 	db.items.insert(items, {safe: true}, callback);
 }
 
+function createTestNetwork(user, type, callback) {
+	var network = {
+		user: user.email,
+		service: type
+	};
+
+	db.networks.insert(network, {safe: true}, callback);
+}
+
+function removeTestNetwork(user, type, callback) {
+	db.networks.remove({user: user.email, service: type}, callback);
+}
+
 function createTestNetworks(user, props, callback) {
 	if (typeof props === 'function') {
 		callback = props;
@@ -97,10 +110,12 @@ function createTestNetworks(user, props, callback) {
 	}
 
 	var range = _.range(3);
+	var types = ['github', 'twitter', 'stackoverflow'];
+
 	var networks = range.map(function (index) {
 		return _.extend({
 			user: user.email,
-			service: 'github',
+			service: types[index % 3],
 			accessToken: 'test-token'
 		}, props);
 	});
@@ -124,8 +139,10 @@ module.exports = {
 	loginToApi: loginToApi,
 	createTestItems: createTestItems,
 	createTestItemsOfType: createTestItemsOfType,
+	createTestNetwork: createTestNetwork,
 	createTestNetworks: createTestNetworks,
 	getUserFromDb: getUserFromDb,
+	removeTestNetwork: removeTestNetwork,
 
 	// infa
 	getDb: getDb

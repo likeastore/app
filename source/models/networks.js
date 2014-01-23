@@ -4,15 +4,15 @@ var ObjectId = require('mongojs').ObjectId;
 var config = require('../../config');
 var db = require('../db')(config);
 
-exports.createOrUpdate = function (network, callback) {
+function createOrUpdate(network, callback) {
 	db.networks.update(
 		{user: network.user, service: network.service},
 		{$set: network, $unset: {disabled: ''}},
 		{safe: true, upsert: true, 'new': true},
 		callback);
-};
+}
 
-exports.removeNetwork = function (user, service, callback) {
+function removeNetwork(user, service, callback) {
 	db.networks.remove({ user: user.email, service: service }, function (err) {
 		if (err) {
 			return callback(err);
@@ -20,9 +20,9 @@ exports.removeNetwork = function (user, service, callback) {
 
 		callback(null);
 	});
-};
+}
 
-exports.findNetworks = function (user, callback) {
+function findNetworks(user, callback) {
 	var nets = [];
 	var fieldsToPick = ['service', 'lastExecution', 'disabled'];
 
@@ -39,13 +39,13 @@ exports.findNetworks = function (user, callback) {
 		network.id = doc._id.toString();
 		nets.push(network);
 	});
-};
+}
 
-exports.enable = function (id, callback) {
+function enable(id, callback) {
 	db.networks.update({_id: new ObjectId(id)}, { disabled: '' }, callback);
-};
+}
 
-exports.getDribbbleUser = function (username, callback) {
+function getDribbbleUser(username, callback) {
 	if (!username || typeof username !== 'string') {
 		return callback({ message: 'username is invalid' });
 	}
@@ -58,10 +58,10 @@ exports.getDribbbleUser = function (username, callback) {
 		}
 
 		if (resp.statusCode === 404) {
-			getScout();
-		} else {
-			callback(null, body);
+			return getScout();
 		}
+
+		callback(null, body);
 	});
 
 	function getScout() {
@@ -80,4 +80,12 @@ exports.getDribbbleUser = function (username, callback) {
 			});
 		});
 	}
+}
+
+module.exports = {
+	createOrUpdate: createOrUpdate,
+	removeNetwork: removeNetwork,
+	findNetworks: findNetworks,
+	enable: enable,
+	getDribbbleUser: getDribbbleUser
 };
