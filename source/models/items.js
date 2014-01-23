@@ -140,17 +140,23 @@ function getInbox(user, page, callback) {
 }
 
 function getInboxCount(user, page, callback) {
-	var criteria = {user: user.email, hidden: {$exists: false}};
-	if (user.loginPreviousDate) {
-		criteria.date = { $gt: user.loginPreviousDate };
-	}
-
-	db.items.find(criteria).count(function (err, count) {
+	ensureNetworksEnabled(user, function (err, enabled) {
 		if (err) {
 			return callback(err);
 		}
 
-		callback(null, {count: count});
+		var criteria = {user: user.email, hidden: {$exists: false}, type: {$in: enabled}};
+		if (user.loginPreviousDate) {
+			criteria.date = { $gt: user.loginPreviousDate };
+		}
+
+		db.items.find(criteria).count(function (err, count) {
+			if (err) {
+				return callback(err);
+			}
+
+			callback(null, {count: count});
+		});
 	});
 }
 
