@@ -17,6 +17,14 @@ define(function (require) {
 				});
 
 				return this;
+			},
+
+			getInboxCount: function () {
+				api.get({ resource: 'items', target: 'inbox', verb: 'count' }, function (res) {
+					$rootScope.inboxCount = res.count <= 1000 ? res.count : '1000 +';
+				});
+
+				return this;
 			}
 		};
 	}

@@ -3,7 +3,7 @@ define(function () {
 
 	function itemsControllerFactory (title, target, event) {
 
-		function ItemsController($scope, $rootScope, $window, appLoader, api, $analytics) {
+		function ItemsController($scope, $rootScope, $window, appLoader, api, user, $analytics) {
 			$window.scrollTo(0,0);
 
 			event && $analytics.eventTrack(event);
@@ -22,6 +22,7 @@ define(function () {
 
 			$scope.hideLike = function (id, index) {
 				api.delete({ resource: 'items', target: id }, function (res) {
+					user.getInboxCount();
 					$scope.items.splice(index, 1);
 				});
 			};

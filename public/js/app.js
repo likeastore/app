@@ -63,7 +63,9 @@ define(function (require) {
 
 	app.run(function (user, intercom) {
 		user.initialize()
-			.getActiveNetworks();
+			.getActiveNetworks()
+			.getInboxCount();
+
 		intercom.boot();
 	});
 

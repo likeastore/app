@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function ToggleSwitcher ($window, $rootScope, api, ngProgressLite, ngDialog, $analytics) {
+	function ToggleSwitcher ($window, $rootScope, api, user, ngProgressLite, ngDialog, $analytics) {
 		return {
 			restrict: 'A',
 			replace: true,
@@ -32,6 +32,8 @@ define(function (require) {
 					if (isOn) {
 						elem.addClass('disabled');
 						api.remove(urlOptions, function (res) {
+							user.getInboxCount();
+
 							$rootScope.networks.splice(index, 1);
 							elem.toggleClass('on');
 							elem.removeClass('disabled');

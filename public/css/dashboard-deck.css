@@ -401,6 +401,16 @@
 	transition: all .3s ease-in;
 }
 
+.dash-item.ng-enter.ng-enter-active,
+.dash-item-animation.ng-leave {
+	opacity: 1;
+}
+
+.dash-item.ng-leave.ng-leave-active,
+.dash-item.ng-enter {
+	opacity: 0;
+}
+
 .item-text-wrap {
 	padding: 0 12px;
 }
