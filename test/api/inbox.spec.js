@@ -34,6 +34,10 @@ describe('inbox.spec.js', function () {
 			});
 
 			beforeEach(function (done) {
+				testUtils.createTestNetworks(user, done);
+			});
+
+			beforeEach(function (done) {
 				testUtils.createTestItems(user, 60, done);
 			});
 
@@ -67,6 +71,10 @@ describe('inbox.spec.js', function () {
 					headers = {'X-Access-Token': accessToken};
 					done(err);
 				});
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestNetworks(user, done);
 			});
 
 			beforeEach(function (done) {
@@ -153,6 +161,10 @@ describe('inbox.spec.js', function () {
 					headers = {'X-Access-Token': accessToken};
 					done(err);
 				});
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestNetworks(user, done);
 			});
 
 			beforeEach(function (done) {

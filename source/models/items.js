@@ -23,11 +23,25 @@ function ensureNetworkEnabled(user, type, callback) {
 	});
 }
 
-function getAllItems(user, page, callback) {
+function ensureNetworksEnabled(user, callback) {
 	networks.findNetworks(user, function (err, networks) {
+		if (err) {
+			return callback(err);
+		}
+
 		var enabled = networks.map(function (network) {
 			return network.service;
 		});
+
+		callback(null, enabled);
+	});
+}
+
+function getAllItems(user, page, callback) {
+	ensureNetworksEnabled(user, function (err, enabled) {
+		if (err) {
+			return callback(err);
+		}
 
 		var query = db.items.find({ user: user.email, hidden: {$exists: false}, type: {$in: enabled} }).limit(pageSize);
 		if (page) {
@@ -98,25 +112,31 @@ function getItemsByType(user, type, page, callback) {
 }
 
 function getInbox(user, page, callback) {
-	var criteria = {user: user.email, hidden: {$exists: false}};
-	if (user.loginPreviousDate) {
-		criteria.date = { $gt: user.loginPreviousDate };
-	}
-
-	var query = db.items.find(criteria).limit(pageSize);
-	if (page) {
-		query = query.skip(pageSize * (page - 1));
-	}
-
-	query.sort({ created: -1 }, returnResults);
-
-	function returnResults(err, items) {
+	ensureNetworksEnabled(user, function (err, enabled) {
 		if (err) {
 			return callback(err);
 		}
 
-		callback(null, {data: items, nextPage: items.length === pageSize});
-	}
+		var criteria = {user: user.email, hidden: {$exists: false}, type: {$in: enabled}};
+		if (user.loginPreviousDate) {
+			criteria.date = { $gt: user.loginPreviousDate };
+		}
+
+		var query = db.items.find(criteria).limit(pageSize);
+		if (page) {
+			query = query.skip(pageSize * (page - 1));
+		}
+
+		query.sort({ created: -1 }, returnResults);
+
+		function returnResults(err, items) {
+			if (err) {
+				return callback(err);
+			}
+
+			callback(null, {data: items, nextPage: items.length === pageSize});
+		}
+	});
 }
 
 function getInboxCount(user, page, callback) {
