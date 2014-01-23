@@ -1,28 +1,17 @@
 define(function (require) {
 	'use strict';
 
-	var angular = require('angular');
-	var countSession;
-
-	function InboxCounter(api) {
+	function InboxCounter(api, $location) {
 		return {
 			restrict: 'E',
+			template: '<span class="inbox-counter" ng-hide="count === 0">{{count}}</span>',
 			link: function (scope, elem, attr) {
-				if (!angular.isUndefined(countSession)) {
-					elem.html(format(countSession));
-				} else {
-					api.get({ resource: 'items', target: 'inbox', verb: 'count' }, function (res) {
-						countSession = res.count;
-						elem.html(format(countSession));
-					});
-				}
+				api.cacheGet({ resource: 'items', target: 'inbox', verb: 'count' }, function (res) {
+					scope.count = format(res.count);
+				});
 
 				function format(count) {
-					if (count === 0) {
-						return;
-					}
-
-					return '<span class="inbox-counter">' + (count <= 1000 ? count : '1000 +') + '</span>';
+					return count <= 1000 ? count : '1000 +';
 				}
 			}
 		};
