@@ -13,7 +13,8 @@ require.config({
 		'hashids': '../components/hashids/lib/hashids',
 		'seismo': '../components/seismo/seismo',
 		'angulartics': '../components/angulartics/src/angulartics',
-		'angulartics.mixpanel': '../components/angulartics/src/angulartics-mixpanel'
+		'angulartics.mixpanel': '../components/angulartics/src/angulartics-mixpanel',
+		'underscore': '../components/underscore/underscore'
 	},
 	shim: {
 		ngResource: {
@@ -51,6 +52,9 @@ require.config({
 		},
 		seismo: {
 			exports: 'seismo'
+		},
+		underscore: {
+			exports: '_'
 		},
 		angulartics: {
 			deps: ['angular']

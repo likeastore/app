@@ -15,6 +15,7 @@ define(function (require) {
 	services.factory('links', require('./links'));
 	services.factory('analytics', require('./analytics'));
 	services.factory('intercom', require('./intercom'));
+	services.factory('_', require('./underscore'));
 
 	return services;
 });

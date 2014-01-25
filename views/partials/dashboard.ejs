@@ -15,7 +15,7 @@
 				<script type="text/ng-template" id="shareLikeDialog">
 					<h2>
 						<i data-icon="Y" class="icon"></i>
-						 Copy and share link
+						Copy and share link
 					</h2>
 					<input id="likeUrl" class="field" ng-model="link">
 					<div class="social-desc">Or share it through social services</div>
@@ -59,28 +59,29 @@
 		<div class="show-more" ng-click="showMore()">Show more</div>
 	</div>
 
-	<div class="empty-results" ng-show="loaded && !items.length && search">
+	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
+
+	<div class="empty-results" ng-if="loaded && !items.length && search">
 		<div class="annoyed-icon big-icon"></div>
 		<h2>Ooops.. no matching search results!</h2>
 	</div>
 
-	<div class="empty-results" ng-show="loaded && !items.length && inbox">
+	<div class="empty-results" ng-if="loaded && !items.length && inbox">
 		<div class="box-icon big-icon"></div>
 		<h2>Your inbox is empty..</h2>
 		<h3>No new likes were collected since your last visit, be more active!</h3>
 	</div>
 
-	<div class="empty-results" ng-show="loaded && !items.length && !search && !inbox">
+	<div class="empty-results" ng-if="loaded && !items.length && !search && !inbox">
 		<div class="robot-icon big-icon"></div>
 		<h2>You don't own any items to display yet..</h2>
 		<a href="/settings" class="red-press-btn">Go to settings</a>
 	</div>
 
-	<div class="empty-results" ng-show="error">
+	<div class="empty-results" ng-if="error">
 		<div class="error-icon big-icon"></div>
 		<h2>Robot panic.. we are experiencing troubles!</h2>
 		<h3>Sorry for that. The error is logged and team already notified, it will be fixed soon.</h3>
 	</div>
 
-	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
 </section>

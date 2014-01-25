@@ -150,6 +150,10 @@
 	background-color: #1abc9c;
 }
 
+.menu-title.history:hover {
+	background-color: #34495e;
+}
+
 .more-for-mobile .menu-title:hover {
 	background-color: #3498db;
 }
