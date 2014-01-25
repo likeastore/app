@@ -1,4 +1,4 @@
-var history = require('../models/history');
+var histo = require('../models/history');
 
 function historyService (app) {
 
@@ -7,7 +7,7 @@ function historyService (app) {
 	);
 
 	function getUsersFeed(req, res, next) {
-		history.getForUser(req.user, function (err, data) {
+		histo.getForUser(req.user, function (err, data) {
 			res.json(data);
 		});
 	}

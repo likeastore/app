@@ -1,0 +1,21 @@
+<!-- navigation -->
+<nav class="left dashboard-nav" ng-include="'partials/navigation'" sticky-at="user.warning ? 90 : 50" ng-show="user"></nav>
+
+<!-- history -->
+<section class="main-dashdoard {{title|lowercase}}">
+	<ul class="history-wrap">
+		<li class="history-item" ng-repeat="item in items">
+			<time class="history-date">{{item.date|date:'d/M/yyyy'}}</time>
+			<div class="history-icon font-icon {{item.mainService}}-icon"></div>
+			<div class="history-info-block">
+				<ul>
+					<li class="history-likes-item" ng-repeat="service in item.services|orderBy:'-value'">
+						<i class="font-icon {{service.name}}-icon"></i> <span class="name">{{service.name}}</span>: &nbsp<a href="/{{service.name}}">{{service.value}} {{service.text}}<span ng-if="service.value > 1">s</span></a>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+
+	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
+</section>
