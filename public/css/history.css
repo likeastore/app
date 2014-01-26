@@ -1,11 +1,12 @@
 .main-dashdoard.history {
 	padding: 40px 25px 0;
-	margin-right: 20px;
+	margin: 0 20px 0 330px
 }
 
 .history-wrap {
 	width: 100%;
 	position: relative;
+	padding-bottom: 30px;
 }
 
 .history-wrap:before {
@@ -104,7 +105,7 @@
 	border-bottom: 1px solid #e2e2e2;
 	font-size: 12px;
 	margin-left: 35px;
-	padding: 15px 25px;
+	padding: 15px 25px 12px;
 }
 
 .history-info-block:after {
