@@ -32,6 +32,10 @@
 		margin-left: 240px;
 	}
 
+	.main-dashdoard.history {
+		margin-left: 330px;
+	}
+
 	.show-more {
 		width: 98.4%;
 	}
@@ -62,6 +66,10 @@
 @media (max-width: 1100px) and (min-width: 801px) {
 	.main-dashdoard {
 		margin-left: 240px;
+	}
+
+	.main-dashdoard.history {
+		margin-left: 330px;
 	}
 
 	.dash-item {
@@ -97,6 +105,10 @@
 
 	.main-dashdoard {
 		margin-left: 200px;
+	}
+
+	.main-dashdoard.history {
+		margin-left: 290px;
 	}
 
 	.show-more {
@@ -273,6 +285,11 @@
 		margin-left: 15px;
 	}
 
+	.main-dashdoard.history {
+		padding-top: 90px;
+		margin-left: 105px;
+	}
+
 	.dash-item .desc {
 		width: 62%;
 	}
@@ -304,6 +321,16 @@
 
 	.main-dashdoard {
 		margin-left: 0;
+	}
+
+	.main-dashdoard.history {
+		margin-right: 0;
+		margin-left: 85px;
+	}
+
+	.history-info-block {
+		padding: 10px 15px;
+		margin-left: 35px;
 	}
 
 	.settings-page {
@@ -351,5 +378,11 @@
 	.expired-token-notifier {
 		top: 40px;
 		left: 10px !important;
+	}
+}
+
+@media (min-height: 800px) {
+	.history-wrap:before {
+		min-height: 1000px;
 	}
 }
