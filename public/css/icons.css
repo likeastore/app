@@ -114,6 +114,11 @@
 	background-size: 90px;
 }
 
+.history-empty-icon {
+	background: url(../img/history.png) center center no-repeat;
+	background-size: 90px;
+}
+
 .annoyed-icon {
 	background: url(../img/no-results-grey.png) center center no-repeat;
 	background-size: 90px;

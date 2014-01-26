@@ -8,6 +8,7 @@ define(function (require) {
 
 		$rootScope.title = 'Search';
 		$scope.search = true;
+		$scope.notLazySearchable = true;
 		$scope.query = $routeParams.text;
 		$scope.items = [];
 

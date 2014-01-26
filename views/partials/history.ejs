@@ -3,7 +3,7 @@
 
 <!-- history -->
 <section class="main-dashdoard {{title|lowercase}}">
-	<ul class="history-wrap">
+	<ul class="history-wrap" ng-if="items.length">
 		<li class="history-item" ng-repeat="item in items">
 			<time class="history-date">{{item.date|date:'d/M/yyyy'}}</time>
 			<div class="history-icon font-icon {{item.mainService}}-icon"></div>
@@ -14,6 +14,12 @@
 			</ul>
 		</li>
 	</ul>
+
+	<div class="empty-results" ng-if="loaded && !items.length">
+		<div class="history-empty-icon big-icon"></div>
+		<h2>Your history is empty..</h2>
+		<h3>Start to collect likes and track your social activity now!</h3>
+	</div>
 
 	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
 </section>

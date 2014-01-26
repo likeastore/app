@@ -13,6 +13,7 @@ define(function () {
 		$analytics.eventTrack('history opened');
 
 		$rootScope.title = 'History';
+		$scope.notLazySearchable = true;
 		$scope.items = [];
 
 		api.get({ resource: 'history' }, function (history) {
