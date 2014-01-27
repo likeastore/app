@@ -20,6 +20,9 @@ function usersService(app) {
 		deleteUser
 	);
 
+	app.get('/api/users/me/suggest',
+		suggestPeopleToFollow);
+
 	app.post('/api/users/me/follow/:id',
 		middleware.analytics.track('user followed'),
 		followUser
@@ -29,14 +32,6 @@ function usersService(app) {
 		middleware.analytics.track('user unfollowed'),
 		unfollowUser
 	);
-
-	app.get('/api/users/me/follows', function () {
-		getFollows
-	});
-
-	app.get('/api/users/me/followed', function () {
-		getFollowed
-	});
 
 	function findUserById(req, res, next) {
 		users.findById(req.params.id, function (err, user) {
@@ -91,6 +86,16 @@ function usersService(app) {
 			}
 
 			res.send(200);
+		});
+	}
+
+	function suggestPeopleToFollow(req, res, next) {
+		users.suggestPeople(req.user, function (err, suggested) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(suggested);
 		});
 	}
 

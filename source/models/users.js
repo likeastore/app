@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var async = require('async');
 var moment = require('moment');
 
@@ -69,15 +70,15 @@ function deactivate(user, callback) {
 	async.series(deleteTasks, callback);
 
 	function deleteNetworks(next) {
-		db.networks.remove({ 'user': user.email }, next);
+		db.networks.remove({ user: user.email }, next);
 	}
 
 	function deleteItems(next) {
-		db.items.remove({ 'user': user.email }, next);
+		db.items.remove({ user: user.email }, next);
 	}
 
 	function deleteUser(next) {
-		db.users.remove({ 'email': user.email }, next);
+		db.users.remove({ email: user.email }, next);
 	}
 }
 
@@ -143,7 +144,78 @@ function unfollow(user, followId, callback) {
 			}, callback);
 		};
 	}
+}
 
+function suggestPeople(user, callback) {
+	findFriendsFromConnectedNetworks(function (err, usernames) {
+		if (err) {
+			return callback(err);
+		}
+
+		findLikeastoreUsers(usernames, function (err, users) {
+			if (err) {
+				return callback(err);
+			}
+
+			skipIfAlreadyFollows(users, function (err, suggested) {
+				if (err) {
+					return callback(err);
+				}
+
+				callback(null, users);
+			});
+		});
+	});
+
+	function findFriendsFromConnectedNetworks(callback) {
+		userNetworks(function (err, networks) {
+			if (err) {
+				return callback(err);
+			}
+
+			networks = networks.filter(function (c) {
+				return _.contains(['github', 'twitter', 'facebook'], c.service);
+			});
+
+			async.map(networks, requestFriends, function (err, results) {
+				if (err) {
+					return callback(err);
+				}
+
+				var usernames =  _.uniq(_.flatten(usernames));
+
+				callback(null, usernames);
+			});
+		});
+
+		function userNetworks(callback) {
+			db.networks.find({user: user.email}, callback);
+		}
+
+		function requestFriends(network, callback) {
+			var requests = {
+				twitter: function (callback) {
+					callback(null, []);
+				},
+				facebook: function (callback) {
+					callback(null, []);
+				},
+				github: function (callback) {
+					callback(null, []);
+				}
+			};
+
+			requests[network.service](callback);
+		}
+	}
+
+	function findLikeastoreUsers(usernames, callback) {
+		db.users.find({username: {$in: usernames}}, callback);
+	}
+
+	function skipIfAlreadyFollows(users, callback) {
+		callback(null, users);
+	}
 }
 
 module.exports = {
@@ -155,5 +227,6 @@ module.exports = {
 	deactivate: deactivate,
 
 	follow: follow,
-	unfollow: unfollow
+	unfollow: unfollow,
+	suggestPeople: suggestPeople
 };
