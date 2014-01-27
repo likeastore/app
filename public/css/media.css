@@ -64,10 +64,6 @@
 		margin-left: 240px;
 	}
 
-	.main-dashdoard.history {
-		margin-left: 330px;
-	}
-
 	.dash-item {
 		width: 46%;
 		margin-right: 35px;
@@ -83,6 +79,12 @@
 
 	.show-more {
 		width: 97%;
+	}
+}
+
+@media (max-width: 1000px) {
+	.history-wrap {
+		width: 100%;
 	}
 }
 

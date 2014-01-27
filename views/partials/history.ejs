@@ -5,7 +5,7 @@
 <section class="main-dashdoard {{title|lowercase}}">
 	<ul class="history-wrap" ng-if="items.length">
 		<li class="history-item" ng-repeat="item in items">
-			<time class="history-date">{{item.date|date:'d/M/yyyy'}}</time>
+			<time class="history-date">{{item.date|date:'dd/MM/yyyy'}}</time>
 			<div class="history-icon font-icon {{item.mainService}}-icon"></div>
 			<ul class="history-info-block">
 				<li class="history-likes-item" ng-repeat="service in item.services|orderBy:'-value'">

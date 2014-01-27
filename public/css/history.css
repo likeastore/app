@@ -4,8 +4,9 @@
 }
 
 .history-wrap {
-	width: 100%;
+	width: 50%;
 	position: relative;
+	margin: 0 auto;
 	padding-bottom: 30px;
 }
 
