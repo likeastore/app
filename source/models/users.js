@@ -114,11 +114,46 @@ function follow(user, followId, callback) {
 	}
 }
 
+function unfollow(user, followId, callback) {
+	if (!followId || typeof followId !== 'string') {
+		return callback({message: 'bad follow user id', status: 412});
+	}
+
+	db.users.findOne({_id: new ObjectId(followId)}, function (err, followUser) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (!followUser) {
+			return callback({message: 'follow user not found', id: followId, status: 404});
+		}
+
+		var updateFollowing =  update({email: user.email}, {follows: { id: followUser._id }});
+		var updateFollowers = update({email: followUser.email}, {followed: {id: user._id }});
+
+		async.parallel([updateFollowing, updateFollowers], callback);
+
+	});
+
+	function update(query, pull) {
+		return function (callback) {
+			db.users.findAndModify({
+				query: query,
+				update: {$pull: pull},
+			}, callback);
+		};
+	}
+
+}
+
 module.exports = {
 	findById: findById,
 	findByEmail: findByEmail,
-	update: updateUser,
 	findByRequestToken: findByRequestToken,
+
+	update: updateUser,
 	deactivate: deactivate,
-	follow: follow
+
+	follow: follow,
+	unfollow: unfollow
 };

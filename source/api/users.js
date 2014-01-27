@@ -25,6 +25,11 @@ function usersService(app) {
 		followUser
 	);
 
+	app.del('/api/users/me/follow/:id',
+		middleware.analytics.track('user unfollowed'),
+		unfollowUser
+	);
+
 	function findUserById(req, res, next) {
 		users.findById(req.params.id, function (err, user) {
 			if (err) {
@@ -68,6 +73,16 @@ function usersService(app) {
 			}
 
 			res.send(201);
+		});
+	}
+
+	function unfollowUser(req, res, next) {
+		users.unfollow(req.user, req.params.id, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(200);
 		});
 	}
 

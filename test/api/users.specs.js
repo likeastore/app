@@ -131,7 +131,7 @@ describe.only('users.spec.js', function () {
 			});
 		});
 
-		describe('when follow', function () {
+		describe('when start follow', function () {
 			var userToFollow;
 
 			beforeEach(function (done) {
@@ -187,7 +187,64 @@ describe.only('users.spec.js', function () {
 			});
 		});
 
-		describe('when following', function () {
+		describe('when stop follow', function () {
+			var userToFollow;
+
+			beforeEach(function (done) {
+				testUtils.createTestUser(function (err, createdUser) {
+					userToFollow = createdUser;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.post({url: url + '/follow/' + userToFollow._id, headers: headers, json: true}, function (err, resp) {
+					error = err;
+					response = resp;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.del({url: url + '/follow/' + userToFollow._id, headers: headers, json: true}, function (err, resp) {
+					error = err;
+					response = resp;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			describe('and following after', function () {
+				beforeEach(function (done) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should follows nobody', function () {
+					expect(body.follows.length).to.equal(0);
+				});
+			});
+
+			describe('and followed user', function () {
+				beforeEach(function (done) {
+					request.get({url: baseUrl + '/' + userToFollow._id, headers: headers, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should followed by nobody', function () {
+					expect(body.followed.length).to.equal(0);
+				});
+			});
+
 		});
 	});
 });
