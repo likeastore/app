@@ -1,12 +1,10 @@
 define(function () {
 	'use strict';
 
-	function itemsControllerFactory (title, target, event, resource) {
+	function itemsControllerFactory (title, target, event) {
 
 		function ItemsController($scope, $rootScope, $window, appLoader, api, user, $analytics) {
 			$window.scrollTo(0,0);
-
-			resource = resource || 'items';
 
 			event && $analytics.eventTrack(event);
 
@@ -23,14 +21,14 @@ define(function () {
 			};
 
 			$scope.hideLike = function (id, index) {
-				api.delete({ resource: resource, target: id }, function (res) {
+				api.delete({ resource: 'items', target: id }, function (res) {
 					user.getInboxCount();
 					$scope.items.splice(index, 1);
 				});
 			};
 
 			function createQuery () {
-				var query = { resource: resource, page: $scope.page };
+				var query = { resource: 'items', page: $scope.page };
 				if (target) {
 					query.target = target;
 				}
