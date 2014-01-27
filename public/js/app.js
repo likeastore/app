@@ -51,6 +51,7 @@ define(function (require) {
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
 				.when('/history', { templateUrl: 'partials/history', controller: 'historyController' })
+				.when('/discover', { templateUrl: 'partials/discover', controller: 'discoverController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.when('/ooops', { templateUrl: 'partials/dashboard', controller: 'errorController' })
 				.otherwise({ redirectTo: '/' });
