@@ -107,6 +107,10 @@
 		margin-left: 290px;
 	}
 
+	.discover-source {
+		width: 60%;
+	}
+
 	.show-more {
 		width: 98.4%;
 	}
@@ -281,9 +285,21 @@
 		margin-left: 15px;
 	}
 
-	.main-dashdoard.history {
+	.main-dashdoard.history,
+	.main-dashdoard.discover {
 		padding-top: 90px;
+	}
+
+	.main-dashdoard.history {
 		margin-left: 105px;
+	}
+
+	.discover-source {
+		width: 50%;
+	}
+
+	.discover-info .action {
+		font-size: 10px;
 	}
 
 	.dash-item .desc {
@@ -319,14 +335,36 @@
 		margin-left: 0;
 	}
 
-	.main-dashdoard.history {
+	.main-dashdoard.history,
+	.main-dashdoard.discover {
 		margin-right: 0;
+	}
+
+	.main-dashdoard.history {
 		margin-left: 85px;
 	}
 
-	.history-info-block {
+	.history-info-block,
+	.discover-info {
 		padding: 10px 15px;
+	}
+
+	.history-info-block {
 		margin-left: 35px;
+	}
+
+	.discover-item {
+		padding-bottom: 35px;
+	}
+
+	.discover-source {
+		width: 45%;
+	}
+
+	.discover-info time {
+		position: absolute;
+		top: -20px;
+		left: 0;
 	}
 
 	.settings-page {
@@ -338,7 +376,7 @@
 	}
 
 	.search-input {
-		width: 100px;
+		width: 50px;
 	}
 
 	.folders-list .menu-title {

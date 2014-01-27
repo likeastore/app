@@ -1,0 +1,29 @@
+<!-- navigation -->
+<nav class="left dashboard-nav" ng-include="'partials/navigation'" sticky-at="user.warning ? 90 : 50" ng-show="user"></nav>
+
+<!-- discover -->
+<section class="main-dashdoard {{title|lowercase}}">
+	<ul class="discover-wrap">
+		<li class="discover-item" ng-repeat="item in items" ng-class="{'last': $last}">
+			<img src="{{item.user.avatar}}" class="avatar left">
+
+			<div class="discover-info">
+				<div class="action"><span class="username">{{item.user.displayName || item.user.name}}</span> liked on <span class="service">{{item.info.type}}</span>: <time class="right">4 hours ago</time></div>
+
+				<div class="discover-source-wrap">
+					<a href="{{item.info.source}}" class="thumb" style="background-image: url({{item.info.thumbnail || item.info.avatarUrl}});" ng-if="item.info.thumbnail || item.info.kind === 'link'" target="_blank"></a>
+
+					<div class="discover-source">
+						<a href="{{item.info.source}}" class="title" ng-if="item.info.title" target="_blank">{{item.info.title}}</a>
+						<a href="{{item.info.authorUrl}}" class="author {{item.info.type}}" ng-if="item.info.authorName">by @{{item.info.authorName}}</a>
+					</div>
+				</div>
+				<div class="desc" ng-if="item.info.description" linkify="item.info.description"></div>
+
+				<i class="item-type font-icon {{item.info.type}}-icon"></i>
+			</div>
+		</li>
+	</ul>
+
+	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
+</section>
