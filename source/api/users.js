@@ -30,6 +30,14 @@ function usersService(app) {
 		unfollowUser
 	);
 
+	app.get('/api/users/me/follows', function () {
+		getFollows
+	});
+
+	app.get('/api/users/me/followed', function () {
+		getFollowed
+	});
+
 	function findUserById(req, res, next) {
 		users.findById(req.params.id, function (err, user) {
 			if (err) {

@@ -9,8 +9,12 @@ function getRootUrl () {
 	return config.applicationUrl;
 }
 
+function createTestEmail() {
+	return moment().valueOf() + '@tests.com';
+}
+
 function createTestUser (callback) {
-	var email = moment().valueOf() + '@tests.com';
+	var email = createTestEmail();
 	var password = 'password';
 	var apiToken = crypto.createHash('sha1').update(email + ';' + password).digest('hex');
 
@@ -127,6 +131,13 @@ function getUserFromDb(user, callback) {
 	db.users.findOne({email: user.email}, callback);
 }
 
+function addFollows(user, follows, callback) {
+	db.users.findAndModify({
+		query: {email: user.email},
+		update: {$push: {follows: {$each: follows}}}
+	}, callback);
+}
+
 function getDb() {
 	return db;
 }
@@ -134,6 +145,7 @@ function getDb() {
 module.exports = {
 	// common
 	getRootUrl: getRootUrl,
+	createTestEmail: createTestEmail,
 	createTestUser: createTestUser,
 	createTestUserAndLoginToApi: createTestUserAndLoginToApi,
 	loginToApi: loginToApi,
@@ -143,6 +155,7 @@ module.exports = {
 	createTestNetworks: createTestNetworks,
 	getUserFromDb: getUserFromDb,
 	removeTestNetwork: removeTestNetwork,
+	addFollows: addFollows,
 
 	// infa
 	getDb: getDb

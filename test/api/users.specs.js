@@ -1,7 +1,7 @@
 var request = require('request');
 var testUtils = require('../utils');
 
-describe.only('users.spec.js', function () {
+describe('users.spec.js', function () {
 	var token, user, baseUrl, url, headers, response, body, error;
 
 	beforeEach(function () {
@@ -244,7 +244,6 @@ describe.only('users.spec.js', function () {
 					expect(body.followed.length).to.equal(0);
 				});
 			});
-
 		});
 	});
 });

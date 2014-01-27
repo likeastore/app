@@ -7,4 +7,5 @@ module.exports = function (app) {
 	require('./emails')(app);
 	require('./history')(app);
 	require('./monitor')(app);
+	require('./discover')(app);
 };
