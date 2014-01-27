@@ -1,15 +1,15 @@
 var request = require('request');
 var testUtils = require('../utils');
 
-describe('users.spec.js', function () {
-	var token, user, url, headers, response, body, error;
+describe.only('users.spec.js', function () {
+	var token, user, baseUrl, url, headers, response, body, error;
 
 	beforeEach(function () {
-		url = testUtils.getRootUrl() + '/api/users';
+		baseUrl = testUtils.getRootUrl() + '/api/users';
 	});
 
 	beforeEach(function () {
-		url += '/me';
+		url = baseUrl + '/me';
 	});
 
 	describe('non authorized', function () {
@@ -129,6 +129,65 @@ describe('users.spec.js', function () {
 					expect(response.statusCode).to.equal(401);
 				});
 			});
+		});
+
+		describe('when follow', function () {
+			var userToFollow;
+
+			beforeEach(function (done) {
+				testUtils.createTestUser(function (err, createdUser) {
+					userToFollow = createdUser;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.post({url: url + '/follow/' + userToFollow._id, headers: headers, json: true}, function (err, resp) {
+					error = err;
+					response = resp;
+					done(err);
+				});
+			});
+
+			it('should respond with 201 (created)', function () {
+				expect(response.statusCode).to.equal(201);
+			});
+
+			describe('and following after', function () {
+				beforeEach(function (done) {
+					request.get({url: url, headers: headers, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should contain follows field', function () {
+					expect(body.follows).to.be.ok;
+				});
+
+				it('should have id and email', function () {
+					expect(body.follows[0].id).to.be.ok;
+					expect(body.follows[0].email).to.be.ok;
+				});
+			});
+
+			describe('and followed user', function () {
+				beforeEach(function (done) {
+					request.get({url: baseUrl + '/' + userToFollow._id, headers: headers, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should contain followed field', function () {
+					expect(body.followed).to.be.ok;
+				});
+			});
+		});
+
+		describe('when following', function () {
 		});
 	});
 });

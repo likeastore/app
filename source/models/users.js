@@ -1,4 +1,6 @@
 var async = require('async');
+var moment = require('moment');
+
 var config = require('../../config');
 var db = require('../db')(config);
 
@@ -79,10 +81,44 @@ function deactivate(user, callback) {
 	}
 }
 
+function follow(user, followId, callback) {
+	if (!followId || typeof followId !== 'string') {
+		return callback({message: 'bad follow user id', status: 412});
+	}
+
+	db.users.findOne({_id: new ObjectId(followId)}, function (err, followUser) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (!followUser) {
+			return callback({message: 'follow user not found', id: followId, status: 404});
+		}
+
+		var follows = {id: followUser._id, email: followUser.email, date: moment().toDate() };
+		var followed = {id: user._id, email: user.email, date: moment().toDate() };
+
+		var updateFollowing =  update({email: user.email}, {follows: follows});
+		var updateFollowers = update({email: followUser.email}, {followed: followed});
+
+		async.parallel([updateFollowing, updateFollowers], callback);
+	});
+
+	function update(query, push) {
+		return function (callback) {
+			db.users.findAndModify({
+				query: query,
+				update: {$push: push},
+			}, callback);
+		};
+	}
+}
+
 module.exports = {
 	findById: findById,
 	findByEmail: findByEmail,
 	update: updateUser,
 	findByRequestToken: findByRequestToken,
-	deactivate: deactivate
+	deactivate: deactivate,
+	follow: follow
 };

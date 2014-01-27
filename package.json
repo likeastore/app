@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "node runMocha",
-    "watch": "nodemon --watch source --watch config app.js"
+    "watch": "nodemon --watch source --watch config app.js",
+    "test-watch": "nodemon --watch source --watch config --watch test runMocha.js"
   },
   "domains": [
     "app.likeastore.com"
