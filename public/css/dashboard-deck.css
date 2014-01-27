@@ -154,6 +154,10 @@
 	background-color: #34495e;
 }
 
+.menu-title.discover:hover {
+	background-color: #27ae60;
+}
+
 .more-for-mobile .menu-title:hover {
 	background-color: #3498db;
 }

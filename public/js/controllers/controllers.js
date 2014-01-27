@@ -37,5 +37,8 @@ define(function (require) {
 	// history
 	controllers.controller('historyController', require('./historyController'));
 
+	// discovery
+	controllers.controller('discoverController', require('./discoverController'));
+
 	return controllers;
 });
