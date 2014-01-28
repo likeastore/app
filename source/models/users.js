@@ -158,12 +158,18 @@ function suggestPeople(user, callback) {
 				return callback(err);
 			}
 
-			skipIfAlreadyFollows(users, function (err, suggested) {
+			addDefaultUsers(users, function (err, users) {
 				if (err) {
 					return callback(err);
 				}
 
-				callback(null, users);
+				skipIfAlreadyFollows(users, function (err, users) {
+					if (err) {
+						return callback(err);
+					}
+
+					callback(null, users);
+				});
 			});
 		});
 	});
@@ -194,7 +200,6 @@ function suggestPeople(user, callback) {
 		}
 
 		function requestFriends(network, callback) {
-			var usernames = [];
 			var headers = { 'Content-Type': 'application/json', 'User-Agent': 'likeastore/app'};
 
 			var requests = {
@@ -206,42 +211,59 @@ function suggestPeople(user, callback) {
 						token_secret: network.accessTokenSecret
 					};
 
-					var requestTwitter = function (cursor, callback) {
-						var uri = 'https://api.twitter.com/1.1/friends/list.json?count=200&include_entities=false';
-						if (cursor) {
-							uri += '&cursor=' + cursor;
+					var uri = 'https://api.twitter.com/1.1/friends/list.json?count=200&include_entities=false';
+
+					request({uri: uri, headers: headers, oauth: oauth, timeout: 5000, json: true}, function (err, response, body) {
+						if (err) {
+							return callback(err);
 						}
 
-						request({uri: uri, headers: headers, oauth: oauth, timeout: 5000, json: true}, function (err, response, body) {
-							if (err) {
-								return callback(err);
-							}
-
-							var screenNames = body.users.map(function (user) {
-								return user.screen_name;
-							});
-
-							usernames = usernames.concat(screenNames);
-
-							var next = body.next_cursor;
-
-							next === 0 ? callback(null) : setTimeout(function () {
-								requestTwitter(next, callback);
-							}, 1);
+						var usernames = body.users.map(function (user) {
+							return user.screen_name;
+						}).filter(function (user) {
+							return user !== undefined;
 						});
-					};
 
-					requestTwitter(null, callback);
+						callback(null, usernames);
+					});
 				},
 				facebook: function (callback) {
-					callback(null, []);
+					var uri = 'https://graph.facebook.com/me/friends?fields=username&access_token=' + network.accessToken;
+
+					request({uri: uri, headers: headers, timeout: 5000, json: true}, function (err, response, body) {
+						if (err) {
+							return callback(err);
+						}
+
+						var usernames = body.data.map(function (user) {
+							return user.username;
+						}).filter(function (user) {
+							return user !== undefined;
+						});
+
+						callback(null, usernames);
+					});
 				},
 				github: function (callback) {
-					callback(null, []);
+					var uri = 'https://api.github.com/user/following?per_page=100&access_token=' + network.accessToken;
+
+					request({uri: uri, headers: headers, timeout: 5000, json: true}, function (err, response, body) {
+						if (err) {
+							return callback(err);
+						}
+
+						var usernames = body.map(function (user) {
+							return user.login;
+						}).filter(function (user) {
+							return user !== undefined;
+						});
+
+						callback(null, usernames);
+					});
 				}
 			};
 
-			requests[network.service](function (err) {
+			requests[network.service](function (err, usernames) {
 				if (err) {
 					return callback (err);
 				}
@@ -256,7 +278,30 @@ function suggestPeople(user, callback) {
 	}
 
 	function skipIfAlreadyFollows(users, callback) {
+		users = users.filter(function (u) {
+			return u.email !== user.email;
+		}).filter(function (u) {
+			return _.find(user.follows, function (f) { return f.email === u.email; }) === undefined;
+		});
+
 		callback(null, users);
+	}
+
+	function addDefaultUsers(users, callback) {
+		if (users.length > 0) {
+			return callback(null, users);
+		}
+
+		var defaultUsers =  ['alexander.beletsky@gmail.com', 'dmitri.voronianski@gmail.com'];
+		db.users.find({email: {$in: defaultUsers}}, function (err, defaultUsers) {
+			if (err) {
+				return callback(err);
+			}
+
+			users = users.concat(defaultUsers);
+
+			callback(null, users);
+		});
 	}
 }
 
