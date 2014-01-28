@@ -1,6 +1,7 @@
 var _ = require('underscore');
 var async = require('async');
 var moment = require('moment');
+var request = require('request');
 
 var config = require('../../config');
 var db = require('../db')(config);
@@ -193,9 +194,44 @@ function suggestPeople(user, callback) {
 		}
 
 		function requestFriends(network, callback) {
+			var usernames = [];
+			var headers = { 'Content-Type': 'application/json', 'User-Agent': 'likeastore/app'};
+
 			var requests = {
 				twitter: function (callback) {
-					callback(null, []);
+					var oauth = {
+						consumer_key: config.services.twitter.consumerKey,
+						consumer_secret: config.services.twitter.consumerSecret,
+						token: network.accessToken,
+						token_secret: network.accessTokenSecret
+					};
+
+					var requestTwitter = function (cursor, callback) {
+						var uri = 'https://api.twitter.com/1.1/friends/list.json?count=200&include_entities=false';
+						if (cursor) {
+							uri += '&cursor=' + cursor;
+						}
+
+						request({uri: uri, headers: headers, oauth: oauth, timeout: 5000, json: true}, function (err, response, body) {
+							if (err) {
+								return callback(err);
+							}
+
+							var screenNames = body.users.map(function (user) {
+								return user.screen_name;
+							});
+
+							usernames = usernames.concat(screenNames);
+
+							var next = body.next_cursor;
+
+							next === 0 ? callback(null) : setTimeout(function () {
+								requestTwitter(next, callback);
+							}, 1);
+						});
+					};
+
+					requestTwitter(null, callback);
 				},
 				facebook: function (callback) {
 					callback(null, []);
@@ -205,7 +241,13 @@ function suggestPeople(user, callback) {
 				}
 			};
 
-			requests[network.service](callback);
+			requests[network.service](function (err) {
+				if (err) {
+					return callback (err);
+				}
+
+				callback(null, usernames);
+			});
 		}
 	}
 

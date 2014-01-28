@@ -1,14 +1,18 @@
+var util = require('util');
 var logger = require('./../utils/logger');
 
 function logErrors () {
 	return function logErrors(err, req, res, next) {
+		util.inspect(err);
+
 		req.unhandledError = err;
 
 		var message = err.message;
-		var error = err.error || err;
+		var error = err.name || err;
 		var status = err.status || 500;
+		var stack = err.stack;
 
-		res.json({message: message, error: error}, status);
+		res.json({message: message, error: error, stack: stack}, status);
 	};
 }
 
