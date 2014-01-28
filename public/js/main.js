@@ -6,6 +6,7 @@ require.config({
 		'ngCookies': '../components/angular-cookies/angular-cookies',
 		'ngAnimate': '../components/angular-animate/angular-animate',
 		'ngTouch': '../components/angular-touch/angular-touch',
+		'angularMoment': '../components/angular-moment/angular-moment',
 		'ngProgressLite': '../components/ngprogress-lite/ngprogress-lite',
 		'ngDialog': '../components/ngDialog/js/ngDialog',
 		'ngIntercom': '../components/angular-intercom/angular-intercom',
@@ -14,7 +15,8 @@ require.config({
 		'seismo': '../components/seismo/seismo',
 		'angulartics': '../components/angulartics/src/angulartics',
 		'angulartics.mixpanel': '../components/angulartics/src/angulartics-mixpanel',
-		'underscore': '../components/underscore/underscore'
+		'underscore': '../components/underscore/underscore',
+		'moment': '../components/momentjs/moment'
 	},
 	shim: {
 		ngResource: {
@@ -44,6 +46,15 @@ require.config({
 		angularLocalStorage: {
 			deps: ['angular']
 		},
+		angulartics: {
+			deps: ['angular']
+		},
+		angularMoment: {
+			deps: ['angular']
+		},
+		'angulartics.mixpanel': {
+			deps: ['angular']
+		},
 		angular: {
 			exports: 'angular'
 		},
@@ -56,11 +67,8 @@ require.config({
 		underscore: {
 			exports: '_'
 		},
-		angulartics: {
-			deps: ['angular']
-		},
-		'angulartics.mixpanel': {
-			deps: ['angular']
+		moment: {
+			exports: 'moment'
 		}
 	},
 	baseUrl: '/js'

@@ -10,7 +10,7 @@
 			<img src="{{item.userData.avatar}}" class="avatar left">
 
 			<div class="discover-info">
-				<div class="action"><span class="username">{{item.userData.displayName || item.userData.name}}</span> liked on <span class="service">{{item.type}}</span>: <time class="right">{{item.date}}</time></div>
+				<div class="action"><span class="username">{{item.userData.displayName || item.userData.name}}</span> liked on <span class="service">{{item.type}}</span>: <time class="right" am-time-ago="item.date"></time></div>
 
 				<div class="discover-source-wrap" ng-if="item.thumbnail || item.kind === 'link' || item.title">
 					<a href="{{item.source}}" class="thumb" style="background-image: url({{item.thumbnail || item.avatarUrl}});" ng-if="item.thumbnail || item.kind === 'link'" target="_blank"></a>

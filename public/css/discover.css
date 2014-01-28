@@ -42,6 +42,19 @@
 	opacity: 0;
 }
 
+.discover-item:hover .discover-info {
+	background: #ffec9e;
+}
+
+.discover-item:hover .action,
+.discover-item:hover .author {
+	color: #333 !important;
+}
+
+.discover-item:hover .discover-info:after {
+	border-right-color: #ffec9e;
+}
+
 .discover-item .avatar {
 	width: 36px;
 	height: 36px;
@@ -70,6 +83,10 @@
 	margin-left: 55px;
 	padding: 20px 25px;
 	position: relative;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	transition: all .3s ease-in;
 }
 
 .discover-info:after {
@@ -83,12 +100,20 @@
 	border-width: 7px;
 	top: 14px;
 	left: -14px;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	transition: all .3s ease-in;
 }
 
 .discover-info .action {
 	color: #8592a2;
 	font-size: 12px;
 	margin-bottom: 15px;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	transition: all .3s ease-in;
 }
 
 .discover-info .action .service {
@@ -120,7 +145,7 @@
 	display: block;
 	border-bottom: 1px solid transparent;
 	color: #1f282d;
-	font: 16px 'Montserrat', 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
+	font: 700 16px 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
 	margin: 0 0 5px;
 	position: relative;
 	z-index: 6;

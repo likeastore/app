@@ -9,6 +9,8 @@ define(function (require) {
 	require('angularLocalStorage');
 	require('angulartics');
 	require('angulartics.mixpanel');
+	require('moment');
+	require('angularMoment');
 
 	require('./services/services');
 	require('./controllers/controllers');
@@ -24,6 +26,7 @@ define(function (require) {
 		'ngIntercom',
 		'angulartics',
 		'angulartics.mixpanel',
+		'angularMoment',
 		'services',
 		'controllers',
 		'directives'
