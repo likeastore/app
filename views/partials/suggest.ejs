@@ -1,0 +1,16 @@
+<section class="suggest-page">
+
+	<div class="suggest-people-wrap" ng-if="people.length">
+		<ul>
+			<li ng-repeat="person in people">
+				<img src="{{person.avatar}}">
+				<div>
+					{{person.displayName || person.name}}
+				</div>
+				<a href="" ng-click="followPerson(person._id)" ng-class="{'disabled': followDisabled}">@Follow</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
+</section>
