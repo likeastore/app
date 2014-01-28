@@ -33,7 +33,7 @@
 			<li class="person-item" ng-repeat="person in people">
 				<img src="{{person.avatar}}" class="avatar">
 				<div class="name">{{person.displayName || person.name}}</div>
-				<a href="" class="follow-button" ng-click="followPerson(person._id, $event)" ng-class="{'disabled': followDisabled}">+ Follow</a>
+				<a href="" class="follow-button" ng-click="followPerson(person._id, $event, $index)" ng-class="{'disabled': person.followDisabled}">+ Follow</a>
 			</li>
 		</ul>
 	</div>

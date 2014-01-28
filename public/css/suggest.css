@@ -62,5 +62,7 @@
 
 .person-item .follow-button.disabled,
 .person-item .follow-button.disabled:hover {
+	background: #1abc9c;
+	cursor: default;
 	opacity: .6;
 }
