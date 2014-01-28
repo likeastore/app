@@ -20,7 +20,7 @@
 						<a href="{{item.authorUrl}}" class="author top {{item.type}}" ng-if="item.authorName && item.title" target="_blank">by @{{item.authorName}}</a>
 					</div>
 				</div>
-				<div class="desc" ng-if="item.description" linkify="item.description|limitTo:300"></div>
+				<div class="desc" ng-if="item.description" linkify="item.description|truncate:300"></div>
 				<div class="desc" ng-if="!item.thumbnail && !item.description">This item has no description :(</div>
 				<a href="{{item.authorUrl}}" class="author bottom {{item.type}}" ng-if="item.authorName && !item.title" target="_blank">by @{{item.authorName}}</a>
 

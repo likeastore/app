@@ -15,6 +15,7 @@ define(function (require) {
 	require('./services/services');
 	require('./controllers/controllers');
 	require('./directives/directives');
+	require('./filters/filters');
 
 	var angular = require('angular');
 	var app = angular.module('likeastore', [
@@ -29,7 +30,8 @@ define(function (require) {
 		'angularMoment',
 		'services',
 		'controllers',
-		'directives'
+		'directives',
+		'filters'
 	]);
 
 	app.init = function () {
