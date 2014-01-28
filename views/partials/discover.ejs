@@ -5,6 +5,8 @@
 <section class="main-dashdoard {{title|lowercase}}">
 	<ul class="discover-wrap">
 		<li class="discover-item" ng-repeat="item in items" ng-class="{'last': $last}">
+			<a href="{{item.source}}" class="source-link" target="_blank"></a>
+
 			<img src="{{item.userData.avatar}}" class="avatar left">
 
 			<div class="discover-info">
@@ -15,11 +17,12 @@
 
 					<div class="discover-source">
 						<a href="{{item.source}}" class="title" ng-if="item.title" target="_blank">{{item.title}}</a>
-						<a href="{{item.authorUrl}}" class="author top {{item.type}}" ng-if="item.authorName && item.title">by @{{item.authorName}}</a>
+						<a href="{{item.authorUrl}}" class="author top {{item.type}}" ng-if="item.authorName && item.title" target="_blank">by @{{item.authorName}}</a>
 					</div>
 				</div>
-				<div class="desc" ng-if="item.description" linkify="item.description"></div>
-				<a href="{{item.authorUrl}}" class="author bottom {{item.type}}" ng-if="item.authorName && !item.title">by @{{item.authorName}}</a>
+				<div class="desc" ng-if="item.description" linkify="item.description|limitTo:300"></div>
+				<div class="desc" ng-if="!item.thumbnail && !item.description">This item has no description :(</div>
+				<a href="{{item.authorUrl}}" class="author bottom {{item.type}}" ng-if="item.authorName && !item.title" target="_blank">by @{{item.authorName}}</a>
 
 				<i class="item-type font-icon {{item.type}}-icon"></i>
 			</div>

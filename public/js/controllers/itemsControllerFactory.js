@@ -1,13 +1,12 @@
 define(function () {
 	'use strict';
 
-	function itemsControllerFactory (title, target, event, resource, lazySearchable) {
+	function itemsControllerFactory (title, target, event, resource, notLazySearchable) {
 
 		function ItemsController($scope, $rootScope, $window, appLoader, api, user, $analytics) {
 			$window.scrollTo(0,0);
 
 			resource = resource || 'items';
-			lazySearchable = lazySearchable || true;
 
 			event && $analytics.eventTrack(event);
 
@@ -15,6 +14,7 @@ define(function () {
 			$scope.page = 1;
 			$scope.items = [];
 			$scope.inbox = title === 'Inbox';
+			$scope.notLazySearchable = notLazySearchable || false;
 
 			loadPage();
 
