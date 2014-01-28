@@ -218,6 +218,10 @@ function suggestPeople(user, callback) {
 							return callback(err);
 						}
 
+						if (!body.users) {
+							return callback(null, []);
+						}
+
 						var usernames = body.users.map(function (user) {
 							return user.screen_name;
 						}).filter(function (user) {
@@ -235,6 +239,10 @@ function suggestPeople(user, callback) {
 							return callback(err);
 						}
 
+						if (!body.data) {
+							return callback(null, []);
+						}
+
 						var usernames = body.data.map(function (user) {
 							return user.username;
 						}).filter(function (user) {
@@ -250,6 +258,10 @@ function suggestPeople(user, callback) {
 					request({uri: uri, headers: headers, timeout: 5000, json: true}, function (err, response, body) {
 						if (err) {
 							return callback(err);
+						}
+
+						if (!body) {
+							return callback(null, []);
 						}
 
 						var usernames = body.map(function (user) {

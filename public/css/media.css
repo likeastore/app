@@ -130,6 +130,10 @@
 		width: 500px;
 	}
 
+	.suggest-people-wrap {
+		width: 400px;
+	}
+
 	.networks-wrap,
 	.userinfo-wrap,
 	.danger-wrap {
@@ -371,6 +375,20 @@
 
 	.settings-page {
 		width: 290px;
+	}
+
+	.suggest-people-wrap {
+		width: 300px;
+		padding: 30px 15px 55px;
+	}
+
+	.suggest-people-wrap .title {
+		font-size: 24px;
+	}
+
+	.suggest-people-wrap .desc {
+		font-size: 12px;
+		line-height: 20px;
 	}
 
 	.networks-menu {

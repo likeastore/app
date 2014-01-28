@@ -21,7 +21,8 @@ function usersService(app) {
 	);
 
 	app.get('/api/users/me/suggest',
-		suggestPeopleToFollow);
+		suggestPeopleToFollow
+	);
 
 	app.post('/api/users/me/follow/:id',
 		middleware.analytics.track('user followed'),

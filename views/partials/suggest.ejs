@@ -1,15 +1,47 @@
 <section class="suggest-page">
 
 	<div class="suggest-people-wrap" ng-if="people.length">
-		<ul>
-			<li ng-repeat="person in people">
-				<img src="{{person.avatar}}">
-				<div>
-					{{person.displayName || person.name}}
+		<div class="discover-empty-icon big-icon"></div>
+		<h2 class="title">Who to follow?</h2>
+		<div class="desc">
+			We tried to find people that you likely will be interested in. <br> Do not see your friends and co-workers? <a href="" ng-dialog="inviteDialogId" ng-dialog-class="lsd-theme share-dialog" ng-dialog-controller="shareWithFriendController">Invite them!</a>
+
+			<script type="text/ng-template" id="inviteDialogId">
+				<h2>
+					<i data-icon="w" class="icon"></i>
+					 Invite your friends
+				</h2>
+				<form ng-submit="send()">
+					<div class="send-error" ng-show="error">We are experiencing troubles, please try again later</div>
+					<div>
+						<input type="email" class="field" placeholder="Email" ng-model="email" required>
+					</div>
+					<div>
+						<textarea class="field" rows="6" ng-model="message" required>
+						</textarea>
+					</div>
+					<button type="submit" class="btn green-btn" ng-disabled="sendText == 'Sending'">{{sendText}}</button>
+				</form>
+				<div class="social-desc">Spread a word through social services</div>
+				<div class="social-share">
+					<button type="button" class="btn fb-btn" share-on-event="share-with-friend" share-on="facebook">Share on facebook</button>
+					<button type="button" class="btn tw-btn" share-on-event="share-with-friend" share-on="twitter">Share on twitter</button>
 				</div>
-				<a href="" ng-click="followPerson(person._id)" ng-class="{'disabled': followDisabled}">@Follow</a>
+			</script>
+		</div>
+		<ul class="people-list-wrap">
+			<li class="person-item" ng-repeat="person in people">
+				<img src="{{person.avatar}}" class="avatar">
+				<div class="name">{{person.displayName || person.name}}</div>
+				<a href="" class="follow-button" ng-click="followPerson(person._id, $event)" ng-class="{'disabled': followDisabled}">+ Follow</a>
 			</li>
 		</ul>
+	</div>
+
+	<div class="empty-results" ng-if="loaded && !people.length">
+		<div class="robot-icon big-icon"></div>
+		<h2>Ooops, we didn't find anyone..</h2>
+		<h3>Probably you've already followed all suggested users, if no, please contact our support.</h3>
 	</div>
 
 	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>

@@ -1,6 +1,66 @@
 .suggest-people-wrap {
-	width: 640px;
-	margin: 20px auto;
+	width: 600px;
+	margin: 60px auto;
 	background: #fff;
-	padding: 30px;
+	padding: 35px 30px 55px;
+	text-align: center;
+}
+
+.suggest-people-wrap .discover-empty-icon {
+	margin: 0 auto 20px;
+}
+
+.suggest-people-wrap .title {
+	font-family: 'proxima-nova-bold', 'Lato', 'Helvetica', Arial, sans-serif;
+	font-size: 26px;
+	margin-bottom: 25px;
+}
+
+.suggest-people-wrap .desc {
+	color: #8592a2;
+	line-height: 26px;
+	margin-bottom: 35px;
+}
+
+.person-item {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.person-item .avatar {
+	width: 60px;
+	height: 60px;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+}
+
+.person-item .name {
+	font-size: 12px;
+	margin-bottom: 2px;
+	width: 100px;
+	height: 14px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.person-item .follow-button {
+	color: #fff;
+	background: #1abc9c;
+	font-size: 10px;
+	font-weight: 300;
+	padding: 3px 9px;
+	text-transform: uppercase;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.person-item .follow-button:hover {
+	background: #16a085;
+	text-decoration: none;
+}
+
+.person-item .follow-button.disabled,
+.person-item .follow-button.disabled:hover {
+	opacity: .6;
 }

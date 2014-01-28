@@ -13,9 +13,13 @@ define(function () {
 			appLoader.ready();
 		});
 
-		$scope.followPerson = function (id) {
+		$scope.followPerson = function (id, $event) {
+			if ($event.target.className.indexOf('disabled') !== -1) {
+				return;
+			}
+
 			$scope.followDisabled = true;
-			api.save({ resource: 'users', target: 'me', verb: 'follow/' + id });
+			api.save({ resource: 'users', target: 'me', verb: 'follow', suffix: id }, {});
 		};
 	}
 
