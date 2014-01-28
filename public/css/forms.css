@@ -70,6 +70,30 @@
 	margin-top: 3px;
 }
 
+.green-press-btn {
+	display: inline-block;
+	color: #fff;
+	background: #27ae60;
+	border-bottom: 6px solid #1b8547;
+	font-size: 20px;
+	padding: 12px 25px;
+	text-decoration: none;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.green-press-btn:hover {
+	border-bottom-width: 5px;
+	margin-top: 1px;
+	text-decoration: none;
+}
+
+.green-press-btn:active {
+	border-bottom-width: 3px;
+	margin-top: 3px;
+}
+
 .field {
 	background: #eee;
 	border: 0;
