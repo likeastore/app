@@ -38,7 +38,7 @@ define(function (require) {
 	controllers.controller('historyController', require('./historyController'));
 
 	// discovery
-	controllers.controller('discoverController', require('./discoverController'));
+	controllers.controller('discoverController', itemsControllerFactory('Discover', null, 'discover opened', 'discover', true));
 
 	return controllers;
 });

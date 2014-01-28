@@ -2,6 +2,10 @@
 	margin-right: 25px;
 }
 
+.discover .show-more {
+	width: 100%;
+}
+
 .discover-item {
 	position: relative;
 	padding-bottom: 20px;
@@ -83,6 +87,7 @@
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
+	margin-right: 8px;
 }
 
 .discover-info time {
@@ -101,7 +106,7 @@
 	border-bottom: 1px solid transparent;
 	color: #1f282d;
 	font: 16px 'Montserrat', 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;
-	margin: 0 0 5px 8px;
+	margin: 0 0 5px;
 }
 
 .discover-info .desc {
@@ -109,6 +114,7 @@
 	font-size: 14px;
 	margin: 10px 0 0;
 	width: 90%;
+	overflow: hidden;
 }
 
 .discover-info .item-type {
@@ -161,11 +167,14 @@
 .discover-info .author {
 	display: inline-block;
 	font-size: 11px;
-	margin: 0 0 0 8px;
 	max-width: 100%;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
+}
+
+.discover-info .author.bottom {
+	margin-top: 8px;
 }
 
 .discover-info .author.facebook {
