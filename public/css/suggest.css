@@ -24,7 +24,8 @@
 
 .person-item {
 	display: inline-block;
-	margin-right: 20px;
+	margin: 0 20px 25px 0;
+	width: 100px;
 }
 
 .person-item .avatar {
@@ -36,8 +37,8 @@
 
 .person-item .name {
 	font-size: 12px;
-	margin-bottom: 2px;
-	width: 100px;
+	margin: 0 0 3px -10px;
+	width: 120px;
 	height: 14px;
 	overflow: hidden;
 	white-space: nowrap;
