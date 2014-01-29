@@ -1,7 +1,12 @@
+.suggest-page {
+	padding-bottom: 30px;
+}
+
 .suggest-people-wrap {
+	background: #fff;
+	border-bottom: 1px solid #e2e2e2;
 	width: 600px;
 	margin: 60px auto;
-	background: #fff;
 	padding: 35px 30px 55px;
 	text-align: center;
 }

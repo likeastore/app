@@ -378,8 +378,9 @@
 	}
 
 	.suggest-people-wrap {
-		width: 300px;
+		width: 100%;
 		padding: 30px 15px 55px;
+		box-sizing: border-box;
 	}
 
 	.suggest-people-wrap .title {

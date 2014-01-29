@@ -5,7 +5,7 @@ define(function (require) {
 		return {
 			restrict: 'A',
 			link: function (scope, elem, attr) {
-				elem.parent('li').on('touchend', function () {
+				elem.parent('li').on('touchstart', function () {
 					elem.css('visibility', 'visible');
 				});
 			}

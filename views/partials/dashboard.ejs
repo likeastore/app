@@ -40,7 +40,7 @@
 
 			<!-- text only card -->
 			<div ng-if="!item.thumbnail" class="item-text-wrap">
-				<img ng-if="item.kind != 'link'" class="image" src="{{item.avatarUrl}}">
+				<img ng-if="item.kind != 'link'" class="image" ng-src="{{item.avatarUrl}}" avatar-load>
 				<div ng-if="item.kind == 'link'" class="image facebook-img" style="background-image: url({{item.avatarUrl}});"></div>
 				<div class="repo" ng-show="item.repo">{{item.repo}}</div>
 				<div class="desc">

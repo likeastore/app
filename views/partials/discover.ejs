@@ -7,7 +7,7 @@
 		<li class="discover-item" ng-repeat="item in items" ng-class="{'last': $last}">
 			<a href="{{item.source}}" class="source-link" target="_blank"></a>
 
-			<img src="{{item.userData.avatar}}" class="avatar left">
+			<img ng-src="{{item.userData.avatar}}" class="avatar left" avatar-load>
 
 			<div class="discover-info">
 				<div class="action"><span class="username">{{item.userData.displayName || item.userData.name}}</span> liked on <span class="service">{{item.type}}</span>: <time class="right" am-time-ago="item.date"></time></div>
