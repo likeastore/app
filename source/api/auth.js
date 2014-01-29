@@ -73,7 +73,7 @@ function authService(app) {
 			update.loginPreviousDate = user.loginLastDate;
 		}
 
-		users.update(user.email, update, function (err, updated) {
+		users.update(user, update, function (err, updated) {
 			if (err) {
 				return next(err);
 			}
