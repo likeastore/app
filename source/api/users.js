@@ -2,6 +2,8 @@ var _ = require('underscore');
 
 var users = require('../models/users');
 var networks = require('../models/networks');
+var notifications = require('../models/notifications');
+
 var middleware = require('../middleware');
 
 function usersService(app) {
@@ -71,10 +73,12 @@ function usersService(app) {
 	}
 
 	function followUser(req, res, next) {
-		users.follow(req.user, req.params.id, function (err) {
+		users.follow(req.user, req.params.id, function (err, followedUser) {
 			if (err) {
 				return next(err);
 			}
+
+			notifications.followed(req.user, followedUser);
 
 			res.send(201);
 		});

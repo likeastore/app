@@ -103,7 +103,9 @@ function follow(user, followId, callback) {
 		var updateFollowing =  update({email: user.email}, {follows: follows});
 		var updateFollowers = update({email: followUser.email}, {followed: followed});
 
-		async.parallel([updateFollowing, updateFollowers], callback);
+		async.parallel([updateFollowing, updateFollowers], function (err) {
+			callback(err, followUser);
+		});
 	});
 
 	function update(query, push) {
