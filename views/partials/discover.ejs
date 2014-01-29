@@ -12,8 +12,8 @@
 			<div class="discover-info">
 				<div class="action"><span class="username">{{item.userData.displayName || item.userData.name}}</span> liked on <span class="service">{{item.type}}</span>: <time class="right" am-time-ago="item.date"></time></div>
 
-				<div class="discover-source-wrap" ng-if="item.thumbnail || item.kind === 'link' || item.title">
-					<a href="{{item.source}}" class="thumb" style="background-image: url({{item.thumbnail || item.avatarUrl}});" ng-if="item.thumbnail || item.kind === 'link'" target="_blank"></a>
+				<div class="discover-source-wrap" ng-if="item.thumbnail || item.title">
+					<a href="{{item.source}}" class="thumb" style="background-image: url({{item.thumbnail || item.avatarUrl}});" ng-if="item.thumbnail" target="_blank"></a>
 
 					<div class="discover-source">
 						<a href="{{item.source}}" class="title" ng-if="item.title" target="_blank">{{item.title}}</a>
