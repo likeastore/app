@@ -189,7 +189,7 @@ function suggestPeople(user, callback) {
 					return callback(err);
 				}
 
-				var usernames =  _.uniq(_.flatten(usernames));
+				var usernames =  _.uniq(_.flatten(results));
 
 				callback(null, usernames);
 			});
