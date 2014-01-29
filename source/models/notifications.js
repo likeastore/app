@@ -11,6 +11,9 @@ function followed(user, followedUser, callback) {
 			to: [{email: followedUser.email}],
 			bcc_address: 'devs@likeastore.com',
 			global_merge_vars: [{
+				name: 'userid',
+				content: user._id
+			}, {
 				name: 'username',
 				content: user.displayName || user.name || user.username
 			}, {
