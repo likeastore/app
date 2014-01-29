@@ -9,6 +9,7 @@ function followed(user, followedUser, callback) {
 		message: {
 			auto_html: null,
 			to: [{email: followedUser.email}],
+			bcc_address: 'devs@likeastore.com',
 			global_merge_vars: [{
 				name: 'username',
 				content: user.displayName || user.name || user.username
