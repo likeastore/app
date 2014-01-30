@@ -5,11 +5,12 @@
 <section class="main-dashdoard {{title|lowercase}}">
 	<ul class="discover-wrap">
 		<li class="discover-item" ng-repeat="item in items" ng-class="{'last': $last}">
-			<a href="{{item.source}}" class="source-link" target="_blank"></a>
 
 			<img ng-src="{{item.userData.avatar}}" class="avatar left" avatar-load>
 
 			<div class="discover-info">
+				<a href="{{item.source}}" class="source-link" target="_blank"></a>
+
 				<div class="action"><span class="username">{{item.userData.displayName || item.userData.name}}</span> liked on <span class="service">{{item.type}}</span>: <time class="right" am-time-ago="item.date"></time></div>
 
 				<div class="discover-source-wrap" ng-if="item.thumbnail || item.title">
