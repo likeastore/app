@@ -185,6 +185,35 @@ describe('users.spec.js', function () {
 					expect(body.followed).to.be.ok;
 				});
 			});
+
+			describe('and get follows', function () {
+				beforeEach(function (done) {
+					request.get({url: url + '/follows', headers: headers, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should return follows users', function () {
+					expect(body.length).to.equal(1);
+					expect(body[0].email).to.equal(userToFollow.email);
+				});
+			});
+
+			describe('and get followed', function () {
+				beforeEach(function (done) {
+					request.get({url: url + '/followed', headers: headers, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should return follows users', function () {
+					expect(body.length).to.equal(0);
+				});
+			});
 		});
 
 		describe('when stop follow', function () {

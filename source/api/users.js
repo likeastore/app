@@ -12,6 +12,14 @@ function usersService(app) {
 		returnUser
 	);
 
+	app.get('/api/users/me/follows',
+		returnFollows
+	);
+
+	app.get('/api/users/me/followed',
+		returnFollowed
+	);
+
 	app.get('/api/users/:name',
 		findUserByName,
 		returnUser);
@@ -106,6 +114,26 @@ function usersService(app) {
 			}
 
 			res.send(200);
+		});
+	}
+
+	function returnFollows(req, res, next) {
+		users.follows(req.user, function (err, follows) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(follows);
+		});
+	}
+
+	function returnFollowed(req, res, next) {
+		users.followed(req.user, function (err, followed) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(followed);
 		});
 	}
 

@@ -333,6 +333,42 @@ function suggestPeople(user, callback) {
 	}
 }
 
+function follows(user, callback) {
+	findFollowers(user, 'follows', callback);
+}
+
+function followed(user, callback) {
+	findFollowers(user, 'followed', callback);
+}
+
+function findFollowers(user, prop, callback) {
+	findById(user._id, function (err, user) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (!user) {
+			return callback({message: 'User not found', status: 404});
+		}
+
+		if (!user[prop]) {
+			return callback(null, []);
+		}
+
+		async.map(user[prop], requestFollower, function (err, follows) {
+			if (err) {
+				return callback(err);
+			}
+
+			callback(null, follows);
+		});
+	});
+
+	function requestFollower(f, callback) {
+		findById(f.id, callback);
+	}
+}
+
 module.exports = {
 	findById: findById,
 	findByEmail: findByEmail,
@@ -344,5 +380,8 @@ module.exports = {
 
 	follow: follow,
 	unfollow: unfollow,
-	suggestPeople: suggestPeople
+	suggestPeople: suggestPeople,
+
+	follows: follows,
+	followed: followed
 };
