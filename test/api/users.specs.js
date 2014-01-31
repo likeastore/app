@@ -174,7 +174,7 @@ describe('users.spec.js', function () {
 
 			describe('and followed user', function () {
 				beforeEach(function (done) {
-					request.get({url: baseUrl + '/' + userToFollow._id, headers: headers, json: true}, function (err, resp, bod) {
+					request.get({url: baseUrl + '/' + userToFollow.name, headers: headers, json: true}, function (err, resp, bod) {
 						response = resp;
 						body = bod;
 						done(err);
@@ -183,6 +183,35 @@ describe('users.spec.js', function () {
 
 				it('should contain followed field', function () {
 					expect(body.followed).to.be.ok;
+				});
+			});
+
+			describe('and get follows', function () {
+				beforeEach(function (done) {
+					request.get({url: url + '/follows', headers: headers, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should return follows users', function () {
+					expect(body.length).to.equal(1);
+					expect(body[0].email).to.equal(userToFollow.email);
+				});
+			});
+
+			describe('and get followed', function () {
+				beforeEach(function (done) {
+					request.get({url: url + '/followed', headers: headers, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should return follows users', function () {
+					expect(body.length).to.equal(0);
 				});
 			});
 		});
@@ -233,7 +262,7 @@ describe('users.spec.js', function () {
 
 			describe('and followed user', function () {
 				beforeEach(function (done) {
-					request.get({url: baseUrl + '/' + userToFollow._id, headers: headers, json: true}, function (err, resp, bod) {
+					request.get({url: baseUrl + '/' + userToFollow.name, headers: headers, json: true}, function (err, resp, bod) {
 						response = resp;
 						body = bod;
 						done(err);
