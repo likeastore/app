@@ -12,8 +12,11 @@ function usersService(app) {
 		returnUser
 	);
 
-	// TODO: make it private
-	app.get('/api/users/:id',
+	app.get('/api/users/:name',
+		findUserByName,
+		returnUser);
+
+	app.get('/api/users/id/:id',
 		findUserById,
 		returnUser);
 
@@ -35,6 +38,18 @@ function usersService(app) {
 		middleware.analytics.track('user unfollowed'),
 		unfollowUser
 	);
+
+	function findUserByName(req, res, next) {
+		users.findByName(req.params.name, function (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			req.user = user;
+
+			next();
+		});
+	}
 
 	function findUserById(req, res, next) {
 		users.findById(req.params.id, function (err, user) {

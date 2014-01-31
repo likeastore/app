@@ -36,6 +36,20 @@ function findByEmail (email, callback) {
 	});
 }
 
+function findByName(name, callback) {
+	db.users.findOne({name: name}, function (err, user) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (!user) {
+			return callback({message: 'User not found', status: 404});
+		}
+
+		callback(null, user);
+	});
+}
+
 function findByRequestToken (tokenName, tokenValue, callback) {
 	var query = {};
 	query[tokenName] = tokenValue;
@@ -322,6 +336,7 @@ function suggestPeople(user, callback) {
 module.exports = {
 	findById: findById,
 	findByEmail: findByEmail,
+	findByName: findByName,
 	findByRequestToken: findByRequestToken,
 
 	update: updateUser,

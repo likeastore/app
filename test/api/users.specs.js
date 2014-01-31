@@ -174,7 +174,7 @@ describe('users.spec.js', function () {
 
 			describe('and followed user', function () {
 				beforeEach(function (done) {
-					request.get({url: baseUrl + '/' + userToFollow._id, headers: headers, json: true}, function (err, resp, bod) {
+					request.get({url: baseUrl + '/' + userToFollow.name, headers: headers, json: true}, function (err, resp, bod) {
 						response = resp;
 						body = bod;
 						done(err);
@@ -233,7 +233,7 @@ describe('users.spec.js', function () {
 
 			describe('and followed user', function () {
 				beforeEach(function (done) {
-					request.get({url: baseUrl + '/' + userToFollow._id, headers: headers, json: true}, function (err, resp, bod) {
+					request.get({url: baseUrl + '/' + userToFollow.name, headers: headers, json: true}, function (err, resp, bod) {
 						response = resp;
 						body = bod;
 						done(err);
