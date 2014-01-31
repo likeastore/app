@@ -40,6 +40,7 @@ define(function (require) {
 	// discovery
 	controllers.controller('suggestPeopleController', require('./suggestPeopleController'));
 	controllers.controller('discoverController', itemsControllerFactory('Discover', null, 'discover opened', 'discover', true));
+	controllers.controller('profileController', require('./profileController'));
 
 	return controllers;
 });

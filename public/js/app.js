@@ -59,6 +59,7 @@ define(function (require) {
 				.when('/discover', { templateUrl: 'partials/discover', controller: 'discoverController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.when('/suggest', { templateUrl: 'partials/suggest', controller: 'suggestPeopleController' })
+				.when('/u/:name', { templateUrl: 'partials/profile', controller: 'profileController' })
 				.when('/ooops', { templateUrl: 'partials/dashboard', controller: 'errorController' })
 				.otherwise({ redirectTo: '/' });
 
