@@ -14,8 +14,9 @@ define(function (require) {
 				<div class="account-show" ng-click="toggleMenu()"></div>\
 				<ul class="dropdown">\
 					<li><a href="/inbox" class="menu-link">Inbox</a></li>\
-					<li><a href="/settings" class="menu-link">Account settings</a></li>\
+					<li><a href="/u/{{user.name}}" class="menu-link">Profile</a></li>\
 					<li><a href="/suggest" class="menu-link">Find people</a></li>\
+					<li><a href="/settings" class="menu-link">Account settings</a></li>\
 					<li><a href="#" class="menu-link" ng-click="logout()">Logout</a></li>\
 				</ul>',
 			link: function (scope, elem, attrs) {

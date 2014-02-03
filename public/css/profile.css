@@ -1,0 +1,165 @@
+.profile-page {
+	width: 800px;
+	margin: 60px auto;
+}
+
+.profile-user {
+	background: #fff;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.profile-info {
+	border-right: 1px solid #eee;
+	padding: 20px 35px;
+	width: 505px;
+}
+
+.profile-info .avatar {
+	width: 60px;
+	height: 60px;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+}
+
+.profile-info .name {
+	font: 700 22px 'Lato', 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+	margin: 0 0 3px 20px;
+	width: 425px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.profile-me {
+	color: #fff;
+	background: #73cffa;
+	font-size: 10px;
+	font-weight: 300;
+	width: 90px;
+	margin: 10px 0 0 20px;
+	text-align: center;
+	text-transform: uppercase;
+	height: 20px;
+	line-height: 20px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.profile-action {
+	margin: 8px 0 0 20px;
+	position: relative;
+	overflow: hidden;
+	width: 80px;
+	height: 20px;
+}
+
+.profile-info .btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	transition: all .3s ease-in;
+}
+
+.btn.ng-enter.ng-enter-active,
+.btn-animation.ng-leave {
+	opacity: 1;
+}
+
+.btn.ng-leave.ng-leave-active,
+.btn.ng-enter {
+	opacity: 0;
+}
+
+.profile-stat {
+	text-align: center;
+}
+
+.profile-stat .stat-block {
+	display: inline-block;
+	border-right: 1px solid #eee;
+	padding: 23px 0;
+	width: 110px;
+	position: relative;
+	cursor: default;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.profile-stat .stat-block.followers {
+	border: 0;
+}
+
+.profile-stat .stat-count {
+	color: #e74c3c;
+	font-size: 26px;
+	font-weight: 700;
+}
+
+.profile-stat .stat-title {
+	color: #8592a2;
+	font-size: 13px;
+}
+
+.profile-lists {
+	margin: 30px auto;
+}
+
+.profile-lists .profile-follow-item {
+	background: #fff;
+	border-bottom: 1px solid #eee;
+	padding: 8px 35px;
+	width: 100%;
+	height: 50px;
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.profile-lists .avatar {
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	margin-right: 15px;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+}
+
+.profile-lists .name {
+	display: inline-block;
+	color: #1f282d;
+	margin: 7px 0 0;
+	font-size: 14px;
+}
+
+.profile-lists .profile-me,
+.profile-lists .profile-action {
+	display: inline-block;
+}
+
+.profile-lists .profile-me {
+	margin: 7px 0 0;
+}
+
+.profile-lists .profile-action {
+	margin: 4px 0 0;
+	height: 23px;
+}
+
+.profile-lists .list-title {
+	color: #999;
+	font-weight: 700;
+	font-size: 11px;
+	margin-bottom: 10px;
+	text-indent: 20px;
+	text-transform: uppercase;
+}
+
+.profile-lists .empty-results {
+	padding-top: 25px;
+}
+

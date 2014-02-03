@@ -1,12 +1,10 @@
 .btn,
 .btn:focus {
 	display: inline-block;
-	font: 13px 'Lato', 'Helvetica', Arial, sans-serif;
+	font-family: 'Lato', 'Helvetica', Arial, sans-serif;
 	border: 0;
 	padding: 0;
-	line-height: 21px;
-	width: 100%;
-	height: 39px;
+	line-height: 1;
 	text-transform: uppercase;
 	text-decoration: none;
 	cursor: pointer;
@@ -24,6 +22,19 @@
 .btn[disabled] {
 	opacity: 0.6;
 	cursor: default;
+}
+
+.big-btn {
+	font-size: 13px;
+	width: 100%;
+	height: 39px;
+}
+
+.small-btn {
+	font-size: 10px;
+	font-weight: 300;
+	width: 80px;
+	height: 20px;
 }
 
 .green-btn {
@@ -126,4 +137,14 @@ textarea.field {
 .field:focus {
 	background: #ddd;
 	color: #1f1f1f;
+}
+
+.mask-link {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
 }

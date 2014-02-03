@@ -1,25 +1,31 @@
 var items = require('../models/items');
-var middlware = require('../middleware');
+var middleware = require('../middleware');
 
 function itemsService(app) {
 	app.get('/api/items',
-		getItems);
+		getItems
+	);
 
 	app.get('/api/items/count',
-		middlware.access.guest(),
-		getItemsCount);
+		middleware.access.guest(),
+		getItemsCount
+	);
 
 	app.get('/api/items/inbox',
-		getInbox);
+		getInbox
+	);
 
 	app.get('/api/items/inbox/count',
-		getInboxCount);
+		getInboxCount
+	);
 
 	app.get('/api/items/:type',
-		getItemsByType);
+		getItemsByType
+	);
 
 	app.del('/api/items/:id',
-		hideItem);
+		hideItem
+	);
 
 	function getItems (req, res, next) {
 		items.getAllItems(req.user, req.query.page, function (err, items) {

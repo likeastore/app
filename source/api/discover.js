@@ -2,7 +2,8 @@ var discover = require('../models/discover');
 
 function discoverService(app) {
 	app.get('/api/discover',
-		getFeed);
+		getFeed
+	);
 
 	function getFeed(req, res, next) {
 		discover.feed(req.user, req.query.page, function (err, feed) {

@@ -20,13 +20,23 @@ function usersService(app) {
 		returnFollowed
 	);
 
+	app.get('/api/users/:name/follows',
+		returnFollowsByName
+	);
+
+	app.get('/api/users/:name/followed',
+		returnFollowedByName
+	);
+
 	app.get('/api/users/:name',
 		findUserByName,
-		returnUser);
+		returnUser
+	);
 
 	app.get('/api/users/id/:id',
 		findUserById,
-		returnUser);
+		returnUser
+	);
 
 	app.del('/api/users/me',
 		middleware.analytics.track('account deactivated'),
@@ -134,6 +144,38 @@ function usersService(app) {
 			}
 
 			res.json(followed);
+		});
+	}
+
+	function returnFollowsByName(req, res, next) {
+		users.findByName(req.params.name, function (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			users.follows(user, function (err, follows) {
+				if (err) {
+					return next(err);
+				}
+
+				res.json(follows);
+			});
+		});
+	}
+
+	function returnFollowedByName(req, res, next) {
+		users.findByName(req.params.name, function (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			users.followed(user, function (err, followed) {
+				if (err) {
+					return next(err);
+				}
+
+				res.json(followed);
+			});
 		});
 	}
 

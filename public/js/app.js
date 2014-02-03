@@ -60,6 +60,8 @@ define(function (require) {
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.when('/suggest', { templateUrl: 'partials/suggest', controller: 'suggestPeopleController' })
 				.when('/u/:name', { templateUrl: 'partials/profile', controller: 'profileController' })
+				.when('/u/:name/following', { templateUrl: 'partials/profile', controller: 'profileController' })
+				.when('/u/:name/followers', { templateUrl: 'partials/profile', controller: 'profileController' })
 				.when('/ooops', { templateUrl: 'partials/dashboard', controller: 'errorController' })
 				.otherwise({ redirectTo: '/' });
 

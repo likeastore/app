@@ -5,7 +5,7 @@
 <section class="main-dashdoard {{title|lowercase}}">
 	<ul class="items-wrap">
 		<li class="dash-item {{item.type}} item{{$index+1}}" ng-class="item.thumbnail ? 'thumbed' : ''" ng-repeat="item in items">
-			<a href="{{item.source}}" class="source-link" target="_blank"></a>
+			<a href="{{item.source}}" class="mask-link" target="_blank"></a>
 
 			<!-- card action buttons -->
 			<div class="item-action-buttons" touchy>
@@ -20,8 +20,8 @@
 					<input id="likeUrl" class="field" ng-model="link">
 					<div class="social-desc">Or share it through social services</div>
 					<div class="social-share">
-						<button type="button" class="btn fb-btn" share-on="facebook" share-on-event="share-like" share-on-text="{{link}}">Share on facebook</button>
-						<button type="button" class="btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="{{title}} on @{{service}} - {{link}}, shared via @likeastore ">Share on twitter</button>
+						<button type="button" class="btn big-btn fb-btn" share-on="facebook" share-on-event="share-like" share-on-text="{{link}}">Share on facebook</button>
+						<button type="button" class="btn big-btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="{{title}} on @{{service}} - {{link}}, shared via @likeastore ">Share on twitter</button>
 					</div>
 				</script>
 

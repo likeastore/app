@@ -1,0 +1,65 @@
+<section class="profile-page">
+	<div class="profile-user clearfix">
+		<div class="left profile-info">
+			<img ng-src="{{profile.avatar}}" class="avatar left" avatar-load>
+
+			<div class="left">
+				<div class="name">{{profile.displayName || profile.name}}</div>
+
+				<div class="profile-me" ng-if="me">Your profile</div>
+
+				<div class="profile-action" ng-if="!me">
+					<button type="button" class="btn small-btn green-btn follow-btn" ng-if="!profile.mutual && !profile.processing" ng-click="followUser(profile)">@Follow</button>
+					<button type="button" class="btn small-btn red-btn following-btn" ng-if="profile.mutual && !profile.processing" ng-click="unfollowUser(profile)">@Unfollow</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="profile-stat">
+			<ul>
+				<li class="stat-block following">
+					<a href="" class="mask-link" ng-click="switchList('follows')"></a>
+					<div class="stat-count">
+						{{profile.follows.length || 0}}
+					</div>
+					<div class="stat-title">
+						follows
+					</div>
+				</li>
+				<li class="stat-block followers">
+					<a href="" class="mask-link" ng-click="switchList('followed')"></a>
+					<div class="stat-count">
+						{{profile.followed.length || 0}}
+					</div>
+					<div class="stat-title">
+						followers
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="profile-lists">
+		<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
+
+		<h2 class="list-title" ng-if="followers.length">
+			<span ng-if="list === 'follows'">Following:</span>
+			<span ng-if="list === 'followed'">Followed by:</span>
+		</h2>
+
+		<ul class="profile-followings {{list}}" ng-if="followers.length">
+			<li class="profile-follow-item clearfix" ng-repeat="follow in followers" ng-if="follow.name">
+				<a href="/u/{{follow.name}}"><img src="{{follow.avatar}}" class="avatar left" avatar-load></a>
+				<a href="/u/{{follow.name}}" class="name">{{follow.displayName || follow.name}}</a>
+
+				<div class="profile-me right" ng-if="follow.name === user.name">Your profile</div>
+
+				<div class="profile-action right" ng-if="follow.name !== user.name">
+					<button type="button" class="btn small-btn green-btn follow-btn" ng-if="!follow.mutual && !follow.processing" ng-click="followUser(follow)">@Follow</button>
+					<button type="button" class="btn small-btn red-btn following-btn" ng-if="follow.mutual && !follow.processing" ng-click="unfollowUser(follow)">@Unfollow</button>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+</section>

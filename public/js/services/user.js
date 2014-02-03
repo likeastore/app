@@ -5,6 +5,14 @@ define(function (require) {
 		return {
 			initialize: function () {
 				api.get({ resource: 'users', target: 'me' }, function (user) {
+					if (!user.follows) {
+						user.follows = [];
+					}
+
+					if (!user.followed) {
+						user.followed = [];
+					}
+
 					$rootScope.user = user;
 				});
 
