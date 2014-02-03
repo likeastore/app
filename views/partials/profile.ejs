@@ -40,8 +40,6 @@
 	</div>
 
 	<div class="profile-lists">
-		<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
-
 		<h2 class="list-title" ng-if="followers.length">
 			<span ng-if="list === 'follows'">Following:</span>
 			<span ng-if="list === 'followed'">Followed by:</span>
@@ -60,6 +58,8 @@
 				</div>
 			</li>
 		</ul>
+
+		<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
 	</div>
 
 </section>
