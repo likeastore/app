@@ -8,4 +8,5 @@ module.exports = function (app) {
 	require('./history')(app);
 	require('./monitor')(app);
 	require('./discover')(app);
+	require('./tags')(app);
 };
