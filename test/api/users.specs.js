@@ -13,7 +13,6 @@ describe('users.spec.js', function () {
 	});
 
 	describe('non authorized', function () {
-
 		beforeEach(function (done) {
 			request.get({url: url, json: true}, function (err, resp, body) {
 				response = resp;

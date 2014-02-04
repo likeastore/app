@@ -27,9 +27,6 @@ function itemsService(app) {
 		hideItem
 	);
 
-	app.patch('/api/items/:id/tag',
-		tagItem);
-
 	function getItems (req, res, next) {
 		items.getAllItems(req.user, req.query.page, function (err, items) {
 			if (err) {

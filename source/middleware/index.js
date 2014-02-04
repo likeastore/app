@@ -6,5 +6,6 @@ module.exports = {
 	auth: require('./auth'),
 	networks: require('./networks'),
 	analytics: require('./analytics'),
-	ga: require('./ga')
+	ga: require('./ga'),
+	validate: require('./validate')
 };
