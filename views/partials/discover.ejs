@@ -3,7 +3,7 @@
 
 <!-- discover -->
 <section class="main-dashdoard {{title|lowercase}}">
-	<h2 class="tip">Discover more things with your friends and co-workers. <a href="/suggest">Find people!</a></h2>
+	<div class="tip" ng-if="items.length">Discover more things with your friends and co-workers. <a href="/suggest">Find people!</a></div>
 	<ul class="discover-wrap">
 		<li class="discover-item" ng-repeat="item in items" ng-class="{'last': $last}">
 
