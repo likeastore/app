@@ -102,7 +102,7 @@ function follow(user, followId, callback) {
 		return callback({message: 'bad follow user id', status: 412});
 	}
 
-	db.users.findOne({_id: new ObjectId(followId)}, function (err, followUser) {
+	db.users.findOne({_id: new ObjectId(followId), firstTimeUser: {$exists: false}}, function (err, followUser) {
 		if (err) {
 			return callback(err);
 		}
@@ -137,7 +137,7 @@ function unfollow(user, followId, callback) {
 		return callback({message: 'bad follow user id', status: 412});
 	}
 
-	db.users.findOne({_id: new ObjectId(followId)}, function (err, followUser) {
+	db.users.findOne({_id: new ObjectId(followId), firstTimeUser: {$exists: false}}, function (err, followUser) {
 		if (err) {
 			return callback(err);
 		}
@@ -302,7 +302,7 @@ function suggestPeople(user, callback) {
 	}
 
 	function findLikeastoreUsers(usernames, callback) {
-		db.users.find({username: {$in: usernames}}, callback);
+		db.users.find({username: {$in: usernames}, firstTimeUser: {$exists: false}}, callback);
 	}
 
 	function skipIfAlreadyFollows(users, callback) {

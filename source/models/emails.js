@@ -1,5 +1,6 @@
 var mandrill = require('node-mandrill');
 var config = require('../../config');
+var logger = require('../utils/logger');
 
 function sendTemplate(emails, template, merge, callback) {
 	if (!config.mandrill.token) {
@@ -17,7 +18,13 @@ function sendTemplate(emails, template, merge, callback) {
 			bcc_address: 'devs@likeastore.com',
 			global_merge_vars: merge
 		}
-	}, callback);
+	}, function (err) {
+		if (err) {
+			logger.error({message: 'error during mandrill send (user-followed)', err: err});
+		}
+
+		callback && callback(err);
+	});
 }
 
 module.exports = {

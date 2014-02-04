@@ -16,7 +16,7 @@ https://likeastore.com';
 			var payload = {
 				to: email,
 				from: user.email,
-				username: user.displayName || user.username,
+				username: user.displayName || user.name || user.username,
 				message: message
 			};
 
