@@ -8,6 +8,8 @@ var db = require('../db')(config);
 
 var ObjectId = require('mongojs').ObjectId;
 
+var maxUsersMatches = 16;
+
 function findById (id, callback) {
 	if (typeof id === 'string') {
 		id = new ObjectId(id);
@@ -57,7 +59,7 @@ function findByAny(query, callback) {
 
 	var regex = {$regex: new RegExp('^' + query, 'i')};
 
-	db.users.find({$or: [{name: regex}, {username: regex}, {displayName: regex}, {email: regex}]}, function (err, users) {
+	db.users.find({$or: [{name: regex}, {username: regex}, {displayName: regex}, {email: regex}]}).limit(maxUsersMatches, function (err, users) {
 		if (err) {
 			return callback(err);
 		}
