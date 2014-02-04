@@ -6,12 +6,12 @@
 	<ul class="discover-wrap">
 		<li class="discover-item" ng-repeat="item in items" ng-class="{'last': $last}">
 
-			<img ng-src="{{item.userData.avatar}}" class="avatar left" avatar-load>
+			<a href="/u/{{item.userData.name}}"><img ng-src="{{item.userData.avatar}}" class="avatar left" avatar-load></a>
 
 			<div class="discover-info">
 				<a href="{{item.source}}" class="mask-link" target="_blank"></a>
 
-				<div class="action"><span class="username">{{item.userData.displayName || item.userData.name}}</span> liked on <span class="service">{{item.type}}</span>: <time class="right" am-time-ago="item.date"></time></div>
+				<div class="action"><a href="/u/{{item.userData.name}}" class="username">{{item.userData.displayName || item.userData.name}}</a> liked on <span class="service">{{item.type}}</span>: <time class="right" am-time-ago="item.date"></time></div>
 
 				<div class="discover-source-wrap" ng-if="item.thumbnail || item.title">
 					<a href="{{item.source}}" class="thumb" style="background-image: url({{item.thumbnail || item.avatarUrl}});" ng-if="item.thumbnail" target="_blank"></a>

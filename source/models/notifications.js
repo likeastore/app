@@ -15,10 +15,13 @@ function followed(user, followedUser, callback) {
 				content: user._id
 			}, {
 				name: 'username',
-				content: user.displayName || user.name || user.username
+				content: user.displayName || user.name
 			}, {
 				name: 'avatar',
 				content: user.avatar
+			}, {
+				name: 'name',
+				content: user.name
 			}],
 			preserve_recipients: false
 		},

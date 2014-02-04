@@ -123,6 +123,18 @@
 		width: 98%;
 		margin-right: 0;
 	}
+
+	.profile-page {
+		width: 600px;
+	}
+
+	.profile-info {
+		width: 305px;
+	}
+
+	.profile-info .name {
+		width: 220px;
+	}
 }
 
 @media (max-width: 700px) {
@@ -313,6 +325,37 @@
 	}
 
 	.network .desc {
+		font-size: 11px;
+	}
+
+	.profile-page {
+		width: 400px;
+	}
+
+	.profile-info {
+		padding: 20px;
+		width: 225px;
+	}
+
+	.profile-info .avatar {
+		width: 48px;
+		height: 48px;
+	}
+
+	.profile-info .name {
+		font-size: 16px;
+		width: 150px;
+	}
+
+	.profile-stat .stat-block {
+		width: 65px;
+	}
+
+	.profile-stat .stat-count {
+		font-size: 20px;
+	}
+
+	.profile-stat .stat-title {
 		font-size: 11px;
 	}
 }

@@ -96,6 +96,12 @@
 	transition: all .3s ease-in;
 }
 
+.discover-info .username {
+	color: #1abc9c;
+	position: relative;
+	z-index: 6;
+}
+
 .discover-info .action {
 	color: #8592a2;
 	font-size: 12px;
