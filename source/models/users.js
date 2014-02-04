@@ -120,6 +120,10 @@ function follow(user, followId, callback) {
 		return callback({message: 'bad follow user id', status: 412});
 	}
 
+	if (user.follows && user.follows.some(following)) {
+		return callback({message: 'user already followed', status: 403});
+	}
+
 	db.users.findOne({_id: new ObjectId(followId), firstTimeUser: {$exists: false}}, function (err, followUser) {
 		if (err) {
 			return callback(err);
@@ -148,11 +152,19 @@ function follow(user, followId, callback) {
 			}, callback);
 		};
 	}
+
+	function following(f) {
+		return f.id.toString() === followId;
+	}
 }
 
 function unfollow(user, followId, callback) {
 	if (!followId || typeof followId !== 'string') {
 		return callback({message: 'bad follow user id', status: 412});
+	}
+
+	if (user.follows && !user.follows.some(following)) {
+		return callback({message: 'user already unfollowed', status: 403});
 	}
 
 	db.users.findOne({_id: new ObjectId(followId), firstTimeUser: {$exists: false}}, function (err, followUser) {
@@ -178,6 +190,10 @@ function unfollow(user, followId, callback) {
 				update: {$pull: pull},
 			}, callback);
 		};
+	}
+
+	function following(f) {
+		return f.id.toString() === followId;
 	}
 }
 

@@ -214,6 +214,20 @@ describe('users.spec.js', function () {
 					expect(body.length).to.equal(0);
 				});
 			});
+
+			describe('and followed twice', function () {
+				beforeEach(function (done) {
+					request.post({url: url + '/follow/' + userToFollow._id, headers: headers, json: true}, function (err, resp) {
+						error = err;
+						response = resp;
+						done(err);
+					});
+				});
+
+				it('should respond with 403 (forbidden)', function () {
+					expect(response.statusCode).to.equal(403);
+				});
+			});
 		});
 
 		describe('when stop follow', function () {
@@ -271,6 +285,20 @@ describe('users.spec.js', function () {
 
 				it('should followed by nobody', function () {
 					expect(body.followed.length).to.equal(0);
+				});
+			});
+
+			describe('and unfollowed twice', function () {
+				beforeEach(function (done) {
+					request.del({url: url + '/follow/' + userToFollow._id, headers: headers, json: true}, function (err, resp) {
+						error = err;
+						response = resp;
+						done(err);
+					});
+				});
+
+				it('should respond with 403 (forbidden)', function () {
+					expect(response.statusCode).to.equal(403);
 				});
 			});
 		});
