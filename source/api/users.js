@@ -12,6 +12,9 @@ function usersService(app) {
 		returnUser
 	);
 
+	app.get('/api/users/search',
+		searchUser);
+
 	app.get('/api/users/me/follows',
 		returnFollows
 	);
@@ -66,6 +69,20 @@ function usersService(app) {
 			req.user = user;
 
 			next();
+		});
+	}
+
+	function searchUser(req, res, next) {
+		if (!req.query.name) {
+			return next({message: 'name query parameter missing', status: 412});
+		}
+
+		users.findByAny(req.query.name, function (err, users) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(users);
 		});
 	}
 

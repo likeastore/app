@@ -50,6 +50,22 @@ function findByName(name, callback) {
 	});
 }
 
+function findByAny(query, callback) {
+	if (query.length < 3) {
+		return callback({message: 'query string is shorter than 3 chars', status: 412});
+	}
+
+	var regex = {$regex: new RegExp('^' + query, 'i')};
+
+	db.users.find({$or: [{name: regex}, {username: regex}, {displayName: regex}, {email: regex}]}, function (err, users) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null, users);
+	});
+}
+
 function findByRequestToken (tokenName, tokenValue, callback) {
 	var query = {};
 	query[tokenName] = tokenValue;
@@ -373,6 +389,7 @@ module.exports = {
 	findById: findById,
 	findByEmail: findByEmail,
 	findByName: findByName,
+	findByAny: findByAny,
 	findByRequestToken: findByRequestToken,
 
 	update: updateUser,
