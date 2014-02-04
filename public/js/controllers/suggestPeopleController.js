@@ -19,7 +19,9 @@ define(function () {
 			}
 
 			$scope.people[index].followDisabled = true;
-			api.save({ resource: 'users', target: 'me', verb: 'follow', suffix: id }, {});
+			api.save({ resource: 'users', target: 'me', verb: 'follow', suffix: id }, {}, function () {
+				$scope.people.splice(index, 1);
+			});
 		};
 	}
 

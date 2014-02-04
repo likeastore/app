@@ -1,5 +1,15 @@
 .main-dashdoard.discover {
 	margin-right: 25px;
+	padding-top: 20px;
+}
+
+.discover h2.tip {
+	color: #999;
+	font-size: 13px;
+	font-weight: 700;
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 20px;
 }
 
 .discover .show-more {
