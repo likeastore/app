@@ -1,7 +1,8 @@
 var request = require('request');
+var async = require('async');
 var testUtils = require('../utils');
 
-describe('collections.spec.js', function () {
+describe.only('collections.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -278,18 +279,47 @@ describe('collections.spec.js', function () {
 			});
 		});
 
-		describe('when all user collections', function () {
-
-		});
-
 		describe('when getting items by collection', function () {
+			var items, collection;
 
-			describe('private', function () {
-
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, function (err, created) {
+					items = created;
+					done(err);
+				});
 			});
 
-			describe('public', function () {
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, body: {title: 'My new collection'}, json: true}, function (err, resp, body) {
+					response = resp;
+					collection = body;
+					done(err);
+				});
+			});
 
+			beforeEach(function (done) {
+				async.each(items, putToCollection, done);
+
+				function putToCollection(item, callback) {
+					request.put({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, callback);
+				}
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url + '/' + collection._id + '/items', headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return all items in collection', function () {
+				expect(results).to.be.a('array');
+				expect(results.length).to.equal(10);
 			});
 		});
 	});

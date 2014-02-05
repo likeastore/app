@@ -12,6 +12,9 @@ function collectionsService(app) {
 	app.put('/api/collections/:collection/item/:item',
 		putToCollection);
 
+	app.get('/api/collections/:id/items',
+		getCollectionItems);
+
 	function getCollections(req, res, next) {
 		collections.find(req.user, function (err, collections) {
 			if (err) {
@@ -42,6 +45,16 @@ function collectionsService(app) {
 			}
 
 			res.send(201);
+		});
+	}
+
+	function getCollectionItems(req, res, next) {
+		collections.findItems(req.user, req.params.id, function (err, items) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(items);
 		});
 	}
 }

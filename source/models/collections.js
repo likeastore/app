@@ -39,8 +39,27 @@ function add(user, collection, item, callback) {
 	});
 }
 
+function findItems(user, collection, callback) {
+	if (!collection) {
+		return callback({message: 'missing collection id', status: 412});
+	}
+
+	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, function (err, collection) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (!collection) {
+			return callback({message: 'collection not found', status: 404});
+		}
+
+		db.items.find({user: user.email, collections: {$elemMatch: {id: collection._id}}}, callback);
+	});
+}
+
 module.exports = {
 	create: create,
 	find: find,
-	add: add
+	add: add,
+	findItems: findItems
 };
