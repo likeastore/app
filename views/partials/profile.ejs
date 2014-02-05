@@ -15,9 +15,9 @@
 			</div>
 		</div>
 
-		<div class="profile-stat">
+		<div class="profile-stat right">
 			<ul>
-				<li class="stat-block following">
+				<li class="stat-block following" ng-class="{'active': list==='follows'}">
 					<a href="" class="mask-link" ng-click="switchList('follows')"></a>
 					<div class="stat-count">
 						{{profile.follows.length || 0}}
@@ -26,7 +26,7 @@
 						follows
 					</div>
 				</li>
-				<li class="stat-block followers">
+				<li class="stat-block followers" ng-class="{'active': list==='followed'}">
 					<a href="" class="mask-link" ng-click="switchList('followed')"></a>
 					<div class="stat-count">
 						{{profile.followed.length || 0}}

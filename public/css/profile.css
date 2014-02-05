@@ -9,7 +9,6 @@
 }
 
 .profile-info {
-	border-right: 1px solid #eee;
 	padding: 20px 35px;
 	width: 505px;
 }
@@ -79,8 +78,9 @@
 
 .profile-stat .stat-block {
 	display: inline-block;
-	border-right: 1px solid #eee;
+	border-left: 1px solid #eee;
 	padding: 23px 0;
+	margin-left: -3px;
 	width: 110px;
 	position: relative;
 	cursor: default;
@@ -89,8 +89,9 @@
 	user-select: none;
 }
 
-.profile-stat .stat-block.followers {
-	border: 0;
+.profile-stat .stat-block:hover,
+.profile-stat .stat-block.active {
+	background: #f8f8f8;
 }
 
 .profile-stat .stat-count {
@@ -133,8 +134,12 @@
 .profile-lists .name {
 	display: inline-block;
 	color: #1f282d;
-	margin: 7px 0 0;
 	font-size: 14px;
+	margin: 7px 0 0;
+	width: 45%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .profile-lists .profile-me,

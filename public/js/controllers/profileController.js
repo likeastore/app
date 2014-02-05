@@ -2,6 +2,8 @@ define(function () {
 	'use strict';
 
 	function ProfileController ($scope, $rootScope, $routeParams, $location, appLoader, api, _) {
+		appLoader.loading();
+
 		$rootScope.title = $routeParams.name + '\'s profile';
 
 		api.get({ resource: 'users', target: 'me' }, function (me) {
@@ -12,6 +14,8 @@ define(function () {
 			if (!me.followed) {
 				me.followed = [];
 			}
+
+			appLoader.ready();
 
 			$scope.me = me.name === $routeParams.name;
 

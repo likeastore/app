@@ -481,6 +481,30 @@
 		top: 40px;
 		left: 10px !important;
 	}
+
+	.profile-page {
+		width: 300px;
+	}
+
+	.profile-page .profile-info {
+		float: none;
+		height: 30px;
+	}
+
+	.profile-page .profile-stat {
+		border-top: 1px solid #eee;
+		float:none;
+		margin-top:20px;
+	}
+
+	.profile-stat .stat-block {
+		width: 148px;
+		padding: 15px 0;
+	}
+
+	.profile-lists .profile-follow-item {
+		padding: 8px 15px;
+	}
 }
 
 @media (min-height: 800px) {
