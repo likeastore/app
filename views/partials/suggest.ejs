@@ -1,56 +1,56 @@
 <section class="suggest-page">
 
-	<div class="suggest-people-wrap" ng-if="people.length">
-		<div class="discover-empty-icon big-icon"></div>
-		<h2 class="title">Who to follow?</h2>
-		<div class="desc">
-			We tried to find people that you likely will be interested in. <br> Do not see your friends and co-workers? <a href="" ng-dialog="inviteDialogId" ng-dialog-class="lsd-theme share-dialog" ng-dialog-controller="shareWithFriendController">Invite them!</a>
+	<div class="suggest-people-wrap">
+		<div ng-if="people.length">
+			<div class="discover-empty-icon big-icon"></div>
+			<h2 class="title">Who to follow?</h2>
+			<div class="desc">
+				We tried to find people that you likely will be interested in. <br> Do not see your friends and co-workers? <a href="" ng-dialog="inviteDialogId" ng-dialog-class="lsd-theme share-dialog" ng-dialog-controller="shareWithFriendController">Invite them!</a>
 
-			<script type="text/ng-template" id="inviteDialogId">
-				<h2>
-					<i data-icon="w" class="icon"></i>
-					 Invite your friends
-				</h2>
-				<form ng-submit="send()">
-					<div class="send-error" ng-show="error">We are experiencing troubles, please try again later</div>
-					<div>
-						<input type="email" class="field" placeholder="Email" ng-model="email" required>
+				<script type="text/ng-template" id="inviteDialogId">
+					<h2>
+						<i data-icon="w" class="icon"></i>
+						 Invite your friends
+					</h2>
+					<form ng-submit="send()">
+						<div class="send-error" ng-show="error">We are experiencing troubles, please try again later</div>
+						<div>
+							<input type="email" class="field" placeholder="Email" ng-model="email" required>
+						</div>
+						<div>
+							<textarea class="field" rows="6" ng-model="message" required>
+							</textarea>
+						</div>
+						<button type="submit" class="btn big-btn green-btn" ng-disabled="sendText === 'Sending'">{{sendText}}</button>
+					</form>
+					<div class="social-desc">Spread a word through social services</div>
+					<div class="social-share">
+						<button type="button" class="btn big-btn fb-btn" share-on-event="share-with-friend" share-on="facebook">Share on facebook</button>
+						<button type="button" class="btn big-btn tw-btn" share-on-event="share-with-friend" share-on="twitter">Share on twitter</button>
 					</div>
-					<div>
-						<textarea class="field" rows="6" ng-model="message" required>
-						</textarea>
-					</div>
-					<button type="submit" class="btn big-btn green-btn" ng-disabled="sendText === 'Sending'">{{sendText}}</button>
-				</form>
-				<div class="social-desc">Spread a word through social services</div>
-				<div class="social-share">
-					<button type="button" class="btn big-btn fb-btn" share-on-event="share-with-friend" share-on="facebook">Share on facebook</button>
-					<button type="button" class="btn big-btn tw-btn" share-on-event="share-with-friend" share-on="twitter">Share on twitter</button>
-				</div>
-			</script>
+				</script>
+			</div>
+
+			<ul class="people-list-wrap">
+				<li class="person-item" ng-repeat="person in people">
+					<img ng-src="{{person.avatar}}" class="avatar" avatar-load>
+					<div class="name">{{person.displayName || person.name}}</div>
+					<a href="" class="follow-button" ng-click="followPerson(person._id, $event, $index)" ng-class="{'disabled': person.followDisabled}">+ Follow</a>
+				</li>
+			</ul>
+
+			<hr class="hr">
 		</div>
 
-		<ul class="people-list-wrap">
-			<li class="person-item" ng-repeat="person in people">
-				<img ng-src="{{person.avatar}}" class="avatar" avatar-load>
-				<div class="name">{{person.displayName || person.name}}</div>
-				<a href="" class="follow-button" ng-click="followPerson(person._id, $event, $index)" ng-class="{'disabled': person.followDisabled}">+ Follow</a>
-			</li>
-		</ul>
-
-		<hr class="hr">
-
 		<div class="people-find">
+			<h2 class="title" ng-if="!people.length">Find people</h2>
+			<div class="desc" ng-if="!people.length">
+				Search for your friends and co-workers in our application
+			</div>
 			<form class="lazy-autocomplete-form" novalidate>
 				<input type="text" class="field" placeholder="Start typing username or email" ng-model="searchTag" required autocomplete="off" lazy-autocomplete>
 			</form>
 		</div>
-	</div>
-
-	<div class="empty-results" ng-if="loaded && !people.length">
-		<div class="robot-icon big-icon"></div>
-		<h2>Ooops, we didn't find anyone..</h2>
-		<h3>Probably you've already followed all suggested users, if no, please contact our support.</h3>
 	</div>
 
 	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
