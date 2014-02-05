@@ -13,7 +13,8 @@ function usersService(app) {
 	);
 
 	app.get('/api/users/search',
-		searchUser);
+		searchUser
+	);
 
 	app.get('/api/users/me/follows',
 		returnFollows

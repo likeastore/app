@@ -4,7 +4,8 @@ define(function () {
 	// list of uri with special handling
 	var whiteListUrls = [
 		'/api/emails/share',
-		'/api/networks/dribbble'
+		'/api/networks/dribbble',
+		'/api/users/search'
 	];
 
 	function checkResponseUrl(responseUrl) {

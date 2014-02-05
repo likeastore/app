@@ -47,7 +47,7 @@
 
 		<ul class="profile-followings {{list}}" ng-if="followers.length">
 			<li class="profile-follow-item clearfix" ng-repeat="follow in followers">
-				<a href="/u/{{follow.name}}"><img src="{{follow.avatar}}" class="avatar left" avatar-load></a>
+				<a href="/u/{{follow.name}}"><img ng-src="{{follow.avatar}}" class="avatar left" avatar-load></a>
 				<a href="/u/{{follow.name}}" class="name">{{follow.displayName || follow.name}}</a>
 
 				<div class="profile-me right" ng-if="follow.name === user.name">Your profile</div>

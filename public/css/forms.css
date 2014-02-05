@@ -148,3 +148,63 @@ textarea.field {
 	height: 100%;
 	z-index: 5;
 }
+
+.lazy-autocomplete-form {
+	position: relative;
+}
+
+.lazy-autocomplete {
+	position: absolute;
+	width: 100%;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item {
+	background: #fff;
+	border: 1px solid #eee;
+	border-top: 0;
+	padding: 5px 15px;
+	height: 40px;
+	overflow: hidden;
+	line-height: 1;
+	vertical-align: top;
+	text-align: left;
+	position: relative;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item:hover {
+	background: #1abc9c;
+	border-color: #1abc9c;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item.last {
+	-webkit-border-radius: 0 0 2px 2px;
+	border-radius: 0 0 2px 2px;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item:hover .name {
+	color: #fff;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item .avatar {
+	width: 30px;
+	height: 30px;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item .name {
+	display: inline-block;
+	color: #1f282d;
+	font-size: 14px;
+	line-height: 30px;
+	vertical-align: top;
+	text-indent: 8px;
+	width: 60%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+

@@ -68,6 +68,14 @@ a:hover {
 	text-decoration: underline;
 }
 
+.hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: solid 1px #ccc;
+	width: 30%;
+}
+
 /* Empty results or no items on page */
 .empty-results {
 	font-family: 'Lato', 'Open Sans', 'Helvetica', Arial, sans-serif;

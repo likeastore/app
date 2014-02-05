@@ -72,3 +72,16 @@
 	cursor: default;
 	opacity: .6;
 }
+
+.suggest-page .lazy-autocomplete-form {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.suggest-page .lazy-autocomplete {
+	top: 38px;
+}
+
+.suggest-page .hr {
+	margin: 25px auto 45px;
+}

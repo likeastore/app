@@ -20,7 +20,7 @@
 						<textarea class="field" rows="6" ng-model="message" required>
 						</textarea>
 					</div>
-					<button type="submit" class="btn big-btn green-btn" ng-disabled="sendText == 'Sending'">{{sendText}}</button>
+					<button type="submit" class="btn big-btn green-btn" ng-disabled="sendText === 'Sending'">{{sendText}}</button>
 				</form>
 				<div class="social-desc">Spread a word through social services</div>
 				<div class="social-share">
@@ -29,6 +29,7 @@
 				</div>
 			</script>
 		</div>
+
 		<ul class="people-list-wrap">
 			<li class="person-item" ng-repeat="person in people">
 				<img ng-src="{{person.avatar}}" class="avatar" avatar-load>
@@ -36,6 +37,14 @@
 				<a href="" class="follow-button" ng-click="followPerson(person._id, $event, $index)" ng-class="{'disabled': person.followDisabled}">+ Follow</a>
 			</li>
 		</ul>
+
+		<hr class="hr">
+
+		<div class="people-find">
+			<form class="lazy-autocomplete-form" novalidate>
+				<input type="text" class="field" placeholder="Start typing username or email" ng-model="searchTag" required autocomplete="off" lazy-autocomplete>
+			</form>
+		</div>
 	</div>
 
 	<div class="empty-results" ng-if="loaded && !people.length">
