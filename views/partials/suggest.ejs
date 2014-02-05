@@ -1,6 +1,6 @@
 <section class="suggest-page">
 
-	<div class="suggest-people-wrap">
+	<div class="suggest-people-wrap" ng-show="loaded">
 		<div class="discover-empty-icon big-icon"></div>
 
 		<div ng-if="people.length">
@@ -43,7 +43,7 @@
 			<hr class="hr">
 		</div>
 
-		<div class="people-find" ng-show="loaded">
+		<div class="people-find">
 			<h2 class="title" ng-if="!people.length">Find people!</h2>
 			<div class="desc" ng-if="!people.length">
 				Search for your friends and co-workers inside our application.
