@@ -1,5 +1,5 @@
 <section class="profile-page">
-	<div class="profile-user clearfix">
+	<div class="profile-user clearfix" ng-if="profile">
 		<div class="left profile-info">
 			<img ng-src="{{profile.avatar}}" class="avatar left" avatar-load>
 
@@ -58,8 +58,8 @@
 				</div>
 			</li>
 		</ul>
-
-		<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
 	</div>
+
+	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
 
 </section>
