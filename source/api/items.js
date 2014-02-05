@@ -27,6 +27,9 @@ function itemsService(app) {
 		hideItem
 	);
 
+	app.get('/api/items/id/:id',
+		getItemById);
+
 	function getItems (req, res, next) {
 		items.getAllItems(req.user, req.query.page, function (err, items) {
 			if (err) {
@@ -34,6 +37,16 @@ function itemsService(app) {
 			}
 
 			res.json(items);
+		});
+	}
+
+	function getItemById(req, res, next) {
+		items.getById(req.user, req.params.id, function (err, item) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(item);
 		});
 	}
 

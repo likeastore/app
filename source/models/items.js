@@ -4,6 +4,8 @@ var config = require('../../config');
 var db = require('../db')(config);
 var networks = require('./networks');
 
+var ObjectId = require('mongojs').ObjectId;
+
 var pageSize = 30;
 
 var itemsCountCache;
@@ -58,6 +60,10 @@ function getAllItems(user, page, callback) {
 			callback(null, {data: items, nextPage: items.length === pageSize});
 		}
 	});
+}
+
+function getById(user, id, callback) {
+	db.items.findOne({user: user.email, _id: new ObjectId(id)}, callback);
 }
 
 function getItemsCount(callback) {
@@ -170,6 +176,7 @@ function hideItem(user, id, callback) {
 
 module.exports = {
 	getAllItems: getAllItems,
+	getById: getById,
 	getItemsByType: getItemsByType,
 	getInbox: getInbox,
 	getInboxCount: getInboxCount,
