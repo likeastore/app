@@ -1,8 +1,9 @@
 <section class="suggest-page">
 
 	<div class="suggest-people-wrap">
+		<div class="discover-empty-icon big-icon"></div>
+
 		<div ng-if="people.length">
-			<div class="discover-empty-icon big-icon"></div>
 			<h2 class="title">Who to follow?</h2>
 			<div class="desc">
 				We tried to find people that you likely will be interested in. <br> Do not see your friends and co-workers? <a href="" ng-dialog="inviteDialogId" ng-dialog-class="lsd-theme share-dialog" ng-dialog-controller="shareWithFriendController">Invite them!</a>
@@ -42,10 +43,10 @@
 			<hr class="hr">
 		</div>
 
-		<div class="people-find">
-			<h2 class="title" ng-if="!people.length">Find people</h2>
+		<div class="people-find" ng-show="loaded">
+			<h2 class="title" ng-if="!people.length">Find people!</h2>
 			<div class="desc" ng-if="!people.length">
-				Search for your friends and co-workers in our application
+				Search for your friends and co-workers inside our application.
 			</div>
 			<form class="lazy-autocomplete-form" novalidate>
 				<input type="text" class="field" placeholder="Start typing username or email" ng-model="searchTag" required autocomplete="off" lazy-autocomplete>
