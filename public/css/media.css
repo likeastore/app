@@ -146,6 +146,10 @@
 		width: 400px;
 	}
 
+	.suggest-page .lazy-autocomplete-form {
+		width: 300px;
+	}
+
 	.networks-wrap,
 	.userinfo-wrap,
 	.danger-wrap {

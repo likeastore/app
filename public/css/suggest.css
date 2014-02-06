@@ -74,7 +74,7 @@
 }
 
 .suggest-page .lazy-autocomplete-form {
-	width: 400px;
+	width: 360px;
 	margin: 0 auto;
 }
 
@@ -83,5 +83,5 @@
 }
 
 .suggest-page .hr {
-	margin: 25px auto 45px;
+	margin: 55px auto 45px;
 }
