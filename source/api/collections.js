@@ -15,6 +15,10 @@ function collectionsService(app) {
 	app.get('/api/collections/:id/items',
 		getCollectionItems);
 
+	app.patch('/api/collections/:id',
+		middleware.validate('collectionProperties'),
+		patchCollectionProperties);
+
 	function getCollections(req, res, next) {
 		collections.find(req.user, function (err, collections) {
 			if (err) {
@@ -55,6 +59,16 @@ function collectionsService(app) {
 			}
 
 			res.json(items);
+		});
+	}
+
+	function patchCollectionProperties(req, res, next) {
+		collections.properties(req.user, req.params.id, req.body, function (err, collection) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(collection);
 		});
 	}
 }

@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var config = require('../../config');
 var db = require('../db')(config);
 
@@ -57,9 +58,34 @@ function findItems(user, collection, callback) {
 	});
 }
 
+function properties(user, collection, patch, callback) {
+	if (!collection) {
+		return callback({message: 'missing collection id', status: 412});
+	}
+
+	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, function (err, collection) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (!collection) {
+			return callback({message: 'collection not found', status: 404});
+		}
+
+		patch = _.extend(collection.properties || {}, patch);
+
+		db.collections.findAndModify({
+			query: {user: user.email, _id: collection._id},
+			update: {$set: {properties: patch}},
+			'new': true
+		}, callback);
+	});
+}
+
 module.exports = {
 	create: create,
 	find: find,
 	add: add,
-	findItems: findItems
+	findItems: findItems,
+	properties: properties
 };

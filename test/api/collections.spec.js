@@ -322,6 +322,49 @@ describe.only('collections.spec.js', function () {
 				expect(results.length).to.equal(10);
 			});
 		});
-	});
 
+		describe('when adding properties', function () {
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, body: {title: 'My new collection'}, json: true}, function (err, resp, body) {
+					response = resp;
+					collection = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.patch({url: url + '/' + collection._id, headers: headers, body: {color: '#EEE'}, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should add properties to collection', function () {
+				expect(results.properties).to.deep.equal({color: '#EEE'});
+			});
+
+			describe('and more properties', function () {
+				beforeEach(function (done) {
+					request.patch({url: url + '/' + collection._id, headers: headers, body: {color: '#EAE', prio: 1}, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond with 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it('should add properties to collection', function () {
+					expect(results.properties).to.deep.equal({color: '#EAE', prio: 1});
+				});
+			});
+		});
+	});
 });

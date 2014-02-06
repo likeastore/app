@@ -1,6 +1,5 @@
 /* Few common schemas for user login and setup */
 var schema = require('json-schema');
-var emailRegex = /^[\w\.\+\-_%]+@(?:[\w\-]+\.)+[A-Za-z]{2,6}$/i;
 
 exports.schemas = {
 	collection: {
@@ -16,6 +15,17 @@ exports.schemas = {
 				type: 'boolean'
 			},
 			description: {
+				required: false,
+				type: 'string'
+			}
+		}
+	},
+
+	collectionProperties: {
+		description: 'Collection properties',
+		type: 'object',
+		properties: {
+			color: {
 				required: false,
 				type: 'string'
 			}
