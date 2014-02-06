@@ -2,7 +2,7 @@ var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
 
-describe.only('collections.spec.js', function () {
+describe('collections.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
