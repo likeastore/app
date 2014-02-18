@@ -19,6 +19,7 @@
     "angulartics": "~0.8.7",
     "angular-touch": "~1.2.9",
     "momentjs": "~2.5.1",
-    "angular-moment": "~0.6.0"
+    "angular-moment": "~0.6.0",
+    "modernizr": "~2.7.1"
   }
 }

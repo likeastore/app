@@ -16,7 +16,8 @@ require.config({
 		'angulartics': '../components/angulartics/src/angulartics',
 		'angulartics.mixpanel': '../components/angulartics/src/angulartics-mixpanel',
 		'underscore': '../components/underscore/underscore',
-		'moment': '../components/momentjs/moment'
+		'moment': '../components/momentjs/moment',
+		'modernizr': '../components/modernizr/modernizr'
 	},
 	shim: {
 		ngResource: {

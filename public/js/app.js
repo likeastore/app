@@ -1,6 +1,7 @@
 define(function (require) {
 	'use strict';
 
+	require('modernizr');
 	require('ngRoute');
 	require('ngAnimate');
 	require('ngTouch');
