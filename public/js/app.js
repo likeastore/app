@@ -5,6 +5,7 @@ define(function (require) {
 	require('ngRoute');
 	require('ngAnimate');
 	require('ngTouch');
+	require('ngSanitize');
 	require('ngDialog');
 	require('ngIntercom');
 	require('angularLocalStorage');
@@ -23,6 +24,7 @@ define(function (require) {
 		'ngRoute',
 		'ngAnimate',
 		'ngTouch',
+		'ngSanitize',
 		'ngDialog',
 		'angularLocalStorage',
 		'ngIntercom',
@@ -46,6 +48,7 @@ define(function (require) {
 			$routeProvider
 				.when('/', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
 				.when('/all', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
+				.when('/activity', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
 				.when('/inbox', { templateUrl: 'partials/dashboard', controller: 'inboxController' })
 				.when('/facebook', { templateUrl: 'partials/dashboard', controller: 'facebookController' })
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })

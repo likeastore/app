@@ -59,7 +59,7 @@
 }
 
 .delete-icon:before {
-	content: 'v';
+	content: '~';
 }
 
 .play-icon:before {
@@ -67,7 +67,7 @@
 }
 
 .share-icon:before {
-	content: 'Y';
+	content: 'X';
 }
 
 .close-icon:before {
@@ -84,6 +84,10 @@
 
 .bell-icon:before {
 	content: '=';
+}
+
+.addto-icon:before {
+	content: '{';
 }
 
 .big-icon {
