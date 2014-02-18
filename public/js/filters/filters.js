@@ -5,6 +5,7 @@ define(function (require) {
 	var filters = angular.module('filters', []);
 
 	filters.filter('truncate', require('./truncate'));
+	filters.filter('linkify', require('./linkify'));
 
 	return filters;
 });

@@ -1,32 +1,7 @@
 <section class="dashboard {{title|lowercase}}">
 	<ul class="items-wrap">
-		<li class="dash-item {{item.type}} item{{$index}}" ng-class="item.thumbnail ? 'thumbed' : ''" ng-repeat="item in items">
-			<div ng-if="item.thumbnail || item.kind === 'link' || item.gist" class="image">
-				<a ng-if="item.thumbnail" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
-				<a ng-if="item.kind === 'link'" href="{{item.source}}" class="cover" style="background-image: url({{item.avatarUrl}})" target="_blank"></a>
-				<a ng-if="item.gist" href="{{item.source}}" class="cover gist" target="_blank"></a>
-				<a ng-if="item.type === 'vimeo' || item.type === 'youtube'" href="{{like.source}}" class="video" target="_blank"><i data-icon="W"></i></a>
-				<img ng-if="item.kind === 'link'" ng-src="{{item.avatarUrl}}" natural-width="500" class="hide">
-			</div>
-
-			<div ng-if="item.thumbnail || item.kind === 'link'" class="info">
-				<a ng-if="item.title || item.repo || item.description" href="{{item.source}}" class="title">{{item.title || item.repo || item.description|truncate:75}}</a>
-				<div ng-if="item.authorName" class="author">by <a href="{{item.authorUrl}}" class="{{item.type}}-clr">@{{item.authorName}}</a></div>
-			</div>
-
-			<i ng-if="item.thumbnail || item.kind === 'link'" class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
-			<!-- <time am-time-ago="item.date"></time> -->
-
-			<div ng-if="!item.thumbnail || item.kind !== 'link'" class="text-wrap">
-				<h2 ng-if="item.title || item.repo">{{item.title||item.repo}}</h2>
-				<div ng-if="item.description" class="description" ng-bind-html="item.description|linky|truncate:200"></div>
-				<div ng-if="item.authorName" class="author">
-					<img ng-src="{{item.avatarUrl}}" class="avatar">
-					<a href="{{item.authorUrl}}" class="{{item.type}}-clr">@{{item.authorName}}</a>
-				</div>
-
-				<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
-			</div>
+		<li class="dash-item {{item.type}} item{{$index}}" ng-class="item.thumbnail ? 'thumbed' : 'texted'" ng-repeat="item in items">
+			<a ng-if="item.thumbnail" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 		</li>
 	</ul>
 </section>
