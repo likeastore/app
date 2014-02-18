@@ -1,127 +1,133 @@
 .github-icon:before {
-	content: 'd';
+  content: 'd';
 }
 
 .twitter-icon:before {
-	content: 'b';
+  content: 'b';
 }
 
 .stackoverflow-icon:before {
-	content: 'a';
+  content: 'a';
 }
 
 .facebook-icon:before {
-	content: 'g';
+  content: 'g';
 }
 
 .dribbble-icon:before {
-	content: 'y';
+  content: 'y';
 }
 
 .behance-icon:before {
-	content: '4';
+  content: '4';
 }
 
 .instagram-icon:before {
-	content: 'z';
+  content: 'z';
 }
 
 .pinterest-icon:before {
-	content: 'A';
+  content: 'A';
 }
 
 .bitbucket-icon:before {
-	content: 'B';
+  content: 'B';
 }
 
 .vimeo-icon:before {
-	content: 'C';
+  content: 'C';
 }
 
 .youtube-icon:before {
-	content: 'O';
+  content: 'O';
 }
 
 .date-icon:before {
-	content: 'o';
+  content: 'o';
 }
 
 .full-star-icon:before {
-	content: 's';
+  content: 's';
 }
 
 .settings-icon:before {
-	content: 'u';
+  content: 'u';
 }
 
 .main-icon:before {
-	content: 'w';
+  content: 'w';
 }
 
 .delete-icon:before {
-	content: 'v';
+  content: 'v';
 }
 
 .play-icon:before {
-	content: 'W';
+  content: 'W';
 }
 
 .share-icon:before {
-	content: 'Y';
+  content: 'Y';
 }
 
 .close-icon:before {
-	content: '0';
+  content: '0';
 }
 
 .arrow-down-icon:before {
-	content: '\'';
+  content: '\'';
 }
 
 .arrow-up-icon:before {
-	content: '(';
+  content: '(';
 }
 
 .bell-icon:before {
-	content: '=';
+  content: '=';
 }
 
 .big-icon {
-	height: 100px;
-	width: 100px;
+  height: 100px;
+  width: 100px;
 }
 
 .box-icon {
-	background: url(../img/box.png) center center no-repeat;
-	background-size: 90px;
+  background: url(../img/box.png) center center no-repeat;
+  -webkit-background-size: 90px;
+  background-size: 90px;
 }
 
 .robot-icon {
-	background: url(../img/square-robot.png) center center no-repeat;
-	background-size: 90px;
+  background: url(../img/square-robot.png) center center no-repeat;
+  -webkit-background-size: 90px;
+  background-size: 90px;
 }
 
 .history-empty-icon {
-	background: url(../img/history.png) center center no-repeat;
-	background-size: 90px;
+  background: url(../img/history.png) center center no-repeat;
+  -webkit-background-size: 90px;
+  background-size: 90px;
 }
 
 .discover-empty-icon {
-	background: url(../img/telescope.png) center center no-repeat;
-	background-size: 110px;
+  background: url(../img/telescope.png) center center no-repeat;
+  -webkit-background-size: 110px;
+  background-size: 110px;
 }
 
 .annoyed-icon {
-	background: url(../img/no-results-grey.png) center center no-repeat;
-	background-size: 90px;
+  background: url(../img/no-results-grey.png) center center no-repeat;
+  -webkit-background-size: 90px;
+  background-size: 90px;
 }
 
 .error-icon {
-	background: url(../img/ooops-robot.png) center center no-repeat;
-	background-size: 180px;
+  background: url(../img/ooops-robot.png) center center no-repeat;
+  -webkit-background-size: 180px;
+  background-size: 180px;
 }
 
 .error-icon.big-icon {
-	height: 120px;
-	width: 200px;
+  height: 120px;
+  width: 200px;
 }
