@@ -1,28 +1,3 @@
-.logo {
-	color: #1abc9c;
-	font: 1.4em 'proxima-nova-bold', 'Lato', 'Helvetica', Arial, sans-serif;
-	font-weight: 400;
-	padding: 9px 0 0 0;
-	text-transform: lowercase;
-	text-decoration: none;
-}
-
-.logo:hover {
-	text-decoration: none;
-}
-
-[data-icon]:before,
-.font-icon:before {
-	font-family: 'icon-font';
-	content: attr(data-icon);
-	font-style: normal;
-	font-weight: normal;
-	speak: none;
-	line-height: 1;
-	text-transform: none;
-	-webkit-font-smoothing: antialiased;
-}
-
 .github-icon:before {
 	content: 'd';
 }
@@ -97,6 +72,18 @@
 
 .close-icon:before {
 	content: '0';
+}
+
+.arrow-down-icon:before {
+	content: '\'';
+}
+
+.arrow-up-icon:before {
+	content: '(';
+}
+
+.bell-icon:before {
+	content: '=';
 }
 
 .big-icon {

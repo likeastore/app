@@ -1,0 +1,127 @@
+.github-icon:before {
+	content: 'd';
+}
+
+.twitter-icon:before {
+	content: 'b';
+}
+
+.stackoverflow-icon:before {
+	content: 'a';
+}
+
+.facebook-icon:before {
+	content: 'g';
+}
+
+.dribbble-icon:before {
+	content: 'y';
+}
+
+.behance-icon:before {
+	content: '4';
+}
+
+.instagram-icon:before {
+	content: 'z';
+}
+
+.pinterest-icon:before {
+	content: 'A';
+}
+
+.bitbucket-icon:before {
+	content: 'B';
+}
+
+.vimeo-icon:before {
+	content: 'C';
+}
+
+.youtube-icon:before {
+	content: 'O';
+}
+
+.date-icon:before {
+	content: 'o';
+}
+
+.full-star-icon:before {
+	content: 's';
+}
+
+.settings-icon:before {
+	content: 'u';
+}
+
+.main-icon:before {
+	content: 'w';
+}
+
+.delete-icon:before {
+	content: 'v';
+}
+
+.play-icon:before {
+	content: 'W';
+}
+
+.share-icon:before {
+	content: 'Y';
+}
+
+.close-icon:before {
+	content: '0';
+}
+
+.arrow-down-icon:before {
+	content: '\'';
+}
+
+.arrow-up-icon:before {
+	content: '(';
+}
+
+.bell-icon:before {
+	content: '=';
+}
+
+.big-icon {
+	height: 100px;
+	width: 100px;
+}
+
+.box-icon {
+	background: url(../img/box.png) center center no-repeat;
+	background-size: 90px;
+}
+
+.robot-icon {
+	background: url(../img/square-robot.png) center center no-repeat;
+	background-size: 90px;
+}
+
+.history-empty-icon {
+	background: url(../img/history.png) center center no-repeat;
+	background-size: 90px;
+}
+
+.discover-empty-icon {
+	background: url(../img/telescope.png) center center no-repeat;
+	background-size: 110px;
+}
+
+.annoyed-icon {
+	background: url(../img/no-results-grey.png) center center no-repeat;
+	background-size: 90px;
+}
+
+.error-icon {
+	background: url(../img/ooops-robot.png) center center no-repeat;
+	background-size: 180px;
+}
+
+.error-icon.big-icon {
+	height: 120px;
+	width: 200px;
+}

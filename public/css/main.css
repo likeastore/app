@@ -1,12 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|PT+Sans:400,700|Montserrat:400,700);
 @import url(reset.css);
 @import url(general.css);
+@import url(icons.css);
 @import url(preloaders.css);
 
 
 
 /*@import url(global.css);
-@import url(icons.css);
 @import url(forms.css);
 @import url(dashboard-deck.css);
 @import url(../components/ngDialog/css/ngDialog.css);
