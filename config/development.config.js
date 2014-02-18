@@ -47,6 +47,11 @@ var config = {
 		behance: {
 			clientId: 'JyyJsEZRbcqTXcukjnq8ivQMb7BfAIUd',
 			clientSecret: 'L2s8uQl3s7G5uy2ECeRp9dHeWuyA6mrj'
+		},
+
+		vk: {
+			clientId: '4195920',
+			clientSecret: '1IATKWbudSUmp49uVfsn'
 		}
 	},
 

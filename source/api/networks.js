@@ -62,6 +62,11 @@ function networksService(app) {
 		returnAuthUrl
 	);
 
+	app.post('/api/networks/vk',
+		middleware.networks.vk(),
+		returnAuthUrl
+	);
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
@@ -130,6 +135,15 @@ function networksService(app) {
 		middleware.networks.behanceCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'behance'}),
+		middleware.ga.track('network', 'turnon', 'users'),
+		redirectToSettings
+	);
+
+	app.get('/api/networks/vk/callback',
+		middleware.access.guest(),
+		middleware.networks.vkCallback(),
+		registerNetwork,
+		middleware.analytics.track('network created', {service: 'vk'}),
 		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings
 	);

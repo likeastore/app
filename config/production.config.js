@@ -47,6 +47,11 @@ var config = {
 		behance: {
 			clientId: process.env.BEHANCE_CLIENT_ID,
 			clientSecret: process.env.BEHANCE_CLIENT_SECRET
+		},
+
+		vk: {
+			clientId: process.env.VK_CLIENT_ID,
+			clientSecret: process.env.VK_CLIENT_SECRET
 		}
 	},
 

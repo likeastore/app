@@ -389,6 +389,51 @@ function behanceCallback() {
 }
 
 
+function vk() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/vk/callback';
+		var oauth = new OAuth2(config.services.vk.clientId,
+							config.services.vk.clientSecret,
+							'https://oauth.vk.com');
+
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'friends,offline', state: req.user.email, response_type: 'code' });
+		req.authUrl = authorizeUrl;
+		next();
+	};
+
+}
+
+function vkCallback() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/vk/callback';
+		var oauth = new OAuth2(config.services.vk.clientId,
+							config.services.vk.clientSecret,
+							'https://oauth.vk.com');
+
+		var code = req.query.code;
+		var user = req.query.state;
+
+		oauth.getOAuthAccessToken(code, {grant_type: 'client_credentials', redirect_uri: callbackUrl}, gotAccessToken);
+
+		function gotAccessToken(err, accessToken, refreshToken, results) {
+			if (err) {
+				return next({message: 'failed to get accessToken from vk', error: err, status: 500});
+			}
+
+			req.network = {
+				accessToken: accessToken,
+				accessTokenSecret: null,
+				refreshToken: refreshToken,
+				user: user,
+				service: 'vk'
+			};
+
+			next();
+		}
+	};
+}
+
+
 module.exports = {
 	facebook: facebook,
 	facebookCallback: facebookCallback,
@@ -411,5 +456,8 @@ module.exports = {
 	dribbble: dribbble,
 
 	behance: behance,
-	behanceCallback: behanceCallback
+	behanceCallback: behanceCallback,
+
+	vk: vk,
+	vkCallback: vkCallback
 };

@@ -1,7 +1,7 @@
 var request = require('request');
 var testUtils = require('../utils');
 
-describe('networks.spec.js', function () {
+describe.only('networks.spec.js', function () {
 	var token, user, url, headers, response, results, error;
 
 	beforeEach(function () {
@@ -246,6 +246,32 @@ describe('networks.spec.js', function () {
 					});
 				});
 			});
+
+			describe('for vk', function () {
+				beforeEach(function () {
+					url += '/vk';
+				});
+
+				describe('post', function () {
+					beforeEach(function (done) {
+						request.post({url: url, headers: headers, json: true}, function (err, resp, body) {
+							error = err;
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it ('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it ('should return auth url', function () {
+						expect(results.authUrl).to.be.ok;
+					});
+				});
+			});
+
 		});
 
 		describe('when getting all networks', function () {
