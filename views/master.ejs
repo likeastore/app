@@ -8,8 +8,8 @@
 	<base href="/">
 
 	<link rel="stylesheet" type="text/css" href="<%= mainCss %>">
-	<link rel="shortcut icon" href="/img/favicon.png" />
-	<link rel="apple-touch-icon" href="/img/favicon.png"/>
+	<link rel="shortcut icon" href="/img/logo.png" />
+	<link rel="apple-touch-icon" href="/img/logo.png"/>
 
 	<!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,13 +17,52 @@
 </head>
 <body>
 	<div id="likeastoreApp" style="display:none;">
-		<div ng-show="user.warning" ng-class="{'animated fadeInDown': user.warning, 'closed': user.warningHidden}" class="network-error">
+
+		<header class="header">
+			<div class="header-wrap clearfix">
+				<a href="/" class="logo left" title="likeastore"></a>
+
+				<!-- <div class="notifications left">
+					<i class="font-icon bell-icon icon" ng-click="showNoty = !showNoty ? true : false"></i>
+
+					<div class="dropdown-noty" ng-class="{'active': showNoty}">
+						<h2>Your notifications</h2>
+						<div class="content">
+							You will receive notifications when people appreciate, comment on or collect your likes.
+						</div>
+					</div>
+				</div> -->
+
+				<!-- <nav class="nav left">
+					<ul>
+						<li><a href="/discover" class="nav-link">Discover</a></li>
+						<li><a href="/collections" class="nav-link">Collections</a></li>
+					</ul>
+				</nav> -->
+
+				<div class="user-box right">
+					<a href="/u/{{user.name}}" class="username">{{user.displayName || user.name}}</a>
+					<img ng-src="{{user.avatar}}" class="avatar" alt="{{user.name}}" ng-click="showDropdown = !showDropdown ? true : false">
+					<a href="" class="font-icon arrow-down-icon icon" ng-click="showDropdown = !showDropdown ? true : false" ng-class="{'arrow-up-icon': showDropdown}"></a>
+					<ul class="dropdown-menu" ng-class="{'active': showDropdown}">
+						<li><a href="/u/{{user.name}}" class="menu-link">Profile</a></li>
+						<li><a href="/settings" class="menu-link">Settings</a></li>
+						<li><a href="/suggest" class="menu-link">Find people</a></li>
+						<li><a href="" class="menu-link invite">Invite friend!</a></li>
+						<li><a href="/logout" class="menu-link">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+
+
+		<!-- <div ng-show="user.warning" ng-class="{'animated fadeInDown': user.warning, 'closed': user.warningHidden}" class="network-error">
 			Some connections have expired, new likes are not collected. <a href="/settings">Click here to continue collecting.</a>
 			<a href="" class="hide-network-error" ng-click="user.warning=false"></a>
 		</div>
 
 		<header class="main-header clearfix" ng-show="user" ng-include="'partials/header'"></header>
-		<div class="main-viewer" ng-view></div>
+		<div class="main-viewer" ng-view></div> -->
 	</div>
 
 	<%- partial('static/icon-preloader') %>
