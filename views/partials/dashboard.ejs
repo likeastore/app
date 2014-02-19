@@ -1,24 +1,44 @@
 <section class="dashboard activity">
-	<ul class="items-wrap">
-		<li class="dash-item {{item.type}} item{{$index}}" ng-class="item.thumbnail ? 'thumbed' : 'texted'" ng-repeat="item in items">
+	<div class="clearfix">
+		<div class="top left">
+			<h2>{{title}}</h2>
+		</div>
+		<div class="controls right">
+			<i class="font-icon grid-icon icon" ng-class="{active: viewMode === 'grid'}"></i>
+			<i class="font-icon list-icon icon" ng-class="{active: viewMode === 'list'}"></i>
+			<input type="search" name="search" class="fld" placeholder="Search favorites..">
+		</div>
+	</div>
+	<ul class="items-wrap" ng-class="{list-view: viewMode === 'list'}">
+		<li class="dash-item {{item.type}} item{{$index}}"
+			ng-repeat="item in items"
+			ng-class="{
+				'thumbed': item.thumbnail,
+				'texted': !item.thumbnail
+			}">
+
 			<div class="action-buttons">
 				<a href="" class="addto-btn"><i class="font-icon addto-icon"></i></a>
-				<a href="" class="share-btn" ng-dialog="shareLikeDialog" ng-dialog-class="lsd-theme share-dialog share-like" ng-dialog-controller="shareLikeController" ng-dialog-data="{{item}}"><i class="font-icon share-icon"></i></a>
+				<a href="" class="share-btn"
+					ng-dialog="shareLikeDialog"
+					ng-dialog-class="lsd-theme share-dialog share-like"
+					ng-dialog-controller="shareLikeController"
+					ng-dialog-data="{{item}}"><i class="font-icon share-icon"></i></a>
 				<a href="" class="delete-btn" ng-click="hideLike(item._id, $index)"><i class="font-icon delete-icon"></i></a>
 			</div>
 
-			<div ng-if="item.thumbnail || item.kind === 'link'" class="image">
+			<div ng-if="item.thumbnail" class="image">
 				<a ng-if="item.thumbnail" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 
 				<div class="info">
 					<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
-					<div ng-if="item.description" class="description" ng-bind-html="item.description|linky|truncate:320"></div>
+					<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:320"></div>
 				</div>
 			</div>
 
 			<div ng-if="!item.thumbnail" class="text-wrap">
 				<h2 ng-if="item.title || item.repo || item.name" class="title truncate">{{item.title||item.repo||item.name}}</h2>
-				<div ng-if="item.description" class="description" ng-bind-html="item.description|linky|truncate:320"></div>
+				<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:320"></div>
 			</div>
 
 			<time>{{item.created|date: 'longDate'}}</time>

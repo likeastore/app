@@ -10,7 +10,7 @@ define(function (require) {
 	directives.directive('textSearch', require('./textSearch'));
 	directives.directive('linkify', require('./linkify'));
 	directives.directive('stickyAt', require('./stickyAt'));
-	directives.directive('dropdownMenu', require('./dropdownMenu'));
+	//directives.directive('dropdownMenu', require('./dropdownMenu'));
 	directives.directive('shareOn', require('./shareOn'));
 	directives.directive('touchy', require('./touchy'));
 	directives.directive('avatarLoad', require('./avatarLoad'));

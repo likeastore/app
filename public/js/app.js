@@ -59,6 +59,7 @@ define(function (require) {
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
+				.when('/items/:id', { templateUrl: 'partials/dashboard', controller: 'dashboardController'})
 				.when('/history', { templateUrl: 'partials/history', controller: 'historyController' })
 				.when('/discover', { templateUrl: 'partials/discover', controller: 'discoverController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
@@ -75,10 +76,12 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, intercom) {
+	app.run(function (user, intercom, $rootScope) {
 		user.initialize()
 			.getActiveNetworks()
 			.getInboxCount();
+
+		$rootScope.viewMode = 'grid';
 
 		intercom.boot();
 	});

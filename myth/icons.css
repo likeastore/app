@@ -90,6 +90,14 @@
 	content: '{';
 }
 
+.grid-icon:before {
+	content: '\e002';
+}
+
+.list-icon:before {
+	content: '\e003';
+}
+
 .big-icon {
 	height: 100px;
 	width: 100px;

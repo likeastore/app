@@ -17,50 +17,63 @@
 </head>
 <body>
 	<div id="likeastoreApp" style="display:none;">
+		<!-- <nav>
+			<h1>Demo nav</h1>
+		</nav> -->
 
-		<header class="header">
-			<div class="header-wrap clearfix">
-				<a href="/" class="logo left" title="likeastore"></a>
+		<div class="container">
+			<header class="header">
+				<div class="header-wrap clearfix">
+					<a href="/" class="logo left" title="likeastore"></a>
 
-				<!-- <div class="notifications left">
-					<i class="font-icon bell-icon icon" ng-click="showNoty = !showNoty ? true : false"></i>
+					<!-- <div class="notifications left">
+						<i class="font-icon bell-icon icon" ng-click="showNoty = !showNoty ? true : false"></i>
 
-					<div class="dropdown-noty" ng-class="{'active': showNoty}">
-						<h2>Your notifications</h2>
-						<div class="content">
-							You will receive notifications when people appreciate, comment on or collect your likes.
+						<div class="dropdown-noty" ng-class="{'active': showNoty}">
+							<h2>Your notifications</h2>
+							<div class="content">
+								You will receive notifications when people appreciate, comment on or collect your likes.
+							</div>
 						</div>
+					</div> -->
+
+					<!-- <nav class="nav left">
+						<ul>
+							<li><a href="/discover" class="nav-link">Discover</a></li>
+							<li><a href="/collections" class="nav-link">Collections</a></li>
+						</ul>
+					</nav> -->
+
+					<div class="user-box right">
+						<a href="/u/{{user.name}}" class="username">{{user.displayName || user.name}}</a>
+						<img ng-src="{{user.avatar}}" class="avatar" alt="{{user.name}}" ng-click="showDropdown = !showDropdown ? true : false">
+						<a href="" class="font-icon arrow-down-icon icon" ng-click="showDropdown = !showDropdown ? true : false" ng-class="{'arrow-up-icon': showDropdown}"></a>
+						<ul class="dropdown-menu" ng-class="{'active': showDropdown}">
+							<li><a href="/u/{{user.name}}" class="menu-link">Profile</a></li>
+							<li><a href="/settings" class="menu-link">Settings</a></li>
+							<li><a href="/suggest" class="menu-link">Find people</a></li>
+							<li><a href="" class="menu-link invite">Invite friend!</a></li>
+							<li><a href="/logout" class="menu-link">Logout</a></li>
+						</ul>
 					</div>
-				</div> -->
+				</div>
+			</header>
 
-				<!-- <nav class="nav left">
+			<!-- <section class="subheader">
+				<div class="subheader-wrap">
 					<ul>
-						<li><a href="/discover" class="nav-link">Discover</a></li>
-						<li><a href="/collections" class="nav-link">Collections</a></li>
-					</ul>
-				</nav> -->
-
-				<div class="user-box right">
-					<a href="/u/{{user.name}}" class="username">{{user.displayName || user.name}}</a>
-					<img ng-src="{{user.avatar}}" class="avatar" alt="{{user.name}}" ng-click="showDropdown = !showDropdown ? true : false">
-					<a href="" class="font-icon arrow-down-icon icon" ng-click="showDropdown = !showDropdown ? true : false" ng-class="{'arrow-up-icon': showDropdown}"></a>
-					<ul class="dropdown-menu" ng-class="{'active': showDropdown}">
-						<li><a href="/u/{{user.name}}" class="menu-link">Profile</a></li>
-						<li><a href="/settings" class="menu-link">Settings</a></li>
-						<li><a href="/suggest" class="menu-link">Find people</a></li>
-						<li><a href="" class="menu-link invite">Invite friend!</a></li>
-						<li><a href="/logout" class="menu-link">Logout</a></li>
+						<li><a href="" class="service-link active">All</a></li>
+						<li ng-repeat="network in networks"
+							ng-init="type = network.service === 'gist' ? 'github' : network.service"
+							ng-class="{'hide': network.service === 'gist'}">
+							<a href="" class="service-link"><i class="font-icon {{type}}-icon icon"></i> {{type}}</a>
+						</li>
 					</ul>
 				</div>
-			</div>
-		</header>
+			</section> -->
 
-		<section class="subheader">
-			<div class="subheader-wrap">
-			</div>
-		</section>
-
-		<div class="main-viewer" ng-view></div>
+			<div class="main-viewer" ng-view></div>
+		</div>
 
 
 		<!-- <div ng-show="user.warning" ng-class="{'animated fadeInDown': user.warning, 'closed': user.warningHidden}" class="network-error">
