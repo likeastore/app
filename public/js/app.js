@@ -71,12 +71,13 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, intercom) {
+	app.run(function (user, tracking) {
 		user.initialize()
 			.getActiveNetworks()
 			.getInboxCount();
 
-		intercom.boot();
+		debugger;
+		tracking.boot();
 	});
 
 	return app;
