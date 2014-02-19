@@ -14,7 +14,8 @@ define(function (require) {
 	services.factory('user', require('./user'));
 	services.factory('links', require('./links'));
 	services.factory('analytics', require('./analytics'));
-	services.factory('intercom', require('./intercom'));
+	services.factory('tracking', require('./tracking'));
+	services.factory('mixpanel', require('./mixpanel'));
 	services.factory('_', require('./underscore'));
 
 	return services;
