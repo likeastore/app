@@ -1,7 +1,10 @@
+var request = require('request');
 var OAuth = require('oauth').OAuth;
 var OAuth2 = require('oauth').OAuth2;
 var config = require('../../config');
 var users = require('../models/users');
+var querystring = require('querystring');
+var util = require('util');
 
 function facebook() {
 	return function (req, res, next) {
@@ -93,6 +96,10 @@ function twitterCallback () {
 		function userFound (err, user) {
 			if (err) {
 				return next(err);
+			}
+
+			if (!user) {
+				return next({message: 'failed to find user by request token', status: 404});
 			}
 
 			oauth.getOAuthAccessToken(requestToken, user.twitterRequestTokenSecret, verifier, gotAccessToken);
@@ -433,6 +440,80 @@ function vkCallback() {
 	};
 }
 
+function pocket() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/pocket/callback?state=' + req.user.email;
+		var payload = {redirect_uri: callbackUrl, consumer_key: config.services.pocket.consumerKey};
+
+		request.post({url: 'https://getpocket.com/v3/oauth/request', form: payload}, function (err, response, body) {
+			if (err) {
+				return next(err);
+			}
+
+			var requestToken = querystring.parse(body).code;
+
+			if (!requestToken) {
+				return next({message: 'failed to retrieve request token', status: 500});
+			}
+
+			users.update(req.user, {pocketRequestToken: requestToken}, function (err) {
+				if (err) {
+					return next({message: 'failed to update user', err: err, status: 500});
+				}
+
+				req.authUrl = util.format('https://getpocket.com/auth/authorize?request_token=%s&redirect_uri=%s', requestToken, callbackUrl);
+				next();
+			});
+		});
+	};
+}
+
+function pocketCallback() {
+	return function (req, res, next) {
+		var user = req.query.state;
+
+		users.findByEmail(user, function (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			if (!user) {
+				return next({message: 'user not found', status: 404});
+			}
+
+			if (!user.pocketRequestToken) {
+				return next({message: 'user does not have pocket request token', status: 500});
+			}
+
+			var payload = {code: user.pocketRequestToken, consumer_key: config.services.pocket.consumerKey};
+
+			request.post({url: 'https://getpocket.com/v3/oauth/authorize', form: payload}, function (err, response, body) {
+				if (err) {
+					return next(err);
+				}
+
+				body = querystring.parse(body);
+
+				var accessToken = body.access_token;
+				var username = body.username;
+
+				if (!accessToken || !username) {
+					return next({message: 'failed to get accessToken or username from pocket', status: 500});
+				}
+
+				req.network = {
+					accessToken: accessToken,
+					accessTokenSecret: null,
+					username: username,
+					user: user,
+					service: 'pocket'
+				};
+
+				next();
+			});
+		});
+	};
+}
 
 module.exports = {
 	facebook: facebook,
@@ -458,6 +539,10 @@ module.exports = {
 	behance: behance,
 	behanceCallback: behanceCallback,
 
+	// not used at the moment..
 	vk: vk,
-	vkCallback: vkCallback
+	vkCallback: vkCallback,
+
+	pocket: pocket,
+	pocketCallback: pocketCallback
 };

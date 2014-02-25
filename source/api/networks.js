@@ -62,6 +62,11 @@ function networksService(app) {
 		returnAuthUrl
 	);
 
+	app.post('/api/networks/pocket',
+		middleware.networks.pocket(),
+		returnAuthUrl
+	);
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
@@ -130,6 +135,15 @@ function networksService(app) {
 		middleware.networks.behanceCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'behance'}),
+		middleware.ga.track('network', 'turnon', 'users'),
+		redirectToSettings
+	);
+
+	app.get('/api/networks/pocket/callback',
+		middleware.access.guest(),
+		middleware.networks.pocketCallback(),
+		registerNetwork,
+		middleware.analytics.track('network created', {service: 'pocket'}),
 		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings
 	);
