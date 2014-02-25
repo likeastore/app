@@ -1,4 +1,4 @@
-var schemas = require('../utils/schemas');
+var schemas = require('../models/schemas');
 
 module.exports = function (schema) {
 	return function (req, res, next) {
