@@ -1,4 +1,33 @@
-<div text-search="query"></div>
+<ul class="folders">
+	<li ng-if="user" class="user">
+		<a href="/u/{{user.name}}" class="menu-title">
+			<img ng-src="{{user.avatar}}" class="avatar">
+			<span class="username">{{(user.displayName || user.name)|truncate:35}}</span>
+		</a>
+		<a href="/settings" class="font-icon settings-icon subicon right"></a>
+	</li>
+	<li class="inbox">
+		<a href="/inbox" class="menu-title"><i data-icon="c" class="font-icon inbox-icon icon"></i> Inbox <span class="inbox-counter right" ng-hide="inboxCount === 0">{{inboxCount}}</span></a>
+	</li>
+	<li class="favorites">
+		<a href="/activity" class="menu-title"><i class="font-icon favorites-icon icon"></i> All favorites</a>
+	</li>
+	<li class="discover">
+		<a href="/discover" class="menu-title"><i class="font-icon discover-icon icon"></i> Discover</a>
+	</li>
+	<li class="history">
+		<a href="/history" class="menu-title"><i class="font-icon history-icon icon"></i> History</a>
+	</li>
+	<li class="collections">
+		<a href="" class="menu-title" ng-click="showCollections=!showCollections ? true : false"><i class="font-icon collections-icon icon"></i> Collections <i class="font-icon thinarrow-left-icon subicon right" ng-class="{'thinarrow-down-icon': showCollections}"></i></a>
+	</li>
+</ul>
+
+<div class="new-collection-button">
+
+</div>
+
+<!-- <div text-search="query"></div>
 
 <ul class="networks-menu folders-list">
 	<li class="menu-subtitle">Folders</li>
@@ -64,3 +93,4 @@
 	<li><a href="http://blog.likeastore.com" target="_blank">Read blog</a></li>
 	<li><a href="mailto:info@likeastore.com">Send feedback</a></li>
 </ul>
+ -->

@@ -82,6 +82,14 @@
 	content: '(';
 }
 
+.thinarrow-left-icon:before {
+	content: '!';
+}
+
+.thinarrow-down-icon:before {
+	content: '8';
+}
+
 .bell-icon:before {
 	content: '=';
 }
@@ -96,6 +104,46 @@
 
 .list-icon:before {
 	content: '\e003';
+}
+
+.search-icon:before {
+	content: 'P';
+}
+
+.menu-icon:before {
+	content: 'J';
+}
+
+.inbox-icon:before {
+	content: 'c';
+}
+
+.favorites-icon:before {
+	content: 's';
+}
+
+.discover-icon:before {
+	content: '\e00C';
+}
+
+.history-icon:before {
+	content: '<';
+}
+
+.collections-icon:before {
+	content: '\\';
+}
+
+.activity-icon:before {
+	content: '\e005';
+}
+
+.plus-icon:before {
+	content: '`';
+}
+
+.logout-icon:before {
+	content: '\e01A';
 }
 
 .big-icon {

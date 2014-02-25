@@ -1,0 +1,256 @@
+:root {
+	var-red: #df3f3f;
+	var-grey: #eeeef0;
+	var-darkgrey: #64747d;
+	var-green: #57ad68;
+	var-navy: #56c7aa;
+	var-tortoise: #1abc9c;
+	var-yellow: #f1c40f;
+	var-black: #1f282d;
+	var-darkblue: #272a33;
+	var-pink: #f03e56;
+	var-blue: #5da8e0;
+	var-facebook: #3b5998;
+	var-twitter: #3498db;
+	var-github: #bdc3c7;
+	var-stackoverflow: #e67e22;
+	var-youtube: #c0392b;
+	var-vimeo: #62a0ad;
+	var-dribbble: #ea4c89;
+	var-behance: #0d7ba3;
+	var-title-font: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+	var-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+}
+
+.settings {
+	width: 700px;
+	margin: 0 auto;
+	padding-top: 75px;
+}
+
+.settings h2.main-title {
+	font-size: 28px;
+	font-weight: 300;
+	color: #666;
+	line-height: 28px;
+	margin-bottom: 30px;
+}
+
+.settings .right-block-wrap {
+	width: 500px;
+}
+
+.settings .network,
+.settings .profile-item {
+	width: 100%;
+	padding: 18px 0 18px 30px;
+	margin: 0;
+	vertical-align: top;
+	border-top: 1px solid rgba(0,0,0,.05);
+	position: relative;
+}
+
+.settings .network:first-child,
+.settings .profile-item:first-child {
+	border: 0;
+	padding-top: 5px;
+}
+
+.settings .title {
+	font-size: 14px;
+	font-family: var(title-font);
+	margin: 0;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.settings .desc {
+	color: #888;
+	font-size: 12px;
+	font-weight: 300;
+}
+
+.settings .tabs {
+	width: 200px;
+	border-right: 1px solid rgba(0,0,0,.05);
+	height: 715px;
+}
+
+.settings .tabs .tab {
+	display: block;
+	color: #666;
+	font-size: 14px;
+	line-height: 40px;
+	text-indent: 16px;
+	width: 100%;
+	height: 40px;
+	cursor: pointer;
+	letter-spacing: .6px;
+}
+
+.settings .tabs .tab.active {
+	background: #fdfdfd;
+	font-weight: 600;
+}
+
+.info {
+	display: inline-block;
+}
+
+/* Toggle network checkboxes */
+.toggle {
+	margin-top: 6px;
+	position: relative;
+	width: 75px;
+	height: 32px;
+}
+
+.toggle.disabled {
+	opacity: .6;
+	transition: opacity .2s ease-in-out;
+}
+
+.toggle input[type="checkbox"] {
+	opacity: 0;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	width: 75px;
+	height: 32px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.toggle .btn {
+	display: block;
+	background: #fff;
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	width: 30px;
+	height: 30px;
+	z-index: 4;
+	border-radius: 100%;
+	transition: left .2s ease-in-out;
+}
+
+.toggle.on .btn {
+	left: 44px;
+}
+
+.toggle .texts {
+	color: #fff;
+	font-size: 13px;
+	font-weight: 400;
+	position: absolute;
+	top: 8px;
+	width: 100%;
+	text-transform: uppercase;
+	z-index: 2;
+	letter-spacing: 1px;
+}
+
+.toggle .texts:before {
+	visibility: hidden;
+	opacity: 0;
+	content: attr(data-on);
+	position: absolute;
+	left: 14px;
+	transition: all .3s;
+}
+
+.toggle .texts:after {
+	visibility: visible;
+	opacity: 1;
+	content: attr(data-off);
+	position: absolute;
+	right: 12px;
+	transition: all .3s;
+}
+
+.toggle.on .texts:before {
+	visibility: visible;
+	opacity: 1;
+}
+
+.toggle.on .texts:after {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.toggle .bg {
+	display: block;
+	background: #f56557;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 40px;
+	transition: left .25s ease-in;
+}
+
+.toggle.on .bg {
+	background: var(navy);
+}
+
+.profile-item .fld {
+	background: transparent;
+	border: 0;
+	color: #666;
+	font-size: 13px;
+	font-weight: 600;
+	padding: 0;
+	margin: 10px 0 0;
+}
+
+.danger-wrap .title {
+	margin-bottom: 5px;
+}
+
+.danger-wrap .desc {
+	font-size: 13px;
+	line-height: 18px;
+}
+
+.danger-wrap .delete-link {
+	display: inline-block;
+	margin-top: 10px;
+	text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+	.settings {
+		width: 450px;
+	}
+
+	.settings .tabs {
+		width: 150px;
+	}
+
+	.settings .right-block-wrap {
+		width: 300px;
+	}
+}
+
+@media (max-width: 450px) {
+	.settings {
+		width: 95%;
+	}
+
+	.settings .tabs {
+		width: 30%;
+	}
+
+	.settings .tabs .tab {
+		font-size: 12px;
+		text-indent: 10px;
+	}
+
+	.settings .right-block-wrap {
+		width: 70%;
+	}
+}

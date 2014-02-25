@@ -11,10 +11,14 @@ define(function () {
 			event && $analytics.eventTrack(event);
 
 			$rootScope.title = title;
+			$rootScope.hideTopBar = false;
+			$rootScope.ctaButtonType = 'addNetwork';
+
 			$scope.page = 1;
 			$scope.items = [];
 			$scope.inbox = title === 'Inbox';
 			$scope.notLazySearchable = notLazySearchable || false;
+			$scope.types = {};
 
 			loadPage();
 
@@ -50,6 +54,7 @@ define(function () {
 				if (title === 'Inbox') {
 					$scope.count = $scope.items.length;
 				}
+
 				appLoader.ready();
 			}
 		}

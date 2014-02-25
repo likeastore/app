@@ -2,21 +2,20 @@
 @import url(reset.css);
 @import url(general.css);
 @import url(icons.css);
-@import url(grid.css);
 @import url(preloaders.css);
 @import url(../components/animate.css/animate.css);
+@import url(dialog.css);
+@import url(../components/ngDialog/css/ngDialog.css);
+@import url(settings.css);
 
 
 
 /*@import url(global.css);
 @import url(forms.css);
 @import url(dashboard-deck.css);
-@import url(../components/ngDialog/css/ngDialog.css);
 @import url(custom-animate.css);
-@import url(dialog.css);
 @import url(discover.css);
 @import url(history.css);
-@import url(settings.css);
 @import url(suggest.css);
 @import url(profile.css);
 @import url(media.css);*/

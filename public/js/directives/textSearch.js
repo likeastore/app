@@ -8,10 +8,9 @@ define(function () {
 			restrict: 'A',
 			replace: true,
 			template: '\
-				<form ng-submit="goToSearch()" class="search-bar-wrap">\
-					<i data-icon="P" class="search-icon"></i>\
-					<input type="text" class="search-input" name="text" placeholder="SEARCH" ng-model="query">\
-					<div class="hover-background"></div>\
+				<form ng-submit="goToSearch()" class="search-bar holder">\
+					<i class="font-icon search-icon icon"></i>\
+					<input type="text" name="text" class="search" placeholder="Search favorites" ng-model="query">\
 				</form>\
 			',
 			controller: function ($scope) {
@@ -27,6 +26,14 @@ define(function () {
 				var parentScope = scope.$parent;
 				var timer = false;
 				var backup, pages;
+
+				var $input = elem.find('input');
+				$input.on('focus', function () {
+					elem.addClass('active');
+				});
+				$input.on('blur', function () {
+					elem.removeClass('active');
+				});
 
 				scope.$watch('query', searching, true);
 
