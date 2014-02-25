@@ -6,15 +6,15 @@ exports.schemas = {
 		description: 'Collection of likes',
 		type: 'object',
 		properties: {
-			title: {
+			'title': {
 				required: true,
 				type: 'string'
 			},
-			public: {
+			'public': {
 				required: false,
 				type: 'boolean'
 			},
-			description: {
+			'description': {
 				required: false,
 				type: 'string'
 			}
@@ -25,7 +25,7 @@ exports.schemas = {
 		description: 'Collection properties',
 		type: 'object',
 		properties: {
-			color: {
+			'color': {
 				required: false,
 				type: 'string'
 			}
