@@ -3,7 +3,6 @@
 .settings {
   width: 700px;
   margin: 0 auto;
-  padding-top: 75px;
 }
 
 .settings h2.main-title {
@@ -32,6 +31,10 @@
 .settings .profile-item:first-child {
   border: 0;
   padding-top: 5px;
+}
+
+.settings .network.noborder {
+  border: 0;
 }
 
 .settings .title {
@@ -204,6 +207,19 @@
   display: inline-block;
   margin-top: 10px;
   text-decoration: underline;
+}
+
+.temp-disabled-icon {
+  color: #f03e56;
+  font-size: 18px;
+  position: absolute;
+  top: 18px;
+  left: 7px;
+}
+
+.network-error {
+  color: #f03e56;
+  padding: 10px 30px 5px;
 }
 
 @media (max-width: 700px) {

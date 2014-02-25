@@ -6,8 +6,8 @@
 		<div text-search></div>
 		<div ng-if="networks.length" class="filters-bar holder" dropdown-menu="networks"></div>
 		<div class="view-bar holder">
-			<i class="font-icon grid-icon icon" ng-class="{active: user.viewMode === 'grid'}" ng-click="changeView('grid')"></i>
-			<i class="font-icon list-icon icon" ng-class="{active: user.viewMode === 'list'}" ng-click="changeView('list')"></i>
+			<i class="font-icon grid-icon icon" ng-class="{active: user.viewMode === 'grid'}" ng-click="user.changeView('grid')"></i>
+			<i class="font-icon list-icon icon" ng-class="{active: user.viewMode === 'list'}" ng-click="user.changeView('list')"></i>
 		</div>
 	</div>
 </div>

@@ -127,7 +127,7 @@
 }
 
 .history-icon:before {
-  content: '<';
+  content: '\e00e';
 }
 
 .collections-icon:before {
@@ -144,6 +144,10 @@
 
 .logout-icon:before {
   content: '\e01A';
+}
+
+.temp-disabled-icon:before {
+  content: 'N';
 }
 
 .big-icon {

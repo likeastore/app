@@ -85,7 +85,7 @@ define(function (require) {
 
 							if (row.disabled && service === row.service) {
 								parent.addClass('disabled');
-								parent.append('<div class="expired-token-notifier">Temporary disabled</div>');
+								parent.prepend('<div class="font-icon temp-disabled-icon tooltipped"><div class="tooltip">Disabled</div></div>');
 							}
 						});
 					}

@@ -12,7 +12,10 @@
 		</div>
 
 		<ul ng-show="showConfigTab" class="right-block-wrap animated fadeInLeft left">
-			<li class="network facebook clearfix">
+			<li class="network-error" ng-if="user.warning">
+				Our robot reports the issue with one of your networks. Please help him by simply re-enabling the network.
+			</li>
+			<li class="network facebook clearfix" ng-class="{noborder: user.warning}">
 				<div class="left info">
 					<h2 class="title">Facebook</h2>
 					<div class="desc">Page likes and links</div>

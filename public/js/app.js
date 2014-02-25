@@ -76,22 +76,12 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, intercom, $rootScope, storage, auth) {
+	app.run(function (user, intercom) {
 		user.initialize()
 			.getActiveNetworks()
 			.getInboxCount();
 
-			intercom.boot();
-
-		$rootScope.viewMode = 'grid';
-		$rootScope.changeView = function (view) {
-			storage.set('list-view', view);
-			$rootScope.user.viewMode = view;
-		};
-
-		$rootScope.logout = function () {
-			auth.logout();
-		};
+		intercom.boot();
 	});
 
 	return app;
