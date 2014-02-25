@@ -62,7 +62,7 @@ define(function (require) {
 					function dialogAuth(dialogTmpl) {
 						ngDialog.open({
 							template: dialogTmpl,
-							className: 'lsd-theme share-dialog ' + service + '-connect-dialog',
+							className: 'lsd-theme ' + service + '-connect-dialog',
 							controller: attrs.dialogController,
 							scope: scope
 						});

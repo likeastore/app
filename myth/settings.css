@@ -225,6 +225,11 @@
 	text-decoration: underline;
 }
 
+.danger-wrap .delete-link:hover {
+	color: var(navy);
+	text-decoration: none;
+}
+
 .temp-disabled-icon {
 	color: var(pink);
 	font-size: 18px;

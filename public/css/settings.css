@@ -209,6 +209,11 @@
   text-decoration: underline;
 }
 
+.danger-wrap .delete-link:hover {
+  color: #56c7aa;
+  text-decoration: none;
+}
+
 .temp-disabled-icon {
   color: #f03e56;
   font-size: 18px;

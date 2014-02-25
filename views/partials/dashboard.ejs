@@ -28,8 +28,8 @@
 					tooltip="Share"
 					ng-dialog="shareLikeDialog"
 					ng-dialog-class="lsd-theme share-dialog share-like"
-					ng-dialog-scope=""
 					ng-dialog-controller="shareLikeController"
+					ng-dialog-show-close="false"
 					ng-dialog-data="{{item._id}}, {{item.type}}, {{item.title||item.repo}}"><i class="font-icon share-icon"></i></a>
 				<a href="" class="delete-btn"
 					tooltip="Delete"

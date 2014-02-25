@@ -81,7 +81,6 @@ define(function (require) {
 			.getActiveNetworks()
 			.getInboxCount();
 
-		debugger;
 		tracking.boot();
 	});
 
