@@ -357,12 +357,8 @@ describe('collections.spec.js', function () {
 					});
 				});
 
-				it('should respond with 200 (ok)', function () {
-					expect(response.statusCode).to.equal(200);
-				});
-
-				it('should add properties to collection', function () {
-					expect(results.properties).to.deep.equal({color: '#EAE', prio: 1});
+				it('should respond with 412 (validation)', function () {
+					expect(response.statusCode).to.equal(412);
 				});
 			});
 		});

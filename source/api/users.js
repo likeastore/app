@@ -12,6 +12,12 @@ function usersService(app) {
 		returnUser
 	);
 
+	app.patch('/api/users/me',
+		middleware.validate('userProperties'),
+		updateUser,
+		returnUser
+	);
+
 	app.get('/api/users/search',
 		searchUser
 	);
@@ -204,6 +210,18 @@ function usersService(app) {
 			}
 
 			res.json(suggested);
+		});
+	}
+
+	function updateUser(req, res, next) {
+		users.update(req.user, req.body, function (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			req.user = user;
+
+			next();
 		});
 	}
 

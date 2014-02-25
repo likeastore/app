@@ -5,6 +5,7 @@ exports.schemas = {
 	collection: {
 		description: 'Collection of likes',
 		type: 'object',
+		additionalProperties: false,
 		properties: {
 			'title': {
 				required: true,
@@ -22,10 +23,27 @@ exports.schemas = {
 	},
 
 	collectionProperties: {
-		description: 'Collection properties',
+		description: 'Collection properties allowed to change',
 		type: 'object',
+		additionalProperties: false,
 		properties: {
 			'color': {
+				required: false,
+				type: 'string'
+			}
+		}
+	},
+
+	userProperties: {
+		description: 'User properties allowed to change',
+		type: 'object',
+		additionalProperties: false,
+		properties: {
+			'displayName': {
+				required: false,
+				type: 'string'
+			},
+			'bio': {
 				required: false,
 				type: 'string'
 			}

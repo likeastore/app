@@ -301,5 +301,66 @@ describe('users.spec.js', function () {
 				});
 			});
 		});
+
+		describe('when user updated', function () {
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					user = createdUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			describe('changing displayName', function () {
+				beforeEach(function (done) {
+					request.patch({url: url, headers: headers, body: {displayName: 'Updated Name'}, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should respond 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it('should change displayName', function () {
+					expect(body.displayName).to.equal('Updated Name');
+				});
+			});
+
+			describe('changing bio', function () {
+				beforeEach(function (done) {
+					request.patch({url: url, headers: headers, body: {bio: 'Geniuos one'}, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should respond 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it('should change displayName', function () {
+					expect(body.bio).to.equal('Geniuos one');
+				});
+			});
+
+			describe('additional properties', function () {
+				beforeEach(function (done) {
+					request.patch({url: url, headers: headers, body: {notSpecified: 'Geniuos one'}, json: true}, function (err, resp, bod) {
+						response = resp;
+						body = bod;
+						done(err);
+					});
+				});
+
+				it('should respond 412 (validation)', function () {
+					expect(response.statusCode).to.equal(412);
+				});
+			});
+		});
 	});
 });
