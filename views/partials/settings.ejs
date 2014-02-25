@@ -1,4 +1,116 @@
-<div class="settings-page">
+<section class="settings">
+	<h2 class="main-title">{{title}}</h2>
+
+	<div class="clearfix">
+		<div class="tabs left">
+			<div class="tab"
+				ng-click="showConfigTab=true"
+				ng-class="{active: showConfigTab}">Configuration</div>
+			<div class="tab"
+				ng-click="showConfigTab=false"
+				ng-class="{active: !showConfigTab}">Profile</div>
+		</div>
+
+		<ul ng-show="showConfigTab" class="right-block-wrap animated fadeInLeft left">
+			<li class="network-error" ng-if="user.warning">
+				Our robot reports the issue with one of your networks. Please help him by simply re-enabling the network.
+			</li>
+			<li class="network facebook clearfix" ng-class="{noborder: user.warning}">
+				<div class="left info">
+					<h2 class="title">Facebook</h2>
+					<div class="desc">Page likes and links</div>
+				</div>
+				<div class="right" toggle-switcher="facebook"></div>
+			</li>
+			<li class="network twitter clearfix">
+				<div class="left info">
+					<h2 class="title">Twitter</h2>
+					<div class="desc">Favorited tweets</div>
+				</div>
+				<div class="right" toggle-switcher="twitter"></div>
+			</li>
+			<li class="network vimeo clearfix">
+				<div class="left info">
+					<h2 class="title">Vimeo</h2>
+					<div class="desc">Video likes</div>
+				</div>
+				<div class="right" toggle-switcher="vimeo"></div>
+			</li>
+			<li class="network youtube clearfix">
+				<div class="left info">
+					<h2 class="title">Youtube</h2>
+					<div class="desc">Video likes</div>
+				</div>
+				<div class="right" toggle-switcher="youtube"></div>
+			</li>
+			<li class="network dribbble clearfix">
+				<div class="left info">
+					<h2 class="title">Dribbble</h2>
+					<div class="desc">Shots likes</div>
+				</div>
+				<div class="right" toggle-switcher="dribbble" data-dialog-template="dribbbleConnect" data-dialog-controller="dribbbleNetworkController"></div>
+			</li>
+			<li class="network behance clearfix">
+				<div class="left info">
+					<h2 class="title">Behance</h2>
+					<div class="desc">Appreciated projects</div>
+				</div>
+				<div class="right" toggle-switcher="behance"></div>
+			</li>
+			<li class="network github clearfix">
+				<div class="left info">
+					<h2 class="title">Github</h2>
+					<div class="desc">Starred repositories</div>
+				</div>
+				<div class="right" toggle-switcher="github"></div>
+			</li>
+			<li class="network gist clearfix">
+				<div class="left info">
+					<h2 class="title">Gist</h2>
+					<div class="desc">Starred code snippets</div>
+				</div>
+				<div class="right" toggle-switcher="gist"></div>
+			</li>
+			<li class="network stackoverflow clearfix">
+				<div class="left info">
+					<h2 class="title">Stackoverflow</h2>
+					<div class="desc">Favorited questions</div>
+				</div>
+				<div class="right" toggle-switcher="stackoverflow"></div>
+			</li>
+		</ul>
+
+		<ul ng-show="!showConfigTab" class="right-block-wrap profile animated fadeInLeft left">
+			<li class="profile-item">
+				<div class="title">Your email</div>
+				<div>
+					<input type="text" class="fld" value="{{user.email}}" disabled>
+				</div>
+			</li>
+			<li ng-if="user.displayName" class="profile-item">
+				<div class="title">Your full name</div>
+				<div>
+					<input type="text" class="fld" value="{{user.displayName}}" disabled>
+				</div>
+			</li>
+			<li class="profile-item danger-wrap">
+				<div class="title">Delete account</div>
+				<div class="desc">Once you delete an account, there is no going back.<br> This action <b>CANNOT</b> be undone and will delete all likes permanently.</div>
+				<a href="" class="delete-link"
+					ng-dialog="deleteAccountDialog"
+					ng-dialog-class="lsd-theme delete-user-dialog"
+					ng-dialog-controller="deleteUserController">Delete your account</a>
+			</li>
+		</ul>
+	</div>
+</section>
+
+
+
+
+
+
+<!-- <div class="settings-page">
 
 	<div class="userinfo-wrap">
 		<div class="main-title"><i class="font-icon settings-icon"></i>{{title}}</div>
@@ -96,4 +208,4 @@
 			<button type="submit" class="btn" ng-disabled="!dribbbleUser.name">Connect to dribbble</button>
 		</div>
 	</form>
-</script>
+</script> -->

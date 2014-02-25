@@ -1,87 +1,57 @@
-<!-- navigation -->
-<nav class="left dashboard-nav" ng-include="'partials/navigation'" sticky-at="user.warning ? 90 : 50" ng-show="user"></nav>
+<div class="top-bar clearfix">
+	<div class="top left">
+		<h2 class="title">{{title}}</h2>
+	</div>
+	<div class="controls right">
+		<div text-search></div>
+		<div ng-if="networks.length" class="filters-bar holder" dropdown-menu="networks"></div>
+		<div class="view-bar holder">
+			<i class="font-icon grid-icon icon" ng-class="{active: user.viewMode === 'grid'}" ng-click="user.changeView('grid')"></i>
+			<i class="font-icon list-icon icon" ng-class="{active: user.viewMode === 'list'}" ng-click="user.changeView('list')"></i>
+		</div>
+	</div>
+</div>
 
-<!-- dashboard -->
-<section class="main-dashdoard {{title|lowercase}}">
-	<ul class="items-wrap">
-		<li class="dash-item {{item.type}} item{{$index+1}}" ng-class="item.thumbnail ? 'thumbed' : ''" ng-repeat="item in items">
-			<a href="{{item.source}}" class="mask-link" target="_blank"></a>
+<section class="dashboard activity">
+	<ul id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list'}">
+		<li class="dash-item {{item.type}} item{{$index}}"
+			ng-repeat="item in items"
+			ng-class="{
+				'thumbed': item.thumbnail,
+				'texted': !item.thumbnail
+			}">
 
-			<!-- card action buttons -->
-			<div class="item-action-buttons" touchy>
-
-				<a href="" class="share-btn" ng-dialog="shareLikeDialog" ng-dialog-class="lsd-theme share-dialog share-like" ng-dialog-controller="shareLikeController" ng-dialog-data="{{item}}"><i class="font-icon share-icon"></i></a>
-
-				<script type="text/ng-template" id="shareLikeDialog">
-					<h2>
-						<i data-icon="Y" class="icon"></i>
-						Copy and share link
-					</h2>
-					<input id="likeUrl" class="field" ng-model="link">
-					<div class="social-desc">Or share it through social services</div>
-					<div class="social-share">
-						<button type="button" class="btn big-btn fb-btn" share-on="facebook" share-on-event="share-like" share-on-text="{{link}}">Share on facebook</button>
-						<button type="button" class="btn big-btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="{{title}} on @{{service}} - {{link}}, shared via @likeastore ">Share on twitter</button>
-					</div>
-				</script>
-
-				<a href="" class="delete-btn" ng-click="hideLike(item._id, $index)"><i class="font-icon delete-icon"></i></a>
+			<div class="action-buttons">
+				<a href="" class="addto-btn"
+					tooltip="Collect"><i class="font-icon addto-icon"></i></a>
+				<a href="" class="share-btn"
+					tooltip="Share"
+					ng-dialog="shareLikeDialog"
+					ng-dialog-class="lsd-theme share-dialog share-like"
+					ng-dialog-scope=""
+					ng-dialog-controller="shareLikeController"
+					ng-dialog-data="{{item._id}}, {{item.type}}, {{item.title||item.repo}}"><i class="font-icon share-icon"></i></a>
+				<a href="" class="delete-btn"
+					tooltip="Delete"
+					ng-click="hideLike(item._id, $index)"><i class="font-icon delete-icon"></i></a>
 			</div>
 
-			<!-- card with thumbnail -->
-			<div ng-if="item.thumbnail" class="item-thumb-wrap">
-				<div class="item-bg" style="background-image: url({{item.thumbnail}})" ng-show="item.thumbnail"></div>
-				<div class="item-bg-info">
-					<i class="font-icon play-icon" ng-show="item.type === 'youtube' || item.type === 'vimeo'"></i>
-					<h2 class="title">{{item.title}}</h2>
-					<div class="item-date">{{item.type}} &#8226; {{item.created|date: 'longDate'}}</div>
+			<div ng-if="item.thumbnail" class="image">
+				<a ng-if="item.thumbnail" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+
+				<div class="info">
+					<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+					<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:300"></div>
 				</div>
 			</div>
 
-			<!-- text only card -->
-			<div ng-if="!item.thumbnail" class="item-text-wrap">
-				<img ng-if="item.kind != 'link'" class="image" ng-src="{{item.avatarUrl}}" avatar-load>
-				<div ng-if="item.kind == 'link'" class="image facebook-img" style="background-image: url({{item.avatarUrl}});"></div>
-				<div class="repo" ng-show="item.repo">{{item.repo}}</div>
-				<div class="desc">
-					<div linkify="item.description" class="desc-text"></div>
-					<div ng-show="!item.description" class="empty-desc">This item has no description :(</div>
-					<div class="autor-item">by @{{item.authorName}}</div>
-				</div>
-				<div class="item-date">{{item.type}} &#8226; {{item.created|date: 'longDate'}}</div>
+			<div ng-if="!item.thumbnail" class="text-wrap">
+				<h2 ng-if="item.title || item.repo || item.name" class="title truncate">{{item.title||item.repo||item.name}}</h2>
+				<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:300"></div>
 			</div>
 
-			<i class="item-type font-icon {{item.type}}-icon"></i>
+			<time>{{item.created|date: 'longDate'}}</time>
+			<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
 		</li>
 	</ul>
-
-	<div ng-show="nextPage">
-		<div class="show-more" ng-click="showMore()">Show more</div>
-	</div>
-
-	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
-
-	<div class="empty-results" ng-if="loaded && !items.length && search">
-		<div class="annoyed-icon big-icon"></div>
-		<h2>Ooops.. no matching search results!</h2>
-	</div>
-
-	<div class="empty-results" ng-if="loaded && !items.length && inbox">
-		<div class="box-icon big-icon"></div>
-		<h2>Your inbox is empty..</h2>
-		<h3>No new likes were collected since your last visit, be more active!</h3>
-	</div>
-
-	<div class="empty-results" ng-if="loaded && !items.length && !search && !inbox">
-		<div class="robot-icon big-icon"></div>
-		<h2>You don't own any items to display yet..</h2>
-		<a href="/settings" class="red-press-btn">Go to settings</a>
-	</div>
-
-	<div class="empty-results" ng-if="error">
-		<div class="error-icon big-icon"></div>
-		<h2>Robot panic.. we are experiencing troubles!</h2>
-		<h3>Sorry for that. The error is logged and the team is already notified, it will be fixed soon.</h3>
-	</div>
-
 </section>

@@ -1,140 +1,197 @@
-.logo {
-	color: #1abc9c;
-	font: 1.4em 'proxima-nova-bold', 'Lato', 'Helvetica', Arial, sans-serif;
-	font-weight: 400;
-	padding: 9px 0 0 0;
-	text-transform: lowercase;
-	text-decoration: none;
-}
-
-.logo:hover {
-	text-decoration: none;
-}
-
-[data-icon]:before,
-.font-icon:before {
-	font-family: 'icon-font';
-	content: attr(data-icon);
-	font-style: normal;
-	font-weight: normal;
-	speak: none;
-	line-height: 1;
-	text-transform: none;
-	-webkit-font-smoothing: antialiased;
-}
-
 .github-icon:before {
-	content: 'd';
+  content: 'd';
 }
 
 .twitter-icon:before {
-	content: 'b';
+  content: 'b';
 }
 
 .stackoverflow-icon:before {
-	content: 'a';
+  content: 'a';
 }
 
 .facebook-icon:before {
-	content: 'g';
+  content: 'g';
 }
 
 .dribbble-icon:before {
-	content: 'y';
+  content: 'y';
 }
 
 .behance-icon:before {
-	content: '4';
+  content: '4';
 }
 
 .instagram-icon:before {
-	content: 'z';
+  content: 'z';
 }
 
 .pinterest-icon:before {
-	content: 'A';
+  content: 'A';
 }
 
 .bitbucket-icon:before {
-	content: 'B';
+  content: 'B';
 }
 
 .vimeo-icon:before {
-	content: 'C';
+  content: 'C';
 }
 
 .youtube-icon:before {
-	content: 'O';
+  content: 'O';
 }
 
 .date-icon:before {
-	content: 'o';
+  content: 'o';
 }
 
 .full-star-icon:before {
-	content: 's';
+  content: 's';
 }
 
 .settings-icon:before {
-	content: 'u';
+  content: 'u';
 }
 
 .main-icon:before {
-	content: 'w';
+  content: 'w';
 }
 
 .delete-icon:before {
-	content: 'v';
+  content: '~';
 }
 
 .play-icon:before {
-	content: 'W';
+  content: 'W';
 }
 
 .share-icon:before {
-	content: 'Y';
+  content: 'X';
 }
 
 .close-icon:before {
-	content: '0';
+  content: '0';
+}
+
+.arrow-down-icon:before {
+  content: '\'';
+}
+
+.arrow-up-icon:before {
+  content: '(';
+}
+
+.thinarrow-left-icon:before {
+  content: '!';
+}
+
+.thinarrow-down-icon:before {
+  content: '8';
+}
+
+.bell-icon:before {
+  content: '=';
+}
+
+.addto-icon:before {
+  content: '{';
+}
+
+.grid-icon:before {
+  content: '\e002';
+}
+
+.list-icon:before {
+  content: '\e003';
+}
+
+.search-icon:before {
+  content: 'P';
+}
+
+.menu-icon:before {
+  content: 'J';
+}
+
+.inbox-icon:before {
+  content: 'c';
+}
+
+.favorites-icon:before {
+  content: 's';
+}
+
+.discover-icon:before {
+  content: '\e00C';
+}
+
+.history-icon:before {
+  content: '\e00e';
+}
+
+.collections-icon:before {
+  content: '\\';
+}
+
+.activity-icon:before {
+  content: '\e005';
+}
+
+.plus-icon:before {
+  content: '`';
+}
+
+.logout-icon:before {
+  content: '\e01A';
+}
+
+.temp-disabled-icon:before {
+  content: 'N';
 }
 
 .big-icon {
-	height: 100px;
-	width: 100px;
+  height: 100px;
+  width: 100px;
 }
 
 .box-icon {
-	background: url(../img/box.png) center center no-repeat;
-	background-size: 90px;
+  background: url(../img/box.png) center center no-repeat;
+  -webkit-background-size: 90px;
+  background-size: 90px;
 }
 
 .robot-icon {
-	background: url(../img/square-robot.png) center center no-repeat;
-	background-size: 90px;
+  background: url(../img/square-robot.png) center center no-repeat;
+  -webkit-background-size: 90px;
+  background-size: 90px;
 }
 
 .history-empty-icon {
-	background: url(../img/history.png) center center no-repeat;
-	background-size: 90px;
+  background: url(../img/history.png) center center no-repeat;
+  -webkit-background-size: 90px;
+  background-size: 90px;
 }
 
 .discover-empty-icon {
-	background: url(../img/telescope.png) center center no-repeat;
-	background-size: 110px;
+  background: url(../img/telescope.png) center center no-repeat;
+  -webkit-background-size: 110px;
+  background-size: 110px;
 }
 
 .annoyed-icon {
-	background: url(../img/no-results-grey.png) center center no-repeat;
-	background-size: 90px;
+  background: url(../img/no-results-grey.png) center center no-repeat;
+  -webkit-background-size: 90px;
+  background-size: 90px;
 }
 
 .error-icon {
-	background: url(../img/ooops-robot.png) center center no-repeat;
-	background-size: 180px;
+  background: url(../img/ooops-robot.png) center center no-repeat;
+  -webkit-background-size: 180px;
+  background-size: 180px;
 }
 
 .error-icon.big-icon {
-	height: 120px;
-	width: 200px;
+  height: 120px;
+  width: 200px;
 }

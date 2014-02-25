@@ -4,11 +4,12 @@
   "dependencies": {
     "underscore": "~1.5.2",
     "requirejs": "~2.1.5",
-    "angular": "1.2.12",
-    "angular-resource": "1.2.12",
-    "angular-route": "1.2.12",
-    "angular-cookies": "1.2.12",
-    "angular-animate": "1.2.12",
+    "angular": "1.2.13",
+    "angular-resource": "1.2.13",
+    "angular-route": "1.2.13",
+    "angular-cookies": "1.2.13",
+    "angular-animate": "1.2.13",
+    "angular-sanitize": "1.2.13",
     "ngDialog": "~0.1.0",
     "hashids": "0.3.0",
     "seismo": "~0.0.3",
@@ -19,6 +20,7 @@
     "angulartics": "~0.8.7",
     "angular-touch": "~1.2.9",
     "momentjs": "~2.5.1",
-    "angular-moment": "~0.6.0"
+    "angular-moment": "~0.6.0",
+    "modernizr": "~2.7.1"
   }
 }

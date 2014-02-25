@@ -1,9 +1,11 @@
 define(function (require) {
 	'use strict';
 
+	require('modernizr');
 	require('ngRoute');
 	require('ngAnimate');
 	require('ngTouch');
+	require('ngSanitize');
 	require('ngDialog');
 	require('ngIntercom');
 	require('angularLocalStorage');
@@ -22,6 +24,7 @@ define(function (require) {
 		'ngRoute',
 		'ngAnimate',
 		'ngTouch',
+		'ngSanitize',
 		'ngDialog',
 		'angularLocalStorage',
 		'ngIntercom',
@@ -45,6 +48,7 @@ define(function (require) {
 			$routeProvider
 				.when('/', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
 				.when('/all', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
+				.when('/activity', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
 				.when('/inbox', { templateUrl: 'partials/dashboard', controller: 'inboxController' })
 				.when('/facebook', { templateUrl: 'partials/dashboard', controller: 'facebookController' })
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
@@ -55,6 +59,7 @@ define(function (require) {
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
+				.when('/items/:id', { templateUrl: 'partials/dashboard', controller: 'dashboardController'})
 				.when('/history', { templateUrl: 'partials/history', controller: 'historyController' })
 				.when('/discover', { templateUrl: 'partials/discover', controller: 'discoverController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })

@@ -78,13 +78,33 @@ module.exports = function(grunt) {
 				],
 				dest: { src: 'tools/client/index.js', out: 'public/build/index.js' }
 			}
+		},
+
+
+		myth: {
+			all: {
+				files: {
+					'public/css/general.css': 'myth/general.css',
+					'public/css/icons.css': 'myth/icons.css',
+					'public/css/settings.css': 'myth/settings.css'
+				}
+			}
+		},
+
+		watch: {
+			styles: {
+				files: ['myth/**/*.css'],
+				tasks: ['myth']
+			}
 		}
 	});
 
-	// Laoded tasks
+	// Loaded tasks
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-hashres');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-myth');
 
 	// Default task.
 	grunt.registerTask('default', ['jshint']);

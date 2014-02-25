@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function User ($rootScope, api) {
+	function User ($rootScope, api, storage, auth) {
 		return {
 			initialize: function () {
 				api.get({ resource: 'users', target: 'me' }, function (user) {
@@ -14,6 +14,16 @@ define(function (require) {
 					}
 
 					$rootScope.user = user;
+
+					$rootScope.user.viewMode = storage.get('list-view') || 'grid';
+					$rootScope.user.changeView = function (view) {
+						storage.set('list-view', view);
+						$rootScope.user.viewMode = view;
+					};
+
+					$rootScope.user.logout = function () {
+						auth.logout();
+					};
 				});
 
 				return this;

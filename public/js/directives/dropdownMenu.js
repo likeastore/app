@@ -3,38 +3,50 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function DropdownMenu ($document, auth) {
+	function DropdownMenu ($document, $rootScope) {
 		return {
-			restrict: 'C',
+			restrict: 'A',
 			scope: {
-				user: '=model'
+				networks: '=dropdownMenu'
 			},
 			template: '\
-				<img src="{{user.avatar}}" alt="{{user.name}}" ng-click="toggleMenu()">\
-				<div class="account-show" ng-click="toggleMenu()"></div>\
-				<ul class="dropdown">\
-					<li><a href="/inbox" class="menu-link">Inbox</a></li>\
-					<li><a href="/u/{{user.name}}" class="menu-link">Profile</a></li>\
-					<li><a href="/suggest" class="menu-link">Find people</a></li>\
-					<li><a href="/settings" class="menu-link">Account settings</a></li>\
-					<li><a href="#" class="menu-link" ng-click="logout()">Logout</a></li>\
-				</ul>',
+				<div>Filter by &nbsp;<a href="" class="show-networks" ng-click="toggleMenu()">{{menuTitle}}</a></div>\
+				<div class="networks-dropdown" ng-class="{active: showDropdown}">\
+					<ul>\
+						<li>\
+							<a href="/activity" class="network-link"\
+								ng-class="{active: menuTitle.toLowerCase() === \'all networks\'}">\
+								<i class="font-icon activity-icon icon"></i> All networks\
+							</a>\
+						</li>\
+						<li class="network"\
+							ng-repeat="network in networks"\
+							ng-init="type = network.service === \'gist\' ? \'github\' : network.service"\
+							ng-class="{hide: network.service === \'gist\'}">\
+							<a href="/{{network.service}}" class="network-link"\
+								ng-class="{active: network.service === menuTitle.toLowerCase()}">\
+								<i class="font-icon {{network.service}}-icon icon"></i> {{network.service}}\
+							</a>\
+						</li>\
+					</ul>\
+				</div>',
 			link: function (scope, elem, attrs) {
-				var $parent = elem.parent();
+				$rootScope.$watch('title', function (value) {
+					if (value) {
+						scope.menuTitle = (value !== 'Activity' && value !== 'Inbox') ? value : 'All networks';
+					}
+				});
 
 				scope.toggleMenu = function () {
-					$parent.toggleClass('active');
+					scope.showDropdown = scope.showDropdown ? false : true;
 				};
 
-				scope.logout = function () {
-					auth.logout();
-				};
-
-				$document.bind('click', function (e) {
-					var target = angular.element(e.target.parentElement).hasClass('dropdown-menu');
+				$document.on('click touchstart', function (e) {
+					var target = angular.element(e.target).hasClass('show-networks') || angular.element(e.target).hasClass('network-link');
 
 					if (!target) {
-						$parent.removeClass('active');
+						scope.showDropdown = false;
+						scope.$apply();
 					}
 				});
 			}

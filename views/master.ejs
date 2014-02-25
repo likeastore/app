@@ -8,25 +8,55 @@
 	<base href="/">
 
 	<link rel="stylesheet" type="text/css" href="<%= mainCss %>">
-	<link rel="shortcut icon" href="/img/favicon.png" />
-	<link rel="apple-touch-icon" href="/img/favicon.png"/>
+	<link rel="shortcut icon" href="/img/logo.png" />
+	<link rel="apple-touch-icon" href="/img/logo.png"/>
 
 	<!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body ng-class="{notify: user.warning}">
 	<div id="likeastoreApp" style="display:none;">
-		<div ng-show="user.warning" ng-class="{'animated fadeInDown': user.warning, 'closed': user.warningHidden}" class="network-error">
+
+		<nav sidebar-menu class="sidebar-nav st-menu"></nav>
+
+		<div class="sidebar-overlay"></div>
+
+		<div class="container">
+			<div class="content" scrolly="showMore()">
+				<div class="content-inner">
+					<div class="network-error-stripe"
+						ng-if="user.warning"
+						ng-class="{'hide': !user.warning}">
+						Some connections have expired, new likes are not collected. <a href="/settings">Click here to continue collecting.</a>
+						<a href="" class="font-icon close-icon hide-error-stripe-icon" ng-click="user.warning=false"></a>
+					</div>
+					<header class="header">
+						<div class="header-wrap clearfix">
+							<a href="" class="pusher-menu-link header-btn" ng-click="showSidebar()"><i class="font-icon menu-icon icon"></i>Menu</a>
+							<a href="/" class="logo" title="likeastore"></a>
+							<a ng-show="ctaButtonType==='addNetwork'" href="/settings" class="add-network-link header-btn"><i class="plus-icon font-icon icon"></i> Network</a>
+							<a ng-show="ctaButtonType==='logout'" href="" ng-click="user.logout()" class="add-network-link header-btn"><i class="logout-icon font-icon icon"></i> Sign out</a>
+						</div>
+					</header>
+
+					<div class="main-viewer" ng-view></div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- <div ng-show="user.warning" ng-class="{'animated fadeInDown': user.warning, 'closed': user.warningHidden}" class="network-error">
 			Some connections have expired, new likes are not collected. <a href="/settings">Click here to continue collecting.</a>
 			<a href="" class="hide-network-error" ng-click="user.warning=false"></a>
 		</div>
 
 		<header class="main-header clearfix" ng-show="user" ng-include="'partials/header'"></header>
-		<div class="main-viewer" ng-view></div>
+		<div class="main-viewer" ng-view></div> -->
 	</div>
 
 	<%- partial('static/icon-preloader') %>
+	<%- partial('static/templates') %>
 
 	<script type="text/javascript" src="/components/requirejs/require.js" data-main="<%= mainJs %>"></script>
 

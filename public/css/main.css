@@ -1,17 +1,21 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600|Lato:300,400,700&subset=latin,cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|PT+Sans:400,700|Montserrat:400,700);
 @import url(reset.css);
-@import url(global.css);
-@import url(preloaders.css);
+@import url(general.css);
 @import url(icons.css);
+@import url(preloaders.css);
+@import url(../components/animate.css/animate.css);
+@import url(dialog.css);
+@import url(../components/ngDialog/css/ngDialog.css);
+@import url(settings.css);
+
+
+
+/*@import url(global.css);
 @import url(forms.css);
 @import url(dashboard-deck.css);
-@import url(../components/ngDialog/css/ngDialog.css);
-@import url(../components/animate.css/animate.css);
 @import url(custom-animate.css);
-@import url(dialog.css);
 @import url(discover.css);
 @import url(history.css);
-@import url(settings.css);
 @import url(suggest.css);
 @import url(profile.css);
-@import url(media.css);
+@import url(media.css);*/
