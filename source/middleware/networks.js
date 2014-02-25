@@ -396,7 +396,7 @@ function vk() {
 							config.services.vk.clientSecret,
 							'https://oauth.vk.com');
 
-		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'friends,offline', state: req.user.email, response_type: 'code' });
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, scope: 'friends,wall,offline', state: req.user.email, response_type: 'token' });
 		req.authUrl = authorizeUrl;
 		next();
 	};
