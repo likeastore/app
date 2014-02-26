@@ -505,7 +505,7 @@ function pocketCallback() {
 					accessToken: accessToken,
 					accessTokenSecret: null,
 					username: username,
-					user: user,
+					user: user.email,
 					service: 'pocket'
 				};
 
