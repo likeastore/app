@@ -18,15 +18,7 @@ exports.schemas = {
 			'description': {
 				required: false,
 				type: 'string'
-			}
-		}
-	},
-
-	collectionProperties: {
-		description: 'Collection properties allowed to change',
-		type: 'object',
-		additionalProperties: false,
-		properties: {
+			},
 			'color': {
 				required: false,
 				type: 'string'
@@ -34,7 +26,31 @@ exports.schemas = {
 		}
 	},
 
-	userProperties: {
+	collectionPatch: {
+		description: 'Collection properties allowed to change',
+		type: 'object',
+		additionalProperties: false,
+		properties: {
+			'title': {
+				required: false,
+				type: 'string'
+			},
+			'public': {
+				required: false,
+				type: 'boolean'
+			},
+			'description': {
+				required: false,
+				type: 'string'
+			},
+			'color': {
+				required: false,
+				type: 'string'
+			}
+		}
+	},
+
+	userPatch: {
 		description: 'User properties allowed to change',
 		type: 'object',
 		additionalProperties: false,

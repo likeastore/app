@@ -16,7 +16,7 @@ function collectionsService(app) {
 		getCollectionItems);
 
 	app.patch('/api/collections/:id',
-		middleware.validate('collectionProperties'),
+		middleware.validate('collectionPatch'),
 		patchCollectionProperties);
 
 	function getCollections(req, res, next) {
@@ -63,7 +63,7 @@ function collectionsService(app) {
 	}
 
 	function patchCollectionProperties(req, res, next) {
-		collections.properties(req.user, req.params.id, req.body, function (err, collection) {
+		collections.update(req.user, req.params.id, req.body, function (err, collection) {
 			if (err) {
 				return next(err);
 			}

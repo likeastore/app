@@ -58,7 +58,7 @@ function findItems(user, collection, callback) {
 	});
 }
 
-function properties(user, collection, patch, callback) {
+function update(user, collection, patch, callback) {
 	if (!collection) {
 		return callback({message: 'missing collection id', status: 412});
 	}
@@ -76,7 +76,7 @@ function properties(user, collection, patch, callback) {
 
 		db.collections.findAndModify({
 			query: {user: user.email, _id: collection._id},
-			update: {$set: {properties: patch}},
+			update: {$set: patch},
 			'new': true
 		}, callback);
 	});
@@ -87,5 +87,5 @@ module.exports = {
 	find: find,
 	add: add,
 	findItems: findItems,
-	properties: properties
+	update: update
 };

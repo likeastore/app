@@ -323,7 +323,7 @@ describe('collections.spec.js', function () {
 			});
 		});
 
-		describe('when adding properties', function () {
+		describe('when changing properties', function () {
 			beforeEach(function (done) {
 				request.post({url: url, headers: headers, body: {title: 'My new collection'}, json: true}, function (err, resp, body) {
 					response = resp;
@@ -345,21 +345,11 @@ describe('collections.spec.js', function () {
 			});
 
 			it('should add properties to collection', function () {
-				expect(results.properties).to.deep.equal({color: '#EEE'});
+				expect(results.color).to.equal('#EEE');
 			});
 
-			describe('and more properties', function () {
-				beforeEach(function (done) {
-					request.patch({url: url + '/' + collection._id, headers: headers, body: {color: '#EAE', prio: 1}, json: true}, function (err, resp, body) {
-						response = resp;
-						results = body;
-						done(err);
-					});
-				});
-
-				it('should respond with 412 (validation)', function () {
-					expect(response.statusCode).to.equal(412);
-				});
+			it('should other properties stay same', function () {
+				expect(results.title).to.equal('My new collection');
 			});
 		});
 	});

@@ -13,7 +13,7 @@ function usersService(app) {
 	);
 
 	app.patch('/api/users/me',
-		middleware.validate('userProperties'),
+		middleware.validate('userPatch'),
 		updateUser,
 		returnUser
 	);
