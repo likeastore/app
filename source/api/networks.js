@@ -67,6 +67,11 @@ function networksService(app) {
 		returnAuthUrl
 	);
 
+	app.post('/api/networks/tumblr',
+		middleware.networks.tumblr(),
+		returnAuthUrl
+	);
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
@@ -144,6 +149,15 @@ function networksService(app) {
 		middleware.networks.pocketCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'pocket'}),
+		middleware.ga.track('network', 'turnon', 'users'),
+		redirectToSettings
+	);
+
+	app.get('/api/networks/tumblr/callback',
+		middleware.access.guest(),
+		middleware.networks.tumblrCallback(),
+		registerNetwork,
+		middleware.analytics.track('network created', {service: 'tumblr'}),
 		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings
 	);

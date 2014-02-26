@@ -515,6 +515,80 @@ function pocketCallback() {
 	};
 }
 
+function tumblr() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/tumblr/callback';
+		var oauth = new OAuth('http://www.tumblr.com/oauth/request_token',
+							'http://www.tumblr.com/oauth/access_token',
+							config.services.tumblr.consumerKey,
+							config.services.tumblr.consumerSecret,
+							'1.0',
+							callbackUrl,
+							'HMAC-SHA1');
+
+		oauth.getOAuthRequestToken(function (err, requestToken, requestTokenSecret) {
+			if (err) {
+				return next({message: 'failed to get request token from tumblr', error: err, status: 500});
+			}
+
+			users.update(req.user, {tumblrRequestToken: requestToken, tumblrRequestTokenSecret: requestTokenSecret}, function (err) {
+				if (err) {
+					return next({message: 'failed to update user', error: err, status: 500});
+				}
+
+				req.authUrl = 'http://www.tumblr.com/oauth/authorize?oauth_token=' + requestToken;
+				next();
+			});
+		});
+	};
+}
+
+function tumblrCallback () {
+	return function (req, res, next) {
+		var oauth = new OAuth('http://www.tumblr.com/oauth/request_token',
+							'http://www.tumblr.com/oauth/access_token',
+							config.services.tumblr.consumerKey,
+							config.services.tumblr.consumerSecret,
+							'1.0',
+							null,
+							'HMAC-SHA1');
+
+		var requestToken = req.query.oauth_token;
+		var verifier = req.query.oauth_verifier;
+
+		users.findByRequestToken('tumblrRequestToken', requestToken, userFound);
+
+		function userFound (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			if (!user) {
+				return next({message: 'failed to find user by request token', status: 404});
+			}
+
+			oauth.getOAuthAccessToken(requestToken, user.tumblrRequestTokenSecret, verifier, gotAccessToken);
+
+			function gotAccessToken (err, accessToken, accessTokenSecret, params) {
+				if (err) {
+					return next({message: 'failed to get accessToken from tumblr', error: err, status: 500});
+				}
+
+				console.log(params);
+
+				req.network = {
+					accessToken: accessToken,
+					accessTokenSecret: accessTokenSecret,
+					user: user.email,
+					service: 'tumblr'
+				};
+
+				next();
+			}
+		}
+	};
+}
+
 module.exports = {
 	facebook: facebook,
 	facebookCallback: facebookCallback,
@@ -544,5 +618,8 @@ module.exports = {
 	vkCallback: vkCallback,
 
 	pocket: pocket,
-	pocketCallback: pocketCallback
+	pocketCallback: pocketCallback,
+
+	tumblr: tumblr,
+	tumblrCallback: tumblrCallback
 };

@@ -56,6 +56,11 @@ var config = {
 
 		pocket: {
 			consumerKey: '24341-1a1bc9c0ad0f3ffa9eb3194b'
+		},
+
+		tumblr: {
+			consumerKey: '6vUnFztIzNd6ISG8kBn7UyhGkHA8a49UjXUx9rCYbrWBnbFZBr',
+			consumerSecret: 'pnUrbwgmLHubWqaBxRIzD216FxAq8wZCzf2hXysL9huV1Sfq9R'
 		}
 	},
 
