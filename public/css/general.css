@@ -927,6 +927,14 @@ body,
   background-color: #c0392b !important;
 }
 
+.pocket-bg-clr {
+  background-color: #d3505a !important;
+}
+
+.tumblr-bg-clr {
+  background-color: #2c4762 !important;
+}
+
 .facebook-clr {
   color: #3b5998 !important;
 }
@@ -957,6 +965,14 @@ body,
 
 .youtube-clr {
   color: #c0392b !important;
+}
+
+.pocker-clr {
+  color: #d3505a !important;
+}
+
+.tumblr-clr {
+  color: #2c4762 !important;
 }
 
 @media (max-width: 1160px) {

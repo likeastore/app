@@ -42,6 +42,14 @@
   content: 'O';
 }
 
+.pocket-icon:before {
+  content: '\e01B';
+}
+
+.tumblr-icon:before {
+  content: 'T';
+}
+
 .date-icon:before {
   content: 'o';
 }

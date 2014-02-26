@@ -19,6 +19,8 @@
 	var-vimeo: #62a0ad;
 	var-dribbble: #ea4c89;
 	var-behance: #0d7ba3;
+	var-pocket: #d3505a;
+	var-tumblr: #2c4762;
 	var-title-font: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
 	var-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
 }
@@ -921,6 +923,14 @@ body,
 	background-color: var(youtube) !important;
 }
 
+.pocket-bg-clr {
+	background-color: var(pocket) !important;
+}
+
+.tumblr-bg-clr {
+	background-color: var(tumblr) !important;
+}
+
 .facebook-clr {
 	color: var(facebook) !important;
 }
@@ -951,6 +961,14 @@ body,
 
 .youtube-clr {
 	color: var(youtube) !important;
+}
+
+.pocker-clr {
+	color: var(pocket) !important;
+}
+
+.tumblr-clr {
+	color: var(tumblr) !important;
 }
 
 @media (max-width: 1160px) {
