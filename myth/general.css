@@ -21,7 +21,7 @@
 	var-behance: #0d7ba3;
 	var-pocket: #d3505a;
 	var-tumblr: #2c4762;
-	var-title-font: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+	var-title-font: 'Montserrat', 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
 	var-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
 }
 
@@ -792,6 +792,10 @@ body,
 }
 
 .dash-item .info .title {
+	width: 65%;
+}
+
+.dash-item.youtube .info .title {
 	width: 75%;
 }
 
@@ -815,6 +819,26 @@ body,
 .dash-item:hover .action-buttons {
 	visibility: visible;
 	opacity: 1;
+}
+
+.dash-item .author {
+	padding: 5px 5px 0;
+	position: relative;
+}
+
+.dash-item .avatar {
+	width: 28px;
+	height: 28px;
+	border-radius: 100px;
+}
+
+.dash-item .author span {
+	color: #666;
+	font-size: 12px;
+	display: inline-block;
+	vertical-align: top;
+	line-height: 18px;
+	margin-left: 3px;
 }
 
 .dash-item .action-buttons a {
@@ -849,11 +873,12 @@ body,
 	padding: 4px 12px;
 	text-align: center;
 	position: absolute;
-	bottom: 26px;
-	left: -110%;
+	bottom: 25px;
+	margin-left: 50%;
 	z-index: 100;
 	border-radius: 2px;
 	transition: all .2s;
+	transform: translateX(-50%);
 }
 
 .tooltipped:hover .tooltip {
@@ -864,7 +889,18 @@ body,
 .list-view .dash-item {
 	width: 100%;
 	height: 140px;
-	margin-bottom: 25px;
+	margin-bottom: 0;
+	border-bottom: 1px solid #eee;
+	border-radius: 0;
+}
+
+.list-view .dash-item:first-child {
+	border-radius: 2px 2px 0 0;
+}
+
+.list-view .dash-item.last {
+	border-bottom: 0;
+	border-radius: 0 0 2px 2px
 }
 
 .list-view .dash-item .cover {

@@ -20,6 +20,12 @@
 	</li>
 	<li class="collections">
 		<a href="" class="menu-title" ng-click="showCollections=!showCollections ? true : false"><i class="font-icon collections-icon icon"></i> Collections <i class="font-icon thinarrow-left-icon subicon right" ng-class="{'thinarrow-down-icon': showCollections}"></i></a>
+
+		<div class="existing-collections">
+			<div ng-repeat="collection in collections">
+				{{collection.title}}
+			</div>
+		</div>
 	</li>
 </ul>
 

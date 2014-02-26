@@ -299,6 +299,7 @@
 .ngdialog.share-dialog .ngdialog-content .social-share .btn {
 	display: inline;
 	color: #fff;
+	font-size: 12px;
 	width: 160px;
 	height: 39px;
 }

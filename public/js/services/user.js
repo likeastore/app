@@ -29,6 +29,14 @@ define(function (require) {
 				return this;
 			},
 
+			getCollections: function () {
+				api.query({ resource: 'collections' }, function (collections) {
+					$rootScope.collections = collections;
+				});
+
+				return this;
+			},
+
 			getActiveNetworks: function () {
 				api.query({ resource: 'networks' }, function (networks) {
 					$rootScope.networks = networks;

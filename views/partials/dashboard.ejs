@@ -18,7 +18,8 @@
 			ng-repeat="item in items"
 			ng-class="{
 				'thumbed': item.thumbnail,
-				'texted': !item.thumbnail
+				'texted': !item.thumbnail,
+				'last': $last
 			}">
 
 			<div class="action-buttons">
@@ -40,12 +41,18 @@
 				<a ng-if="item.thumbnail" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 
 				<div class="info">
+					<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author left">
+						<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+					</div>
 					<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
-					<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:300"></div>
+					<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:260"></div>
 				</div>
 			</div>
 
 			<div ng-if="!item.thumbnail" class="text-wrap">
+				<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author left">
+					<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+				</div>
 				<h2 ng-if="item.title || item.repo || item.name" class="title truncate">{{item.title||item.repo||item.name}}</h2>
 				<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:300"></div>
 			</div>
