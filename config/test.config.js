@@ -52,6 +52,10 @@ var config = {
 		vk: {
 			clientId: '4195920',
 			clientSecret: '1IATKWbudSUmp49uVfsn'
+		},
+
+		pocket: {
+			consumerKey: '24341-1a1bc9c0ad0f3ffa9eb3194b'
 		}
 	},
 

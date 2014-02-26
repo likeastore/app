@@ -52,6 +52,10 @@ var config = {
 		vk: {
 			clientId: process.env.VK_CLIENT_ID,
 			clientSecret: process.env.VK_CLIENT_SECRET
+		},
+
+		pocket: {
+			consumerKey: process.env.POCKET_CONSUMER_KEY
 		}
 	},
 
