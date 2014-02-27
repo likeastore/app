@@ -766,7 +766,7 @@ body,
 .dash-item .title {
 	font-size: 14px;
 	font-family: var(title-font);
-	padding: 5px;
+	padding: 5px 5px 2px;
 }
 
 .dash-item .description {
@@ -821,24 +821,33 @@ body,
 	opacity: 1;
 }
 
-.dash-item .author {
+.dash-item .author-image {
+	display: inline-block;
 	padding: 5px 5px 0;
-	position: relative;
+	vertical-align: top;
+}
+
+.dash-item .right-block {
+	display: inline-block;
+	width: 200px;
+	vertical-align: top
+}
+
+.dash-item.facebook .right-block {
+	width: 100%;
+}
+
+.dash-item .author-name {
+	color: #999;
+	font-size: 12px;
+	font-weight: 600;
+	padding: 2px 5px 0;
 }
 
 .dash-item .avatar {
 	width: 32px;
 	height: 32px;
 	border-radius: 100px;
-}
-
-.dash-item .author span {
-	color: #666;
-	font-size: 12px;
-	display: inline-block;
-	vertical-align: top;
-	line-height: 18px;
-	margin-left: 3px;
 }
 
 .dash-item .action-buttons a {
@@ -888,10 +897,18 @@ body,
 
 .list-view .dash-item {
 	width: 100%;
-	height: 140px;
+	height: 175px;
 	margin-bottom: 0;
 	border-bottom: 1px solid #eee;
 	border-radius: 0;
+}
+
+.list-view .dash-item.texted {
+	height: 140px;
+}
+
+.list-view .dash-item.youtube {
+	height: 160px;
 }
 
 .list-view .dash-item:first-child {
@@ -907,19 +924,28 @@ body,
 	width: 135px;
 	height: 90px;
 	float: left;
+	margin: 8px 12px 0 0;
 }
 
 .list-view .dash-item .image {
 	height: 100px;
 }
 
+.list-view .dash-item .title {
+	padding: 5px 0;
+}
+
+.list-view .dash-item .description {
+	padding: 0;
+}
+
 .list-view .dash-item .info {
 	visibility: visible;
 	opacity: 1;
-	width: 80%;
-	padding: 0;
 	float: left;
-	margin-left: 10px;
+	width: 100%;
+	padding: 0;
+	margin-left: 0;
 	position: static;
 }
 
@@ -927,10 +953,17 @@ body,
 	bottom: 10px
 }
 
-.list-view .dash-item.vimeo .author,
-.list-view .dash-item.dribbble .author,
-.list-view .dash-item.behance .author {
-	display: none;
+.list-view .dash-item .right-block {
+	width: 95%;
+	margin-left: 5px;
+}
+
+.list-view .dash-item .author-image {
+	padding: 5px 3px 0;
+}
+
+.list-view .dash-item .author-name {
+	padding: 2px 0 0;
 }
 
 .facebook-bg-clr {

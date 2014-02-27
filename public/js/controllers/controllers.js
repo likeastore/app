@@ -9,7 +9,7 @@ define(function (require) {
 	controllers.controller('settingsController', require('./settingsController'));
 
 	// items
-	controllers.controller('dashboardController', itemsControllerFactory('Activity', null, 'dashboard opened'));
+	controllers.controller('dashboardController', itemsControllerFactory('All favorites', null, 'dashboard opened'));
 	controllers.controller('inboxController', itemsControllerFactory('Inbox', 'inbox', 'inbox opened'));
 	controllers.controller('githubController', itemsControllerFactory('Github', 'github', 'github opened'));
 	controllers.controller('facebookController', itemsControllerFactory('Facebook', 'facebook', 'facebook opened'));

@@ -33,7 +33,7 @@ define(function (require) {
 			link: function (scope, elem, attrs) {
 				$rootScope.$watch('title', function (value) {
 					if (value) {
-						scope.menuTitle = (value !== 'Activity' && value !== 'Inbox') ? value : 'All networks';
+						scope.menuTitle = (value !== 'All favorites' && value !== 'Inbox') ? value : 'All networks';
 					}
 				});
 

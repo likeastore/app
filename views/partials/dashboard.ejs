@@ -38,23 +38,41 @@
 			</div>
 
 			<div ng-if="item.thumbnail" class="image">
-				<a ng-if="item.thumbnail" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+				<a ng-if="user.viewMode === 'grid'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 
 				<div class="info">
-					<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author left">
+					<div ng-if="item.avatarUrl" class="author-image">
 						<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
 					</div>
-					<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
-					<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:260"></div>
+
+					<div ng-if="user.viewMode === 'grid'" class="right-block">
+						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
+						<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+						<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:260"></div>
+					</div>
+
+					<div ng-if="user.viewMode === 'list'" class="right-block clearfix">
+						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
+						<a ng-if="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+						<div>
+							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+							<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:260"></div>
+						</div>
+					</div>
+
+
 				</div>
 			</div>
 
-			<div ng-if="!item.thumbnail" class="text-wrap clearfix">
-				<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author left">
+			<div ng-if="!item.thumbnail" class="text-wrap">
+				<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author-image">
 					<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
 				</div>
-				<h2 ng-if="item.title || item.repo || item.name" class="title truncate">{{item.title||item.repo||item.name}}</h2>
-				<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:300"></div>
+				<div class="right-block">
+					<div ng-if="item.authorName && item.type !== 'facebook'" class="author-name">{{item.authorName}}</div>
+					<h2 ng-if="item.title || item.repo || item.name" class="title truncate">{{item.title||item.repo||item.name}}</h2>
+					<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:260"></div>
+				</div>
 			</div>
 
 			<time>{{item.created|date: 'longDate'}}</time>
