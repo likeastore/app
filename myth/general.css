@@ -927,6 +927,12 @@ body,
 	bottom: 10px
 }
 
+.list-view .dash-item.vimeo .author,
+.list-view .dash-item.dribbble .author,
+.list-view .dash-item.behance .author {
+	display: none;
+}
+
 .facebook-bg-clr {
 	background-color: var(facebook) !important;
 }

@@ -211,6 +211,10 @@
 	background: rgba(0, 0, 0, .7);
 }
 
+.ngdialog.lsd-theme.dribbble-connect-dialog .ngdialog-overlay {
+	background: rgba(0, 0, 0, .5);
+}
+
 .ngdialog.lsd-theme .ngdialog-close {
 	position: absolute;
 	top: 0;

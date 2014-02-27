@@ -1,30 +1,29 @@
 <ul class="folders">
 	<li ng-if="user" class="user">
 		<a href="/u/{{user.name}}" class="menu-title">
-			<img ng-src="{{user.avatar}}" class="avatar">
-			<span class="username">{{(user.displayName || user.name)|truncate:35}}</span>
+			<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load>
+			<span class="username close-sidebar">{{(user.displayName || user.name)|truncate:35}}</span>
 		</a>
-		<a href="/settings" class="font-icon settings-icon subicon right"></a>
+		<a href="/settings" class="font-icon settings-icon subicon close-sidebar right"></a>
 	</li>
 	<li class="inbox">
-		<a href="/inbox" class="menu-title"><i data-icon="c" class="font-icon inbox-icon icon"></i> Inbox <span class="inbox-counter right" ng-hide="inboxCount === 0">{{inboxCount}}</span></a>
+		<a href="/inbox" class="menu-title close-sidebar"><i data-icon="c" class="font-icon inbox-icon icon"></i> Inbox <span class="inbox-counter right" ng-hide="inboxCount === 0">{{inboxCount}}</span></a>
 	</li>
 	<li class="favorites">
-		<a href="/activity" class="menu-title"><i class="font-icon favorites-icon icon"></i> All favorites</a>
+		<a href="/activity" class="menu-title close-sidebar"><i class="font-icon favorites-icon icon"></i> All favorites</a>
 	</li>
 	<li class="discover">
-		<a href="/discover" class="menu-title"><i class="font-icon discover-icon icon"></i> Discover</a>
-	</li>
-	<li class="history">
-		<a href="/history" class="menu-title"><i class="font-icon history-icon icon"></i> History</a>
+		<a href="/discover" class="menu-title close-sidebar"><i class="font-icon discover-icon icon"></i> Discover</a>
 	</li>
 	<li class="collections">
 		<a href="" class="menu-title" ng-click="showCollections=!showCollections ? true : false"><i class="font-icon collections-icon icon"></i> Collections <i class="font-icon thinarrow-left-icon subicon right" ng-class="{'thinarrow-down-icon': showCollections}"></i></a>
 
 		<div class="existing-collections">
-			<div ng-repeat="collection in collections">
-				{{collection.title}}
-			</div>
+			<a href="/collections/{{collection._id}}" ng-repeat="collection in collections">
+				<span class="avatar" style="background-color: {{collection.color}} || #56c7aa;"></span>
+				<span class="title">{{collection.title}}</span>
+				<span class="count">{{collection.length}}</span>
+			</a>
 		</div>
 	</li>
 </ul>
