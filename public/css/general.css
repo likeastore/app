@@ -85,6 +85,15 @@ body,
   overflow: hidden;
 }
 
+.mask-link {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
 .header {
   background: -webkit-linear-gradient(15deg, rgba(41,182,168,.96) 0%, rgba(86, 199, 170,.98) 120%);
   background: linear-gradient(75deg, rgba(41,182,168,.96) 0%, rgba(86, 199, 170,.98) 120%);
@@ -579,108 +588,131 @@ body,
   text-decoration: none;
 }
 
+.sidebar-nav .colls {
+  margin: 0;
+}
+
+.colls .coll-item {
+  display: block;
+}
+
+.colls .coll-item * {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.colls .coll-item .avatar {
+  background-color: #56c7aa;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+}
+
+.colls .coll-item .title {
+  color: #eeeef0;
+  font-size: 13px;
+}
+
 .header-btn:hover,
-.sidebar-active .pusher-menu-link,
-.user-box:hover {
+.sidebar-active .pusher-menu-link/*,
+.user-box:hover*/ {
   background: rgba(0,0,0,0.06);
   text-decoration: none;
 }
 
-.user-box {
-  padding: 5px 10px 5px 16px;
-  position: absolute;
-  right: 0;
-  top: 0px;
-  height: 36px;
-  -webkit-transition: background .3s ease;
-  transition: background .3s ease;
+/*.user-box {
+	padding: 5px 10px 5px 16px;
+	position: absolute;
+	right: 0;
+	top: 0px;
+	height: 36px;
+	transition: background .3s ease;
 }
 
 .user-box .username {
-  display: inline-block;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  vertical-align: top;
-  line-height: 26px;
-  margin-right: 9px;
-  position: relative;
+	display: inline-block;
+	color: #fff;
+	font-size: 13px;
+	font-weight: 600;
+	vertical-align: top;
+	line-height: 26px;
+	margin-right: 9px;
+	position: relative;
 }
 
 .user-box .username:hover {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .user-box .avatar {
-  display: inline-block;
-  background: #fff;
-  width: 24px;
-  cursor: pointer;
-  border-radius: 3px;
+	display: inline-block;
+	background: #fff;
+	width: 24px;
+	cursor: pointer;
+	border-radius: 3px;
 }
 
 .user-box .icon {
-  display: inline-block;
-  color: #fff;
-  font-size: 14px;
-  text-decoration: none;
-  vertical-align: top;
-  line-height: 30px;
-  margin-left: 2px;
+	display: inline-block;
+	color: #fff;
+	font-size: 14px;
+	text-decoration: none;
+	vertical-align: top;
+	line-height: 30px;
+	margin-left: 2px;
 }
 
 .user-box .icon:hover {
-  color: #f03e56;
+	color: var(pink);
 }
 
 .user-box .dropdown-wrap {
-  display: inline-block;
+	display: inline-block;
 }
 
 .user-box .dropdown-menu {
-  visibility: hidden;
-  opacity: 0;
-  background: #272a33;
-  text-align: right;
-  position: absolute;
-  width: 80%;
-  min-width: 140px;
-  top: 20px;
-  right: 16px;
-  z-index: -1;
-  border-radius: 2px;
-  -webkit-transition: all .3s;
-  transition: all .3s;
+	visibility: hidden;
+	opacity: 0;
+	background: var(darkblue);
+	text-align: right;
+	position: absolute;
+	width: 80%;
+	min-width: 140px;
+	top: 20px;
+	right: 16px;
+	z-index: -1;
+	border-radius: 2px;
+	transition: all .3s;
 }
 
 .user-box .dropdown-menu.active {
-  visibility: visible;
-  opacity: 1;
-  top: 33px;
+	visibility: visible;
+	opacity: 1;
+	top: 33px;
 }
 
 .user-box .dropdown-menu a.menu-link {
-  display: inline-block;
-  color: rgba(255,255,255, .9);
-  border-bottom: 1px solid #1a1c1e;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 7px 15px;
-  width: 100%;
-  text-decoration: none;
+	display: inline-block;
+	color: rgba(255,255,255, .9);
+	border-bottom: 1px solid #1a1c1e;
+	font-size: 12px;
+	font-weight: 600;
+	padding: 7px 15px;
+	width: 100%;
+	text-decoration: none;
 }
 
 .user-box .dropdown-menu a.menu-link.invite {
-  color: #56c7aa;
+	color: var(navy);
 }
 
 .user-box .dropdown-menu a.menu-link:hover {
-  color: #fff;
+	color: #fff;
 }
 
 .user-box .dropdown-menu a.menu-link.invite:hover {
-  color: #f03e56;
-}
+	color: var(pink);
+}*/
 
 .dashboard {
   max-width: 1140px;
@@ -776,6 +808,11 @@ body,
   padding: 5px;
   max-height: 165px;
   overflow: hidden;
+}
+
+.dash-item .description a {
+  position: relative;
+  z-index: 11;
 }
 
 .dash-item.thumbed .info,

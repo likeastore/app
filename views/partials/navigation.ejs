@@ -18,9 +18,10 @@
 	<li class="collections">
 		<a href="" class="menu-title" ng-click="showCollections=!showCollections ? true : false"><i class="font-icon collections-icon icon"></i> Collections <i class="font-icon thinarrow-left-icon subicon right" ng-class="{'thinarrow-down-icon': showCollections}"></i></a>
 
-		<div class="existing-collections">
-			<a href="/collections/{{collection._id}}" ng-repeat="collection in collections">
-				<span class="avatar" style="background-color: {{collection.color}} || #56c7aa;"></span>
+		<div class="colls">
+			<a href="/collections/{{collection._id}}" class="coll-item"
+				ng-repeat="collection in collections">
+				<span class="avatar" style="background-color: {{collection.color}}"></span>
 				<span class="title">{{collection.title}}</span>
 				<span class="count">{{collection.length}}</span>
 			</a>
