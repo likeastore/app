@@ -13,7 +13,7 @@ define(function (require) {
 							widget: {activator: '#IntercomDefaultWidget'}
 						});
 
-						mixpanel.identify(user.email);
+						mixpanel.alias(user.email);
 						mixpanel.people.set({
 							'$email': user.email,
 							'$created': new Date(user.registered),
