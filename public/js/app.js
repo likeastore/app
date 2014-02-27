@@ -57,6 +57,8 @@ define(function (require) {
 				.when('/dribbble', { templateUrl: 'partials/dashboard', controller: 'dribbbleController' })
 				.when('/behance', { templateUrl: 'partials/dashboard', controller: 'behanceController' })
 				.when('/twitter', { templateUrl: 'partials/dashboard', controller: 'twitterController' })
+				.when('/tumblr', { templateUrl: 'partials/dashboard', controller: 'tumblrController' })
+				.when('/pocket', { templateUrl: 'partials/dashboard', controller: 'pocketController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
 				.when('/items/:id', { templateUrl: 'partials/dashboard', controller: 'dashboardController'})

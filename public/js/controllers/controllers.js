@@ -19,6 +19,8 @@ define(function (require) {
 	controllers.controller('youtubeController', itemsControllerFactory('Youtube', 'youtube', 'youtube opened'));
 	controllers.controller('dribbbleController', itemsControllerFactory('Dribbble', 'dribbble', 'dribbble opened'));
 	controllers.controller('behanceController', itemsControllerFactory('Behance', 'behance', 'behance opened'));
+	controllers.controller('tumblrController', itemsControllerFactory('Tumblr', 'tumblr', 'tumblr opened'));
+	controllers.controller('pocketController', itemsControllerFactory('Pocket', 'pocket', 'pocket opened'));
 
 	// search
 	controllers.controller('searchController', require('./searchController'));

@@ -442,7 +442,7 @@ function vkCallback() {
 
 function pocket() {
 	return function (req, res, next) {
-		var callbackUrl = config.applicationUrl + '/api/networks/pocket/callback?state=' + req.user.email;
+		var callbackUrl = config.applicationUrl + '/api/networks/pocket/callback?state=' + new Buffer(req.user.email).toString('base64');
 		var payload = {redirect_uri: callbackUrl, consumer_key: config.services.pocket.consumerKey};
 
 		request.post({url: 'https://getpocket.com/v3/oauth/request', form: payload}, function (err, response, body) {
@@ -461,7 +461,7 @@ function pocket() {
 					return next({message: 'failed to update user', err: err, status: 500});
 				}
 
-				req.authUrl = util.format('https://getpocket.com/auth/authorize?request_token=%s&redirect_uri=%s', requestToken, callbackUrl);
+				req.authUrl = util.format('https://getpocket.com/auth/authorize?request_token=%s&redirect_uri=%s', requestToken, encodeURIComponent(callbackUrl));
 				next();
 			});
 		});
@@ -470,7 +470,7 @@ function pocket() {
 
 function pocketCallback() {
 	return function (req, res, next) {
-		var user = req.query.state;
+		var user = new Buffer(req.query.state, 'base64').toString('ascii');
 
 		users.findByEmail(user, function (err, user) {
 			if (err) {

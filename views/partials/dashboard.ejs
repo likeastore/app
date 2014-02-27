@@ -48,7 +48,8 @@
 					<div ng-if="user.viewMode === 'grid'" class="right-block">
 						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
 						<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
-						<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:260"></div>
+						<div ng-if="item.description" class="description"
+							ng-bind-html="item.description|truncate:260|linkify"></div>
 					</div>
 
 					<div ng-if="user.viewMode === 'list'" class="right-block clearfix">
@@ -56,11 +57,10 @@
 						<a ng-if="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 						<div>
 							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
-							<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:260"></div>
+							<div ng-if="item.description" class="description"
+								ng-bind-html="item.description|truncate:260|linkify"></div>
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 
@@ -70,8 +70,12 @@
 				</div>
 				<div class="right-block">
 					<div ng-if="item.authorName && item.type !== 'facebook'" class="author-name">{{item.authorName}}</div>
-					<h2 ng-if="item.title || item.repo || item.name" class="title truncate">{{item.title||item.repo||item.name}}</h2>
-					<div ng-if="item.description" class="description" ng-bind-html="item.description|linky:'_blank'|truncate:260"></div>
+					<h2 ng-if="item.title || item.repo || item.name" class="title"
+						ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
+					<div ng-if="item.description" class="description"
+						ng-bind-html="item.description|truncate:260|linkify"></div>
+					<div ng-if="item.gist || item.type === 'tumblr'" class="description"
+						ng-bind-html="item.source|linkify"></div>
 				</div>
 			</div>
 

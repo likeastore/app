@@ -793,10 +793,6 @@ body,
   transition: all .3s ease;
 }
 
-.dash-item .info .title {
-  width: 65%;
-}
-
 .dash-item.youtube .info .title {
   width: 75%;
 }
@@ -836,7 +832,10 @@ body,
   vertical-align: top;
 }
 
-.dash-item.facebook .right-block {
+.dash-item.facebook .right-block,
+.dash-item.pocket .right-block,
+.dash-item.youtube .right-block,
+.dash-item.tumblr .right-block {
   width: 100%;
 }
 
@@ -913,7 +912,8 @@ body,
   height: 140px;
 }
 
-.list-view .dash-item.youtube {
+.list-view .dash-item.youtube,
+.list-view .dash-item.pocket.thumbed {
   height: 160px;
 }
 
