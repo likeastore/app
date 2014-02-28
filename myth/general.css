@@ -400,6 +400,7 @@ body,
 	position: absolute;
 	top: 0;
 	z-index: 700;
+	cursor: pointer;
 }
 
 .header-btn.pusher-menu-link {
@@ -483,7 +484,7 @@ body,
 	visibility: hidden;
 	width: 270px;
 	height: 100%;
-	background: #272a33;
+	background: #1f212f; /*#272a33*/
 	transition: all .5s;
 }
 
@@ -517,7 +518,7 @@ body,
 }
 
 .sidebar-nav .folders {
-	margin-top: 18px;
+	margin-top: 10px;
 }
 
 .sidebar-nav .username {
@@ -534,29 +535,46 @@ body,
 
 .sidebar-nav .menu-title {
 	display: inline-block;
-	color: #b6b6b6;
+	color: #e9e9e9;
+	padding: 8px 15px;
+	vertical-align: top;
+	line-height: 20px;
+	letter-spacing: .6px;
 	width: 100%;
+	height: 38px;
+	cursor: pointer;
+}
+
+.sidebar-nav .user {
+	transition: all .3s;
 }
 
 .sidebar-nav .user .menu-title {
 	width: 210px;
+	line-height: 16px;
+	margin-left: -2px;
 }
 
 .sidebar-nav .menu-title .icon {
 	display: inline-block;
 	font-size: 20px;
 	vertical-align: top;
+	line-height: 28px;
 	margin-right: 12px;
-	margin-left: 2px;
 }
 
-.sidebar-nav .folders li {
-	padding: 0 15px;
-	margin-bottom: 8px;
+.sidebar-nav .folders .active,
+.sidebar-nav .folders .menu-title:hover,
+.sidebar-nav .folders .coll-item:hover {
+	background: #303140;
+}
+
+.sidebar-nav .folders .user .menu-title:hover {
+	background: transparent;
 }
 
 .sidebar-nav .folders li.user {
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
 
 .sidebar-nav .folders li.history {
@@ -565,14 +583,16 @@ body,
 
 .sidebar-nav .subicon {
 	display: inline-block;
-	color: #b6b6b6;
-	font-size: 14px;
-	margin-top: 6px;
+	color: #e9e9e9;
+	font-size: 15px;
+	margin: 11px 15px 0 0;
+	cursor: pointer;
 	transition: all .3s;
 }
 
 .sidebar-nav .collections .subicon {
-	font-size: 13px;
+	margin-top: 4px;
+	margin-right: 0;
 }
 
 .sidebar-nav .inbox-counter {
@@ -593,11 +613,38 @@ body,
 }
 
 .sidebar-nav .colls {
-	margin: 0;
+	visibility: hidden;
+	opacity: 0;
+	margin-top: -3px;
+	transition: all .3s;
+}
+
+.sidebar-nav .colls .empty-collections {
+	color: #e9e9e9;
+	padding: 0 20px;
+}
+
+.empty-collections .link {
+	color: var(navy);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.empty-collections .link:hover {
+	text-decoration: none;
+}
+
+.sidebar-nav .show-collections .colls {
+	visibility: visible;
+	opacity: 1;
+	margin-top: 0;
 }
 
 .colls .coll-item {
 	display: block;
+	padding: 5px 5px 5px 20px;
+	letter-spacing: .8px;
+	cursor: pointer;
 }
 
 .colls .coll-item * {
@@ -606,20 +653,145 @@ body,
 }
 
 .colls .coll-item .avatar {
-	background-color: var(navy);
 	width: 16px;
 	height: 16px;
+	margin: 1px 12px 0 0;
 	border-radius: 100%;
 }
 
 .colls .coll-item .title {
-	color: var(grey);
+	color: #e9e9e9;
+	font-size: 13px;
+	width: 200px;
+}
+
+.new-collection-block {
+	color: #e9e9e9;
+}
+
+.show-form {
+	background: #161625;
+	font-size: 15px;
+	line-height: 32px;
+	letter-spacing: 1px;
+	padding: 8px 15px;
+	width: 100%;
+	height: 46px;
+	cursor: pointer;
+	position: absolute;
+	bottom: 0;
+}
+
+.show-form .icon {
+	display: inline-block;
+	font-size: 20px;
+	margin: 3px 6px 0 0;
+	vertical-align: top;
+}
+
+.new-collection-block .add-coll-form {
+	background: #161625;
+	width: 100%;
+	height: 210px;
+	padding: 14px 15px 0;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -300px;
+	z-index: 20;
+	transition: all .3s;
+}
+
+.new-collection-block .add-coll-form.on {
+	bottom: 0;
+}
+
+.add-coll-form .colors {
+	margin-bottom: 10px;
+}
+
+.add-coll-form .color-avatar {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	vertical-align: top;
+	margin-right: 8px;
+	border-radius: 100%;
+	cursor: pointer;
+	transition: all .3s;
+}
+
+.add-coll-form .color-avatar.active {
+	box-shadow: 0 0 0 2px rgba(255,255,255,.9);
+}
+
+.add-coll-form .fld {
+	color: #666;
+	font-size: 12px;
+	padding: 8px 15px;
+}
+
+.add-coll-form input.fld {
+	margin-bottom: 10px;
+}
+
+.add-coll-form textarea.fld {
+	margin-bottom: 3px;
+	resize: none;
+}
+
+.add-coll-form input[type="checkbox"] {
+	display: inline-block;
+	vertical-align: top;
+	margin: 3px 2px 0 0;
+}
+
+.add-coll-form label {
+	font-size: 12px;
+}
+
+.add-coll-form label .icon {
+	display: inline-block;
+	vertical-align: top;
+	margin: 5px 0 0 5px;
+}
+
+.add-coll-form label .tooltip {
+	width: 130px;
+	bottom: 20px;
+}
+
+.add-coll-form .buttons {
+	margin-top: 5px;
+	text-align: right;
+}
+
+.add-coll-form .link-btn {
+	display: inline;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+
+.add-coll-form .link-btn:hover {
+	text-decoration: none;
+}
+
+.add-coll-form .link-btn.add {
+	color: #56c7aa;
+	font-size: 14px;
+	font-weight: 700;
+	margin-right: 5px;
+}
+
+.add-coll-form .link-btn.cancel {
+	color: #666;
+	color: rgba(255,255,255,.35);
 	font-size: 13px;
 }
 
 .header-btn:hover,
-.sidebar-active .pusher-menu-link/*,
-.user-box:hover*/ {
+.sidebar-active .pusher-menu-link {
 	background: rgba(0,0,0,0.06);
 	text-decoration: none;
 }
@@ -903,6 +1075,74 @@ body,
 
 .dash-item .action-buttons a:first-child {
 	margin-left: 5px;
+}
+
+.dash-item .show-coll-popup {
+	visibility: hidden;
+	opacity: 0;
+	background: rgba(31, 33, 47, 0.96);
+	color: #e9e9e9;
+	width: 130px;
+	position: absolute;
+	right: -57px;
+	top: 12px;
+	z-index: 11;
+	border-radius: 2px;
+	transition: all .3s;
+}
+
+.dash-item .show-coll-popup:after {
+	bottom: 100%;
+	border: solid transparent;
+	content: '';
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-bottom-color: rgba(31, 33, 47, 0.96);
+	border-width: 8px;
+	left: 50%;
+	top: -13px;
+	margin-left: -8px;
+}
+
+.dash-item .show-coll-popup:hover + .tooltip {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.dash-item .action-buttons a.addto-btn:hover .show-coll-popup {
+	visibility: visible;
+	opacity: 1;
+	top: 22px;
+}
+
+.dash-item .action-buttons a.addto-btn .addto-icon {
+	display: block;
+}
+
+.dash-item .show-coll-popup .show-coll-item {
+	border-top: 1px solid #161625;
+	font-size: 12px;
+	padding: 5px 10px;
+	letter-spacing: .3px;
+}
+
+.dash-item .show-coll-popup .show-coll-item:first-child {
+	border: 0;
+}
+
+.dash-item .show-coll-popup .show-coll-item:hover {
+	background: #303140;
+}
+
+.dash-item .show-coll-popup .color-avatar {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin: 5px 5px 0 0;
+	vertical-align: top;
+	border-radius: 100%;
 }
 
 .tooltipped {

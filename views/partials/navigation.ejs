@@ -1,37 +1,37 @@
 <ul class="folders">
 	<li ng-if="user" class="user">
-		<a href="/u/{{user.name}}" class="menu-title">
+		<div ng-click="switchMenu('/u/{{user.name}}')" class="menu-title">
 			<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load>
 			<span class="username close-sidebar">{{(user.displayName || user.name)|truncate:35}}</span>
-		</a>
-		<a href="/settings" class="font-icon settings-icon subicon close-sidebar right"></a>
+		</div>
+		<div ng-click="switchMenu('/settings')" class="font-icon settings-icon subicon close-sidebar right"></div>
 	</li>
-	<li class="inbox">
-		<a href="/inbox" class="menu-title close-sidebar"><i data-icon="c" class="font-icon inbox-icon icon"></i> Inbox <span class="inbox-counter right" ng-hide="inboxCount === 0">{{inboxCount}}</span></a>
+	<li class="inbox" ng-click="switchMenu('/inbox')" ng-class="{active: title==='Inbox'}">
+		<div ng-click="switchMenu('/inbox')" class="menu-title close-sidebar"><i data-icon="c" class="font-icon inbox-icon icon"></i> Inbox <span class="inbox-counter right" ng-hide="inboxCount === 0">{{inboxCount}}</span></div>
 	</li>
-	<li class="favorites">
-		<a href="/activity" class="menu-title close-sidebar"><i class="font-icon favorites-icon icon"></i> All favorites</a>
+	<li class="favorites" ng-class="{active: title!=='Inbox' && title !=='Account settings' && title !=='Discover'}">
+		<div ng-click="switchMenu('/activity')" class="menu-title close-sidebar"><i class="font-icon favorites-icon icon"></i> All favorites</div>
 	</li>
-	<li class="discover">
-		<a href="/discover" class="menu-title close-sidebar"><i class="font-icon discover-icon icon"></i> Discover</a>
+	<li class="discover" ng-class="{active: title==='Discover'}">
+		<div ng-click="switchMenu('/discover')" class="menu-title close-sidebar"><i class="font-icon discover-icon icon"></i> Discover</a>
 	</li>
-	<li class="collections">
-		<a href="" class="menu-title" ng-click="showCollections=!showCollections ? true : false"><i class="font-icon collections-icon icon"></i> Collections <i class="font-icon thinarrow-left-icon subicon right" ng-class="{'thinarrow-down-icon': showCollections}"></i></a>
+	<li class="collections" ng-class="{'show-collections': showCollections}">
+		<div class="menu-title" ng-click="showCollections=!showCollections ? true : false"><i class="font-icon collections-icon icon"></i> Collections <i class="font-icon thinarrow-left-icon subicon right" ng-class="{'thinarrow-down-icon': showCollections}"></i></div>
 
 		<div class="colls">
-			<a href="/collections/{{collection._id}}" class="coll-item"
+			<div ng-show="!collections.length" class="empty-collections">
+				You have 0 collections. <div ng-click="showAddForm=true" class="link">Click here to create the first one!</div>
+			</div>
+			<div ng-click="switchMenu('/collections/{{collection._id}}')" class="coll-item"
 				ng-repeat="collection in collections">
-				<span class="avatar" style="background-color: {{collection.color}}"></span>
-				<span class="title">{{collection.title}}</span>
-				<span class="count">{{collection.length}}</span>
-			</a>
+				<span class="avatar" style="background-color: {{collection.color || '#56c7aa'}}"></span>
+				<span class="title truncate">{{collection.title}}</span>
+			</div>
 		</div>
 	</li>
 </ul>
 
-<div class="new-collection-button">
-
-</div>
+<div class="new-collection-block" add-collection></div>
 
 <!-- <div text-search="query"></div>
 

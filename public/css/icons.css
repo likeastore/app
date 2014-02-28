@@ -106,6 +106,10 @@
   content: '{';
 }
 
+.added-icon:before {
+  content: '}';
+}
+
 .grid-icon:before {
   content: '\e002';
 }
@@ -120,6 +124,14 @@
 
 .menu-icon:before {
   content: 'J';
+}
+
+.help-icon:before {
+  content: '\e01C';
+}
+
+.add-circle-icon:before {
+  content: '+';
 }
 
 .inbox-icon:before {

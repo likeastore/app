@@ -22,6 +22,9 @@ define(function (require) {
 	controllers.controller('tumblrController', itemsControllerFactory('Tumblr', 'tumblr', 'tumblr opened'));
 	controllers.controller('pocketController', itemsControllerFactory('Pocket', 'pocket', 'pocket opened'));
 
+	// collections
+	controllers.controller('collectionController', require('./collectionController'));
+
 	// search
 	controllers.controller('searchController', require('./searchController'));
 

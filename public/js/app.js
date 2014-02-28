@@ -69,6 +69,7 @@ define(function (require) {
 				.when('/u/:name', { templateUrl: 'partials/profile', controller: 'profileController' })
 				.when('/u/:name/following', { templateUrl: 'partials/profile', controller: 'profileController' })
 				.when('/u/:name/followers', { templateUrl: 'partials/profile', controller: 'profileController' })
+				.when('/collections/:id', { templateUrl: 'partials/dashboard', controller: 'collectionController'})
 				.when('/ooops', { templateUrl: 'partials/dashboard', controller: 'errorController' })
 				.otherwise({ redirectTo: '/' });
 
@@ -78,13 +79,17 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, tracking) {
+	app.run(function (user, tracking, $location, $rootScope) {
 		user.initialize()
 			.getActiveNetworks()
 			.getInboxCount()
 			.getCollections();
 
 		tracking.boot();
+
+		$rootScope.switchMenu = function (url) {
+			$location.url(url);
+		};
 	});
 
 	return app;

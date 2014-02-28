@@ -18,6 +18,9 @@ define(function (require) {
 	directives.directive('tooltip', require('./tooltip'));
 	directives.directive('lazyAutocomplete', require('./lazyAutocomplete'));
 	directives.directive('scrolly', require('./scrolly'));
+	directives.directive('addCollection', require('./addCollection'));
+	directives.directive('addCollectionPopup', require('./addCollectionPopup'));
+	directives.directive('goToLink', require('./goToLink'));
 
 	return directives;
 });

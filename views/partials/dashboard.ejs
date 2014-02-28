@@ -20,13 +20,11 @@
 				'thumbed': item.thumbnail,
 				'texted': !item.thumbnail,
 				'last': $last
-			}">
-
-			<a href="{{item.source}}" class="mask-link" target="_blank"></a>
+			}"
+			go-to-link="{{item.source}}">
 
 			<div class="action-buttons">
-				<a href="" class="addto-btn"
-					tooltip="Collect"><i class="font-icon addto-icon"></i></a>
+				<div add-collection-popup="item._id"></div>
 				<a href="" class="share-btn"
 					tooltip="Share"
 					ng-dialog="shareLikeDialog"
@@ -40,23 +38,23 @@
 			</div>
 
 			<div ng-if="item.thumbnail" class="image">
-				<a ng-if="user.viewMode === 'grid'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+				<a ng-show="user.viewMode === 'grid'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 
 				<div class="info">
 					<div ng-if="item.avatarUrl" class="author-image">
 						<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
 					</div>
 
-					<div ng-if="user.viewMode === 'grid'" class="right-block">
+					<div ng-show="user.viewMode === 'grid'" class="right-block">
 						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
 						<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
 						<div ng-if="item.description" class="description"
 							ng-bind-html="item.description|truncate:260|linkify"></div>
 					</div>
 
-					<div ng-if="user.viewMode === 'list'" class="right-block clearfix">
+					<div ng-show="user.viewMode === 'list'" class="right-block clearfix">
 						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
-						<a ng-if="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+						<a ng-show="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 						<div>
 							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
 							<div ng-if="item.description" class="description"

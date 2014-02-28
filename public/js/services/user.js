@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function User ($rootScope, api, storage, auth) {
+	function User ($rootScope, $location, api, storage, auth) {
 		return {
 			initialize: function () {
 				api.get({ resource: 'users', target: 'me' }, function (user) {
