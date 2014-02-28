@@ -19,7 +19,8 @@ function handler (title, mainJs, mainCss) {
 			siteUrl: config.siteUrl,
 			applicationUrl: config.applicationUrl,
 			hashids: config.hashids,
-			analytics: config.analytics
+			analytics: config.analytics,
+			tracking: config.tracking.enabled
 		};
 
 		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss, appConfig: appConfig });
