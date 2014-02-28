@@ -123,7 +123,7 @@ function getInbox(user, page, callback) {
 			return callback(err);
 		}
 
-		var criteria = {user: user.email, hidden: {$exists: false}, type: {$in: enabled}};
+		var criteria = {user: user.email, hidden: {$exists: false}, read: {$exists: false}, type: {$in: enabled}};
 		if (user.loginPreviousDate) {
 			criteria.date = { $gt: user.loginPreviousDate };
 		}
@@ -151,7 +151,7 @@ function getInboxCount(user, page, callback) {
 			return callback(err);
 		}
 
-		var criteria = {user: user.email, hidden: {$exists: false}, type: {$in: enabled}};
+		var criteria = {user: user.email, hidden: {$exists: false}, read: {$exists: false}, type: {$in: enabled}};
 		if (user.loginPreviousDate) {
 			criteria.date = { $gt: user.loginPreviousDate };
 		}
@@ -174,6 +174,14 @@ function hideItem(user, id, callback) {
 	}, callback);
 }
 
+function readItem(user, id, callback) {
+	db.items.findAndModify({
+		query: {_id: new db.ObjectId(id), user: user.email},
+		update: {$set: {read: true}},
+		'new': true
+	}, callback);
+}
+
 module.exports = {
 	getAllItems: getAllItems,
 	getById: getById,
@@ -181,5 +189,6 @@ module.exports = {
 	getInbox: getInbox,
 	getInboxCount: getInboxCount,
 	getItemsCount: getItemsCount,
-	hideItem: hideItem
+	hideItem: hideItem,
+	readItem: readItem
 };

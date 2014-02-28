@@ -27,6 +27,10 @@ function itemsService(app) {
 		hideItem
 	);
 
+	app.put('/api/items/:id/read',
+		readItem
+	);
+
 	app.get('/api/items/id/:id',
 		getItemById);
 
@@ -95,6 +99,16 @@ function itemsService(app) {
 
 	function hideItem(req, res, next) {
 		items.hideItem(req.user, req.params.id, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(200);
+		});
+	}
+
+	function readItem(req, res, next) {
+		items.readItem(req.user, req.params.id, function (err) {
 			if (err) {
 				return next(err);
 			}

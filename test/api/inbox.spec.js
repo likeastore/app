@@ -201,5 +201,86 @@ describe('inbox.spec.js', function () {
 				expect(results.count).to.equal(5);
 			});
 		});
+
+		describe('when marking item as read', function () {
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					user = createdUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestNetworks(user, done);
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, 5, done);
+			});
+
+			beforeEach(function (done) {
+				setTimeout(done, 100);
+			});
+
+			beforeEach(function (done) {
+				testUtils.loginToApi(user, function (err, updatedUser, accessToken) {
+					token = accessToken;
+					user = updatedUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+					error = err;
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.put({url: testUtils.getRootUrl() + '/api/items/' + results.data[0]._id + '/read', headers: headers, json: true}, done);
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
+					error = err;
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok) status', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return not read results', function () {
+				expect(results.data.length).to.equal(4);
+			});
+
+			describe('and inbox count is right', function () {
+				beforeEach(function (done) {
+					request.get({url: url + '/count', headers: headers, json: true}, function (err, resp, body) {
+						error = err;
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond with 200 (ok) status', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it('should return count', function () {
+					expect(results.count).to.equal(4);
+				});
+			});
+		});
 	});
 });
