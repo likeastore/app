@@ -14,10 +14,10 @@ define(function (require) {
 							ng-class="{active: activeColor.name === color.name}"></span>\
 					</div>\
 					<div>\
-						<input type="text" class="coll-title fld" placeholder="Title" ng-model="collection.title" maxlength="100">\
+						<input type="text" class="coll-title fld" placeholder="Title" ng-model="collection.title" maxlength="60">\
 					</div>\
 					<div>\
-						<textarea class="coll-desc fld" placeholder="Description" ng-model="collection.description" rows="3" maxlength="500"></textarea>\
+						<textarea class="coll-desc fld" placeholder="Description" ng-model="collection.description" rows="3" maxlength="140"></textarea>\
 					</div>\
 					<div>\
 						<input type="checkbox" ng-model="collection.public">\

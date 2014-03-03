@@ -23,26 +23,37 @@
 }
 
 .settings {
-	width: 700px;
-	margin: 0 auto;
+	width: 680px;
+	margin: 0 auto 50px;
 }
 
 .settings h2.main-title {
 	font-size: 28px;
-	font-weight: 300;
+	font-weight: 700;
 	color: #666;
 	line-height: 28px;
-	margin-bottom: 30px;
+	letter-spacing: 1px;
+	text-align: center;
+}
+
+.settings .hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: solid 1px #ccc;
+	width: 20%;
+	margin: 35px auto 50px;
 }
 
 .settings .right-block-wrap {
-	width: 500px;
+	width: 100%;
 }
 
 .settings .network,
 .settings .profile-item {
+	background: #fff;
 	width: 100%;
-	padding: 18px 0 18px 30px;
+	padding: 22px 22px 22px 35px;
 	margin: 0;
 	vertical-align: top;
 	border-top: 1px solid rgba(0,0,0,.05);
@@ -50,11 +61,7 @@
 }
 
 .settings .network:first-child,
-.settings .profile-item:first-child {
-	border: 0;
-	padding-top: 5px;
-}
-
+.settings .profile-item:first-child,
 .settings .network.noborder {
 	border: 0;
 }
@@ -68,31 +75,26 @@
 }
 
 .settings .desc {
-	color: #888;
-	font-size: 12px;
-	font-weight: 300;
-}
-
-.settings .tabs {
-	width: 200px;
-	border-right: 1px solid rgba(0,0,0,.05);
-	height: 715px;
+	color: #999;
+	font-size: 13px;
+	margin-top: 5px;
 }
 
 .settings .tabs .tab {
-	display: block;
+	display: inline-block;
 	color: #666;
 	font-size: 14px;
 	line-height: 40px;
 	text-indent: 16px;
-	width: 100%;
+	width: 140px;
 	height: 40px;
 	cursor: pointer;
 	letter-spacing: .6px;
+	border-radius: 2px 2px 0 0;
 }
 
 .settings .tabs .tab.active {
-	background: #fdfdfd;
+	background: #fff;
 	font-weight: 600;
 }
 
@@ -102,10 +104,10 @@
 
 /* Toggle network checkboxes */
 .toggle {
-	margin-top: 6px;
 	position: relative;
 	width: 75px;
 	height: 32px;
+	margin-top: 5px;
 }
 
 .toggle.disabled {
@@ -204,7 +206,7 @@
 	background: transparent;
 	border: 0;
 	color: #666;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: 600;
 	padding: 0;
 	margin: 10px 0 0;
@@ -234,7 +236,7 @@
 	color: var(pink);
 	font-size: 18px;
 	position: absolute;
-	top: 18px;
+	top: 22px;
 	left: 7px;
 }
 
@@ -243,35 +245,15 @@
 	padding: 10px 30px 5px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 680px) {
 	.settings {
-		width: 450px;
-	}
-
-	.settings .tabs {
-		width: 150px;
-	}
-
-	.settings .right-block-wrap {
-		width: 300px;
+		width: 95%;
 	}
 }
 
 @media (max-width: 450px) {
-	.settings {
-		width: 95%;
-	}
-
-	.settings .tabs {
-		width: 30%;
-	}
-
 	.settings .tabs .tab {
 		font-size: 12px;
 		text-indent: 10px;
-	}
-
-	.settings .right-block-wrap {
-		width: 70%;
 	}
 }

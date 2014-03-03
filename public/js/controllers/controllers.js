@@ -47,5 +47,7 @@ define(function (require) {
 	controllers.controller('discoverController', itemsControllerFactory('Discover', null, 'discover opened', 'discover', true));
 	controllers.controller('profileController', require('./profileController'));
 
+	controllers.controller('firstTimeController', require('./firstTimeController'));
+
 	return controllers;
 });

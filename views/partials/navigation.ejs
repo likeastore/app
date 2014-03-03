@@ -9,7 +9,7 @@
 	<li class="inbox" ng-click="switchMenu('/inbox')" ng-class="{active: title==='Inbox'}">
 		<div ng-click="switchMenu('/inbox')" class="menu-title close-sidebar"><i data-icon="c" class="font-icon inbox-icon icon"></i> Inbox <span class="inbox-counter right" ng-hide="inboxCount === 0">{{inboxCount}}</span></div>
 	</li>
-	<li class="favorites" ng-class="{active: title!=='Inbox' && title !=='Account settings' && title !=='Discover'}">
+	<li class="favorites" ng-class="{active: title==='All favorites' || stringifiedNetworks.indexOf(title.toLowerCase()) !== -1}">
 		<div ng-click="switchMenu('/activity')" class="menu-title close-sidebar"><i class="font-icon favorites-icon icon"></i> All favorites</div>
 	</li>
 	<li class="discover" ng-class="{active: title==='Discover'}">
@@ -22,8 +22,9 @@
 			<div ng-show="!collections.length" class="empty-collections">
 				You have 0 collections. <div ng-click="showAddForm=true" class="link">Click here to create the first one!</div>
 			</div>
-			<div ng-click="switchMenu('/collections/{{collection._id}}')" class="coll-item"
-				ng-repeat="collection in collections">
+			<div ng-click="switchMenu('/collections/{{collection._id}}')" class="coll-item close-sidebar"
+				ng-repeat="collection in collections"
+				ng-class="{active: title===collection.title}">
 				<span class="avatar" style="background-color: {{collection.color || '#56c7aa'}}"></span>
 				<span class="title truncate">{{collection.title}}</span>
 			</div>

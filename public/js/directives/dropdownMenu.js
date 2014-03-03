@@ -22,7 +22,10 @@ define(function (require) {
 						<li class="network"\
 							ng-repeat="network in networks"\
 							ng-init="type = network.service === \'gist\' ? \'github\' : network.service"\
-							ng-class="{hide: network.service === \'gist\'}">\
+							ng-class="{\
+								hide: network.service === \'gist\',\
+								last: $last\
+							}">\
 							<a href="/{{network.service}}" class="network-link"\
 								ng-class="{active: network.service === menuTitle.toLowerCase()}">\
 								<i class="font-icon {{network.service}}-icon icon"></i> {{network.service}}\

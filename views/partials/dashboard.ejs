@@ -1,10 +1,12 @@
-<div class="top-bar clearfix">
+<div ng-show="items.length" class="top-bar clearfix">
 	<div class="top left">
-		<h2 class="title">{{title}}</h2>
+		<h2 ng-hide="collection" class="title">{{title}}</h2>
+		<div ng-show="title==='Inbox'" class="description">You have <b>{{inboxCount}}</b> new favorites since last visit</div>
+		<div ng-if="collection" edit-collection class="edit-collection-wrap"></div>
 	</div>
 	<div class="controls right">
 		<div text-search></div>
-		<div ng-if="networks.length" class="filters-bar holder" dropdown-menu="networks"></div>
+		<div ng-hide="title === 'Inbox' || collection" class="filters-bar holder" dropdown-menu="networks"></div>
 		<div class="view-bar holder">
 			<i class="font-icon grid-icon icon" ng-class="{active: user.viewMode === 'grid'}" ng-click="user.changeView('grid')"></i>
 			<i class="font-icon list-icon icon" ng-class="{active: user.viewMode === 'list'}" ng-click="user.changeView('list')"></i>
@@ -12,7 +14,7 @@
 	</div>
 </div>
 
-<section class="dashboard activity">
+<section ng-show="items.length" class="dashboard activity">
 	<ul id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list'}">
 		<li class="dash-item {{item.type}} item{{$index}}"
 			ng-repeat="item in items"
@@ -24,7 +26,7 @@
 			go-to-link="{{item.source}}">
 
 			<div class="action-buttons">
-				<div add-collection-popup="item._id"></div>
+				<div add-collection-popup="item"></div>
 				<a href="" class="share-btn"
 					tooltip="Share"
 					ng-dialog="shareLikeDialog"
@@ -83,4 +85,24 @@
 			<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
 		</li>
 	</ul>
+</section>
+
+<section class="first-time-box" ng-controller="firstTimeController">
+	<div class="main-message-container">
+		<div ng-show="!slideTwo" class="inner-box animated slideInLeft">
+			<h1>Welcome to Likeastore</h1>
+			<div class="text">Explore our <b>updated</b> interface and new features! Now you can collect and manage all your favorites, create collections and share what you like with your friends and co-workers much easier!</div>
+			<div class="btn next-btn" ng-click="goToSlide()">Next</div>
+		</div>
+
+		<div ng-show="slideTwo" class="inner-box">
+			<div>
+				<img src="/img/menu-screen.png" alt="">
+			</div>
+			<div>
+				<h2>Get started!</h2>
+				<p>Add services that you're commited to and sync all favorites automaticly</p>
+			</div>
+		</div>
+	</div>
 </section>

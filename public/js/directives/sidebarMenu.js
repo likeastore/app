@@ -16,7 +16,9 @@ define(function (require) {
 
 				$document.on('click touchstart', function (e) {
 					var $target = angular.element(e.target);
-					var close = $target.hasClass('sidebar-overlay') || $target.hasClass('close-sidebar');
+					var close = $target.hasClass('sidebar-overlay') ||
+								$target.hasClass('close-sidebar') ||
+								$target.parent().hasClass('close-sidebar');
 
 					if (close) {
 						$body.removeClass('sidebar-active');

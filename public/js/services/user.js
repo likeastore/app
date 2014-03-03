@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function User ($rootScope, $location, api, storage, auth) {
+	function User ($rootScope, $location, api, storage, auth, _) {
 		return {
 			initialize: function () {
 				api.get({ resource: 'users', target: 'me' }, function (user) {
@@ -40,6 +40,11 @@ define(function (require) {
 			getActiveNetworks: function () {
 				api.query({ resource: 'networks' }, function (networks) {
 					$rootScope.networks = networks;
+
+					$rootScope.stringifiedNetworks = _(networks).map(getNames).toString();
+					function getNames (row) {
+						return row.service;
+					}
 				});
 
 				return this;

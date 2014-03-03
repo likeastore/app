@@ -20,6 +20,7 @@ define(function (require) {
 	directives.directive('scrolly', require('./scrolly'));
 	directives.directive('addCollection', require('./addCollection'));
 	directives.directive('addCollectionPopup', require('./addCollectionPopup'));
+	directives.directive('editCollection', require('./editCollection'));
 	directives.directive('goToLink', require('./goToLink'));
 
 	return directives;

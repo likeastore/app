@@ -5,7 +5,7 @@ define(function (require) {
 		return {
 			restrict: 'A',
 			scope: {
-				itemId: "=addCollectionPopup"
+				item: "=addCollectionPopup"
 			},
 			replace: true,
 			template: '\
@@ -14,6 +14,7 @@ define(function (require) {
 					<ul class="show-coll-popup">\
 						<li class="show-coll-item truncate"\
 							ng-repeat="collection in collections"\
+							ng-class="{active: itemId === collection._id}"\
 							ng-click="addItemToCollection(collection._id)">\
 							<span style="background: {{collection.color || \'#56c7aa\'}}" class="color-avatar"></span>\
 							<span>{{collection.title}}</span>\
@@ -22,6 +23,7 @@ define(function (require) {
 				</a>',
 			controller: function ($scope, $rootScope, $timeout, api) {
 				$scope.collections = $rootScope.collections;
+
 				$scope.togglePopup = function () {
 					$scope.popup = !$scope.popup ? true : false;
 				};
@@ -31,12 +33,12 @@ define(function (require) {
 						resource: 'collections',
 						target: collId,
 						verb: 'item',
-						suffix: $scope.itemId
+						suffix: $scope.item._id
 					}, {}, function (res) {
 						$scope.added = true;
 						$timeout(function () {
 							$scope.added = false;
-						}, 2000);
+						}, 1500);
 					});
 				};
 			}

@@ -170,6 +170,14 @@
 	content: 'N';
 }
 
+.edit-icon:before {
+	content: '\e014';
+}
+
+.back-icon:before {
+	content: '\e011';
+}
+
 .big-icon {
 	height: 100px;
 	width: 100px;

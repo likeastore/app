@@ -1,8 +1,9 @@
 <section class="settings">
 	<h2 class="main-title">{{title}}</h2>
+	<hr class="hr">
 
 	<div class="clearfix">
-		<div class="tabs left">
+		<div class="tabs">
 			<div class="tab"
 				ng-click="showConfigTab=true"
 				ng-class="{active: showConfigTab}">Configuration</div>
@@ -11,10 +12,7 @@
 				ng-class="{active: !showConfigTab}">Profile</div>
 		</div>
 
-		<ul ng-show="showConfigTab" class="right-block-wrap animated fadeInLeft left">
-			<li class="network-error" ng-if="user.warning">
-				Our robot reports the issue with one of your networks. Please help him by simply re-enabling the network.
-			</li>
+		<ul ng-show="showConfigTab" class="right-block-wrap">
 			<li class="network facebook clearfix" ng-class="{noborder: user.warning}">
 				<div class="left info">
 					<h2 class="title">Facebook</h2>
@@ -94,7 +92,7 @@
 			</li>
 		</ul>
 
-		<ul ng-show="!showConfigTab" class="right-block-wrap profile animated fadeInLeft left">
+		<ul ng-show="!showConfigTab" class="right-block-wrap profile">
 			<li class="profile-item">
 				<div class="title">Your email</div>
 				<div>

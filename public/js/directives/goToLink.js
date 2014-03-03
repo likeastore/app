@@ -3,17 +3,29 @@ define(function (require) {
 
 	var $el = require('angular').element;
 
-	function GoToLink ($window) {
+	var clickableElementClasses = [
+		'dash-item',
+		'title',
+		'description',
+		'cover',
+		'info',
+		'author-name',
+		'author-image'
+	];
+
+	function GoToLink ($window, _) {
 		return {
 			restrict: 'A',
 			link: function (scope, elem, attrs) {
 				var url = attrs.goToLink;
+
 				elem.on('click', function (e) {
 					var $target = $el(e.target);
-					var actions = $target.parent().parent().hasClass('action-buttons') ||
-								$target.parent().parent().parent().parent().hasClass('action-buttons');
+					var clickable = _(clickableElementClasses).find(function (cls) {
+						return $target.hasClass(cls);
+					});
 
-					if (!actions) {
+					if (clickable) {
 						$window.open(url, '_tab');
 					}
 				});
