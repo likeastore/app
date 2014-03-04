@@ -1294,6 +1294,7 @@ textarea.fld {
 	right: 0;
 	bottom: 0;
 	left: 0;
+	display: none;
 }
 
 .first-time-box .main-message-container {
