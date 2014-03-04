@@ -45,14 +45,52 @@
 			</div>
 		</div>
 
+		<section ng-show="showPreviewHelp" class="first-time-box" ng-controller="firstTimeController">
+			<div class="main-message-container">
+				<div ng-show="slide1" class="inner-box animated fadeIn">
+					<h1>Welcome to Likeastore</h1>
+					<div class="text">Explore our <b>updated</b> interface and new features! Now you can manage all your favorites in one place, create collections and share what you like with your friends and co-workers much easier!</div>
+					<div class="btn next-btn" ng-click="goToSlide(2)">Next</div>
+				</div>
 
-		<!-- <div ng-show="user.warning" ng-class="{'animated fadeInDown': user.warning, 'closed': user.warningHidden}" class="network-error">
-			Some connections have expired, new likes are not collected. <a href="/settings">Click here to continue collecting.</a>
-			<a href="" class="hide-network-error" ng-click="user.warning=false"></a>
-		</div>
+				<div ng-show="slide2" class="inner-box animated fadeIn">
+					<img src="/img/network-screen.png" class="add-network-step-screen screen">
+					<div class="tip add-network-step">
+						<h2>Get started!</h2>
+						<p>Add networks like Twitter and Facebook, all your favorites will be synchronized and collected automaticly.</p>
+					</div>
+					<div class="buttons">
+						<div class="btn previous-btn" ng-click="goToSlide(1)">Previous</div>
+						<div class="btn next-btn" ng-click="goToSlide(3)">Next</div>
+					</div>
+				</div>
 
-		<header class="main-header clearfix" ng-show="user" ng-include="'partials/header'"></header>
-		<div class="main-viewer" ng-view></div> -->
+				<div ng-show="slide3" class="inner-box slide3 animated fadeIn">
+					<img src="/img/menu-screen.png" class="menu-step-screen screen">
+					<div class="tip menu-step">
+						<h2>Explore features</h2>
+						<p>Check new possibilities that we offer and your profile and account info as well.</p>
+					</div>
+
+					<img src="/img/collection-screen.png" class="add-collection-step-screen screen">
+					<div class="tip collections-step">
+						<h2>Create collections</h2>
+						<p>Organize content and favorites from different services by creating custom collections of them.</p>
+					</div>
+
+					<img src="/img/discover-screen.png" class="discover-step-screen screen">
+					<div class="tip discover-step">
+						<h2>Your friends</h2>
+						<p>Find something new and discover what interests your friends and co-workers.</p>
+					</div>
+
+					<div class="cornered-buttons">
+						<div class="btn previous-btn" ng-click="goToSlide(2)">Previous</div>
+						<div class="btn ready-btn" ng-click="finish()">I'm ready!</div>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
 
 	<%- partial('static/icon-preloader') %>

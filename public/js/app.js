@@ -48,7 +48,7 @@ define(function (require) {
 			$routeProvider
 				.when('/', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
 				.when('/all', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
-				.when('/activity', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
+				.when('/favorites', { templateUrl: 'partials/dashboard', controller: 'dashboardController' })
 				.when('/inbox', { templateUrl: 'partials/dashboard', controller: 'inboxController' })
 				.when('/facebook', { templateUrl: 'partials/dashboard', controller: 'facebookController' })
 				.when('/github', { templateUrl: 'partials/dashboard', controller: 'githubController' })
@@ -79,7 +79,7 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, tracking, $location, $window, $rootScope) {
+	app.run(function (user, tracking, $location, $rootScope) {
 		user.initialize()
 			.getActiveNetworks()
 			.getInboxCount()

@@ -62,6 +62,10 @@ exports.schemas = {
 			'bio': {
 				required: false,
 				type: 'string'
+			},
+			'watchedPreview': {
+				required: false,
+				type: 'boolean'
 			}
 		}
 	}

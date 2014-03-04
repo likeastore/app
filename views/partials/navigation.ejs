@@ -10,7 +10,7 @@
 		<div ng-click="switchMenu('/inbox')" class="menu-title close-sidebar"><i data-icon="c" class="font-icon inbox-icon icon"></i> Inbox <span class="inbox-counter right" ng-hide="inboxCount === 0">{{inboxCount}}</span></div>
 	</li>
 	<li class="favorites" ng-class="{active: title==='All favorites' || stringifiedNetworks.indexOf(title.toLowerCase()) !== -1}">
-		<div ng-click="switchMenu('/activity')" class="menu-title close-sidebar"><i class="font-icon favorites-icon icon"></i> All favorites</div>
+		<div ng-click="switchMenu('/favorites')" class="menu-title close-sidebar"><i class="font-icon favorites-icon icon"></i> All favorites</div>
 	</li>
 	<li class="discover" ng-class="{active: title==='Discover'}">
 		<div ng-click="switchMenu('/discover')" class="menu-title close-sidebar"><i class="font-icon discover-icon icon"></i> Discover</a>
