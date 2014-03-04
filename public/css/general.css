@@ -1362,6 +1362,50 @@ textarea.fld {
   border-radius: 3px;
 }
 
+.first-time-box .btn.previous-btn {
+  margin-right: 20px;
+  color: #999;
+  border-color: #999;
+}
+
+.first-time-box .add-network-step-screen {
+  position: fixed;
+  top: -1px;
+  right: 0;
+  width: 212px;
+}
+
+.first-time-box .tip {
+  position: fixed;
+  width: 270px;
+}
+
+.first-time-box .tip.add-network-step {
+  right: 75px;
+  top: 235px;
+}
+
+.first-time-box .tip h2 {
+  font-size: 16px;
+  font-family: 'Montserrat', 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.first-time-box .tip p {
+  letter-spacing: .6px;
+  line-height: 20px;
+}
+
+.first-time-box .buttons {
+  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+
 .facebook-bg-clr {
   background-color: #3b5998 !important;
 }
