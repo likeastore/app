@@ -104,9 +104,9 @@
 	</div>
 
 	<div ng-if="loaded && !items.length && search" class="blank-box">
-		<div class="annoyed-icon big-icon"></div>
-		<h2 class="title">Ooops.. no matching search results!</h2>
-		<p>Sorry, but there is no content related to your {{query}} request. Didn't you mean something else?</p>
+		<div class="robot-icon big-icon"></div>
+		<h2 class="title">No matching search results!</h2>
+		<p>Sorry, but there is no content related to your <b>"{{query}}"</b> request. Didn't you mean something else?</p>
 	</div>
 
 	<div ng-hide="loaded || error" class="two-spin"></div>
