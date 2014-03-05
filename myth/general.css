@@ -1393,19 +1393,18 @@ textarea.fld {
 	padding: 30px 50px;
 	margin: 100px auto;
 	width: 500px;
-	min-height: 300px;
+	min-height: 320px;
 	text-align: center;
 	border-radius: 3px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-.blank-box .error-icon {
-	margin: 0 auto 10px;
-	width: 150px;
-	background-size: 150px;
+.blank-box .big-icon {
+	margin: 0 auto 20px;
 }
 
 .blank-box .title {
+	font-size: 18px;
 	font-family: var(title-font);
 	text-transform: uppercase;
 	letter-spacing: .6px;
@@ -1414,6 +1413,8 @@ textarea.fld {
 
 .blank-box p {
 	color: #999;
+	font-size: 16px;
+	line-height: 24px;
 	letter-spacing: .6px;
 }
 

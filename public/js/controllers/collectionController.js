@@ -2,6 +2,8 @@ define(function () {
 	'use strict';
 
 	function CollectionController ($scope, $rootScope, $routeParams, $analytics, api, appLoader, _) {
+		appLoader.loading();
+
 		$analytics.eventTrack('collection opened');
 
 		$rootScope.$watch('collections', handleCollection);
@@ -20,6 +22,7 @@ define(function () {
 
 		api.query({ resource: 'collections', target: $routeParams.id, verb: 'items' }, function (items) {
 			$scope.items = items;
+			appLoader.ready();
 		});
 	}
 

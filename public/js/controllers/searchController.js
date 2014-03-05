@@ -6,9 +6,8 @@ define(function (require) {
 
 		$analytics.eventTrack('search opened');
 
-		$rootScope.title = 'Search';
+		$rootScope.title = 'Search results for "' + $routeParams.text + '"';
 		$scope.search = true;
-		$scope.notLazySearchable = true;
 		$scope.query = $routeParams.text;
 		$scope.items = [];
 

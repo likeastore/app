@@ -17,9 +17,9 @@ define(function (require) {
 						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'title\')">Save</button>\
 					</div>\
 				</h2>\
-				<div ng-if="collection.description" class="description show-edit" ng-click="showEditPopup(\'descriptionEditMode\', $event)"\
-					ng-class="{block: (collection.title.length > 40 || collection.description.length > 60)}">\
-					{{collection.description|truncate:140}}\
+				<div class="description show-edit" ng-click="showEditPopup(\'descriptionEditMode\', $event)"\
+					ng-class="{block: collection.description.length > 60}">\
+					{{collection.description || \'No description\'|truncate:140}}\
 					<div ng-class="{active: descriptionEditMode}" class="edit-collection-popup description-mode">\
 						<textarea class="fld" ng-model="updatedColl.description" rows="5" maxlength="140"></textarea>\
 						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'descriptionEditMode\')">Cancel</a>\

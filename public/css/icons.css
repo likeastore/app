@@ -215,11 +215,11 @@
 
 .error-icon {
   background: url(../img/ooops-robot.png) center center no-repeat;
-  -webkit-background-size: 180px;
-  background-size: 180px;
+  -webkit-background-size: 150px;
+  background-size: 150px;
 }
 
 .error-icon.big-icon {
   height: 120px;
-  width: 200px;
+  width: 150px;
 }

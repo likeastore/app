@@ -97,5 +97,11 @@
 		</div>
 	</div>
 
-	<div ng-show="loading" class="two-spin"></div>
+	<div ng-if="loaded && !items.length && inbox" class="blank-box">
+		<div class="box-icon big-icon"></div>
+		<h2 class="title">Your inbox is zero!</h2>
+		<p>No new favorites were collected since your last visit.<br> Start favoriting more actively!</p>
+	</div>
+
+	<div ng-hide="loaded || error" class="two-spin"></div>
 </section>

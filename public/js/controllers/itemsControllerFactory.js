@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function itemsControllerFactory (title, target, event, resource, notLazySearchable) {
+	function itemsControllerFactory (title, target, event, resource) {
 
 		function ItemsController($scope, $rootScope, $window, appLoader, api, user, $analytics) {
 			$window.scrollTo(0,0);
