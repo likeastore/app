@@ -6,8 +6,8 @@
 	</div>
 </div>
 
-<section ng-show="items.length" class="dashboard activity">
-	<ul id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list'}">
+<section class="dashboard activity">
+	<ul ng-show="items.length" id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list'}">
 		<li class="dash-item {{item.type}} item{{$index}}"
 			ng-repeat="item in items"
 			ng-class="{
@@ -78,5 +78,24 @@
 		</li>
 	</ul>
 
-	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
+	<div class="empty-box">
+		<div class="empty-step one">
+			<h2 class="title">1. Add network</h2>
+			<p>To start using our service the only thing you need is to <b>turn on</b> any network provided by configuration.</p>
+			<a href="/settings" class="btn gradient-btn">Connect service</a>
+		</div>
+
+		<div class="empty-step two">
+			<h2 class="title">2. Wait a moment</h2>
+			<p>Our robot will automaticly get all your favorites from connected networks but it may take a few minutes.</p>
+			<div class="help"><i class="font-icon help-icon icon"></i>Still do not see your favorites? <br><a href="mailto:info@likeastore.com">Please contact our support.</a></div>
+		</div>
+
+		<div class="arrow-helper">
+			<img src="/img/black-arrow.png" class="arrow">
+			<div class="hint">You don't own any <span ng-show="stringifiedNetworks.indexOf(title.toLowerCase()) !== -1">{{title}}</span> items yet. Here is the way to fill it up!</div>
+		</div>
+	</div>
+
+	<div ng-show="loading" class="two-spin"></div>
 </section>

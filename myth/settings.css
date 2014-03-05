@@ -47,6 +47,7 @@
 
 .settings .right-block-wrap {
 	width: 100%;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
 .settings .network,
@@ -78,6 +79,7 @@
 	color: #999;
 	font-size: 13px;
 	margin-top: 5px;
+	letter-spacing: .3px;
 }
 
 .settings .tabs .tab {
@@ -200,6 +202,7 @@
 
 .toggle.on .bg {
 	background: var(navy);
+	background: rgba(66, 207, 176, 0.96);
 }
 
 .profile-item .fld {

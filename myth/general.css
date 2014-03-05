@@ -207,6 +207,7 @@ textarea.fld {
 
 .btn:hover {
 	opacity: .8;
+	text-decoration: none;
 }
 
 .green-btn {
@@ -216,6 +217,11 @@ textarea.fld {
 
 .pink-btn {
 	background: var(pink);
+	color: #fff;
+}
+
+.gradient-btn {
+	background: linear-gradient(55deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
 	color: #fff;
 }
 
@@ -1302,6 +1308,85 @@ textarea.fld {
 	padding: 2px 0 0;
 }
 
+/* Empty box */
+.empty-box {
+	margin: 150px auto;
+	width: 700px;
+	text-align: center;
+	position: relative;
+}
+
+.empty-box .empty-step {
+	display: inline-block;
+	background: #fff;
+	width: 300px;
+	border-radius: 3px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	vertical-align: top;
+	margin-right: 30px;
+	padding: 30px 20px;
+	height: 240px;
+}
+
+.empty-box .empty-step.two {
+	margin-right: 0;
+}
+
+.empty-box .empty-step .title {
+	font-family: var(title-font);
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+}
+
+.empty-box .empty-step p {
+	color: #999;
+	letter-spacing: .3px;
+}
+
+.empty-box .empty-step .btn {
+	width: 90%;
+	height: 42px;
+	margin-top: 45px;
+	line-height: 42px;
+}
+
+.empty-box .empty-step .help {
+	color: #999;
+	font-size: 12px;
+	border: 1px solid #eee;
+	letter-spacing: .3px;
+	margin: 45px auto 0;
+	padding: 8px 0 9px;
+	width: 90%;
+	border-radius: 2px;
+}
+
+.empty-box .empty-step .help .icon {
+	display: inline-block;
+	vertical-align: top;
+	margin: 2px 3px 0 0;
+}
+
+.empty-box .arrow-helper .hint {
+	color: #303030;
+	font-size: 12px;
+	position: absolute;
+	top: -103px;
+	left: -42px;
+	width: 125px;
+	letter-spacing: .3px;
+}
+
+.empty-box .arrow-helper .arrow {
+	width: 85px;
+	position: absolute;
+	left: 80px;
+	top: -90px;
+}
+
+/* First time slider */
 .first-time-box {
 	background-color: rgba(0,0,0,.78);
 	position: fixed;
