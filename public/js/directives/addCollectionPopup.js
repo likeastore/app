@@ -9,7 +9,7 @@ define(function (require) {
 			},
 			replace: true,
 			template: '\
-				<a href="" class="addto-btn" tooltip="Collect">\
+				<a href="" class="addto-btn" tooltip="Add to collection">\
 					<i class="font-icon addto-icon" ng-class="{\'added-icon animated bounce\': added}"></i>\
 					<ul class="show-coll-popup">\
 						<li class="show-coll-item truncate"\

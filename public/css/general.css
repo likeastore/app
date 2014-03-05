@@ -783,7 +783,7 @@ textarea.fld {
   bottom: 0;
 }
 
-.edit-collection-wrap .color-avatar {
+.edit-collection-wrap .color-avatar-current {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -792,6 +792,16 @@ textarea.fld {
   vertical-align: top;
   -webkit-box-shadow: 0 0 0 2px rgba(255,255,255,.9);
   box-shadow: 0 0 0 2px rgba(255,255,255,.9);
+}
+
+.edit-collection-wrap .color-avatar-current .edit-collection-popup {
+  margin-top: 25px;
+  left: -20px;
+  width: 190px;
+}
+
+.edit-collection-wrap .color-avatar-current .edit-collection-popup .last {
+  margin-right: 0;
 }
 
 .edit-collection-wrap .show-edit {
@@ -1197,6 +1207,10 @@ textarea.fld {
   display: block;
 }
 
+.dash-item .action-buttons a.addto-btn .tooltip {
+  width: 105px;
+}
+
 .dash-item .show-coll-popup .show-coll-item {
   border-top: 1px solid #161625;
   font-size: 12px;
@@ -1362,7 +1376,8 @@ textarea.fld {
   letter-spacing: .3px;
 }
 
-.empty-box .empty-step .btn {
+.empty-box .empty-step .btn,
+.blank-box .btn {
   width: 90%;
   height: 42px;
   margin-top: 45px;
@@ -1442,6 +1457,10 @@ textarea.fld {
 
 .blank-box.empty-collection {
   margin-top: 60px;
+}
+
+.blank-box.empty-collection .btn {
+  margin-top: 35px;
 }
 
 /* First time slider */

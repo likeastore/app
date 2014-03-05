@@ -8,7 +8,17 @@ define(function (require) {
 		return {
 			restrict: 'A',
 			template: '\
-				<div class="color-avatar show-edit" style="background-color: {{collection.color || \'#56c7aa\'}}"></div>\
+				<div class="color-avatar-current show-edit" style="background-color: {{collection.color || \'#56c7aa\'}}" ng-click="showEditPopup(\'colorEditMode\', $event)">\
+					<div ng-class="{active: colorEditMode}" class="edit-collection-popup add-coll-form title-mode">\
+						<div class="colors">\
+							<span ng-repeat="color in colors" class="color-avatar" style="background: {{color.hex}};"\
+								ng-click="selectColor(color)"\
+								ng-class="{active: activeColor.name === color.name, last: $last}"></span>\
+						</div>\
+						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'colorEditMode\')">Cancel</a>\
+						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'color\')">Save</button>\
+					</div>\
+				</div>\
 				<h2 class="title show-edit" ng-click="showEditPopup(\'titleEditMode\', $event)">\
 					{{collection.title|truncate:60}}\
 					<div ng-class="{active: titleEditMode}" class="edit-collection-popup title-mode">\
@@ -21,28 +31,52 @@ define(function (require) {
 					ng-class="{block: collection.description.length > 60}">\
 					{{collection.description || \'No description\'|truncate:140}}\
 					<div ng-class="{active: descriptionEditMode}" class="edit-collection-popup description-mode">\
-						<textarea class="fld" ng-model="updatedColl.description" rows="5" maxlength="140"></textarea>\
+						<textarea class="fld" ng-model="updatedColl.description" placeholder="Description for your awesome collection.." rows="5" maxlength="140"></textarea>\
 						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'descriptionEditMode\')">Cancel</a>\
 						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'description\')">Save</button>\
 					</div>\
 				</div>',
 			link: function ($scope, elem, attrs) {
+				$scope.colors = [
+					{ name: 'red', hex: '#e74c3c' },
+					{ name: 'orange', hex: '#f39c12' },
+					{ name: 'yellow', hex: '#feee43' },
+					{ name: 'green', hex: '#56c7aa' },
+					{ name: 'blue', hex: '#3498db' },
+					{ name: 'violet', hex: '#eab6fd' },
+					{ name: 'grey', hex: '#c8c8c8' }
+				];
+
+				$scope.activeColor = _($scope.colors).find(function (color) {
+					return color.hex === $scope.collection.color;
+				});
+				$scope.selectColor = function (color) {
+					$scope.activeColor = color;
+				};
+
 				$scope.updatedColl = {};
 
 				$scope.showEditPopup = function (mode, e) {
 					$scope.updatedColl = angular.copy($scope.collection);
 					$scope.titleEditMode = false;
 					$scope.descriptionEditMode = false;
+					$scope.colorEditMode = false;
 					$scope[mode] = true;
 				};
 
 				$scope.updateCollection = function (prop) {
 					var data = {};
-					data[prop] = $scope.updatedColl[prop];
+
+					if (prop === 'color') {
+						data.color = $scope.activeColor.hex;
+					} else {
+						data[prop] = $scope.updatedColl[prop];
+					}
 
 					api.patch({ resource: 'collections', target: $scope.collection._id }, data, function (res) {
 						$scope.titleEditMode = false;
 						$scope.descriptionEditMode = false;
+						$scope.colorEditMode = false;
 
 						user.getCollections();
 					});
@@ -59,11 +93,12 @@ define(function (require) {
 					if (!clickable) {
 						$scope.titleEditMode = false;
 						$scope.descriptionEditMode = false;
+						$scope.colorEditMode = false;
 						$scope.$apply();
 					}
 
 					function checkPopup (elem) {
-						return (elem.hasClass('edit-collection-popup') || elem.parent().hasClass('edit-collection-popup') && !elem.hasClass('cancel'));
+						return (elem.hasClass('edit-collection-popup') || elem.hasClass('color-avatar') || elem.parent().hasClass('edit-collection-popup') && !elem.hasClass('cancel'));
 					}
 				});
 			}
