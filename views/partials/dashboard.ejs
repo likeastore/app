@@ -4,14 +4,6 @@
 		<div ng-show="title==='Inbox'" class="description">You have <b>{{inboxCount}}</b> new favorites since last visit</div>
 		<div ng-if="collection" edit-collection class="edit-collection-wrap"></div>
 	</div>
-	<div class="controls right">
-		<div text-search></div>
-		<div ng-hide="title === 'Inbox' || collection" class="filters-bar holder" dropdown-menu="networks"></div>
-		<div class="view-bar holder">
-			<i class="font-icon grid-icon icon" ng-class="{active: user.viewMode === 'grid'}" ng-click="user.changeView('grid')"></i>
-			<i class="font-icon list-icon icon" ng-class="{active: user.viewMode === 'list'}" ng-click="user.changeView('list')"></i>
-		</div>
-	</div>
 </div>
 
 <section ng-show="items.length" class="dashboard activity">
@@ -85,4 +77,6 @@
 			<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
 		</li>
 	</ul>
+
+	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
 </section>

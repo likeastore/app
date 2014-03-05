@@ -10,11 +10,11 @@ define(function (require) {
 				networks: '=dropdownMenu'
 			},
 			template: '\
-				<div>Filter by &nbsp;<a href="" class="show-networks" ng-click="toggleMenu()">{{menuTitle}}</a></div>\
+				<div class="show-networks header-btn" ng-click="toggleMenu()"><i class="font-icon activity-icon icon"></i> Select</div>\
 				<div class="networks-dropdown" ng-class="{active: showDropdown}">\
-					<ul>\
+					<ul ng-if="networks">\
 						<li>\
-							<a href="/activity" class="network-link"\
+							<a href="/all" class="network-link"\
 								ng-class="{active: menuTitle.toLowerCase() === \'all networks\'}">\
 								<i class="font-icon activity-icon icon"></i> All networks\
 							</a>\
@@ -45,7 +45,7 @@ define(function (require) {
 				};
 
 				$document.on('click touchstart', function (e) {
-					var target = angular.element(e.target).hasClass('show-networks') || angular.element(e.target).hasClass('network-link');
+					var target = angular.element(e.target).hasClass('show-networks');
 
 					if (!target) {
 						scope.showDropdown = false;

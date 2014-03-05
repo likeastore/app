@@ -2,6 +2,8 @@ define(function () {
 	'use strict';
 
 	function CollectionController ($scope, $rootScope, $routeParams, $analytics, api, appLoader, _) {
+		$analytics.eventTrack('collection opened');
+
 		$rootScope.$watch('collections', handleCollection);
 
 		function handleCollection (value) {
@@ -14,7 +16,6 @@ define(function () {
 			});
 
 			$rootScope.title = $scope.collection.title;
-			$rootScope.ctaButtonType = 'addNetwork';
 		}
 
 		api.query({ resource: 'collections', target: $routeParams.id, verb: 'items' }, function (items) {

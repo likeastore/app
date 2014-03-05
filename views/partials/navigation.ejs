@@ -4,7 +4,8 @@
 			<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load>
 			<span class="username close-sidebar">{{(user.displayName || user.name)|truncate:35}}</span>
 		</div>
-		<div ng-click="switchMenu('/settings')" class="font-icon settings-icon subicon close-sidebar right"></div>
+		<div ng-click="user.logout()" class="font-icon logout-icon subicon right" tooltip="Sign out"></div>
+		<div ng-click="switchMenu('/settings')" class="font-icon settings-icon subicon close-sidebar right" tooltip="Settings"></div>
 	</li>
 	<li class="inbox" ng-click="switchMenu('/inbox')" ng-class="{active: title==='Inbox'}">
 		<div ng-click="switchMenu('/inbox')" class="menu-title close-sidebar"><i data-icon="c" class="font-icon inbox-icon icon"></i> Inbox <span class="inbox-counter right" ng-hide="inboxCount === 0">{{inboxCount}}</span></div>

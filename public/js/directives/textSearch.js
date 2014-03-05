@@ -1,8 +1,6 @@
 define(function () {
 	'use strict';
 
-	var angular = require('angular');
-
 	function TextSearch ($timeout, $window, $location, appLoader, api) {
 		return {
 			restrict: 'A',
@@ -23,9 +21,7 @@ define(function () {
 			},
 			link: function (scope, elem, attrs) {
 				var delay = attrs.delay || 1000;
-				var parentScope = scope.$parent;
-				var timer = false;
-				var backup, pages;
+				var timer;
 
 				var $input = elem.find('input');
 				$input.on('focus', function () {
@@ -42,36 +38,10 @@ define(function () {
 						$timeout.cancel(timer);
 					}
 
-					if (parentScope.notLazySearchable) {
-						return;
-					}
-
-					if (value && value !== parentScope.query) {
+					if (value) {
 						timer = $timeout(function () {
-							$window.scrollTo(0,0);
-
-							parentScope.search = true;
-							makeItemsBackupOnce();
-							appLoader.loading();
-
-							api.get({ resource: 'search', text: value }, function (res) {
-								parentScope.items = res.data;
-								parentScope.nextPage = res.nextPage;
-								appLoader.ready();
-							});
+							$location.url('/search?text=' + scope.query);
 						}, delay);
-					} else if (backup) {
-						parentScope.items = scope.backup;
-						parentScope.nextPage = pages;
-						parentScope.search = false;
-					}
-				}
-
-				function makeItemsBackupOnce () {
-					if (!backup) {
-						parentScope.backup = angular.copy(parentScope.items);
-						pages = parentScope.nextPage;
-						backup = true;
 					}
 				}
 			}

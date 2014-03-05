@@ -7,8 +7,6 @@ define(function () {
 		$analytics.eventTrack('settings opened');
 
 		$rootScope.title = 'Account settings';
-		$rootScope.ctaButtonType = 'logout';
-
 		$scope.showConfigTab = true;
 	}
 
