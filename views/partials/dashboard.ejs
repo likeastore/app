@@ -7,7 +7,7 @@
 </div>
 
 <section class="dashboard activity">
-	<ul ng-show="items.length" id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list'}">
+	<ul ng-if="items.length" id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list'}">
 		<li class="dash-item {{item.type}} item{{$index}}"
 			ng-repeat="item in items"
 			ng-class="{
@@ -78,7 +78,7 @@
 		</li>
 	</ul>
 
-	<div class="empty-box">
+	<div ng-if="loaded && !items.length && !search && !inbox" class="empty-box">
 		<div class="empty-step one">
 			<h2 class="title">1. Add network</h2>
 			<p>To start using our service the only thing you need is to <b>turn on</b> any network provided by configuration.</p>

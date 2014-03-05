@@ -70,7 +70,7 @@ define(function (require) {
 				.when('/u/:name/following', { templateUrl: 'partials/profile', controller: 'profileController' })
 				.when('/u/:name/followers', { templateUrl: 'partials/profile', controller: 'profileController' })
 				.when('/collections/:id', { templateUrl: 'partials/dashboard', controller: 'collectionController'})
-				.when('/ooops', { templateUrl: 'partials/dashboard', controller: 'errorController' })
+				.when('/ooops', { templateUrl: 'errorView', controller: 'errorController' })
 				.otherwise({ redirectTo: '/' });
 
 			$locationProvider.html5Mode(true);

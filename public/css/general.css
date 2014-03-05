@@ -1051,6 +1051,7 @@ textarea.fld {
   padding: 5px;
   max-height: 165px;
   overflow: hidden;
+  letter-spacing: .3px;
 }
 
 .dash-item .description a {
@@ -1400,6 +1401,39 @@ textarea.fld {
   position: absolute;
   left: 80px;
   top: -90px;
+}
+
+/* Blank box */
+
+.blank-box {
+  background: #fff;
+  padding: 30px 50px;
+  margin: 100px auto;
+  width: 500px;
+  min-height: 300px;
+  text-align: center;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.blank-box .error-icon {
+  margin: 0 auto 10px;
+  width: 150px;
+  -webkit-background-size: 150px;
+  background-size: 150px;
+}
+
+.blank-box .title {
+  font-family: 'Montserrat', 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  margin-bottom: 20px;
+}
+
+.blank-box p {
+  color: #999;
+  letter-spacing: .6px;
 }
 
 /* First time slider */
