@@ -10,7 +10,7 @@ define(function (require) {
 				var raw = element[0];
 
 				element.bind('scroll', function () {
-					if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight - 200) {
+					if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight - 350) {
 						// hack for getting proper scroll scope
 						var childScope = angular.element(document.getElementById('items')).scope();
 
