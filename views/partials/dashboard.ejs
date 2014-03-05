@@ -1,7 +1,7 @@
-<div ng-show="items.length" class="top-bar clearfix">
+<div class="top-bar clearfix">
 	<div class="top left">
-		<h2 ng-hide="collection" class="title">{{title}}</h2>
-		<div ng-show="title==='Inbox'" class="description">You have <b>{{inboxCount}}</b> new favorites since last visit</div>
+		<h2 ng-show="items.length && !collection" class="title">{{title}}</h2>
+		<div ng-show="items.length && title==='Inbox'" class="description">You have <b>{{inboxCount}}</b> new favorites since last visit</div>
 		<div ng-if="collection" edit-collection class="edit-collection-wrap"></div>
 	</div>
 </div>
@@ -78,7 +78,7 @@
 		</li>
 	</ul>
 
-	<div ng-if="loaded && !items.length && !search && !inbox" class="empty-box">
+	<div ng-if="loaded && !items.length && !search && !inbox && !collection" class="empty-box">
 		<div class="empty-step one">
 			<h2 class="title">1. Add network</h2>
 			<p>To start using our service the only thing you need is to <b>turn on</b> any network provided by configuration.</p>
@@ -107,6 +107,12 @@
 		<div class="robot-icon big-icon"></div>
 		<h2 class="title">No matching search results!</h2>
 		<p>Sorry, but there is no content related to your <b>"{{query}}"</b> request. Didn't you mean something else?</p>
+	</div>
+
+	<div ng-if="loaded && !items.length && collection" class="blank-box empty-collection">
+		<img src="/img/collect-example-screen.png">
+		<h2 class="title">This collection is empty!</h2>
+		<p>You didn't add any favorites to this collection.<br>  You can easily start collecting items by clicking <b>"Add"</b> button at the top of the favorite's card.</p>
 	</div>
 
 	<div ng-hide="loaded || error" class="two-spin"></div>

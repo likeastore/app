@@ -1390,13 +1390,17 @@ textarea.fld {
 /* Blank box */
 .blank-box {
 	background: #fff;
-	padding: 30px 50px;
+	padding: 30px 50px 50px;
 	margin: 100px auto;
 	width: 500px;
-	min-height: 320px;
 	text-align: center;
 	border-radius: 3px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.blank-box img {
+	width: 70%;
+	margin-bottom: 35px;
 }
 
 .blank-box .big-icon {
@@ -1416,6 +1420,10 @@ textarea.fld {
 	font-size: 16px;
 	line-height: 24px;
 	letter-spacing: .6px;
+}
+
+.blank-box.empty-collection {
+	margin-top: 60px;
 }
 
 /* First time slider */
