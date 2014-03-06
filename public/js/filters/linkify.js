@@ -5,6 +5,9 @@ define(function (require) {
 		return function (text) {
 			var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 
+			text = text.replace(/</g, '&lt');
+			text = text.replace(/>/g, '&gt');
+
 			var result = text.replace(urlRegex, function (url) {
 				return '<a href="' + url + '" target="_blank">' + url + '</a>';
 			});

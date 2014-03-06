@@ -1,10 +1,10 @@
 <section class="profile-page animated fadeIn">
 	<div class="profile-user clearfix" ng-if="profile">
 		<div class="left profile-info">
-			<img ng-src="{{profile.avatar}}" class="avatar left" avatar-load>
+			<img ng-src="{{profile.avatar}}" class="avatar left" ng-click="switchList('favorites')" avatar-load>
 
 			<div class="left">
-				<div class="name truncate">{{profile.displayName || profile.name}}</div>
+				<div class="name truncate" ng-click="switchList('favorites')">{{profile.displayName || profile.name}}</div>
 
 				<div class="profile-me" ng-if="me">Your profile</div>
 
@@ -40,12 +40,61 @@
 	</div>
 
 	<div class="profile-lists">
-		<h2 class="list-title" ng-if="followers.length">
+		<h2 class="list-title" ng-if="followers.length || items.length">
+			<span ng-if="list === 'favorites'">Recent favorites:</span>
 			<span ng-if="list === 'follows'">Following:</span>
 			<span ng-if="list === 'followed'">Followed by:</span>
 		</h2>
 
-		<ul class="profile-followings {{list}}" ng-if="followers.length">
+		<ul class="profile-favorites list-view {{list}}" ng-if="items.length && !followers">
+			<li class="dash-item {{item.type}} item{{$index}}"
+			ng-repeat="item in items"
+			ng-class="{
+				'thumbed': item.thumbnail,
+				'texted': !item.thumbnail,
+				'last': $last
+			}"
+			go-to-link="{{item.source}}">
+
+			<div ng-if="item.thumbnail" class="image">
+				<div class="info">
+					<div ng-if="item.avatarUrl" class="author-image">
+						<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+					</div>
+
+					<div class="right-block clearfix">
+						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
+						<a href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+						<div>
+							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+							<div ng-if="item.description" class="description"
+								ng-bind-html="item.description|truncate:260|linkify"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div ng-if="!item.thumbnail" class="text-wrap">
+				<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author-image">
+					<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+				</div>
+				<div class="right-block">
+					<div ng-if="item.authorName && item.type !== 'facebook'" class="author-name">{{item.authorName}}</div>
+					<h2 ng-if="item.title || item.repo || item.name" class="title"
+						ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
+					<div ng-if="item.description" class="description"
+						ng-bind-html="item.description|truncate:260|linkify"></div>
+					<div ng-if="item.gist || item.type === 'tumblr'" class="description"
+						ng-bind-html="item.source|linkify"></div>
+				</div>
+			</div>
+
+			<time>{{item.created|date: 'longDate'}}</time>
+			<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
+			</li>
+		</ul>
+
+		<ul class="profile-followings {{list}}" ng-if="followers.length && !items">
 			<li class="profile-follow-item clearfix" ng-repeat="follow in followers" ng-class="{last: $last}">
 				<a href="/u/{{follow.name}}"><img ng-src="{{follow.avatar}}" class="avatar left" avatar-load></a>
 				<a href="/u/{{follow.name}}" class="name truncate">{{follow.displayName || follow.name}}</a>
@@ -60,6 +109,6 @@
 		</ul>
 	</div>
 
-	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
+	<div class="two-spin" ng-hide="loaded || error"></div>
 
 </section>

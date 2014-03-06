@@ -543,7 +543,7 @@
 	position: relative;
 	border-width: 5px;
 	border-style: solid;
-	border-color: #ddd #ddd #fdfdfd #fdfdfd;
+	border-color: #ddd #ddd #f3f3f6 #f3f3f6;
 	-webkit-border-radius: 100%;
 	border-radius: 100%;
 	-webkit-animation: clockwise .6s linear infinite;

@@ -15,8 +15,6 @@ define(function () {
 				me.followed = [];
 			}
 
-			appLoader.ready();
-
 			$scope.me = me.name === $routeParams.name;
 
 			$scope.followUser = function (profile) {
@@ -58,7 +56,8 @@ define(function () {
 			if ($scope.me) {
 				$scope.profile = me;
 
-				checkProperList();
+				appLoader.ready();
+				$scope.switchList('favorites');
 			} else {
 				api.get({ resource: 'users', target: $routeParams.name }, function (user) {
 					if (!user.follows) {
@@ -72,19 +71,31 @@ define(function () {
 					$scope.profile.mutual = checkMeFollowing($scope.profile.email);
 					$scope.processing = false;
 
-					checkProperList();
+					appLoader.ready();
+					$scope.switchList('favorites');
 				});
 			}
 
+
 			function getUserList (verb) {
 				appLoader.loading();
-				api.query({ resource: 'users', target: $scope.profile.name, verb: verb }, function (list) {
-					_(list).forEach(function (row) {
-						row.mutual = checkMeFollowing(row.email);
+
+				if (verb === 'favorites') {
+					api.get({ resource: 'items', target: 'user', verb: $scope.profile._id }, function (res) {
+						$scope.followers = false;
+						$scope.items = res.data;
+						appLoader.ready();
 					});
-					$scope.followers = list;
-					appLoader.ready();
-				});
+				} else {
+					api.query({ resource: 'users', target: $scope.profile.name, verb: verb }, function (list) {
+						_(list).forEach(function (row) {
+							row.mutual = checkMeFollowing(row.email);
+						});
+						$scope.items = false;
+						$scope.followers = list;
+						appLoader.ready();
+					});
+				}
 			}
 
 			function checkMeFollowing (email) {
@@ -92,14 +103,6 @@ define(function () {
 				return meFollows.length && _(meFollows).find(function (row) {
 					return row.email === email;
 				});
-			}
-
-			function checkProperList () {
-				var path = $location.path();
-				if (path === '/u' + $routeParams.name + '/followers') {
-					return $scope.switchList('followed');
-				}
-				return $scope.switchList('follows');
 			}
 		});
 	}
