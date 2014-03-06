@@ -194,6 +194,7 @@ textarea.fld {
 
 .green-btn {
   background: #56c7aa;
+  background: rgba(66, 207, 176, 0.96);
   color: #fff;
 }
 
@@ -206,6 +207,18 @@ textarea.fld {
   background: -webkit-linear-gradient(35deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
   background: linear-gradient(55deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
   color: #fff;
+}
+
+.small-btn,
+.small-btn:focus {
+  font-size: 10px;
+  width: 90px;
+  height: 21px;
+}
+
+.small-btn:hover {
+  opacity: 1;
+  text-decoration: none;
 }
 
 .search {
@@ -524,7 +537,6 @@ textarea.fld {
   width: 270px;
   height: 100%;
   background: #1f212f;
-  /*#272a33*/
   -webkit-transition: all .5s;
   transition: all .5s;
 }

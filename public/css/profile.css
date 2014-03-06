@@ -1,171 +1,179 @@
+
+
 .profile-page {
-	width: 800px;
-	margin: 60px auto;
+  width: 800px;
+  margin: 30px auto;
 }
 
 .profile-user {
-	background: #fff;
-	border-bottom: 1px solid #e2e2e2;
+  background: #fff;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
 .profile-info {
-	padding: 20px 35px;
-	width: 505px;
+  padding: 18px 35px;
 }
 
 .profile-info .avatar {
-	width: 60px;
-	height: 60px;
-	-webkit-border-radius: 100%;
-	border-radius: 100%;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
 }
 
 .profile-info .name {
-	font: 700 22px 'Lato', 'Open Sans', 'Helvetica', 'Arial', sans-serif;
-	margin: 0 0 3px 20px;
-	width: 425px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+  font: 22px 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+  margin: 0 0 3px 20px;
+  width: 100%;
 }
 
 .profile-me {
-	color: #fff;
-	background: #73cffa;
-	font-size: 10px;
-	font-weight: 300;
-	width: 90px;
-	margin: 10px 0 0 20px;
-	text-align: center;
-	text-transform: uppercase;
-	height: 20px;
-	line-height: 20px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
+  color: #fff;
+  background: #5da8e0;
+  font-size: 10px;
+  width: 100px;
+  margin: 10px 0 0 20px;
+  text-align: center;
+  text-transform: uppercase;
+  height: 21px;
+  line-height: 21px;
+  letter-spacing: .6px;
+  cursor: default;
+  border-radius: 2px;
 }
 
 .profile-action {
-	margin: 8px 0 0 20px;
-	position: relative;
-	overflow: hidden;
-	width: 80px;
-	height: 20px;
+  margin: 8px 0 0 20px;
+  position: relative;
+  overflow: hidden;
+  width: 90px;
+  height: 21px;
 }
 
 .profile-info .btn {
-	position: absolute;
-	top: 0;
-	left: 0;
-	-webkit-transition: all .3s ease-in;
-	-moz-transition: all .3s ease-in;
-	-ms-transition: all .3s ease-in;
-	transition: all .3s ease-in;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 .btn.ng-enter.ng-enter-active,
 .btn-animation.ng-leave {
-	opacity: 1;
+  opacity: 1;
 }
 
 .btn.ng-leave.ng-leave-active,
 .btn.ng-enter {
-	opacity: 0;
+  opacity: 0;
 }
 
 .profile-stat {
-	text-align: center;
+  text-align: center;
 }
 
 .profile-stat .stat-block {
-	display: inline-block;
-	border-left: 1px solid #eee;
-	padding: 23px 0;
-	margin-left: -3px;
-	width: 110px;
-	position: relative;
-	cursor: default;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
+  display: inline-block;
+  border-left: 1px solid #eee;
+  padding: 25px 0;
+  margin-left: -3px;
+  width: 110px;
+  position: relative;
+  cursor: default;
+  vertical-align: top;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .profile-stat .stat-block:hover,
 .profile-stat .stat-block.active {
-	background: #f8f8f8;
+  background: rgba(0,0,0,.02);
 }
 
 .profile-stat .stat-count {
-	color: #e74c3c;
-	font-size: 26px;
-	font-weight: 700;
+  color: #f03e56;
+  font: 24px 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
 }
 
 .profile-stat .stat-title {
-	color: #8592a2;
-	font-size: 13px;
+  color: #999;
+  font-size: 13px;
+  letter-spacing: .3px;
+  margin-top: 3px;
 }
 
 .profile-lists {
-	margin: 30px auto;
-	padding-bottom: 60px;
+  margin: 30px auto;
+  padding-bottom: 60px;
 }
 
 .profile-lists .profile-follow-item {
-	background: #fff;
-	border-bottom: 1px solid #eee;
-	padding: 8px 35px;
-	width: 100%;
-	height: 50px;
-	overflow: hidden;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 8px 35px;
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.profile-lists .profile-follow-item:first-child {
+  border-radius: 3px 3px 0 0;
+}
+
+.profile-lists .profile-follow-item.last {
+  border-bottom: 0;
+  border-radius: 0 0 3px 3px;
 }
 
 .profile-lists .avatar {
-	display: inline-block;
-	width: 34px;
-	height: 34px;
-	margin-right: 15px;
-	-webkit-border-radius: 100%;
-	border-radius: 100%;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  vertical-align: top;
+  margin: 3px 15px 0 0;
+  border-radius: 100%;
 }
 
 .profile-lists .name {
-	display: inline-block;
-	color: #1f282d;
-	font-size: 14px;
-	margin: 7px 0 0;
-	width: 45%;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+  display: inline-block;
+  color: #666;
+  font-size: 14px;
+  letter-spacing: .6px;
+  vertical-align: top;
+  margin: 7px 0 0;
+  width: 45%;
 }
 
 .profile-lists .profile-me,
 .profile-lists .profile-action {
-	display: inline-block;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .profile-lists .profile-me {
-	margin: 7px 0 0;
+  margin: 7px 0 0;
 }
 
 .profile-lists .profile-action {
-	margin: 4px 0 0;
-	height: 23px;
+  margin: 6px 0 0;
+  height: 22px;
 }
 
 .profile-lists .list-title {
-	color: #999;
-	font-weight: 700;
-	font-size: 11px;
-	margin-bottom: 10px;
-	text-indent: 20px;
-	text-transform: uppercase;
+  color: #999;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .6px;
+  margin-bottom: 10px;
+  text-indent: 20px;
+  text-transform: uppercase;
 }
 
 .profile-lists .empty-results {
-	padding-top: 25px;
+  padding-top: 25px;
 }
-

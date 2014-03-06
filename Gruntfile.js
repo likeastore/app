@@ -86,7 +86,8 @@ module.exports = function(grunt) {
 				files: {
 					'public/css/general.css': 'myth/general.css',
 					'public/css/icons.css': 'myth/icons.css',
-					'public/css/settings.css': 'myth/settings.css'
+					'public/css/settings.css': 'myth/settings.css',
+					'public/css/profile.css': 'myth/profile.css'
 				}
 			}
 		},

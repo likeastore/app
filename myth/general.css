@@ -4,6 +4,7 @@
 	var-darkgrey: #64747d;
 	var-green: #57ad68;
 	var-navy: #56c7aa;
+	var-navy-opacity: rgba(66, 207, 176, 0.96);
 	var-orange: #fc523c;
 	var-tortoise: #1abc9c;
 	var-yellow: #f1c40f;
@@ -117,7 +118,7 @@ body,
 
 .header {
 	/*background: linear-gradient(75deg, rgba(41,182,168,.96) 0%, rgba(86, 199, 170,.98) 120%);*/
-	background: linear-gradient(75deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
+	background: linear-gradient(75deg, rgba(63, 192, 193, 0.98) 0%, var(navy-opacity) 100%);
 	border-bottom: 1px solid rgba(0,0,0,.1);
 	width: 100%;
 	height: 36px;
@@ -212,6 +213,7 @@ textarea.fld {
 
 .green-btn {
 	background: var(navy);
+	background: var(navy-opacity);
 	color: #fff;
 }
 
@@ -221,8 +223,20 @@ textarea.fld {
 }
 
 .gradient-btn {
-	background: linear-gradient(55deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
+	background: linear-gradient(55deg, rgba(63, 192, 193, 0.98) 0%, var(navy-opacity) 100%);
 	color: #fff;
+}
+
+.small-btn,
+.small-btn:focus {
+	font-size: 10px;
+	width: 90px;
+	height: 21px;
+}
+
+.small-btn:hover {
+	opacity: 1;
+	text-decoration: none;
 }
 
 .search {
@@ -532,7 +546,7 @@ textarea.fld {
 	visibility: hidden;
 	width: 270px;
 	height: 100%;
-	background: #1f212f; /*#272a33*/
+	background: #1f212f;
 	transition: all .5s;
 }
 

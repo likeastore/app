@@ -7,6 +7,7 @@
 @import url(../components/ngDialog/css/ngDialog.css);
 @import url(dialog.css);
 @import url(settings.css);
+@import url(profile.css);
 
 
 
@@ -17,5 +18,4 @@
 @import url(discover.css);
 @import url(history.css);
 @import url(suggest.css);
-@import url(profile.css);
 @import url(media.css);*/

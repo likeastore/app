@@ -51,6 +51,10 @@ define(function () {
 				getUserList(verb);
 			};
 
+			$scope.kFormat = function (num) {
+				return num > 999 ? (num/1000).toFixed() + 'k' : num;
+			};
+
 			if ($scope.me) {
 				$scope.profile = me;
 

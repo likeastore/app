@@ -1,16 +1,16 @@
-<section class="profile-page">
+<section class="profile-page animated fadeIn">
 	<div class="profile-user clearfix" ng-if="profile">
 		<div class="left profile-info">
 			<img ng-src="{{profile.avatar}}" class="avatar left" avatar-load>
 
 			<div class="left">
-				<div class="name">{{profile.displayName || profile.name}}</div>
+				<div class="name truncate">{{profile.displayName || profile.name}}</div>
 
 				<div class="profile-me" ng-if="me">Your profile</div>
 
 				<div class="profile-action" ng-if="!me">
-					<button type="button" class="btn small-btn green-btn follow-btn" ng-if="!profile.mutual && !profile.processing" ng-click="followUser(profile)">@Follow</button>
-					<button type="button" class="btn small-btn red-btn following-btn" ng-if="profile.mutual && !profile.processing" ng-click="unfollowUser(profile)">@Unfollow</button>
+					<button type="button" class="btn small-btn green-btn follow-btn" ng-if="!profile.mutual && !profile.processing" ng-click="followUser(profile)">Follow</button>
+					<button type="button" class="btn small-btn pink-btn following-btn" ng-if="profile.mutual && !profile.processing" ng-click="unfollowUser(profile)">Unfollow</button>
 				</div>
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 				<li class="stat-block following" ng-class="{'active': list==='follows'}">
 					<a href="" class="mask-link" ng-click="switchList('follows')"></a>
 					<div class="stat-count">
-						{{profile.follows.length || 0}}
+						{{kFormat(profile.follows.length) || 0}}
 					</div>
 					<div class="stat-title">
 						follows
@@ -29,7 +29,7 @@
 				<li class="stat-block followers" ng-class="{'active': list==='followed'}">
 					<a href="" class="mask-link" ng-click="switchList('followed')"></a>
 					<div class="stat-count">
-						{{profile.followed.length || 0}}
+						{{kFormat(profile.followed.length) || 0}}
 					</div>
 					<div class="stat-title">
 						followers
@@ -46,15 +46,15 @@
 		</h2>
 
 		<ul class="profile-followings {{list}}" ng-if="followers.length">
-			<li class="profile-follow-item clearfix" ng-repeat="follow in followers">
+			<li class="profile-follow-item clearfix" ng-repeat="follow in followers" ng-class="{last: $last}">
 				<a href="/u/{{follow.name}}"><img ng-src="{{follow.avatar}}" class="avatar left" avatar-load></a>
-				<a href="/u/{{follow.name}}" class="name">{{follow.displayName || follow.name}}</a>
+				<a href="/u/{{follow.name}}" class="name truncate">{{follow.displayName || follow.name}}</a>
 
 				<div class="profile-me right" ng-if="follow.name === user.name">Your profile</div>
 
 				<div class="profile-action right" ng-if="follow.name !== user.name">
-					<button type="button" class="btn small-btn green-btn follow-btn" ng-if="!follow.mutual && !follow.processing" ng-click="followUser(follow)">@Follow</button>
-					<button type="button" class="btn small-btn red-btn following-btn" ng-if="follow.mutual && !follow.processing" ng-click="unfollowUser(follow)">@Unfollow</button>
+					<button type="button" class="btn small-btn green-btn follow-btn" ng-if="!follow.mutual && !follow.processing" ng-click="followUser(follow)">Follow</button>
+					<button type="button" class="btn small-btn pink-btn following-btn" ng-if="follow.mutual && !follow.processing" ng-click="unfollowUser(follow)">Unfollow</button>
 				</div>
 			</li>
 		</ul>
