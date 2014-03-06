@@ -1832,7 +1832,10 @@ textarea.fld {
 	}
 
 	.logo {
-		display: none;
+		background: url('../img/logo-stroked.png') no-repeat center transparent;
+		background-size: cover;
+		width: 20px;
+		height: 20px;
 	}
 
 	.filters-bar {
@@ -1877,6 +1880,10 @@ textarea.fld {
 @media (max-width: 500px) {
 	.network-error-stripe {
 		font-size: 10px;
+	}
+
+	.logo {
+		display: none;
 	}
 
 	.list-view .dash-item.thumbed .cover {
