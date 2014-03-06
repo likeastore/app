@@ -18,7 +18,6 @@ define(function (require) {
 							<button type="button" class="btn small-btn gradient-btn" ng-click="createFirstCollection()">Create one</button>\
 						</li>\
 						<li class="show-coll-item truncate"\
-							ng-if=collections.length"\
 							ng-repeat="collection in collections"\
 							ng-class="{active: itemId === collection._id}"\
 							ng-click="addItemToCollection(collection._id)">\

@@ -209,7 +209,7 @@
 
 @media (max-width: 640px) {
 	.profile-page {
-		width: 400px;
+		width: 90%;
 	}
 
 	.profile-info {
@@ -240,10 +240,6 @@
 }
 
 @media (max-width: 440px) {
-	.profile-page {
-		width: 300px;
-	}
-
 	.profile-page .profile-info {
 		float: none;
 		height: 70px;
@@ -256,7 +252,7 @@
 	}
 
 	.profile-stat .stat-block {
-		width: 150px;
+		width: 50%;
 		padding: 15px 0;
 	}
 

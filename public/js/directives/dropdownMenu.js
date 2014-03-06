@@ -10,7 +10,7 @@ define(function (require) {
 				networks: '=dropdownMenu'
 			},
 			template: '\
-				<div class="show-networks header-btn" ng-click="toggleMenu()"><i class="font-icon activity-icon icon"></i> Select</div>\
+				<div class="show-networks header-btn" ng-click="toggleMenu()"><i class="font-icon activity-icon icon show-networks"></i> Select</div>\
 				<div class="networks-dropdown" ng-class="{active: showDropdown}">\
 					<ul ng-if="networks">\
 						<li>\
@@ -34,12 +34,6 @@ define(function (require) {
 					</ul>\
 				</div>',
 			link: function (scope, elem, attrs) {
-				$rootScope.$watch('title', function (value) {
-					if (value) {
-						scope.menuTitle = (value !== 'All favorites' && value !== 'Inbox') ? value : 'All networks';
-					}
-				});
-
 				scope.toggleMenu = function () {
 					scope.showDropdown = scope.showDropdown ? false : true;
 				};

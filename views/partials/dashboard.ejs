@@ -43,13 +43,13 @@
 						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
 						<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
 						<div ng-if="item.description" class="description"
-							ng-bind-html="item.description|truncate:260|linkify" ng-class="{short: user.viewMode==='grid' && item.title}"></div>
+							ng-bind-html="item.description|truncate:260|linkify" ng-class="{short: user.viewMode==='grid' && item.title && item.authorName}"></div>
 					</div>
 
 					<div ng-show="user.viewMode === 'list'" class="right-block clearfix">
 						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
 						<a ng-show="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
-						<div>
+						<div class="texts">
 							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
 							<div ng-if="item.description" class="description"
 								ng-bind-html="item.description|truncate:260|linkify"></div>
@@ -66,9 +66,9 @@
 					<div ng-if="item.authorName && item.type !== 'facebook'" class="author-name">{{item.authorName}}</div>
 					<h2 ng-if="item.title || item.repo || item.name" class="title"
 						ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
-					<div ng-if="item.description" class="description"
+					<div ng-if="item.description && item.description !== item.name" class="description"
 						ng-bind-html="item.description|truncate:260|linkify"></div>
-					<div ng-if="item.gist || item.type === 'tumblr'" class="description"
+					<div ng-if="item.gist || item.type === 'tumblr' || item.description === item.name" class="description"
 						ng-bind-html="item.source|linkify"></div>
 				</div>
 			</div>

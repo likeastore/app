@@ -1,12 +1,12 @@
 define(function () {
 	'use strict';
 
-	function FirstTimeController ($scope, $document, $rootScope, $location, api) {
+	function FirstTimeController ($scope, $document, $window, $rootScope, $location, api) {
 		var $body = $document.find('body');
 		var delayedWarning;
 
 		$rootScope.$watch('user', function (value) {
-			if (value && !value.watchedPreview) {
+			if (value && !value.watchedPreview && $window.innerWidth >= 920) {
 				if (value.warning) {
 					delayedWarning = true;
 					$rootScope.user.warning = false;

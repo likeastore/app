@@ -31,7 +31,7 @@ define(function (require) {
 					ng-class="{block: collection.description.length > 60}">\
 					{{collection.description || \'No description\'|truncate:140}}\
 					<div ng-class="{active: descriptionEditMode}" class="edit-collection-popup description-mode">\
-						<textarea class="fld" ng-model="updatedColl.description" placeholder="Description for your awesome collection.." rows="5" maxlength="140"></textarea>\
+						<textarea class="fld" ng-model="updatedColl.description" placeholder="Description for your awesome collection.." rows="3" maxlength="140"></textarea>\
 						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'descriptionEditMode\')">Cancel</a>\
 						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'description\')">Save</button>\
 					</div>\

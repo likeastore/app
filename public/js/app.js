@@ -77,7 +77,7 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, tracking, $location, $rootScope) {
+	app.run(function (user, tracking, $window, $location, $rootScope) {
 		user.initialize()
 			.getActiveNetworks()
 			.getInboxCount()

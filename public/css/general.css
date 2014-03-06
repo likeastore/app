@@ -1001,10 +1001,6 @@ textarea.fld {
   transition: all .3s ease-in;
 }
 
-.dash-item:nth-child(4n) {
-  margin-right: 0;
-}
-
 .dash-item.ng-enter.ng-enter-active,
 .dash-item-animation.ng-leave {
   opacity: 1;
@@ -1108,6 +1104,7 @@ textarea.fld {
 }
 
 .dash-item .action-buttons {
+  background: rgba(255,255,255,.96);
   visibility: hidden;
   opacity: 0;
   height: 20px;
@@ -1118,10 +1115,6 @@ textarea.fld {
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
   border-radius: 0 0 0 2px;
-}
-
-.dash-item.texted .action-buttons {
-  background: rgba(255,255,255,.96);
 }
 
 .dash-item.thumbed:hover .info,
@@ -1240,6 +1233,7 @@ textarea.fld {
 .show-coll-popup .show-coll-item.show-coll-empty {
   text-align: center;
   padding: 8px 10px 10px;
+  border-radius: 2px;
 }
 
 .show-coll-popup .show-coll-item.show-coll-empty .text {
@@ -1750,10 +1744,158 @@ textarea.fld {
   color: #2c4762 !important;
 }
 
+@media (min-width: 1160px) {
+  .dash-item:nth-child(4n) {
+    margin-right: 0;
+  }
+}
+
 @media (max-width: 1160px) {
-  .dashboard {
-    width: 960px;
-    padding-left: 25px;
-    padding-right: 25px;
+  .search {
+    width: 110px;
+  }
+
+  .active .search {
+    width: 125px;
+  }
+
+  .dashboard,
+  .top-bar {
+    width: 920px;
+  }
+
+  .dash-item {
+    width: 279px;
+    margin: 0 31px 36px 0;
+  }
+
+  .dash-item:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .list-view .dash-item .right-block {
+    width: 90%;
+  }
+}
+
+@media (max-width: 920px) {
+  .control-bar {
+    right: 36px;
+  }
+
+  .header-btn.add-network-link {
+    width: 36px;
+    font-size: 0;
+  }
+
+  .dashboard,
+  .top-bar {
+    width: 700px;
+  }
+
+  .dash-item {
+    width: 220px;
+    margin: 0 20px 25px 0;
+  }
+
+  .grid-view .dash-item .description,
+  .grid-view .dash-item .description.short {
+    max-height: 90px;
+  }
+
+  .dash-item .right-block {
+    width: 140px;
+  }
+
+  .grid-view .dash-item {
+    height: 190px;
+  }
+
+  .grid-view .dash-item .image {
+    height: 143px;
+  }
+}
+
+@media (max-width: 700px) {
+  .control-bar .view-bar {
+    display: none;
+  }
+
+  .control-bar .search-bar {
+    margin-right: 5px;
+  }
+
+  .dashboard,
+  .top-bar {
+    width: 90%;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .filters-bar {
+    left: 36px;
+  }
+
+  .header-btn {
+    font-size: 0;
+    width: 36px;
+  }
+
+  .filters-bar .header-btn.show-networks {
+    width: 36px;
+  }
+
+  .networks-dropdown {
+    left: -10px;
+  }
+
+  .networks-dropdown:after {
+    left: 28px;
+  }
+
+  .empty-box {
+    width: 100%;
+    margin: 60px auto;
+  }
+
+  .empty-box .empty-step {
+    margin: 0 0 25px;
+  }
+
+  .empty-box .arrow-helper .arrow {
+    left: 120px;
+  }
+
+  .empty-box .arrow-helper .hint {
+    left: -2px;
+  }
+}
+
+@media (max-width: 500px) {
+  .network-error-stripe {
+    font-size: 10px;
+  }
+
+  .list-view .dash-item.thumbed .cover {
+    float: none;
+  }
+
+  .list-view .dash-item.thumbed .texts {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .list-view .dash-item.texted .right-block {
+    width: 80%;
+  }
+
+  .list-view .dash-item .description {
+    max-height: 100%;
+  }
+
+  .blank-box {
+    width: 100%;
   }
 }

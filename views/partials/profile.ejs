@@ -65,7 +65,7 @@
 					<div class="right-block clearfix">
 						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
 						<a href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
-						<div>
+						<div class="texts">
 							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
 							<div ng-if="item.description" class="description"
 								ng-bind-html="item.description|truncate:260|linkify"></div>

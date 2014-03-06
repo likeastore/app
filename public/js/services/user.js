@@ -1,7 +1,9 @@
 define(function (require) {
 	'use strict';
 
-	function User ($rootScope, $location, api, storage, auth, _) {
+	var angular = require('angular');
+
+	function User ($rootScope, $location, $window, api, storage, auth, _) {
 		return {
 			initialize: function () {
 				api.get({ resource: 'users', target: 'me' }, function (user) {
@@ -24,6 +26,18 @@ define(function (require) {
 					$rootScope.user.logout = function () {
 						auth.logout();
 					};
+
+					listenViewWidth();
+					angular.element($window).on('resize', function () {
+						listenViewWidth();
+						$rootScope.$apply();
+					});
+
+					function listenViewWidth () {
+						if ($window.innerWidth <= 700) {
+							$rootScope.user.viewMode = 'list';
+						}
+					}
 				});
 
 				return this;
