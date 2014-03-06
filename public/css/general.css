@@ -1144,10 +1144,10 @@ textarea.fld {
   vertical-align: top;
 }
 
-.dash-item.facebook .right-block,
-.dash-item.pocket .right-block,
-.dash-item.youtube .right-block,
-.dash-item.tumblr .right-block {
+.activity .dash-item.facebook .right-block,
+.activity .dash-item.pocket .right-block,
+.activity .dash-item.youtube .right-block,
+.activity .dash-item.tumblr .right-block {
   width: 100%;
 }
 
@@ -1336,6 +1336,18 @@ textarea.fld {
 
 .list-view .dash-item .author-name {
   padding: 2px 0 5px;
+}
+
+.discover .dash-item .description {
+  max-height: 145px;
+}
+
+.discover .author-name a {
+  color: #666;
+}
+
+.discover .author-name .type {
+  text-transform: capitalize;
 }
 
 /* Tooltip */

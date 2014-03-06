@@ -1,45 +1,88 @@
-<!-- navigation -->
-<nav class="left dashboard-nav" ng-include="'partials/navigation'" sticky-at="user.warning ? 90 : 50" ng-show="user"></nav>
+<div class="top-bar clearfix animated fadeInLeft">
+	<div class="top left">
+		<h2 ng-show="items.length" class="title">{{title}}</h2>
+		<div ng-show="items.length" class="description">Favorites of people you follow</div>
+	</div>
+</div>
 
-<!-- discover -->
-<section class="main-dashdoard {{title|lowercase}}">
-	<div class="tip" ng-if="items.length">Discover more things with your friends and co-workers. <a href="/suggest">Find people!</a></div>
-	<ul class="discover-wrap">
-		<li class="discover-item" ng-repeat="item in items" ng-class="{'last': $last}">
+<section class="dashboard discover animated fadeIn">
+	<ul ng-if="items.length" id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list', 'grid-view': user.viewMode === 'grid'}">
+		<li class="dash-item {{item.type}} item{{$index}}"
+			ng-repeat="item in items"
+			ng-class="{
+				'thumbed': item.thumbnail,
+				'texted': !item.thumbnail,
+				'last': $last
+			}"
+			go-to-link="{{item.source}}">
 
-			<a href="/u/{{item.userData.name}}"><img ng-src="{{item.userData.avatar}}" class="avatar left" avatar-load></a>
+			<!-- <div class="action-buttons">
+				<div add-collection-popup="item"></div>
+				<a href="" class="share-btn"
+					tooltip="Share"
+					ng-dialog="shareLikeDialog"
+					ng-dialog-class="lsd-theme share-dialog share-like"
+					ng-dialog-controller="shareLikeController"
+					ng-dialog-show-close="false"
+					ng-dialog-data="{{item._id}}, {{item.type}}, {{item.title||item.repo}}"><i class="font-icon share-icon"></i></a>
+				<a href="" class="delete-btn"
+					tooltip="Delete"
+					ng-click="hideLike(item._id, $index)"><i class="font-icon delete-icon"></i></a>
+			</div> -->
 
-			<div class="discover-info">
-				<a href="{{item.source}}" class="mask-link" target="_blank"></a>
+			<div ng-if="item.thumbnail" class="image">
+				<a ng-show="user.viewMode === 'grid'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 
-				<div class="action"><a href="/u/{{item.userData.name}}" class="username">{{item.userData.displayName || item.userData.name}}</a> liked on <span class="service">{{item.type}}</span>: <time class="right" am-time-ago="item.date"></time></div>
+				<div class="info">
+					<a href="/u/{{item.userData.name}}" class="author-image">
+						<img ng-src="{{item.userData.avatar}}" class="avatar" avatar-load>
+					</a>
 
-				<div class="discover-source-wrap" ng-if="item.thumbnail || item.title">
-					<a href="{{item.source}}" class="thumb" style="background-image: url({{item.thumbnail || item.avatarUrl}});" ng-if="item.thumbnail" target="_blank"></a>
+					<div ng-show="user.viewMode === 'grid'" class="right-block">
+						<div class="author-name"><a href="/u/{{item.userData.name}}">{{item.userData.displayName || item.userData.name}}</a> liked<span ng-show="user.viewMode === 'list'"> on <span class="type">{{item.type}}</span></span> -</div>
+						<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+						<div ng-if="item.description" class="description"
+							ng-bind-html="item.description|truncate:180|linkify" ng-class="{short: user.viewMode==='grid' && item.title && item.authorName}"></div>
+					</div>
 
-					<div class="discover-source">
-						<a href="{{item.source}}" class="title" ng-if="item.title" target="_blank">{{item.title}}</a>
-						<a href="{{item.authorUrl}}" class="author top {{item.type}}" ng-if="item.authorName && item.title" target="_blank">by @{{item.authorName}}</a>
+					<div ng-show="user.viewMode === 'list'" class="right-block clearfix">
+						<div class="author-name"><a href="/u/{{item.userData.name}}">{{item.userData.displayName || item.userData.name}}</a> liked<span ng-show="user.viewMode === 'list'"> on <span class="type">{{item.type}}</span></span> -</div>
+						<a ng-show="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+						<div class="texts">
+							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+							<div ng-if="item.description" class="description"
+								ng-bind-html="item.description|truncate:180|linkify"></div>
+						</div>
 					</div>
 				</div>
-				<div class="desc" ng-if="item.description" linkify="item.description|truncate:300"></div>
-				<div class="desc" ng-if="!item.thumbnail && !item.description">This item has no description :(</div>
-				<a href="{{item.authorUrl}}" class="author bottom {{item.type}}" ng-if="item.authorName && !item.title" target="_blank">by @{{item.authorName}}</a>
-
-				<i class="item-type font-icon {{item.type}}-icon"></i>
 			</div>
+
+			<div ng-if="!item.thumbnail" class="text-wrap">
+				<a href="/u/{{item.userData.name}}" class="author-image">
+					<img ng-src="{{item.userData.avatar}}" class="avatar" avatar-load>
+				</a>
+				<div class="right-block">
+					<div class="author-name"><a href="/u/{{item.userData.name}}">{{item.userData.displayName || item.userData.name}}</a> liked<span ng-show="user.viewMode === 'list'"> on <span class="type">{{item.type}}</span></span> -</div>
+					<h2 ng-if="item.title || item.repo || item.name" class="title"
+						ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
+					<div ng-if="item.description && item.description !== item.name" class="description"
+						ng-bind-html="item.description|truncate:180|linkify"></div>
+					<div ng-if="item.gist || item.type === 'tumblr' || item.description === item.name" class="description"
+						ng-bind-html="item.source|linkify"></div>
+				</div>
+			</div>
+
+			<time am-time-ago="item.date"></time>
+			<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
 		</li>
 	</ul>
 
-	<div ng-show="nextPage">
-		<div class="show-more" ng-click="showMore()">Show more</div>
-	</div>
-
-	<div class="empty-results" ng-if="loaded && !items.length">
+	<div class="blank-box" ng-if="loaded && !items.length">
 		<div class="discover-empty-icon big-icon"></div>
-		<h2>Your discovery feed is empty..</h2>
-		<a href="/suggest" class="red-press-btn">Find people to follow</a>
+		<h2 class="title">Your discover feed is empty!</h2>
+		<p>Explore things that your friends from different social networks are favoriting right now! Just find people that share your interests and follow them at Likeastore.</p>
+		<a href="/suggest" class="btn gradient-btn">Find people to follow</a>
 	</div>
 
-	<div class="loading" ng-hide="loaded || error"><span class="mask"></span></div>
+	<div class="two-spin" ng-hide="loaded || error"></div>
 </section>
