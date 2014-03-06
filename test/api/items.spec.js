@@ -1,7 +1,7 @@
 var request = require('request');
 var testUtils = require('../utils');
 
-describe('items.spec.js', function () {
+describe.only('items.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -226,13 +226,53 @@ describe('items.spec.js', function () {
 
 			beforeEach(function (done) {
 				request.get({url: url, headers: headers, json: true}, function (err, resp, body) {
-					results = body.data;
+					results = body;
 					done(err);
 				});
 			});
 
 			it('one should disappear', function () {
-				expect(results.length).to.equal(9);
+				expect(results.data.length).to.equal(9);
+			});
+		});
+
+		describe('when getting items for another user', function () {
+			var items, anotherUser, anotherHeaders;
+
+			beforeEach(function (done) {
+				testUtils.createTestNetworks(user, {}, done);
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, function (err, itms) {
+					items = itms;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					anotherUser = createdUser;
+					anotherHeaders = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url + '/user/' + user._id, headers: anotherHeaders, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return items of another user', function () {
+				expect(results.data[0].user).to.equal(user.email);
 			});
 		});
 	});

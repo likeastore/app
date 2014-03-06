@@ -1,9 +1,14 @@
 var items = require('../models/items');
+var users = require('../models/users');
 var middleware = require('../middleware');
 
 function itemsService(app) {
 	app.get('/api/items',
 		getItems
+	);
+
+	app.get('/api/items/user/:id',
+		getUserItems
 	);
 
 	app.get('/api/items/count',
@@ -37,10 +42,30 @@ function itemsService(app) {
 	function getItems (req, res, next) {
 		items.getAllItems(req.user, req.query.page, function (err, items) {
 			if (err) {
-				return next({message: 'failed to get items for user', user: req.user, err: err, status: err.status || 500});
+				return next({message: 'failed to get items', user: req.user, err: err, status: err.status || 500});
 			}
 
 			res.json(items);
+		});
+	}
+
+	function getUserItems (req, res, next) {
+		users.findById(req.params.id, function (err, user) {
+			if (err) {
+				return next({message: 'failed to get user by id', user: req.params.id, err: err, status: err.status || 500});
+			}
+
+			if (!user) {
+				return next({message: 'user not found', user: req.params.id, err: err, status: 404});
+			}
+
+			items.getAllItems(user, req.query.page, function (err, items) {
+				if (err) {
+					return next({message: 'failed to get items for user', byUser: req.user, forUser: req.params.id, err: err, status: err.status || 500});
+				}
+
+				res.json(items);
+			});
 		});
 	}
 
