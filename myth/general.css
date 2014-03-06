@@ -1303,7 +1303,7 @@ textarea.fld {
 }
 
 .list-view .dash-item .title {
-	padding: 5px 0;
+	padding: 0 0 5px;
 }
 
 .list-view .dash-item .description {
@@ -1334,7 +1334,7 @@ textarea.fld {
 }
 
 .list-view .dash-item .author-name {
-	padding: 2px 0 0;
+	padding: 2px 0 5px;
 }
 
 /* Empty box */
