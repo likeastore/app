@@ -7,7 +7,7 @@
 </div>
 
 <section class="dashboard activity animated fadeIn">
-	<ul ng-if="items.length" id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list'}">
+	<ul ng-if="items.length" id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list', 'grid-view': user.viewMode === 'grid'}">
 		<li class="dash-item {{item.type}} item{{$index}}"
 			ng-repeat="item in items"
 			ng-class="{
@@ -43,7 +43,7 @@
 						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
 						<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
 						<div ng-if="item.description" class="description"
-							ng-bind-html="item.description|truncate:260|linkify"></div>
+							ng-bind-html="item.description|truncate:260|linkify" ng-class="{short: user.viewMode==='grid' && item.title}"></div>
 					</div>
 
 					<div ng-show="user.viewMode === 'list'" class="right-block clearfix">

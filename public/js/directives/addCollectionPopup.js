@@ -12,7 +12,13 @@ define(function (require) {
 				<a href="" class="addto-btn" tooltip="Add to collection">\
 					<i class="font-icon addto-icon" ng-class="{\'added-icon animated bounce\': added}"></i>\
 					<ul class="show-coll-popup">\
+						<li class="show-coll-item show-coll-empty"\
+							ng-if="!collections.length">\
+							<div class="text">No collections</div>\
+							<button type="button" class="btn small-btn gradient-btn" ng-click="createFirstCollection()">Create one</button>\
+						</li>\
 						<li class="show-coll-item truncate"\
+							ng-if=collections.length"\
 							ng-repeat="collection in collections"\
 							ng-class="{active: itemId === collection._id}"\
 							ng-click="addItemToCollection(collection._id)">\
@@ -21,7 +27,7 @@ define(function (require) {
 						</li>\
 					</ul>\
 				</a>',
-			controller: function ($scope, $rootScope, $timeout, api) {
+			controller: function ($scope, $rootScope, $document, $timeout, api) {
 				$scope.collections = $rootScope.collections;
 
 				$scope.togglePopup = function () {
@@ -40,6 +46,11 @@ define(function (require) {
 							$scope.added = false;
 						}, 1500);
 					});
+				};
+
+				$scope.createFirstCollection = function () {
+					$document.find('body').addClass('sidebar-active');
+					$rootScope.showAddForm = true;
 				};
 			}
 		};
