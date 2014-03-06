@@ -15,10 +15,6 @@
 }
 
 .settings .hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: solid 1px #ccc;
   width: 20%;
   margin: 35px auto 50px;
 }
@@ -66,9 +62,9 @@
   color: #666;
   font-size: 14px;
   line-height: 40px;
-  text-indent: 16px;
   width: 140px;
   height: 40px;
+  text-align: center;
   cursor: pointer;
   letter-spacing: .6px;
   border-radius: 2px 2px 0 0;
@@ -77,6 +73,16 @@
 .settings .tabs .tab.active {
   background: #fff;
   font-weight: 600;
+}
+
+.settings .tabs a.tab {
+  color: #f03e56;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.settings .tabs a.tab:hover {
+  text-decoration: none;
 }
 
 .info {
@@ -242,6 +248,6 @@
 @media (max-width: 450px) {
   .settings .tabs .tab {
     font-size: 12px;
-    text-indent: 10px;
+    width: 32%;
   }
 }

@@ -1,0 +1,148 @@
+:root {
+	var-red: #df3f3f;
+	var-grey: #eeeef0;
+	var-darkgrey: #64747d;
+	var-green: #57ad68;
+	var-navy: #56c7aa;
+	var-navy-opacity: rgba(66, 207, 176, 0.96);
+	var-tortoise: #1abc9c;
+	var-yellow: #f1c40f;
+	var-black: #1f282d;
+	var-darkblue: #272a33;
+	var-pink: #f03e56;
+	var-blue: #5da8e0;
+	var-title-font: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+	var-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+}
+
+.suggest-people-wrap {
+	background: #fff;
+	width: 600px;
+	margin: 100px auto;
+	padding: 30px 50px 50px;
+	text-align: center;
+	border-radius: 3px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.suggest-people-wrap .title {
+	font-size: 18px;
+	font-family: var(title-font);
+	text-transform: uppercase;
+	letter-spacing: .6px;
+	margin-bottom: 20px;
+}
+
+.suggest-people-wrap .discover-empty-icon {
+	margin: 0 auto 20px;
+}
+
+.suggest-people-wrap .desc {
+	color: #999;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: .6px;
+}
+
+.suggest-page .fld {
+	background: #eee;
+}
+
+.suggest-page .lazy-autocomplete-form {
+	width: 80%;
+	margin: 35px auto;
+}
+
+.suggest-page .lazy-autocomplete {
+	top: 38px;
+}
+
+.suggest-page .hr {
+	margin: 55px auto 45px;
+}
+
+.person-item {
+	display: inline-block;
+	margin: 0 10px 25px;
+	width: 100px;
+	vertical-align: top;
+}
+
+.person-item .avatar {
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+}
+
+.person-item .name {
+	color: #666;
+	font-size: 13px;
+	margin: 0 0 10px -10px;
+	width: 120px;
+	height: 16px;
+	letter-spacing: .3px;
+}
+
+/* Lazy autocomplete form */
+.lazy-autocomplete-form {
+	position: relative;
+}
+
+.lazy-autocomplete {
+	position: absolute;
+	width: 100%;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item {
+	background: #fff;
+	border: 1px solid #eee;
+	border-top: 0;
+	padding: 5px 15px;
+	height: 40px;
+	overflow: hidden;
+	line-height: 1;
+	vertical-align: top;
+	text-align: left;
+	position: relative;
+	transition: all .2s ease-out;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item:hover {
+	background: var(navy);
+	background: var(navy-opacity);
+	border-color: var(navy);
+}
+
+.lazy-autocomplete .lazy-autocomplete-item.last {
+	border-radius: 0 0 3px 3px;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item:hover .name {
+	color: #fff;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item .avatar {
+	width: 26px;
+	height: 26px;
+	margin-top: 2px;
+	border-radius: 100%;
+}
+
+.lazy-autocomplete .lazy-autocomplete-item .name {
+	display: inline-block;
+	color: #666;
+	font-size: 14px;
+	line-height: 30px;
+	vertical-align: top;
+	text-indent: 8px;
+	width: 60%;
+	letter-spacing: .6px;
+}
+
+@media (max-width: 600px) {
+	.suggest-people-wrap {
+		width: 90%;
+		padding: 30px 20px 50px;
+		margin: 60px auto;
+	}
+}

@@ -116,6 +116,14 @@ body,
 	z-index: 10;
 }
 
+.hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: solid 1px #ccc;
+	width: 30%;
+}
+
 .header {
 	/*background: linear-gradient(75deg, rgba(41,182,168,.96) 0%, rgba(86, 199, 170,.98) 120%);*/
 	background: linear-gradient(75deg, rgba(63, 192, 193, 0.98) 0%, var(navy-opacity) 100%);
@@ -232,6 +240,7 @@ textarea.fld {
 	font-size: 10px;
 	width: 90px;
 	height: 21px;
+	line-height: 21px;
 }
 
 .small-btn:hover {
@@ -1646,6 +1655,7 @@ textarea.fld {
 	margin-left: 120px;
 }
 
+/* Colors */
 .facebook-bg-clr {
 	background-color: var(facebook) !important;
 }
@@ -1835,7 +1845,7 @@ textarea.fld {
 	}
 
 	.empty-box {
-		width: 100%;
+		width: 80%;
 		margin: 60px auto;
 	}
 

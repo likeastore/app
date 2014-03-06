@@ -11,25 +11,21 @@
 
 <!-- Invite friends dialog -->
 <script type="text/ng-template" id="inviteDialogId">
-	<h2>
-		<i data-icon="w" class="icon"></i>
-		 Invite your friends
-	</h2>
-	<form ng-submit="send()">
-		<div class="send-error" ng-show="error">We are experiencing troubles, please try again later</div>
+	<h2 class="bar">Invite your friends</h2>
+	<form ng-submit="send()" name="inviteForm" class="invite-form" novalidate autocomplete="off">
+		<div class="send-error" ng-show="error">We are experiencing troubles, please try again later!</div>
 		<div>
-			<input type="email" class="field" placeholder="Email" ng-model="email" required>
+			<input type="email" name="email" class="fld" placeholder="Email" ng-model="email" required>
 		</div>
 		<div>
-			<textarea class="field" rows="6" ng-model="message" required>
+			<textarea class="fld" name="message" rows="6" ng-model="message" required>
 			</textarea>
 		</div>
-		<button type="submit" class="btn big-btn green-btn" ng-disabled="sendText == 'Sending'">{{sendText}}</button>
+		<button type="submit" class="btn green-btn send-btn" ng-disabled="sendText == 'Sending' || !inviteForm.$valid">{{sendText}}</button>
 	</form>
-	<div class="social-desc">Spread a word through social services</div>
 	<div class="social-share">
-		<button type="button" class="btn big-btn fb-btn" share-on-event="share-with-friend" share-on="facebook">Share on facebook</button>
-		<button type="button" class="btn big-btn tw-btn" share-on-event="share-with-friend" share-on="twitter">Share on twitter</button>
+		<button type="button" class="btn fb-btn" share-on-event="share-with-friend" share-on="facebook">Share on facebook</button>
+		<button type="button" class="btn tw-btn" share-on-event="share-with-friend" share-on="twitter">Share on twitter</button>
 	</div>
 </script>
 
@@ -62,28 +58,6 @@
 <!-- Share likeastore dialog -->
 <!-- Example button:
 	<button type="button" class="btn big-btn green-btn" ng-dialog="shareDialogId" ng-dialog-class="lsd-theme share-dialog" ng-dialog-controller="shareWithFriendController"><i data-icon="S" class="side-btn-icon"></i> Share love</button> -->
-<script type="text/ng-template" id="shareDialogId">
-	<h2>
-		<i data-icon="w" class="icon"></i>
-		 Invite your friends
-	</h2>
-	<form ng-submit="send()">
-		<div class="send-error" ng-show="error">We are experiencing troubles, please try again later</div>
-		<div>
-			<input type="email" class="field" placeholder="Email" ng-model="email" required>
-		</div>
-		<div>
-			<textarea class="field" rows="6" ng-model="message" required>
-			</textarea>
-		</div>
-		<button type="submit" class="btn big-btn green-btn" ng-disabled="sendText == 'Sending'">{{sendText}}</button>
-	</form>
-	<div class="social-desc">Spread a word through social services</div>
-	<div class="social-share">
-		<button type="button" class="btn big-btn fb-btn" share-on-event="share-with-friend" share-on="facebook">Share on facebook</button>
-		<button type="button" class="btn big-btn tw-btn" share-on-event="share-with-friend" share-on="twitter">Share on twitter</button>
-	</div>
-</script>
 
 <!-- Error page -->
 <script type="text/ng-template" id="errorView">

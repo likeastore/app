@@ -4,7 +4,7 @@ define(function () {
 	function ShareWithFriendController($rootScope, $scope, $timeout, api, analytics) {
 		$scope.sendText = 'Send';
 		$scope.message = '\
-I want to share Likeastore with you. It helps me to connect to all my social networks, like twitter and facebook and keep all my interests in one place.\
+I want to share Likeastore with you. It helps me to connect all my social networks, like Twitter and Facebook and keep all my favorites in one place.\
 \n\n\
 https://likeastore.com';
 

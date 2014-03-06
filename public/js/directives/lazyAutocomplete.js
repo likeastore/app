@@ -6,7 +6,7 @@ define(function (require) {
 					<li ng-repeat="result in results" class="lazy-autocomplete-item" ng-class="{\'last\': $last}">\
 						<a href="/u/{{result.name}}" class="mask-link"></a>\
 						<img ng-src="{{result.avatar}}" class="avatar" avatar-load>\
-						<span class="name">{{result.displayName || result.name}}</span>\
+						<span class="name truncate">{{result.displayName || result.name}}</span>\
 					</li>\
 				</ul>';
 
