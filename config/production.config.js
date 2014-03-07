@@ -56,6 +56,11 @@ var config = {
 
 		pocket: {
 			consumerKey: process.env.POCKET_CONSUMER_KEY
+		},
+
+		tumblr: {
+			consumerKey: process.env.TUMBLR_CONSUMER_KEY,
+			consumerSecret: process.env.TUMBLR_CONSUMER_SECRET,
 		}
 	},
 
