@@ -11,6 +11,10 @@ var config = {
 		salt: '0b208b34946d64c41a11bab4eb34a7c6515ac2e9'
 	},
 
+	tracking: {
+		enabled: true
+	},
+
 	// api keys
 	services: {
 		github: {
