@@ -55,7 +55,7 @@ define(function (require) {
 						api.save(urlOptions, {}, function (res) {
 							$window.location = res.authUrl;
 							$analytics.eventTrack('network enabled');
-							ngProgressLite.set(0.99);
+							ngProgressLite.done();
 						});
 					}
 

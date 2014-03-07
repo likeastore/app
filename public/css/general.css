@@ -600,6 +600,7 @@ textarea.fld {
   display: inline-block;
   vertical-align: top;
   width: 24px;
+  height: 24px;
   border-radius: 100%;
 }
 
@@ -1862,6 +1863,10 @@ textarea.fld {
 }
 
 @media (max-width: 700px) {
+  .notify-line {
+    display: none;
+  }
+
   .control-bar .view-bar {
     display: none;
   }
