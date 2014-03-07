@@ -5,10 +5,10 @@
 	<div class="clearfix">
 		<div class="tabs">
 			<div class="tab"
-				ng-click="showConfigTab=true"
+				ng-click="toggleConfig()"
 				ng-class="{active: showConfigTab}">Configuration</div>
 			<div class="tab"
-				ng-click="showConfigTab=false"
+				ng-click="toggleConfig()"
 				ng-class="{active: !showConfigTab}">Profile</div>
 			<a href="/suggest" class="tab">Find friends?</a>
 		</div>

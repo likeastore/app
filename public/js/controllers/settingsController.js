@@ -7,7 +7,6 @@ define(function () {
 		$analytics.eventTrack('settings opened');
 
 		$rootScope.title = 'Account settings';
-		$scope.showConfigTab = true;
 	}
 
 	return SettingsController;

@@ -93,6 +93,16 @@ define(function (require) {
 			$document.find('body').addClass('sidebar-active');
 			$rootScope.showAddForm = true;
 		};
+
+		$rootScope.goToConfig = function () {
+			$location.url('/settings');
+			$rootScope.showConfigTab = true;
+		};
+
+		$rootScope.showConfigTab = true;
+		$rootScope.toggleConfig = function () {
+			$rootScope.showConfigTab = $rootScope.showConfigTab ? false : true;
+		};
 	});
 
 	return app;
