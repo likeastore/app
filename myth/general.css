@@ -145,6 +145,7 @@ body,
 	margin: 0 auto 30px;
 	position: relative;
 	min-height: 32px;
+	z-index: 10;
 }
 
 .top-bar .top {
@@ -1341,6 +1342,26 @@ textarea.fld {
 	text-transform: capitalize;
 }
 
+.notify-line {
+	color: #333;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 20px;
+	letter-spacing: .6px;
+	text-transform: uppercase;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	cursor: pointer;
+}
+
+.notify-line .icon {
+	width: 20px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 3px;
+}
+
 /* Tooltip */
 .tooltip {
 	visibility: hidden;
@@ -1452,7 +1473,7 @@ textarea.fld {
 .blank-box {
 	background: #fff;
 	padding: 30px 50px 50px;
-	margin: 100px auto;
+	margin: 60px auto;
 	width: 500px;
 	text-align: center;
 	border-radius: 3px;

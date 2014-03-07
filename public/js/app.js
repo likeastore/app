@@ -77,7 +77,7 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, tracking, $window, $location, $rootScope) {
+	app.run(function (user, tracking, $document, $location, $rootScope) {
 		user.initialize()
 			.getActiveNetworks()
 			.getInboxCount()
@@ -87,6 +87,11 @@ define(function (require) {
 
 		$rootScope.switchMenu = function (url) {
 			$location.url(url);
+		};
+
+		$rootScope.createFirstCollection = function () {
+			$document.find('body').addClass('sidebar-active');
+			$rootScope.showAddForm = true;
 		};
 	});
 

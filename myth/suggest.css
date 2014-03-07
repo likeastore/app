@@ -18,7 +18,7 @@
 .suggest-people-wrap {
 	background: #fff;
 	width: 600px;
-	margin: 100px auto;
+	margin: 60px auto;
 	padding: 30px 50px 50px;
 	text-align: center;
 	border-radius: 3px;
@@ -143,6 +143,5 @@
 	.suggest-people-wrap {
 		width: 90%;
 		padding: 30px 20px 50px;
-		margin: 60px auto;
 	}
 }

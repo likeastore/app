@@ -3,6 +3,10 @@
 		<h2 ng-show="items.length" class="title">{{title}}</h2>
 		<div ng-show="items.length" class="description">Favorites of people you follow</div>
 	</div>
+
+	<div ng-show="items.length" class="notify-line" ng-click="switchMenu('/suggest')">
+		<img src="/img/friends-stamp.png" class="icon"> Find interesting people to follow!
+	</div>
 </div>
 
 <section class="dashboard discover animated fadeIn">
