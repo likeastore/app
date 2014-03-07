@@ -51,7 +51,7 @@ function validateToken () {
 			}
 
 			var currentTimespamp = moment(), recievedTimespamp = moment(+timespamp);
-			if (recievedTimespamp.diff(currentTimespamp, 'minutes') > TOKEN_TTL_MINUTES) {
+			if (currentTimespamp.diff(recievedTimespamp, 'minutes') > TOKEN_TTL_MINUTES) {
 				return false;
 			}
 
