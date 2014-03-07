@@ -26,7 +26,7 @@ define(function (require) {
 						</li>\
 					</ul>\
 				</a>',
-			controller: function ($scope, $rootScope, $document, $timeout, api) {
+			controller: function ($scope, $rootScope, $document, $analytics, $timeout, api) {
 				$scope.collections = $rootScope.collections;
 
 				$scope.togglePopup = function () {
@@ -40,6 +40,7 @@ define(function (require) {
 						verb: 'item',
 						suffix: $scope.item._id
 					}, {}, function (res) {
+						$analytics.eventTrack('collection item added');
 						$scope.added = true;
 						$timeout(function () {
 							$scope.added = false;

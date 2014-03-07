@@ -31,7 +31,7 @@ define(function (require) {
 						<div ng-click="closeForm()" class="link-btn cancel">Cancel</div>\
 					</div>\
 				</form>',
-			controller: function ($scope, $rootScope, api) {
+			controller: function ($scope, $rootScope, $analytics, api) {
 				$scope.colors = [
 					{ name: 'red', hex: '#e74c3c' },
 					{ name: 'orange', hex: '#f39c12' },
@@ -52,6 +52,7 @@ define(function (require) {
 				$scope.createCollection = function () {
 					$scope.collection.color = $scope.activeColor.hex;
 					api.save({ resource: 'collections' }, $scope.collection, function (collection) {
+						$analytics.eventTrack('collection created');
 						$rootScope.collections.push(collection);
 						$scope.collection = {};
 						$scope.showAddForm = false;
