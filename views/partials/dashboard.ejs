@@ -4,7 +4,7 @@
 		<div ng-show="items.length && inbox" class="description">You have <b>{{inboxCount}}</b> new favorites since last visit</div>
 		<div ng-if="collection" edit-collection class="edit-collection-wrap"></div>
 	</div>
-	<div ng-show="!collection && items.length && !inbox" class="notify-line" ng-click="createFirstCollection()">
+	<div ng-show="!collection && items.length && !inbox && !search" class="notify-line" ng-click="createFirstCollection()">
 		<img src="/img/new-stamp.png" class="icon"> Check out “Collections” feature!
 	</div>
 
