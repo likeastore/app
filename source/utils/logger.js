@@ -11,7 +11,7 @@ var log = logentries.logger({
 	printerror: false
 });
 
-log.level('info');
+log.level('debug');
 
 var logger = {
 	success: function (message) {
