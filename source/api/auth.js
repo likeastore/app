@@ -91,6 +91,8 @@ function authService(app) {
 	}
 
 	function createTokenCookie(req, res, next) {
+		logger.warning({message: 'access token placed to cookie', token: req.token});
+
 		res.cookie(config.authCookie, req.token, {
 			domain: config.domain,
 			expires: new Date(Date.now() + (30*24*60*60*1000)),
@@ -106,6 +108,8 @@ function authService(app) {
 	}
 
 	function returnToken(req, res, next) {
+		logger.warning({message: 'access token created', token: req.token});
+
 		res.json(201, { token: req.token });
 	}
 
