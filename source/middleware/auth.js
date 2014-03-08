@@ -29,7 +29,7 @@ function validateToken () {
 		}
 
 		if (!hmacAuthentication(token)) {
-			return next({message: 'User is not authorized', status: 401});
+			return next({message: 'User is not authorized (hmac auth failed)', status: 401});
 		}
 
 		return next();
