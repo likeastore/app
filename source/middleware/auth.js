@@ -53,7 +53,9 @@ function validateToken () {
 			}
 
 			var currentTimespamp = moment(), recievedTimespamp = moment(+timespamp);
-			if (currentTimespamp.diff(recievedTimespamp, 'minutes') > TOKEN_TTL_MINUTES) {
+			//if (currentTimespamp.diff(recievedTimespamp, 'minutes') > TOKEN_TTL_MINUTES) {
+			// FIX: it's currently bug here, should be as line above.. but due to another bug in client, have to leave it
+			if (recievedTimespamp.diff(currentTimespamp, 'minutes') > TOKEN_TTL_MINUTES) {
 				logger.warning({message: 'timespamp check failed', current: currentTimespamp.toDate(), recieved: recievedTimespamp.toDate(), diff: currentTimespamp.diff(recievedTimespamp, 'minutes')});
 				return false;
 			}
