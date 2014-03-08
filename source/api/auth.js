@@ -1,13 +1,14 @@
 var moment = require('moment');
 
-
 var middleware = require('../middleware');
 var users = require('../models/users');
 var config = require('../../config');
+var logger = require('../utils/logger');
 
 function authService(app) {
 
 	app.post('/api/auth/login',
+		log,
 		middleware.access.guest(),
 		validateRequest,
 		checkUser,
@@ -30,6 +31,11 @@ function authService(app) {
 		middleware.analytics.track('user logged out', {request: 'user'}),
 		returnOk
 	);
+
+	function log(req, res, next) {
+		logger.warning({message: '/api/auth/login called'});
+		next();
+	}
 
 	function validateRequest(req, res, next) {
 		var signup = req.body;

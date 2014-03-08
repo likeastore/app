@@ -1,5 +1,6 @@
 var moment = require('moment');
 var crypto = require('crypto');
+var logger = require('../utils/logger');
 
 // TODO: move both to config
 var TOKEN_TTL_MINUTES = 1440;
@@ -47,11 +48,13 @@ function validateToken () {
 			var computedHmac = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');
 
 			if (recievedHmac !== computedHmac) {
+				logger.warning({message: 'recieved hmac and computed mac are different', recieved: recievedHmac, computed: computedHmac});
 				return false;
 			}
 
 			var currentTimespamp = moment(), recievedTimespamp = moment(+timespamp);
 			if (currentTimespamp.diff(recievedTimespamp, 'minutes') > TOKEN_TTL_MINUTES) {
+				logger.warning({message: 'timespamp check failed', current: currentTimespamp.toDate(), recieved: recievedTimespamp.toDate(), diff: currentTimespamp.diff(recievedTimespamp, 'minutes')});
 				return false;
 			}
 
