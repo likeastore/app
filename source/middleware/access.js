@@ -21,7 +21,7 @@ function authenticatedAccess () {
 				}
 
 				if (!user) {
-					return next({message: 'User is not authorized (user not found in db)', status: 401})
+					return next({message: 'User is not authorized (user not found in db)', status: 401});
 				}
 
 				req.user = user;
