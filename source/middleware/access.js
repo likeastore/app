@@ -16,8 +16,12 @@ function authenticatedAccess () {
 			}
 
 			users.findByEmail(req.user, function (err, user) {
-				if (err || !user) {
-					return next({message: 'User is not authorized', status: 401});
+				if (err) {
+					return next({message: 'User is not authorized (error on users)', status: 401, err: err});
+				}
+
+				if (!user) {
+					return next({message: 'User is not authorized (user not found in db)', status: 401})
 				}
 
 				req.user = user;
