@@ -5,7 +5,6 @@ var config = {
 	applicationUrl: 'http://localhost:3001',
 	siteUrl: 'http://localhost:3000',
 	domain: '',
-	authCookie: 'notoken',
 
 	auth: {
 		signKey: 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662',

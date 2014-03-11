@@ -24,6 +24,7 @@ function logHttpErrors () {
 			var message = {
 				url: res.req.url,
 				//headers: res.req.headers,
+				cookies: res.req.cookies,
 				status: status,
 				body: req.body,
 				params: req.params

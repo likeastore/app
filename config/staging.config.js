@@ -5,9 +5,9 @@ var config = {
 	applicationUrl: 'https://app-stage.likeastore.com',
 	siteUrl: 'https://stage.likeastore.com',
 	domain: '.likeastore.com',
-	authCookie: 'token',
 
 	auth: {
+		cookieName: 'auth_token',
 		signKey: 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662',
 		tokenTtl: 10080, // minutes, 7 days
 		secure: true

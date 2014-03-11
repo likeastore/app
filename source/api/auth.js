@@ -84,8 +84,8 @@ function authService(app) {
 	}
 
 	function createTokenCookie(req, res, next) {
-		res.clearCookie(config.authCookie, { domain: config.domain });
-		res.cookie(config.authCookie, req.token, {
+		res.clearCookie(config.auth.cookieName, { domain: config.domain });
+		res.cookie(config.auth.cookieName, req.token, {
 			domain: config.domain,
 			maxAge: config.auth.tokenTtl * 60 * 1000,
 			httpOnly: true,
@@ -96,7 +96,7 @@ function authService(app) {
 	}
 
 	function deleteTokenCookie(req, res, next) {
-		res.clearCookie(config.authCookie, { domain: config.domain });
+		res.clearCookie(config.auth.cookieName, { domain: config.domain });
 		next();
 	}
 

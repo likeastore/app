@@ -20,7 +20,7 @@ function createToken() {
 
 function validateToken () {
 	return function (req, res, next) {
-		var token = req.headers['x-access-token'] || req.query.accessToken || req.cookies.token;
+		var token = req.headers['x-access-token'] || req.query.accessToken || (config.auth.cookieName && req.cookies[config.auth.cookieName]);
 
 		if (!token) {
 			return next({message: 'Access token is missing', status: 401});
