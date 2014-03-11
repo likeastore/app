@@ -3,14 +3,16 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function Scrolly () {
+	function Scrolly (_) {
 		return {
 			restrict: 'A',
 			link: function (scope, element, attrs) {
 				var raw = element[0];
 
-				element.bind('scroll', function () {
-					if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight - 350) {
+				element.bind('scroll', _(lazyScroll).debounce(100));
+
+				function lazyScroll () {
+					if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight - 450) {
 						// hack for getting proper scroll scope
 						var childScope = angular.element(document.getElementById('items')).scope();
 
@@ -20,7 +22,7 @@ define(function (require) {
 
 						childScope.$apply(attrs.scrolly);
 					}
-				});
+				}
 			}
 		};
 	}
