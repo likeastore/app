@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var config = require('../../config');
+var build = require('./../../public/build');
 
 function skipMaster (req) {
 	var bypass = ['/api', '/components', '/css', '/js', '/build', '/auth', '/connect', '/utils'];
@@ -33,7 +34,6 @@ module.exports = {
 	},
 
 	production: function () {
-		var build = require('./../../public/build');
 		return handler('Likeastore', build.js, build.css);
 	}
 };

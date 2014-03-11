@@ -17,6 +17,8 @@ function track(event, options) {
 			data[options.request] = options.property ? req[options.request][options.property] : req[options.request];
 		}
 
+		logger.info({message: 'analytics posting event', event: event, data: data});
+
 		analytics(event, data, function (err) {
 			if (err) {
 				logger.warning({message: 'analytics event post error', err: err});

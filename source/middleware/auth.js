@@ -1,17 +1,14 @@
 var moment = require('moment');
 var crypto = require('crypto');
+var config = require('../../config');
 var logger = require('../utils/logger');
-
-// TODO: move both to config
-var TOKEN_TTL_MINUTES = 1440;
-var AUTH_SIGN_KEY = 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662';
 
 function createToken() {
 	return function (req, res, next) {
 		var email = req.user.email;
 		var timespamp = moment();
 		var message = email + ';' + timespamp.valueOf();
-		var hmac = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');
+		var hmac = crypto.createHmac('sha1', config.auth.signKey).update(message).digest('hex');
 		var token = email + ';' + timespamp.valueOf() + ';' + hmac;
 		var tokenBase64 = new Buffer(token).toString('base64');
 
@@ -45,7 +42,7 @@ function validateToken () {
 
 			var email = parsed[0], timespamp = parsed[1], recievedHmac = parsed[2];
 			var message = email + ';' + timespamp;
-			var computedHmac = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');
+			var computedHmac = crypto.createHmac('sha1', config.auth.signKey).update(message).digest('hex');
 
 			if (recievedHmac !== computedHmac) {
 				logger.warning({message: 'recieved hmac and computed mac are different', recieved: recievedHmac, computed: computedHmac});
@@ -53,10 +50,12 @@ function validateToken () {
 			}
 
 			var currentTimespamp = moment(), recievedTimespamp = moment(+timespamp);
-			//if (currentTimespamp.diff(recievedTimespamp, 'minutes') > TOKEN_TTL_MINUTES) {
-			// FIX: it's currently bug here, should be as line above.. but due to another bug in client, have to leave it
-			if (recievedTimespamp.diff(currentTimespamp, 'minutes') > TOKEN_TTL_MINUTES) {
-				logger.warning({message: 'timespamp check failed', current: currentTimespamp.toDate(), recieved: recievedTimespamp.toDate(), diff: currentTimespamp.diff(recievedTimespamp, 'minutes')});
+			var tokenLife = currentTimespamp.diff(recievedTimespamp, 'minutes');
+
+			logger.info({message: 'current token', token: token, user: email, life: tokenLife});
+
+			if (tokenLife >= config.auth.tokenTtl) {
+				logger.warning({message: 'timespamp check failed', current: currentTimespamp.toDate(), recieved: recievedTimespamp.toDate(), diff: tokenLife});
 				return false;
 			}
 

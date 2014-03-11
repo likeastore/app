@@ -7,6 +7,12 @@ var config = {
 	domain: '',
 	authCookie: 'token',
 
+	auth: {
+		signKey: 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662',
+		tokenTtl: 10080, // minutes, 7 days
+		secure: false
+	},
+
 	hashids: {
 		salt: '0b208b34946d64c41a11bab4eb34a7c6515ac2e9'
 	},

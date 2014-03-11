@@ -23,7 +23,7 @@ function logHttpErrors () {
 			var status = res.statusCode;
 			var message = {
 				url: res.req.url,
-				headers: res.req.headers,
+				//headers: res.req.headers,
 				status: status,
 				body: req.body,
 				params: req.params

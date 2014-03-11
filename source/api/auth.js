@@ -3,12 +3,10 @@ var moment = require('moment');
 var middleware = require('../middleware');
 var users = require('../models/users');
 var config = require('../../config');
-var logger = require('../utils/logger');
 
 function authService(app) {
 
 	app.post('/api/auth/login',
-		log,
 		middleware.access.guest(),
 		validateRequest,
 		checkUser,
@@ -31,11 +29,6 @@ function authService(app) {
 		middleware.analytics.track('user logged out', {request: 'user'}),
 		returnOk
 	);
-
-	function log(req, res, next) {
-		logger.warning({message: '/api/auth/login called'});
-		next();
-	}
 
 	function validateRequest(req, res, next) {
 		var signup = req.body;
@@ -93,8 +86,9 @@ function authService(app) {
 	function createTokenCookie(req, res, next) {
 		res.cookie(config.authCookie, req.token, {
 			domain: config.domain,
-			expires: new Date(Date.now() + (30*24*60*60*1000)),
-			httpOnly: true
+			maxAge: config.auth.tokenTtl * 60 * 1000,
+			httpOnly: true,
+			secure: config.auth.secure
 		});
 
 		next();
