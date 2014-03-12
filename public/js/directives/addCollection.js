@@ -53,6 +53,7 @@ define(function (require) {
 					$scope.collection.color = $scope.activeColor.hex;
 					api.save({ resource: 'collections' }, $scope.collection, function (collection) {
 						$analytics.eventTrack('collection created');
+						$scope.$parent.showCollections = true;
 						$rootScope.collections.push(collection);
 						$scope.collection = {};
 						$scope.showAddForm = false;
