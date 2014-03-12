@@ -71,6 +71,7 @@
 .person-item .avatar {
 	width: 60px;
 	height: 60px;
+	cursor: pointer;
 	border-radius: 100%;
 }
 
@@ -81,6 +82,7 @@
 	width: 120px;
 	height: 16px;
 	letter-spacing: .3px;
+	cursor: pointer;
 }
 
 /* Lazy autocomplete form */
