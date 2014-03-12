@@ -1934,3 +1934,9 @@ textarea.fld {
 		width: 100%;
 	}
 }
+
+@media (max-width: 440px) {
+	.list-view .dash-item .right-block {
+		width: 70%;
+	}
+}
