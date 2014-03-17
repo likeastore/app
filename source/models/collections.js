@@ -40,6 +40,28 @@ function add(user, collection, item, callback) {
 	});
 }
 
+function remove(user, collection, item, callback) {
+	if (!collection) {
+		return callback({message: 'missing collection id', status: 412});
+	}
+
+	if (!item) {
+		return callback({message: 'missing item id', status: 412});
+	}
+
+	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, function (err, collection) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (!collection) {
+			return callback({message: 'collection not found', status: 404});
+		}
+
+		db.items.update({user: user.email, _id: new ObjectId(item)}, {$pull: {collections: {id: collection._id}}}, callback);
+	});
+}
+
 function findItems(user, collection, callback) {
 	if (!collection) {
 		return callback({message: 'missing collection id', status: 412});
@@ -86,6 +108,7 @@ module.exports = {
 	create: create,
 	find: find,
 	add: add,
+	remove: remove,
 	findItems: findItems,
 	update: update
 };

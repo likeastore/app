@@ -2,7 +2,7 @@ var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
 
-describe('collections.spec.js', function () {
+describe.only('collections.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -275,6 +275,83 @@ describe('collections.spec.js', function () {
 				it('should have added to collection once', function () {
 					expect(results.collections).to.be.a('array');
 					expect(results.collections[0]).to.deep.equal({id: collection._id.toString(), title: 'My new collection'});
+				});
+			});
+		});
+
+		describe('when item removed from collection', function () {
+			var item, collection;
+
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, 1, function (err, items) {
+					item = items[0];
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, body: {title: 'My new collection'}, json: true}, function (err, resp, body) {
+					response = resp;
+					collection = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.put({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.del({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			describe('and item updated', function () {
+				beforeEach(function (done) {
+					request.get({url: testUtils.getRootUrl() + '/api/items/id/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should have added to collection', function () {
+					expect(results.collections).to.be.a('array');
+					expect(results.collections.length).to.equal(0);
+				});
+			});
+
+			describe('and removed twice', function () {
+				beforeEach(function (done) {
+					request.del({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.get({url: testUtils.getRootUrl() + '/api/items/id/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should have added to collection once', function () {
+					expect(results.collections).to.be.a('array');
+					expect(results.collections.length).to.equal(0);
 				});
 			});
 		});

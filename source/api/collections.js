@@ -12,6 +12,9 @@ function collectionsService(app) {
 	app.put('/api/collections/:collection/item/:item',
 		putToCollection);
 
+	app.del('/api/collections/:collection/item/:item',
+		removeFromCollection);
+
 	app.get('/api/collections/:id/items',
 		getCollectionItems);
 
@@ -49,6 +52,19 @@ function collectionsService(app) {
 			}
 
 			res.send(201);
+		});
+	}
+
+	function removeFromCollection(req, res, next) {
+		var collection = req.params.collection;
+		var item = req.params.item;
+
+		collections.remove(req.user, collection, item, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(200);
 		});
 	}
 
