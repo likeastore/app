@@ -14,11 +14,27 @@ function create(user, collection, callback) {
 	db.collections.save(collection, callback);
 }
 
+function remove(user, collection, callback) {
+	if (!collection) {
+		return callback({message: 'missing collection id', status: 412});
+	}
+
+	collection = new ObjectId(collection);
+
+	db.items.update({user: user.email, collections: {$elemMatch: {id:  collection}}}, {$pull: {collections: {id: collection}}}, function (err) {
+		if (err) {
+			return callback(err);
+		}
+
+		db.collections.remove({_id: collection}, callback);
+	});
+}
+
 function find(user, callback) {
 	db.collections.find({user: user.email}, callback);
 }
 
-function add(user, collection, item, callback) {
+function addItem(user, collection, item, callback) {
 	if (!collection) {
 		return callback({message: 'missing collection id', status: 412});
 	}
@@ -40,7 +56,7 @@ function add(user, collection, item, callback) {
 	});
 }
 
-function remove(user, collection, item, callback) {
+function removeItem(user, collection, item, callback) {
 	if (!collection) {
 		return callback({message: 'missing collection id', status: 412});
 	}
@@ -106,9 +122,10 @@ function update(user, collection, patch, callback) {
 
 module.exports = {
 	create: create,
-	find: find,
-	add: add,
 	remove: remove,
+	find: find,
+	addItem: addItem,
+	removeItem: removeItem,
 	findItems: findItems,
 	update: update
 };

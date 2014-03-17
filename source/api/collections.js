@@ -9,6 +9,9 @@ function collectionsService(app) {
 		middleware.validate('collection'),
 		createCollection);
 
+	app.del('/api/collections/:id',
+		removeCollection);
+
 	app.put('/api/collections/:collection/item/:item',
 		putToCollection);
 
@@ -42,11 +45,21 @@ function collectionsService(app) {
 		});
 	}
 
+	function removeCollection(req, res, next) {
+		collections.remove(req.user, req.params.id, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(200);
+		});
+	}
+
 	function putToCollection(req, res, next) {
 		var collection = req.params.collection;
 		var item = req.params.item;
 
-		collections.add(req.user, collection, item, function (err) {
+		collections.addItem(req.user, collection, item, function (err) {
 			if (err) {
 				return next(err);
 			}
@@ -59,7 +72,7 @@ function collectionsService(app) {
 		var collection = req.params.collection;
 		var item = req.params.item;
 
-		collections.remove(req.user, collection, item, function (err) {
+		collections.removeItem(req.user, collection, item, function (err) {
 			if (err) {
 				return next(err);
 			}

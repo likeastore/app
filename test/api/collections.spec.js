@@ -356,6 +356,79 @@ describe.only('collections.spec.js', function () {
 			});
 		});
 
+		describe('when deleting collection', function () {
+			var item, collection;
+
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, 1, function (err, items) {
+					item = items[0];
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, body: {title: 'My new collection'}, json: true}, function (err, resp, body) {
+					response = resp;
+					collection = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.put({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.del({url: url + '/' + collection._id, headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					collection = body;
+					done(err);
+				});
+			});
+
+			it('should respond 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			describe('and item updated', function () {
+				beforeEach(function (done) {
+					request.get({url: testUtils.getRootUrl() + '/api/items/id/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should have added to collection', function () {
+					expect(results.collections).to.be.a('array');
+					expect(results.collections.length).to.equal(0);
+				});
+			});
+
+			describe('and collection is gone', function () {
+				beforeEach(function (done) {
+					request.get({url: url, headers: headers, json: true }, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond with 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it('should have no collections', function () {
+					expect(results).to.be.a('array');
+					expect(results.length).to.equal(0);
+				});
+			});
+		});
+
 		describe('when getting items by collection', function () {
 			var items, collection;
 
