@@ -36,12 +36,13 @@ define(function (require) {
 						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'description\')">Save</button>\
 					</div>\
 				</div>\
-				<a class="right font-icon close-icon"\
+				<a class="delete-collection-btn"\
+					tooltip="Delete collection"\
 					ng-dialog="deleteCollectionDialog"\
 					ng-dialog-class="lsd-theme delete-user-dialog"\
 					ng-dialog-data="{{collection._id}}"\
 					ng-dialog-controller="deleteCollectionController"\
-					ng-dialog-show-close="true"></a>\
+					ng-dialog-show-close="false"><i class="font-icon close-icon icon"></i></a>\
 				',
 			link: function ($scope, elem, attrs) {
 				$scope.colors = [

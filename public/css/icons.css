@@ -70,6 +70,10 @@
   content: '~';
 }
 
+.trash-icon:before {
+  content: 'v';
+}
+
 .play-icon:before {
   content: 'W';
 }
