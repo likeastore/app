@@ -11,7 +11,7 @@ define(function (require) {
 		$scope.query = $routeParams.text;
 		$scope.items = [];
 
-		$scope.hideLike = function (id, index) {
+		$scope.remove = function (id, index) {
 			api.delete({ resource: 'items', target: id }, function (res) {
 				user.getInboxCount();
 				$scope.items.splice(index, 1);

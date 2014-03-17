@@ -20,7 +20,7 @@ define(function () {
 			$rootScope.title = $scope.collection.title;
 		}
 
-		$scope.hideLike = function (id, index) {
+		$scope.remove = function (id, index) {
 			api.delete({ resource: 'collections', target: $routeParams.id, verb: 'items', suffix: id }, function (res) {
 				$scope.items.splice(index, 1);
 			});

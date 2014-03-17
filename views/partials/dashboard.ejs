@@ -39,7 +39,7 @@
 					ng-dialog-data="{{item._id}}, {{item.type}}, {{item.title||item.repo}}"><i class="font-icon share-icon"></i></a>
 				<a href="" class="delete-btn"
 					tooltip="Delete"
-					ng-click="hideLike(item._id, $index)"><i class="font-icon delete-icon"></i></a>
+					ng-click="remove(item._id, $index)"><i class="font-icon delete-icon"></i></a>
 			</div>
 
 			<div ng-if="item.thumbnail" class="image">

@@ -24,7 +24,7 @@ define(function () {
 				loadPage();
 			};
 
-			$scope.hideLike = function (id, index) {
+			$scope.remove = function (id, index) {
 				api.delete({ resource: resource, target: id }, function (res) {
 					user.getInboxCount();
 					$scope.items.splice(index, 1);
