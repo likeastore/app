@@ -20,6 +20,12 @@ define(function () {
 			$rootScope.title = $scope.collection.title;
 		}
 
+		$scope.hideLike = function (id, index) {
+			api.delete({ resource: 'collections', target: $routeParams.id, verb: 'items', suffix: id }, function (res) {
+				$scope.items.splice(index, 1);
+			});
+		};
+
 		api.query({ resource: 'collections', target: $routeParams.id, verb: 'items' }, function (items) {
 			$scope.items = items;
 			appLoader.ready();

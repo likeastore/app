@@ -229,7 +229,7 @@ describe.only('collections.spec.js', function () {
 			});
 
 			beforeEach(function (done) {
-				request.put({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+				request.put({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, function (err, resp, body) {
 					response = resp;
 					results = body;
 					done(err);
@@ -257,7 +257,7 @@ describe.only('collections.spec.js', function () {
 
 			describe('and added twice', function () {
 				beforeEach(function (done) {
-					request.put({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+					request.put({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, function (err, resp, body) {
 						response = resp;
 						results = body;
 						done(err);
@@ -298,7 +298,7 @@ describe.only('collections.spec.js', function () {
 			});
 
 			beforeEach(function (done) {
-				request.put({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+				request.put({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, function (err, resp, body) {
 					response = resp;
 					results = body;
 					done(err);
@@ -306,7 +306,7 @@ describe.only('collections.spec.js', function () {
 			});
 
 			beforeEach(function (done) {
-				request.del({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+				request.del({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, function (err, resp, body) {
 					response = resp;
 					results = body;
 					done(err);
@@ -334,7 +334,7 @@ describe.only('collections.spec.js', function () {
 
 			describe('and removed twice', function () {
 				beforeEach(function (done) {
-					request.del({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+					request.del({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, function (err, resp, body) {
 						response = resp;
 						results = body;
 						done(err);
@@ -375,7 +375,7 @@ describe.only('collections.spec.js', function () {
 			});
 
 			beforeEach(function (done) {
-				request.put({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, function (err, resp, body) {
+				request.put({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, function (err, resp, body) {
 					response = resp;
 					results = body;
 					done(err);
@@ -451,7 +451,7 @@ describe.only('collections.spec.js', function () {
 				async.each(items, putToCollection, done);
 
 				function putToCollection(item, callback) {
-					request.put({url: url + '/' + collection._id + '/item/' + item._id, headers: headers, json: true}, callback);
+					request.put({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, callback);
 				}
 			});
 

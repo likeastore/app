@@ -12,10 +12,10 @@ function collectionsService(app) {
 	app.del('/api/collections/:id',
 		removeCollection);
 
-	app.put('/api/collections/:collection/item/:item',
+	app.put('/api/collections/:collection/items/:item',
 		putToCollection);
 
-	app.del('/api/collections/:collection/item/:item',
+	app.del('/api/collections/:collection/items/:item',
 		removeFromCollection);
 
 	app.get('/api/collections/:id/items',

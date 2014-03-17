@@ -37,7 +37,7 @@ define(function (require) {
 					api.update({
 						resource: 'collections',
 						target: collId,
-						verb: 'item',
+						verb: 'items',
 						suffix: $scope.item._id
 					}, {}, function (res) {
 						$analytics.eventTrack('collection item added');
