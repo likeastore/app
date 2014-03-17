@@ -35,7 +35,14 @@ define(function (require) {
 						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'descriptionEditMode\')">Cancel</a>\
 						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'description\')">Save</button>\
 					</div>\
-				</div>',
+				</div>\
+				<a class="right font-icon close-icon"\
+					ng-dialog="deleteCollectionDialog"\
+					ng-dialog-class="lsd-theme delete-user-dialog"\
+					ng-dialog-data="{{collection._id}}"\
+					ng-dialog-controller="deleteCollectionController"\
+					ng-dialog-show-close="true"></a>\
+				',
 			link: function ($scope, elem, attrs) {
 				$scope.colors = [
 					{ name: 'red', hex: '#e74c3c' },

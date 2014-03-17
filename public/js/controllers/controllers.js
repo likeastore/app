@@ -32,6 +32,7 @@ define(function (require) {
 	controllers.controller('shareWithFriendController', require('./shareWithFriendController'));
 	controllers.controller('deleteUserController', require('./deleteUserController'));
 	controllers.controller('shareLikeController', require('./shareLikeController'));
+	controllers.controller('deleteCollectionController', require('./deleteCollectionController'));
 
 	// errors
 	controllers.controller('errorController', require('./errorController'));

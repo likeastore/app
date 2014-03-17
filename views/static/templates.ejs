@@ -37,6 +37,14 @@
 	<button type="button" ng-click="deleteAccount()" class="btn green-btn">Yes, please</button>
 </script>
 
+<!-- Delete collection dialog -->
+<script type="text/ng-template" id="deleteCollectionDialog">
+	<h2 class="bar">Delete collection?</h2>
+	<div class="tip">Are you sure this collection can be deleted?</div>
+	<button type="button" ng-click="goBack()" class="btn pink-btn">No</button>
+	<button type="button" ng-click="deleteCollection()" class="btn green-btn">Yes</button>
+</script>
+
 <!-- Dribbble connect dialog -->
 <script type="text/ng-template" id="dribbbleConnect">
 	<form ng-submit="turnOn()" novalidate>
