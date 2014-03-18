@@ -59,6 +59,10 @@
 	color: #fff;
 }
 
+::-ms-clear {
+	display: none;
+}
+
 * {
 	box-sizing: border-box;
 }
