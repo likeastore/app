@@ -1221,7 +1221,7 @@ textarea.fld {
 	transition: all .3s;
 }
 
-.show-coll-popup:after {
+.dash-item .action-buttons .show-coll-popup:after {
 	bottom: 100%;
 	border: solid transparent;
 	content: '';
@@ -1238,8 +1238,8 @@ textarea.fld {
 }
 
 .show-coll-popup:hover + .tooltip {
-	visibility: hidden;
-	opacity: 0;
+	visibility: hidden !important;
+	opacity: 0 !important;
 }
 
 .action-buttons a.addto-btn:hover .show-coll-popup {
@@ -1261,6 +1261,7 @@ textarea.fld {
 	font-size: 12px;
 	padding: 5px 10px;
 	letter-spacing: .3px;
+	border-radius: 2px;
 }
 
 .show-coll-popup .show-coll-item.show-coll-empty {

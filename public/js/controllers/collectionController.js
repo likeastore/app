@@ -17,7 +17,9 @@ define(function () {
 				return coll._id === $routeParams.id;
 			});
 
-			$rootScope.title = $scope.collection.title;
+			if ($scope.collection) {
+				$rootScope.title = $scope.collection.title;
+			}
 		}
 
 		$scope.remove = function (id, index) {
