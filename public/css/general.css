@@ -33,6 +33,10 @@
   color: #fff;
 }
 
+::-ms-clear {
+  display: none;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -841,10 +845,10 @@ textarea.fld {
   text-decoration: underline;
 }
 
-.edit-collection-wrap .delete-collection-btn {
+.edit-collection-wrap .action-button {
   visibility: hidden;
   opacity: 0;
-  background: #f03e56;
+  background: rgba(66, 207, 176, 0.96);
   color: #fff;
   font-size: 11px;
   width: 22px;
@@ -853,22 +857,48 @@ textarea.fld {
   text-align: center;
   position: absolute;
   top: 7px;
-  right: 0;
   cursor: pointer;
   border-radius: 2px;
   -webkit-transition: all .2s;
   transition: all .2s;
 }
 
+.edit-collection-wrap .delete-collection-btn {
+  right: 0;
+}
+
+.edit-collection-wrap .state-collection-btn {
+  right: 30px;
+}
+
+.edit-collection-wrap .share-collection-btn {
+  right: 60px;
+}
+
 .edit-collection-wrap .delete-collection-btn .icon {
+  font-size: 13px;
   line-height: 25px;
 }
 
-.edit-collection-wrap .delete-collection-btn .tooltip {
+.edit-collection-wrap .state-collection-btn .icon {
+  font-size: 14px;
+  line-height: 26px;
+}
+
+.edit-collection-wrap .share-collection-btn .icon {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.edit-collection-wrap .action-button .tooltip {
   width: 102px;
 }
 
-.edit-collection-wrap:hover .delete-collection-btn {
+.edit-collection-wrap .state-collection-btn .tooltip {
+  width: 90px;
+}
+
+.edit-collection-wrap:hover .action-button {
   visibility: visible;
   opacity: 1;
 }
@@ -1200,8 +1230,7 @@ textarea.fld {
 
 .dash-item .action-buttons a {
   display: inline-block;
-  color: #56c7aa;
-  color: rgba(63, 192, 193, 0.98);
+  color: rgba(66, 207, 176, 0.96);
   font-size: 16px;
   text-decoration: none;
   margin-left: 3px;

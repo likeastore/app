@@ -71,7 +71,7 @@
 }
 
 .trash-icon:before {
-	content: 'v';
+	content: '_';
 }
 
 .play-icon:before {
@@ -80,6 +80,10 @@
 
 .share-icon:before {
 	content: 'X';
+}
+
+.link-icon:before {
+	content: '1';
 }
 
 .close-icon:before {
@@ -170,6 +174,14 @@
 	content: '\e01A';
 }
 
+.home-icon:before {
+	content: '\e01F';
+}
+
+.login-icon:before {
+	content: '\e020';
+}
+
 .temp-disabled-icon:before {
 	content: 'N';
 }
@@ -180,6 +192,22 @@
 
 .back-icon:before {
 	content: '\e011';
+}
+
+.locked-icon:before {
+	content: '\e021';
+}
+
+.unlocked-icon:before {
+	content: '\e023';
+}
+
+.unlocked2-icon:before {
+	content: '\e022';
+}
+
+.key-icon:before {
+	content: '\e024';
 }
 
 .big-icon {

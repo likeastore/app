@@ -33,6 +33,8 @@ define(function (require) {
 	controllers.controller('deleteUserController', require('./deleteUserController'));
 	controllers.controller('shareLikeController', require('./shareLikeController'));
 	controllers.controller('deleteCollectionController', require('./deleteCollectionController'));
+	controllers.controller('shareCollectionController', require('./shareCollectionController'));
+	controllers.controller('toggleStateCollectionController', require('./toggleStateCollectionController'));
 
 	// errors
 	controllers.controller('errorController', require('./errorController'));

@@ -5,7 +5,18 @@
 	<input id="likeUrl" class="fld" ng-model="link">
 	<div class="social-share">
 		<button type="button" class="btn big-btn fb-btn" share-on="facebook" share-on-event="share-like" share-on-text="{{link}}">Share on facebook</button>
-		<button type="button" class="btn big-btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="{{title}} on @{{service}} - {{link}}, shared via @likeastore ">Share on twitter</button>
+		<button type="button" class="btn big-btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="{{title}} on @{{service}} - {{link}}, shared via @likeastore">Share on twitter</button>
+	</div>
+</script>
+
+<!-- Share collection dialog -->
+<script type="text/ng-template" id="shareCollectionDialog">
+	<h2 class="bar">Share collection</h2>
+	<div class="social-desc">Press Ctrl+C or Cmd+C to copy this link</div>
+	<input id="collectionUrl" class="fld" ng-model="link">
+	<div class="social-share">
+		<button type="button" class="btn big-btn fb-btn" share-on="facebook" share-on-event="share-like" share-on-text="{{link}}">Share on facebook</button>
+		<button type="button" class="btn big-btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="{{title}} collection - {{link}}, shared via @likeastore">Share on twitter</button>
 	</div>
 </script>
 
@@ -43,6 +54,14 @@
 	<div class="tip">Are you sure you want to delete "{{title}}" collection?</div>
 	<button type="button" ng-click="goBack()" class="btn pink-btn">No</button>
 	<button type="button" ng-click="deleteCollection()" class="btn green-btn">Yes</button>
+</script>
+
+<!-- Toggle collection state dialog -->
+<script type="text/ng-template" id="toggleStateCollectionDialog">
+	<h2 class="bar">Make collection {{futureState}}?</h2>
+	<div class="tip">{{stateText}}</div>
+	<button type="button" ng-click="goBack()" class="btn pink-btn">No</button>
+	<button type="button" ng-click="toggleState()" class="btn green-btn">Yes</button>
 </script>
 
 <!-- Dribbble connect dialog -->
