@@ -9,7 +9,7 @@ define(function (require) {
 			link: function (scope, element, attrs) {
 				var raw = element[0];
 
-				element.bind('scroll', _(lazyScroll).debounce(100));
+				element.bind('scroll', _(lazyScroll).debounce(500));
 
 				function lazyScroll () {
 					if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight - 450) {
