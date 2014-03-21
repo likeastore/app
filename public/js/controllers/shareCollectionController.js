@@ -1,8 +1,8 @@
 define(function () {
 	'use strict';
 
-	function ShareCollectionController ($scope, $window, $rootScope) {
-		$scope.link = $window.appConfig.siteUrl + '/u/' + $rootScope.user.name + '/' + $scope.$parent.ngDialogData;
+	function ShareCollectionController ($scope, links) {
+		$scope.link = links.collection($scope.$parent.ngDialogData);
 
 		setTimeout(function () {
 			document.getElementById('collectionUrl').select();
