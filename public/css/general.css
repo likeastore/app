@@ -1906,6 +1906,11 @@ textarea.fld {
     margin: 0 20px 25px 0;
   }
 
+  .dash-item.tumblr .title {
+    max-height: 40px;
+    overflow: hidden;
+  }
+
   .grid-view .dash-item .description,
   .grid-view .dash-item .description.short {
     max-height: 90px;

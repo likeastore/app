@@ -20,6 +20,17 @@
 			}"
 			go-to-link="{{item.source}}">
 
+			<div class="action-buttons">
+				<div add-collection-popup="item"></div>
+				<a href="" class="share-btn"
+					tooltip="Share"
+					ng-dialog="shareLikeDialog"
+					ng-dialog-class="lsd-theme share-dialog share-like"
+					ng-dialog-controller="shareLikeController"
+					ng-dialog-show-close="false"
+					ng-dialog-data="{{item._id}}, {{item.type}}, {{item.title||item.repo}}"><i class="font-icon share-icon"></i></a>
+			</div>
+
 			<div ng-if="item.thumbnail" class="image">
 				<a ng-show="user.viewMode === 'grid'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 

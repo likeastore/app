@@ -2,7 +2,7 @@ var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
 
-describe.only('collections.spec.js', function () {
+describe('collections.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -275,6 +275,19 @@ describe.only('collections.spec.js', function () {
 				it('should have added to collection once', function () {
 					expect(results.collections).to.be.a('array');
 					expect(results.collections[0]).to.deep.equal({id: collection._id.toString(), title: 'My new collection'});
+				});
+			});
+
+			describe('when adding item of another user', function () {
+				beforeEach(function () {
+					// create user
+					// create test items
+					// add one item to collection
+					// check item to contain these collection
+				});
+
+				it('should be added to your in collection', function (argument) {
+					// body...
 				});
 			});
 		});
