@@ -43,7 +43,7 @@ function addItem(user, collection, item, callback) {
 		return callback({message: 'missing item id', status: 412});
 	}
 
-	db.collections.findOne({_id: new ObjectId(collection)}, function (err, collection) {
+	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, function (err, collection) {
 		if (err) {
 			return callback(err);
 		}
@@ -52,7 +52,7 @@ function addItem(user, collection, item, callback) {
 			return callback({message: 'collection not found', status: 404});
 		}
 
-		db.items.update({_id: new ObjectId(item)}, {$addToSet: {collections: {id: collection._id, title: collection.title}}}, callback);
+		db.items.update({user: user.email, _id: new ObjectId(item)}, {$addToSet: {collections: {id: collection._id, title: collection.title}}}, callback);
 	});
 }
 
@@ -92,7 +92,7 @@ function findItems(user, collection, callback) {
 			return callback({message: 'collection not found', status: 404});
 		}
 
-		db.items.find({collections: {$elemMatch: {id: collection._id}}}, callback);
+		db.items.find({user: user.email, collections: {$elemMatch: {id: collection._id}}}, callback);
 	});
 }
 

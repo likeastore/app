@@ -278,7 +278,8 @@ describe('collections.spec.js', function () {
 				});
 			});
 
-			describe('when adding item of another user', function () {
+			// disabled due to delayed task https://trello.com/c/vLy9VrrH/206-add-special-endpoint-to-save-item-to-collection-from-discover
+			xdescribe('when adding item of another user', function () {
 				var anotherUser, discoverItem;
 
 				beforeEach(function (done) {
