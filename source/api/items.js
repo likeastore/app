@@ -37,7 +37,8 @@ function itemsService(app) {
 	);
 
 	app.get('/api/items/id/:id',
-		getItemById);
+		getItemById
+	);
 
 	function getItems (req, res, next) {
 		items.getAllItems(req.user, req.query.page, function (err, items) {

@@ -18,7 +18,11 @@
 </div>
 
 <section class="dashboard activity animated fadeIn">
-	<ul ng-if="items.length" id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list', 'grid-view': user.viewMode === 'grid'}">
+	<ul ng-if="items.length" id="items" class="items-wrap" ng-class="{
+		'list-view': user.viewMode === 'list',
+		'grid-view': user.viewMode === 'grid',
+		'inbox': inbox
+	}">
 		<li class="dash-item {{item.type}} item{{$index}}"
 			ng-repeat="item in items"
 			ng-class="{
@@ -38,8 +42,8 @@
 					ng-dialog-show-close="false"
 					ng-dialog-data="{{item._id}}, {{item.type}}, {{item.title||item.repo}}"><i class="font-icon share-icon"></i></a>
 				<a href="" class="delete-btn"
-					tooltip="Delete"
-					ng-click="remove(item._id, $index)"><i class="font-icon delete-icon"></i></a>
+					tooltip="{{inbox ? 'Mark as read' : (collection ? 'Remove' : 'Delete')}}"
+					ng-click="inbox ? markAsRead(item._id, $index) : remove(item._id, $index)"><i class="font-icon delete-icon"></i></a>
 			</div>
 
 			<div ng-if="item.thumbnail" class="image">

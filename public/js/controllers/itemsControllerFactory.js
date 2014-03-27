@@ -31,6 +31,13 @@ define(function () {
 				});
 			};
 
+			$scope.markAsRead = function (id, index) {
+				api.update({ resource: resource, target: id, verb: 'read' }, {}, function () {
+					user.getInboxCount();
+					$scope.items.splice(index, 1);
+				});
+			};
+
 			function createQuery () {
 				var query = { resource: resource, page: $scope.page };
 				if (target) {

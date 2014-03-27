@@ -279,15 +279,55 @@ describe('collections.spec.js', function () {
 			});
 
 			describe('when adding item of another user', function () {
-				beforeEach(function () {
-					// create user
-					// create test items
-					// add one item to collection
-					// check item to contain these collection
+				var anotherUser, discoverItem;
+
+				beforeEach(function (done) {
+					testUtils.createTestUser(function (err, user) {
+						anotherUser = user;
+						done(err);
+					});
 				});
 
-				it('should be added to your in collection', function (argument) {
-					// body...
+				beforeEach(function (done) {
+					testUtils.createTestItems(anotherUser, function (err, items) {
+						discoverItem = items[0];
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.put({ url: url + '/' + collection._id + '/items/' + discoverItem._id, headers: headers, json: true }, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond with 201 (created)', function () {
+					expect(response.statusCode).to.equal(201);
+				});
+
+				describe('and item should be updated', function() {
+					beforeEach(function (done) {
+						testUtils.loginToApi(anotherUser, function (err, user, accessToken) {
+							token = accessToken;
+							headers = { 'X-Access-Token': accessToken };
+							done(err);
+						});
+					});
+
+					beforeEach(function (done) {
+						request.get({ url: testUtils.getRootUrl() + '/api/items/id/' + discoverItem._id, headers: headers, json: true }, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should be added to user collection', function () {
+						expect(results.collections).to.be.an('array');
+						expect(results.collections[0]).to.deep.equal({ id: collection._id.toString(), title: 'My new collection' });
+					});
 				});
 			});
 		});
