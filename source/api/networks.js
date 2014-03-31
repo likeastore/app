@@ -72,6 +72,11 @@ function networksService(app) {
 		returnAuthUrl
 	);
 
+	app.post('/api/networks/instagram',
+		middleware.networks.instagram(),
+		returnAuthUrl
+	);
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
@@ -158,6 +163,15 @@ function networksService(app) {
 		middleware.networks.tumblrCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'tumblr'}),
+		middleware.ga.track('network', 'turnon', 'users'),
+		redirectToSettings
+	);
+
+	app.get('/api/networks/instagram/callback',
+		middleware.access.guest(),
+		middleware.networks.instagramCallback(),
+		registerNetwork,
+		middleware.analytics.track('network created', {service: 'instagram'}),
 		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings
 	);

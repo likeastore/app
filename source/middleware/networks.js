@@ -589,37 +589,73 @@ function tumblrCallback () {
 	};
 }
 
+function instagram() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/instagram/callback';
+		var oauth = new OAuth2(config.services.instagram.clientId,
+							config.services.instagram.clientSecret,
+							'https://api.instagram.com');
+
+		var authorizeUrl = oauth.getAuthorizeUrl({redirect_uri: callbackUrl, state: req.user.email, scope: 'basic', response_type: 'code' });
+		req.authUrl = authorizeUrl;
+		next();
+	};
+}
+
+function instagramCallback() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/instagram/callback';
+		var oauth = new OAuth2(config.services.instagram.clientId,
+							config.services.instagram.clientSecret,
+							'https://api.instagram.com');
+
+		var code = req.query.code;
+		var user = req.query.state;
+
+		oauth.getOAuthAccessToken(code, {grant_type: 'authorization_code', redirect_uri: callbackUrl}, gotAccessToken);
+
+		function gotAccessToken(err, accessToken, refreshToken) {
+			if (err) {
+				return next({message: 'failed to get accessToken from instagram', error: err, status: 500});
+			}
+
+			req.network = {
+				accessToken: accessToken,
+				accessTokenSecret: null,
+				refreshToken: refreshToken,
+				user: user,
+				service: 'instagram'
+			};
+
+			next();
+		}
+	};
+}
+
+
 module.exports = {
 	facebook: facebook,
 	facebookCallback: facebookCallback,
-
 	twitter: twitter,
 	twitterCallback: twitterCallback,
-
 	github: github,
 	githubCallback: githubCallback,
-
 	stackoverflow: stackoverflow,
 	stackoverflowCallback: stackoverflowCallback,
-
 	vimeo: vimeo,
 	vimeoCallback: vimeoCallback,
-
 	youtube: youtube,
 	youtubeCallback: youtubeCallback,
-
 	dribbble: dribbble,
-
 	behance: behance,
 	behanceCallback: behanceCallback,
-
 	// not used at the moment..
 	vk: vk,
 	vkCallback: vkCallback,
-
 	pocket: pocket,
 	pocketCallback: pocketCallback,
-
 	tumblr: tumblr,
-	tumblrCallback: tumblrCallback
+	tumblrCallback: tumblrCallback,
+	instagram: instagram,
+	instagramCallback: instagramCallback
 };

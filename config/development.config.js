@@ -71,6 +71,11 @@ var config = {
 		tumblr: {
 			consumerKey: '6vUnFztIzNd6ISG8kBn7UyhGkHA8a49UjXUx9rCYbrWBnbFZBr',
 			consumerSecret: 'pnUrbwgmLHubWqaBxRIzD216FxAq8wZCzf2hXysL9huV1Sfq9R'
+		},
+
+		instagram: {
+			clientId: '892d480a24be4f6ebea65b1799acd643',
+			clientSecret: 'dd70232e5b4f40208f60b1f2430b5bf7'
 		}
 	},
 
