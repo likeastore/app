@@ -632,6 +632,78 @@ function instagramCallback() {
 	};
 }
 
+function flickr() {
+	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/flickr/callback';
+		var oauth = new OAuth('https://www.flickr.com/services/oauth/request_token',
+							'https://www.flickr.com/services/oauth/access_token',
+							config.services.flickr.consumerKey,
+							config.services.flickr.consumerSecret,
+							'1.0',
+							callbackUrl,
+							'HMAC-SHA1');
+
+		oauth.getOAuthRequestToken(function (err, requestToken, requestTokenSecret) {
+			if (err) {
+				return next({message: 'failed to get request token from flickr', error: err, status: 500});
+			}
+
+			users.update(req.user, {flickrRequestToken: requestToken, flickrRequestTokenSecret: requestTokenSecret}, function (err) {
+				if (err) {
+					return next({message: 'failed to update user', error: err, status: 500});
+				}
+
+				req.authUrl = 'https://www.flickr.com/services/oauth/authorize?oauth_token=' + requestToken;
+				next();
+			});
+		});
+	};
+}
+
+function flickrCallback () {
+	return function (req, res, next) {
+		var oauth = new OAuth('https://www.flickr.com/services/oauth/request_token',
+							'https://www.flickr.com/services/oauth/access_token',
+							config.services.flickr.consumerKey,
+							config.services.flickr.consumerSecret,
+							'1.0',
+							null,
+							'HMAC-SHA1');
+
+		var requestToken = req.query.oauth_token;
+		var verifier = req.query.oauth_verifier;
+
+		users.findByRequestToken('flickrRequestToken', requestToken, userFound);
+
+		function userFound (err, user) {
+			if (err) {
+				return next(err);
+			}
+
+			if (!user) {
+				return next({message: 'failed to find user by request token', status: 404});
+			}
+
+			oauth.getOAuthAccessToken(requestToken, user.flickrRequestTokenSecret, verifier, gotAccessToken);
+
+			function gotAccessToken (err, accessToken, accessTokenSecret, params) {
+				if (err) {
+					return next({message: 'failed to get accessToken from flickr', error: err, status: 500});
+				}
+
+				req.network = {
+					accessToken: accessToken,
+					accessTokenSecret: accessTokenSecret,
+					user: user.email,
+					service: 'flickr'
+				};
+
+				next();
+			}
+		}
+	};
+}
+
 
 module.exports = {
 	facebook: facebook,
@@ -657,5 +729,7 @@ module.exports = {
 	tumblr: tumblr,
 	tumblrCallback: tumblrCallback,
 	instagram: instagram,
-	instagramCallback: instagramCallback
+	instagramCallback: instagramCallback,
+	flickr: flickr,
+	flickrCallback: flickrCallback
 };

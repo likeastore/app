@@ -77,6 +77,11 @@ function networksService(app) {
 		returnAuthUrl
 	);
 
+	app.post('/api/networks/flickr',
+		middleware.networks.flickr(),
+		returnAuthUrl
+	);
+
 	app.get('/api/networks/twitter/callback',
 		middleware.access.guest(),
 		middleware.networks.twitterCallback(),
@@ -172,6 +177,15 @@ function networksService(app) {
 		middleware.networks.instagramCallback(),
 		registerNetwork,
 		middleware.analytics.track('network created', {service: 'instagram'}),
+		middleware.ga.track('network', 'turnon', 'users'),
+		redirectToSettings
+	);
+
+	app.get('/api/networks/flickr/callback',
+		middleware.access.guest(),
+		middleware.networks.flickrCallback(),
+		registerNetwork,
+		middleware.analytics.track('network created', {service: 'flickr'}),
 		middleware.ga.track('network', 'turnon', 'users'),
 		redirectToSettings
 	);
