@@ -76,6 +76,11 @@ var config = {
 		instagram: {
 			clientId: '12df39bad4f5459d92d014393a5df29f',
 			clientSecret: '60cf98a5b54b4abab22d6c0b9b0f088f'
+		},
+
+		flickr: {
+			consumerKey: '9fd6b9622ac87b3ebe06561340f3f70c',
+			consumerSecret: 'c22baf5b17411ecf'
 		}
 	},
 

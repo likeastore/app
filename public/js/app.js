@@ -60,6 +60,7 @@ define(function (require) {
 				.when('/tumblr', { templateUrl: 'partials/dashboard', controller: 'tumblrController' })
 				.when('/pocket', { templateUrl: 'partials/dashboard', controller: 'pocketController' })
 				.when('/instagram', { templateUrl: 'partials/dashboard', controller: 'instagramController' })
+				.when('/flickr', { templateUrl: 'partials/dashboard', controller: 'instagramController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
 				.when('/items/:id', { templateUrl: 'partials/dashboard', controller: 'dashboardController'})
