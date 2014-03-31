@@ -21,6 +21,7 @@ define(function (require) {
 	controllers.controller('behanceController', itemsControllerFactory('Behance', 'behance', 'behance opened'));
 	controllers.controller('tumblrController', itemsControllerFactory('Tumblr', 'tumblr', 'tumblr opened'));
 	controllers.controller('pocketController', itemsControllerFactory('Pocket', 'pocket', 'pocket opened'));
+	controllers.controller('instagramController', itemsControllerFactory('Instagram', 'instagram', 'instagram opened'));
 
 	// collections
 	controllers.controller('collectionController', require('./collectionController'));
