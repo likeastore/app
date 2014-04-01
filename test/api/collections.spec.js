@@ -345,6 +345,9 @@ describe.only('collections.spec.js', function () {
 					expect(response.statusCode).to.equal(200);
 				});
 
+				it('should not contain items', function () {
+					expect(results[0].items).to.not.exist;
+				});
 			});
 		});
 

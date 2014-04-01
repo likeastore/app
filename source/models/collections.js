@@ -44,7 +44,7 @@ function remove(user, collection, callback) {
 }
 
 function find(user, callback) {
-	db.collections.find({user: user.email}, callback);
+	db.collections.find({user: user.email}, {fields: {items: 0}}, callback);
 }
 
 function addItem(user, collection, item, callback) {
