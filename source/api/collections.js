@@ -5,6 +5,9 @@ function collectionsService(app) {
 	app.get('/api/collections',
 		getCollections);
 
+	app.get('/api/collections/:collection',
+		getCollection);
+
 	app.post('/api/collections',
 		middleware.validate('collection'),
 		createCollection);
@@ -25,6 +28,9 @@ function collectionsService(app) {
 		middleware.validate('collectionPatch'),
 		patchCollectionProperties);
 
+	app.put('/api/collections/:collection/follow',
+		followCollection);
+
 	function getCollections(req, res, next) {
 		collections.find(req.user, function (err, collections) {
 			if (err) {
@@ -32,6 +38,20 @@ function collectionsService(app) {
 			}
 
 			res.json(collections);
+		});
+	}
+
+	function getCollection(req, res, next) {
+		collections.findOne(req.user, req.params.collection, function (err, collection) {
+			if (err) {
+				return next(err);
+			}
+
+			if (!collection) {
+				return next({message: 'collection not found', status: 404});
+			}
+
+			res.json(collection);
 		});
 	}
 
@@ -98,6 +118,16 @@ function collectionsService(app) {
 			}
 
 			res.json(collection);
+		});
+	}
+
+	function followCollection(req, res, next) {
+		collections.follow(req.user, req.params.collection, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(201);
 		});
 	}
 }

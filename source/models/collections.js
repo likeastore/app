@@ -47,6 +47,10 @@ function find(user, callback) {
 	db.collections.find({user: user.email}, {fields: {items: 0}}, callback);
 }
 
+function findOne(user, collection, callback) {
+	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, {fields: {items: 0}}, callback);
+}
+
 function addItem(user, collection, item, callback) {
 	if (!collection) {
 		return callback({message: 'missing collection id', status: 412});
@@ -161,12 +165,61 @@ function update(user, collection, patch, callback) {
 	});
 }
 
+function follow(user, collection, callback) {
+	if (!collection) {
+		return callback({message: 'missing collection id', status: 412});
+	}
+
+	async.waterfall([
+		checkUser,
+		followCollection,
+		updateUser
+	], callback);
+
+	function checkUser(callback) {
+		db.collections.findOne({_id: new ObjectId(collection)}, function (err, collection) {
+			if (err) {
+				return callback(err);
+			}
+
+			if (!collection) {
+				return callback({message: 'collection not found', status: 404});
+			}
+
+			if (collection.user === user.email) {
+				return callback({message: 'can\'t follow own collection', status: 403});
+			}
+
+			callback(null, collection);
+		});
+	}
+
+	function followCollection(collection, callback) {
+		db.collections.findAndModify({
+			query: {_id: collection._id},
+			update: { $addToSet: { followers: _.pick(user, ['_id', 'email', 'avatar', 'displayName', 'username']) }},
+			'new': true
+		}, function (err, collection) {
+			callback(err, collection);
+		});
+	}
+
+	function updateUser(collection, callback) {
+		db.users.findAndModify({
+			query: {email: user.email},
+			update: {$addToSet: {followCollections: {id: collection._id}}}
+		}, callback);
+	}
+}
+
 module.exports = {
 	create: create,
 	remove: remove,
 	find: find,
+	findOne: findOne,
 	addItem: addItem,
 	removeItem: removeItem,
 	findItems: findItems,
-	update: update
+	update: update,
+	follow: follow
 };

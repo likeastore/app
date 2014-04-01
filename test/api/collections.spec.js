@@ -627,5 +627,90 @@ describe('collections.spec.js', function () {
 				expect(results.title).to.equal('My new collection');
 			});
 		});
+
+		describe('when follow collection', function () {
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, body: {title: 'My new collection'}, json: true}, function (err, resp, body) {
+					response = resp;
+					collection = body;
+					done(err);
+				});
+			});
+
+			describe('own collection', function () {
+				beforeEach(function (done) {
+					request.put({url: url + '/' + collection._id + '/follow', headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond 403 (forbidden)', function () {
+					expect(response.statusCode).to.equal(403);
+				});
+			});
+
+			describe('other user collection', function () {
+				var otherUserHeaders;
+
+				beforeEach(function (done) {
+					testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+						token = accessToken;
+						user = createdUser;
+						otherUserHeaders = {'X-Access-Token': accessToken};
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.put({url: url + '/' + collection._id + '/follow', headers: otherUserHeaders, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond 201 (created)', function () {
+					expect(response.statusCode).to.equal(201);
+				});
+
+				describe('and collection updated', function () {
+					beforeEach(function (done) {
+						request.get({url: url + '/' + collection._id, headers: headers, json: true}, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it('should have followers property', function () {
+						expect(results).to.have.property('followers');
+					});
+				});
+
+				describe('and user updated', function () {
+					beforeEach(function (done) {
+						request.get({url: testUtils.getRootUrl() + '/api/users/me', headers: otherUserHeaders, json: true}, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it('should have followCollections property', function () {
+						expect(results).to.have.property('followCollections');
+					});
+				});
+			});
+		});
 	});
 });
