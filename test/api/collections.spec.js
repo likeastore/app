@@ -331,6 +331,21 @@ describe.only('collections.spec.js', function () {
 					});
 				});
 			});
+
+			describe('and collection fetched after', function () {
+				beforeEach(function (done) {
+					request.get({url: url, headers: headers, json: true }, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+			});
 		});
 
 		describe('when item removed from collection', function () {
