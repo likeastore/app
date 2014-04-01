@@ -3,7 +3,7 @@ define(function () {
 
 	var angular = require('angular');
 
-	function ShareAndUnblockController ($scope, $rootScope, $document, api, user, $analytics, analytics) {
+	function ShareAndUnblockController ($scope, $rootScope, $document, api, user, $analytics, analytics, facebook) {
 		twttr.widgets.load();
 		twttr.events.bind('tweet', function () {
 			unblockNetworks();
@@ -19,14 +19,12 @@ define(function () {
 		}
 
 		$scope.shareOnFacebook = function (link, caption) {
-			FB.ui({
-				method: 'feed',
-				name: 'Check out likeastore.com - Social Bookmarking for Geeks!',
+			facebook.share({
+				name: 'Likeastore - Social Bookmarking for Geeks',
 				link: 'https://likeastore.com',
 				picture: 'https://likeastore.com/img/feed-box.png',
-				description: 'The best way to save useful resources like GitHub repositories, code libraries, Instagram photos, fonts, Dribbble shots or Stackoverflow questions. Organize your favorites, create collections and share them with friends.'
-			}, function (res) {
-				if (res && res._id) {
+				description: 'The best way to save useful resources like GitHub repositories, code libraries, Instagram photos, favorited Tweets, fonts, Dribbble shots or Stackoverflow questions. Organize your favorites, create collections and share them with friends.',
+				success: function () {
 					unblockNetworks();
 				}
 			});
