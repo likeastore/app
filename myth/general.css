@@ -22,6 +22,8 @@
 	var-behance: #0d7ba3;
 	var-pocket: #d3505a;
 	var-tumblr: #2c4762;
+	var-instagram: #517fa4;
+	var-flickr: #1f212f;
 	var-title-font: 'Montserrat', 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
 	var-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
 }
@@ -1798,6 +1800,14 @@ textarea.fld {
 	background-color: var(tumblr) !important;
 }
 
+.instagram-bg-clr {
+	background-color: var(instagram) !important;
+}
+
+.flickr-bg-clr {
+	background-color: var(flickr) !important;
+}
+
 .facebook-clr {
 	color: var(facebook) !important;
 }
@@ -1836,6 +1846,14 @@ textarea.fld {
 
 .tumblr-clr {
 	color: var(tumblr) !important;
+}
+
+.instagram-clr {
+	color: var(instagram) !important;
+}
+
+.flickr-clr {
+	color: var(flickr) !important;
 }
 
 @media (min-width: 1160px) {

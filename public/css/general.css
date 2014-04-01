@@ -1818,6 +1818,14 @@ textarea.fld {
   background-color: #2c4762 !important;
 }
 
+.instagram-bg-clr {
+  background-color: #517fa4 !important;
+}
+
+.flickr-bg-clr {
+  background-color: #1f212f !important;
+}
+
 .facebook-clr {
   color: #3b5998 !important;
 }
@@ -1856,6 +1864,14 @@ textarea.fld {
 
 .tumblr-clr {
   color: #2c4762 !important;
+}
+
+.instagram-clr {
+  color: #517fa4 !important;
+}
+
+.flickr-clr {
+  color: #1f212f !important;
 }
 
 @media (min-width: 1160px) {

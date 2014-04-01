@@ -41,9 +41,9 @@ define(function (require) {
 						return;
 					}
 
-					if (!$rootScope.user.unblock) {
-						return shareAndUnblock();
-					}
+					// if (!$rootScope.user.unblock) {
+					// 	return shareAndUnblock();
+					// }
 
 					if (attrs.dialogTemplate) {
 						return dialogAuth(attrs.dialogTemplate);
