@@ -1,4 +1,6 @@
 var _ = require('underscore');
+var async = require('async');
+
 var config = require('../../config');
 var db = require('../db')(config);
 
@@ -21,13 +23,24 @@ function remove(user, collection, callback) {
 
 	collection = new ObjectId(collection);
 
-	db.items.update({user: user.email, collections: {$elemMatch: {id:  collection}}}, {$pull: {collections: {id: collection}}}, function (err) {
-		if (err) {
-			return callback(err);
-		}
+	async.waterfall([
+		removeCollectionFromItems,
+		removeCollection
+	], callback);
 
+	function removeCollectionFromItems(callback) {
+		db.items.findAndModify({
+			query: {user: user.email, collections: {$elemMatch: {id: collection}}},
+			update: {$pull: {collections: {id: collection}}},
+			'new': true
+		}, function (err) {
+			callback(err);
+		});
+	}
+
+	function removeCollection(callback) {
 		db.collections.remove({_id: collection}, callback);
-	});
+	}
 }
 
 function find(user, callback) {
@@ -43,17 +56,37 @@ function addItem(user, collection, item, callback) {
 		return callback({message: 'missing item id', status: 412});
 	}
 
-	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, function (err, collection) {
-		if (err) {
-			return callback(err);
-		}
+	async.waterfall([
+		findCollection,
+		putCollectionIdToItem,
+		putItemToCollection
+	], callback);
 
-		if (!collection) {
-			return callback({message: 'collection not found', status: 404});
-		}
 
-		db.items.update({user: user.email, _id: new ObjectId(item)}, {$addToSet: {collections: {id: collection._id, title: collection.title}}}, callback);
-	});
+	function findCollection(callback) {
+		db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, callback);
+	}
+
+	function putCollectionIdToItem(collection, callback) {
+		db.items.findAndModify({
+			query: {_id: new ObjectId(item)},
+			update: {$addToSet: {collections: {id: collection._id}}},
+			'new': true
+		}, function (err, item) {
+			if (err) {
+				return callback(err);
+			}
+
+			callback(err, item, collection);
+		});
+	}
+
+	function putItemToCollection(item, collection, callback) {
+		db.collections.findAndModify({
+			query: {user: user.email, _id: collection._id},
+			update: {$addToSet: {items: item}}
+		}, callback);
+	}
 }
 
 function removeItem(user, collection, item, callback) {
@@ -65,17 +98,25 @@ function removeItem(user, collection, item, callback) {
 		return callback({message: 'missing item id', status: 412});
 	}
 
-	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, function (err, collection) {
-		if (err) {
-			return callback(err);
-		}
+	async.waterfall([
+		pullItemFromCollection,
+		pullCollectionFromItem
+	], callback);
 
-		if (!collection) {
-			return callback({message: 'collection not found', status: 404});
-		}
+	function pullItemFromCollection(callback) {
+		db.collections.findAndModify({
+			query: {user: user.email, _id: new ObjectId(collection)},
+			update: {$pull: {items: {_id: new ObjectId(item)}}},
+			'new': true
+		}, callback);
+	}
 
-		db.items.update({user: user.email, _id: new ObjectId(item)}, {$pull: {collections: {id: collection._id}}}, callback);
-	});
+	function pullCollectionFromItem(collection) {
+		db.items.findAndModify({
+			query: {_id: new ObjectId(item)},
+			update: {$pull: {collections: {id: collection._id}}}
+		}, callback);
+	}
 }
 
 function findItems(user, collection, callback) {
@@ -92,7 +133,7 @@ function findItems(user, collection, callback) {
 			return callback({message: 'collection not found', status: 404});
 		}
 
-		db.items.find({user: user.email, collections: {$elemMatch: {id: collection._id}}}, callback);
+		callback(null, collection.items);
 	});
 }
 

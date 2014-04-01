@@ -2,7 +2,7 @@ var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
 
-describe('collections.spec.js', function () {
+describe.only('collections.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -251,7 +251,7 @@ describe('collections.spec.js', function () {
 
 				it('should have added to collection', function () {
 					expect(results.collections).to.be.a('array');
-					expect(results.collections[0]).to.deep.equal({id: collection._id.toString(), title: 'My new collection'});
+					expect(results.collections[0]).to.deep.equal({id: collection._id.toString()});
 				});
 			});
 
@@ -274,12 +274,12 @@ describe('collections.spec.js', function () {
 
 				it('should have added to collection once', function () {
 					expect(results.collections).to.be.a('array');
-					expect(results.collections[0]).to.deep.equal({id: collection._id.toString(), title: 'My new collection'});
+					expect(results.collections.length).to.equal(1);
+					expect(results.collections[0]).to.deep.equal({id: collection._id.toString()});
 				});
 			});
 
-			// disabled due to delayed task https://trello.com/c/vLy9VrrH/206-add-special-endpoint-to-save-item-to-collection-from-discover
-			xdescribe('when adding item of another user', function () {
+			describe('when adding item of another user', function () {
 				var anotherUser, discoverItem;
 
 				beforeEach(function (done) {
@@ -327,7 +327,7 @@ describe('collections.spec.js', function () {
 
 					it('should be added to user collection', function () {
 						expect(results.collections).to.be.an('array');
-						expect(results.collections[0]).to.deep.equal({ id: collection._id.toString(), title: 'My new collection' });
+						expect(results.collections[0]).to.deep.equal({ id: collection._id.toString()});
 					});
 				});
 			});
@@ -380,7 +380,7 @@ describe('collections.spec.js', function () {
 					});
 				});
 
-				it('should have added to collection', function () {
+				it('should have removed collection', function () {
 					expect(results.collections).to.be.a('array');
 					expect(results.collections.length).to.equal(0);
 				});
@@ -403,7 +403,7 @@ describe('collections.spec.js', function () {
 					});
 				});
 
-				it('should have added to collection once', function () {
+				it('should have removed once', function () {
 					expect(results.collections).to.be.a('array');
 					expect(results.collections.length).to.equal(0);
 				});

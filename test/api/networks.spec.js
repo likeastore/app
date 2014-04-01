@@ -1,7 +1,7 @@
 var request = require('request');
 var testUtils = require('../utils');
 
-describe.only('networks.spec.js', function () {
+describe('networks.spec.js', function () {
 	var token, user, url, headers, response, results, error;
 
 	beforeEach(function () {
