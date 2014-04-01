@@ -66,6 +66,10 @@ exports.schemas = {
 			'watchedPreview': {
 				required: false,
 				type: 'boolean'
+			},
+			'connectionBlock': {
+				required: false,
+				type: 'boolean'
 			}
 		}
 	}

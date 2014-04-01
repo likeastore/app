@@ -41,6 +41,10 @@ define(function (require) {
 						return;
 					}
 
+					if (!$rootScope.user.unblock) {
+						return shareAndUnblock();
+					}
+
 					if (attrs.dialogTemplate) {
 						return dialogAuth(attrs.dialogTemplate);
 					}
@@ -65,6 +69,15 @@ define(function (require) {
 							className: 'lsd-theme ' + service + '-connect-dialog',
 							controller: attrs.dialogController,
 							scope: scope
+						});
+					}
+
+					function shareAndUnblock() {
+						ngDialog.open({
+							template: 'shareAndUnblock',
+							className: 'lsd-theme share-dialog',
+							controller: 'shareAndUnblockController',
+							showClose: false
 						});
 					}
 				};

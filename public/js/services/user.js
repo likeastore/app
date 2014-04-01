@@ -27,6 +27,8 @@ define(function (require) {
 						auth.logout();
 					};
 
+					// track view mode on screen resize
+					// update: move to directive
 					listenViewWidth();
 					angular.element($window).on('resize', function () {
 						listenViewWidth();
@@ -55,6 +57,10 @@ define(function (require) {
 				api.query({ resource: 'networks' }, function (networks) {
 					$rootScope.networks = networks;
 
+					if (networks.length > 3 && _.isUndefined($rootScope.user.unblock)) {
+						$rootScope.user.unblock = false;
+					}
+
 					$rootScope.stringifiedNetworks = _(networks).map(getNames).toString();
 					function getNames (row) {
 						return row.service;
@@ -67,6 +73,14 @@ define(function (require) {
 			getInboxCount: function () {
 				api.get({ resource: 'items', target: 'inbox', verb: 'count' }, function (res) {
 					$rootScope.inboxCount = res.count <= 1000 ? res.count : '1000 +';
+				});
+
+				return this;
+			},
+
+			unblockConnections: function () {
+				api.patch({ resource: 'users', target: 'me' }, { unblock: true }, function (user) {
+					$rootScope.user = user;
 				});
 
 				return this;

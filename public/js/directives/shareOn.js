@@ -7,7 +7,7 @@ define(function (require) {
 			link: function (scope, elem, attr) {
 				var services = {
 					facebook: 'http://www.facebook.com/share.php?u=' + (attr.shareOnText || 'https://likeastore.com'),
-					twitter: 'http://twitter.com/share?text=' + (attr.shareOnText || 'Just tried @likeastore it helps me to keep my likes and interests in one account!+https://likeastore.com')
+					twitter: 'https://twitter.com/intent/tweet?text=' + (attr.shareOnText || 'Just tried @likeastore it helps me to keep my likes and interests in one account!+https://likeastore.com')
 				};
 
 				elem.on('click', function () {
