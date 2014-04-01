@@ -210,7 +210,7 @@ describe.only('collections.spec.js', function () {
 			});
 		});
 
-		describe('when item added to collection', function () {
+		describe('when items added to collection', function () {
 			var item, collection;
 
 			beforeEach(function (done) {
@@ -279,7 +279,7 @@ describe.only('collections.spec.js', function () {
 				});
 			});
 
-			describe('when adding item of another user', function () {
+			describe('when item belongs of another user', function () {
 				var anotherUser, discoverItem;
 
 				beforeEach(function (done) {
@@ -347,6 +347,59 @@ describe.only('collections.spec.js', function () {
 
 				it('should not contain items', function () {
 					expect(results[0].items).to.not.exist;
+				});
+			});
+
+			describe('items ordering (lifo)', function () {
+				var items;
+
+				beforeEach(function (done) {
+					testUtils.createTestItems(user, 3, function (err, created) {
+						items = created;
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.put({url: url + '/' + collection._id + '/items/' + items[0]._id, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.put({url: url + '/' + collection._id + '/items/' + items[1]._id, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.put({url: url + '/' + collection._id + '/items/' + items[2]._id, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url + '/' + collection._id + '/items', headers: headers, json: true }, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it('should return items in LIFO', function () {
+					expect(results[0]._id).to.equal(items[2]._id.toString());
+					expect(results[1]._id).to.equal(items[1]._id.toString());
+					expect(results[2]._id).to.equal(items[0]._id.toString());
 				});
 			});
 		});
