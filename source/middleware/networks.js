@@ -662,12 +662,13 @@ function flickr() {
 
 function flickrCallback () {
 	return function (req, res, next) {
+		var callbackUrl = config.applicationUrl + '/api/networks/flickr/callback';
 		var oauth = new OAuth('https://www.flickr.com/services/oauth/request_token',
 							'https://www.flickr.com/services/oauth/access_token',
 							config.services.flickr.consumerKey,
 							config.services.flickr.consumerSecret,
 							'1.0',
-							null,
+							callbackUrl,
 							'HMAC-SHA1');
 
 		var requestToken = req.query.oauth_token;
