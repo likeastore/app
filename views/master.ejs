@@ -52,60 +52,8 @@
 			</div>
 		</div>
 
-		<section ng-show="showPreviewHelp" class="first-time-box" ng-controller="firstTimeController">
-			<div class="main-message-container">
-				<div ng-show="slide1" class="inner-box animated fadeIn">
-					<h1>Welcome to Likeastore</h1>
-					<div class="text">Explore our <b>updated</b> interface and new features! Now you can manage all your favorites in one place, create collections and share what you like with your friends and co-workers much easier!</div>
-					<div class="btn next-btn" ng-click="goToSlide(2)">Next</div>
-				</div>
-
-				<div ng-show="slide2" class="inner-box animated fadeIn">
-					<img src="/img/network-screen.png" class="add-network-step-screen screen">
-					<div class="tip add-network-step">
-						<h2>Get started!</h2>
-						<p>Add networks like Twitter and Facebook, all your favorites will be synchronized and collected automaticly.</p>
-					</div>
-					<img src="/img/select-screen.png" class="select-step-screen screen">
-					<div class="tip select-step">
-						<h2>Browse socials!</h2>
-						<p>Filter your favorite content depending on a social network you use. Switch between liked things in a few clicks.</p>
-					</div>
-					<div class="buttons">
-						<div class="btn previous-btn" ng-click="goToSlide(1)">Previous</div>
-						<div class="btn next-btn" ng-click="goToSlide(3)">Next</div>
-					</div>
-				</div>
-
-				<div ng-show="slide3" class="inner-box slide3 animated fadeIn">
-					<img src="/img/menu-screen.png" class="menu-step-screen screen">
-					<div class="tip menu-step">
-						<h2>Explore features</h2>
-						<p>Check new possibilities that we offer and your profile and account info as well.</p>
-					</div>
-
-					<img src="/img/collection-screen.png" class="add-collection-step-screen screen">
-					<div class="tip collections-step">
-						<h2>Create collections</h2>
-						<p>Organize content and favorites from different services by creating custom collections of them.</p>
-					</div>
-
-					<img src="/img/discover-screen.png" class="discover-step-screen screen">
-					<div class="tip discover-step">
-						<h2>Your friends</h2>
-						<p>Find something new and discover what interests your friends and co-workers.</p>
-					</div>
-
-					<div class="cornered-buttons">
-						<div class="btn previous-btn" ng-click="goToSlide(2)">Previous</div>
-						<div class="btn ready-btn" ng-click="finish()">I'm ready!</div>
-					</div>
-				</div>
-			</div>
-		</section>
+		<%- partial('static/onboarding') %>
 	</div>
-
-	22 <a href="https://twitter.com/intent/tweet?text=dodo" title="">Come on!</a> 22
 
 	<%- partial('static/icon-preloader') %>
 	<%- partial('static/templates') %>
