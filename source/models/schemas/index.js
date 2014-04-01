@@ -67,7 +67,7 @@ exports.schemas = {
 				required: false,
 				type: 'boolean'
 			},
-			'connectionBlock': {
+			'blockNetworks': {
 				required: false,
 				type: 'boolean'
 			}

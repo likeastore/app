@@ -94,6 +94,22 @@ input[type="search"] {
 	transition: all .3s ease-in;
 }
 
+.delay-300ms {
+	animation-delay: .3s;
+}
+
+.delay-500ms {
+	animation-delay: .5s;
+}
+
+.delay-1s {
+	animation-delay: 1s;
+}
+
+.delay-2s {
+	animation-delay: 2s;
+}
+
 html,
 body,
 #likeastoreApp,

@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function FirstTimeController ($scope, $document, $window, $rootScope, $location, api) {
+	function onboardingController ($scope, $document, $window, $rootScope, $location, api) {
 		var $body = $document.find('body');
 		var delayedWarning;
 
@@ -49,5 +49,5 @@ define(function () {
 		};
 	}
 
-	return FirstTimeController;
+	return onboardingController;
 });

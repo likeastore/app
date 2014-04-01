@@ -10,6 +10,8 @@
 	var-darkblue: #272a33;
 	var-pink: #f03e56;
 	var-blue: #5da8e0;
+	var-facebook: #3c599f;
+	var-twitter: #33c6f4;
 	var-title-font: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
 	var-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
 }
@@ -244,6 +246,114 @@
 .network-error {
 	color: var(pink);
 	padding: 10px 30px 5px;
+}
+
+.block-networks-overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(255, 255, 255, .92);
+	z-index: 1000;
+	text-align: center;
+}
+
+.block-networks-overlay.animated {
+	animation-duration: .5s;
+	animation-fill-mode: both;
+}
+
+.block-networks-content {
+	width: 500px;
+	height: 310px;
+	margin: 0 auto;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	margin-top: -180px;
+}
+
+.block-networks-content.thanks {
+	height: 180px;
+	margin-top: -90px;
+}
+
+.block-networks-content.thanks .btn {
+	width: 180px;
+}
+
+.block-networks-content h1 {
+	font-size: 42px;
+	font-weight: 300;
+	letter-spacing: 1px;
+	margin-bottom: 35px;
+}
+
+.block-message {
+	font-size: 18px;
+	width: 490px;
+	margin: 0 auto 50px;
+	line-height: 26px;
+	letter-spacing: .6px;
+	color: #666;
+}
+
+.block-message b {
+	color: var(pink);
+}
+
+.block-networks-overlay .btn {
+	color: #fff;
+	font: 600 13px var(text-font);
+	width: 215px;
+	height: 50px;
+	line-height: 50px;
+	margin: 0 8px;
+	vertical-align: middle;
+	text-decoration: none;
+	letter-spacing: 1.5px;
+	border-radius: 3px;
+	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.block-networks-overlay .btn:hover {
+	opacity: 1;
+}
+
+.block-networks-overlay .btn.tw-btn {
+	background: var(twitter);
+}
+
+.block-networks-overlay .btn.fb-btn {
+	background: var(facebook);
+}
+
+.block-networks-overlay .btn .icon {
+	display: inline-block;
+	font-size: 22px;
+	vertical-align: top;
+	margin: 3px 5px 0 0;
+}
+
+.block-networks-overlay .btn.fb-btn .icon {
+	margin-right: 2px;
+}
+
+.block-networks-close {
+	display: block;
+	font-size: 13px;
+	color: var(pink);
+	margin-top: 50px;
+	text-decoration: underline;
+	letter-spacing: .3px;
+}
+
+.block-networks-close:hover {
+	color: var(navy);
+	text-decoration: none;
 }
 
 @media (max-width: 680px) {

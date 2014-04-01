@@ -7,7 +7,7 @@ define(function () {
 		'star': ['github', 'gist']
 	};
 
-	function HistoryController($scope, $rootScope, $analytics, appLoader, api, _) {
+	function HistoryController($scope, $rootScope, $analytics, appLoader, api) {
 		appLoader.loading();
 
 		$analytics.eventTrack('history opened');

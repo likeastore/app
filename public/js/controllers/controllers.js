@@ -37,6 +37,8 @@ define(function (require) {
 	controllers.controller('deleteCollectionController', require('./deleteCollectionController'));
 	controllers.controller('shareCollectionController', require('./shareCollectionController'));
 	controllers.controller('toggleStateCollectionController', require('./toggleStateCollectionController'));
+
+	// share and unblock
 	controllers.controller('shareAndUnblockController', require('./shareAndUnblockController'));
 
 	// errors
@@ -53,7 +55,8 @@ define(function (require) {
 	controllers.controller('discoverController', itemsControllerFactory('Discover', null, 'discover opened', 'discover'));
 	controllers.controller('profileController', require('./profileController'));
 
-	controllers.controller('firstTimeController', require('./firstTimeController'));
+	// onboarding
+	controllers.controller('onboardingController', require('./onboardingController'));
 
 	return controllers;
 });

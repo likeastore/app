@@ -16,7 +16,8 @@ define(function (require) {
 	services.factory('analytics', require('./analytics'));
 	services.factory('tracking', require('./tracking'));
 	services.factory('mixpanel', require('./mixpanel'));
-	services.factory('_', require('./underscore'));
+	services.factory('facebook', require('./facebook'));
+	services.factory('rooter', require('./rooter'));
 
 	return services;
 });

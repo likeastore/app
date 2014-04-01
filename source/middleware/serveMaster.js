@@ -21,7 +21,8 @@ function handler (title, mainJs, mainCss) {
 			applicationUrl: config.applicationUrl,
 			hashids: config.hashids,
 			analytics: config.analytics,
-			tracking: config.tracking.enabled
+			tracking: config.tracking.enabled,
+			appId: config.services.facebook.appId
 		};
 
 		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss, appConfig: appConfig });

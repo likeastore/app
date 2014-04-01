@@ -13,7 +13,7 @@ define(function (require) {
 		'author-image'
 	];
 
-	function GoToLink ($window, _) {
+	function GoToLink ($window) {
 		return {
 			restrict: 'A',
 			link: function (scope, elem, attrs) {

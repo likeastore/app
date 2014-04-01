@@ -37,7 +37,10 @@ module.exports = function(grunt) {
 				globals: {
 					angular: true,
 					require: true,
-					define: true
+					define: true,
+					_: true,
+					FB: true,
+					twttr: true
 				}
 			},
 			js: ['public/js/**/*.js', 'source/**/*.js']

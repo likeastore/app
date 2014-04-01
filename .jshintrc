@@ -24,6 +24,9 @@
 		"window",
 		"process",
 		"console",
+		"twttr",
+		"FB",
+		"_",
 		"__dirname",
 		"Buffer"
 	],

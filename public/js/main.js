@@ -18,7 +18,9 @@ require.config({
 		'angulartics.mixpanel': '../components/angulartics/src/angulartics-mixpanel',
 		'underscore': '../components/underscore/underscore',
 		'moment': '../components/momentjs/moment',
-		'modernizr': '../components/modernizr/modernizr'
+		'modernizr': '../components/modernizr/modernizr',
+		'facebook': '//connect.facebook.net/en_US/all',
+		'twttr': '//platform.twitter.com/widgets'
 	},
 	shim: {
 		ngResource: {
@@ -74,6 +76,12 @@ require.config({
 		},
 		moment: {
 			exports: 'moment'
+		},
+		facebook: {
+			exports: 'FB'
+		},
+		twttr: {
+			exports: 'twttr'
 		}
 	},
 	baseUrl: '/js'

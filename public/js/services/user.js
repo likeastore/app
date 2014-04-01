@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function User ($rootScope, $location, $window, api, storage, auth, _) {
+	function User ($rootScope, $location, $window, api, storage, auth) {
 		return {
 			initialize: function () {
 				api.get({ resource: 'users', target: 'me' }, function (user) {
@@ -57,8 +57,8 @@ define(function (require) {
 				api.query({ resource: 'networks' }, function (networks) {
 					$rootScope.networks = networks;
 
-					if (networks.length > 3 && _.isUndefined($rootScope.user.unblock)) {
-						$rootScope.user.unblock = false;
+					if (networks.length >= 3 && _.isUndefined($rootScope.user.blockNetworks)) {
+						$rootScope.user.blockNetworks = true;
 					}
 
 					$rootScope.stringifiedNetworks = _(networks).map(getNames).toString();
@@ -79,7 +79,7 @@ define(function (require) {
 			},
 
 			unblockConnections: function () {
-				api.patch({ resource: 'users', target: 'me' }, { unblock: true }, function (user) {
+				api.patch({ resource: 'users', target: 'me' }, { blockNetworks: false }, function (user) {
 					$rootScope.user = user;
 				});
 

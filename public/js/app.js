@@ -13,6 +13,9 @@ define(function (require) {
 	require('angulartics.mixpanel');
 	require('moment');
 	require('angularMoment');
+	require('underscore');
+	require('facebook');
+	require('twttr');
 
 	require('./services/services');
 	require('./controllers/controllers');
@@ -78,32 +81,16 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, tracking, $document, $location, $rootScope) {
+	app.run(function (user, tracking, facebook, rooter) {
 		user.initialize()
 			.getActiveNetworks()
 			.getInboxCount()
 			.getCollections();
 
 		tracking.boot();
+		facebook.init();
 
-		$rootScope.switchMenu = function (url) {
-			$location.url(url);
-		};
-
-		$rootScope.createFirstCollection = function () {
-			$document.find('body').addClass('sidebar-active');
-			$rootScope.showAddForm = true;
-		};
-
-		$rootScope.goToConfig = function () {
-			$location.url('/settings');
-			$rootScope.showConfigTab = true;
-		};
-
-		$rootScope.showConfigTab = true;
-		$rootScope.toggleConfig = function () {
-			$rootScope.showConfigTab = $rootScope.showConfigTab ? false : true;
-		};
+		rooter();
 	});
 
 	return app;

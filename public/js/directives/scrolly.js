@@ -3,7 +3,7 @@ define(function (require) {
 
 	var angular = require('angular');
 
-	function Scrolly (_) {
+	function Scrolly () {
 		return {
 			restrict: 'A',
 			link: function (scope, element, attrs) {

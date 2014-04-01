@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function CollectionController ($scope, $rootScope, $routeParams, $analytics, api, appLoader, _) {
+	function CollectionController ($scope, $rootScope, $routeParams, $analytics, api, appLoader) {
 		appLoader.loading();
 
 		$analytics.eventTrack('collection opened');

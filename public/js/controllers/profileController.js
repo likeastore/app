@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function ProfileController ($scope, $rootScope, $routeParams, $location, appLoader, api, _) {
+	function ProfileController ($scope, $rootScope, $routeParams, $location, appLoader, api) {
 		appLoader.loading();
 
 		$rootScope.title = $routeParams.name + '\'s profile';

@@ -70,6 +70,26 @@ input[type="search"] {
   transition: all .3s ease-in;
 }
 
+.delay-300ms {
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+.delay-500ms {
+  -webkit-animation-delay: .5s;
+  animation-delay: .5s;
+}
+
+.delay-1s {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.delay-2s {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
 html,
 body,
 #likeastoreApp,

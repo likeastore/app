@@ -4,7 +4,7 @@ define(function (require) {
 	var angular = require('angular');
 	var $el = angular.element;
 
-	function EditCollection ($document, api, user, $rootScope, _) {
+	function EditCollection ($document, api, user, $rootScope) {
 		return {
 			restrict: 'A',
 			template: '\
