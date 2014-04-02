@@ -1,9 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	var angular = require('angular');
-
-	function DribbbleNetworkController($scope, $rootScope, $timeout, api, ngProgressLite, ngDialog, $analytics) {
+	function DribbbleNetworkController($scope, $timeout, api, ngProgressLite, ngDialog, $analytics, user) {
 		var timer;
 
 		$scope.$watch('username', function (value) {
@@ -22,23 +20,7 @@ define(function (require) {
 			ngProgressLite.start();
 
 			api.save({ resource: 'networks', target: 'dribbble' }, { username: $scope.username }, function (res) {
-				var persistWarningFor = [];
-
-				angular.forEach($rootScope.networks, function (row) {
-					if (row.service === 'dribbble' && row.disabled) {
-						row.disabled = false;
-					}
-
-					if (row.disabled) {
-						persistWarningFor.push(row);
-					}
-				});
-
-				if (persistWarningFor.length === 0) {
-					$rootScope.user.warning = false;
-				}
-
-				$rootScope.networks.push({ service: 'dribbble' });
+				user.getActiveNetworks();
 
 				$analytics.eventTrack('network enabled');
 				ngProgressLite.done();

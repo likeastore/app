@@ -57,8 +57,8 @@ define(function (require) {
 				api.query({ resource: 'networks' }, function (networks) {
 					$rootScope.networks = networks;
 
-					if (networks.length >= 3 && _.isUndefined($rootScope.user.blockNetworks)) {
-						$rootScope.user.blockNetworks = true;
+					if (_.isUndefined($rootScope.user.blockNetworks)) {
+						$rootScope.user.blockNetworks = networks.length >= 3 ? true : void 0;
 					}
 
 					$rootScope.stringifiedNetworks = _(networks).map(getNames).toString();

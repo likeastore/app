@@ -32,9 +32,8 @@ define(function (require) {
 					if (isOn) {
 						elem.addClass('disabled');
 						api.remove(urlOptions, function (res) {
-							user.getInboxCount();
+							user.getActiveNetworks().getInboxCount();
 
-							$rootScope.networks.splice(index, 1);
 							elem.toggleClass('on');
 							elem.removeClass('disabled');
 						});

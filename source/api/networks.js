@@ -199,6 +199,7 @@ function networksService(app) {
 			if (err) {
 				return res.send(500, err);
 			}
+
 			res.json(nets);
 		});
 	}

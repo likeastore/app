@@ -19,9 +19,9 @@ define(function () {
 
 				FB.ui(options, function (res) {
 					if (res && res.post_id) {
-						options.success && options.success();
+						options.success && options.success(res);
 					} else {
-						options.error && options.error();
+						options.error && options.error(res);
 					}
 				});
 			}

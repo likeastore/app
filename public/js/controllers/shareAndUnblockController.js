@@ -1,8 +1,6 @@
 define(function () {
 	'use strict';
 
-	var angular = require('angular');
-
 	function ShareAndUnblockController ($scope, $rootScope, $document, api, user, $analytics, analytics, facebook) {
 		twttr.widgets.load();
 		twttr.events.bind('tweet', function () {

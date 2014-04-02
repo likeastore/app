@@ -83,9 +83,9 @@ define(function (require) {
 
 	app.run(function (user, tracking, facebook, rooter) {
 		user.initialize()
-			.getActiveNetworks()
 			.getInboxCount()
-			.getCollections();
+			.getCollections()
+			.getActiveNetworks();
 
 		tracking.boot();
 		facebook.init();
