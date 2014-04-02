@@ -8,6 +8,8 @@ var collectionFields = ['title', 'description', 'user', 'userData'];
 function feed (user, page, callback) {
 	var follows = user.followCollections;
 
+	console.log(db.collections.mapReduce);
+
 	if (!follows || follows.length === 0) {
 		return callback(null, {data: [], nextPage: false});
 	}
