@@ -79,8 +79,8 @@ var config = {
 		},
 
 		flickr: {
-			consumerKey: '9fd6b9622ac87b3ebe06561340f3f70c',
-			consumerSecret: 'c22baf5b17411ecf'
+			consumerKey: '6eecff3104c9001f4ae0febcbb78f652',
+			consumerSecret: 'b3eef2a9981d9894'
 		}
 	},
 
