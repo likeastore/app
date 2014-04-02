@@ -139,7 +139,9 @@ function findItems(user, collection, callback) {
 			return callback({message: 'collection not found', status: 404});
 		}
 
-		callback(null, collection.items.reverse());
+		var items = collection.items || [];
+
+		callback(null, items.reverse());
 	});
 }
 

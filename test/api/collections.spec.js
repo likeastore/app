@@ -2,7 +2,7 @@ var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
 
-describe('collections.spec.js', function () {
+describe.only('collections.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -572,29 +572,50 @@ describe('collections.spec.js', function () {
 				});
 			});
 
-			beforeEach(function (done) {
-				async.each(items, putToCollection, done);
+			describe('and there are no items', function () {
+				beforeEach(function (done) {
+					request.get({url: url + '/' + collection._id + '/items', headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
 
-				function putToCollection(item, callback) {
-					request.put({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, callback);
-				}
-			});
+				it('should respond with 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
 
-			beforeEach(function (done) {
-				request.get({url: url + '/' + collection._id + '/items', headers: headers, json: true}, function (err, resp, body) {
-					response = resp;
-					results = body;
-					done(err);
+				it('should return empty collection', function () {
+					expect(results).to.be.a('array');
+					expect(results.length).to.equal(0);
 				});
 			});
 
-			it('should respond with 200 (ok)', function () {
-				expect(response.statusCode).to.equal(200);
-			});
+			describe('and there are items', function () {
+				beforeEach(function (done) {
+					async.each(items, putToCollection, done);
 
-			it('should return all items in collection', function () {
-				expect(results).to.be.a('array');
-				expect(results.length).to.equal(10);
+					function putToCollection(item, callback) {
+						request.put({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, callback);
+					}
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url + '/' + collection._id + '/items', headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond with 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it('should return all items in collection', function () {
+					expect(results).to.be.a('array');
+					expect(results.length).to.equal(10);
+				});
 			});
 		});
 

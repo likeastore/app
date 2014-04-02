@@ -6,8 +6,8 @@ function searchService(app) {
 		middleware.analytics.track('search', {query: 'text'}),
 		searchItems);
 
-	app.get('/api/search/collection',
-		middleware.analytics.track('search collection', {query: 'text'}),
+	app.get('/api/search/collections',
+		middleware.analytics.track('search collections', {query: 'text'}),
 		searchCollections);
 
 	function searchItems(req, res, next) {
