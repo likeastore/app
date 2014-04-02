@@ -57,6 +57,9 @@ define(function (require) {
 						$scope.closeForm();
 
 						if (getBadge) {
+							var cacheBadge = new Image();
+							cacheBadge.src = '/img/parachute-badge.png';
+
 							ngDialog.open({
 								className: 'lsd-theme badge-dialog share-dialog',
 								template: 'shareFirstCollectionCreatedDialog',
