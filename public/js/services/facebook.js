@@ -10,7 +10,8 @@ define(function () {
 					xfbml: true
 				});
 			},
-			share: function (options, callback) {
+
+			share: function (options) {
 				if (!options || typeof options !== 'object') {
 					throw new Error('options are required, https://developers.facebook.com/docs/javascript/reference/FB.ui');
 				}

@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function onboardingController ($scope, $document, $window, $rootScope, $location, api) {
+	function onboardingController ($scope, $document, $window, $rootScope, $location, api, $analytics) {
 		var $body = $document.find('body');
 		var delayedWarning;
 
@@ -46,6 +46,15 @@ define(function () {
 					$rootScope.user.warning = true;
 				}
 			});
+		};
+
+		$scope.likeOnFacebook = function () {
+			$analytics.eventTrack('liked on facebook via onboarding');
+			$window.open('https://www.facebook.com/likeastore', 'Likeastore on Facebook', 'width=900,height=600,resizable=yes');
+		};
+
+		$scope.followOnTwitter = function () {
+			$analytics.eventTrack('followed on twitter via onboarding');
 		};
 	}
 

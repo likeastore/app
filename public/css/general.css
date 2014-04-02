@@ -1796,14 +1796,50 @@ textarea.fld {
   margin-left: 120px;
 }
 
+.first-time-box .follow-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.first-time-box .follow-buttons .follow-btn {
+  display: inline-block;
+  color: #fff;
+  font: 600 11px 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+  height: 25px;
+  line-height: 24px;
+  margin-left: 10px;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: .6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.first-time-box .follow-buttons .follow-btn.twee {
+  background: #33c6f4;
+  width: 148px;
+}
+
+.first-time-box .follow-buttons .follow-btn.fb {
+  background: #3c599f;
+  width: 140px;
+}
+
+.first-time-box .follow-buttons .follow-btn .icon {
+  display: inline-block;
+  vertical-align: top;
+  margin: 2px 2px 0 0;
+}
+
 /* Colors */
 
 .facebook-bg-clr {
-  background-color: #3b5998 !important;
+  background-color: #3c599f !important;
 }
 
 .twitter-bg-clr {
-  background-color: #3498db !important;
+  background-color: #33c6f4 !important;
 }
 
 .github-bg-clr {
@@ -1847,11 +1883,11 @@ textarea.fld {
 }
 
 .facebook-clr {
-  color: #3b5998 !important;
+  color: #3c599f !important;
 }
 
 .twitter-clr {
-  color: #3498db !important;
+  color: #33c6f4 !important;
 }
 
 .github-clr {
