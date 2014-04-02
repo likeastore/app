@@ -2,7 +2,7 @@ var async= require('async');
 var request = require('request');
 var testUtils = require('../utils');
 
-describe('discover.spec.js', function () {
+describe.only('discover.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
