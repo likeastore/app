@@ -2,13 +2,11 @@ var _ = require('underscore');
 var config = require('../../config');
 var db = require('../db')(config);
 
-var pageSize = 30;
+// var pageSize = 30;
 var collectionFields = ['title', 'description', 'user', 'userData'];
 
 function feed (user, page, callback) {
 	var follows = user.followCollections;
-
-	console.log(db.collections.mapReduce);
 
 	if (!follows || follows.length === 0) {
 		return callback(null, {data: [], nextPage: false});
@@ -39,33 +37,6 @@ function feed (user, page, callback) {
 
 		callback(null, {data: items, nextPage: false});
 	});
-
-	//callback(null, {data: [], nextPage: false});
-
-	// var follows = user.follows;
-
-	// if (!follows || follows.length === 0) {
-	// 	return callback(null, {data: [], nextPage: false});
-	// }
-
-	// var users = follows.map(function (f) {
-	// 	return f.email;
-	// });
-
-	// var query = db.items.find({user: {$in: users}, hidden: {$exists: false}}).limit(pageSize);
-	// if (page) {
-	// 	query = query.skip(pageSize * (page - 1));
-	// }
-
-	// query.sort({ date: -1 }, returnResults);
-
-	// function returnResults(err, items) {
-	// 	if (err) {
-	// 		return callback(err);
-	// 	}
-
-	// 	callback(null, {data: items, nextPage: items.length === pageSize});
-	// }
 }
 
 module.exports = {
