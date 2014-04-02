@@ -15,6 +15,8 @@ function feed (user, page, callback) {
 		return f.id;
 	});
 
+	page = page || 1;
+
 	db.collections.aggregate([
 		{
 			$match: {_id: {$in: ids}}
@@ -41,9 +43,9 @@ function feed (user, page, callback) {
 			$limit: pageSize
 		}
 	], function (err, items) {
-		items = items.map(function (i) {
+		items = (items && items.map(function (i) {
 			return _.extend(i.item, {collection: i.collection});
-		});
+		})) || [];
 
 		callback(null, {data: items, nextPage: items.length === pageSize});
 	});

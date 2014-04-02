@@ -733,5 +733,11 @@ describe('collections.spec.js', function () {
 				});
 			});
 		});
+
+		describe('collection are sorted by add date', function () {
+			it('fails', function () {
+				expect(0).to.equal(1);
+			});
+		});
 	});
 });
