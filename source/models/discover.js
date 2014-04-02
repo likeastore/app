@@ -1,7 +1,8 @@
+var _ = require('underscore');
 var config = require('../../config');
 var db = require('../db')(config);
 
-//var pageSize = 30;
+var pageSize = 30;
 
 function feed (user, page, callback) {
 	var follows = user.followCollections;
@@ -32,9 +33,19 @@ function feed (user, page, callback) {
 					owner: '$userData'
 				}
 			}
+		},
+		{
+			$skip: (page - 1) * pageSize
+		},
+		{
+			$limit: pageSize
 		}
 	], function (err, items) {
-		callback(null, {data: items, nextPage: false});
+		items = items.map(function (i) {
+			return _.extend(i.item, {collection: i.collection});
+		});
+
+		callback(null, {data: items, nextPage: items.length === pageSize});
 	});
 }
 

@@ -5,11 +5,13 @@ var config = require('../../config');
 var db = require('../db')(config);
 
 var ObjectId = require('mongojs').ObjectId;
-var userFields = ['_id', 'email', 'avatar', 'displayName', 'username'];
+
+var userPickFields = ['_id', 'email', 'avatar', 'displayName', 'username'];
+var itemOmitFields = ['collections', 'userData'];
 
 function create(user, collection, callback) {
 	collection.user = user.email;
-	collection.userData = _.pick(user, userFields);
+	collection.userData = _.pick(user, userPickFields);
 
 	if (!collection.public) {
 		collection.public = false;
@@ -90,7 +92,7 @@ function addItem(user, collection, item, callback) {
 	function putItemToCollection(item, collection, callback) {
 		db.collections.findAndModify({
 			query: {user: user.email, _id: collection._id},
-			update: {$addToSet: {items: _.omit(item, 'collections')}}
+			update: {$addToSet: {items: _.omit(item, itemOmitFields)}}
 		}, callback);
 	}
 }
@@ -201,7 +203,7 @@ function follow(user, collection, callback) {
 	function followCollection(collection, callback) {
 		db.collections.findAndModify({
 			query: {_id: collection._id},
-			update: { $addToSet: { followers: _.pick(user, userFields) }},
+			update: { $addToSet: { followers: _.pick(user, userPickFields) }},
 			'new': true
 		}, function (err, collection) {
 			callback(err, collection);
