@@ -1,9 +1,7 @@
-var _ = require('underscore');
 var config = require('../../config');
 var db = require('../db')(config);
 
-// var pageSize = 30;
-var collectionFields = ['title', 'description', 'user', 'userData'];
+//var pageSize = 30;
 
 function feed (user, page, callback) {
 	var follows = user.followCollections;
@@ -16,25 +14,26 @@ function feed (user, page, callback) {
 		return f.id;
 	});
 
-	db.collections.find({_id: {$in: ids}}, function (err, collections) {
-		if (err) {
-			return callback(err);
-		}
-
-		var items = collections.map(function (c) {
-			return c.items && c.items.map(function (i) {
-				return _.extend(i, {collection: _.pick(c, collectionFields)});
-			});
-		});
-
-		items = items.reduce(function (memo, items) {
-			if (items) {
-				memo = memo.concat(items);
+	db.collections.aggregate([
+		{
+			$match: {_id: {$in: ids}}
+		},
+		{
+			$unwind: '$items'
+		},
+		{
+			$project: {
+				_id: 0,
+				item: '$items',
+				collection: {
+					_id: '$_id',
+					title: '$title',
+					description: '$description',
+					owner: '$userData'
+				}
 			}
-
-			return memo;
-		}, []);
-
+		}
+	], function (err, items) {
 		callback(null, {data: items, nextPage: false});
 	});
 }
