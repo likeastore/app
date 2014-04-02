@@ -1,7 +1,10 @@
 define(function () {
 	'use strict';
 
-	function ShareFirstCollectionCreatedController ($scope, $rootScope, facebook, $analytics) {
+	function ShareFirstCollectionCreatedController ($scope, facebook, $analytics) {
+		// saving badge for long live cookie for now
+		document.cookie = 'hypebeastBadge=true; path=/; expires=' + new Date('January 1, 2020').toUTCString();
+
 		$scope.shareOnTwitter = function () {
 			$analytics.eventTrack('first collection badge shared', { on: 'twitter' });
 		};

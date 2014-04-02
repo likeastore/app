@@ -33,7 +33,7 @@ define(function (require) {
 						<div ng-click="closeForm()" class="link-btn cancel">Cancel</div>\
 					</div>\
 				</form>',
-			controller: function ($scope, $rootScope, $analytics, api, ngDialog, user) {
+			controller: function ($scope, $rootScope, $cookieStore, $analytics, api, ngDialog, user) {
 				$scope.colors = config.colors;
 
 				$scope.activeColor = $scope.colors[3];
@@ -48,7 +48,7 @@ define(function (require) {
 					api.save({ resource: 'collections' }, $scope.collection, function (collection) {
 						$analytics.eventTrack('collection created');
 
-						var collectionCount = $rootScope.collections.length;
+						var getBadge = $rootScope.collections.length === 0 && !$cookieStore.get('hypebeastBadge');
 
 						$scope.$parent.showCollections = true;
 						$rootScope.collections.push(collection);
@@ -56,13 +56,12 @@ define(function (require) {
 						$scope.collection = {};
 						$scope.closeForm();
 
-						if (collectionCount === 0) {
+						if (getBadge) {
 							ngDialog.open({
 								className: 'lsd-theme badge-dialog share-dialog',
 								template: 'shareFirstCollectionCreatedDialog',
 								controller: 'shareFirstCollectionCreatedController',
 								data: collection._id,
-								scope: $scope,
 								showClose: false
 							});
 						}

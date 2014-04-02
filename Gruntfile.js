@@ -38,6 +38,7 @@ module.exports = function(grunt) {
 					angular: true,
 					require: true,
 					define: true,
+					moment: true,
 					_: true,
 					FB: true,
 					twttr: true
