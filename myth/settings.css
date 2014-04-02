@@ -266,14 +266,14 @@
 
 .block-networks-content {
 	width: 500px;
-	height: 310px;
+	height: 355px;
 	margin: 0 auto;
 	text-align: center;
 	position: absolute;
 	top: 50%;
 	left: 0;
 	right: 0;
-	margin-top: -180px;
+	margin-top: -190px;
 }
 
 .block-networks-content.thanks {
@@ -292,6 +292,11 @@
 	margin-bottom: 35px;
 }
 
+.block-networks-content .heart-image {
+	width: 28px;
+	margin-bottom: 18px;
+}
+
 .block-message {
 	font-size: 18px;
 	width: 490px;
@@ -302,7 +307,7 @@
 }
 
 .block-message b {
-	color: var(pink);
+	color: #ff3992;
 }
 
 .block-networks-overlay .btn {
@@ -345,14 +350,14 @@
 .block-networks-close {
 	display: block;
 	font-size: 13px;
-	color: var(pink);
+	color: #999;
 	margin-top: 50px;
 	text-decoration: underline;
 	letter-spacing: .3px;
 }
 
 .block-networks-close:hover {
-	color: var(navy);
+	color: var(pink);
 	text-decoration: none;
 }
 
