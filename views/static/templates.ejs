@@ -20,6 +20,21 @@
 	</div>
 </script>
 
+<!-- Share first collection created dialog -->
+<script type="text/ng-template" id="shareFirstCollectionCreatedDialog">
+	<h2 class="bar">Congratulations!</h2>
+	<img src="/img/parachute-badge.png" class="hype-badge animated pulse delay-300ms" title="Hypebeast parachute badge ^_^">
+	<div class="social-desc">You have just created your first collection! Do you wanna tell your friends about it?</div>
+	<div class="social-share">
+		<button type="button" class="btn big-btn fb-btn" ng-click="shareOnFacebook()">
+			<i class="font-icon facebook-icon icon"></i> Share on facebook
+		</button>
+		<a href="https://twitter.com/intent/tweet?text=I've just created my first collection on https://likeastore.com and earned Hypebeast badge! via @likeastore" class="btn big-btn tw-btn" ng-click="shareOnTwitter()">
+			<i class="font-icon twitter-icon icon"></i> Share on twitter
+		</a>
+	</div>
+</script>
+
 <!-- Invite friends dialog -->
 <script type="text/ng-template" id="inviteDialogId">
 	<h2 class="bar">Invite your friends</h2>

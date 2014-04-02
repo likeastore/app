@@ -208,7 +208,7 @@
 }
 
 .ngdialog.lsd-theme .ngdialog-overlay {
-	background: rgba(0, 0, 0, .7);
+	background: rgba(0, 0, 0, .6);
 }
 
 .ngdialog.lsd-theme.dribbble-connect-dialog .ngdialog-overlay {
@@ -318,15 +318,16 @@
 }
 
 .ngdialog.share-dialog .ngdialog-content .social-share .btn {
-	display: inline;
+	display: inline-block;
 	color: #fff;
 	font-size: 12px;
 	width: 160px;
 	height: 39px;
+	line-height: 39px;
 }
 
 .ngdialog.share-dialog .ngdialog-content .social-share .fb-btn {
-	background: #3b5998;
+	background: #3c599f;
 	margin-right: 8px;
 }
 
@@ -336,12 +337,19 @@
 }
 
 .ngdialog.share-dialog .ngdialog-content .social-share .tw-btn {
-	background: #3498db;
+	background: #33c6f4;
 }
 
 .ngdialog.share-dialog .ngdialog-content .social-share .tw-btn:hover {
-	background: #2481bf;
+	background: #25bbe8;
 	opacity: 1;
+}
+
+.ngdialog.share-dialog .ngdialog-content .social-share .btn .icon {
+	display: inline-block;
+	font-size: 16px;
+	margin: 3px 3px 0 0;
+	vertical-align: top;
 }
 
 /* Delete modal */
@@ -366,21 +374,6 @@
 	display: inline;
 	width: 125px;
 	height: 39px;
-}
-
-@media (max-width: 440px) {
-	.ngdialog.lsd-theme .ngdialog-content {
-		width: 95% !important;
-	}
-
-	.ngdialog.share-dialog .ngdialog-content .social-share .btn {
-		width: 85%;
-		margin: 0;
-	}
-
-	.ngdialog.share-dialog .ngdialog-content .social-share .fb-btn {
-		margin-bottom: 20px;
-	}
 }
 
 /* Connect dribbble dialog */
@@ -433,4 +426,53 @@
 	color: #fff;
 	width: 100%;
 	height: 39px;
+}
+
+.ngdialog.badge-dialog {
+	padding-top: 130px;
+	padding-bottom: 130px;
+}
+
+.ngdialog.badge-dialog .ngdialog-content {
+	width: 430px;
+	padding-bottom: 2em;
+}
+
+.ngdialog.badge-dialog .ngdialog-content .hype-badge {
+	width: 180px;
+	margin: 12px auto 0;
+}
+
+.ngdialog.badge-dialog .ngdialog-content .social-desc {
+	font-size: 16px;
+	line-height: 24px;
+	padding: 20px 35px;
+}
+
+.ngdialog.badge-dialog .ngdialog-content .social-share .btn {
+	width: 170px;
+	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .2);
+}
+
+.ngdialog.badge-dialog .ngdialog-content .social-share .fb-btn {
+	margin-right: 10px;
+}
+
+.ngdialog.badge-dialog .ngdialog-content .social-share .fb-btn .icon {
+	margin-right: 2px;
+}
+
+@media (max-width: 440px) {
+	.ngdialog.lsd-theme .ngdialog-content {
+		width: 95% !important;
+	}
+
+	.ngdialog.share-dialog .ngdialog-content .social-share .btn {
+		width: 85%;
+		margin: 0;
+	}
+
+	.ngdialog.share-dialog .ngdialog-content .social-share .fb-btn {
+		margin-bottom: 20px;
+	}
 }

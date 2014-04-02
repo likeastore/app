@@ -1,6 +1,8 @@
 define(function (require) {
 	'use strict';
 
+	var config = require('config');
+
 	function AddCollection () {
 		return {
 			restrict: 'A',
@@ -31,16 +33,8 @@ define(function (require) {
 						<div ng-click="closeForm()" class="link-btn cancel">Cancel</div>\
 					</div>\
 				</form>',
-			controller: function ($scope, $rootScope, $analytics, api) {
-				$scope.colors = [
-					{ name: 'red', hex: '#e74c3c' },
-					{ name: 'orange', hex: '#f39c12' },
-					{ name: 'yellow', hex: '#feee43' },
-					{ name: 'green', hex: '#56c7aa' },
-					{ name: 'blue', hex: '#3498db' },
-					{ name: 'violet', hex: '#eab6fd' },
-					{ name: 'grey', hex: '#c8c8c8' }
-				];
+			controller: function ($scope, $rootScope, $analytics, api, ngDialog, user) {
+				$scope.colors = config.colors;
 
 				$scope.activeColor = $scope.colors[3];
 				$scope.selectColor = function (color) {
@@ -53,10 +47,25 @@ define(function (require) {
 					$scope.collection.color = $scope.activeColor.hex;
 					api.save({ resource: 'collections' }, $scope.collection, function (collection) {
 						$analytics.eventTrack('collection created');
+
+						var collectionCount = $rootScope.collections.length;
+
 						$scope.$parent.showCollections = true;
 						$rootScope.collections.push(collection);
+
 						$scope.collection = {};
-						$scope.showAddForm = false;
+						$scope.closeForm();
+
+						if (collectionCount === 0) {
+							ngDialog.open({
+								className: 'lsd-theme badge-dialog share-dialog',
+								template: 'shareFirstCollectionCreatedDialog',
+								controller: 'shareFirstCollectionCreatedController',
+								data: collection._id,
+								scope: $scope,
+								showClose: false
+							});
+						}
 					});
 				};
 
@@ -70,7 +79,7 @@ define(function (require) {
 
 				$rootScope.$watch('showAddForm', function (value) {
 					if (value) {
-						$scope.showAddForm = true;
+						$scope.showForm();
 						$rootScope.showAddForm = false;
 					}
 				});

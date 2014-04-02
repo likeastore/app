@@ -37,6 +37,7 @@ define(function (require) {
 	controllers.controller('deleteCollectionController', require('./deleteCollectionController'));
 	controllers.controller('shareCollectionController', require('./shareCollectionController'));
 	controllers.controller('toggleStateCollectionController', require('./toggleStateCollectionController'));
+	controllers.controller('shareFirstCollectionCreatedController', require('./shareFirstCollectionCreatedController'));
 
 	// share and unblock
 	controllers.controller('shareAndUnblockController', require('./shareAndUnblockController'));

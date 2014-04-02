@@ -1,6 +1,7 @@
 define(function (require) {
 	'use strict';
 
+	var config = require('config');
 	var angular = require('angular');
 	var $el = angular.element;
 
@@ -58,18 +59,9 @@ define(function (require) {
 					ng-dialog-class="lsd-theme delete-user-dialog"\
 					ng-dialog-data="{{collection._id}}"\
 					ng-dialog-controller="deleteCollectionController"\
-					ng-dialog-show-close="false"><i class="font-icon trash-icon icon"></i></a>\
-				',
+					ng-dialog-show-close="false"><i class="font-icon trash-icon icon"></i></a>',
 			link: function ($scope, elem, attrs) {
-				$scope.colors = [
-					{ name: 'red', hex: '#e74c3c' },
-					{ name: 'orange', hex: '#f39c12' },
-					{ name: 'yellow', hex: '#feee43' },
-					{ name: 'green', hex: '#56c7aa' },
-					{ name: 'blue', hex: '#3498db' },
-					{ name: 'violet', hex: '#eab6fd' },
-					{ name: 'grey', hex: '#c8c8c8' }
-				];
+				$scope.colors = config.colors;
 
 				$scope.activeColor = _($scope.colors).find(function (color) {
 					return color.hex === $scope.collection.color;
