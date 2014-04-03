@@ -9,13 +9,15 @@ var users = require('./users');
 
 var ObjectId = require('mongojs').ObjectId;
 
-var userPickFields = ['_id', 'email', 'avatar', 'displayName', 'username'];
+var userPickFields = ['_id', 'email', 'avatar', 'displayName', 'name'];
 var itemOmitFields = ['collections', 'userData'];
+var collectionOmitFields = ['items', 'userData'];
 
 function transform(collection) {
 	var clone = _.clone(collection);
+	var count = (collection.items && collection.items.length) || 0;
 
-	return _.omit(_.extend(clone, {count: (collection.items && collection.items.length) || 0 }), 'items');
+	return _.omit(_.extend(clone, {count:  count}), collectionOmitFields);
 }
 
 function create(user, collection, callback) {
@@ -56,7 +58,7 @@ function remove(user, collection, callback) {
 }
 
 function find(user, callback) {
-	db.collections.find({user: user.email}, {fields: {userData: 0}}, function (err, collections) {
+	db.collections.find({user: user.email}, function (err, collections) {
 		if (err) {
 			return callback(err);
 		}
@@ -66,7 +68,7 @@ function find(user, callback) {
 }
 
 function findOne(user, collection, callback) {
-	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, {fields: {userData: 0}}, function(err, collection) {
+	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, function(err, collection) {
 		if (err) {
 			return callback(err);
 		}
