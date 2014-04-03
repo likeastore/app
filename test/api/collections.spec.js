@@ -2,7 +2,7 @@ var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
 
-describe('collections.spec.js', function () {
+describe.only('collections.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -711,6 +711,7 @@ describe('collections.spec.js', function () {
 
 					it('should have followers property', function () {
 						expect(results).to.have.property('followers');
+						expect(results.followers).to.have.length(1);
 					});
 				});
 
@@ -729,6 +730,87 @@ describe('collections.spec.js', function () {
 
 					it('should have followCollections property', function () {
 						expect(results).to.have.property('followCollections');
+					});
+				});
+			});
+		});
+
+		describe('when unfollow collection', function () {
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, body: {title: 'My new collection'}, json: true}, function (err, resp, body) {
+					response = resp;
+					collection = body;
+					done(err);
+				});
+			});
+
+			describe('other user collection', function () {
+				var otherUserHeaders;
+
+				beforeEach(function (done) {
+					testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+						token = accessToken;
+						user = createdUser;
+						otherUserHeaders = {'X-Access-Token': accessToken};
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.put({url: url + '/' + collection._id + '/follow', headers: otherUserHeaders, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.del({url: url + '/' + collection._id + '/follow', headers: otherUserHeaders, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond 200 (created)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				describe('and collection updated', function () {
+					beforeEach(function (done) {
+						request.get({url: url + '/' + collection._id, headers: headers, json: true}, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it('should have updated followers property', function () {
+						expect(results).to.have.property('followers');
+						expect(results.followers).to.have.length(0);
+					});
+				});
+
+				describe('and user updated', function () {
+					beforeEach(function (done) {
+						request.get({url: testUtils.getRootUrl() + '/api/users/me', headers: otherUserHeaders, json: true}, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it('should have followCollections property', function () {
+						expect(results).to.have.property('followCollections');
+						expect(results.followCollections).to.have.length(0);
 					});
 				});
 			});

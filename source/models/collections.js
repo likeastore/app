@@ -233,6 +233,52 @@ function follow(user, collection, callback) {
 	}
 }
 
+function unfollow(user, collection, callback) {
+	if (!collection) {
+		return callback({message: 'missing collection id', status: 412});
+	}
+
+	async.waterfall([
+		checkUser,
+		unfollowCollection,
+		updateUser
+	], callback);
+
+	function checkUser(callback) {
+		db.collections.findOne({_id: new ObjectId(collection)}, function (err, collection) {
+			if (err) {
+				return callback(err);
+			}
+
+			if (!collection) {
+				return callback({message: 'collection not found', status: 404});
+			}
+
+			if (collection.user === user.email) {
+				return callback({message: 'can\'t unfollow own collection', status: 403});
+			}
+
+			callback(null, collection);
+		});
+	}
+
+	function unfollowCollection(collection, callback) {
+		db.collections.findAndModify({
+			query: {_id: collection._id},
+			update: { $pull: { followers: _.pick(user, userPickFields) }}
+		}, function (err, collection) {
+			callback(err, collection);
+		});
+	}
+
+	function updateUser(collection, callback) {
+		db.users.findAndModify({
+			query: {email: user.email},
+			update: {$pull: {followCollections: {id: collection._id}}}
+		}, callback);
+	}
+}
+
 module.exports = {
 	create: create,
 	remove: remove,
@@ -242,5 +288,6 @@ module.exports = {
 	removeItem: removeItem,
 	findItems: findItems,
 	update: update,
-	follow: follow
+	follow: follow,
+	unfollow: unfollow
 };

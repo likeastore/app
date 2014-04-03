@@ -29,7 +29,12 @@ function collectionsService(app) {
 		patchCollectionProperties);
 
 	app.put('/api/collections/:collection/follow',
+		middleware.analytics.track('collection followed'),
 		followCollection);
+
+	app.del('/api/collections/:collection/follow',
+		middleware.analytics.track('collection unfollowed'),
+		unfollowCollection);
 
 	function getCollections(req, res, next) {
 		collections.find(req.user, function (err, collections) {
@@ -128,6 +133,16 @@ function collectionsService(app) {
 			}
 
 			res.send(201);
+		});
+	}
+
+	function unfollowCollection(req, res, next) {
+		collections.unfollow(req.user, req.params.collection, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(200);
 		});
 	}
 }
