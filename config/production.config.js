@@ -21,6 +21,10 @@ var config = {
 		enabled: true
 	},
 
+	nodalytics: {
+		ua: 'UA-41034999-4'
+	},
+
 	// api keys
 	services: {
 		github: {

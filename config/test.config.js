@@ -20,6 +20,10 @@ var config = {
 		enabled: false
 	},
 
+	nodalytics: {
+		ua: null
+	},
+
 	// api keys
 	services: {
 		github: {
