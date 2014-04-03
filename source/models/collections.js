@@ -5,6 +5,8 @@ var moment = require('moment');
 var config = require('../../config');
 var db = require('../db')(config);
 
+var users = require('./users');
+
 var ObjectId = require('mongojs').ObjectId;
 
 var userPickFields = ['_id', 'email', 'avatar', 'displayName', 'username'];
@@ -53,6 +55,30 @@ function find(user, callback) {
 
 function findOne(user, collection, callback) {
 	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, {fields: {items: 0}}, callback);
+}
+
+function findByUser(userName, callback) {
+	users.findByName(userName, function (err, user) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (!user) {
+			return callback({message: 'user not found', username: userName, status: 404});
+		}
+
+		find(user, function (err, collections) {
+			if (err) {
+				return callback(err);
+			}
+
+			var public = collections.filter(function (c) {
+				return c.public === true;
+			});
+
+			callback(null, public);
+		});
+	});
 }
 
 function addItem(user, collection, item, callback) {
@@ -284,6 +310,7 @@ module.exports = {
 	remove: remove,
 	find: find,
 	findOne: findOne,
+	findByUser: findByUser,
 	addItem: addItem,
 	removeItem: removeItem,
 	findItems: findItems,

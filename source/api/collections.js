@@ -5,6 +5,9 @@ function collectionsService(app) {
 	app.get('/api/collections',
 		getCollections);
 
+	app.get('/api/collections/user/:name',
+		getUsersCollections);
+
 	app.get('/api/collections/:collection',
 		getCollection);
 
@@ -38,6 +41,16 @@ function collectionsService(app) {
 
 	function getCollections(req, res, next) {
 		collections.find(req.user, function (err, collections) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(collections);
+		});
+	}
+
+	function getUsersCollections(req, res, next) {
+		collections.findByUser(req.params.name, function (err, collections) {
 			if (err) {
 				return next(err);
 			}

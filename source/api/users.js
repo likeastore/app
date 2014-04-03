@@ -1,5 +1,4 @@
 var _ = require('underscore');
-
 var users = require('../models/users');
 var networks = require('../models/networks');
 var notifications = require('../models/notifications');
@@ -22,18 +21,22 @@ function usersService(app) {
 		searchUser
 	);
 
+	// DEPRICATED API: will be removed soon
 	app.get('/api/users/me/follows',
 		returnFollows
 	);
 
+	// DEPRICATED API: will be removed soon
 	app.get('/api/users/me/followed',
 		returnFollowed
 	);
 
+	// DEPRICATED API: will be removed soon
 	app.get('/api/users/:name/follows',
 		returnFollowsByName
 	);
 
+	// DEPRICATED API: will be removed soon
 	app.get('/api/users/:name/followed',
 		returnFollowedByName
 	);

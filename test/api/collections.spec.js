@@ -2,7 +2,7 @@ var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
 
-describe.only('collections.spec.js', function () {
+describe('collections.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -813,6 +813,45 @@ describe.only('collections.spec.js', function () {
 						expect(results.followCollections).to.have.length(0);
 					});
 				});
+			});
+		});
+
+		describe('when getting users collections', function () {
+			var otherUser, otherUserHeaders;
+
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					otherUser = createdUser;
+					otherUserHeaders = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				var collections = [{title: 'first', public: true}, {title: 'second', public: false}, {title: 'third', public: true}];
+
+				async.map(collections, createCollection, done);
+
+				function createCollection(collection, callback) {
+					request.post({url: url, headers: otherUserHeaders, body: collection, json: true}, callback);
+				}
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url + '/user/' + otherUser.name, headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return opened collections', function () {
+				expect(results).to.have.length(2);
 			});
 		});
 	});
