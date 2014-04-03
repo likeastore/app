@@ -19,6 +19,7 @@ define(function () {
 			$scope.me = (user.name === $routeParams.name);
 		}
 
+		$scope.list = 'ownCollections';
 		$scope.profile = api.get({ resource: 'users', target: $routeParams.name });
 
 		api.query({ resource: 'collections', target: 'user', verb: $routeParams.name }, handleCollections);

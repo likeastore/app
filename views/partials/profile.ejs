@@ -40,6 +40,12 @@
 	</div>
 
 	<div class="profile-lists">
+
+		<h2 class="list-title" ng-if="profileCollections.length">
+			<span ng-if="list === 'ownCollections'">{{profile.displayName || profile.name}}'s collections:</span>
+			<span ng-if="list === 'followCollections'">{{profile.displayName || profile.name}} follows:</span>
+		</h2>
+
 		<ul class="profile-collections" ng-if="profileCollections.length">
 			<li class="coll-item coll{{$index}} clearfix"
 				ng-repeat="coll in profileCollections"

@@ -126,6 +126,16 @@
 	padding-bottom: 60px;
 }
 
+.profile-lists .list-title {
+	color: #999;
+	font-weight: 600;
+	font-size: 12px;
+	letter-spacing: .6px;
+	margin-bottom: 15px;
+	text-indent: 10px;
+	text-transform: uppercase;
+}
+
 .profile-lists .profile-action {
 	margin: 5px 0 0;
 	height: 21px;
@@ -300,16 +310,6 @@
 
 .profile-lists .profile-me {
 	margin: 7px 0 0;
-}
-
-.profile-lists .list-title {
-	color: #999;
-	font-weight: 600;
-	font-size: 12px;
-	letter-spacing: .6px;
-	margin-bottom: 10px;
-	text-indent: 10px;
-	text-transform: uppercase;
 }
 
 .profile-lists .empty-results {
