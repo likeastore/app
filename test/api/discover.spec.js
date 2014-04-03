@@ -145,10 +145,78 @@ describe('discover.spec.js', function () {
 		});
 
 		describe('when few collections with items followed', function () {
-			it('fails', function () {
-				expect(0).to.equal(1);
+			var firstCollection, secondCollection;
+
+			beforeEach(function (done) {
+				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection 1'}, json: true}, function (err, resp, body) {
+					firstCollection = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection 2'}, json: true}, function (err, resp, body) {
+					secondCollection = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestItems(secondUser, function (err, createdItems) {
+					if (err) {
+						return done(err);
+					}
+
+					async.map(createdItems, putToCollection, done);
+
+					function putToCollection(item, callback) {
+						request.put({url: testUtils.getRootUrl() + '/api/collections/' + firstCollection._id + '/items/' + item._id, headers: secondUserHeaders}, callback);
+					}
+				});
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestItems(secondUser, function (err, createdItems) {
+					if (err) {
+						return done(err);
+					}
+
+					async.map(createdItems, putToCollection, done);
+
+					function putToCollection(item, callback) {
+						request.put({url: testUtils.getRootUrl() + '/api/collections/' + secondCollection._id + '/items/' + item._id, headers: secondUserHeaders}, callback);
+					}
+				});
+			});
+
+			beforeEach(function (done) {
+				request.put({url: testUtils.getRootUrl() + '/api/collections/' + firstCollection._id + '/follow', headers: firstUserHeaders }, function (err, results, body) {
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.put({url: testUtils.getRootUrl() + '/api/collections/' + secondCollection._id + '/follow', headers: firstUserHeaders }, function (err, results, body) {
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url, headers: firstUserHeaders, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond 200(ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should contain items from both collection', function () {
+				expect(results.data).to.be.an('array');
+				expect(results.data).to.have.length(20);
 			});
 		});
-
 	});
 });
