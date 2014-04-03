@@ -16,7 +16,7 @@
 	<input id="collectionUrl" class="fld" ng-model="link">
 	<div class="social-share">
 		<button type="button" class="btn big-btn fb-btn" share-on="facebook" share-on-text="{{link}}">Share on facebook</button>
-		<button type="button" class="btn big-btn tw-btn" share-on="twitter" share-on-text="{{title}} collection - {{link}}, shared via @likeastore">Share on twitter</button>
+		<button type="button" class="btn big-btn tw-btn" share-on="twitter" share-on-text="{{description||title}} - {{link}}, shared via @likeastore">Share on twitter</button>
 	</div>
 </script>
 

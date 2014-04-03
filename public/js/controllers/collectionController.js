@@ -19,6 +19,7 @@ define(function () {
 
 			if ($scope.collection) {
 				$rootScope.title = $scope.collection.title;
+				$rootScope.description = $scope.collection.description;
 			}
 		}
 
