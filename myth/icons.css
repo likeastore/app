@@ -214,6 +214,14 @@
 	content: '\e024';
 }
 
+.people-icon:before {
+	content: '\e026';
+}
+
+.doc-icon:before {
+	content: '\e027';
+}
+
 .big-icon {
 	height: 100px;
 	width: 100px;

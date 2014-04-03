@@ -1466,8 +1466,7 @@ textarea.fld {
   opacity: 0;
   background: rgba(31, 33, 47, 0.96);
   color: #eee;
-  font-size: 11px;
-  font-family: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+  font: 400 11px 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
   line-height: 16px;
   padding: 4px 12px;
   text-align: center;

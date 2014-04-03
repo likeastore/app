@@ -41,10 +41,13 @@ define(function (require) {
 					$scope.activeColor = color;
 				};
 
-				$scope.collection = {};
+				$scope.collection = {
+					'public': true // make it public by default
+				};
 
 				$scope.createCollection = function () {
 					$scope.collection.color = $scope.activeColor.hex;
+
 					api.save({ resource: 'collections' }, $scope.collection, function (collection) {
 						$analytics.eventTrack('collection created');
 

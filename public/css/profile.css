@@ -118,6 +118,131 @@
   padding-bottom: 60px;
 }
 
+.profile-lists .profile-action {
+  margin: 5px 0 0;
+  height: 21px;
+  position: relative;
+  z-index: 11;
+}
+
+.coll-item {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.coll-book {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 15px 35px;
+  width: 100%;
+  min-height: 55px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.coll-info {
+  width: 80%;
+}
+
+.coll-book .small-btn,
+.coll-book .small-btn:focus {
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.2);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.2);
+}
+
+.coll-book .title {
+  display: inline-block;
+  font-size: 14px;
+  font-family: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+  letter-spacing: .3px;
+  vertical-align: top;
+  margin: 2px 0 10px;
+  position: relative;
+  z-index: 11;
+}
+
+.coll-book .title a {
+  color: #1f282d;
+}
+
+.coll-book .title a:hover {
+  color: #f03e56;
+}
+
+.coll-book .desc {
+  font-size: 13px;
+  color: #666;
+  padding-bottom: 10px;
+  letter-spacing: .3px;
+}
+
+.coll-book .stat {
+  color: #f03e56;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 10px;
+  position: relative;
+  z-index: 11;
+  cursor: default;
+}
+
+.coll-book .stat span {
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: top;
+}
+
+.coll-book .stat .icon {
+  display: inline-block;
+  font-size: 13px;
+  vertical-align: top;
+  margin: 1px 3px 0 0;
+}
+
+.coll-book .stat .tooltip {
+  padding: 2px 12px;
+  bottom: -25px;
+}
+
+.coll-book .stat .tooltip:after {
+  bottom: 100%;
+  border: solid transparent;
+  content: '';
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: rgba(31, 33, 47, 0.96);
+  border-width: 5px;
+  right: 0;
+  left: 0;
+  top: -10px;
+  z-index: -1;
+}
+
+.backlists li {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 3px;
+  border-radius: 0 0 2px 2px;
+}
+
+.backlists li:first-child {
+  width: 99.6%;
+}
+
+.backlists li:nth-child(1) {
+  width: 99.2%;
+}
+
+.backlists li:nth-child(2) {
+  width: 98.8%;
+}
+
 .profile-lists .profile-follow-item {
   background: #fff;
   border-bottom: 1px solid #eee;
@@ -165,11 +290,6 @@
 
 .profile-lists .profile-me {
   margin: 7px 0 0;
-}
-
-.profile-lists .profile-action {
-  margin: 6px 0 0;
-  height: 22px;
 }
 
 .profile-lists .list-title {

@@ -1,110 +1,81 @@
 define(function () {
 	'use strict';
 
-	function ProfileController ($scope, $rootScope, $routeParams, $location, appLoader, api) {
+	function ProfileController($scope, $rootScope, $routeParams, appLoader, api, user) {
 		appLoader.loading();
 
 		$rootScope.title = $routeParams.name + '\'s profile';
 
-		api.get({ resource: 'users', target: 'me' }, function (me) {
-			if (!me.follows) {
-				me.follows = [];
-			}
+		api.get({ resource: 'users', target: $routeParams.name }, handleUser);
+		function handleUser(user) {
+			$scope.me = ($rootScope.user.name === $routeParams.name);
+			$scope.profile = user;
 
-			if (!me.followed) {
-				me.followed = [];
-			}
+			api.query({ resource: 'collections', target: 'user', verb: $routeParams.name }, handleCollections);
+			function handleCollections(collections) {
+				$scope.collections = collections;
 
-			$scope.me = me.name === $routeParams.name;
+				$scope.switchList = function (list) {
+					$scope.list = list;
+				};
 
-			$scope.followUser = function (profile) {
-				profile.processing = true;
-				api.save({ resource: 'users', target: 'me', verb: 'follow', suffix: profile._id }, {}, function (res) {
-					profile.mutual = true;
-					profile.processing = false;
+				$scope.kFormat = function(num) {
+					return num > 999 ? (num/1000).toFixed() + 'k' : num;
+				};
 
-					profile.followed.push(me);
-					me.follows.push(profile);
+				$scope.followCollection = function (id, index) {
+					var collection = $scope.collections[index];
+
+					collection.processing = true;
+
+					api.update({ resource: 'collections', target: id, verb: 'follow' }, {}, function () {
+						// add user to collection followers
+						collection.followers.push($rootScope.user);
+
+						// add collection to user followings
+						$rootScope.user.followCollections.push({ id: id });
+
+						collection.mutual = true;
+						collection.processing = false;
+					});
+				};
+
+				$scope.unfollowCollection = function (id, index) {
+					var collection = $scope.collections[index];
+
+					collection.processing = true;
+
+					api.delete({ resource: 'collections', target: id, verb: 'follow' }, {}, function () {
+						var uIndex = _($rootScope.user.followCollections).indexOf(collection);
+						var cIndex = _(collection.followers).indexOf($rootScope.user);
+
+						// remove user from collection followers
+						collection.followers.splice(cIndex, 1);
+
+						// remove collection from user followings
+						$rootScope.user.followCollections.splice(uIndex, 1);
+
+						collection.mutual = false;
+						collection.processing = false;
+					});
+				};
+
+				_($scope.collections).forEach(function (collection) {
+					collection.mutual = isMutual(collection._id);
+
+					function isMutual (id) {
+						var meFollows = $rootScope.user.followCollections;
+						return meFollows.length && _(meFollows).find(function (collection) {
+							return collection.id === id;
+						});
+					}
 				});
-			};
-
-			$scope.unfollowUser = function (profile) {
-				profile.processing = true;
-				api.delete({ resource: 'users', target: 'me', verb: 'follow', suffix: profile._id }, function (res) {
-					var index;
-
-					profile.mutual = false;
-					profile.processing = false;
-
-					index = _(profile.followed).indexOf(profile);
-					profile.followed.splice(index, 1);
-
-					index = _(me.follows).indexOf();
-					me.follows.splice(index, 1);
-				});
-			};
-
-			$scope.switchList = function (verb) {
-				$scope.list = verb;
-				getUserList(verb);
-			};
-
-			$scope.kFormat = function (num) {
-				return num > 999 ? (num/1000).toFixed() + 'k' : num;
-			};
-
-			if ($scope.me) {
-				$scope.profile = me;
 
 				appLoader.ready();
-				$scope.switchList('favorites');
-			} else {
-				api.get({ resource: 'users', target: $routeParams.name }, function (user) {
-					if (!user.follows) {
-						user.follows = [];
-					}
-					if (!user.followed) {
-						user.followed = [];
-					}
-
-					$scope.profile = user;
-					$scope.profile.mutual = checkMeFollowing($scope.profile.email);
-					$scope.processing = false;
-
-					appLoader.ready();
-					$scope.switchList('favorites');
-				});
 			}
 
+		}
 
-			function getUserList (verb) {
-				appLoader.loading();
-
-				if (verb === 'favorites') {
-					api.get({ resource: 'items', target: 'user', verb: $scope.profile._id }, function (res) {
-						$scope.followers = false;
-						$scope.items = res.data;
-						appLoader.ready();
-					});
-				} else {
-					api.query({ resource: 'users', target: $scope.profile.name, verb: verb }, function (list) {
-						_(list).forEach(function (row) {
-							row.mutual = checkMeFollowing(row.email);
-						});
-						$scope.items = false;
-						$scope.followers = list;
-						appLoader.ready();
-					});
-				}
-			}
-
-			function checkMeFollowing (email) {
-				var meFollows = me.follows;
-				return meFollows.length && _(meFollows).find(function (row) {
-					return row.email === email;
-				});
-			}
-		});
 	}
 
 	return ProfileController;
