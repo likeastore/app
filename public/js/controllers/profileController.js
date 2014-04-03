@@ -64,7 +64,7 @@ define(function () {
 					collection.mutual = isMutual(collection._id);
 
 					function isMutual (id) {
-						var meFollows = $rootScope.user.followCollections;
+						var meFollows = $rootScope.user.followCollections || [];
 						return meFollows.length && _(meFollows).find(function (collection) {
 							return collection.id === id;
 						});
