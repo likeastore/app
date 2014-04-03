@@ -3,7 +3,7 @@ var async = require('async');
 var testUtils = require('../utils');
 
 describe('collections.spec.js', function () {
-	var token, user, url, headers, response, results;
+	var token, user, url, items, headers, response, results;
 
 	beforeEach(function () {
 		url = testUtils.getRootUrl() + '/api/collections';
@@ -852,6 +852,52 @@ describe('collections.spec.js', function () {
 
 			it('should return opened collections', function () {
 				expect(results).to.have.length(2);
+			});
+		});
+
+		describe('when using collection properties', function () {
+			beforeEach(function () {
+				collection = {title: 'This is test collection', public: true};
+			});
+
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, body: collection, json: true}, function (err, resp, body) {
+					response = resp;
+					collection = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, function (err, results) {
+					items = results;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				async.map(items, putItemToCollection, done);
+
+				function putItemToCollection(item, callback) {
+					request.put({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, callback);
+				}
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url + '/' + collection._id, headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should return 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should contain count', function () {
+				expect(results).to.have.property('count');
+				expect(results.count).to.equal(10);
 			});
 		});
 	});

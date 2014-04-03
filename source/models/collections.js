@@ -12,6 +12,12 @@ var ObjectId = require('mongojs').ObjectId;
 var userPickFields = ['_id', 'email', 'avatar', 'displayName', 'username'];
 var itemOmitFields = ['collections', 'userData'];
 
+function transform(collection) {
+	var clone = _.clone(collection);
+
+	return _.omit(_.extend(clone, {count: (collection.items && collection.items.length) || 0 }), 'items');
+}
+
 function create(user, collection, callback) {
 	collection.user = user.email;
 	collection.userData = _.pick(user, userPickFields);
@@ -50,11 +56,23 @@ function remove(user, collection, callback) {
 }
 
 function find(user, callback) {
-	db.collections.find({user: user.email}, {fields: {items: 0, userData: 0}}, callback);
+	db.collections.find({user: user.email}, {fields: {userData: 0}}, function (err, collections) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null, collections.map(transform));
+	});
 }
 
 function findOne(user, collection, callback) {
-	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, {fields: {items: 0}}, callback);
+	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, {fields: {userData: 0}}, function(err, collection) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null, transform(collection));
+	});
 }
 
 function findByUser(userName, callback) {
