@@ -6,7 +6,7 @@ define(function (require) {
 	function User ($rootScope, $location, $window, api, storage, auth) {
 		return {
 			initialize: function () {
-				api.get({ resource: 'users', target: 'me' }, function (user) {
+				return api.get({ resource: 'users', target: 'me' }, function (user) {
 					if (!user.follows) {
 						user.follows = [];
 					}
@@ -41,8 +41,6 @@ define(function (require) {
 						}
 					}
 				});
-
-				return this;
 			},
 
 			getCollections: function () {
@@ -57,8 +55,10 @@ define(function (require) {
 				api.query({ resource: 'networks' }, function (networks) {
 					$rootScope.networks = networks;
 
-					if (_.isUndefined($rootScope.user.blockNetworks)) {
-						$rootScope.user.blockNetworks = networks.length >= 3 ? true : void 0;
+					if (_.isUndefined($rootScope.user.blockNetworks) && networks.length >= 3) {
+						$rootScope.user.blockNetworks = true;
+					} else if ($rootScope.user.blockNetworks && networks.length < 3) {
+						$rootScope.user.blockNetworks = void 0;
 					}
 
 					$rootScope.stringifiedNetworks = _(networks).map(getNames).toString();

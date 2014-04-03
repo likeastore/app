@@ -82,10 +82,11 @@ define(function (require) {
 	]);
 
 	app.run(function (user, tracking, facebook, rooter) {
-		user.initialize()
-			.getInboxCount()
-			.getCollections()
-			.getActiveNetworks();
+		user.initialize().$promise.then(function () {
+			user.getInboxCount()
+				.getCollections()
+				.getActiveNetworks();
+		});
 
 		tracking.boot();
 		facebook.init();
