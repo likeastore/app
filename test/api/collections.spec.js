@@ -2,7 +2,7 @@ var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
 
-describe('collections.spec.js', function () {
+describe.only('collections.spec.js', function () {
 	var token, user, url, headers, response, results;
 
 	beforeEach(function () {
@@ -731,12 +731,6 @@ describe('collections.spec.js', function () {
 						expect(results).to.have.property('followCollections');
 					});
 				});
-			});
-		});
-
-		describe('collection are sorted by add date', function () {
-			it('fails', function () {
-				expect(0).to.equal(1);
 			});
 		});
 	});

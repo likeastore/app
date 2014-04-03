@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var async = require('async');
+var moment = require('moment');
 
 var config = require('../../config');
 var db = require('../db')(config);
@@ -35,8 +36,7 @@ function remove(user, collection, callback) {
 	function removeCollectionFromItems(callback) {
 		db.items.findAndModify({
 			query: {user: user.email, collections: {$elemMatch: {id: collection}}},
-			update: {$pull: {collections: {id: collection}}},
-			'new': true
+			update: {$pull: {collections: {id: collection}}}
 		}, function (err) {
 			callback(err);
 		});
@@ -78,8 +78,7 @@ function addItem(user, collection, item, callback) {
 	function putCollectionIdToItem(collection, callback) {
 		db.items.findAndModify({
 			query: {_id: new ObjectId(item)},
-			update: {$addToSet: {collections: {id: collection._id}}},
-			'new': true
+			update: {$addToSet: {collections: {id: collection._id}}}
 		}, function (err, item) {
 			if (err) {
 				return callback(err);
@@ -90,9 +89,11 @@ function addItem(user, collection, item, callback) {
 	}
 
 	function putItemToCollection(item, collection, callback) {
+		var extended = _.extend(item, {added: moment().toDate()});
+
 		db.collections.findAndModify({
 			query: {user: user.email, _id: collection._id},
-			update: {$addToSet: {items: _.omit(item, itemOmitFields)}}
+			update: {$addToSet: {items: _.omit(extended, itemOmitFields)}}
 		}, callback);
 	}
 }
@@ -115,7 +116,6 @@ function removeItem(user, collection, item, callback) {
 		db.collections.findAndModify({
 			query: {user: user.email, _id: new ObjectId(collection)},
 			update: {$pull: {items: {_id: new ObjectId(item)}}},
-			'new': true
 		}, callback);
 	}
 
@@ -132,18 +132,34 @@ function findItems(user, collection, callback) {
 		return callback({message: 'missing collection id', status: 412});
 	}
 
-	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, function (err, collection) {
-		if (err) {
-			return callback(err);
+	db.collections.aggregate([
+		{
+			$match: {_id: new ObjectId(collection)}
+		},
+		{
+			$unwind: '$items'
+		},
+		{
+			$project: {
+				_id: 0,
+				item: '$items',
+				collection: {
+					_id: '$_id',
+					title: '$title',
+					description: '$description',
+					owner: '$userData'
+				}
+			}
+		},
+		{
+			$sort: { 'item.added': -1 }
 		}
+	], function (err, items) {
+		items = (items && items.map(function (i) {
+			return _.extend(i.item, {collection: i.collection});
+		})) || [];
 
-		if (!collection) {
-			return callback({message: 'collection not found', status: 404});
-		}
-
-		var items = collection.items || [];
-
-		callback(null, items.reverse());
+		callback(null, items);
 	});
 }
 
@@ -203,8 +219,7 @@ function follow(user, collection, callback) {
 	function followCollection(collection, callback) {
 		db.collections.findAndModify({
 			query: {_id: collection._id},
-			update: { $addToSet: { followers: _.pick(user, userPickFields) }},
-			'new': true
+			update: { $addToSet: { followers: _.pick(user, userPickFields) }}
 		}, function (err, collection) {
 			callback(err, collection);
 		});
