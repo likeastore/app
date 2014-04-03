@@ -7,11 +7,16 @@ define(function () {
 		$rootScope.title = $routeParams.name + '\'s profile';
 
 		$rootScope.$watch('user', readyUser);
-		function readyUser(value) {
-			if (!value) {
+		function readyUser(user) {
+			if (!user) {
 				return;
 			}
-			$scope.me = ($rootScope.user.name === $routeParams.name);
+
+			if (!user.followCollections) {
+				user.followCollections = [];
+			}
+
+			$scope.me = (user.name === $routeParams.name);
 		}
 
 		$scope.profile = api.get({ resource: 'users', target: $routeParams.name });

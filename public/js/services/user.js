@@ -84,14 +84,6 @@ define(function (require) {
 				});
 
 				return this;
-			},
-
-			addBadge: function (type) {
-				api.patch({ resource: 'users', target: 'me' }, { badges: [type] }, function (user) {
-					$rootScope.user = user;
-				});
-
-				return this;
 			}
 		};
 	}
