@@ -40,9 +40,9 @@
 	</div>
 
 	<div class="profile-lists">
-		<ul class="profile-collections">
+		<ul class="profile-collections" ng-if="profileCollections.length">
 			<li class="coll-item coll{{$index}} clearfix"
-				ng-repeat="coll in collections"
+				ng-repeat="coll in profileCollections"
 				ng-class="{last: $last}">
 				<a href="/u/{{user.name}}/{{coll._id}}" class="mask-link"></a>
 

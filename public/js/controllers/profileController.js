@@ -13,7 +13,7 @@ define(function () {
 
 			api.query({ resource: 'collections', target: 'user', verb: $routeParams.name }, handleCollections);
 			function handleCollections(collections) {
-				$scope.collections = collections;
+				$scope.profileCollections = collections;
 
 				$scope.switchList = function (list) {
 					$scope.list = list;
@@ -24,7 +24,7 @@ define(function () {
 				};
 
 				$scope.followCollection = function (id, index) {
-					var collection = $scope.collections[index];
+					var collection = $scope.profileCollections[index];
 
 					collection.processing = true;
 
@@ -41,7 +41,7 @@ define(function () {
 				};
 
 				$scope.unfollowCollection = function (id, index) {
-					var collection = $scope.collections[index];
+					var collection = $scope.profileCollections[index];
 
 					collection.processing = true;
 
@@ -60,7 +60,7 @@ define(function () {
 					});
 				};
 
-				_($scope.collections).forEach(function (collection) {
+				_($scope.profileCollections).forEach(function (collection) {
 					collection.mutual = isMutual(collection._id);
 
 					function isMutual (id) {
