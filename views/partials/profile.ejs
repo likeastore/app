@@ -16,7 +16,7 @@
 						{{kFormat(profileCollections.length) || 0}}
 					</div>
 					<div class="stat-title">
-						owned
+						curated
 					</div>
 				</li>
 				<li class="stat-block followers" ng-class="{'active': list==='followCollections'}">
@@ -77,6 +77,12 @@
 
 				<div class="coll-book clearfix">
 					<div class="coll-info left">
+						<div class="author">
+							<img ng-src="{{coll.userData.avatar}}" class="avatar" avatar-load>
+							<div class="curated">
+								curated by <a ng-href="/u/{{coll.userData.name}}">{{coll.userData.name}}</a>
+							</div>
+						</div>
 						<h1 class="title">{{coll.title}}</h1>
 						<div class="desc" ng-if="coll.description">{{coll.description}}</div>
 						<div class="stat">

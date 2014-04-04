@@ -211,6 +211,28 @@
 	margin: 1px 3px 0 0;
 }
 
+.profile-lists .coll-book .author {
+	margin-bottom: 10px;
+	position: relative;
+	z-index: 11;
+}
+
+.profile-lists .coll-book .author .avatar{
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	border-radius: 100px;
+	margin: 0 3px 0 0;
+	vertical-align: top;
+}
+.profile-lists .coll-book .author .curated {
+	display: inline-block;
+	color: #999;
+	font-size: 12px;
+	font-weight: 600;
+	vertical-align: top;
+}
+
 .profile-lists .coll-book .stat .tooltip {
 	padding: 2px 12px;
 	bottom: -25px;
