@@ -39,6 +39,9 @@ function collectionsService(app) {
 		middleware.analytics.track('collection unfollowed'),
 		unfollowCollection);
 
+	app.get('/api/collections/user/:name/follows',
+		getCollectionsUserFollow);
+
 	function getCollections(req, res, next) {
 		collections.find(req.user, function (err, collections) {
 			if (err) {
@@ -156,6 +159,16 @@ function collectionsService(app) {
 			}
 
 			res.send(200);
+		});
+	}
+
+	function getCollectionsUserFollow(req, res, next) {
+		collections.followedBy(req.user, req.params.name, function (err, collections) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(collections);
 		});
 	}
 }

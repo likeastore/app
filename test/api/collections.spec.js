@@ -651,7 +651,7 @@ describe('collections.spec.js', function () {
 
 		describe('when follow collection', function () {
 			beforeEach(function (done) {
-				request.post({url: url, headers: headers, body: {title: 'My new collection'}, json: true}, function (err, resp, body) {
+				request.post({url: url, headers: headers, body: {title: 'My new collection', public: true}, json: true}, function (err, resp, body) {
 					response = resp;
 					collection = body;
 					done(err);
@@ -732,12 +732,34 @@ describe('collections.spec.js', function () {
 						expect(results).to.have.property('followCollections');
 					});
 				});
+
+				describe('private collection', function () {
+					beforeEach(function (done) {
+						request.post({url: url, headers: headers, body: {title: 'My new collection', public: false}, json: true}, function (err, resp, body) {
+							response = resp;
+							collection = body;
+							done(err);
+						});
+					});
+
+					beforeEach(function (done) {
+						request.put({url: url + '/' + collection._id + '/follow', headers: otherUserHeaders, json: true}, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should return 403 (forbidden)', function () {
+						expect(response.statusCode).to.equal(403);
+					});
+				});
 			});
 		});
 
 		describe('when unfollow collection', function () {
 			beforeEach(function (done) {
-				request.post({url: url, headers: headers, body: {title: 'My new collection'}, json: true}, function (err, resp, body) {
+				request.post({url: url, headers: headers, body: {title: 'My new collection', public: true}, json: true}, function (err, resp, body) {
 					response = resp;
 					collection = body;
 					done(err);
@@ -898,6 +920,62 @@ describe('collections.spec.js', function () {
 			it('should contain count', function () {
 				expect(results).to.have.property('count');
 				expect(results.count).to.equal(10);
+			});
+		});
+
+		describe('when getting collections which another user follows', function () {
+			var otherUser, otherUserHeaders, createdCollections = [];
+
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					otherUser = createdUser;
+					otherUserHeaders = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				var collections = [{title: 'first', public: true}, {title: 'third', public: true}];
+
+				async.map(collections, createCollection, function (err, collections) {
+					createdCollections = collections;
+					done(err);
+				});
+
+				function createCollection(collection, callback) {
+					request.post({url: url, headers: headers, body: collection, json: true}, function (err, resp, col) {
+						if (err) {
+							return callback(err);
+						}
+
+						callback(null, col);
+					});
+				}
+			});
+
+			beforeEach(function (done) {
+				async.map(createdCollections, followCollection, done);
+
+				function followCollection(c, callback) {
+					request.put({url: url + '/' + c._id + '/follow', headers: otherUserHeaders}, callback);
+				}
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url + '/user/' + otherUser.name + '/follows', headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return followed collections', function () {
+				expect(results).to.have.length(2);
 			});
 		});
 	});

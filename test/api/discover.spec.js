@@ -66,7 +66,7 @@ describe('discover.spec.js', function () {
 			var collection;
 
 			beforeEach(function (done) {
-				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection'}, json: true}, function (err, resp, body) {
+				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection', public: true}, json: true}, function (err, resp, body) {
 					collection = body;
 					done(err);
 				});
@@ -99,7 +99,7 @@ describe('discover.spec.js', function () {
 			var collection;
 
 			beforeEach(function (done) {
-				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection'}, json: true}, function (err, resp, body) {
+				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection', public: true}, json: true}, function (err, resp, body) {
 					collection = body;
 					done(err);
 				});
@@ -148,14 +148,14 @@ describe('discover.spec.js', function () {
 			var firstCollection, secondCollection;
 
 			beforeEach(function (done) {
-				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection 1'}, json: true}, function (err, resp, body) {
+				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection 1', public: true}, json: true}, function (err, resp, body) {
 					firstCollection = body;
 					done(err);
 				});
 			});
 
 			beforeEach(function (done) {
-				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection 2'}, json: true}, function (err, resp, body) {
+				request.post({url: testUtils.getRootUrl() + '/api/collections', headers: secondUserHeaders, body: {title: 'collection 2', public: true}, json: true}, function (err, resp, body) {
 					secondCollection = body;
 					done(err);
 				});

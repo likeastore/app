@@ -11,7 +11,7 @@ var ObjectId = require('mongojs').ObjectId;
 
 var userPickFields = ['_id', 'email', 'avatar', 'displayName', 'name'];
 var itemOmitFields = ['collections', 'userData'];
-var collectionOmitFields = ['items', 'userData'];
+var collectionOmitFields = ['items'];
 
 function transform(collection) {
 	var clone = _.clone(collection);
@@ -239,12 +239,12 @@ function follow(user, collection, callback) {
 	}
 
 	async.waterfall([
-		checkUser,
+		checkCollection,
 		followCollection,
 		updateUser
 	], callback);
 
-	function checkUser(callback) {
+	function checkCollection(callback) {
 		db.collections.findOne({_id: new ObjectId(collection)}, function (err, collection) {
 			if (err) {
 				return callback(err);
@@ -252,6 +252,10 @@ function follow(user, collection, callback) {
 
 			if (!collection) {
 				return callback({message: 'collection not found', status: 404});
+			}
+
+			if (!collection.public) {
+				return callback({message: 'can\'t follow private collection', status: 403 });
 			}
 
 			if (collection.user === user.email) {
@@ -325,6 +329,32 @@ function unfollow(user, collection, callback) {
 	}
 }
 
+function followedBy(user, name, callback) {
+	users.findByName(name, function (err, user) {
+		if (err) {
+			return callback(err);
+		}
+
+		var follows = user.followCollections;
+
+		if (!follows || follows.length === 0) {
+			return callback(null, []);
+		}
+
+		var ids = follows.map(function (f) {
+			return f.id;
+		});
+
+		db.collections.find({_id: {$in: ids}}, function (err, collections) {
+			if (err) {
+				return callback(err);
+			}
+
+			callback(null, collections.map(transform));
+		});
+	});
+}
+
 module.exports = {
 	create: create,
 	remove: remove,
@@ -336,5 +366,6 @@ module.exports = {
 	findItems: findItems,
 	update: update,
 	follow: follow,
-	unfollow: unfollow
+	unfollow: unfollow,
+	followedBy: followedBy
 };
