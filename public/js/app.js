@@ -71,6 +71,7 @@ define(function (require) {
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.when('/suggest', { templateUrl: 'partials/suggest', controller: 'suggestPeopleController' })
 				.when('/u/:name', { templateUrl: 'partials/profile', controller: 'profileController' })
+				.when('/u/:name/:id', { templateUrl: 'partials/profileCollection', controller: 'profileCollectionController' })
 				.when('/collections/:id', { templateUrl: 'partials/dashboard', controller: 'collectionController'})
 				.when('/ooops', { templateUrl: 'errorView', controller: 'errorController' })
 				.otherwise({ redirectTo: '/' });
@@ -82,7 +83,7 @@ define(function (require) {
 	]);
 
 	app.run(function (user, tracking, facebook, rooter) {
-		user.initialize().$promise.then(function () {
+		user.initialize().then(function () {
 			user.getInboxCount()
 				.getCollections()
 				.getActiveNetworks();

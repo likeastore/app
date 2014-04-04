@@ -68,6 +68,8 @@ define(function (require) {
 								showClose: false
 							});
 						}
+
+						$rootScope.$broadcast('collection added', collection);
 					});
 				};
 

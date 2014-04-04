@@ -2,7 +2,8 @@ define(function () {
 	'use strict';
 
 	function ShareCollectionController ($scope, links) {
-		$scope.link = links.collection($scope.$parent.ngDialogData);
+		var data = $scope.$parent.ngDialogData.split(', ');
+		$scope.link = links.collection(data[0], data[1]);
 
 		setTimeout(function () {
 			document.getElementById('collectionUrl').select();

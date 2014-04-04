@@ -6,13 +6,10 @@ define(function (require) {
 	function User ($rootScope, $location, $window, api, storage, auth) {
 		return {
 			initialize: function () {
-				return api.get({ resource: 'users', target: 'me' }, function (user) {
-					if (!user.follows) {
-						user.follows = [];
-					}
-
-					if (!user.followed) {
-						user.followed = [];
+				var initedUser = api.get({ resource: 'users', target: 'me' }, handleUser);
+				function handleUser(user) {
+					if (!user.followCollections) {
+						user.followCollections = [];
 					}
 
 					$rootScope.user = user;
@@ -40,7 +37,9 @@ define(function (require) {
 							$rootScope.user.viewMode = 'list';
 						}
 					}
-				});
+				}
+
+				return initedUser.$promise;
 			},
 
 			getCollections: function () {

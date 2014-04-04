@@ -26,6 +26,7 @@ define(function (require) {
 
 	// collections
 	controllers.controller('collectionController', require('./collectionController'));
+	controllers.controller('profileCollectionController', require('./profileCollectionController'));
 
 	// search
 	controllers.controller('searchController', require('./searchController'));

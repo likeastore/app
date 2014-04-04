@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function CollectionController ($scope, $rootScope, $routeParams, $analytics, api, appLoader) {
+	function CollectionController ($scope, $rootScope, $routeParams, $location, $analytics, api, appLoader) {
 		appLoader.loading();
 
 		$analytics.eventTrack('collection opened');
@@ -20,7 +20,14 @@ define(function () {
 			if ($scope.collection) {
 				$rootScope.title = $scope.collection.title;
 				$rootScope.description = $scope.collection.description;
+			} else {
+				return $location.url('/');
 			}
+
+			api.query({ resource: 'collections', target: $routeParams.id, verb: 'items' }, function (items) {
+				$scope.items = items;
+				appLoader.ready();
+			});
 		}
 
 		$scope.remove = function (id, index) {
@@ -28,11 +35,6 @@ define(function () {
 				$scope.items.splice(index, 1);
 			});
 		};
-
-		api.query({ resource: 'collections', target: $routeParams.id, verb: 'items' }, function (items) {
-			$scope.items = items;
-			appLoader.ready();
-		});
 	}
 
 	return CollectionController;

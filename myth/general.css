@@ -225,6 +225,7 @@ textarea.fld {
 	line-height: 1;
 	text-transform: uppercase;
 	text-decoration: none;
+	text-align: center;
 	letter-spacing: 1px;
 	cursor: pointer;
 	outline: none;
@@ -250,6 +251,11 @@ textarea.fld {
 
 .pink-btn {
 	background: var(pink);
+	color: #fff;
+}
+
+.blue-btn {
+	background: var(blue);
 	color: #fff;
 }
 
@@ -919,6 +925,10 @@ textarea.fld {
 .edit-collection-wrap:hover .action-button {
 	visibility: visible;
 	opacity: 1;
+}
+
+.profile-collection-info.edit-collection-wrap .share-collection-btn {
+	right: 0;
 }
 
 .edit-collection-popup {

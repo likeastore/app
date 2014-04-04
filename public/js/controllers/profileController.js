@@ -12,32 +12,40 @@ define(function () {
 				return;
 			}
 
-			if (!user.followCollections) {
-				user.followCollections = [];
-			}
+			$scope.list = 'ownCollections';
+
+			$scope.profile = api.get({ resource: 'users', target: $routeParams.name });
 
 			$scope.me = (user.name === $routeParams.name);
-		}
 
-		$scope.list = 'ownCollections';
-		$scope.profile = api.get({ resource: 'users', target: $routeParams.name });
+			if ($scope.me) {
+				$scope.$on('collection added', function (event, collection) {
+					if (collection.public) {
+						getProfileCollections();
+					}
+				});
+			}
 
-		api.query({ resource: 'collections', target: 'user', verb: $routeParams.name }, handleCollections);
-		function handleCollections(collections) {
-			$scope.profileCollections = collections;
+			getProfileCollections();
 
-			_($scope.profileCollections).forEach(function (collection) {
-				collection.mutual = isMutual(collection._id);
+			function getProfileCollections () {
+				api.query({ resource: 'collections', target: 'user', verb: $routeParams.name }, handleCollections);
+				function handleCollections(collections) {
+					$scope.profileCollections = collections;
 
-				function isMutual (id) {
-					var meFollows = $rootScope.user.followCollections || [];
-					return meFollows.length && _(meFollows).find(function (collection) {
-						return collection.id === id;
+					_($scope.profileCollections).forEach(function (collection) {
+						collection.mutual = isMutual(collection._id);
+						function isMutual (id) {
+							var meFollows = $rootScope.user.followCollections;
+							return meFollows.length && _(meFollows).find(function (collection) {
+								return collection.id === id;
+							});
+						}
 					});
-				}
-			});
 
-			appLoader.ready();
+					appLoader.ready();
+				}
+			}
 		}
 
 		$scope.switchList = function (list) {
@@ -50,6 +58,7 @@ define(function () {
 
 		$scope.followCollection = function (id, index) {
 			var collection = $scope.profileCollections[index];
+			collection.followers = collection.followers || [];
 
 			collection.processing = true;
 

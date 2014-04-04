@@ -12,8 +12,10 @@ define(function (require) {
 
 				return base + '/' + hashids.encryptHex(id);
 			},
-			collection: function (id) {
-				var base = $window.appConfig.siteUrl + '/u/' + $rootScope.user.name;
+			collection: function (id, name) {
+				name = name || $rootScope.user.name;
+
+				var base = $window.appConfig.siteUrl + '/u/' + name;
 				var salt = $window.appConfig.hashids.salt;
 				var hashids = new Hashids(salt);
 
