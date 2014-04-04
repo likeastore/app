@@ -924,6 +924,17 @@ textarea.fld {
   width: 90px;
 }
 
+.profile-collection-info.edit-collection-wrap .curated {
+  color: #999;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0 5px;
+}
+
+.profile-collection-info.edit-collection-wrap .description {
+  display: block;
+}
+
 .profile-collection-info.edit-collection-wrap .share-collection-btn {
   right: 98px;
 }

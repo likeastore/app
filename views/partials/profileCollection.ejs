@@ -1,7 +1,7 @@
 <div class="top-bar clearfix animated fadeInLeft">
 	<div class="top left">
 		<div class="edit-collection-wrap profile-collection-info">
-			<h2 class="title">{{collection.title}}</h2>
+			<h2 class="title">{{collection.title}} <span class="curated">by <a href="/u/{{collection.userData.name}}">{{collection.userData.name}}</a></span></h2>
 			<div ng-if="collection.description" class="description">{{collection.description}}</div>
 
 			<a href="" class="action-button share-collection-btn"
