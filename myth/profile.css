@@ -144,7 +144,7 @@
 }
 
 .profile-lists .profile-action {
-	height: 21px;
+	height: 22px;
 	position: relative;
 	z-index: 11;
 }
@@ -166,10 +166,6 @@
 
 .profile-lists .coll-info {
 	width: 80%;
-}
-
-.profile-lists .coll-book .small-btn {
-	box-shadow: inset 0 -1px 0 rgba(0,0,0,.2);
 }
 
 .profile-lists .coll-book .small-btn:hover {
@@ -259,56 +255,6 @@
 }
 
 
-
-
-
-
-.profile-lists .profile-follow-item {
-	background: #fff;
-	border-bottom: 1px solid #eee;
-	padding: 8px 35px;
-	width: 100%;
-	height: 50px;
-	overflow: hidden;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-}
-
-.profile-lists .profile-follow-item:first-child {
-	border-radius: 3px 3px 0 0;
-}
-
-.profile-lists .profile-follow-item.last {
-	border-bottom: 0;
-	border-radius: 0 0 3px 3px;
-}
-
-.profile-lists .profile-followings .avatar {
-	display: inline-block;
-	width: 28px;
-	height: 28px;
-	vertical-align: top;
-	margin: 3px 15px 0 0;
-	border-radius: 100%;
-}
-
-.profile-lists .name {
-	display: inline-block;
-	color: #666;
-	font-size: 14px;
-	letter-spacing: .6px;
-	vertical-align: top;
-	margin: 7px 0 0;
-	width: 45%;
-}
-
-.profile-lists .empty-results {
-	padding-top: 25px;
-}
-
-.profile-lists .list-view .dash-item .right-block {
-	width: 93%;
-}
-
 @media (max-width: 750px) {
 	.profile-page {
 		width: 600px;
@@ -349,6 +295,10 @@
 	.profile-stat .stat-title {
 		font-size: 11px;
 	}
+
+	.profile-lists .coll-info {
+		width: 70%;
+	}
 }
 
 @media (max-width: 440px) {
@@ -370,6 +320,10 @@
 
 	.profile-lists .profile-follow-item {
 		padding: 8px 15px;
+	}
+
+	.profile-lists .coll-info {
+		width: 50%;
 	}
 }
 

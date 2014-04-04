@@ -11,6 +11,11 @@
 			ng-dialog-data="{{collection._id}}, {{collection.owner}}"
 				ng-dialog-controller="shareCollectionController"
 				ng-dialog-show-close="false"><i class="font-icon link-icon icon"></i></a>
+
+			<div class="follow-collection">
+				<button type="button" class="btn small-btn green-btn follow-btn" ng-if="!collection.mutual && !coll.processing" ng-click="followCollection(collection._id)">Follow</button>
+				<button type="button" class="btn small-btn pink-btn following-btn" ng-if="collection.mutual && !coll.processing" ng-click="unfollowCollection(collection._id)">Unfollow</button>
+			</div>
 		</div>
 	</div>
 </div>

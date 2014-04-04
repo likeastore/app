@@ -40,9 +40,25 @@ define(function () {
 					appLoader.ready();
 				}
 			}
-
 		});
 
+		$scope.followCollection = function (id) {
+			$scope.collection.processing = true;
+
+			api.update({ resource: 'collections', target: id, verb: 'follow' }, {}, function () {
+				$scope.collection.mutual = true;
+				$scope.collection.processing = false;
+			});
+		};
+
+		$scope.unfollowCollection = function (id) {
+			$scope.collection.processing = true;
+
+			api.delete({ resource: 'collections', target: id, verb: 'follow' }, {}, function () {
+				$scope.collection.mutual = false;
+				$scope.collection.processing = false;
+			});
+		};
 	}
 
 	return ProfileCollectionController;
