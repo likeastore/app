@@ -34,19 +34,19 @@
 				<a ng-show="user.viewMode === 'grid'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 
 				<div class="info">
-					<a href="/u/{{item.userData.name}}" class="author-image">
-						<img ng-src="{{item.userData.avatar}}" class="avatar" avatar-load>
+					<a href="/u/{{item.collection.owner.name}}" class="author-image">
+						<img ng-src="{{item.collection.owner.avatar}}" class="avatar" avatar-load>
 					</a>
 
 					<div ng-show="user.viewMode === 'grid'" class="right-block">
-						<div class="author-name"><a href="/u/{{item.userData.name}}">{{item.userData.displayName || item.userData.name}}</a> liked<span ng-show="user.viewMode === 'list'"> on <span class="type">{{item.type}}</span></span> -</div>
+						<div class="author-name"><a href="/u/{{item.collection.owner.name}}">{{item.collection.owner.displayName || item.collection.owner.name}}</a> liked<span ng-show="user.viewMode === 'list'"> on <span class="type">{{item.type}}</span></span> -</div>
 						<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
 						<div ng-if="item.description" class="description"
 							ng-bind-html="item.description|truncate:180|linkify" ng-class="{short: user.viewMode==='grid' && item.title && item.authorName}"></div>
 					</div>
 
 					<div ng-show="user.viewMode === 'list'" class="right-block clearfix">
-						<div class="author-name"><a href="/u/{{item.userData.name}}">{{item.userData.displayName || item.userData.name}}</a> liked<span ng-show="user.viewMode === 'list'"> on <span class="type">{{item.type}}</span></span> -</div>
+						<div class="author-name"><a href="/u/{{item.collection.owner.name}}">{{item.collection.owner.displayName || item.collection.owner.name}}</a> liked<span ng-show="user.viewMode === 'list'"> on <span class="type">{{item.type}}</span></span> -</div>
 						<a ng-show="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
 						<div class="texts">
 							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
@@ -58,11 +58,11 @@
 			</div>
 
 			<div ng-if="!item.thumbnail" class="text-wrap">
-				<a href="/u/{{item.userData.name}}" class="author-image">
-					<img ng-src="{{item.userData.avatar}}" class="avatar" avatar-load>
+				<a href="/u/{{item.collection.owner.name}}" class="author-image">
+					<img ng-src="{{item.collection.owner.avatar}}" class="avatar" avatar-load>
 				</a>
 				<div class="right-block">
-					<div class="author-name"><a href="/u/{{item.userData.name}}">{{item.userData.displayName || item.userData.name}}</a> liked<span ng-show="user.viewMode === 'list'"> on <span class="type">{{item.type}}</span></span> -</div>
+					<div class="author-name"><a href="/u/{{item.collection.owner.name}}">{{item.collection.owner.displayName || item.collection.owner.name}}</a> liked<span ng-show="user.viewMode === 'list'"> on <span class="type">{{item.type}}</span></span> -</div>
 					<h2 ng-if="item.title || item.repo || item.name" class="title"
 						ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
 					<div ng-if="item.description && item.description !== item.name" class="description"

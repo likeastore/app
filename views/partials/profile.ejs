@@ -16,7 +16,7 @@
 						{{kFormat(profileCollections.length) || 0}}
 					</div>
 					<div class="stat-title">
-						curated
+						curates
 					</div>
 				</li>
 				<li class="stat-block followers" ng-class="{'active': list==='followCollections'}">
@@ -25,7 +25,7 @@
 						{{kFormat(profile.followCollections.length) || 0}}
 					</div>
 					<div class="stat-title">
-						followed
+						follows
 					</div>
 				</li>
 			</ul>
@@ -56,7 +56,7 @@
 					</div>
 
 					<div class="profile-action right" ng-if="me">
-						<a ng-href="/collections/{{coll._id}}" class="btn small-btn blue-btn edit-btn">Edit</a>
+						<a ng-href="/collections/{{coll._id}}" class="btn small-btn blue-btn edit-btn">View</a>
 					</div>
 
 					<div class="profile-action right" ng-if="!me">
