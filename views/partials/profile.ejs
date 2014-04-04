@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="profile-lists animated fadeInDown delay-300ms">
-		<h2 class="list-title" ng-if="profileCollections.length">
+		<h2 class="list-title" ng-if="profileCollections.length || followCollections.length">
 			<span ng-if="list === 'ownCollections'">{{profile.displayName || profile.name}}'s collections:</span>
 			<span ng-if="list === 'followCollections'">{{profile.displayName || profile.name}} follows:</span>
 		</h2>
