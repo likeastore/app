@@ -7,6 +7,7 @@ require('newrelic');
 var config = require('./config');
 var logger = require('./source/utils/logger');
 var bootstrap = require('./source/bootstrap');
+var nodalytics = require('nodalytics');
 
 var oneMonth = 2678400000;
 
@@ -61,6 +62,7 @@ bootstrap.app(function (err) {
 	app.configure('production', function() {
 		app.use(express.compress());
 		app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
+		app.use(nodalytics(config.nodalytics.ua));
 		app.use(middleware.serveMaster.production());
 	});
 

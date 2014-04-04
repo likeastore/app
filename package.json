@@ -37,7 +37,8 @@
     "nodealytics": "0.0.5",
     "json-schema": "~0.2.2",
     "grunt-myth": "~0.1.1",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-watch": "~0.5.3",
+    "nodalytics": "~1.0.0"
   },
   "devDependencies": {
     "mocha": "~1.10.0",
