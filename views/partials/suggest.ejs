@@ -22,7 +22,6 @@
 			<li class="person-item" ng-repeat="person in people">
 				<img ng-src="{{person.avatar}}" class="avatar" ng-click="switchMenu('/u/{{person.name}}')" avatar-load>
 				<div class="name truncate" ng-click="switchMenu('/u/{{person.name}}')">{{person.displayName || person.name}}</div>
-				<a href="" class="btn small-btn gradient-btn" ng-click="followPerson(person._id, $event, $index)" ng-class="{'disabled': person.followDisabled}">Follow</a>
 			</li>
 		</ul>
 	</div>

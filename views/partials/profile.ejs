@@ -73,7 +73,7 @@
 				ng-repeat="coll in followCollections"
 				ng-class="{last: $last}">
 
-				<a ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
+				<a ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
 
 				<div class="coll-book clearfix">
 					<div class="coll-info left">
