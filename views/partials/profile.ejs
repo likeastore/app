@@ -79,8 +79,8 @@
 					<div class="coll-info left">
 						<div class="author">
 							<img ng-src="{{coll.userData.avatar}}" class="avatar" avatar-load>
-							<div class="curated">
-								curated by <a ng-href="/u/{{coll.userData.name}}">{{coll.userData.name}}</a>
+							<div class="curated truncate">
+								<span>curated</span> by <a ng-href="/u/{{coll.userData.name}}">{{coll.userData.name}}</a>
 							</div>
 						</div>
 						<h1 class="title">{{coll.title}}</h1>
@@ -99,78 +99,6 @@
 				<ul class="backlists"><li></li><li></li></ul>
 			</li>
 		</ul>
-
-
-
-
-
-		<!--<h2 class="list-title" ng-if="followers.length || items.length">
-			<span ng-if="list === 'favorites'">Recent favorites:</span>
-			<span ng-if="list === 'follows'">Following:</span>
-			<span ng-if="list === 'followed'">Followed by:</span>
-		</h2>
-
-		<ul class="profile-favorites list-view {{list}}" ng-if="items.length && !followers">
-			<li class="dash-item {{item.type}} item{{$index}}"
-			ng-repeat="item in items"
-			ng-class="{
-				'thumbed': item.thumbnail,
-				'texted': !item.thumbnail,
-				'last': $last
-			}"
-			go-to-link="{{item.source}}">
-
-			<div ng-if="item.thumbnail" class="image">
-				<div class="info">
-					<div ng-if="item.avatarUrl" class="author-image">
-						<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
-					</div>
-
-					<div class="right-block clearfix">
-						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
-						<a href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
-						<div class="texts">
-							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
-							<div ng-if="item.description" class="description"
-								ng-bind-html="item.description|truncate:260|linkify"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div ng-if="!item.thumbnail" class="text-wrap">
-				<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author-image">
-					<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
-				</div>
-				<div class="right-block">
-					<div ng-if="item.authorName && item.type !== 'facebook'" class="author-name">{{item.authorName}}</div>
-					<h2 ng-if="item.title || item.repo || item.name" class="title"
-						ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
-					<div ng-if="item.description && item.description !== item.name" class="description"
-						ng-bind-html="item.description|truncate:260|linkify"></div>
-					<div ng-if="item.gist || item.type === 'tumblr' || item.description === item.name" class="description"
-						ng-bind-html="item.source|linkify"></div>
-				</div>
-			</div>
-
-			<time>{{item.created|date: 'longDate'}}</time>
-			<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
-			</li>
-		</ul>
-
-		<ul class="profile-followings {{list}}" ng-if="followers.length && !items">
-			<li class="profile-follow-item clearfix" ng-repeat="follow in followers" ng-class="{last: $last}">
-				<a href="/u/{{follow.name}}"><img ng-src="{{follow.avatar}}" class="avatar left" avatar-load></a>
-				<a href="/u/{{follow.name}}" class="name truncate">{{follow.displayName || follow.name}}</a>
-
-				<div class="profile-me right" ng-if="follow.name === user.name">Your profile</div>
-
-				<div class="profile-action right" ng-if="follow.name !== user.name">
-					<button type="button" class="btn small-btn green-btn follow-btn" ng-if="!follow.mutual && !follow.processing" ng-click="followUser(follow)">Follow</button>
-					<button type="button" class="btn small-btn pink-btn following-btn" ng-if="follow.mutual && !follow.processing" ng-click="unfollowUser(follow)">Unfollow</button>
-				</div>
-			</li>
-		</ul>-->
 	</div>
 
 	<div class="two-spin" ng-hide="loaded || error"></div>

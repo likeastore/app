@@ -224,6 +224,7 @@
   color: #999;
   font-size: 12px;
   font-weight: 600;
+  width: 50%;
   vertical-align: top;
 }
 
@@ -339,5 +340,9 @@
 
   .profile-lists .coll-info {
     width: 50%;
+  }
+
+  .profile-lists .coll-book .author .curated span {
+    display: none;
   }
 }
