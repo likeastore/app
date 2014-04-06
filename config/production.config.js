@@ -22,7 +22,7 @@ var config = {
 	},
 
 	nodalytics: {
-		ua: 'UA-41034999-5'
+		ua: 'UA-49743199-1'
 	},
 
 	// api keys
