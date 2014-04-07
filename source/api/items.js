@@ -8,6 +8,7 @@ function itemsService(app) {
 	);
 
 	app.get('/api/items/user/:id',
+		middleware.validate.id('id'),
 		getUserItems
 	);
 
@@ -29,14 +30,17 @@ function itemsService(app) {
 	);
 
 	app.del('/api/items/:id',
+		middleware.validate.id('id'),
 		hideItem
 	);
 
 	app.put('/api/items/:id/read',
+		middleware.validate.id('id'),
 		readItem
 	);
 
 	app.get('/api/items/id/:id',
+		middleware.validate.id('id'),
 		getItemById
 	);
 

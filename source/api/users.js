@@ -12,7 +12,7 @@ function usersService(app) {
 	);
 
 	app.patch('/api/users/me',
-		middleware.validate('userPatch'),
+		middleware.validate.body('userPatch'),
 		updateUser,
 		returnUser
 	);
@@ -47,6 +47,7 @@ function usersService(app) {
 	);
 
 	app.get('/api/users/id/:id',
+		middleware.validate.id('id'),
 		findUserById,
 		returnUser
 	);
@@ -61,11 +62,13 @@ function usersService(app) {
 	);
 
 	app.post('/api/users/me/follow/:id',
+		middleware.validate.id('id'),
 		middleware.analytics.track('user followed'),
 		followUser
 	);
 
 	app.del('/api/users/me/follow/:id',
+		middleware.validate.id('id'),
 		middleware.analytics.track('user unfollowed'),
 		unfollowUser
 	);
