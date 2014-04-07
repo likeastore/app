@@ -73,6 +73,10 @@ function findOne(user, collection, callback) {
 			return callback(err);
 		}
 
+		if (!collection) {
+			return callback({message: 'collection not found', status: 404});
+		}
+
 		callback(null, transform(collection));
 	});
 }

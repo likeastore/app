@@ -273,6 +273,35 @@ describe('collections.spec.js', function () {
 					expect(results).to.have.property('user');
 				});
 			});
+
+			describe('with wrong id', function () {
+				beforeEach(function (done) {
+					request.get({url: url + '/wrong_id', headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond 404 (not found)', function () {
+					expect(response.statusCode).to.equal(412);
+				});
+			});
+
+			describe('with unknown id', function () {
+				beforeEach(function (done) {
+					var id = '555' + collection._id.substr(3);
+					request.get({url: url + '/' + id, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond 404 (not found)', function () {
+					expect(response.statusCode).to.equal(404);
+				});
+			});
 		});
 
 		describe('when items added to collection', function () {

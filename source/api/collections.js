@@ -9,13 +9,15 @@ function collectionsService(app) {
 		getUsersCollections);
 
 	app.get('/api/collections/:collection',
+		middleware.validate.id('collection'),
 		getCollection);
 
 	app.post('/api/collections',
-		middleware.validate('collection'),
+		middleware.validate.body('collection'),
 		createCollection);
 
 	app.del('/api/collections/:id',
+		middleware.validate.id('collection'),
 		removeCollection);
 
 	app.put('/api/collections/:collection/items/:item',
@@ -28,14 +30,17 @@ function collectionsService(app) {
 		getCollectionItems);
 
 	app.patch('/api/collections/:id',
-		middleware.validate('collectionPatch'),
+		middleware.validate.id('collection'),
+		middleware.validate.body('collectionPatch'),
 		patchCollectionProperties);
 
 	app.put('/api/collections/:collection/follow',
+		middleware.validate.id('collection'),
 		middleware.analytics.track('collection followed'),
 		followCollection);
 
 	app.del('/api/collections/:collection/follow',
+		middleware.validate.id('collection'),
 		middleware.analytics.track('collection unfollowed'),
 		unfollowCollection);
 

@@ -1,12 +1,26 @@
 var schemas = require('../models/schemas');
 
-module.exports = function (schema) {
-	return function (req, res, next) {
-		schemas.validate(req.body, schema, function (err) {
-			if (err) {
-				return res.send(412, err);
+module.exports = {
+	body: function (schema) {
+		return function (req, res, next) {
+			var result = schemas.validate(req.body, schema);
+
+			if (!result.valid) {
+				return res.send(412, result.errors);
 			}
-			return next();
-		});
-	};
+
+			next();
+		};
+	},
+	id: function (param) {
+		return function (req, res, next) {
+			var result = schemas.validateId(req.params[param]);
+
+			if (!result.valid) {
+				return res.send(412, result.errors);
+			}
+
+			next();
+		};
+	}
 };

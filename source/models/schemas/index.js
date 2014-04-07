@@ -2,6 +2,11 @@
 var schema = require('json-schema');
 
 exports.schemas = {
+	id: {
+		type: 'string',
+		pattern: /^[a-fA-F0-9]{24}$/
+	},
+
 	collection: {
 		description: 'Collection of likes',
 		type: 'object',
@@ -76,9 +81,9 @@ exports.schemas = {
 };
 
 exports.validate = function (json, model, callback) {
-	var result = schema.validate(json, this.schemas[model]);
-	if (!result.valid) {
-		return callback({ message: 'Error validating against schema', error: result.errors });
-	}
-	return callback(null);
+	return schema.validate(json, this.schemas[model]);
+};
+
+exports.validateId = function (id) {
+	return schema.validate(id, this.schemas.id);
 };
