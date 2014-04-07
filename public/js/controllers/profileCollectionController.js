@@ -17,26 +17,17 @@ define(function () {
 				return $location.url('/collections/' + $routeParams.id);
 			}
 
-			api.query({ resource: 'collections', target: 'user', verb: $routeParams.name }, handleCollections);
-			function handleCollections(collections) {
-				$scope.collection = _(collections).find(function (collection) {
-					return collection._id === $routeParams.id;
-				});
-
-				if (!$scope.collection) {
-					return $location.url('/');
-				}
-
-				$scope.collection.mutual = _(user.followCollections).find(function (collection) {
-					return collection.id === $routeParams.id;
-				});
-
+			api.get({ resource: 'collections', target: $routeParams.id }, handleCollection);
+			function handleCollection (collection) {
+				$scope.collection = collection;
 				$scope.collection.owner = $routeParams.name;
+				$scope.collection.mutual = _(user.followCollections).find(function (row) {
+					return row.id === collection.id;
+				});
 
 				api.query({ resource: 'collections', target: $routeParams.id, verb: 'items' }, handleItems);
 				function handleItems(items) {
 					$scope.items = items;
-
 					appLoader.ready();
 				}
 			}
