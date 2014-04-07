@@ -20,7 +20,7 @@ define(function () {
 			facebook.share({
 				name: 'Likeastore - Social Bookmarking for Geeks',
 				link: 'https://likeastore.com',
-				picture: 'https://likeastore.com/img/feed-box.png',
+				picture: 'https://tour.likeastore.com/img/likeastore-feed-green.png',
 				description: 'The best way to save useful resources like GitHub repositories, code libraries, Instagram photos, favorited Tweets, fonts, Dribbble shots or Stackoverflow questions. Organize your favorites, create collections and share them with friends.',
 				success: function () {
 					unblockNetworks();
