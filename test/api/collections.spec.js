@@ -210,6 +210,71 @@ describe('collections.spec.js', function () {
 			});
 		});
 
+		describe('when getting collection by id', function () {
+			beforeEach(function () {
+				collection = {title: 'This is test collection', description: 'description'};
+			});
+
+			beforeEach(function (done) {
+				request.post({url: url, headers: headers, body: collection, json: true}, function (err, resp, body) {
+					response = resp;
+					collection = body;
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url + '/' + collection._id, headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return collection', function () {
+				expect(results).to.have.property('_id');
+				expect(results).to.have.property('title');
+				expect(results).to.have.property('description');
+				expect(results).to.have.property('user');
+			});
+
+			describe('by another user', function () {
+				var otherUserHeaders;
+
+				beforeEach(function (done) {
+					testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+						token = accessToken;
+						user = createdUser;
+						otherUserHeaders = {'X-Access-Token': accessToken};
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url + '/' + collection._id, headers: otherUserHeaders, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it('should return collection', function () {
+					expect(results).to.have.property('_id');
+					expect(results).to.have.property('title');
+					expect(results).to.have.property('description');
+					expect(results).to.have.property('user');
+				});
+			});
+		});
+
 		describe('when items added to collection', function () {
 			var item, collection;
 

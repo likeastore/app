@@ -68,7 +68,7 @@ function find(user, callback) {
 }
 
 function findOne(user, collection, callback) {
-	db.collections.findOne({user: user.email, _id: new ObjectId(collection)}, function(err, collection) {
+	db.collections.findOne({_id: new ObjectId(collection)}, function(err, collection) {
 		if (err) {
 			return callback(err);
 		}
