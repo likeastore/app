@@ -1,0 +1,42 @@
+{
+  "name": "angular-deckgrid",
+  "version": "0.4.1",
+  "author": "André König (andre.koenig@posteo.de)",
+  "description": "A lightweight masonry-like grid for AngularJS.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:akoenig/angular-deckgrid.git"
+  },
+  "main": "./angular-deckgrid.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "test",
+    "*.min.js",
+    "*.conf.js",
+    "*.html",
+    "Gruntfile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "~1.2.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.1",
+    "jquery": "~2.0.3"
+  },
+  "homepage": "https://github.com/akoenig/angular-deckgrid",
+  "_release": "0.4.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.4.1",
+    "commit": "0881f51d5d7e9af10227dfa62fb66b0881ee4b83"
+  },
+  "_source": "git://github.com/akoenig/angular-deckgrid.git",
+  "_target": "~0.4.1",
+  "_originalSource": "angular-deckgrid",
+  "_direct": true
+}

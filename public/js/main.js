@@ -16,6 +16,7 @@ require.config({
 		'seismo': '../components/seismo/seismo',
 		'angulartics': '../components/angulartics/src/angulartics',
 		'angulartics.mixpanel': '../components/angulartics/src/angulartics-mixpanel',
+		'angular-deckgrid': '../components/angular-deckgrid/angular-deckgrid',
 		'underscore': '../components/underscore/underscore',
 		'moment': '../components/momentjs/moment',
 		'modernizr': '../components/modernizr/modernizr',
@@ -60,6 +61,9 @@ require.config({
 			deps: ['angular']
 		},
 		'angulartics.mixpanel': {
+			deps: ['angular']
+		},
+		'angular-deckgrid': {
 			deps: ['angular']
 		},
 		angular: {
