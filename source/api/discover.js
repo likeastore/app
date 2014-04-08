@@ -1,7 +1,7 @@
 var discover = require('../models/discover');
 
 function discoverService(app) {
-	app.get('/api/discover',
+	app.get('/api/feed',
 		getFeed
 	);
 

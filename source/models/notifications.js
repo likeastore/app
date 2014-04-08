@@ -23,7 +23,7 @@ function followed(user, followedUser, callback) {
 				content: user.name
 			}],
 			preserve_recipients: false
-		},
+		}
 	}, function (err) {
 		if (err) {
 			logger.error({message: 'error during mandrill send (user-followed)', err: err});

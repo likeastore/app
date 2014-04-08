@@ -148,7 +148,7 @@ function follow(user, followId, callback) {
 		return function (callback) {
 			db.users.findAndModify({
 				query: query,
-				update: {$push: push},
+				update: {$push: push}
 			}, callback);
 		};
 	}
@@ -187,7 +187,7 @@ function unfollow(user, followId, callback) {
 		return function (callback) {
 			db.users.findAndModify({
 				query: query,
-				update: {$pull: pull},
+				update: {$pull: pull}
 			}, callback);
 		};
 	}
