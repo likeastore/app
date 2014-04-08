@@ -11,6 +11,7 @@ define(function (require) {
 	require('angularLocalStorage');
 	require('angulartics');
 	require('angulartics.mixpanel');
+	require('angular-deckgrid');
 	require('moment');
 	require('angularMoment');
 	require('underscore');
@@ -34,6 +35,7 @@ define(function (require) {
 		'angulartics',
 		'angulartics.mixpanel',
 		'angularMoment',
+		'akoenig.deckgrid',
 		'services',
 		'controllers',
 		'directives',
