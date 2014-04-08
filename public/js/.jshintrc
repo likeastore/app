@@ -1,5 +1,6 @@
 {
 	"predef": [
+		"angular",
 		"after",
 		"afterEach",
 		"before",
@@ -16,13 +17,16 @@
 		"waitsFor",
 		"xit",
 		"xdescribe",
+		"define",
 		"module",
 		"exports",
 		"require",
 		"window",
-		"process",
 		"console",
-		"__dirname",
+		"twttr",
+		"FB",
+		"_",
+		"moment",
 		"Buffer"
 	],
 
@@ -42,8 +46,8 @@
 	"multistr": true,
 	"newcap": true,
 	"noarg": true,
-	"node" : true,
-	"browser": false,
+	"node" : false,
+	"browser": true,
 	"noempty": false,
 	"nonew": true,
 	"onevar": false,

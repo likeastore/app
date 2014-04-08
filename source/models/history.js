@@ -17,7 +17,7 @@ function getForUser(user, callback) {
 				_id: {
 					year : { $year : "$date" },
 					month : { $month : "$date" },
-					day : { $dayOfMonth : "$date" },
+					day : { $dayOfMonth : "$date" }
 				},
 				github: { $sum: { $cond: [ {$eq: ['$type', 'github'] }, 1, 0] } },
 				twitter: { $sum: { $cond: [ {$eq: ['$type', 'twitter'] }, 1, 0] } },

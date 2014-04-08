@@ -67,7 +67,7 @@ define(function (require) {
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
 				.when('/items/:id', { templateUrl: 'partials/dashboard', controller: 'dashboardController'})
-				.when('/discover', { templateUrl: 'partials/discover', controller: 'discoverController' })
+				.when('/feed', { templateUrl: 'partials/feed', controller: 'feedController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.when('/suggest', { templateUrl: 'partials/suggest', controller: 'suggestPeopleController' })
 				.when('/u/:name', { templateUrl: 'partials/profile', controller: 'profileController' })

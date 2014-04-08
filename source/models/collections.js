@@ -165,7 +165,7 @@ function removeItem(user, collection, item, callback) {
 	function pullItemFromCollection(callback) {
 		db.collections.findAndModify({
 			query: {user: user.email, _id: new ObjectId(collection)},
-			update: {$pull: {items: {_id: new ObjectId(item)}}},
+			update: {$pull: {items: {_id: new ObjectId(item)}}}
 		}, callback);
 	}
 

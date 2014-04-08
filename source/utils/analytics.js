@@ -5,7 +5,7 @@ var options = {
 	server: config.analytics.url,
 	credentials: {
 		username: config.analytics.username,
-		password: config.analytics.password,
+		password: config.analytics.password
 	}
 };
 

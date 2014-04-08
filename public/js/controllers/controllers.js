@@ -53,8 +53,8 @@ define(function (require) {
 	controllers.controller('historyController', require('./historyController'));
 
 	// discovery
+	controllers.controller('feedController', itemsControllerFactory('Feed', null, 'feed opened', 'feed'));
 	controllers.controller('suggestPeopleController', require('./suggestPeopleController'));
-	controllers.controller('discoverController', itemsControllerFactory('Discover', null, 'discover opened', 'discover'));
 	controllers.controller('profileController', require('./profileController'));
 
 	// onboarding

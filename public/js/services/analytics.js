@@ -8,7 +8,7 @@ define(function (require) {
 			server: $window.appConfig.analytics.url,
 			credentials: {
 				username: $window.appConfig.analytics.username,
-				password: $window.appConfig.analytics.password,
+				password: $window.appConfig.analytics.password
 			}
 		};
 
