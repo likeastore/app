@@ -5,12 +5,16 @@
 		'last': card.$last
 	}">
 
+	<a ng-href="{{card.source}}" class="mask-link" target="_blank"></a>
+
 	<div ng-if="card.thumbnail" class="card-cover">
+		<div class="card-cover-overlay"></div>
 		<img ng-src="{{card.thumbnail}}" class="animated delay-300ms fadeIn">
 	</div>
 
 	<div class="card-meta">
 		<h2 ng-if="card.title||card.repo||card.name" class="title" ng-class="{'bottom-space': card.description}">{{card.title||card.repo||card.name}}</h2>
+
 		<p ng-if="card.description" class="description" ng-bind-html="card.description|truncate:240|linkify"></p>
 
 		<div class="from">
@@ -21,8 +25,8 @@
 	</div>
 
 	<div class="card-collection">
-		<img ng-src="{{card.collection.owner.avatar}}" class="c-avatar" avatar-load>
-		<div class="c-title truncate">{{card.collection.title}}</div>
+		<a ng-href="/u/{{card.collection.owner.name}}"><img ng-src="{{card.collection.owner.avatar}}" class="c-avatar" avatar-load></a>
+		<a href="/u/{{card.collection.owner.name}}/{{card.collection._id}}" class="c-title truncate">{{card.collection.title}}</a>
 		<div class="c-owner truncate">by <a ng-href="/u/{{card.collection.owner.name}}">{{card.collection.owner.name}}</a></div>
 	</div>
 
