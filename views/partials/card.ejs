@@ -7,6 +7,16 @@
 
 	<a ng-href="{{card.source}}" class="mask-link" target="_blank"></a>
 
+	<div class="card-buttons">
+		<div store-it="card"></div>
+		<a href="" class="share-card-btn"
+			ng-dialog="shareLikeDialog"
+			ng-dialog-class="lsd-theme share-dialog share-like"
+			ng-dialog-controller="shareLikeController"
+			ng-dialog-show-close="false"
+			ng-dialog-data="{{card._id}}, {{card.type}}, {{card.title||card.repo}}"><i class="font-icon share-entypo-icon icon"></i></a>
+	</div>
+
 	<div ng-if="card.thumbnail" class="card-cover">
 		<div class="card-cover-overlay"></div>
 		<img ng-src="{{card.thumbnail}}" class="animated delay-300ms fadeIn">
