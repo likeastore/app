@@ -1,10 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|PT+Sans:400,700|Montserrat:400,700);
 @import url(reset.css);
+@import url(../components/animate.css/animate.css);
+@import url(../components/ngDialog/css/ngDialog.css);
 @import url(general.css);
 @import url(icons.css);
 @import url(preloaders.css);
-@import url(../components/animate.css/animate.css);
-@import url(../components/ngDialog/css/ngDialog.css);
+@import url(deckgrid.css);
 @import url(dialog.css);
 @import url(settings.css);
 @import url(profile.css);

@@ -1,0 +1,153 @@
+/*
+ * Styles related to slick grid (ex. feed.ejs)
+ */
+
+
+
+.deckgrid[deckgrid]::before {
+  /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
+  content: '5 .column.size-1-5';
+  font-size: 0;
+  /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
+  visibility: hidden;
+}
+
+.deckgrid .column {
+  float: left;
+}
+
+.deckgrid .size-1-5 {
+  width: 240px;
+  margin-right: 20px;
+}
+
+.deckgrid .size-1-5:last-child {
+  margin-right: 0;
+}
+
+.feed.dashboard,
+.feed.top-bar {
+  max-width: 1280px;
+}
+
+.card-item {
+  background: #fff;
+  width: 100%;
+  margin: 0 0 20px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14);
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.card-item.ng-enter.ng-enter-active,
+.card-item-animation.ng-leave {
+  opacity: 1;
+}
+
+.card-item.ng-leave.ng-leave-active,
+.card-item.ng-enter {
+  opacity: 0;
+}
+
+.card-item .card-cover {
+  overflow: hidden;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, .08);
+  min-height: 100px;
+  background: url('/img/preloader-circle.gif') no-repeat center transparent;
+}
+
+.card-item .card-cover img {
+  max-width: 100%;
+  min-height: 100px;
+  height: auto;
+  vertical-align: top;
+  border-radius: 3px 3px 0 0;
+}
+
+.card-item .card-meta {
+  padding: 12px 14px 13px;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.card-item .card-meta .title {
+  color: #444;
+  font-size: 13px;
+  font-weight: bold;
+  max-height: 64px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.card-item .card-meta .title.bottom-space {
+  margin-bottom: 5px !important;
+}
+
+.card-item .card-meta .description {
+  color: #444;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+
+.card-item .card-meta .description a {
+  color: #666;
+  font-weight: bold;
+}
+
+.card-item .card-meta .from {
+  color: #aaa;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 18px;
+}
+
+.card-item .card-meta .from .type {
+  text-transform: capitalize;
+}
+
+.card-item .card-collection {
+  font-size: 11px;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: bold;
+  border-top: 1px solid #e7e7e7;
+  line-height: 15px;
+  padding: 10px 12px;
+}
+
+.card-item .card-collection .c-avatar {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-right: 7px;
+  border-radius: 2px;
+}
+
+.card-item .card-collection .c-title {
+  color: #717171;
+}
+
+.card-item .card-collection .c-owner,
+.card-item .card-collection .c-owner a {
+  color: #b5b5b5;
+  position: relative;
+  z-index: 11;
+}
+
+.card-item .icon {
+  display: inline-block;
+  color: #fff;
+  font-size: 10px;
+  line-height: 20px;
+  vertical-align: top;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  margin-right: 3px;
+  border-radius: 2px;
+}
