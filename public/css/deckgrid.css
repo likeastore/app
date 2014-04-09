@@ -35,7 +35,6 @@
   width: 100%;
   margin: 0 0 20px;
   position: relative;
-  cursor: pointer;
   border-radius: 3px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
@@ -56,10 +55,11 @@
 
 .card-item .card-cover {
   overflow: hidden;
-  text-align: center;
+  background: url('/img/preloader-circle.gif') no-repeat center transparent;
   border-bottom: 1px solid rgba(0, 0, 0, .08);
   min-height: 100px;
-  background: url('/img/preloader-circle.gif') no-repeat center transparent;
+  text-align: center;
+  position: relative;
 }
 
 .card-item .card-cover img {
@@ -68,6 +68,28 @@
   height: auto;
   vertical-align: top;
   border-radius: 3px 3px 0 0;
+}
+
+.card-item .card-cover-overlay {
+  opacity: 0;
+  visibility: hidden;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  border-radius: 3px 3px 0 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.card-item:hover .card-cover-overlay {
+  visibility: visible;
+  opacity: .2;
 }
 
 .card-item .card-meta {
@@ -81,7 +103,7 @@
   font-weight: bold;
   max-height: 64px;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .card-item .card-meta .title.bottom-space {
@@ -92,12 +114,14 @@
   color: #444;
   font-size: 12px;
   line-height: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .card-item .card-meta .description a {
   color: #666;
   font-weight: bold;
+  position: relative;
+  z-index: 11;
 }
 
 .card-item .card-meta .from {
@@ -118,6 +142,15 @@
   border-top: 1px solid #e7e7e7;
   line-height: 15px;
   padding: 10px 12px;
+  position: relative;
+  z-index: 11;
+  border-radius: 0 0 3px 3px;
+  -webkit-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+
+.card-item .card-collection:hover {
+  background: #f9f9f9;
 }
 
 .card-item .card-collection .c-avatar {
@@ -129,14 +162,22 @@
 }
 
 .card-item .card-collection .c-title {
+  display: block;
   color: #717171;
+}
+
+.card-item .card-collection .c-owner {
+  cursor: default;
 }
 
 .card-item .card-collection .c-owner,
 .card-item .card-collection .c-owner a {
   color: #b5b5b5;
-  position: relative;
-  z-index: 11;
+}
+
+.card-item .card-collection:hover .c-owner,
+.card-item .card-collection:hover .c-owner a {
+  color: #999;
 }
 
 .card-item .icon {
