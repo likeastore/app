@@ -265,8 +265,6 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
 				var rules = extractRules(stylesheet);
 
 				angular.forEach(rules, function inRuleIteration (rule) {
-					console.dir(rule);
-					console.dir(hasDeckgridStyles(rule));
 					if (hasDeckgridStyles(rule)) {
 						mediaQueries.push($window.matchMedia(rule.media.mediaText));
 					}
@@ -356,8 +354,6 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
 		Deckgrid.prototype.$$onMediaQueryChange = function $$onMediaQueryChange () {
 			var self = this,
 				layout = this.$$getLayout();
-
-				console.log('media query change');
 
 			//
 			// Okay, the layout has changed.
