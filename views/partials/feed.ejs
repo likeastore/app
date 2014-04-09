@@ -9,13 +9,13 @@
 	</div>
 </div>
 
-<section class="dashboard feed clearfix animated fadeIn">
-	<div class="deckgrid clearfix"
-		deckgrid source="items" cardTemplate="/partials/card.ejs"
-		ng-class="{
-			'list-view': user.viewMode === 'list',
-			'grid-view': user.viewMode === 'grid'
-		}">
+<section class="dashboard feed clearfix animated fadeIn" ng-switch="user.viewMode">
+	<div ng-switch-when="grid">
+		<div class="deckgrid clearfix" deckgrid source="items" cardTemplate="/partials/card.ejs"></div>
+	</div>
+
+	<div ng-switch-when="list">
+		LIST HERE
 	</div>
 
 
@@ -84,14 +84,14 @@
 			<time am-time-ago="item.date"></time>
 			<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
 		</li>
-	</ul>
+	</ul> -->
 
 	<div class="blank-box" ng-if="loaded && !items.length">
 		<div class="discover-empty-icon big-icon"></div>
-		<h2 class="title">Your discover feed is empty!</h2>
-		<p>Explore what your friends from different social networks are favoriting right now! Just find people and follow their curated collections.</p>
+		<h2 class="title">Your feed is empty!</h2>
+		<p>Explore what your friends from different social networks are favoriting right now! Just find people and follow their collections.</p>
 		<a href="/suggest" class="btn gradient-btn">Find people</a>
-	</div>-->
+	</div>
 
 	<div class="two-spin" ng-hide="loaded || error"></div>
 </section>
