@@ -86,6 +86,10 @@
   content: 'X';
 }
 
+.share-entypo-icon:before {
+  content: 'Y';
+}
+
 .link-icon:before {
   content: '1';
 }
@@ -220,6 +224,10 @@
 
 .doc-icon:before {
   content: '\e027';
+}
+
+.check-icon:before {
+  content: '\e017';
 }
 
 .big-icon {

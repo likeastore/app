@@ -1304,7 +1304,7 @@ textarea.fld {
 	transition: all .3s;
 }
 
-.dash-item .action-buttons .show-coll-popup:after {
+.show-coll-popup:after {
 	bottom: 100%;
 	border: solid transparent;
 	content: '';
@@ -1345,6 +1345,7 @@ textarea.fld {
 	padding: 5px 10px;
 	letter-spacing: .3px;
 	border-radius: 2px;
+	cursor: pointer;
 }
 
 .show-coll-popup .show-coll-item.show-coll-empty {

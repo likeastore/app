@@ -180,7 +180,7 @@
   color: #999;
 }
 
-.card-item .icon {
+.card-item .from .icon {
   display: inline-block;
   color: #fff;
   font-size: 10px;
@@ -191,4 +191,92 @@
   text-align: center;
   margin-right: 3px;
   border-radius: 2px;
+}
+
+.card-item .card-buttons {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  z-index: 12;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.card-item:hover .card-buttons {
+  visibility: visible;
+  opacity: 1;
+}
+
+.card-item .card-buttons .show-coll-popup {
+  right: -20px;
+}
+
+.card-item .card-buttons .show-coll-popup:after {
+  left: 24px;
+}
+
+.card-item .card-buttons .show-coll-popup.on {
+  visibility: visible;
+  opacity: 1;
+  top: 40px;
+}
+
+.store-it-popup-wrap {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 3px;
+}
+
+.store-it-btn,
+.store-it-btn:hover {
+  display: block;
+  background: -webkit-linear-gradient(15deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
+  background: linear-gradient(75deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
+  border: 1px solid rgba(0, 0, 0, .2);
+  color: #fff;
+  font-size: 12px;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: bold;
+  padding: 6px 8px 5px 6px;
+  text-shadow: 0 -1px rgba(0, 0, 0, .11);
+  white-space: nowrap;
+  border-radius: 2px;
+}
+
+.store-it-btn .icon {
+  display: inline-block;
+  vertical-align: top;
+  margin: 2px 2px 0 0;
+}
+
+.share-card-btn {
+  display: inline-block;
+  background: #fc523c;
+  color: #fff;
+  border: 1px solid rgba(0, 0, 0, .2);
+  vertical-align: top;
+  padding: 6px 4px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  text-shadow: 0 -1px rgba(0, 0, 0, .11);
+  border-radius: 2px;
+}
+
+.share-card-btn .icon {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 15px;
+}
+
+.store-it-btn:hover,
+.store-it-btn:active,
+.share-card-btn:hover,
+.share-card-btn:active {
+  text-decoration: none;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  border: 1px solid rgba(0, 0, 0, .3);
 }
