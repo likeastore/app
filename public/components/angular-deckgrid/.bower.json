@@ -37,6 +37,5 @@
   },
   "_source": "git://github.com/akoenig/angular-deckgrid.git",
   "_target": "~0.4.1",
-  "_originalSource": "angular-deckgrid",
-  "_direct": true
+  "_originalSource": "angular-deckgrid"
 }
