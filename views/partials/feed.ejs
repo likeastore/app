@@ -9,8 +9,8 @@
 	</div>
 </div>
 
-<section class="dashboard feed animated fadeIn">
-	<div ng-if="items.length" class="deckgrid"
+<section class="dashboard feed clearfix animated fadeIn">
+	<div class="deckgrid clearfix"
 		deckgrid source="items" cardTemplate="/partials/card.ejs"
 		ng-class="{
 			'list-view': user.viewMode === 'list',

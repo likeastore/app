@@ -16,14 +16,14 @@ angular.module('akoenig.deckgrid', []);
 
 angular.module('akoenig.deckgrid').directive('deckgrid', [
 
-    'DeckgridDescriptor',
+	'DeckgridDescriptor',
 
-    function initialize (DeckgridDescriptor) {
+	function initialize (DeckgridDescriptor) {
 
-        'use strict';
+		'use strict';
 
-        return DeckgridDescriptor.create();
-    }
+		return DeckgridDescriptor.create();
+	}
 ]);
 /*
  * angular-deckgrid
@@ -40,110 +40,110 @@ angular.module('akoenig.deckgrid').directive('deckgrid', [
 
 angular.module('akoenig.deckgrid').factory('DeckgridDescriptor', [
 
-    'Deckgrid',
-    '$templateCache',
+	'Deckgrid',
+	'$templateCache',
 
-    function initialize (Deckgrid, $templateCache) {
+	function initialize (Deckgrid, $templateCache) {
 
-        'use strict';
+		'use strict';
 
-        /**
-         * This is a wrapper around the AngularJS
-         * directive description object.
-         *
-         */
-        function Descriptor () {
-            this.restrict = 'AE';
+		/**
+		 * This is a wrapper around the AngularJS
+		 * directive description object.
+		 *
+		 */
+		function Descriptor () {
+			this.restrict = 'AE';
 
-            this.template = '<div data-ng-repeat="column in columns" class="{{layout.classList}}">' +
-                                '<div data-ng-repeat="card in column" data-ng-include="cardTemplate"></div>' +
-                            '</div>';
+			this.template = '<div data-ng-repeat="column in columns" class="{{layout.classList}}">' +
+								'<div data-ng-repeat="card in column" data-ng-include="cardTemplate"></div>' +
+							'</div>';
 
-            this.scope = {
-                'model': '=source'
-            };
+			this.scope = {
+				'model': '=source'
+			};
 
-            //
-            // Will be created in the linking function.
-            //
-            this.$$deckgrid = null;
+			//
+			// Will be created in the linking function.
+			//
+			this.$$deckgrid = null;
 
-            this.transclude = true;
-            this.link = this.$$link.bind(this);
+			this.transclude = true;
+			this.link = this.$$link.bind(this);
 
-            //
-            // Will be incremented if using inline templates.
-            //
-            this.$$templateKeyIndex = 0;
+			//
+			// Will be incremented if using inline templates.
+			//
+			this.$$templateKeyIndex = 0;
 
-        }
+		}
 
-        /**
-         * @private
-         *
-         * Cleanup method. Will be called when the
-         * deckgrid directive should be destroyed.
-         *
-         */
-        Descriptor.prototype.$$destroy = function $$destroy () {
-            this.$$deckgrid.destroy();
-        };
+		/**
+		 * @private
+		 *
+		 * Cleanup method. Will be called when the
+		 * deckgrid directive should be destroyed.
+		 *
+		 */
+		Descriptor.prototype.$$destroy = function $$destroy () {
+			this.$$deckgrid.destroy();
+		};
 
-        /**
-         * @private
-         *
-         * The deckgrid link method. Will instantiate the deckgrid.
-         *
-         */
-        Descriptor.prototype.$$link = function $$link (scope, elem, attrs, nullController, transclude) {
-            var templateKey = 'deckgrid/innerHtmlTemplate' + (++this.$$templateKeyIndex);
+		/**
+		 * @private
+		 *
+		 * The deckgrid link method. Will instantiate the deckgrid.
+		 *
+		 */
+		Descriptor.prototype.$$link = function $$link (scope, elem, attrs, nullController, transclude) {
+			var templateKey = 'deckgrid/innerHtmlTemplate' + (++this.$$templateKeyIndex);
 
-            scope.$on('$destroy', this.$$destroy.bind(this));
+			scope.$on('$destroy', this.$$destroy.bind(this));
 
-            if (attrs.cardtemplate === undefined) {
-                if (attrs.cardtemplatestring === undefined) {
-                    // use the provided inner html as template
-                    transclude(scope, function onTransclude (innerHTML) {
-                        var extractedInnerHTML = [],
-                            i = 0,
-                            len = innerHTML.length,
-                            outerHTML;
+			if (attrs.cardtemplate === undefined) {
+				if (attrs.cardtemplatestring === undefined) {
+					// use the provided inner html as template
+					transclude(scope, function onTransclude (innerHTML) {
+						var extractedInnerHTML = [],
+							i = 0,
+							len = innerHTML.length,
+							outerHTML;
 
-                        for (i; i < len; i = i + 1) {
-                            outerHTML = innerHTML[i].outerHTML;
+						for (i; i < len; i = i + 1) {
+							outerHTML = innerHTML[i].outerHTML;
 
-                            if (outerHTML !== undefined) {
-                                extractedInnerHTML.push(outerHTML);
-                            }
-                        }
+							if (outerHTML !== undefined) {
+								extractedInnerHTML.push(outerHTML);
+							}
+						}
 
-                        $templateCache.put(templateKey, extractedInnerHTML.join());
-                    });
-                } else {
-                    // use the provided template string
-                    //
-                    // note: the attr is accessed via the elem object, as the attrs content
-                    // is already compiled and thus lacks the {{...}} expressions
-                    $templateCache.put(templateKey, elem.attr('cardtemplatestring'));
-                }
+						$templateCache.put(templateKey, extractedInnerHTML.join());
+					});
+				} else {
+					// use the provided template string
+					//
+					// note: the attr is accessed via the elem object, as the attrs content
+					// is already compiled and thus lacks the {{...}} expressions
+					$templateCache.put(templateKey, elem.attr('cardtemplatestring'));
+				}
 
-                scope.cardTemplate = templateKey;
-            } else {
-                // use the provided template file
-                scope.cardTemplate = attrs.cardtemplate;
-            }
+				scope.cardTemplate = templateKey;
+			} else {
+				// use the provided template file
+				scope.cardTemplate = attrs.cardtemplate;
+			}
 
-            scope.mother = scope.$parent;
+			scope.mother = scope.$parent;
 
-            this.$$deckgrid = Deckgrid.create(scope, elem[0]);
-        };
+			this.$$deckgrid = Deckgrid.create(scope, elem[0]);
+		};
 
-        return {
-            create : function create () {
-                return new Descriptor();
-            }
-        };
-    }
+		return {
+			create : function create () {
+				return new Descriptor();
+			}
+		};
+	}
 ]);
 
 /*
@@ -161,247 +161,251 @@ angular.module('akoenig.deckgrid').factory('DeckgridDescriptor', [
 
 angular.module('akoenig.deckgrid').factory('Deckgrid', [
 
-    '$window',
-    '$log',
+	'$window',
+	'$log',
 
-    function initialize ($window, $log) {
+	function initialize ($window, $log) {
 
-        'use strict';
+		'use strict';
 
-        /**
-         * The deckgrid directive.
-         *
-         */
-        function Deckgrid (scope, element) {
-            var self = this,
-                watcher;
+		/**
+		 * The deckgrid directive.
+		 *
+		 */
+		function Deckgrid (scope, element) {
+			var self = this,
+				watcher;
 
-            this.$$elem = element;
-            this.$$watchers = [];
+			this.$$elem = element;
+			this.$$watchers = [];
 
-            this.$$scope = scope;
-            this.$$scope.columns = [];
+			this.$$scope = scope;
+			this.$$scope.columns = [];
 
-            //
-            // The layout configuration will be parsed from
-            // the pseudo "before element." There you have to save all
-            // the column configurations.
-            //
-            this.$$scope.layout = this.$$getLayout();
+			//
+			// The layout configuration will be parsed from
+			// the pseudo "before element." There you have to save all
+			// the column configurations.
+			//
+			this.$$scope.layout = this.$$getLayout();
 
-            this.$$createColumns();
+			this.$$createColumns();
 
-            //
-            // Register model change.
-            //
-            watcher = this.$$scope.$watch('model', this.$$onModelChange.bind(this), true);
-            this.$$watchers.push(watcher);
+			//
+			// Register model change.
+			//
+			watcher = this.$$scope.$watch('model', this.$$onModelChange.bind(this), true);
+			this.$$watchers.push(watcher);
 
-            //
-            // Register media query change events.
-            //
-            angular.forEach(self.$$getMediaQueries(), function onIteration (rule) {
-                function onDestroy () {
-                    rule.removeListener(self.$$onMediaQueryChange.bind(self));
-                }
+			//
+			// Register media query change events.
+			//
+			angular.forEach(self.$$getMediaQueries(), function onIteration (rule) {
+				function onDestroy () {
+					rule.removeListener(self.$$onMediaQueryChange.bind(self));
+				}
 
-                rule.addListener(self.$$onMediaQueryChange.bind(self));
+				rule.addListener(self.$$onMediaQueryChange.bind(self));
 
-                self.$$watchers.push(onDestroy);
-            });
-        }
+				self.$$watchers.push(onDestroy);
+			});
+		}
 
-        /**
-         * @private
-         *
-         * Extracts the media queries out of the stylesheets.
-         *
-         * This method will fetch the media queries out of the stylesheets that are
-         * responsible for styling the angular-deckgrid.
-         *
-         * @return {array} An array with all respective styles.
-         *
-         */
-        Deckgrid.prototype.$$getMediaQueries = function $$getMediaQueries () {
-            var stylesheets = [],
-                mediaQueries = [];
+		/**
+		 * @private
+		 *
+		 * Extracts the media queries out of the stylesheets.
+		 *
+		 * This method will fetch the media queries out of the stylesheets that are
+		 * responsible for styling the angular-deckgrid.
+		 *
+		 * @return {array} An array with all respective styles.
+		 *
+		 */
+		Deckgrid.prototype.$$getMediaQueries = function $$getMediaQueries () {
+			var stylesheets = [],
+				mediaQueries = [];
 
-            stylesheets = Array.prototype.concat.call(
-                Array.prototype.slice.call(document.querySelectorAll('style[type=\'text/css\']')),
-                Array.prototype.slice.call(document.querySelectorAll('link[rel=\'stylesheet\']'))
-            );
+			stylesheets = Array.prototype.concat.call(
+				Array.prototype.slice.call(document.querySelectorAll('style[type=\'text/css\']')),
+				Array.prototype.slice.call(document.querySelectorAll('link[rel=\'stylesheet\']'))
+			);
 
-            function extractRules (stylesheet) {
-                try {
-                    return (stylesheet.sheet.cssRules || []);
-                } catch (e) {
-                    return [];
-                }
-            }
+			function extractRules (stylesheet) {
+				try {
+					return (stylesheet.sheet.cssRules || []);
+				} catch (e) {
+					return [];
+				}
+			}
 
-            function hasDeckgridStyles (rule) {
-                var regexe   = /\[(\w*-)?deckgrid\]::?before/g,
-                    i        = 0,
-                    selector = '';
+			function hasDeckgridStyles (rule) {
+				var regexe   = /\[(\w*-)?deckgrid\]::?before/g,
+					i        = 0,
+					selector = '';
 
-                if (!rule.media || angular.isUndefined(rule.cssRules)) {
-                    return false;
-                }
+				if (!rule.media || angular.isUndefined(rule.cssRules)) {
+					return false;
+				}
 
-                i = rule.cssRules.length - 1;
+				i = rule.cssRules.length - 1;
 
-                for (i; i >= 0; i = i - 1) {
-                    selector = rule.cssRules[i].selectorText;
+				for (i; i >= 0; i = i - 1) {
+					selector = rule.cssRules[i].selectorText;
 
-                    if (angular.isDefined(selector) && selector.match(regexe)) {
-                        return true;
-                    }
-                }
+					if (angular.isDefined(selector) && selector.match(regexe)) {
+						return true;
+					}
+				}
 
-                return false;
-            }
+				return false;
+			}
 
-            angular.forEach(stylesheets, function onIteration (stylesheet) {
-                var rules = extractRules(stylesheet);
+			angular.forEach(stylesheets, function onIteration (stylesheet) {
+				var rules = extractRules(stylesheet);
 
-                angular.forEach(rules, function inRuleIteration (rule) {
-                    if (hasDeckgridStyles(rule)) {
-                        mediaQueries.push($window.matchMedia(rule.media.mediaText));
-                    }
-                });
-            });
+				angular.forEach(rules, function inRuleIteration (rule) {
+					console.dir(rule);
+					console.dir(hasDeckgridStyles(rule));
+					if (hasDeckgridStyles(rule)) {
+						mediaQueries.push($window.matchMedia(rule.media.mediaText));
+					}
+				});
+			});
 
-            return mediaQueries;
-        };
+			return mediaQueries;
+		};
 
-        /**
-         * @private
-         *
-         * Creates the column segmentation. With other words:
-         * This method creates the internal data structure from the
-         * passed "source" attribute. Every card within this "source"
-         * model will be passed into this internal column structure by
-         * reference. So if you modify the data within your controller
-         * this directive will reflect these changes immediately.
-         *
-         * NOTE that calling this method will trigger a complete template "redraw".
-         *
-         */
-        Deckgrid.prototype.$$createColumns = function $$createColumns () {
-            var self = this;
+		/**
+		 * @private
+		 *
+		 * Creates the column segmentation. With other words:
+		 * This method creates the internal data structure from the
+		 * passed "source" attribute. Every card within this "source"
+		 * model will be passed into this internal column structure by
+		 * reference. So if you modify the data within your controller
+		 * this directive will reflect these changes immediately.
+		 *
+		 * NOTE that calling this method will trigger a complete template "redraw".
+		 *
+		 */
+		Deckgrid.prototype.$$createColumns = function $$createColumns () {
+			var self = this;
 
-            if (!this.$$scope.layout) {
-                return $log.error('angular-deckgrid: No CSS configuration found (see ' +
-                                   'https://github.com/akoenig/angular-deckgrid#the-grid-configuration)');
-            }
+			if (!this.$$scope.layout) {
+				return $log.error('angular-deckgrid: No CSS configuration found (see ' +
+								   'https://github.com/akoenig/angular-deckgrid#the-grid-configuration)');
+			}
 
-            this.$$scope.columns = [];
+			this.$$scope.columns = [];
 
-            angular.forEach(this.$$scope.model, function onIteration (card, index) {
-                var column = (index % self.$$scope.layout.columns) | 0;
+			angular.forEach(this.$$scope.model, function onIteration (card, index) {
+				var column = (index % self.$$scope.layout.columns) | 0;
 
-                if (!self.$$scope.columns[column]) {
-                    self.$$scope.columns[column] = [];
-                }
+				if (!self.$$scope.columns[column]) {
+					self.$$scope.columns[column] = [];
+				}
 
-                card.$index = index;
-                self.$$scope.columns[column].push(card);
-            });
-        };
+				card.$index = index;
+				self.$$scope.columns[column].push(card);
+			});
+		};
 
-        /**
-         * @private
-         *
-         * Parses the configuration out of the configured CSS styles.
-         *
-         * Example:
-         *
-         *     .deckgrid::before {
-         *         content: '3 .column.size-1-3';
-         *     }
-         *
-         * Will result in a three column grid where each column will have the
-         * classes: "column size-1-3".
-         *
-         * You are responsible for defining the respective styles within your CSS.
-         *
-         */
-        Deckgrid.prototype.$$getLayout = function $$getLayout () {
-            var content = $window.getComputedStyle(this.$$elem, ':before').content,
-                layout;
+		/**
+		 * @private
+		 *
+		 * Parses the configuration out of the configured CSS styles.
+		 *
+		 * Example:
+		 *
+		 *     .deckgrid::before {
+		 *         content: '3 .column.size-1-3';
+		 *     }
+		 *
+		 * Will result in a three column grid where each column will have the
+		 * classes: "column size-1-3".
+		 *
+		 * You are responsible for defining the respective styles within your CSS.
+		 *
+		 */
+		Deckgrid.prototype.$$getLayout = function $$getLayout () {
+			var content = $window.getComputedStyle(this.$$elem, ':before').content,
+				layout;
 
-            if (content) {
-                content = content.replace(/'/g, '');  // before e.g. '3 .column.size-1of3'
-                content = content.replace(/"/g, '');  // before e.g. "3 .column.size-1of3"
-                content = content.split(' ');
+			if (content) {
+				content = content.replace(/'/g, '');  // before e.g. '3 .column.size-1of3'
+				content = content.replace(/"/g, '');  // before e.g. "3 .column.size-1of3"
+				content = content.split(' ');
 
-                if (2 === content.length) {
-                    layout = {};
-                    layout.columns = (content[0] | 0);
-                    layout.classList = content[1].replace(/\./g, ' ').trim();
-                }
-            }
+				if (2 === content.length) {
+					layout = {};
+					layout.columns = (content[0] | 0);
+					layout.classList = content[1].replace(/\./g, ' ').trim();
+				}
+			}
 
-            return layout;
-        };
+			return layout;
+		};
 
-        /**
-         * @private
-         *
-         * Event that will be triggered if a CSS media query changed.
-         *
-         */
-        Deckgrid.prototype.$$onMediaQueryChange = function $$onMediaQueryChange () {
-            var self = this,
-                layout = this.$$getLayout();
+		/**
+		 * @private
+		 *
+		 * Event that will be triggered if a CSS media query changed.
+		 *
+		 */
+		Deckgrid.prototype.$$onMediaQueryChange = function $$onMediaQueryChange () {
+			var self = this,
+				layout = this.$$getLayout();
 
-            //
-            // Okay, the layout has changed.
-            // Creating a new column structure is not avoidable.
-            //
-            if (layout.columns !== this.$$scope.layout.columns) {
-                self.$$scope.layout = layout;
+				console.log('media query change');
 
-                self.$$scope.$apply(function onApply () {
-                    self.$$createColumns();
-                });
-            }
-        };
+			//
+			// Okay, the layout has changed.
+			// Creating a new column structure is not avoidable.
+			//
+			if (layout.columns !== this.$$scope.layout.columns) {
+				self.$$scope.layout = layout;
 
-        /**
-         * @private
-         *
-         * Event that will be triggered when the source model has changed.
-         *
-         */
-        Deckgrid.prototype.$$onModelChange = function $$onModelChange (newModel, oldModel) {
-            var self = this;
+				self.$$scope.$apply(function onApply () {
+					self.$$createColumns();
+				});
+			}
+		};
 
-            newModel = newModel || [];
-            oldModel = oldModel || [];
+		/**
+		 * @private
+		 *
+		 * Event that will be triggered when the source model has changed.
+		 *
+		 */
+		Deckgrid.prototype.$$onModelChange = function $$onModelChange (newModel, oldModel) {
+			var self = this;
 
-            if (oldModel.length !== newModel.length) {
-                self.$$createColumns();
-            }
-        };
+			newModel = newModel || [];
+			oldModel = oldModel || [];
 
-        /**
-         * Destroys the directive. Takes care of cleaning all
-         * watchers and event handlers.
-         *
-         */
-        Deckgrid.prototype.destroy = function destroy () {
-            var i = this.$$watchers.length - 1;
+			if (oldModel.length !== newModel.length) {
+				self.$$createColumns();
+			}
+		};
 
-            for (i; i >= 0; i = i - 1) {
-                this.$$watchers[i]();
-            }
-        };
+		/**
+		 * Destroys the directive. Takes care of cleaning all
+		 * watchers and event handlers.
+		 *
+		 */
+		Deckgrid.prototype.destroy = function destroy () {
+			var i = this.$$watchers.length - 1;
 
-        return {
-            create : function create (scope, element) {
-                return new Deckgrid(scope, element);
-            }
-        };
-    }
+			for (i; i >= 0; i = i - 1) {
+				this.$$watchers[i]();
+			}
+		};
+
+		return {
+			create : function create (scope, element) {
+				return new Deckgrid(scope, element);
+			}
+		};
+	}
 ]);
