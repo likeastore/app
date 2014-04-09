@@ -1,16 +1,25 @@
-<div class="top-bar clearfix animated fadeInLeft">
+<div class="feed top-bar clearfix animated fadeInLeft">
 	<div class="top left">
 		<h2 ng-show="items.length" class="title">{{title}}</h2>
-		<div ng-show="items.length" class="description">Favorites of people you follow</div>
+		<div ng-show="items.length" class="description">Favorites from collections you follow</div>
 	</div>
 
 	<div ng-show="items.length" class="notify-line" ng-click="switchMenu('/suggest')">
-		<img src="/img/friends-stamp.png" class="icon"> Find interesting people to follow!
+		<img src="/img/friends-stamp.png" class="icon"> Find interesting people!
 	</div>
 </div>
 
-<section class="dashboard discover animated fadeIn">
-	<ul ng-if="items.length" id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list', 'grid-view': user.viewMode === 'grid'}">
+<section class="dashboard feed animated fadeIn">
+	<div ng-if="items.length" class="deckgrid"
+		deckgrid source="items" cardTemplate="/partials/card.ejs"
+		ng-class="{
+			'list-view': user.viewMode === 'list',
+			'grid-view': user.viewMode === 'grid'
+		}">
+	</div>
+
+
+	<!--ul ng-if="items.length" id="items" class="items-wrap" ng-class="{'list-view': user.viewMode === 'list', 'grid-view': user.viewMode === 'grid'}">
 		<li class="dash-item {{item.type}} item{{$index}}"
 			ng-repeat="item in items"
 			ng-class="{
@@ -82,7 +91,7 @@
 		<h2 class="title">Your discover feed is empty!</h2>
 		<p>Explore what your friends from different social networks are favoriting right now! Just find people and follow their curated collections.</p>
 		<a href="/suggest" class="btn gradient-btn">Find people</a>
-	</div>
+	</div>-->
 
 	<div class="two-spin" ng-hide="loaded || error"></div>
 </section>
