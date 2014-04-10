@@ -13,7 +13,7 @@ define(function (require) {
 			},
 			template: '\
 				<a href="" class="store-it-btn" ng-click="togglePopup()">\
-					<i class="font-icon plus-icon icon" ng-class="{\'check-icon animated bounceIn\': added}"></i> Store it\
+					<i class="font-icon plus-icon icon" ng-class="{\'check-icon animated bounceIn\': added}"></i> Add to\
 				</a>\
 				<ul class="show-coll-popup" ng-class="{\'on\': popup}" ng-mouseleave="popup=false">\
 					<li class="show-coll-item show-coll-empty"\
