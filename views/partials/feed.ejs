@@ -9,13 +9,59 @@
 	</div>
 </div>
 
-<section class="dashboard feed clearfix animated fadeIn" ng-switch="user.viewMode">
+<section class="dashboard feed clearfix" ng-switch="user.viewMode">
 	<div ng-switch-when="grid">
-		<div class="deckgrid clearfix" deckgrid source="items" cardTemplate="/partials/card.ejs"></div>
+		<div class="deckgrid clearfix animated fadeIn" deckgrid source="items" cardTemplate="/partials/card.ejs"></div>
 	</div>
 
 	<div ng-switch-when="list">
-		LIST HERE
+		<ul class="animated fadeIn">
+			<li class="card-item clearfix {{card.type}} item{{card.$index}}"
+				ng-repeat="card in items"
+				ng-class="{
+					'thumbed': card.thumbnail,
+					'texted': !card.thumbnail,
+					'last': $last
+				}">
+
+				<a ng-href="{{card.source}}" class="mask-link" target="_blank"></a>
+
+				<div class="card-buttons align-right">
+					<div store-it="card"></div>
+					<a href="" class="share-card-btn"
+						ng-dialog="shareLikeDialog"
+						ng-dialog-class="lsd-theme share-dialog share-like"
+						ng-dialog-controller="shareLikeController"
+						ng-dialog-show-close="false"
+						ng-dialog-data="{{card._id}}, {{card.type}}, {{card.title||card.repo}}"><i class="font-icon share-entypo-icon icon"></i></a>
+				</div>
+
+				<a href="/u/{{card.collection.owner.name}}">
+					<img ng-src="{{card.collection.owner.avatar}}" class="c-avatar left" avatar-load>
+				</a>
+
+				<div class="card-info">
+					<div class="card-collection-meta truncate">
+						<a href="/u/{{card.collection.owner.name}}">{{card.collection.owner.name}}</a> added to
+						<a href="/u/{{card.collection.owner.name}}/{{card.collection._id}}" class="c-title">{{card.collection.title}}</a>
+					</div>
+
+					<div class="card-top-table" ng-class="{'space-top': card.thumbnail}">
+						<div ng-if="card.thumbnail" class="thumb left" style="background-image: url({{card.thumbnail}})"></div>
+
+						<h2 ng-if="card.title||card.repo||card.name" class="title" ng-class="{'bottom-space': card.description}">{{card.title||card.repo||card.name}}</h2>
+
+						<div ng-if="card.description" class="description" ng-bind-html="card.description|truncate:260|linkify"></div>
+
+						<div class="from">
+							<i class="font-icon {{card.type}}-icon {{card.type}}-bg-clr icon"></i>
+							<span ng-if="card.authorName">by <span class="author-name">{{card.authorName}}</span></span>
+							<span ng-if="!card.authorName">from <span class="type">{{card.type}}</span></span>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
 	</div>
 
 

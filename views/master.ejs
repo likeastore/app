@@ -47,7 +47,12 @@
 						</div>
 					</header>
 
-					<div id="mainViewer" class="main-viewer" ng-view></div>
+					<div id="mainViewer" class="main-viewer" ng-view
+						ng-class="{
+							'list-view': user.viewMode === 'list',
+							'grid-view': user.viewMode === 'grid'
+						}">
+					</div>
 				</div>
 			</div>
 		</div>
