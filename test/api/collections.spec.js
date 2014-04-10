@@ -3,7 +3,7 @@ var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
 
-describe('collections.spec.js', function () {
+describe.only('collections.spec.js', function () {
 	var token, user, url, items, headers, response, results;
 
 	beforeEach(function () {
@@ -1074,7 +1074,7 @@ describe('collections.spec.js', function () {
 			});
 		});
 
-		describe.only('when exploring collections', function () {
+		xdescribe('when exploring collections', function () {
 			var collections, createdHeaders;
 
 			beforeEach(function (done) {
