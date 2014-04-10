@@ -117,7 +117,7 @@
 }
 
 .card-item .card-meta .description {
-  color: #444;
+  color: #555;
   font-size: 12px;
   line-height: 16px;
   margin-bottom: 12px;
@@ -249,13 +249,14 @@
   padding: 6px 8px 5px 6px;
   text-shadow: 0 -1px rgba(0, 0, 0, .11);
   white-space: nowrap;
+  letter-spacing: .3px;
   border-radius: 2px;
 }
 
 .store-it-btn .icon {
   display: inline-block;
   vertical-align: top;
-  margin: 2px 2px 0 0;
+  margin: 2px 1px 0 0;
 }
 
 .share-card-btn {
