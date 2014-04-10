@@ -361,10 +361,7 @@ function followedBy(user, name, callback) {
 }
 
 function popular(user, callback) {
-	async.waterfall([
-		aggregate,
-		resolve
-	], function (err, collections) {
+	db.collections.find({public: true}).limit(30, function (err, collections) {
 		if (err) {
 			return callback(err);
 		}
@@ -372,25 +369,37 @@ function popular(user, callback) {
 		callback(null, collections.map(transform));
 	});
 
+	// async.waterfall([
+	// 	aggregate,
+	// 	resolve
+	// ], function (err, collections) {
+	// 	if (err) {
+	// 		return callback(err);
+	// 	}
 
-	function aggregate(callback) {
-		db.collections.aggregate([
-			{ $match: {public: true}},
-			{ $unwind: '$followers' },
-			{ $group: {_id: '$_id', followersCount: {$sum: 1}}},
-			{ $sort: { followersCount: -1 }},
-			{ $match: {followersCount: {$gt: 0}}},
-			{ $limit: 30}
-		], callback);
-	}
+	// 	callback(null, collections.map(transform));
+	// });
 
-	function resolve(ids, callback) {
-		ids = ids.map(function (i) {
-			return i._id;
-		});
 
-		db.collections.find({_id: {$in: ids}}, callback);
-	}
+	// function aggregate(callback) {
+	// 	db.collections.aggregate([
+	// 		{ $match: {public: true}},
+	// 		{ $unwind: '$followers' },
+	// 		{ $group: {_id: '$_id', followersCount: {$sum: 1}}},
+	// 		{ $sort: { followersCount: -1 }},
+	// 		{ $project: {_id: '$_id', title: '$title'}},
+	// 		{ $match: {followersCount: {$gt: 0}}},
+	// 		{ $limit: 30}
+	// 	], callback);
+	// }
+
+	// function resolve(ids, callback) {
+	// 	ids = ids.map(function (i) {
+	// 		return i._id;
+	// 	});
+
+	// 	db.collections.find({_id: {$in: ids}}, callback);
+	// }
 }
 
 module.exports = {
