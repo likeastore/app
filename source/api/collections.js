@@ -5,6 +5,9 @@ function collectionsService(app) {
 	app.get('/api/collections',
 		getCollections);
 
+	app.get('/api/collections/explore',
+		getPopularCollections);
+
 	app.get('/api/collections/user/:name',
 		getUsersCollections);
 
@@ -169,6 +172,16 @@ function collectionsService(app) {
 
 	function getCollectionsUserFollow(req, res, next) {
 		collections.followedBy(req.user, req.params.name, function (err, collections) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(collections);
+		});
+	}
+
+	function getPopularCollections(req, res, next) {
+		collections.popular(req.user, function (err, collections) {
 			if (err) {
 				return next(err);
 			}

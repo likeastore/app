@@ -142,6 +142,14 @@ function getDb() {
 	return db;
 }
 
+function clearDb(callback) {
+	db.dropDatabase(callback);
+}
+
+function clearCollection(collection, callback) {
+	db[collection].remove(callback);
+}
+
 module.exports = {
 	// common
 	getRootUrl: getRootUrl,
@@ -157,6 +165,8 @@ module.exports = {
 	removeTestNetwork: removeTestNetwork,
 	addFollows: addFollows,
 
-	// infa
-	getDb: getDb
+	// infra
+	getDb: getDb,
+	clearDb: clearDb,
+	clearCollection: clearCollection
 };
