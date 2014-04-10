@@ -2,11 +2,11 @@ var async= require('async');
 var request = require('request');
 var testUtils = require('../utils');
 
-describe('discover.spec.js', function () {
+describe('feed.spec.js', function () {
 	var url, firstUser, secondUser, firstUserHeaders, secondUserHeaders,  response, results;
 
 	beforeEach(function () {
-		url = testUtils.getRootUrl() + '/api/discover';
+		url = testUtils.getRootUrl() + '/api/feed';
 	});
 
 	describe('non authorized', function () {
@@ -24,12 +24,9 @@ describe('discover.spec.js', function () {
 	});
 
 	describe('authorized', function () {
-		//var follows;
-
 		beforeEach(function (done) {
 			testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
 				firstUser = createdUser;
-				// console.log('first user ', createdUser.email);
 				firstUserHeaders = {'X-Access-Token': accessToken};
 				done(err);
 			});
@@ -38,7 +35,6 @@ describe('discover.spec.js', function () {
 		beforeEach(function (done) {
 			testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
 				secondUser = createdUser;
-				// console.log('second user ', createdUser.email);
 				secondUserHeaders = {'X-Access-Token': accessToken};
 				done(err);
 			});

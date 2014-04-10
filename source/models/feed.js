@@ -4,7 +4,7 @@ var db = require('../db')(config);
 
 var pageSize = 30;
 
-function feed (user, page, callback) {
+function forUser(user, page, callback) {
 	var follows = user.followCollections;
 
 	if (!follows || follows.length === 0) {
@@ -52,5 +52,5 @@ function feed (user, page, callback) {
 }
 
 module.exports = {
-	feed: feed
+	forUser: forUser
 };
