@@ -54,7 +54,7 @@ define(function (require) {
 								\'locked-icon\': collection.public\
 							}">\
 						</i>\
-						{{collection.public ? \'Close\' : \'Open\'}}\
+						<span>{{collection.public ? \'Close\' : \'Open\'}}</span>\
 					</button>\
 					<button type="button" class="button xs-sml-btn orange-btn slk-btn share-collection-btn"\
 						ng-show="collection.public"\
@@ -62,7 +62,7 @@ define(function (require) {
 						ng-dialog-class="lsd-theme share-dialog share-like"\
 						ng-dialog-data="{{collection._id}}"\
 						ng-dialog-controller="shareCollectionController"\
-						ng-dialog-show-close="false"><i class="font-icon plane-icon icon"></i> Share\
+						ng-dialog-show-close="false"><i class="font-icon plane-icon icon"></i> <span>Share</span>\
 					</button>\
 					<button type="button" class="button xs-sml-btn orange-btn slk-btn delete-collection-btn"\
 						ng-dialog="deleteCollectionDialog"\
@@ -70,7 +70,7 @@ define(function (require) {
 						ng-dialog-data="{{collection._id}}"\
 						ng-dialog-controller="deleteCollectionController"\
 						ng-dialog-show-close="false">\
-						<i class="font-icon trash-icon icon"></i> Delete\
+						<i class="font-icon trash-icon icon"></i> <span>Delete</span>\
 					</button>\
 				</div>',
 			link: function ($scope, elem, attrs) {
