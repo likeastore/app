@@ -16,8 +16,9 @@ var collectionOmitFields = ['items'];
 function transform(collection) {
 	var clone = _.clone(collection);
 	var count = (collection.items && collection.items.length) || 0;
+	var followers = (collection.followers && collection.followers.length) || 0;
 
-	return _.omit(_.extend(clone, {count:  count}), collectionOmitFields);
+	return _.omit(_.extend(clone, {count:  count, followersCount: followers}), collectionOmitFields);
 }
 
 function create(user, collection, callback) {
@@ -359,6 +360,39 @@ function followedBy(user, name, callback) {
 	});
 }
 
+function popular(user, callback) {
+	async.waterfall([
+		aggregate,
+		resolve
+	], function (err, collections) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null, collections.map(transform));
+	});
+
+
+	function aggregate(callback) {
+		db.collections.aggregate([
+			{ $match: {public: true}},
+			{ $unwind: '$followers' },
+			{ $group: {_id: '$_id', followersCount: {$sum: 1}}},
+			{ $sort: { followersCount: -1 }},
+			{ $match: {followersCount: {$gt: 0}}},
+			{ $limit: 30}
+		], callback);
+	}
+
+	function resolve(ids, callback) {
+		ids = ids.map(function (i) {
+			return i._id;
+		});
+
+		db.collections.find({_id: {$in: ids}}, callback);
+	}
+}
+
 module.exports = {
 	create: create,
 	remove: remove,
@@ -371,5 +405,6 @@ module.exports = {
 	update: update,
 	follow: follow,
 	unfollow: unfollow,
-	followedBy: followedBy
+	followedBy: followedBy,
+	popular: popular
 };

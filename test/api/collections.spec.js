@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var request = require('request');
 var async = require('async');
 var testUtils = require('../utils');
@@ -1070,6 +1071,95 @@ describe('collections.spec.js', function () {
 
 			it('should return followed collections', function () {
 				expect(results).to.have.length(2);
+			});
+		});
+
+		describe.only('when exploring collections', function () {
+			var collections, createdHeaders;
+
+			beforeEach(function (done) {
+				testUtils.clearCollection('collections', done);
+			});
+
+			beforeEach(function (done) {
+				var data = [{title: 'first', public: true}, {title: 'second', public: true}, {title: 'third', public: true}];
+
+				async.map(data, createCollection, function (err, results) {
+					collections = results;
+					done(err);
+				});
+
+				function createCollection(collection, callback) {
+					request.post({url: url, headers: headers, body: collection, json: true}, function (err, resp, results) {
+						callback(err, results);
+					});
+				}
+			});
+
+			beforeEach(function (done) {
+				var data = [1, 2, 3];
+
+				async.map(data, createUser, function (err, results) {
+					createdHeaders = results;
+					done(err);
+				});
+
+				function createUser(user, callback) {
+					testUtils.createTestUserAndLoginToApi(function (err, userName, accessToken) {
+						callback(err, ({'X-Access-Token': accessToken}));
+					});
+				}
+			});
+
+			beforeEach(function (done) {
+				// first user follows all 3 collections
+				var localHeaders = createdHeaders[0];
+
+				async.map(collections, followCollection, done);
+
+				function followCollection(c, callback) {
+					request.put({url: url + '/' + c._id + '/follow', headers: localHeaders}, callback);
+				}
+			});
+
+			beforeEach(function (done) {
+				// second user follows only 2 collections
+				var localHeaders = createdHeaders[1];
+
+				async.map(_.take(collections, 1), followCollection, done);
+
+				function followCollection(c, callback) {
+					request.put({url: url + '/' + c._id + '/follow', headers: localHeaders}, callback);
+				}
+			});
+
+			beforeEach(function (done) {
+				// third user follows only 1 collection
+				var localHeaders = createdHeaders[2];
+
+				async.map(_.take(collections, 2), followCollection, done);
+
+				function followCollection(c, callback) {
+					request.put({url: url + '/' + c._id + '/follow', headers: localHeaders}, callback);
+				}
+			});
+
+			beforeEach(function (done) {
+				request.get({url: url + '/explore', headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					results = body;
+					done(err);
+				});
+			});
+
+			it('should respond 200 (ok)', function () {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			it('should return collections sorted by followers count', function () {
+				expect(results[0].followersCount).to.equal(3);
+				expect(results[1].followersCount).to.equal(2);
+				expect(results[2].followersCount).to.equal(1);
 			});
 		});
 	});
