@@ -18,11 +18,14 @@ define(function (require) {
 	directives.directive('tooltip', require('./tooltip'));
 	directives.directive('lazyAutocomplete', require('./lazyAutocomplete'));
 	directives.directive('scrolly', require('./scrolly'));
+	directives.directive('goToLink', require('./goToLink'));
+
+	// collections
+	directives.directive('storeIt', require('./storeToCollectionPopup'));
 	directives.directive('addCollection', require('./addCollection'));
 	directives.directive('addCollectionPopup', require('./addCollectionPopup'));
-	directives.directive('storeIt', require('./storeToCollectionPopup'));
 	directives.directive('editCollection', require('./editCollection'));
-	directives.directive('goToLink', require('./goToLink'));
+	directives.directive('toggleFollowCollection', require('./toggleFollowCollection'));
 
 	return directives;
 });

@@ -75,7 +75,7 @@
 }
 
 .trash-icon:before {
-	content: '_';
+	content: 'v';
 }
 
 .play-icon:before {
@@ -228,6 +228,10 @@
 
 .check-icon:before {
 	content: '\e017';
+}
+
+.plane-icon:before {
+	content: 'G';
 }
 
 .big-icon {

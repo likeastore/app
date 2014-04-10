@@ -37,29 +37,42 @@ define(function (require) {
 						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'description\')">Save</button>\
 					</div>\
 				</div>\
-				<a href=""\
-					tooltip="{{collection.public ? \'Make private\' : \'Make public\'}}" class="action-button state-collection-btn"\
-					ng-dialog="toggleStateCollectionDialog"\
-					ng-dialog-class="lsd-theme delete-user-dialog"\
-					ng-dialog-data="{{collection._id}}, {{collection.public}}"\
-					ng-dialog-controller="toggleStateCollectionController"\
-					ng-dialog-show-close="false">\
-					<i class="font-icon icon" ng-class="{\'unlocked-icon\': !collection.public, \'locked-icon\': collection.public}"></i>\
-				</a>\
-				<a ng-if="collection.public" href="" class="action-button share-collection-btn"\
-					tooltip="Share collection"\
-					ng-dialog="shareCollectionDialog"\
-					ng-dialog-class="lsd-theme share-dialog share-like"\
-					ng-dialog-data="{{collection._id}}"\
-					ng-dialog-controller="shareCollectionController"\
-					ng-dialog-show-close="false"><i class="font-icon link-icon icon"></i></a>\
-				<a href="" class="action-button delete-collection-btn"\
-					tooltip="Delete collection"\
-					ng-dialog="deleteCollectionDialog"\
-					ng-dialog-class="lsd-theme delete-user-dialog"\
-					ng-dialog-data="{{collection._id}}"\
-					ng-dialog-controller="deleteCollectionController"\
-					ng-dialog-show-close="false"><i class="font-icon trash-icon icon"></i></a>',
+				<div class="collection-buttons">\
+					<button type="button" class="button sml-btn slk-btn state-collection-btn"\
+						ng-dialog="toggleStateCollectionDialog"\
+						ng-dialog-class="lsd-theme delete-user-dialog"\
+						ng-dialog-data="{{collection._id}}, {{collection.public}}"\
+						ng-dialog-controller="toggleStateCollectionController"\
+						ng-dialog-show-close="false"\
+						ng-class="{\
+							\'navy-btn\': !collection.public,\
+							\'orange-btn\': collection.public\
+						}">\
+						<i class="font-icon icon"\
+							ng-class="{\
+								\'unlocked-icon\': !collection.public,\
+								\'locked-icon\': collection.public\
+							}">\
+						</i>\
+						{{collection.public ? \'Close\' : \'Open\'}}\
+					</button>\
+					<button type="button" class="button xs-sml-btn orange-btn slk-btn share-collection-btn"\
+						ng-show="collection.public"\
+						ng-dialog="shareCollectionDialog"\
+						ng-dialog-class="lsd-theme share-dialog share-like"\
+						ng-dialog-data="{{collection._id}}"\
+						ng-dialog-controller="shareCollectionController"\
+						ng-dialog-show-close="false"><i class="font-icon plane-icon icon"></i> Share\
+					</button>\
+					<button type="button" class="button xs-sml-btn orange-btn slk-btn delete-collection-btn"\
+						ng-dialog="deleteCollectionDialog"\
+						ng-dialog-class="lsd-theme delete-user-dialog"\
+						ng-dialog-data="{{collection._id}}"\
+						ng-dialog-controller="deleteCollectionController"\
+						ng-dialog-show-close="false">\
+						<i class="font-icon trash-icon icon"></i> Delete\
+					</button>\
+				</div>',
 			link: function ($scope, elem, attrs) {
 				$scope.colors = config.colors;
 
@@ -120,7 +133,6 @@ define(function (require) {
 			}
 		};
 	}
-
 
 	return EditCollection;
 });

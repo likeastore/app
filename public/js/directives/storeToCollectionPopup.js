@@ -36,14 +36,15 @@ define(function (require) {
 					$scope.popup = !$scope.popup ? true : false;
 				};
 
-				$scope.addItemToCollection = function (collId) {
+				$scope.addItemToCollection = function (collectionId) {
 					api.update({
 						resource: 'collections',
-						target: collId,
+						target: collectionId,
 						verb: 'items',
 						suffix: $scope.item._id
 					}, {}, function (res) {
 						$analytics.eventTrack('collection item added');
+
 						$scope.added = true;
 						$timeout(function () {
 							$scope.added = false;

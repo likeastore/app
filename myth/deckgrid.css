@@ -429,6 +429,10 @@
 	.list-view .card-item .card-top-table {
 		width: 90%;
 	}
+
+	.list-view .card-item .card-info .description.long {
+		display: inline-block;
+	}
 }
 
 @media (max-width: 760px) {
