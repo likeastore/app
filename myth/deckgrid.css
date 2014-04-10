@@ -53,6 +53,7 @@
 
 .card-item {
 	background: #fff;
+	font-family: var(text-font);
 	width: 100%;
 	margin: 0 0 20px;
 	position: relative;
@@ -124,7 +125,7 @@
 	margin-bottom: 12px;
 }
 
-.card-item .card-meta .title.bottom-space {
+.card-item .title.bottom-space {
 	margin-bottom: 5px !important;
 }
 
@@ -135,21 +136,21 @@
 	margin-bottom: 12px;
 }
 
-.card-item .card-meta .description a {
+.card-item .description a {
 	color: #666;
 	font-weight: bold;
 	position: relative;
 	z-index: 11;
 }
 
-.card-item .card-meta .from {
+.card-item .from {
 	color: #aaa;
 	font-size: 11px;
 	font-weight: bold;
 	line-height: 18px;
 }
 
-.card-item .card-meta .from .type {
+.card-item .from .type {
 	text-transform: capitalize;
 }
 
@@ -175,7 +176,7 @@
 	height: 30px;
 	float: left;
 	margin-right: 7px;
-	border-radius: 2px;
+	border-radius: 100%;
 }
 
 .card-item .card-collection .c-title {
@@ -215,9 +216,16 @@
 	opacity: 0;
 	position: absolute;
 	top: 9px;
-	left: 9px;
 	z-index: 12;
-	transition: all .3s;
+	transition: opacity .3s;
+}
+
+.card-item .card-buttons.align-left {
+	left: 9px;
+}
+
+.card-item .card-buttons.align-right {
+	right: 9px;
 }
 
 .card-item:hover .card-buttons {
@@ -257,6 +265,7 @@
 	font-weight: bold;
 	padding: 6px 8px 5px 6px;
 	text-shadow: 0 -1px rgba(0, 0, 0, .11);
+	width: 70px;
 	white-space: nowrap;
 	letter-spacing: .3px;
 	border-radius: 2px;
@@ -297,6 +306,105 @@
 	border: 1px solid rgba(0, 0, 0, .3);
 }
 
+.feed .show-coll-popup .show-coll-item {
+	font-size: 11px;
+}
+
+.feed .show-coll-popup .color-avatar {
+	margin-top: 2px;
+}
+
+/* List view */
+.list-view .feed.dashboard,
+.list-view .feed.top-bar {
+	max-width: 1020px;
+}
+
+.list-view .card-item {
+	padding: 14px 14px 28px;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+.list-view .card-item:hover {
+	background: #fdfdfd;
+}
+
+.list-view .card-item:first-child {
+	border-radius: 3px 3px 0 0;
+}
+
+.list-view .card-item.last {
+	border-bottom: 0;
+	border-radius: 0 0 3px 3px;
+}
+
+.list-view .card-item .c-avatar {
+	width: 32px;
+	height: 32px;
+	margin-right: 10px;
+	border-radius: 100px;
+}
+
+.list-view .card-item .card-collection-meta {
+	color: #b5b5b5;
+	font-size: 11px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	cursor: default;
+}
+
+.list-view .card-item .card-collection-meta a {
+	color: #717171;
+	position: relative;
+	z-index: 11;
+}
+
+.list-view .card-item .card-top-table {
+	display: inline-block;
+	vertical-align: top;
+	width: 95%;
+}
+
+.list-view .card-item .card-top-table.space-top {
+	margin-top: 5px;
+}
+
+.list-view .card-item .thumb {
+	width: 135px;
+	height: 90px;
+	margin: 0 12px 10px 0;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-radius: 2px;
+	transition: all .3s ease-out;
+}
+
+.list-view .card-item .card-info .title {
+	color: #444;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 12px;
+}
+
+.list-view .card-item .card-info .description {
+	color: #555;
+	font-size: 13px;
+	line-height: 17px;
+	margin-bottom: 12px;
+}
+
+.list-view .card-item .card-buttons .show-coll-popup {
+	right: 7px;
+}
+
+.list-view .card-item .card-buttons .show-coll-popup:after {
+	left: 50%;
+	margin-left: -11px;
+}
+
 @media (max-width: 1280px) {
 	.feed.dashboard,
 	.feed.top-bar {
@@ -317,6 +425,10 @@
 	.deckgrid[deckgrid]::before {
 		content: '3 .column.size-1-3';
 	}
+
+	.list-view .card-item .card-top-table {
+		width: 90%;
+	}
 }
 
 @media (max-width: 760px) {
@@ -332,6 +444,10 @@
 	.notify-line {
 		display: none;
 	}
+
+	.list-view .card-item .card-info .description {
+		display: inline-block;
+	}
 }
 
 @media (max-width: 520px) {
@@ -343,6 +459,10 @@
 	.deckgrid .size-1-2 {
 		width: 210px;
 		margin-right: 10px;
+	}
+
+	.list-view .card-item .card-top-table {
+		width: 84%;
 	}
 }
 
