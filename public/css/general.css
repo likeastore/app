@@ -902,8 +902,9 @@ textarea.fld {
 
 .edit-collection-wrap .collection-buttons  > * {
   display: inline-block;
+  float: left;
+  margin-left: 8px;
   vertical-align: top;
-  margin-left: 5px;
 }
 
 .edit-collection-popup {
