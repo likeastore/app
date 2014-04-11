@@ -14,7 +14,7 @@ define(function (require) {
 				function lazyScroll () {
 					if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight - 450) {
 						// hack for getting proper scroll scope
-						var childScope = angular.element(document.getElementById('items')).scope();
+						var childScope = angular.element(document.getElementById('scrollyItems')).scope();
 
 						if (!childScope || !childScope.nextPage) {
 							return;

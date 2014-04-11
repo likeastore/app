@@ -12,7 +12,7 @@
 		<span ng-if="!colls.length && searching">Sorry, no collections found for "{{searchTags}}"</span>
 	</h2>
 
-	<ul class="profile-lists">
+	<ul id="scrollyItems" class="profile-lists">
 		<li class="coll-item coll{{$index}} clearfix"
 			ng-repeat="coll in colls"
 			ng-class="{last: $last}">

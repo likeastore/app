@@ -9,7 +9,7 @@
 	</div>
 </div>
 
-<section class="dashboard feed clearfix" ng-switch="user.viewMode">
+<section class="dashboard feed clearfix" id="scrollyItems" ng-switch="user.viewMode">
 	<div ng-switch-when="grid">
 		<div class="deckgrid clearfix" deckgrid source="items" cardTemplate="/partials/card.ejs"></div>
 	</div>
