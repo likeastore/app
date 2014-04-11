@@ -2,6 +2,8 @@ var _ = require('underscore');
 var config = require('../../config');
 var db = require('../db')(config);
 
+var collectionOmitFields = ['items'];
+
 function fullTextItemSearch (user, query, callback) {
 	if (!query) {
 		return callback(null, { data: [], nextPage: false });
@@ -29,7 +31,7 @@ function fullTextCollectionsSearch(user, query, callback) {
 		return callback(null, { data: [], nextPage: false });
 	}
 
-	db.collections.runCommand('text', { search: query.toString() }, function (err, doc) {
+	db.collections.runCommand('text', { search: query.toString(), filter: {'public': true} }, function (err, doc) {
 		if (err) {
 			return callback(err);
 		}
@@ -51,7 +53,7 @@ function transformCollection(collection) {
 	var count = (collection.items && collection.items.length) || 0;
 	var followers = (collection.followers && collection.followers.length) || 0;
 
-	return _.extend(clone, {count:  count, followersCount: followers});
+	return _.omit(_.extend(clone, {count:  count, followersCount: followers}), collectionOmitFields);
 }
 
 module.exports = {

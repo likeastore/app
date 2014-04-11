@@ -19,6 +19,10 @@ define(function () {
 
 			api.get({ resource: 'collections', target: $routeParams.id }, handleCollection);
 			function handleCollection (collection) {
+				if (!collection['public']) {
+					return $location.url('/explore');
+				}
+
 				$scope.collection = collection;
 				$scope.collection.owner = $routeParams.name;
 				$scope.collection.mutual = _(user.followCollections).find(function (row) {
