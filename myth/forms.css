@@ -31,6 +31,10 @@
 	transition: all .2s;
 }
 
+.button[disabled] {
+	opacity: .8;
+}
+
 .navy-btn {
 	background: var(navy-gradient);
 	color: #fff;
