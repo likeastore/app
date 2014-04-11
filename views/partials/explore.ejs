@@ -22,7 +22,9 @@
 			<div class="coll-book clearfix">
 				<div class="coll-info left">
 					<div ng-if="coll.userData" class="author">
-						<img ng-src="{{coll.userData.avatar}}" class="avatar" avatar-load>
+						<a ng-href="/u/{{coll.userData.name}}"><img ng-src="{
+							{coll.userData.avatar}}" class="avatar" avatar-load>
+						</a>
 						<div class="curated truncate">
 							<span>curated</span> by
 							<a ng-href="/u/{{coll.userData.name}}">
