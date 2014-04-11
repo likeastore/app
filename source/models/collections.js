@@ -402,6 +402,29 @@ function popular(user, callback) {
 	// }
 }
 
+function search(user, query, callback) {
+	if (!query) {
+		return callback(null, { data: [], nextPage: false });
+	}
+
+	db.collections.runCommand('text', { search: query.toString(), filter: {'public': true} }, function (err, doc) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (doc && doc.errmsg) {
+			return callback(doc.errmsg);
+		}
+
+		var items = doc.results.map(function (result) {
+			return transform(result.obj);
+		});
+
+		callback(null, { data: items, nextPage: false });
+	});
+}
+
+
 module.exports = {
 	create: create,
 	remove: remove,
@@ -415,5 +438,6 @@ module.exports = {
 	follow: follow,
 	unfollow: unfollow,
 	followedBy: followedBy,
-	popular: popular
+	popular: popular,
+	search: search
 };

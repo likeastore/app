@@ -10,6 +10,7 @@ define(function () {
 
 		var timer;
 		$scope.$watch('searchTags', searching, true);
+
 		function searching(tags) {
 			if (timer) {
 				$timeout.cancel(timer);
@@ -61,7 +62,7 @@ define(function () {
 
 			$analytics.eventTrack('collections searched');
 
-			api.get({ resource: 'search', target: 'collections', text: searchTags }, function (res) {
+			api.get({ resource: 'collections', target: 'search', text: searchTags }, function (res) {
 				$scope.colls = res.data;
 				$scope.nextPage = res.nextPage;
 				$scope.searching = true;

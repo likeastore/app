@@ -6,10 +6,6 @@ function searchService(app) {
 		middleware.analytics.track('search', {query: 'text'}),
 		searchItems);
 
-	app.get('/api/search/collections',
-		middleware.analytics.track('search collections', {query: 'text'}),
-		searchCollections);
-
 	function searchItems(req, res, next) {
 		var query = req.query.text;
 
@@ -22,17 +18,6 @@ function searchService(app) {
 		});
 	}
 
-	function searchCollections(req, res, next) {
-		var query = req.query.text;
-
-		search.collections(req.user, query, function (err, collections) {
-			if (err) {
-				return next({message: 'failed to search collections', user: req.user, query: query, err: err, status: 500});
-			}
-
-			res.json(collections);
-		});
-	}
 }
 
 module.exports = searchService;
