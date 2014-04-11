@@ -1,8 +1,10 @@
 define(function () {
 	'use strict';
 
-	function ProfileController($scope, $rootScope, $routeParams, appLoader, api, user) {
+	function ProfileController($scope, $rootScope, $routeParams, $analytics, appLoader, api, user) {
 		appLoader.loading();
+
+		$analytics.eventTrack('profile opened');
 
 		$rootScope.title = $routeParams.name + '\'s profile';
 

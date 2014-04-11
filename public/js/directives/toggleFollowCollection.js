@@ -19,12 +19,11 @@ define(function (require) {
 						ng-click="unfollowCollection()"\
 						ng-disabled="processing">Unfollow</button>\
 				</div>',
-			controller: function ($scope, api) {
+			controller: function ($scope, api, $analytics) {
 				$scope.$watch('collectionId', function (value) {
 					if (!value) {
 						return;
 					}
-
 					$scope.mutual = _($rootScope.user.followCollections).find(function (row) {
 						return row.id === $scope.collectionId;
 					});
@@ -32,6 +31,9 @@ define(function (require) {
 
 				$scope.followCollection = function () {
 					$scope.processing = true;
+
+					$analytics.eventTrack('collection followed');
+
 					api.update({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {}, function () {
 						$scope.mutual = true;
 						$scope.processing = false;
@@ -41,6 +43,8 @@ define(function (require) {
 
 				$scope.unfollowCollection = function (id) {
 					$scope.processing = true;
+
+					$analytics.eventTrack('collection unfollowed');
 
 					api.delete({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {}, function () {
 						$scope.mutual = false;
