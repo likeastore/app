@@ -11,11 +11,13 @@ define(function (require) {
 			template: '\
 				<div class="follow-collection">\
 					<button type="button" class="button sml-btn navy-btn slk-btn follow-btn"\
-						ng-show="!mutual && !processing"\
-						ng-click="followCollection()">Follow</button>\
+						ng-show="!mutual"\
+						ng-click="followCollection()"\
+						ng-disabled="processing">Follow</button>\
 					<button type="button" class="button sml-btn pink-btn slk-btn following-btn"\
-						ng-show="mutual && !processing"\
-						ng-click="unfollowCollection()">Unfollow</button>\
+						ng-show="mutual"\
+						ng-click="unfollowCollection()"\
+						ng-disabled="processing">Unfollow</button>\
 				</div>',
 			controller: function ($scope, api) {
 				$scope.$watch('collectionId', function (value) {
