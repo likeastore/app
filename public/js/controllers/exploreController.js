@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function ExploreController($scope, $rootScope, $timeout, api, appLoader, $analytics, analytics) {
+	function ExploreController($scope, $rootScope, $timeout, api, appLoader, $analytics) {
 		$analytics.eventTrack('explore opened');
 
 		$rootScope.title = 'Explore collections';

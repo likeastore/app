@@ -72,43 +72,19 @@ define(function () {
 				}
 			}
 
-			$scope.followCollection = function (id, index) {
-				var collection = $scope.collections[index];
-				collection.followers = collection.followers || [];
-
-				collection.processing = true;
-
-				api.update({ resource: 'collections', target: id, verb: 'follow' }, {}, function () {
-					// add user to collection followers
-					collection.followers.push($rootScope.user);
-
-					// add collection to user followings
-					$rootScope.user.followCollections.push({ id: id });
-
-					collection.mutual = true;
-					collection.processing = false;
+			$scope.$on('follow.collection', function (event, collId) {
+				var targetCollection = _(event.currentScope.collections).find(function (row) {
+					return row._id === collId;
 				});
-			};
+				targetCollection.followersCount += 1;
+			});
 
-			$scope.unfollowCollection = function (id, index) {
-				var collection = $scope.collections[index];
-
-				collection.processing = true;
-
-				api.delete({ resource: 'collections', target: id, verb: 'follow' }, {}, function () {
-					var uIndex = _($rootScope.user.followCollections).indexOf(collection);
-					var cIndex = _(collection.followers).indexOf($rootScope.user);
-
-					// remove user from collection followers
-					collection.followers.splice(cIndex, 1);
-
-					// remove collection from user followings
-					$rootScope.user.followCollections.splice(uIndex, 1);
-
-					collection.mutual = false;
-					collection.processing = false;
+			$scope.$on('unfollow.collection', function (event, collId) {
+				var targetCollection = _(event.currentScope.collections).find(function (row) {
+					return row._id === collId;
 				});
-			};
+				targetCollection.followersCount -= 1;
+			});
 		}
 	}
 
