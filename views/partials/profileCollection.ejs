@@ -7,13 +7,13 @@
 			<div class="collection-buttons">
 				<div toggle-follow-collection="collection._id"></div>
 
-				<button class="button xs-sml-btn orange-btn slk-btn share-collection-btn"
+				<button type="button" class="button xs-sml-btn orange-btn slk-btn share-collection-btn"
 					ng-dialog="shareCollectionDialog"
 					ng-dialog-class="lsd-theme share-dialog share-like"
 					ng-dialog-data="{{collection._id}}, {{collection.owner}}"
 					ng-dialog-controller="shareCollectionController"
 					ng-dialog-show-close="false">
-					<i class="font-icon plane-icon icon"></i><span>Share</span>
+					<i class="font-icon plane-icon icon"></i> <span>Share</span>
 				</button>
 			</div>
 		</div>

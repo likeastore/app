@@ -47,7 +47,7 @@
 }
 
 .slk-btn {
-	border: 1px solid rgba(0, 0, 0, .2);
+	border: 1px solid rgba(0, 0, 0, .16);
 	text-transform: none;
 	text-shadow: 0 -1px rgba(0, 0, 0, .11);
 }
@@ -80,7 +80,7 @@
 .xs-sml-btn .icon {
 	display: inline-block;
 	font-size: 14px;
-	margin: 3px 5px 0 0;
+	margin: 3px 2px 0 0;
 	height: 16px;
 	line-height: 20px;
 	vertical-align: top;

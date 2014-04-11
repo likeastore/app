@@ -38,7 +38,7 @@ define(function (require) {
 					</div>\
 				</div>\
 				<div class="collection-buttons">\
-					<button type="button" class="button sml-btn slk-btn state-collection-btn"\
+					<button type="button" class="button xs-sml-btn slk-btn state-collection-btn"\
 						ng-dialog="toggleStateCollectionDialog"\
 						ng-dialog-class="lsd-theme delete-user-dialog"\
 						ng-dialog-data="{{collection._id}}, {{collection.public}}"\
