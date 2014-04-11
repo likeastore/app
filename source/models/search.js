@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var config = require('../../config');
 var db = require('../db')(config);
 
@@ -38,11 +39,19 @@ function fullTextCollectionsSearch(user, query, callback) {
 		}
 
 		var items = doc.results.map(function (result) {
-			return result.obj;
+			return transformCollection(result.obj);
 		});
 
 		callback(null, { data: items, nextPage: false });
 	});
+}
+
+function transformCollection(collection) {
+	var clone = _.clone(collection);
+	var count = (collection.items && collection.items.length) || 0;
+	var followers = (collection.followers && collection.followers.length) || 0;
+
+	return _.extend(clone, {count:  count, followersCount: followers});
 }
 
 module.exports = {
