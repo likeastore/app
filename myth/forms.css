@@ -85,3 +85,12 @@
 	line-height: 20px;
 	vertical-align: top;
 }
+
+.follow-collection {
+	width: 91px;
+	height: 24px;
+	overflow: hidden;
+	position: relative;
+	z-index: 20;
+	transition: all .2s;
+}

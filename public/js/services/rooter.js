@@ -21,6 +21,10 @@ define(function () {
 				$location.url('/settings');
 				$rootScope.showConfigTab = true;
 			};
+
+			$rootScope.kFormat = function(num) {
+				return num > 999 ? (num/1000).toFixed() + 'k' : num;
+			};
 		};
 	};
 });
