@@ -6,6 +6,18 @@ define(function () {
 
 		$rootScope.title = $routeParams.name + '\'s profile';
 
+		$rootScope.$watch('collections', readyCollections, true);
+		function readyCollections(collection) {
+			if (!collection) {
+				return;
+			}
+
+			$scope.profile.ownedCollections = _($rootScope.collections).filter(isPublic);
+			function isPublic(row) {
+				return row['public'];
+			}
+		}
+
 		$rootScope.$watch('user', readyUser);
 		function readyUser(user) {
 			if (!user) {
@@ -29,7 +41,7 @@ define(function () {
 
 			if ($scope.me) {
 				$scope.$on('collection added', function (event, collection) {
-					if (collection.public) {
+					if (collection['public']) {
 						getCollections('profile');
 					}
 				});
