@@ -70,11 +70,17 @@
 }
 
 .card-item .card-cover img {
+  background: #fff;
   max-width: 100%;
+  width: auto\9;
   min-height: 100px;
   height: auto;
   vertical-align: top;
   border-radius: 3px 3px 0 0;
+}
+
+.card-item .card-cover img.low-image-res {
+  border-radius: 0;
 }
 
 .card-item .card-cover-overlay {

@@ -15,6 +15,7 @@ define(function (require) {
 	directives.directive('shareOn', require('./shareOn'));
 	directives.directive('touchy', require('./touchy'));
 	directives.directive('avatarLoad', require('./avatarLoad'));
+	directives.directive('previewImageLoad', require('./previewImageLoad'));
 	directives.directive('tooltip', require('./tooltip'));
 	directives.directive('lazyAutocomplete', require('./lazyAutocomplete'));
 	directives.directive('scrolly', require('./scrolly'));
