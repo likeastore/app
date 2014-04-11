@@ -13,8 +13,11 @@
 	<li class="favorites" ng-class="{active: title==='All favorites' || stringifiedNetworks.indexOf(title.toLowerCase()) !== -1}">
 		<div ng-click="switchMenu('/favorites')" class="menu-title close-sidebar"><i class="font-icon favorites-icon icon"></i> All favorites</div>
 	</li>
-	<li class="discover" ng-class="{active: title==='Feed'}">
-		<div ng-click="switchMenu('/feed')" class="menu-title close-sidebar"><i class="font-icon discover-icon icon"></i> Feed</a>
+	<li class="feed" ng-class="{active: title==='Feed'}">
+		<div ng-click="switchMenu('/feed')" class="menu-title close-sidebar"><i class="font-icon feed-icon icon"></i> Feed</a>
+	</li>
+	<li class="explore" ng-class="{active: title==='Explore'}">
+		<div ng-click="switchMenu('/explore')" class="menu-title close-sidebar"><i class="font-icon discover-icon icon"></i> Explore</a>
 	</li>
 	<li class="collections" ng-class="{'show-collections': showCollections}">
 		<div class="menu-title" ng-click="showCollections=!showCollections ? true : false"><i class="font-icon collections-icon icon"></i> Collections <i class="font-icon thinarrow-left-icon subicon right" ng-class="{'thinarrow-down-icon': showCollections}"></i></div>

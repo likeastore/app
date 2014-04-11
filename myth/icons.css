@@ -234,6 +234,10 @@
 	content: 'G';
 }
 
+.feed-icon:before {
+	content: '\e010';
+}
+
 .big-icon {
 	height: 100px;
 	width: 100px;

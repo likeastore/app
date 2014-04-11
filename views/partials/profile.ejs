@@ -1,4 +1,4 @@
-<section class="profile-page animated fadeIn">
+<section class="profile-page narrow animated fadeIn">
 	<div class="profile-user clearfix" ng-if="profile">
 		<div class="left profile-info">
 			<img ng-src="{{profile.avatar}}" class="avatar left" ng-click="switchList('favorites')" avatar-load>
@@ -77,7 +77,7 @@
 
 				<div class="coll-book clearfix">
 					<div class="coll-info left">
-						<div class="author">
+						<div ng-if="coll.userData" class="author">
 							<img ng-src="{{coll.userData.avatar}}" class="avatar" avatar-load>
 							<div class="curated truncate">
 								<span>curated</span> by <a ng-href="/u/{{coll.userData.name}}">{{coll.userData.name}}</a>

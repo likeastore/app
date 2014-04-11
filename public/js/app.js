@@ -70,6 +70,8 @@ define(function (require) {
 				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
 				.when('/items/:id', { templateUrl: 'partials/dashboard', controller: 'dashboardController'})
 				.when('/feed', { templateUrl: 'partials/feed', controller: 'feedController' })
+				.when('/explore', { templateUrl: 'partials/explore', controller: 'exploreController' })
+				.when('/discover', { templateUrl: 'partials/explore', controller: 'exploreController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.when('/suggest', { templateUrl: 'partials/suggest', controller: 'suggestPeopleController' })
 				.when('/u/:name', { templateUrl: 'partials/profile', controller: 'profileController' })
