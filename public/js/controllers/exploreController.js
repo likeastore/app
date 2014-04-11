@@ -24,6 +24,20 @@ define(function () {
 			}
 		}
 
+		$scope.$on('follow.collection', function (event, collId) {
+			var targetCollection = _(event.currentScope.colls).find(function (row) {
+				return row._id === collId;
+			});
+			targetCollection.followersCount += 1;
+		});
+
+		$scope.$on('unfollow.collection', function (event, collId) {
+			var targetCollection = _(event.currentScope.colls).find(function (row) {
+				return row._id === collId;
+			});
+			targetCollection.followersCount -= 1;
+		});
+
 		function getPopularCollections() {
 			appLoader.loading();
 

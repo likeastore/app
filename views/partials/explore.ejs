@@ -2,14 +2,14 @@
 	<div class="explore-block">
 		<form class="explore-form" novalidate>
 			<i class="font-icon search-icon icon"></i>
-			<input type="search" class="fld search-collection-fld" placeholder="Inspiration, UI, Design, Web Development, Marketing, Photos" ng-model="searchTags" required autocomplete="off">
+			<input type="search" class="fld search-collection-fld" placeholder="Inspiration, UI, Design, Web Development, Marketing, Cat photos" ng-model="searchTags" required autocomplete="off">
 		</form>
 	</div>
 
 	<h2 class="featured-title">
 		<span ng-if="!searching">Popular collections</span>
 		<span ng-if="colls.length && searching">Search results for "{{searchTags}}"</span>
-		<span ng-if="!colls.length && searching">Sorry, no collection found for "{{searchTags}}"</span>
+		<span ng-if="!colls.length && searching">Sorry, no collections found for "{{searchTags}}"</span>
 	</h2>
 
 	<ul class="profile-lists">
@@ -34,18 +34,17 @@
 					<h1 class="title">{{coll.title}}</h1>
 					<div class="desc" ng-if="coll.description">{{coll.description}}</div>
 					<div class="stat">
-						<span class="followers" tooltip="Followers"><i class="font-icon people-icon icon"></i> {{kFormat(coll.followers.length) || 0}}</span>
+						<span class="followers" tooltip="Followers"><i class="font-icon people-icon icon"></i> {{kFormat(coll.followersCount) || 0}}</span>
 						<span class="documents" tooltip="Documents"><i class="font-icon doc-icon icon"></i> {{kFormat(coll.count) || 0}}</span>
 					</div>
 				</div>
 
-				<div class="profile-action right" ng-if="coll.owned">
-					<a ng-href="/collections/{{coll._id}}" class="btn small-btn blue-btn edit-btn">View</a>
+				<div class="right" ng-if="coll.owned">
+					<a ng-href="/collections/{{coll._id}}" class="button sml-btn blue-btn slk-btn edit-btn">View</a>
 				</div>
 
-				<div class="profile-action right" ng-if="!coll.owned">
-					<button type="button" class="btn small-btn green-btn follow-btn" ng-if="!coll.mutual && !coll.processing" ng-click="followCollection(coll._id, $index)">Follow</button>
-					<button type="button" class="btn small-btn pink-btn following-btn" ng-if="coll.mutual && !coll.processing" ng-click="unfollowCollection(coll._id, $index)">Unfollow</button>
+				<div ng-if="!coll.owned" class="right">
+					<div toggle-follow-collection="coll._id"></div>
 				</div>
 			</div>
 			<ul class="backlists"><li></li><li></li></ul>

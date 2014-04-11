@@ -899,14 +899,7 @@ textarea.fld {
 	display: block;
 }
 
-.profile-collection-info.edit-collection-wrap .follow-collection {
-	width: 91px;
-	height: 24px;
-	overflow: hidden;
-	transition: all .2s;
-}
-
-.edit-collection-wrap .collection-buttons  > * {
+.edit-collection-wrap .collection-buttons > * {
 	display: inline-block;
 	float: left;
 	margin-left: 8px;
@@ -1421,7 +1414,7 @@ textarea.fld {
 /* Explore collection add-ons */
 .explore-block .explore-form {
 	position: relative;
-	margin-bottom: 30px;
+	margin-bottom: 35px;
 }
 
 .explore-block .explore-form .icon {

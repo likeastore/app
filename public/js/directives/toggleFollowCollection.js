@@ -33,7 +33,7 @@ define(function (require) {
 					api.update({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {}, function () {
 						$scope.mutual = true;
 						$scope.processing = false;
-						$rootScope.$emit('collection.follow', $scope.collectionId);
+						$rootScope.$broadcast('follow.collection', $scope.collectionId);
 					});
 				};
 
@@ -43,7 +43,7 @@ define(function (require) {
 					api.delete({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {}, function () {
 						$scope.mutual = false;
 						$scope.processing = false;
-						$rootScope.$emit('collection.unfollow', $scope.collectionId);
+						$rootScope.$broadcast('unfollow.collection', $scope.collectionId);
 					});
 				};
 			}

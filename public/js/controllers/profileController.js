@@ -109,10 +109,6 @@ define(function () {
 					collection.processing = false;
 				});
 			};
-
-			$scope.kFormat = function(num) {
-				return num > 999 ? (num/1000).toFixed() + 'k' : num;
-			};
 		}
 	}
 
