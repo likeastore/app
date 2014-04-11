@@ -14,7 +14,7 @@
 	var-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
 }
 
-.profile-page {
+.narrow {
 	width: 750px;
 	margin: 30px auto;
 }
@@ -278,7 +278,7 @@
 
 
 @media (max-width: 750px) {
-	.profile-page {
+	.narrow {
 		width: 600px;
 	}
 
@@ -288,7 +288,7 @@
 }
 
 @media (max-width: 640px) {
-	.profile-page {
+	.narrow {
 		width: 90%;
 	}
 

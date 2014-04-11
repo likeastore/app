@@ -13,7 +13,7 @@ define(function (require) {
 					<button type="button" class="button sml-btn navy-btn slk-btn follow-btn"\
 						ng-show="!mutual && !processing"\
 						ng-click="followCollection()">Follow</button>\
-					<button type="button" class="button sml-btn orange-btn slk-btn following-btn"\
+					<button type="button" class="button sml-btn pink-btn slk-btn following-btn"\
 						ng-show="mutual && !processing"\
 						ng-click="unfollowCollection()">Unfollow</button>\
 				</div>',

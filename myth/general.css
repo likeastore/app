@@ -180,7 +180,7 @@ body,
 
 .top-bar .title {
 	display: inline-block;
-	color: #666;
+	color: #434343;
 	font-size: 30px;
 	font-weight: 300;
 	line-height: 28px;
@@ -199,6 +199,14 @@ body,
 .top-bar .description.block {
 	display: block;
 	margin-top: 10px;
+}
+
+.featured-title {
+	color: #434343;
+	font: 300 30px var(text-font);
+	padding: 0;
+	text-align: center;
+	margin-bottom: 35px;
 }
 
 .fld,
@@ -827,7 +835,7 @@ textarea.fld {
 	background: #161625;
 	width: 100%;
 	height: 210px;
-	padding: 14px 15px 0;
+	padding: 14px 15px 12px;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -1017,7 +1025,6 @@ textarea.fld {
 }
 
 .add-coll-form .buttons {
-	margin-top: 5px;
 	text-align: right;
 }
 
@@ -1411,6 +1418,27 @@ textarea.fld {
 	width: 83px;
 }
 
+/* Explore collection add-ons */
+.explore-block .explore-form {
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.explore-block .explore-form .icon {
+	position: absolute;
+	font-size: 18px;
+	color: #999;
+	top: 11px;
+	left: 16px;
+}
+
+.explore-block .explore-form .fld {
+	padding-left: 40px;
+	border-radius: 50px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+/* Notify topbar */
 .notify-line {
 	color: #666;
 	font-size: 12px;

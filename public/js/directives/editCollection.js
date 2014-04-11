@@ -38,15 +38,14 @@ define(function (require) {
 					</div>\
 				</div>\
 				<div class="collection-buttons">\
-					<button type="button" class="button xs-sml-btn slk-btn state-collection-btn"\
+					<button type="button" class="button xs-sml-btn slk-btn navy-btn state-collection-btn"\
 						ng-dialog="toggleStateCollectionDialog"\
 						ng-dialog-class="lsd-theme delete-user-dialog"\
 						ng-dialog-data="{{collection._id}}, {{collection.public}}"\
 						ng-dialog-controller="toggleStateCollectionController"\
 						ng-dialog-show-close="false"\
 						ng-class="{\
-							\'navy-btn\': !collection.public,\
-							\'orange-btn\': collection.public\
+							\'pink-btn\': collection.public\
 						}">\
 						<i class="font-icon icon"\
 							ng-class="{\
@@ -56,7 +55,7 @@ define(function (require) {
 						</i>\
 						<span>{{collection.public ? \'Close\' : \'Open\'}}</span>\
 					</button>\
-					<button type="button" class="button xs-sml-btn orange-btn slk-btn share-collection-btn"\
+					<button type="button" class="button xs-sml-btn pink-btn slk-btn share-collection-btn"\
 						ng-show="collection.public"\
 						ng-dialog="shareCollectionDialog"\
 						ng-dialog-class="lsd-theme share-dialog share-like"\
@@ -64,7 +63,7 @@ define(function (require) {
 						ng-dialog-controller="shareCollectionController"\
 						ng-dialog-show-close="false"><i class="font-icon plane-icon icon"></i> <span>Share</span>\
 					</button>\
-					<button type="button" class="button xs-sml-btn orange-btn slk-btn delete-collection-btn"\
+					<button type="button" class="button xs-sml-btn pink-btn slk-btn delete-collection-btn"\
 						ng-dialog="deleteCollectionDialog"\
 						ng-dialog-class="lsd-theme delete-user-dialog"\
 						ng-dialog-data="{{collection._id}}"\
