@@ -8,18 +8,6 @@ define(function () {
 
 		$rootScope.title = $routeParams.name + '\'s profile';
 
-		$rootScope.$watch('collections', readyCollections, true);
-		function readyCollections(collection) {
-			if (!collection) {
-				return;
-			}
-
-			$scope.profile.ownedCollections = _($rootScope.collections).filter(isPublic);
-			function isPublic(row) {
-				return row['public'];
-			}
-		}
-
 		$rootScope.$watch('user', readyUser);
 		function readyUser(user) {
 			if (!user) {
@@ -70,9 +58,7 @@ define(function () {
 
 				api.query(requestOptions, handleCollections);
 				function handleCollections(collections) {
-					$scope.collections = collections;
-
-					_($scope.collections).forEach(function (collection) {
+					_(collections).each(function (collection) {
 						collection.mutual = isMutual(collection._id);
 						function isMutual (id) {
 							var meFollows = $rootScope.user.followCollections;
@@ -81,6 +67,8 @@ define(function () {
 							});
 						}
 					});
+
+					$scope.collections = collections;
 
 					appLoader.ready();
 				}
@@ -99,6 +87,18 @@ define(function () {
 				});
 				targetCollection.followersCount -= 1;
 			});
+		}
+
+		$rootScope.$watch('collections', readyCollections, true);
+		function readyCollections(collection) {
+			if (!collection) {
+				return;
+			}
+
+			$scope.profile.ownedCollections = _($rootScope.collections).filter(isPublic);
+			function isPublic(row) {
+				return row['public'];
+			}
 		}
 	}
 
