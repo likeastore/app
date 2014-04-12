@@ -1,39 +1,98 @@
 
 
 .settings {
+  background: #fff;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   width: 680px;
-  margin: 0 auto 50px;
+  margin: 30px auto 50px;
+  padding: 25px 35px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
 }
 
-.settings h2.main-title {
-  font-size: 28px;
-  font-weight: 700;
+.settings .u-avatar {
+  border: 2px solid #fff;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-position: center center;
+  width: 60px;
+  height: 60px;
+  margin: -54px auto 20px;
+  cursor: default;
+  position: relative;
+  border-radius: 32px;
+}
+
+.settings .u-name {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+
+.settings .u-text {
   color: #666;
-  line-height: 28px;
-  letter-spacing: 1px;
   text-align: center;
 }
 
-.settings .hr {
-  width: 20%;
-  margin: 35px auto 50px;
+.settings .tabs {
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  width: 100%;
+  margin: 45px 0 0;
+}
+
+.settings .tabs .tab {
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  color: #aaa;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: .3px;
+  margin: 0 16px -1px 0;
+  padding-bottom: 9px;
+  vertical-align: top;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.settings .tabs .tab:hover {
+  color: #555;
+}
+
+.settings .tabs .tab.active {
+  color: #555;
+  border-color: #f03e56;
+  font-weight: bold;
+}
+
+.settings .tabs a.tab:hover {
+  text-decoration: none;
 }
 
 .settings .right-block-wrap {
   width: 100%;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
 .settings .network,
 .settings .profile-item {
   background: #fff;
   width: 100%;
-  padding: 22px 22px 22px 35px;
-  margin: 0;
+  padding: 22px 11px;
   vertical-align: top;
-  border-top: 1px solid rgba(0,0,0,.05);
+  border-top: 1px solid rgba(0, 0, 0, .08);
   position: relative;
+}
+
+.settings .network.gist {
+  border-style: dashed;
+}
+
+.settings .network:hover {
+  background: #fdfdfd;
 }
 
 .settings .network:first-child,
@@ -42,60 +101,49 @@
   border: 0;
 }
 
-.settings .title {
+.settings .right-block-wrap .title {
+  color: #444;
   font-size: 14px;
-  font-family: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-weight: bold;
+  margin: 2px 0 0;
+  letter-spacing: .3px;
+  cursor: default;
 }
 
-.settings .desc {
+.settings .right-block-wrap .desc {
   color: #999;
   font-size: 13px;
   margin-top: 5px;
-  letter-spacing: .3px;
+  cursor: default;
 }
 
-.settings .tabs .tab {
+.settings .right-block-wrap .network-icon {
   display: inline-block;
-  color: #666;
-  font-size: 14px;
-  line-height: 40px;
-  width: 140px;
-  height: 40px;
+  background-color: rgba(157, 166, 176, .2);
+  color: #fff;
+  font-size: 20px;
+  float: left;
+  width: 40px;
+  height: 39px;
+  line-height: 44px;
   text-align: center;
-  cursor: pointer;
-  letter-spacing: .6px;
-  border-radius: 2px 2px 0 0;
+  margin-right: 14px;
+  vertical-align: middle;
+  position: relative;
+  border-radius: 100%;
 }
 
-.settings .tabs .tab.active {
-  background: #fff;
-  font-weight: 600;
-}
-
-.settings .tabs a.tab {
-  color: #f03e56;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.settings .tabs a.tab:hover {
-  text-decoration: none;
-}
-
-.info {
-  display: inline-block;
+.settings .right-block-wrap .network-icon.pocket-icon {
+  line-height: 46px;
 }
 
 /* Toggle network checkboxes */
 
 .toggle {
   position: relative;
-  width: 75px;
+  width: 72px;
   height: 32px;
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .toggle.disabled {
@@ -109,7 +157,7 @@
   cursor: pointer;
   margin: 0;
   padding: 0;
-  width: 75px;
+  width: 72px;
   height: 32px;
   position: absolute;
   top: 0;
@@ -132,15 +180,14 @@
 }
 
 .toggle.on .btn {
-  left: 44px;
+  left: 41px;
 }
 
 .toggle .texts {
   color: #fff;
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 12px;
   position: absolute;
-  top: 8px;
+  top: 9px;
   width: 100%;
   text-transform: uppercase;
   z-index: 2;
@@ -152,7 +199,7 @@
   opacity: 0;
   content: attr(data-on);
   position: absolute;
-  left: 14px;
+  left: 12px;
   -webkit-transition: all .3s;
   transition: all .3s;
 }
@@ -162,7 +209,7 @@
   opacity: 1;
   content: attr(data-off);
   position: absolute;
-  right: 12px;
+  right: 9px;
   -webkit-transition: all .3s;
   transition: all .3s;
 }
@@ -194,6 +241,24 @@
 .toggle.on .bg {
   background: #56c7aa;
   background: rgba(66, 207, 176, 0.96);
+}
+
+.settings h2.main-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #666;
+  line-height: 28px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.settings .hr {
+  width: 20%;
+  margin: 35px auto 50px;
+}
+
+.info {
+  display: inline-block;
 }
 
 .profile-item .fld {
@@ -230,8 +295,9 @@
   color: #f03e56;
   font-size: 18px;
   position: absolute;
-  top: 22px;
-  left: 7px;
+  top: 19px;
+  left: 6px;
+  z-index: 1;
 }
 
 .network-error {
@@ -305,7 +371,7 @@
 
 .block-networks-overlay .btn {
   color: #fff;
-  font: 600 13px 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+  font: 600 13px 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   width: 215px;
   height: 50px;
   line-height: 50px;

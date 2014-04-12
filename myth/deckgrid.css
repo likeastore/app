@@ -59,7 +59,7 @@
 	position: relative;
 	border-radius: 3px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14);
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
 	transition: all .3s ease-in;
 }
 
@@ -125,7 +125,7 @@
 
 .card-item .card-meta .title {
 	color: #444;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: bold;
 	max-height: 64px;
 	overflow: hidden;
@@ -133,13 +133,13 @@
 }
 
 .card-item .title.bottom-space {
-	margin-bottom: 5px !important;
+	margin-bottom: 8px !important;
 }
 
 .card-item .card-meta .description {
 	color: #555;
-	font-size: 12px;
-	line-height: 16px;
+	font-size: 13px;
+	line-height: 17px;
 	margin-bottom: 12px;
 }
 

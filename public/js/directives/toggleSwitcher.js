@@ -85,6 +85,7 @@ define(function (require) {
 							if (!row.disabled && service === row.service) {
 								elem.addClass('on');
 								parent.removeClass('disabled');
+								parent.find('i').addClass(service + '-bg-clr');
 							}
 
 							if (row.disabled && service === row.service) {
