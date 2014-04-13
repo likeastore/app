@@ -6,16 +6,18 @@ define(function (require) {
 			restrict: 'A',
 			scope: {
 				collectionId: "=toggleFollowCollection"
+
 			},
 			replace: true,
 			template: '\
 				<div class="follow-collection">\
+					<a ng-show="owning" ng-href="/collections/{{coll._id}}" class="button sml-btn blue-btn slk-btn edit-btn">View</a>\
 					<button type="button" class="button sml-btn navy-btn slk-btn follow-btn"\
-						ng-show="!mutual"\
+						ng-show="!following"\
 						ng-click="followCollection()"\
 						ng-disabled="processing">Follow</button>\
 					<button type="button" class="button sml-btn pink-btn slk-btn following-btn"\
-						ng-show="mutual"\
+						ng-show="following"\
 						ng-click="unfollowCollection()"\
 						ng-disabled="processing">Unfollow</button>\
 				</div>',
@@ -24,8 +26,13 @@ define(function (require) {
 					if (!value) {
 						return;
 					}
-					$scope.mutual = _($rootScope.user.followCollections).find(function (row) {
+
+					$scope.following = _($rootScope.user.followCollections).find(function (row) {
 						return row.id === $scope.collectionId;
+					});
+
+					$scope.owning = _($rootScope.collections).find(function (row) {
+						return row._id === $scope.collectionId;
 					});
 				});
 
@@ -35,7 +42,7 @@ define(function (require) {
 					$analytics.eventTrack('collection followed');
 
 					api.update({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {}, function () {
-						$scope.mutual = true;
+						$scope.following = true;
 						$scope.processing = false;
 						$rootScope.$broadcast('follow.collection', $scope.collectionId);
 					});
@@ -47,7 +54,7 @@ define(function (require) {
 					$analytics.eventTrack('collection unfollowed');
 
 					api.delete({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {}, function () {
-						$scope.mutual = false;
+						$scope.following = false;
 						$scope.processing = false;
 						$rootScope.$broadcast('unfollow.collection', $scope.collectionId);
 					});
