@@ -13,7 +13,7 @@
 				<li class="stat-block following" ng-class="{'active': list==='ownCollections'}">
 					<a href="" class="mask-link" ng-click="switchList('ownCollections')"></a>
 					<div class="stat-count">
-						{{kFormat(profile.ownedCollections.length) || 0}}
+						{{kFormat(profile.ownedCollectionsCount)}}
 					</div>
 					<div class="stat-title">
 						curates
@@ -55,11 +55,7 @@
 						</div>
 					</div>
 
-					<div class="right" ng-if="me">
-						<a ng-href="/collections/{{coll._id}}" class="button sml-btn blue-btn slk-btn edit-btn">View</a>
-					</div>
-
-					<div class="right" ng-if="!me">
+					<div class="right">
 						<div toggle-follow-collection="coll._id"></div>
 					</div>
 				</div>
