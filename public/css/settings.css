@@ -24,6 +24,11 @@
   border-radius: 32px;
 }
 
+.settings .u-avatar .tooltip {
+  width: 100px;
+  bottom: 60px;
+}
+
 .settings .u-name {
   font-size: 24px;
   font-weight: bold;
@@ -83,7 +88,7 @@
   width: 100%;
   padding: 22px 11px;
   vertical-align: top;
-  border-top: 1px solid rgba(0, 0, 0, .08);
+  border-top: 1px solid rgba(0, 0, 0, .06);
   position: relative;
 }
 
@@ -91,7 +96,8 @@
   border-style: dashed;
 }
 
-.settings .network:hover {
+.settings .network:hover,
+.settings .profile-item:hover {
   background: #fdfdfd;
 }
 
@@ -99,6 +105,10 @@
 .settings .profile-item:first-child,
 .settings .network.noborder {
   border: 0;
+}
+
+.settings .right-block-wrap .info {
+  display: inline-block;
 }
 
 .settings .right-block-wrap .title {
@@ -135,6 +145,47 @@
 
 .settings .right-block-wrap .network-icon.pocket-icon {
   line-height: 46px;
+}
+
+.settings .profile-item .fld {
+  background: transparent;
+  border: 0;
+  color: #999;
+  font-size: 13px;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  padding: 0;
+  margin: 10px 0 0;
+}
+
+.settings .profile .title {
+  margin: 0;
+}
+
+.settings .profile .danger-wrap .desc {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 17px;
+}
+
+.settings .danger-wrap .delete-link {
+  display: inline-block;
+  font-size: 13px;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.settings .danger-wrap .delete-link:hover {
+  color: #56c7aa;
+  text-decoration: none;
+}
+
+.settings .temp-disabled-icon {
+  color: #f03e56;
+  font-size: 18px;
+  position: absolute;
+  top: 19px;
+  left: 6px;
+  z-index: 1;
 }
 
 /* Toggle network checkboxes */
@@ -189,9 +240,9 @@
   position: absolute;
   top: 9px;
   width: 100%;
-  text-transform: uppercase;
   z-index: 2;
   letter-spacing: 1px;
+  text-shadow: 0 -1px rgba(0, 0, 0, .11);
 }
 
 .toggle .texts:before {
@@ -199,7 +250,7 @@
   opacity: 0;
   content: attr(data-on);
   position: absolute;
-  left: 12px;
+  left: 14px;
   -webkit-transition: all .3s;
   transition: all .3s;
 }
@@ -209,7 +260,7 @@
   opacity: 1;
   content: attr(data-off);
   position: absolute;
-  right: 9px;
+  right: 12px;
   -webkit-transition: all .3s;
   transition: all .3s;
 }
@@ -243,67 +294,7 @@
   background: rgba(66, 207, 176, 0.96);
 }
 
-.settings h2.main-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #666;
-  line-height: 28px;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-.settings .hr {
-  width: 20%;
-  margin: 35px auto 50px;
-}
-
-.info {
-  display: inline-block;
-}
-
-.profile-item .fld {
-  background: transparent;
-  border: 0;
-  color: #666;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 0;
-  margin: 10px 0 0;
-}
-
-.danger-wrap .title {
-  margin-bottom: 5px;
-}
-
-.danger-wrap .desc {
-  font-size: 13px;
-  line-height: 18px;
-}
-
-.danger-wrap .delete-link {
-  display: inline-block;
-  margin-top: 10px;
-  text-decoration: underline;
-}
-
-.danger-wrap .delete-link:hover {
-  color: #56c7aa;
-  text-decoration: none;
-}
-
-.temp-disabled-icon {
-  color: #f03e56;
-  font-size: 18px;
-  position: absolute;
-  top: 19px;
-  left: 6px;
-  z-index: 1;
-}
-
-.network-error {
-  color: #f03e56;
-  padding: 10px 30px 5px;
-}
+/* Block networks overlay */
 
 .block-networks-overlay {
   position: fixed;
@@ -428,8 +419,16 @@
 }
 
 @media (max-width: 450px) {
+  .settings {
+    padding: 25px 20px;
+  }
+
+  .settings .right-block-wrap .desc,
+  .settings .profile .danger-wrap .desc {
+    font-size: 12px;
+  }
+
   .settings .tabs .tab {
     font-size: 12px;
-    width: 32%;
   }
 }

@@ -25,7 +25,8 @@
 	var-instagram: #517fa4;
 	var-flickr: #1f212f;
 	var-title-font: 'Montserrat', 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
-	var-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+	var-text-font: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	var-old-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
 }
 
 @font-face {
@@ -72,7 +73,7 @@
 body {
 	color: var(black);
 	background: #f3f3f6;
-	font: 400 14px var(text-font);
+	font: 400 14px var(old-text-font);
 	width: 100%;
 	overflow-x: hidden;
 }
@@ -203,7 +204,7 @@ body,
 
 .featured-title {
 	color: #434343;
-	font: 300 30px var(text-font);
+	font: 300 30px var(old-text-font);
 	padding: 0;
 	text-align: center;
 	margin-bottom: 35px;
@@ -217,7 +218,7 @@ body,
 	outline: none;
 	color: #333;
 	font-size: 13px;
-	font-family: var(text-font);
+	font-family: var(old-text-font);
 	letter-spacing: .6px;
 	width: 100%;
 	padding: 12px 18px;
@@ -231,7 +232,7 @@ textarea.fld {
 .btn,
 .btn:focus {
 	display: inline-block;
-	font: 400 13px var(text-font);
+	font: 400 13px var(old-text-font);
 	border: 0;
 	padding: 0;
 	line-height: 1;
@@ -293,7 +294,7 @@ textarea.fld {
 	background: transparent;
 	border: none;
 	color: #666;
-	font: 600 12px var(text-font);
+	font: 600 12px var(old-text-font);
 	width: 140px;
 	padding: 6px 0;
 	margin: 0;
@@ -1462,9 +1463,10 @@ textarea.fld {
 	opacity: 0;
 	background: rgba(31, 33, 47, 0.96);
 	color: #eee;
-	font: 400 11px var(text-font);
-	line-height: 16px;
-	padding: 4px 12px;
+	font: 10px var(text-font);
+	line-height: 14px;
+	letter-spacing: .3px;
+	padding: 3px 12px;
 	text-align: center;
 	position: absolute;
 	bottom: 25px;
@@ -1792,7 +1794,7 @@ textarea.fld {
 .first-time-box .follow-buttons .follow-btn {
 	display: inline-block;
 	color: #fff;
-	font: 600 11px var(text-font);
+	font: 600 11px var(old-text-font);
 	height: 25px;
 	line-height: 24px;
 	margin-left: 10px;
@@ -1829,6 +1831,10 @@ textarea.fld {
 }
 
 .github-bg-clr {
+	background-color: var(github) !important;
+}
+
+.gist-bg-clr {
 	background-color: var(github) !important;
 }
 
@@ -1877,6 +1883,10 @@ textarea.fld {
 }
 
 .github-clr {
+	color: #8592a2 !important;
+}
+
+.gist-clr {
 	color: #8592a2 !important;
 }
 

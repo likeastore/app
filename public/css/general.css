@@ -1477,9 +1477,10 @@ textarea.fld {
   opacity: 0;
   background: rgba(31, 33, 47, 0.96);
   color: #eee;
-  font: 400 11px 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
-  line-height: 16px;
-  padding: 4px 12px;
+  font: 10px 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  line-height: 14px;
+  letter-spacing: .3px;
+  padding: 3px 12px;
   text-align: center;
   position: absolute;
   bottom: 25px;
@@ -1856,6 +1857,10 @@ textarea.fld {
   background-color: #bdc3c7 !important;
 }
 
+.gist-bg-clr {
+  background-color: #bdc3c7 !important;
+}
+
 .stackoverflow-bg-clr {
   background-color: #e67e22 !important;
 }
@@ -1901,6 +1906,10 @@ textarea.fld {
 }
 
 .github-clr {
+  color: #8592a2 !important;
+}
+
+.gist-clr {
   color: #8592a2 !important;
 }
 

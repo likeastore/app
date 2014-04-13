@@ -35,6 +35,7 @@ define(function (require) {
 							user.getActiveNetworks().getInboxCount();
 
 							elem.toggleClass('on');
+							parent.find('i').removeClass(service + '-bg-clr');
 							elem.removeClass('disabled');
 						});
 						return;
