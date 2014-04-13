@@ -40,10 +40,6 @@ define(function () {
 			getCollections('profile');
 
 			function getCollections(listType) {
-				if (!listType || !_(listType).isString()) {
-					throw new Error('Collections list type is required');
-				}
-
 				appLoader.loading();
 
 				var requestOptions = {
@@ -68,6 +64,10 @@ define(function () {
 						}
 					});
 
+					if (listType === 'profile') {
+						$scope.profile.ownedCollectionsCount = collections.length || 0;
+					}
+
 					$scope.collections = collections;
 
 					appLoader.ready();
@@ -87,18 +87,6 @@ define(function () {
 				});
 				targetCollection.followersCount -= 1;
 			});
-		}
-
-		$rootScope.$watch('collections', readyCollections, true);
-		function readyCollections(collection) {
-			if (!collection) {
-				return;
-			}
-
-			$scope.profile.ownedCollections = _($rootScope.collections).filter(isPublic);
-			function isPublic(row) {
-				return row['public'];
-			}
 		}
 	}
 
