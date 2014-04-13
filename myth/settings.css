@@ -181,6 +181,9 @@
 	font-size: 13px;
 	line-height: 17px;
 	margin-top: 10px;
+}
+
+.settings .profile .desc.long {
 	width: 90%;
 }
 

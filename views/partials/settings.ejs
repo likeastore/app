@@ -130,7 +130,7 @@
 		<li class="profile-item clearfix">
 			<div class="title">Full Name</div>
 			<div class="left details">
-				<input ng-show="!editModes.displayName" type="text" class="fld" value="{{user.displayName||'Empty'}}" disabled>
+				<div ng-show="!editModes.displayName" class="desc">{{(user.displayName && user.displayName)||'Empty'}}</div>
 				<form ng-show="editModes.displayName" ng-submit="updateDisplayName()" class="profile-edit">
 					<input class="field" ng-model="form.displayName" auto-focus="editModes.displayName" placeholder="John Likeman">
 					<button type="button" ng-click="editModeOff('displayName')" class="button mdm-btn slk-btn pink-btn">Cancel</button>
@@ -142,7 +142,7 @@
 		<li class="profile-item clearfix">
 			<div class="title">About You</div>
 			<div class="left details">
-				<div ng-show="!editModes.bio" class="desc" ng-bind-html="(user.bio|linkify)||'Empty'"></div>
+				<div ng-show="!editModes.bio" class="desc" ng-class="{long: user.bio && user.bio.length > 80}" ng-bind-html="(user.bio && user.bio|linkify)||'Empty'"></div>
 				<form ng-show="editModes.bio" ng-submit="updateBio()" class="profile-edit">
 					<textarea class="field" ng-model="form.bio" auto-focus="editModes.bio" placeholder="Tell us few words about you" rows="5" maxlength="300"></textarea>
 					<button type="button" ng-click="editModeOff('bio')" class="button mdm-btn slk-btn pink-btn">Cancel</button>
