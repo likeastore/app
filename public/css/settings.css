@@ -96,8 +96,7 @@
   border-style: dashed;
 }
 
-.settings .network:hover,
-.settings .profile-item:hover {
+.settings .network:hover {
   background: #fdfdfd;
 }
 
@@ -158,14 +157,19 @@
   margin: 10px 0 0;
 }
 
+.settings .profile .details {
+  max-width: 90%;
+}
+
 .settings .profile .title {
   margin: 0;
 }
 
-.settings .profile .danger-wrap .desc {
-  margin-top: 10px;
+.settings .profile .desc {
   font-size: 13px;
   line-height: 17px;
+  margin-top: 10px;
+  width: 90%;
 }
 
 .settings .danger-wrap .delete-link {
@@ -187,6 +191,36 @@
   top: 19px;
   left: 6px;
   z-index: 1;
+}
+
+.settings .profile-item .edit-profile-btn {
+  display: inline-block;
+  color: #b5b5b5;
+  font-size: 16px;
+  height: 16px;
+  margin-top: 7px;
+}
+
+.settings .profile-item .edit-profile-btn:hover {
+  color: #666;
+}
+
+.settings .profile-item .edit-profile-btn .tooltip {
+  bottom: 20px;
+}
+
+.settings .profile-edit {
+  margin-top: 10px;
+}
+
+.settings .profile-edit .field {
+  display: block;
+  margin-bottom: 10px;
+  width: 460px;
+}
+
+.settings .profile-edit .button {
+  margin-right: 5px;
 }
 
 /* Toggle network checkboxes */
@@ -368,7 +402,7 @@
   border: 1px solid rgba(0, 0, 0, .1);
   width: 215px;
   height: 50px;
-  line-height: 50px;
+  line-height: 48px;
   margin: 0 8px;
   vertical-align: middle;
   text-decoration: none;
@@ -420,11 +454,19 @@
   .settings {
     width: 95%;
   }
+
+  .settings .profile-edit .field {
+    width: 300px;
+  }
 }
 
 @media (max-width: 450px) {
   .settings {
     padding: 25px 20px;
+  }
+
+  .settings .profile-edit .field {
+    width: 100%;
   }
 
   .settings .right-block-wrap .desc,

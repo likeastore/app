@@ -127,11 +127,29 @@
 				<input type="text" class="fld" value="{{user.email}}" disabled>
 			</div>
 		</li>
-		<li ng-if="user.displayName" class="profile-item">
+		<li class="profile-item clearfix">
 			<div class="title">Full Name</div>
-			<div>
-				<input type="text" class="fld" value="{{user.displayName}}" disabled>
+			<div class="left details">
+				<input ng-show="!editModes.displayName" type="text" class="fld" value="{{user.displayName||'Empty'}}" disabled>
+				<form ng-show="editModes.displayName" ng-submit="updateDisplayName()" class="profile-edit">
+					<input class="field" ng-model="form.displayName" auto-focus="editModes.displayName" placeholder="John Likeman">
+					<button type="button" ng-click="editModeOff('displayName')" class="button mdm-btn slk-btn pink-btn">Cancel</button>
+					<button type="submit" class="button mdm-btn slk-btn green-btn">Save</button>
+				</form>
 			</div>
+			<button ng-show="!editModes.displayName" ng-click="editModeOn('displayName')" tooltip="Edit" class="button-clean font-icon pencil-icon edit-profile-btn right"></button>
+		</li>
+		<li class="profile-item clearfix">
+			<div class="title">About You</div>
+			<div class="left details">
+				<div ng-show="!editModes.bio" class="desc" ng-bind-html="(user.bio|linkify)||'Empty'"></div>
+				<form ng-show="editModes.bio" ng-submit="updateBio()" class="profile-edit">
+					<textarea class="field" ng-model="form.bio" auto-focus="editModes.bio" placeholder="Tell us few words about you" rows="5" maxlength="300"></textarea>
+					<button type="button" ng-click="editModeOff('bio')" class="button mdm-btn slk-btn pink-btn">Cancel</button>
+					<button type="submit" class="button mdm-btn slk-btn green-btn">Save</button>
+				</form>
+			</div>
+			<button ng-show="!editModes.bio" ng-click="editModeOn('bio')" tooltip="Edit" class="button-clean font-icon pencil-icon edit-profile-btn right"></button>
 		</li>
 		<li class="profile-item danger-wrap">
 			<div class="title">Delete account</div>

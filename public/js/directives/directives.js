@@ -14,6 +14,7 @@ define(function (require) {
 	directives.directive('sidebarMenu', require('./sidebarMenu'));
 	directives.directive('shareOn', require('./shareOn'));
 	directives.directive('touchy', require('./touchy'));
+	directives.directive('autoFocus', require('./autoFocus'));
 	directives.directive('avatarLoad', require('./avatarLoad'));
 	directives.directive('previewImageLoad', require('./previewImageLoad'));
 	directives.directive('tooltip', require('./tooltip'));

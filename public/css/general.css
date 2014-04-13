@@ -238,28 +238,6 @@ textarea.fld {
   text-decoration: none;
 }
 
-.green-btn {
-  background: #56c7aa;
-  background: rgba(66, 207, 176, 0.96);
-  color: #fff;
-}
-
-.pink-btn {
-  background: #f03e56;
-  color: #fff;
-}
-
-.blue-btn {
-  background: #5da8e0;
-  color: #fff;
-}
-
-.gradient-btn {
-  background: -webkit-linear-gradient(35deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
-  background: linear-gradient(55deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
-  color: #fff;
-}
-
 .small-btn,
 .small-btn:focus {
   font-size: 10px;

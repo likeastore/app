@@ -1,12 +1,42 @@
 define(function () {
 	'use strict';
 
-	function SettingsController ($scope, $rootScope, $window, $analytics) {
-		$window.scrollTo(0,0);
-
+	function SettingsController ($scope, $rootScope, api, $analytics) {
 		$analytics.eventTrack('settings opened');
 
 		$rootScope.title = 'Account settings';
+
+		$scope.editModes = {};
+		$scope.editModeOn = function (prop) {
+			$scope.editModes[prop] = true;
+		};
+		$scope.editModeOff = function (prop) {
+			$scope.editModes[prop] = false;
+		};
+
+		$scope.form = {};
+		$scope.updateDisplayName = function () {
+			api.patch({ resource: 'users', target: 'me' }, { displayName: $scope.form.displayName }, function () {
+				$analytics.eventTrack('user displayName updated');
+				$rootScope.user.displayName = angular.copy($scope.form.displayName);
+				$scope.editModes.displayName = false;
+			});
+		};
+		$scope.updateBio = function () {
+			api.patch({ resource: 'users', target: 'me' }, { bio: $scope.form.bio }, function () {
+				$analytics.eventTrack('user bio updated');
+				$rootScope.user.bio = angular.copy($scope.form.bio);
+				$scope.editModes.bio = false;
+			});
+		};
+		$rootScope.$watch('user', function (user) {
+			if (user.bio) {
+				$scope.form.bio = user.bio;
+			}
+			if (user.displayName) {
+				$scope.form.displayName = user.displayName;
+			}
+		}, true);
 	}
 
 	return SettingsController;

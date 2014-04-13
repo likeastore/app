@@ -198,6 +198,10 @@
 	content: '\e014';
 }
 
+.pencil-icon:before {
+	content: 'L';
+}
+
 .back-icon:before {
 	content: '\e011';
 }

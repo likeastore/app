@@ -256,27 +256,6 @@ textarea.fld {
 	text-decoration: none;
 }
 
-.green-btn {
-	background: var(navy);
-	background: var(navy-opacity);
-	color: #fff;
-}
-
-.pink-btn {
-	background: var(pink);
-	color: #fff;
-}
-
-.blue-btn {
-	background: var(blue);
-	color: #fff;
-}
-
-.gradient-btn {
-	background: linear-gradient(55deg, rgba(63, 192, 193, 0.98) 0%, var(navy-opacity) 100%);
-	color: #fff;
-}
-
 .small-btn,
 .small-btn:focus {
 	font-size: 10px;

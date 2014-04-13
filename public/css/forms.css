@@ -1,5 +1,14 @@
 
 
+.button-clean {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+}
+
 .button {
   display: inline-block;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -37,6 +46,23 @@
   color: #fff;
 }
 
+.green-btn {
+  background: #56c7aa;
+  background: rgba(66, 207, 176, 0.96);
+  color: #fff;
+}
+
+.blue-btn {
+  background: #5da8e0;
+  color: #fff;
+}
+
+.gradient-btn {
+  background: -webkit-linear-gradient(35deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
+  background: linear-gradient(55deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
+  color: #fff;
+}
+
 .slk-btn {
   border: 1px solid rgba(0, 0, 0, .16);
   text-transform: none;
@@ -50,6 +76,15 @@
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
   border: 1px solid rgba(0, 0, 0, .38);
+}
+
+.mdm-btn {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 28px;
+  width: 66px;
+  height: 30px;
+  padding: 0 10px;
 }
 
 .sml-btn,
@@ -86,4 +121,21 @@
   z-index: 20;
   -webkit-transition: all .2s;
   transition: all .2s;
+}
+
+.field {
+  background: #fff;
+  color: #444;
+  border: 1px solid #d9d9d9;
+  font-size: 13px;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  padding: 8px 10px;
+  margin: 0;
+  outline: none;
+  width: 100%;
+  border-radius: 2px;
+}
+
+textarea.field {
+  resize: vertical;
 }
