@@ -30,6 +30,9 @@ define(function () {
 			});
 		};
 		$rootScope.$watch('user', function (user) {
+			if (!user) {
+				return;
+			}
 			if (user.bio) {
 				$scope.form.bio = user.bio;
 			}
