@@ -3,6 +3,10 @@ define(function (require) {
 
 	function Linkify ($sce) {
 		return function (text) {
+			if (!text) {
+				return;
+			}
+
 			var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 
 			text = text.replace(/</g, '&lt');
