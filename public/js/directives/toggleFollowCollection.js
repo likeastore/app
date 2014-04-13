@@ -11,7 +11,7 @@ define(function (require) {
 			replace: true,
 			template: '\
 				<div class="follow-collection">\
-					<a ng-show="owning" ng-href="/collections/{{coll._id}}" class="button sml-btn blue-btn slk-btn edit-btn">View</a>\
+					<a ng-show="owning" ng-href="/collections/{{collectionId}}" class="button sml-btn blue-btn slk-btn edit-btn">View</a>\
 					<button type="button" class="button sml-btn navy-btn slk-btn follow-btn"\
 						ng-show="!following"\
 						ng-click="followCollection()"\
