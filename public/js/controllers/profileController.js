@@ -27,15 +27,22 @@ define(function () {
 
 			$scope.me = ($rootScope.user.name === $routeParams.name);
 
-			$scope.profile = $scope.me ? user : api.get({ resource: 'users', target: $routeParams.name });
-
 			if ($scope.me) {
+				$scope.profile = user;
 				$scope.$on('collection added', function (event, collection) {
 					if (collection['public']) {
 						getCollections('profile');
 					}
 				});
+			} else {
+				api.get({ resource: 'users', target: $routeParams.name }, function (profile) {
+					$scope.profile = profile;
+				});
 			}
+
+			$scope.$on('ownedCollections.loaded', function (e, count) {
+				$scope.profile.ownedCollectionsCount = count || 0;
+			});
 
 			getCollections('profile');
 
@@ -65,7 +72,7 @@ define(function () {
 					});
 
 					if (listType === 'profile') {
-						$scope.profile.ownedCollectionsCount = collections.length || 0;
+						$scope.$broadcast('ownedCollections.loaded', collections.length);
 					}
 
 					$scope.colls = collections;
