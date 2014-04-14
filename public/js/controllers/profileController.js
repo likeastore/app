@@ -68,21 +68,21 @@ define(function () {
 						$scope.profile.ownedCollectionsCount = collections.length || 0;
 					}
 
-					$scope.collections = collections;
+					$scope.colls = collections;
 
 					appLoader.ready();
 				}
 			}
 
 			$scope.$on('follow.collection', function (event, collId) {
-				var targetCollection = _(event.currentScope.collections).find(function (row) {
+				var targetCollection = _(event.currentScope.colls).find(function (row) {
 					return row._id === collId;
 				});
 				targetCollection.followersCount += 1;
 			});
 
 			$scope.$on('unfollow.collection', function (event, collId) {
-				var targetCollection = _(event.currentScope.collections).find(function (row) {
+				var targetCollection = _(event.currentScope.colls).find(function (row) {
 					return row._id === collId;
 				});
 				targetCollection.followersCount -= 1;
