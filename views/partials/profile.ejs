@@ -1,5 +1,28 @@
-<section class="profile-page narrow animated fadeIn">
-	<div class="profile-user clearfix" ng-if="profile">
+<section class="profile animated fadeIn">
+	<div class="prebar">
+		<div class="profile-user-info clearfix" ng-if="profile">
+			<img ng-src="{{profile.avatar}}" class="u-avatar left" ng-click="switchList('favorites')" avatar-load>
+
+			<div class="left">
+				<div class="name truncate" ng-click="switchList('favorites')">{{profile.displayName || profile.name}}</div>
+				<div class="desc" ng-if="profile.bio" ng-bind-html="profile.bio|linkify"></div>
+			</div>
+		</div>
+	</div>
+
+	<ul class="coll-grid clearfix">
+		<li ng-if="me" class="coll-card create-coll-card" ng-click="createFirstCollection()">
+			<i class="font-icon add-circle-icon icon"></i>
+			<div class="create-title">Create collection</div>
+		</li>
+		<li class="coll-card collection{{$index}}"
+			ng-repeat="coll in colls"
+			ng-class="{last: $last}">
+		</li>
+	</ul>
+
+
+	<!--div class="profile-user clearfix" ng-if="profile">
 		<div class="left profile-info">
 			<img ng-src="{{profile.avatar}}" class="avatar left" ng-click="switchList('favorites')" avatar-load>
 
@@ -71,7 +94,7 @@
 				<ul class="backlists"><li></li><li></li></ul>
 			</li>
 		</ul>
-	</div>
+	</div-->
 
 	<div class="two-spin" ng-hide="loaded || error"></div>
 </section>

@@ -58,7 +58,6 @@
 	margin: 0 0 20px;
 	position: relative;
 	border-radius: 3px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
 	transition: all .3s ease-in;
 }
@@ -127,7 +126,7 @@
 	color: #444;
 	font-size: 14px;
 	font-weight: bold;
-	max-height: 64px;
+	max-height: 68px;
 	overflow: hidden;
 	margin-bottom: 12px;
 }

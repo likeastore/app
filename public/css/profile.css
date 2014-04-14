@@ -5,30 +5,105 @@
   margin: 30px auto;
 }
 
-.profile-user {
+.prebar {
   background: #fff;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  margin-top: -50px;
+}
+
+.profile {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.profile-user-info {
+  background: #fff;
+  padding: 35px 12px 25px;
+  margin: 0 auto;
+  width: 1020px;
+}
+
+.profile-user-info .u-avatar {
+  background: #f8f9fa;
+  border: 1px solid #eee;
+  padding: 4px;
+  margin-right: 12px;
+  width: 72px;
+  height: 72px;
+  border-radius: 100%;
+}
+
+.profile-user-info .name {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 5px;
+  -webkit-transition: color .2s;
+  transition: color .2s;
+}
+
+.profile-user-info .desc {
+  color: #999;
+  margin: 0 0 5px;
+}
+
+.coll-card {
+  background: #fff;
+  margin: 0 12px 20px;
+  float: left;
+  position: relative;
+  width: 231px;
+  height: 254px;
   border-radius: 3px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.coll-grid {
+  max-width: 1020px;
+  margin: 45px auto;
+}
+
+.coll-card.create-coll-card {
+  background: rgba(255,255,255, .2);
+  color: #999;
+  border: 2px dashed #bbb;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  text-shadow: 0 0 1px #fff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.coll-card.create-coll-card:hover {
+  color: #777;
+  border-color: #999;
+}
+
+.coll-card.create-coll-card .icon {
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin-top: -30px;
+}
+
+.coll-card.create-coll-card .create-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  bottom: 0;
 }
 
 .profile-info {
   padding: 18px 35px;
-}
-
-.profile-info .avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  cursor: pointer;
-}
-
-.profile-info .name {
-  font: 22px 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
-  margin: 0 0 3px 20px;
-  width: 365px;
-  -webkit-transition: color .2s;
-  transition: color .2s;
 }
 
 .profile-info .name:hover {
@@ -103,7 +178,7 @@
 
 .profile-stat .stat-count {
   color: #f03e56;
-  font: 24px 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+  font: 24px 'Montserrat', 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
 }
 
 .profile-stat .stat-title {
@@ -168,7 +243,7 @@
 .profile-lists .coll-book .title {
   display: inline-block;
   font-size: 14px;
-  font-family: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Montserrat', 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
   letter-spacing: .3px;
   vertical-align: top;
   margin: 2px 0 10px;

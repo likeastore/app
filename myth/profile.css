@@ -4,14 +4,15 @@
 	var-darkgrey: #64747d;
 	var-green: #57ad68;
 	var-navy: #56c7aa;
+	var-navy-opacity: rgba(66, 207, 176, 0.96);
+	var-orange: #fc523c;
 	var-tortoise: #1abc9c;
 	var-yellow: #f1c40f;
 	var-black: #1f282d;
 	var-darkblue: #272a33;
 	var-pink: #f03e56;
 	var-blue: #5da8e0;
-	var-title-font: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
-	var-text-font: 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+	var-text-font: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
 .narrow {
@@ -19,29 +20,105 @@
 	margin: 30px auto;
 }
 
-.profile-user {
+.prebar {
 	background: #fff;
-	border-radius: 3px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+	border-bottom: 1px solid #ddd;
+	width: 100%;
+	margin-top: -50px;
 }
+
+.profile {
+	font-family: var(text-font);
+}
+
+.profile-user-info {
+	background: #fff;
+	padding: 35px 12px 25px;
+	margin: 0 auto;
+	width: 1020px;
+}
+
+.profile-user-info .u-avatar {
+	background: #f8f9fa;
+	border: 1px solid #eee;
+	padding: 4px;
+	margin-right: 12px;
+	width: 72px;
+	height: 72px;
+	border-radius: 100%;
+}
+
+.profile-user-info .name {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0 0 5px;
+	transition: color .2s;
+}
+
+.profile-user-info .desc {
+	color: #999;
+	margin: 0 0 5px;
+}
+
+.coll-card {
+	background: #fff;
+	margin: 0 12px 20px;
+	float: left;
+	position: relative;
+	width: 231px;
+	height: 254px;
+	border-radius: 3px;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
+	transition: all .3s ease-in;
+}
+
+.coll-grid {
+	max-width: 1020px;
+	margin: 45px auto;
+}
+
+.coll-card.create-coll-card {
+	background: rgba(255,255,255, .2);
+	color: #999;
+	border: 2px dashed #bbb;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
+	text-shadow: 0 0 1px #fff;
+	box-shadow: none;
+	transition: all .2s ease;
+}
+
+.coll-card.create-coll-card:hover {
+	color: #777;
+	border-color: #999;
+}
+
+.coll-card.create-coll-card .icon {
+	font-size: 24px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	margin-top: -30px;
+}
+
+.coll-card.create-coll-card .create-title {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	bottom: 0;
+}
+
+
 
 .profile-info {
 	padding: 18px 35px;
 }
 
-.profile-info .avatar {
-	width: 60px;
-	height: 60px;
-	border-radius: 100%;
-	cursor: pointer;
-}
 
-.profile-info .name {
-	font: 22px var(title-font);
-	margin: 0 0 3px 20px;
-	width: 365px;
-	transition: color .2s;
-}
 
 .profile-info .name:hover {
 	color: var(pink);
