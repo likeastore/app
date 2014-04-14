@@ -37,6 +37,9 @@ function forUser(user, page, callback) {
 			}
 		},
 		{
+			$sort: { 'item.added': -1 }
+		},
+		{
 			$skip: (page - 1) * pageSize
 		},
 		{
