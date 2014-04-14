@@ -67,13 +67,13 @@
   transition: all .3s ease-in;
 }
 
-.btn.ng-enter.ng-enter-active,
-.btn-animation.ng-leave {
+.profile-lists .coll-item.ng-enter.ng-enter-active,
+.profile-lists .coll-item-animation.ng-leave {
   opacity: 1;
 }
 
-.btn.ng-leave.ng-leave-active,
-.btn.ng-enter {
+.profile-lists .coll-item.ng-leave.ng-leave-active,
+.profile-lists .coll-item.ng-enter {
   opacity: 0;
 }
 

@@ -136,6 +136,16 @@
   border-radius: 2px;
 }
 
+.button.ng-enter.ng-enter-active,
+.button-animation.ng-leave {
+  opacity: 1;
+}
+
+.button.ng-leave.ng-leave-active,
+.button.ng-enter {
+  opacity: 0;
+}
+
 textarea.field {
   resize: vertical;
 }
