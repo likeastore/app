@@ -25,10 +25,6 @@
   transition: all .2s;
 }
 
-a.button {
-  color: #fff !important;
-}
-
 .button[disabled] {
   opacity: .8;
 }
