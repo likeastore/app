@@ -28,73 +28,72 @@ define(function () {
 			$scope.me = ($rootScope.user.name === $routeParams.name);
 
 			if ($scope.me) {
-				$scope.profile = user;
+				$scope.profile = $rootScope.user;
+
 				$scope.$on('collection added', function (event, collection) {
 					if (collection['public']) {
 						getCollections('profile');
 					}
 				});
 			} else {
-				api.get({ resource: 'users', target: $routeParams.name }, function (profile) {
-					$scope.profile = profile;
-				});
+				$scope.profile = api.get({ resource: 'users', target: $routeParams.name });
 			}
 
-			$scope.$on('ownedCollections.loaded', function (e, count) {
-				$scope.profile.ownedCollectionsCount = count || 0;
+			$scope.$on('ownCollections loaded', function (e, collections) {
+				$scope.profile.ownCollectionsCount = collections.length;
 			});
 
 			getCollections('profile');
+		}
 
-			function getCollections(listType) {
-				appLoader.loading();
+		function getCollections(listType) {
+			appLoader.loading();
 
-				var requestOptions = {
-					resource: 'collections',
-					target: 'user',
-					verb: $routeParams.name
-				};
+			var requestOptions = {
+				resource: 'collections',
+				target: 'user',
+				verb: $routeParams.name
+			};
 
-				if (listType === 'follow') {
-					_(requestOptions).extend({ suffix: 'follows' });
-				}
-
-				api.query(requestOptions, handleCollections);
-				function handleCollections(collections) {
-					_(collections).each(function (collection) {
-						collection.mutual = isMutual(collection._id);
-						function isMutual (id) {
-							var meFollows = $rootScope.user.followCollections;
-							return meFollows.length && _(meFollows).find(function (collection) {
-								return collection.id === id;
-							});
-						}
-					});
-
-					if (listType === 'profile') {
-						$scope.$broadcast('ownedCollections.loaded', collections.length);
-					}
-
-					$scope.colls = collections;
-
-					appLoader.ready();
-				}
+			if (listType === 'follow') {
+				_(requestOptions).extend({ suffix: 'follows' });
 			}
 
-			$scope.$on('follow.collection', function (event, collId) {
-				var targetCollection = _(event.currentScope.colls).find(function (row) {
-					return row._id === collId;
+			api.query(requestOptions, handleCollections);
+			function handleCollections(collections) {
+				_(collections).each(function (collection) {
+					collection.mutual = isMutual(collection._id);
+					function isMutual (id) {
+						var meFollows = $rootScope.user.followCollections;
+						return meFollows.length && _(meFollows).find(function (collection) {
+							return collection.id === id;
+						});
+					}
 				});
-				targetCollection.followersCount += 1;
-			});
 
-			$scope.$on('unfollow.collection', function (event, collId) {
-				var targetCollection = _(event.currentScope.colls).find(function (row) {
-					return row._id === collId;
-				});
-				targetCollection.followersCount -= 1;
-			});
+				if (listType === 'profile') {
+					$scope.$broadcast('ownCollections loaded', collections);
+				}
+
+				$scope.colls = collections;
+
+				appLoader.ready();
+			}
 		}
+
+		$scope.$on('follow.collection', function (event, collId) {
+			var targetCollection = _(event.currentScope.colls).find(function (row) {
+				return row._id === collId;
+			});
+			targetCollection.followersCount += 1;
+		});
+
+		$scope.$on('unfollow.collection', function (event, collId) {
+			var targetCollection = _(event.currentScope.colls).find(function (row) {
+				return row._id === collId;
+			});
+			targetCollection.followersCount -= 1;
+		});
 	}
 
 	return ProfileController;
