@@ -208,20 +208,23 @@
 }
 
 .coll-card .meta {
-  background: rgba(255, 255, 255, .95);
-  padding: 10px 12px 11px;
-  overflow: hidden;
+  background: rgba(255, 255, 255, .96);
+  padding: 10px 12px;
   position: absolute;
-  top: 16px;
-  left: 0;
-  right: 0;
   width: 195px;
   margin: 0 auto;
+  top: 18px;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  border-radius: 1px;
 }
 
 .coll-card .title {
   font-size: 15px;
   font-weight: bold;
+  max-height: 55px;
+  overflow: hidden;
 }
 
 .coll-card .desc {
@@ -229,6 +232,8 @@
   font-size: 13px;
   line-height: 17px;
   margin-top: 8px;
+  overflow: hidden;
+  max-height: 105px;
 }
 
 .coll-card .thumb {
@@ -242,7 +247,8 @@
 }
 
 .coll-card .line-shadow {
-  width: 10px;
+  background: rgba(0, 0, 0, .02);
+  width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
@@ -250,11 +256,16 @@
   z-index: 1;
   -webkit-box-shadow: inset 3px 0 0 rgba(0, 0, 0, .14);
   box-shadow: inset 3px 0 0 rgba(0, 0, 0, .14);
+  -webkit-transition: all .3s;
+  transition: all .3s;
 }
 
-.coll-card .action {
-  position: absolute;
-  bottom: 16px;
+.coll-card.thumbed .line-shadow {
+  background: rgba(0, 0, 0, .05);
+}
+
+.coll-card:hover .line-shadow {
+  background: rgba(0, 0, 0, .08);
 }
 
 .coll-card.ng-enter.ng-enter-active,
@@ -267,9 +278,61 @@
   opacity: 0;
 }
 
+.coll-card .stat {
+  color: #999;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 12px 0 0;
+  position: relative;
+  z-index: 11;
+  cursor: default;
+}
+
+.coll-card .stat span {
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: top;
+}
+
+.coll-card .stat .icon {
+  display: inline-block;
+  font-size: 12px;
+  vertical-align: top;
+  margin: 0 2px 0 0;
+}
+
+.coll-card .stat .tooltip {
+  padding: 2px 12px 3px;
+  bottom: -25px;
+}
+
+.coll-card .stat .tooltip:after {
+  bottom: 100%;
+  border: solid transparent;
+  content: '';
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: rgba(31, 33, 47, 0.96);
+  border-width: 5px;
+  right: 0;
+  left: 0;
+  top: -10px;
+  z-index: -1;
+}
+
+.coll-card .meta .action {
+  position: absolute;
+  right: -8px;
+  bottom: -9px;
+  z-index: 20;
+}
+
 .backlists li {
   background: #fff;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e2e2e2;
   margin: 0 auto;
   overflow: hidden;
   height: 3px;
@@ -285,7 +348,7 @@
 }
 
 .backlists li:nth-child(3) {
-  width: 98%;
+  width: 97.8%;
 }
 
 .profile-info {
@@ -442,29 +505,6 @@
   letter-spacing: .3px;
 }
 
-.profile-lists .coll-book .stat {
-  color: #f03e56;
-  font-size: 11px;
-  font-weight: 600;
-  margin-top: 10px;
-  position: relative;
-  z-index: 11;
-  cursor: default;
-}
-
-.profile-lists .coll-book .stat span {
-  display: inline-block;
-  margin-right: 8px;
-  vertical-align: top;
-}
-
-.profile-lists .coll-book .stat .icon {
-  display: inline-block;
-  font-size: 13px;
-  vertical-align: top;
-  margin: 1px 3px 0 0;
-}
-
 .profile-lists .coll-book .author {
   margin-bottom: 10px;
   position: relative;
@@ -486,28 +526,6 @@
   font-size: 12px;
   font-weight: 600;
   vertical-align: top;
-}
-
-.profile-lists .coll-book .stat .tooltip {
-  padding: 2px 12px;
-  bottom: -25px;
-}
-
-.profile-lists .coll-book .stat .tooltip:after {
-  bottom: 100%;
-  border: solid transparent;
-  content: '';
-  width: 0;
-  height: 0;
-  margin: 0 auto;
-  position: absolute;
-  pointer-events: none;
-  border-bottom-color: rgba(31, 33, 47, 0.96);
-  border-width: 5px;
-  right: 0;
-  left: 0;
-  top: -10px;
-  z-index: -1;
 }
 
 @media (max-width: 750px) {

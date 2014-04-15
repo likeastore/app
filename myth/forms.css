@@ -125,12 +125,30 @@
 }
 
 .follow-collection {
-	width: 91px;
-	height: 24px;
 	overflow: hidden;
 	position: relative;
 	z-index: 20;
 	transition: all .2s;
+}
+
+.follow-collection-btns {
+	width: 91px;
+	height: 24px;
+}
+
+.follow-collection-icons {
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+}
+
+.follow-collection-icons .button {
+	border: 2px solid #fff;
+	font-size: 12px;
+	padding: 2px 0 0;
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
 }
 
 .field {

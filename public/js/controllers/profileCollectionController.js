@@ -13,9 +13,10 @@ define(function () {
 				return;
 			}
 
-			if (user.name === $routeParams.name) {
-				return $location.url('/collections/' + $routeParams.id);
-			}
+			// if (user.name === $routeParams.name) {
+			// 	console.warn('redirect to auth collection');
+			// 	return $location.url('/collections/' + $routeParams.id);
+			// }
 
 			api.get({ resource: 'collections', target: $routeParams.id }, handleCollection);
 			function handleCollection (collection) {

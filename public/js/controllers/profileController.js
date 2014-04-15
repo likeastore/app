@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function ProfileController($scope, $rootScope, $routeParams, $location, $analytics, appLoader, api, user, rsAppUser) {
+	function ProfileController($scope, $rootScope, $routeParams, $location, $filter, $analytics, appLoader, api, rsAppUser) {
 		appLoader.loading();
 
 		$analytics.eventTrack('profile opened');
@@ -12,17 +12,27 @@ define(function () {
 
 		$scope.me = (rsAppUser.name === $routeParams.name);
 
+		$scope.getCollections = function () {
+			if ($scope.list === 'following') {
+				return $scope.followingColls;
+			}
+			if ($scope.list === 'collections' && $scope.me) {
+				var filter = $filter('filter');
+				return filter($rootScope.collections, { 'public': true });
+			}
+			return $scope.colls;
+		};
+
 		if ($scope.me) {
 			$scope.profile = rsAppUser;
+
 			fetchFollowCollections();
 		} else {
 			$scope.profile = api.get({ resource: 'users', target: $routeParams.name });
 
 			api.query({ resource: 'collections', target: 'user', verb: $routeParams.name }, function (collections) {
 				_(collections).each(function (collection) {
-					collection.mutual = _(rsAppUser.followCollections).find(function (row) {
-						return row.id === collection._id;
-					});
+					collection.mutual = checkMutual(collection._id);
 				});
 
 				$scope.profile.ownCollectionsCount = collections.length;
@@ -36,13 +46,17 @@ define(function () {
 		function fetchFollowCollections() {
 			api.query({ resource: 'collections', target: 'user', verb: $routeParams.name, suffix: 'follows' }, function (collections) {
 				_(collections).each(function (collection) {
-					collection.mutual = _(rsAppUser.followCollections).find(function (row) {
-						return row.id === collection._id;
-					});
+					collection.mutual = checkMutual(collection._id);
 				});
 
 				$scope.followingColls = collections;
 				appLoader.ready();
+			});
+		}
+
+		function checkMutual(collectionId) {
+			return _(rsAppUser.followCollections).find(function (row) {
+				return row.id === collectionId;
 			});
 		}
 
