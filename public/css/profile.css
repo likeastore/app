@@ -268,15 +268,15 @@
   background: rgba(0, 0, 0, .08);
 }
 
-.coll-card.ng-enter.ng-enter-active,
+/*.coll-card.ng-enter.ng-enter-active,
 .coll-card-animation.ng-leave {
-  opacity: 1;
+	opacity: 1;
 }
 
 .coll-card.ng-leave.ng-leave-active,
 .coll-card.ng-enter {
-  opacity: 0;
-}
+	opacity: 0;
+}*/
 
 .coll-card .stat {
   color: #999;
