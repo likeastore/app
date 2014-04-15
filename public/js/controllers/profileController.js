@@ -1,85 +1,55 @@
 define(function () {
 	'use strict';
 
-	function ProfileController($scope, $rootScope, $routeParams, $analytics, appLoader, api, user) {
+	function ProfileController($scope, $rootScope, $routeParams, $location, $analytics, appLoader, api, user, rsAppUser) {
 		appLoader.loading();
 
 		$analytics.eventTrack('profile opened');
 
-		$rootScope.title = $routeParams.name + '\'s profile';
+		$scope.list = $location.hash() || 'collections';
 
-		$rootScope.$watch('user', readyUser);
-		function readyUser(user) {
-			if (!user) {
-				return;
-			}
+		$rootScope.title = $routeParams.name + ' on Likeastore';
 
-			$scope.list = 'ownCollections';
-			$scope.switchList = function (list) {
-				$scope.list = list;
+		$scope.me = (rsAppUser.name === $routeParams.name);
 
-				if (list === 'ownCollections') {
-					getCollections('profile');
-				} else if (list === 'followCollections') {
-					getCollections('follow');
-				}
-			};
+		if ($scope.me) {
+			$scope.profile = rsAppUser;
+			fetchFollowCollections();
+		} else {
+			$scope.profile = api.get({ resource: 'users', target: $routeParams.name });
 
-			$scope.me = ($rootScope.user.name === $routeParams.name);
-
-			if ($scope.me) {
-				$scope.profile = $rootScope.user;
-
-				$scope.$on('collection added', function (event, collection) {
-					if (collection['public']) {
-						getCollections('profile');
-					}
+			api.query({ resource: 'collections', target: 'user', verb: $routeParams.name }, function (collections) {
+				_(collections).each(function (collection) {
+					collection.mutual = _(rsAppUser.followCollections).find(function (row) {
+						return row.id === collection._id;
+					});
 				});
-			} else {
-				$scope.profile = api.get({ resource: 'users', target: $routeParams.name });
-			}
 
-			$scope.$on('ownCollections loaded', function (e, collections) {
 				$scope.profile.ownCollectionsCount = collections.length;
+				$scope.colls = collections;
+				appLoader.ready();
 			});
 
-			getCollections('profile');
+			fetchFollowCollections();
 		}
 
-		function getCollections(listType) {
-			appLoader.loading();
-
-			var requestOptions = {
-				resource: 'collections',
-				target: 'user',
-				verb: $routeParams.name
-			};
-
-			if (listType === 'follow') {
-				_(requestOptions).extend({ suffix: 'follows' });
-			}
-
-			api.query(requestOptions, handleCollections);
-			function handleCollections(collections) {
+		function fetchFollowCollections() {
+			api.query({ resource: 'collections', target: 'user', verb: $routeParams.name, suffix: 'follows' }, function (collections) {
 				_(collections).each(function (collection) {
-					collection.mutual = isMutual(collection._id);
-					function isMutual (id) {
-						var meFollows = $rootScope.user.followCollections;
-						return meFollows.length && _(meFollows).find(function (collection) {
-							return collection.id === id;
-						});
-					}
+					collection.mutual = _(rsAppUser.followCollections).find(function (row) {
+						return row.id === collection._id;
+					});
 				});
 
-				if (listType === 'profile') {
-					$scope.$broadcast('ownCollections loaded', collections);
-				}
-
-				$scope.colls = collections;
-
+				$scope.followingColls = collections;
 				appLoader.ready();
-			}
+			});
 		}
+
+		// events
+		$scope.$on('$routeUpdate', function () {
+			$scope.list = $location.hash() || 'collections';
+		});
 
 		$scope.$on('follow.collection', function (event, collId) {
 			var targetCollection = _(event.currentScope.colls).find(function (row) {

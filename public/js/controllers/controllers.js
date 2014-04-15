@@ -56,6 +56,8 @@ define(function (require) {
 	// discovery
 	controllers.controller('feedController', itemsControllerFactory('Feed', null, 'feed opened', 'feed'));
 	controllers.controller('suggestPeopleController', require('./suggestPeopleController'));
+
+	// profile
 	controllers.controller('profileController', require('./profileController'));
 
 	// onboarding

@@ -132,7 +132,7 @@
 			<div class="left details">
 				<div ng-show="!editModes.displayName" class="desc">{{(user.displayName && user.displayName)||'Empty'}}</div>
 				<form ng-show="editModes.displayName" ng-submit="updateDisplayName()" class="profile-edit">
-					<input class="field" ng-model="form.displayName" auto-focus="editModes.displayName" placeholder="John Likeman">
+					<input class="field" ng-model="form.displayName" auto-focus="editModes.displayName" placeholder="e.g. John Likeman">
 					<button type="button" ng-click="editModeOff('displayName')" class="button mdm-btn slk-btn pink-btn">Cancel</button>
 					<button type="submit" class="button mdm-btn slk-btn green-btn">Save</button>
 				</form>
@@ -150,6 +150,30 @@
 				</form>
 			</div>
 			<button ng-show="!editModes.bio" ng-click="editModeOn('bio')" tooltip="Edit" class="button-clean font-icon pencil-icon edit-profile-btn right"></button>
+		</li>
+		<li class="profile-item clearfix">
+			<div class="title">Location</div>
+			<div class="left details">
+				<div ng-show="!editModes.location" class="desc" ng-bind-html="(user.location && user.location|linkify)||'Empty'"></div>
+				<form ng-show="editModes.location" ng-submit="updateLocation()" class="profile-edit">
+					<input class="field" ng-model="form.location" auto-focus="editModes.location" placeholder="e.g. San Francisco">
+					<button type="button" ng-click="editModeOff('location')" class="button mdm-btn slk-btn pink-btn">Cancel</button>
+					<button type="submit" class="button mdm-btn slk-btn green-btn">Save</button>
+				</form>
+			</div>
+			<button ng-show="!editModes.location" ng-click="editModeOn('location')" tooltip="Edit" class="button-clean font-icon pencil-icon edit-profile-btn right"></button>
+		</li>
+		<li class="profile-item clearfix">
+			<div class="title">Website</div>
+			<div class="left details">
+				<div ng-show="!editModes.website" class="desc" ng-bind-html="(user.website && user.website|linkify)||'Empty'"></div>
+				<form ng-show="editModes.website" ng-submit="updateWebsite()" class="profile-edit">
+					<input class="field" ng-model="form.website" auto-focus="editModes.website" placeholder="Your home page, blog or company site, e.g. http://dribbble.com">
+					<button type="button" ng-click="editModeOff('website')" class="button mdm-btn slk-btn pink-btn">Cancel</button>
+					<button type="submit" class="button mdm-btn slk-btn green-btn">Save</button>
+				</form>
+			</div>
+			<button ng-show="!editModes.website" ng-click="editModeOn('website')" tooltip="Edit" class="button-clean font-icon pencil-icon edit-profile-btn right"></button>
 		</li>
 		<li class="profile-item danger-wrap">
 			<div class="title">Delete account</div>

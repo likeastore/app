@@ -29,6 +29,23 @@ define(function () {
 				$scope.editModes.bio = false;
 			});
 		};
+		$scope.updateLocation = function () {
+			api.patch({ resource: 'users', target: 'me' }, { location: $scope.form.location }, function () {
+				$analytics.eventTrack('user location updated');
+				$rootScope.user.location = angular.copy($scope.form.location);
+				$scope.editModes.location = false;
+			});
+		};
+		$scope.updateWebsite = function () {
+			if (!/^https?/.test($scope.form.website)) {
+				$scope.form.website = 'http://' + $scope.form.website;
+			}
+			api.patch({ resource: 'users', target: 'me' }, { website: $scope.form.website }, function () {
+				$analytics.eventTrack('user website updated');
+				$rootScope.user.website = angular.copy($scope.form.website);
+				$scope.editModes.website = false;
+			});
+		};
 		$rootScope.$watch('user', function (user) {
 			if (!user) {
 				return;
@@ -38,6 +55,12 @@ define(function () {
 			}
 			if (user.displayName) {
 				$scope.form.displayName = user.displayName;
+			}
+			if (user.location) {
+				$scope.form.location = user.location;
+			}
+			if (user.website) {
+				$scope.form.website = user.website;
 			}
 		}, true);
 	}

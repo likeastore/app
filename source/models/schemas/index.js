@@ -68,6 +68,18 @@ exports.schemas = {
 				required: false,
 				type: 'string'
 			},
+			'location': {
+				required: false,
+				type: 'string'
+			},
+			'website': {
+				required: false,
+				type: 'string'
+			},
+			'twitter': {
+				required: false,
+				type: 'string'
+			},
 			'watchedPreview': {
 				required: false,
 				type: 'boolean'

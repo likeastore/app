@@ -3,23 +3,110 @@
 		<div class="profile-user-info clearfix" ng-if="profile">
 			<img ng-src="{{profile.avatar}}" class="u-avatar left" ng-click="switchList('favorites')" avatar-load>
 
-			<div class="left">
-				<div class="name truncate" ng-click="switchList('favorites')">{{profile.displayName || profile.name}}</div>
+			<div class="left profile-meta">
+				<div class="name truncate" ng-class="{'bottom-space': !profile.bio}" >{{profile.displayName || profile.name}}</div>
 				<div class="desc" ng-if="profile.bio" ng-bind-html="profile.bio|linkify"></div>
+				<div class="location info-line truncate" ng-if="profile.location">
+					<i class="font-icon location-icon icon"></i><span>{{profile.location|truncate:100}}</span>
+				</div>
+				<div class="website info-line truncate" ng-if="profile.website">
+					<i class="font-icon discover-icon icon"></i><a ng-href="{{profile.website}}" ng-bind-html="profile.website"></a>
+				</div>
+			</div>
+
+			<div class="tabs">
+				<a ng-href="/u/{{profile.name}}" class="tab" ng-class="{active: list === 'collections'}">{{(me ? collections.length : profile.ownCollectionsCount)|| 0}} Collection<span ng-if="profile.ownCollectionsCount !== 1">s</span></a>
+				<a ng-href="/u/{{profile.name}}#following" class="tab" ng-class="{active: list === 'following'}">{{profile.followCollections.length || 0}} Following</a>
 			</div>
 		</div>
 	</div>
 
-	<ul class="coll-grid clearfix">
-		<li ng-if="me" class="coll-card create-coll-card" ng-click="createFirstCollection()">
-			<i class="font-icon add-circle-icon icon"></i>
-			<div class="create-title">Create collection</div>
-		</li>
-		<li class="coll-card collection{{$index}}"
-			ng-repeat="coll in colls"
-			ng-class="{last: $last}">
-		</li>
-	</ul>
+	<div ng-switch on="list">
+		<ul class="coll-grid clearfix" ng-switch-when="collections">
+			<li ng-if="me" class="coll-card create-coll-card" ng-click="createFirstCollection()">
+				<i class="font-icon add-circle-icon icon"></i>
+				<div class="create-title">Create collection</div>
+			</li>
+
+			<!-- Third-party user collections -->
+			<li class="coll-card collection{{$index}}"
+				ng-if="!me"
+				ng-repeat="coll in colls"
+				ng-class="{last: $last}">
+
+				<div class="line-shadow"></div>
+				<div ng-if="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>
+				<div ng-if="!coll.thumbnail" class="thumb" style="background-color: rgba({{hexToRGBString(coll.color)}}, .8)"></div>
+				<div class="meta">
+					<h1 class="title">{{coll.title}}</h1>
+					<p ng-if="coll.description" class="desc" ng-bind-html="coll.description|linkify"></p>
+					<!--
+
+					<div class="stat">
+						<span class="followers" tooltip="Followers"><i class="font-icon people-icon icon"></i> {{kFormat(coll.followersCount) || 0}}</span>
+						<span class="documents" tooltip="Documents"><i class="font-icon doc-icon icon"></i> {{kFormat(coll.count) || 0}}</span>
+					</div> -->
+				</div>
+				<!-- <div class="action">
+					<div toggle-follow-collection="coll._id"></div>
+				</div> -->
+				<ul class="backlists"><li></li><li></li><li></li></ul>
+			</li>
+
+			<!-- Authorised user collections -->
+			<li class="coll-card collection{{$index}}"
+				ng-if="me"
+				ng-repeat="coll in collections|filter:{'public': true}"
+				ng-class="{last: $last}">
+
+				<div class="line-shadow"></div>
+				<div ng-if="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>
+				<div ng-if="!coll.thumbnail" class="thumb" style="background-color: rgba({{hexToRGBString(coll.color)}}, .8)"></div>
+				<div class="meta">
+					<h1 class="title">{{coll.title}}</h1>
+					<p ng-if="coll.description" class="desc" ng-bind-html="coll.description|linkify"></p>
+				</div>
+				<ul class="backlists"><li></li><li></li><li></li></ul>
+			</li>
+		</ul>
+
+		<!-- Following collections -->
+		<ul class="coll-grid clearfix" ng-switch-when="following">
+			<li class="coll-card collection{{$index}}"
+				ng-repeat="coll in followingColls"
+				ng-class="{last: $last}">
+
+				<div class="line-shadow"></div>
+				<div ng-if="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>
+				<div ng-if="!coll.thumbnail" class="thumb" style="background-color: rgba({{hexToRGBString(coll.color)}}, .8)"></div>
+				<div class="meta">
+					<h1 class="title">{{coll.title}}</h1>
+					<p ng-if="coll.description" class="desc" ng-bind-html="coll.description|linkify"></p>
+				</div>
+				<ul class="backlists"><li></li><li></li><li></li></ul>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Private collections -->
+	<div ng-if="me && list === 'collections'" class="private-colls">
+		<div class="private-bar"><h2><i class="font-icon locked-icon icon"></i> Private collections</h2><span> - only you can see them</span></div>
+		<ul class="coll-grid clearfix">
+			<li class="coll-card collection{{$index}}"
+				ng-repeat="coll in collections|filter:{'public': false}">
+
+				<div class="line-shadow"></div>
+				<div ng-if="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>
+				<div ng-if="!coll.thumbnail" class="thumb" style="background-color: rgba({{hexToRGBString(coll.color)}}, .8)"></div>
+				<div class="meta">
+					<h1 class="title">{{coll.title}}</h1>
+					<p ng-if="coll.description" class="desc" ng-bind-html="coll.description|linkify"></p>
+				</div>
+
+				<ul class="backlists"><li></li><li></li><li></li></ul>
+			</li>
+		</ul>
+	</div>
 
 
 	<!--div class="profile-user clearfix" ng-if="profile">

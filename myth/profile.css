@@ -31,9 +31,13 @@
 	font-family: var(text-font);
 }
 
+.profile-meta {
+	max-width: 720px;
+}
+
 .profile-user-info {
 	background: #fff;
-	padding: 35px 12px 25px;
+	padding: 30px 12px 0;
 	margin: 0 auto;
 	width: 1020px;
 }
@@ -51,30 +55,128 @@
 .profile-user-info .name {
 	font-size: 24px;
 	font-weight: bold;
-	margin: 0 0 5px;
+	margin: 0 0 8px;
 	transition: color .2s;
+}
+
+.profile-user-info .name.bottom-space {
+	margin-bottom: 12px !important;
 }
 
 .profile-user-info .desc {
 	color: #999;
-	margin: 0 0 5px;
+	margin: 0 0 12px;
+	font-size: 14px;
+	line-height: 18px
 }
 
+.profile-user-info .info-line a {
+	color: #999;
+}
+
+.profile-user-info .info-line {
+	display: inline-block;
+	vertical-align: top;
+	color: #999;
+	font-size: 13px;
+	margin-right: 8px;
+	float: left;
+	cursor: default;
+}
+
+.profile-user-info .info-line .icon {
+	display: inline-block;
+	color: #999;
+	font-size: 14px;
+	height: 14px;
+	margin-right: 5px;
+	vertical-align: top;
+}
+
+.profile-user-info .info-line.location .icon {
+	margin-right: 4px;
+}
+
+.profile .private-colls {
+	border-top: 1px solid #ddd;
+	background: rgba(0, 0, 0, 0.03);
+	height: 100%;
+}
+
+.profile .private-colls .private-bar {
+	font-size: 14px;
+	color: #888;
+	max-width: 1020px;
+	padding: 28px 8px 20px;
+	margin: 0 auto;
+}
+
+.profile .private-colls .private-bar h2 {
+	display: inline-block;
+	color: #666;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.profile .private-colls .private-bar h2 .icon {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 20px;
+}
+
+.profile .private-colls .coll-grid {
+	margin-top: 8px;
+}
+
+.profile .tabs {
+	font-size: 14px;
+	padding: 5px 0 0;
+	width: 100%;
+	text-align: right;
+	clear: both;
+}
+
+.profile .tabs .tab {
+	display: inline-block;
+	border-bottom: 2px solid transparent;
+	color: #aaa;
+	font-size: 13px;
+	text-align: center;
+	cursor: pointer;
+	letter-spacing: .3px;
+	margin: 0 0 -1px 16px;
+	padding-bottom: 8px;
+	vertical-align: top;
+	transition: all .3s;
+}
+
+.profile .tabs .tab.active {
+	color: #555;
+	border-color: #f03e56;
+	font-weight: bold;
+}
+
+.profile .tabs .tab:hover {
+	text-decoration: none;
+}
+
+
+/* Collection cards */
 .coll-card {
 	background: #fff;
-	margin: 0 12px 20px;
+	margin: 0 12px 35px;
 	float: left;
 	position: relative;
 	width: 231px;
 	height: 254px;
-	border-radius: 3px;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
+	border-radius: 0 5px 5px 0;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, .08);
 	transition: all .3s ease-in;
 }
 
 .coll-grid {
 	max-width: 1020px;
-	margin: 45px auto;
+	margin: 45px auto 20px;
 }
 
 .coll-card.create-coll-card {
@@ -83,6 +185,8 @@
 	border: 2px dashed #bbb;
 	font-size: 16px;
 	font-weight: bold;
+	height: 261px;
+	margin-bottom: 19px;
 	text-align: center;
 	cursor: pointer;
 	text-shadow: 0 0 1px #fff;
@@ -111,6 +215,86 @@
 	top: 50%;
 	bottom: 0;
 }
+
+.coll-card .meta {
+	background: rgba(255, 255, 255, .95);
+	padding: 10px 12px 11px;
+	overflow: hidden;
+	position: absolute;
+	top: 16px;
+	left: 0;
+	right: 0;
+	width: 195px;
+	margin: 0 auto;
+}
+
+.coll-card .title {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.coll-card .desc {
+	color: #777;
+	font-size: 13px;
+	line-height: 17px;
+	margin-top: 8px;
+}
+
+.coll-card .thumb {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 100%;
+	height: 100%;
+	border-radius: 0 5px 5px 0;
+}
+
+.coll-card .line-shadow {
+	width: 10px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	box-shadow: inset 3px 0 0 rgba(0, 0, 0, .14);
+}
+
+.coll-card .action {
+	position: absolute;
+	bottom: 16px;
+}
+
+.coll-card.ng-enter.ng-enter-active,
+.coll-card-animation.ng-leave {
+	opacity: 1;
+}
+
+.coll-card.ng-leave.ng-leave-active,
+.coll-card.ng-enter {
+	opacity: 0;
+}
+
+.backlists li {
+	background: #fff;
+	border-bottom: 1px solid #eee;
+	margin: 0 auto;
+	overflow: hidden;
+	height: 3px;
+	border-radius: 0 0 3px 0;
+}
+
+.backlists li:nth-child(1) {
+	width: 99.2%;
+}
+
+.backlists li:nth-child(2) {
+	width: 98.6%;
+}
+
+.backlists li:nth-child(3) {
+	width: 98%;
+}
+
 
 
 
@@ -332,26 +516,6 @@
 	z-index: -1;
 }
 
-.backlists li {
-	background: #fff;
-	border-bottom: 1px solid #eee;
-	margin: 0 auto;
-	overflow: hidden;
-	height: 3px;
-	border-radius: 0 0 2px 2px;
-}
-
-.backlists li:first-child {
-	width: 99.6%;
-}
-
-.backlists li:nth-child(1) {
-	width: 99.2%;
-}
-
-.backlists li:nth-child(2) {
-	width: 98.8%;
-}
 
 
 @media (max-width: 750px) {

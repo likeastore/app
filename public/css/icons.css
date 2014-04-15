@@ -242,6 +242,10 @@
   content: '\e010';
 }
 
+.location-icon:before {
+  content: '\e01D';
+}
+
 .big-icon {
   height: 100px;
   width: 100px;
