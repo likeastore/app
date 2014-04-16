@@ -25,6 +25,11 @@ define(function () {
 
 		if ($scope.me) {
 			$scope.profile = rsAppUser;
+			$scope.profile.hasPrivate = function (collections) {
+				return _(collections).find(function (row) {
+					return !row.public;
+				});
+			};
 
 			fetchFollowCollections();
 		} else {

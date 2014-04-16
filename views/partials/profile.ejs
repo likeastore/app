@@ -21,7 +21,7 @@
 		</div>
 	</div>
 
-	<ul class="coll-grid clearfix">
+	<ul ng-if="loaded" class="coll-grid clearfix">
 		<li ng-if="me && list === 'collections'" class="coll-card create-coll-card" ng-click="createFirstCollection()">
 			<i class="font-icon add-circle-icon icon"></i>
 			<div class="create-title">Create collection</div>
@@ -55,7 +55,7 @@
 	</ul>
 
 	<!-- Private collections -->
-	<div ng-if="me && list === 'collections'" class="private-colls">
+	<div ng-if="me && list === 'collections' && profile.hasPrivate(collections)" class="private-colls">
 		<div class="private-bar"><h2><i class="font-icon locked-icon icon"></i> Private collections</h2><span> - only you can see them</span></div>
 		<ul class="coll-grid clearfix">
 			<li class="coll-card collection{{$index}}"
