@@ -60,19 +60,8 @@
 		<ul class="coll-grid grid-1020-wrap clearfix">
 			<li class="coll-card collection{{$index}}"
 				ng-repeat="coll in collections|filter:{'public': false}"
-				ng-class="{'last': $last, 'thumbed': coll.thumbnail}">
-
-				<a ng-href="/collections/{{coll._id}}" class="mask-link"></a>
-
-				<div class="line-shadow"></div>
-				<div ng-if="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>
-				<div ng-if="!coll.thumbnail" class="thumb" style="background-color: rgba({{hexToRGBString(coll.color)}}, .8)"></div>
-				<div class="meta">
-					<h1 class="title">{{coll.title}}</h1>
-					<p ng-if="coll.description" class="desc" ng-bind-html="coll.description|linkify"></p>
-				</div>
-
-				<ul class="backlists"><li></li><li></li><li></li></ul>
+				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
+				ng-include="'/partials/cardCollection.ejs'">
 			</li>
 		</ul>
 	</div>
