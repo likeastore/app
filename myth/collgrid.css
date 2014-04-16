@@ -81,6 +81,11 @@
 	max-height: 105px;
 }
 
+.coll-card .desc a {
+	color: #666;
+	font-weight: bold;
+}
+
 .coll-card .thumb {
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -183,6 +188,8 @@
 .coll-card .meta .author a {
 	color: #888;
 	font-weight: bold;
+	position: relative;
+	z-index: 11;
 }
 
 .coll-card.ng-enter.ng-enter-active,

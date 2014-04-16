@@ -5,6 +5,9 @@
 <div ng-if="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>
 <div ng-if="!coll.thumbnail" class="thumb" style="background-color: rgba({{hexToRGBString(coll.color)}}, .8)"></div>
 <div class="meta">
+	<a ng-if="list === 'collections'" ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
+	<a ng-if="list === 'following'" ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
+
 	<div ng-if="list === 'following' && coll.userData.name" class="author truncate">
 		<img ng-src="{{coll.userData.avatar}}" avatar-load> <a ng-href="/u/{{coll.userData.name}}">{{coll.userData.name}}</a>
 	</div>
