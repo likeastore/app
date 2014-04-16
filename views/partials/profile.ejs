@@ -21,33 +21,36 @@
 		</div>
 	</div>
 
-	<ul ng-if="loaded" class="coll-grid clearfix">
-		<li ng-if="me && list === 'collections'" class="coll-card create-coll-card" ng-click="createFirstCollection()">
-			<i class="font-icon add-circle-icon icon"></i>
-			<div class="create-title">Create collection</div>
-		</li>
+	<div ng-switch on="list">
+		<ul class="coll-grid clearfix" ng-switch-when="collections">
+			<li ng-if="me" class="coll-card create-coll-card" ng-click="createFirstCollection()">
+				<i class="font-icon add-circle-icon icon"></i>
+				<div class="create-title">Create collection</div>
+			</li>
 
-		<li class="coll-card collection{{$index}}"
-			ng-if="list === 'collections' && me"
-			ng-repeat="coll in collections|filter:{'public': true}"
-			ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
-			ng-include="'/partials/cardCollection.ejs'">
-		</li>
+			<li class="coll-card collection{{$index}}"
+				ng-if="me"
+				ng-repeat="coll in collections|filter:{'public': true}"
+				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
+				ng-include="'/partials/cardCollection.ejs'">
+			</li>
 
-		<li class="coll-card collection{{$index}}"
-			ng-if="list === 'collections'"
-			ng-repeat="coll in colls"
-			ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
-			ng-include="'/partials/cardCollection.ejs'">
-		</li>
+			<li class="coll-card collection{{$index}}"
+				ng-if="!me"
+				ng-repeat="coll in colls"
+				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
+				ng-include="'/partials/cardCollection.ejs'">
+			</li>
+		</ul>
 
-		<li class="coll-card collection{{$index}}"
-			ng-if="list === 'following'"
-			ng-repeat="coll in followingColls"
-			ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
-			ng-include="'/partials/cardCollection.ejs'">
-		</li>
-	</ul>
+		<ul class="coll-grid clearfix" ng-switch-when="following">
+			<li class="coll-card collection{{$index}}"
+				ng-repeat="coll in followingColls"
+				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
+				ng-include="'/partials/cardCollection.ejs'">
+			</li>
+		</ul>
+	</div>
 
 	<!-- Private collections -->
 	<div ng-if="me && list === 'collections' && profile.hasPrivate(collections)" class="private-colls">
