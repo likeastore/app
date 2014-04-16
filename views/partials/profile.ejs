@@ -23,7 +23,7 @@
 
 	<div ng-switch on="list">
 		<ul class="coll-grid clearfix" ng-switch-when="collections">
-			<li ng-if="me" class="coll-card create-coll-card" ng-click="createFirstCollection()">
+			<li ng-if="me && loaded" class="coll-card create-coll-card" ng-click="createFirstCollection()">
 				<i class="font-icon add-circle-icon icon"></i>
 				<div class="create-title">Create collection</div>
 			</li>
