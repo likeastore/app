@@ -28,7 +28,7 @@
 		</li>
 
 		<li class="coll-card collection{{$index}}"
-			ng-repeat="coll in getCollections()"
+			ng-repeat="coll in currentColls"
 			ng-class="{'last': $last, 'thumbed': coll.thumbnail}">
 
 			<a ng-if="list === 'collections'" ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
