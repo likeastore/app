@@ -16,7 +16,7 @@
 		<span class="documents" tooltip="Favorites"><i class="font-icon doc-icon icon"></i> {{kFormat(coll.count) || 0}}</span>
 	</div>
 
-	<div ng-if="!(me && list === 'collections')" class="action">
+	<div class="action">
 		<div toggle-follow-collection="coll._id" toggle-follow-collection-tmpl="icons"></div>
 	</div>
 </div>

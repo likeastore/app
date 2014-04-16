@@ -60,14 +60,16 @@ define(function () {
 		});
 
 		$scope.$on('follow.collection', function (event, collId) {
-			var targetCollection = _(event.currentScope.colls).find(function (row) {
+			var targetList = event.currentScope.colls || event.currentScope.followingColls;
+			var targetCollection = _(targetList).find(function (row) {
 				return row._id === collId;
 			});
 			targetCollection.followersCount += 1;
 		});
 
 		$scope.$on('unfollow.collection', function (event, collId) {
-			var targetCollection = _(event.currentScope.colls).find(function (row) {
+			var targetList = event.currentScope.colls || event.currentScope.followingColls;
+			var targetCollection = _(targetList).find(function (row) {
 				return row._id === collId;
 			});
 			targetCollection.followersCount -= 1;
