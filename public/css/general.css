@@ -1137,6 +1137,8 @@ textarea.fld {
 }
 
 .dash-item .description a {
+  color: #666;
+  font-weight: bold;
   position: relative;
   z-index: 2;
 }
