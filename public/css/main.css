@@ -3,10 +3,12 @@
 @import url(../components/animate.css/animate.css);
 @import url(../components/ngDialog/css/ngDialog.css);
 @import url(general.css);
+@import url(layout.css);
 @import url(icons.css);
 @import url(forms.css);
 @import url(preloaders.css);
 @import url(deckgrid.css);
+@import url(collgrid.css);
 @import url(dialog.css);
 @import url(settings.css);
 @import url(profile.css);

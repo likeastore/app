@@ -1,6 +1,6 @@
 <section class="profile animated fadeIn">
 	<div class="prebar">
-		<div class="profile-user-info clearfix" ng-if="profile">
+		<div class="profile-user-info grid-1020-wrap clearfix" ng-if="profile">
 			<img ng-src="{{profile.avatar}}" class="u-avatar left" ng-click="switchList('favorites')" avatar-load>
 
 			<div class="left profile-meta">
@@ -22,7 +22,7 @@
 	</div>
 
 	<div ng-switch on="list">
-		<ul class="coll-grid clearfix" ng-switch-when="collections">
+		<ul class="coll-grid grid-1020-wrap clearfix" ng-switch-when="collections">
 			<li ng-if="me && loaded" class="coll-card create-coll-card" ng-click="createFirstCollection()">
 				<i class="font-icon add-circle-icon icon"></i>
 				<div class="create-title">Create collection</div>
@@ -43,7 +43,7 @@
 			</li>
 		</ul>
 
-		<ul class="coll-grid clearfix" ng-switch-when="following">
+		<ul class="coll-grid grid-1020-wrap clearfix" ng-switch-when="following">
 			<li class="coll-card collection{{$index}}"
 				ng-repeat="coll in followingColls"
 				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
@@ -54,8 +54,10 @@
 
 	<!-- Private collections -->
 	<div ng-if="me && list === 'collections' && profile.hasPrivate(collections)" class="private-colls">
-		<div class="private-bar"><h2><i class="font-icon locked-icon icon"></i> Private collections</h2><span> - only you can see them</span></div>
-		<ul class="coll-grid clearfix">
+		<div class="private-bar grid-1020-wrap">
+			<h2><i class="font-icon locked-icon icon"></i> Private collections</h2><span> - only you can see them</span>
+		</div>
+		<ul class="coll-grid grid-1020-wrap clearfix">
 			<li class="coll-card collection{{$index}}"
 				ng-repeat="coll in collections|filter:{'public': false}"
 				ng-class="{'last': $last, 'thumbed': coll.thumbnail}">

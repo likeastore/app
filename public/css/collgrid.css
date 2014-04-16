@@ -1,0 +1,217 @@
+/* Collection cards */
+
+.coll-card {
+  background: #fff;
+  margin: 0 12px 35px;
+  float: left;
+  position: relative;
+  width: 231px;
+  height: 254px;
+  border-radius: 0 5px 5px 0;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .08);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .08);
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.coll-grid {
+  margin: 45px auto 20px;
+}
+
+.coll-card.create-coll-card {
+  background: rgba(255,255,255, .2);
+  color: #999;
+  border: 2px dashed #bbb;
+  font-size: 16px;
+  font-weight: bold;
+  height: 261px;
+  margin-bottom: 19px;
+  text-align: center;
+  cursor: pointer;
+  text-shadow: 0 0 1px #fff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.coll-card.create-coll-card:hover {
+  color: #777;
+  border-color: #999;
+}
+
+.coll-card.create-coll-card .icon {
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin-top: -30px;
+}
+
+.coll-card.create-coll-card .create-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  bottom: 0;
+}
+
+.coll-card .meta {
+  background: rgba(255, 255, 255, .96);
+  padding: 10px 12px 11px;
+  position: absolute;
+  width: 86%;
+  margin: 0 auto;
+  top: 18px;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  border-radius: 1px;
+}
+
+.coll-card .title {
+  font-size: 15px;
+  font-weight: bold;
+  max-height: 55px;
+  overflow: hidden;
+}
+
+.coll-card .desc {
+  color: #777;
+  font-size: 13px;
+  line-height: 17px;
+  margin-top: 8px;
+  overflow: hidden;
+  max-height: 105px;
+}
+
+.coll-card .thumb {
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 5px 5px 0;
+}
+
+.coll-card .line-shadow {
+  background: rgba(0, 0, 0, .02);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  -webkit-box-shadow: inset 3px 0 0 rgba(0, 0, 0, .14);
+  box-shadow: inset 3px 0 0 rgba(0, 0, 0, .14);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.coll-card.thumbed .line-shadow {
+  background: rgba(0, 0, 0, .05);
+}
+
+.coll-card:hover .line-shadow {
+  background: rgba(0, 0, 0, .08);
+}
+
+.coll-card .stat {
+  color: #999;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 12px 0 0;
+  position: relative;
+  z-index: 11;
+  cursor: default;
+}
+
+.coll-card .stat span {
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: top;
+  float: left;
+}
+
+.coll-card .stat .icon {
+  display: inline-block;
+  float: left;
+  font-size: 12px;
+  vertical-align: top;
+  margin: 1px 3px 0 0;
+}
+
+.coll-card .stat .tooltip {
+  padding: 2px 12px 3px;
+  bottom: -25px;
+}
+
+.coll-card .stat .tooltip:after {
+  bottom: 100%;
+  border: solid transparent;
+  content: '';
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: rgba(31, 33, 47, 0.96);
+  border-width: 5px;
+  right: 0;
+  left: 0;
+  top: -10px;
+  z-index: -1;
+}
+
+.coll-card .meta .action {
+  position: absolute;
+  right: -8px;
+  bottom: -9px;
+  z-index: 20;
+}
+
+.coll-card .meta .author {
+  color: #999;
+  font-size: 11px;
+  margin-top: 8px;
+  cursor: default;
+}
+
+.coll-card .meta .author a {
+  color: #888;
+  font-weight: bold;
+}
+
+.backlists li {
+  background: #fff;
+  border-bottom: 1px solid #e2e2e2;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 3px;
+  border-radius: 0 0 3px 0;
+}
+
+.backlists li:nth-child(1) {
+  width: 99.2%;
+}
+
+.backlists li:nth-child(2) {
+  width: 98.6%;
+}
+
+.backlists li:nth-child(3) {
+  width: 97.8%;
+}
+
+@media (max-width: 510px) {
+  .coll-card {
+    margin: 0 auto 35px;
+    float: none !important;
+  }
+
+  .coll-card.create-coll-card {
+    margin-bottom: 25px;
+  }
+}

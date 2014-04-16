@@ -141,6 +141,13 @@
   border-radius: 100%;
 }
 
+.follow-collection-icons .button.follow-edit-btn {
+  font-size: 11px;
+  padding-top: 4px;
+  text-indent: 1px;
+  cursor: default;
+}
+
 .field {
   background: #fff;
   color: #444;

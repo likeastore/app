@@ -63,6 +63,9 @@ define(function (require) {
 						</div>',
 					'icons': '\
 						<div class="follow-collection follow-collection-icons">\
+							<div class="button blue-btn follow-edit-btn"\
+								ng-show="owning">\
+								<i class="font-icon pencil-icon"></i></div>\
 							<button class="button orange-btn follow-icon-btn"\
 								ng-show="!following"\
 								ng-click="followCollection()"\

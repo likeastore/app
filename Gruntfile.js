@@ -58,7 +58,9 @@ module.exports = function (grunt) {
 					'public/css/profile.css': 'myth/profile.css',
 					'public/css/suggest.css': 'myth/suggest.css',
 					'public/css/deckgrid.css': 'myth/deckgrid.css',
-					'public/css/forms.css': 'myth/forms.css'
+					'public/css/collgrid.css': 'myth/collgrid.css',
+					'public/css/forms.css': 'myth/forms.css',
+					'public/css/layout.css': 'myth/layout.css'
 				}
 			}
 		},
