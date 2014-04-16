@@ -12,17 +12,15 @@ define(function () {
 
 		$scope.me = (rsAppUser.name === $routeParams.name);
 
-		$scope.currentColls = {};
 		$scope.getCollections = function () {
 			if ($scope.list === 'following') {
-				$scope.currentColls = $scope.followingColls;
-			} else if ($scope.list === 'collections' && $scope.me) {
-				var filter = $filter('filter');
-				$scope.currentColls = filter($rootScope.collections, { 'public': true });
-			} else {
-				$scope.currentColls = $scope.colls;
+				return $scope.followingColls;
 			}
-			//return $scope.colls;
+			if ($scope.list === 'collections' && $scope.me) {
+				var filter = $filter('filter');
+				return filter($rootScope.collections, { 'public': true });
+			}
+			return $scope.colls;
 		};
 
 		if ($scope.me) {
@@ -68,9 +66,8 @@ define(function () {
 		}
 
 		// events
-		$scope.$on('$routeUpdate', function () {
+		$rootScope.$on('$routeUpdate', function () {
 			$scope.list = $location.hash() || 'collections';
-			$scope.getCollections();
 		});
 
 		$scope.$on('follow.collection', function (event, collId) {
