@@ -71,6 +71,7 @@
 }
 
 .coll-card .title {
+  color: #444;
   font-size: 15px;
   font-weight: bold;
   max-height: 55px;

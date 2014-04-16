@@ -131,7 +131,6 @@ body,
 }
 
 .header {
-  /*background: linear-gradient(75deg, rgba(41,182,168,.96) 0%, rgba(86, 199, 170,.98) 120%);*/
   background: -webkit-linear-gradient(15deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
   background: linear-gradient(75deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
   border-bottom: 1px solid rgba(0,0,0,.1);
@@ -1043,6 +1042,7 @@ textarea.fld {
 .dash-item {
   display: inline-block;
   background: #fff;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   width: 266px;
   padding: 10px;
   margin: 0 25px 30px 0;
@@ -1050,8 +1050,8 @@ textarea.fld {
   vertical-align: top;
   cursor: pointer;
   border-radius: 3px;
-  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
 }
@@ -1116,18 +1116,20 @@ textarea.fld {
 }
 
 .dash-item .title {
+  color: #444;
   font-size: 14px;
-  font-family: 'Montserrat', 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: bold;
   padding: 5px 5px 2px;
 }
 
 .dash-item .description {
   color: #666;
   font-size: 13px;
+  line-height: 17px;
   padding: 5px;
   max-height: 165px;
   overflow: hidden;
-  letter-spacing: .3px;
 }
 
 .dash-item .description.short {
@@ -1180,7 +1182,7 @@ textarea.fld {
 
 .dash-item .author-image {
   display: inline-block;
-  padding: 5px 5px 0;
+  padding: 3px 3px 0 5px;
   vertical-align: top;
 }
 
@@ -1199,7 +1201,7 @@ textarea.fld {
 
 .dash-item .author-name {
   color: #999;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   padding: 2px 5px 0;
 }
@@ -1215,7 +1217,7 @@ textarea.fld {
   color: rgba(66, 207, 176, 0.96);
   font-size: 16px;
   text-decoration: none;
-  margin-left: 3px;
+  margin-left: 2px;
   position: relative;
 }
 
@@ -1284,7 +1286,6 @@ textarea.fld {
   border-top: 1px solid #161625;
   font-size: 12px;
   padding: 6px 10px;
-  letter-spacing: .3px;
   border-radius: 2px;
   cursor: pointer;
 }
@@ -1401,7 +1402,7 @@ textarea.fld {
 }
 
 .inbox .delete-btn .tooltip {
-  width: 83px;
+  width: 85px;
 }
 
 /* Explore collection add-ons */
