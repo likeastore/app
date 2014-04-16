@@ -1,0 +1,20 @@
+<a ng-if="list === 'collections'" ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
+<a ng-if="list === 'following'" ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
+
+<div class="line-shadow"></div>
+<div ng-if="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>
+<div ng-if="!coll.thumbnail" class="thumb" style="background-color: rgba({{hexToRGBString(coll.color)}}, .8)"></div>
+<div class="meta">
+	<h1 class="title">{{coll.title}}</h1>
+	<p ng-if="coll.description" class="desc" ng-bind-html="coll.description|linkify"></p>
+
+	<div class="stat">
+		<span class="followers" tooltip="Followers"><i class="font-icon people-icon icon"></i> {{kFormat(coll.followersCount) || 0}}</span>
+		<span class="documents" tooltip="Favorites"><i class="font-icon doc-icon icon"></i> {{kFormat(coll.count) || 0}}</span>
+	</div>
+
+	<div ng-if="!(me && list === 'collections')" class="action">
+		<div toggle-follow-collection="coll._id" toggle-follow-collection-tmpl="icons"></div>
+	</div>
+</div>
+<ul class="backlists"><li></li><li></li><li></li></ul>

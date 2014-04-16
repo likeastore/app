@@ -12,17 +12,6 @@ define(function () {
 
 		$scope.me = (rsAppUser.name === $routeParams.name);
 
-		$scope.getCollections = function () {
-			if ($scope.list === 'following') {
-				return $scope.followingColls;
-			}
-			if ($scope.list === 'collections' && $scope.me) {
-				var filter = $filter('filter');
-				return filter($rootScope.collections, { 'public': true });
-			}
-			return $scope.colls;
-		};
-
 		if ($scope.me) {
 			$scope.profile = rsAppUser;
 			$scope.profile.hasPrivate = function (collections) {
@@ -66,7 +55,7 @@ define(function () {
 		}
 
 		// events
-		$rootScope.$on('$routeUpdate', function () {
+		$scope.$on('$routeUpdate', function () {
 			$scope.list = $location.hash() || 'collections';
 		});
 
