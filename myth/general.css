@@ -203,8 +203,10 @@ body,
 }
 
 .featured-title {
-	color: #434343;
-	font: 300 30px var(old-text-font);
+	color: #555;
+	font-size: 25px;
+	font-family: var(text-font);
+	font-weight: bold;
 	padding: 0;
 	text-align: center;
 	margin-bottom: 35px;
@@ -1394,21 +1396,28 @@ textarea.fld {
 }
 
 /* Explore collection add-ons */
+.explore {
+	font-family: var(text-font);
+}
+
 .explore-block .explore-form {
 	position: relative;
-	margin-bottom: 35px;
+	margin: 0 auto 35px;
+	width: 80%;
 }
 
 .explore-block .explore-form .icon {
 	position: absolute;
 	font-size: 18px;
 	color: #999;
-	top: 11px;
+	top: 10px;
 	left: 16px;
 }
 
 .explore-block .explore-form .fld {
+	font-family: var(text-font);
 	padding-left: 40px;
+	letter-spacing: .3px;
 	border-radius: 50px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }

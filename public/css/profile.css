@@ -1,17 +1,5 @@
 
 
-.narrow {
-  width: 750px;
-  margin: 30px auto;
-}
-
-.prebar {
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  width: 100%;
-  margin-top: -50px;
-}
-
 .profile {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
@@ -171,10 +159,6 @@
   .profile .tabs .tab {
     margin: 0 10px -1px;
   }
-}
-
-@media (max-width: 510px) {
-
 }
 
 /*.profile-info {

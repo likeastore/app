@@ -15,18 +15,6 @@
 	var-text-font: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
-.narrow {
-	width: 750px;
-	margin: 30px auto;
-}
-
-.prebar {
-	background: #fff;
-	border-bottom: 1px solid #ddd;
-	width: 100%;
-	margin-top: -50px;
-}
-
 .profile {
 	font-family: var(text-font);
 }
@@ -184,10 +172,6 @@
 	.profile .tabs .tab {
 		margin: 0 10px -1px;
 	}
-}
-
-@media (max-width: 510px) {
-
 }
 
 

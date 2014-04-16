@@ -1,3 +1,10 @@
+.prebar {
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+	width: 100%;
+	margin-top: -50px;
+}
+
 .grid-1020-wrap {
 	max-width: 1020px;
 	margin: 0 auto;

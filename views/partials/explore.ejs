@@ -1,57 +1,34 @@
-<section class="explore narrow animated fadeIn">
-	<div class="explore-block">
+<section class="explore animated fadeIn">
+	<div class="explore-block grid-1020-wrap">
 		<form class="explore-form" novalidate>
 			<i class="font-icon search-icon icon"></i>
-			<input type="search" class="fld search-collection-fld" placeholder="Inspiration, UI, Design, Web Development, Marketing, Cat photos" ng-model="searchTags" required autocomplete="off">
+			<input type="search" class="fld search-collection-fld" placeholder="Inspiration, User Interfaces, Interior Design, Web Development, Marketing, Cat photos, etc." ng-model="searchTags" required autocomplete="off">
 		</form>
 	</div>
 
-	<h2 class="featured-title">
-		<span ng-if="!searching">Popular collections</span>
-		<span ng-if="colls.length && searching">Search results for "{{searchTags}}"</span>
-		<span ng-if="!colls.length && searching">Sorry, no collections found for "{{searchTags}}"</span>
+	<h2 class="featured-title grid-1020-wrap">
+		<span ng-show="!mode">Popular collections</span>
+		<span ng-show="colls.length && mode === 'searching'">Search results for "{{searchTags}}"</span>
+		<span ng-show="!colls.length && mode === 'searching'">Sorry, no collections found for "{{searchTags}}"</span>
 	</h2>
 
-	<ul id="scrollyItems" class="profile-lists">
-		<li class="coll-item coll{{$index}} clearfix"
-			ng-repeat="coll in colls"
-			ng-class="{last: $last}">
+	<div id="scrollyItems" ng-switch on="mode">
+		<ul class="coll-grid grid-1020-wrap clearfix" ng-switch-default>
+			<li class="coll-card collection{{$index}}"
+				ng-repeat="coll in colls"
+				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
+				ng-include="'/partials/cardCollection.ejs'">
+			</li>
+		</ul>
 
-			<a ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
-
-			<div class="coll-book clearfix">
-				<div class="coll-info left">
-					<div ng-if="coll.userData" class="author">
-						<a ng-href="/u/{{coll.userData.name}}"><img ng-src="{
-							{coll.userData.avatar}}" class="avatar" avatar-load>
-						</a>
-						<div class="curated truncate">
-							<span>curated</span> by
-							<a ng-href="/u/{{coll.userData.name}}">
-								<span ng-if="!coll.owned">{{coll.userData.name}}</span>
-								<span ng-if="coll.owned">you</span>
-							</a>
-						</div>
-					</div>
-					<h1 class="title">{{coll.title}}</h1>
-					<div class="desc" ng-if="coll.description">{{coll.description}}</div>
-					<div class="stat">
-						<span class="followers" tooltip="Followers"><i class="font-icon people-icon icon"></i> {{kFormat(coll.followersCount) || 0}}</span>
-						<span class="documents" tooltip="Documents"><i class="font-icon doc-icon icon"></i> {{kFormat(coll.count) || 0}}</span>
-					</div>
-				</div>
-
-				<div class="right" ng-if="coll.owned">
-					<a ng-href="/collections/{{coll._id}}" class="button sml-btn blue-btn slk-btn edit-btn">View</a>
-				</div>
-
-				<div ng-if="!coll.owned" class="right">
-					<div toggle-follow-collection="coll._id"></div>
-				</div>
-			</div>
-			<ul class="backlists"><li></li><li></li></ul>
-		</li>
-	</ul>
+		<ul class="coll-grid grid-1020-wrap clearfix" ng-switch-when="searching">
+			<li class="coll-card collection{{$index}}"
+				ng-repeat="coll in searchColls"
+				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
+				ng-include="'/partials/cardCollection.ejs'">
+			</li>
+		</ul>
+	</div>
 
 	<div ng-hide="loaded || error" class="two-spin"></div>
 </section>

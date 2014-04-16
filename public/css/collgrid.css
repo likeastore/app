@@ -2,11 +2,11 @@
 
 .coll-card {
   background: #fff;
-  margin: 0 12px 35px;
+  margin: 0 15px 35px;
   float: left;
   position: relative;
-  width: 231px;
-  height: 254px;
+  width: 225px;
+  height: 260px;
   border-radius: 0 5px 5px 0;
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .08);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, .08);
@@ -24,7 +24,7 @@
   border: 2px dashed #bbb;
   font-size: 16px;
   font-weight: bold;
-  height: 261px;
+  height: 268px;
   margin-bottom: 19px;
   text-align: center;
   cursor: pointer;
@@ -63,7 +63,7 @@
   position: absolute;
   width: 86%;
   margin: 0 auto;
-  top: 18px;
+  top: 19px;
   left: 0;
   right: 0;
   z-index: 20;
@@ -83,7 +83,7 @@
   line-height: 17px;
   margin-top: 8px;
   overflow: hidden;
-  max-height: 85px;
+  max-height: 105px;
 }
 
 .coll-card .thumb {
@@ -168,7 +168,7 @@
 .coll-card .meta .action {
   position: absolute;
   right: -8px;
-  bottom: -9px;
+  top: -9px;
   z-index: 20;
 }
 
@@ -191,6 +191,16 @@
 .coll-card .meta .author a {
   color: #888;
   font-weight: bold;
+}
+
+.coll-card.ng-enter.ng-enter-active,
+.coll-card-animation.ng-leave {
+  opacity: 1;
+}
+
+.coll-card.ng-leave.ng-leave-active,
+.coll-card.ng-enter {
+  opacity: 0;
 }
 
 .backlists li {
