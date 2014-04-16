@@ -1,5 +1,7 @@
-<a ng-if="list === 'collections'" ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
-<a ng-if="list === 'following'" ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
+<div ng-switch on="list">
+	<a ng-switch-on="collections" ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
+	<a ng-switch-default ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
+</div>
 
 <div class="line-shadow"></div>
 <div ng-if="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>

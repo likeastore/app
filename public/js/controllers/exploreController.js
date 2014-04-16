@@ -6,7 +6,6 @@ define(function () {
 
 		$rootScope.title = 'Explore collections';
 		$scope.list = 'explore';
-		$scope.mode;
 
 		getPopularCollections();
 
@@ -28,16 +27,14 @@ define(function () {
 		}
 
 		$scope.$on('follow.collection', function (event, collId) {
-			var targetList = event.currentScope.searchColls || event.currentScope.colls;
-			var targetCollection = _(targetList).find(function (row) {
+			var targetCollection = _(event.currentScope.colls).find(function (row) {
 				return row._id === collId;
 			});
 			targetCollection.followersCount += 1;
 		});
 
 		$scope.$on('unfollow.collection', function (event, collId) {
-			var targetList = event.currentScope.searchColls || event.currentScope.colls;
-			var targetCollection = _(targetList).find(function (row) {
+			var targetCollection = _(event.currentScope.colls).find(function (row) {
 				return row._id === collId;
 			});
 			targetCollection.followersCount -= 1;
@@ -55,8 +52,7 @@ define(function () {
 				});
 
 				$scope.colls = collections;
-				$scope.searchColls = null;
-				$scope.mode = null;
+				$scope.searching = false;
 
 				appLoader.ready();
 			});
@@ -68,9 +64,9 @@ define(function () {
 			$analytics.eventTrack('collections searched');
 
 			api.get({ resource: 'collections', target: 'search', text: searchTags }, function (res) {
-				$scope.searchColls = res.data;
+				$scope.colls = res.data;
 				$scope.nextPage = res.nextPage;
-				$scope.mode = 'searching';
+				$scope.searching = true;
 
 				appLoader.ready();
 			});

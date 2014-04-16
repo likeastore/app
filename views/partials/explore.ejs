@@ -2,33 +2,23 @@
 	<div class="explore-block grid-1020-wrap">
 		<form class="explore-form" novalidate>
 			<i class="font-icon search-icon icon"></i>
-			<input type="search" class="fld search-collection-fld" placeholder="Inspiration, User Interfaces, Interior Design, Web Development, Marketing, Cat photos, etc." ng-model="searchTags" required autocomplete="off">
+			<input type="search" class="fld search-collection-fld" placeholder="Inspiration, UI, Design, Web Development, Marketing, Cat photos" ng-model="searchTags" required autocomplete="off">
 		</form>
 	</div>
 
 	<h2 class="featured-title grid-1020-wrap">
-		<span ng-show="!mode">Popular collections</span>
-		<span ng-show="colls.length && mode === 'searching'">Search results for "{{searchTags}}"</span>
-		<span ng-show="!colls.length && mode === 'searching'">Sorry, no collections found for "{{searchTags}}"</span>
+		<span ng-if="!searching">Popular collections</span>
+		<span ng-if="colls.length && searching">Search results for "{{searchTags}}"</span>
+		<span ng-if="!colls.length && searching">Sorry, no collections found for "{{searchTags}}"</span>
 	</h2>
 
-	<div id="scrollyItems" ng-switch on="mode">
-		<ul class="coll-grid grid-1020-wrap clearfix" ng-switch-default>
-			<li class="coll-card collection{{$index}}"
-				ng-repeat="coll in colls"
-				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
-				ng-include="'/partials/cardCollection.ejs'">
-			</li>
-		</ul>
-
-		<ul class="coll-grid grid-1020-wrap clearfix" ng-switch-when="searching">
-			<li class="coll-card collection{{$index}}"
-				ng-repeat="coll in searchColls"
-				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
-				ng-include="'/partials/cardCollection.ejs'">
-			</li>
-		</ul>
-	</div>
+	<ul id="scrollyItems" class="coll-grid grid-1020-wrap clearfix">
+		<li class="coll-card collection{{$index}}"
+			ng-repeat="coll in colls"
+			ng-class="{last: $last}"
+			ng-include="'/partials/cardCollection.ejs'">
+		</li>
+	</ul>
 
 	<div ng-hide="loaded || error" class="two-spin"></div>
 </section>
