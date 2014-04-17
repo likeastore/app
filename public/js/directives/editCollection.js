@@ -3,74 +3,40 @@ define(function (require) {
 
 	var config = require('config');
 	var angular = require('angular');
-	var $el = angular.element;
 
-	function EditCollection ($document, api, user, $rootScope) {
+	function EditCollection (api, user) {
 		return {
 			restrict: 'A',
 			template: '\
-				<div class="color-avatar-current show-edit" style="background-color: {{collection.color || \'#56c7aa\'}}" ng-click="showEditPopup(\'colorEditMode\', $event)">\
-					<div ng-class="{active: colorEditMode}" class="edit-collection-popup add-coll-form title-mode">\
-						<div class="colors">\
-							<span ng-repeat="color in colors" class="color-avatar" style="background: {{color.hex}};"\
-								ng-click="selectColor(color)"\
-								ng-class="{active: activeColor.name === color.name, last: $last}"></span>\
+				<h2 class="featured-title show-edit">\
+					<div class="color-avatar-current show-edit" style="background-color: {{collection.color || \'#56c7aa\'}}"\
+						ng-click="showEditPopup(\'colorEditMode\', $event)">\
+						<div ng-class="{active: modes.colorEditMode}" class="edit-collection-popup add-coll-form title-mode">\
+							<div class="colors">\
+								<span ng-repeat="color in colors" class="color-avatar" style="background: {{color.hex}};"\
+									ng-click="selectColor(color)"\
+									ng-class="{active: activeColor.name === color.name, last: $last}"></span>\
+							</div>\
+							<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'colorEditMode\', $event)">Cancel</a>\
+							<button type="button" class="button green-btn mdm-btn right" ng-click="updateCollection(\'color\')">Save</button>\
 						</div>\
-						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'colorEditMode\')">Cancel</a>\
-						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'color\')">Save</button>\
 					</div>\
-				</div>\
-				<h2 class="title show-edit" ng-click="showEditPopup(\'titleEditMode\', $event)">\
-					{{collection.title|truncate:60}}\
-					<div ng-class="{active: titleEditMode}" class="edit-collection-popup title-mode">\
-						<input class="fld" type="text" ng-model="updatedColl.title" maxlength="60">\
-						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'titleEditMode\')">Cancel</a>\
-						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'title\')">Save</button>\
+					<span class="actual-content" ng-click="showEditPopup(\'titleEditMode\', $event)">{{collection.title|truncate:60}}</span>\
+					<div ng-class="{active: modes.titleEditMode}" class="edit-collection-popup title-mode">\
+						<input class="field" type="text" ng-model="updatedColl.title" placeholder="Collection title is required" maxlength="60">\
+						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'titleEditMode\', $event)">Cancel</a>\
+						<button type="button" class="button green-btn mdm-btn right" ng-click="updateCollection(\'title\')">Save</button>\
 					</div>\
 				</h2>\
-				<div class="description show-edit" ng-click="showEditPopup(\'descriptionEditMode\', $event)"\
+				<div class="featured-description show-edit"\
 					ng-class="{block: collection.description.length > 60}">\
-					{{collection.description || \'No description\'|truncate:140}}\
-					<div ng-class="{active: descriptionEditMode}" class="edit-collection-popup description-mode">\
-						<textarea class="fld" ng-model="updatedColl.description" placeholder="Description for your awesome collection.." rows="3" maxlength="140"></textarea>\
-						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'descriptionEditMode\')">Cancel</a>\
-						<button type="button" class="btn green-btn right" ng-click="updateCollection(\'description\')">Save</button>\
+					<span class="actual-content" ng-click="showEditPopup(\'descriptionEditMode\', $event)"\
+						ng-bind-html="collection.description || \'Empty description\'|truncate:140"></span>\
+					<div ng-class="{active: modes.descriptionEditMode}" class="edit-collection-popup description-mode">\
+						<textarea class="field" ng-model="updatedColl.description" placeholder="Add description for your awesome collection.." rows="3" maxlength="140"></textarea>\
+						<a href="" class="link-btn cancel left" ng-click="cancelCollection(\'descriptionEditMode\', $event)">Cancel</a>\
+						<button type="button" class="button green-btn mdm-btn right" ng-click="updateCollection(\'description\')">Save</button>\
 					</div>\
-				</div>\
-				<div class="collection-buttons">\
-					<button type="button" class="button xs-sml-btn slk-btn navy-btn state-collection-btn"\
-						ng-dialog="toggleStateCollectionDialog"\
-						ng-dialog-class="lsd-theme delete-user-dialog"\
-						ng-dialog-data="{{collection._id}}, {{collection.public}}"\
-						ng-dialog-controller="toggleStateCollectionController"\
-						ng-dialog-show-close="false"\
-						ng-class="{\
-							\'pink-btn\': collection.public\
-						}">\
-						<i class="font-icon icon"\
-							ng-class="{\
-								\'unlocked-icon\': !collection.public,\
-								\'locked-icon\': collection.public\
-							}">\
-						</i>\
-						<span>{{collection.public ? \'Close\' : \'Open\'}}</span>\
-					</button>\
-					<button type="button" class="button xs-sml-btn pink-btn slk-btn share-collection-btn"\
-						ng-show="collection.public"\
-						ng-dialog="shareCollectionDialog"\
-						ng-dialog-class="lsd-theme share-dialog share-like"\
-						ng-dialog-data="{{collection._id}}"\
-						ng-dialog-controller="shareCollectionController"\
-						ng-dialog-show-close="false"><i class="font-icon plane-icon icon"></i> <span>Share</span>\
-					</button>\
-					<button type="button" class="button xs-sml-btn pink-btn slk-btn delete-collection-btn"\
-						ng-dialog="deleteCollectionDialog"\
-						ng-dialog-class="lsd-theme delete-user-dialog"\
-						ng-dialog-data="{{collection._id}}"\
-						ng-dialog-controller="deleteCollectionController"\
-						ng-dialog-show-close="false">\
-						<i class="font-icon trash-icon icon"></i> <span>Delete</span>\
-					</button>\
 				</div>',
 			link: function ($scope, elem, attrs) {
 				$scope.colors = config.colors;
@@ -82,14 +48,13 @@ define(function (require) {
 					$scope.activeColor = color;
 				};
 
-				$scope.updatedColl = {};
+				$scope.modes = {};
+				$scope.updatedColl;
 
-				$scope.showEditPopup = function (mode, e) {
+				$scope.showEditPopup = function (mode, $event) {
 					$scope.updatedColl = angular.copy($scope.collection);
-					$scope.titleEditMode = false;
-					$scope.descriptionEditMode = false;
-					$scope.colorEditMode = false;
-					$scope[mode] = true;
+					disableAllModes();
+					$scope.modes[mode] = true;
 				};
 
 				$scope.updateCollection = function (prop) {
@@ -101,34 +66,26 @@ define(function (require) {
 						data[prop] = $scope.updatedColl[prop];
 					}
 
-					api.patch({ resource: 'collections', target: $scope.collection._id }, data, function (res) {
-						$scope.titleEditMode = false;
-						$scope.descriptionEditMode = false;
-						$scope.colorEditMode = false;
+					if (prop === 'title' && !data[prop]) {
+						return;
+					}
 
-						user.getCollections();
+					api.patch({ resource: 'collections', target: $scope.collection._id }, data, function (res) {
+						disableAllModes();
+						$scope.$emit('update collection', $scope.collection._id);
 					});
 				};
 
-				$scope.cancelCollection = function (mode) {
-					$scope[mode] = false;
+				$scope.cancelCollection = function (mode, $event) {
+					$event.stopImmediatePropagation();
+					$scope.modes[mode] = false;
 				};
 
-				$document.on('click', function (e) {
-					var $target = $el(e.target);
-					var clickable = $target.hasClass('show-edit') || checkPopup($target);
-
-					if (!clickable) {
-						$scope.titleEditMode = false;
-						$scope.descriptionEditMode = false;
-						$scope.colorEditMode = false;
-						$scope.$apply();
+				function disableAllModes() {
+					for (var mode in $scope.modes) {
+						$scope.modes[mode] = false;
 					}
-
-					function checkPopup (elem) {
-						return (elem.hasClass('edit-collection-popup') || elem.hasClass('color-avatar') || elem.parent().hasClass('edit-collection-popup') && !elem.hasClass('cancel'));
-					}
-				});
+				}
 			}
 		};
 	}

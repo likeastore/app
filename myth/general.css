@@ -76,6 +76,7 @@ body {
 	font: 400 14px var(old-text-font);
 	width: 100%;
 	overflow-x: hidden;
+	-webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -203,12 +204,28 @@ body,
 
 .featured-title {
 	color: #555;
-	font-size: 25px;
+	font-size: 34px;
 	font-family: var(text-font);
 	font-weight: bold;
 	padding: 0;
 	text-align: center;
 	margin-bottom: 35px;
+}
+
+.featured-description {
+	color: #6c6c6c;
+	font-size: 18px;
+	line-height: 26px;
+	margin-bottom: 35px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+.empty-title {
+	color: #666;
+	font-size: 16px;
+	text-align: center;
+	margin-top: 35px
 }
 
 .fld {
@@ -828,123 +845,8 @@ textarea.fld {
 	bottom: 0;
 }
 
-.edit-collection-wrap .color-avatar-current {
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	margin: 10px 10px 0 0;
-	border-radius: 100%;
-	vertical-align: top;
-	box-shadow: 0 0 0 2px rgba(255,255,255,.9);
-}
-
-.edit-collection-wrap .color-avatar-current .edit-collection-popup {
-	margin-top: 25px;
-	left: -20px;
-	width: 190px;
-}
-
-.edit-collection-wrap .color-avatar-current .edit-collection-popup .last {
-	margin-right: 0;
-}
-
-.edit-collection-wrap .show-edit {
-	border-bottom: 1px solid transparent;
-	position: relative;
-	cursor: pointer;
-}
-
-.edit-collection-wrap .show-edit.title:hover {
-	border-bottom: 1px solid;
-}
-
-.edit-collection-wrap .show-edit.description:hover {
-	text-decoration: underline;
-}
-
-.edit-collection-wrap .collection-buttons {
-	position: absolute;
-	top: 7px;
-	right: 0;
-}
-
-.profile-collection-info.edit-collection-wrap .curated {
-	color: #999;
-	font-size: 12px;
-	font-weight: 600;
-	padding: 0 5px;
-}
-
-.profile-collection-info.edit-collection-wrap .description {
-	display: block;
-}
-
-.edit-collection-wrap .collection-buttons > * {
-	display: inline-block;
-	float: left;
-	margin-left: 8px;
-	vertical-align: top;
-}
-
-.edit-collection-popup {
-	visibility: hidden;
-	opacity: 0;
-	background: rgba(31, 33, 47, 0.96);
-	padding: 15px;
-	width: 280px;
-	position: absolute;
-	left: -10px;
-	margin-top: 8px;
-	z-index: 100;
-	border-radius: 2px;
-	cursor: default;
-	transition: all .3s;
-}
-
-.edit-collection-popup.active {
-	visibility: visible;
-	opacity: 1;
-}
-
-.edit-collection-popup:after {
-	bottom: 100%;
-	border: solid transparent;
-	content: '';
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	border-bottom-color: rgba(31, 33, 47, 0.96);
-	border-width: 8px;
-	left: 20px;
-	top: -13px;
-}
-
-.edit-collection-popup .fld {
-	color: #666;
-	padding: 10px 15px;
-}
-
-.edit-collection-popup .btn {
-	font-size: 12px;
-	margin-top: 10px;
-	width: 60px;
-	height: 27px;
-}
-
-.edit-collection-popup .link-btn,
-.edit-collection-popup .link-btn:hover {
-	display: inline;
-	color: rgba(255,255,255,.35);
-	font-size: 13px;
-	text-transform: uppercase;
-	text-decoration: none;
-	letter-spacing: 1px;
-	margin-top: 15px;
-	cursor: pointer;
-}
-
 .add-coll-form .colors {
+	height: 16px;
 	margin-bottom: 10px;
 }
 
@@ -1124,6 +1026,7 @@ textarea.fld {
 	padding: 5px;
 	max-height: 165px;
 	overflow: hidden;
+	word-wrap: break-word;
 }
 
 .dash-item .description.short {
@@ -1403,6 +1306,10 @@ textarea.fld {
 	font-family: var(text-font);
 }
 
+.explore .featured-title {
+	font-size: 25px;
+}
+
 .explore-block .explore-form {
 	position: relative;
 	margin: 0 auto 35px;
@@ -1420,7 +1327,6 @@ textarea.fld {
 .explore-block .explore-form .fld {
 	font-family: var(text-font);
 	padding-left: 40px;
-	letter-spacing: .3px;
 	border-radius: 50px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
@@ -1479,6 +1385,7 @@ textarea.fld {
 
 /* Empty box */
 .empty-box {
+	font-family: var(text-font);
 	margin: 150px auto;
 	width: 700px;
 	text-align: center;
@@ -1490,7 +1397,7 @@ textarea.fld {
 	background: #fff;
 	width: 300px;
 	border-radius: 3px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
 	vertical-align: top;
 	margin-right: 30px;
 	padding: 30px 20px;
@@ -1514,12 +1421,13 @@ textarea.fld {
 	letter-spacing: .3px;
 }
 
-.empty-box .empty-step .btn,
-.blank-box .btn {
-	width: 90%;
+.empty-box .empty-step .button,
+.blank-box .button {
+	width: 75%;
 	height: 42px;
-	margin-top: 45px;
-	line-height: 42px;
+	font-weight: bold;
+	margin-top: 35px;
+	line-height: 40px;
 }
 
 .empty-box .empty-step .help {
@@ -1559,12 +1467,13 @@ textarea.fld {
 /* Blank box */
 .blank-box {
 	background: #fff;
+	font-family: var(text-font);
 	padding: 30px 50px 50px;
 	margin: 60px auto;
 	width: 500px;
 	text-align: center;
 	border-radius: 3px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
 }
 
 .blank-box img {
@@ -1578,17 +1487,15 @@ textarea.fld {
 
 .blank-box .title {
 	font-size: 18px;
-	font-family: var(title-font);
+	font-weight: bold;
 	text-transform: uppercase;
-	letter-spacing: .6px;
 	margin-bottom: 20px;
 }
 
 .blank-box p {
 	color: #999;
-	font-size: 16px;
-	line-height: 24px;
-	letter-spacing: .6px;
+	font-size: 14px;
+	line-height: 19px;
 }
 
 .blank-box.empty-collection {

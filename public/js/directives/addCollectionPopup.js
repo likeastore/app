@@ -11,7 +11,7 @@ define(function (require) {
 			template: '\
 				<a href="" class="addto-btn" tooltip="Add to collection">\
 					<i class="font-icon addto-icon" ng-class="{\'added-icon animated bounce\': added}"></i>\
-					<ul class="show-coll-popup">\
+					<ul class="show-coll-popup" ng-mouseleave="popup=false">\
 						<li class="show-coll-item show-coll-empty"\
 							ng-if="!collections.length">\
 							<div class="text">No collections</div>\

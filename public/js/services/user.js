@@ -43,11 +43,11 @@ define(function (require) {
 			},
 
 			getCollections: function () {
-				api.query({ resource: 'collections' }, function (collections) {
+				var initedCollections = api.query({ resource: 'collections' }, function (collections) {
 					$rootScope.collections = collections;
 				});
 
-				return this;
+				return initedCollections.$promise;
 			},
 
 			getActiveNetworks: function () {

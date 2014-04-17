@@ -71,6 +71,7 @@
 	font-weight: bold;
 	max-height: 55px;
 	overflow: hidden;
+	word-wrap: break-word;
 }
 
 .coll-card .desc {
@@ -80,6 +81,7 @@
 	margin-top: 8px;
 	overflow: hidden;
 	max-height: 105px;
+	word-wrap: break-word;
 }
 
 .coll-card .desc a {
@@ -121,6 +123,7 @@
 	font-size: 11px;
 	font-weight: bold;
 	margin: 14px 0 0;
+	float: left;
 	position: relative;
 	z-index: 11;
 	cursor: default;

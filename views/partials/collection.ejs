@@ -1,0 +1,165 @@
+<section class="collection animated fadeIn">
+	<div class="prebar-fixed grid-1140-wrap clearfix">
+		<!-- Actual user collection meta -->
+		<div ng-if="me" edit-collection class="edit-collection-wrap"></div>
+
+		<!-- Third-party user collection meta -->
+		<div ng-if="!me">
+			<h2 class="featured-title" ng-class="{'bottom-space': !collection.description}">{{collection.title}}</h2>
+			<div ng-if="collection.description" class="featured-description" ng-bind-html="collection.description|linkify"></div>
+		</div>
+
+		<div ng-if="collection.userData" class="collection-author left">
+			<a ng-href="/u/{{collection.userData.name}}">
+				<img ng-src="{{collection.userData.avatar}}" class="avatar left" avatar-load>
+				{{collection.userData.name}}
+			</a>
+		</div>
+
+		<div class="tabs right">
+			<a ng-href="/u/{{collection.userData.name}}/{{collection._id}}" class="tab" ng-class="{active: list === 'favorites'}">{{collection.count || 0}} Favorite<span ng-if="collection.count !== 1">s</span></a>
+			<a ng-href="/u/{{collection.userData.name}}/{{collection._id}}#followers" class="tab" ng-class="{active: list === 'followers'}">{{collection.followersCount || 0}} Followers</a>
+		</div>
+
+		<!-- Third-party user collection buttons -->
+		<div ng-if="!me" class="collection-buttons">
+			<div toggle-follow-collection="collection._id"></div>
+
+			<button type="button" class="button xs-sml-btn pink-btn slk-btn share-collection-btn"
+				ng-dialog="shareCollectionDialog"
+				ng-dialog-class="lsd-theme share-dialog share-like"
+				ng-dialog-data="{{collection._id}}, {{collection.owner}}"
+				ng-dialog-controller="shareCollectionController"
+				ng-dialog-show-close="false">
+				<i class="font-icon plane-icon icon"></i> <span>Share</span>
+			</button>
+		</div>
+
+		<!-- Actual user collection buttons -->
+		<div ng-if="me" class="collection-buttons owner" ng-class="{'public': collection.public}">
+			<button type="button" class="button xs-sml-btn slk-btn navy-btn state-collection-btn"
+				ng-dialog="toggleStateCollectionDialog"
+				ng-dialog-class="lsd-theme delete-user-dialog"
+				ng-dialog-data="{{collection._id}}, {{collection.public}}"
+				ng-dialog-controller="toggleStateCollectionController"
+				ng-dialog-show-close="false"
+				ng-class="{'pink-btn': collection.public}">
+				<i class="font-icon icon"
+					ng-class="{
+						'unlocked-icon': !collection.public,
+						'locked-icon': collection.public
+					}">
+				</i>
+				<span>{{collection.public ? 'Close' : 'Open'}}</span>
+			</button>
+
+			<button type="button" class="button xs-sml-btn pink-btn slk-btn share-collection-btn"
+				ng-show="collection.public"
+				ng-dialog="shareCollectionDialog"
+				ng-dialog-class="lsd-theme share-dialog share-like"
+				ng-dialog-data="{{collection._id}}"
+				ng-dialog-controller="shareCollectionController"
+				ng-dialog-show-close="false"><i class="font-icon plane-icon icon"></i> <span>Share</span>
+			</button>
+			<button type="button" class="button xs-sml-btn pink-btn slk-btn delete-collection-btn"
+				ng-dialog="deleteCollectionDialog"
+				ng-dialog-class="lsd-theme delete-user-dialog"
+				ng-dialog-data="{{collection._id}}"
+				ng-dialog-controller="deleteCollectionController"
+				ng-dialog-show-close="false">
+				<i class="font-icon trash-icon icon"></i>
+			</button>
+		</div>
+		</div>
+	</div>
+
+	<ul id="scrollyItems" class="grid-1140-wrap items-wrap" ng-class="{
+		'list-view': user.viewMode === 'list',
+		'grid-view': user.viewMode === 'grid',
+		'inbox': inbox
+	}">
+		<li class="dash-item {{item.type}} item{{$index}}"
+			ng-repeat="item in items"
+			ng-class="{
+				'thumbed': item.thumbnail,
+				'texted': !item.thumbnail,
+				'last': $last
+			}">
+
+			<a ng-href="{{item.source}}" class="mask-link" target="_blank"></a>
+
+			<div class="action-buttons">
+				<div add-collection-popup="item"></div>
+				<a href="" class="share-btn"
+					tooltip="Share"
+					ng-dialog="shareLikeDialog"
+					ng-dialog-class="lsd-theme share-dialog share-like"
+					ng-dialog-controller="shareLikeController"
+					ng-dialog-show-close="false"
+					ng-dialog-data="{{item._id}}, {{item.type}}, {{item.title||item.repo}}"><i class="font-icon share-icon"></i></a>
+				<a href="" class="delete-btn"
+					ng-if="me"
+					tooltip="Remove"
+					ng-click="removeItem(item._id, $index)"><i class="font-icon delete-icon"></i></a>
+			</div>
+
+			<div ng-if="item.thumbnail" class="image">
+				<a ng-show="user.viewMode === 'grid'" ng-href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+
+				<div class="info">
+					<div ng-if="item.avatarUrl" class="author-image">
+						<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+					</div>
+
+					<div ng-show="user.viewMode === 'grid'" class="right-block">
+						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
+						<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+						<div ng-if="item.description" class="description"
+							ng-bind-html="item.description|truncate:240|linkify" ng-class="{short: user.viewMode==='grid' && item.title && item.authorName}"></div>
+					</div>
+
+					<div ng-show="user.viewMode === 'list'" class="right-block clearfix">
+						<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
+						<a ng-show="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+						<div class="texts">
+							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+							<div ng-if="item.description" class="description"
+								ng-bind-html="item.description|truncate:240|linkify"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div ng-if="!item.thumbnail" class="text-wrap">
+				<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author-image">
+					<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+				</div>
+				<div class="right-block">
+					<div ng-if="item.authorName && item.type !== 'facebook'" class="author-name">{{item.authorName}}</div>
+					<h2 ng-if="item.title || item.repo || item.name" class="title"
+						ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
+					<div ng-if="item.description && item.description !== item.name" class="description"
+						ng-bind-html="item.description|truncate:240|linkify"></div>
+					<div ng-if="item.gist || item.type === 'tumblr' || item.description === item.name" class="description"
+						ng-bind-html="item.source|linkify"></div>
+				</div>
+			</div>
+
+			<time>{{item.created|date: 'longDate'}}</time>
+			<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
+		</li>
+	</ul>
+
+	<!-- Actual user empty collection -->
+	<div ng-if="loaded && !items.length && me" class="blank-box empty-collection animated fadeIn">
+		<img src="/img/collect-example-screen.png">
+		<h2 class="title">Your collection is empty!</h2>
+		<p>You didn't add any favorites to this collection.<br>  You can easily start collecting items by clicking <b>"Add"</b> button at the top of the favorite's card.</p>
+		<a href="/favorites" class="button slk-btn gradient-btn">Add favorites</a>
+	</div>
+
+	<!-- Third-party user empty collection -->
+	<h2 ng-if="loaded && !items.length && !me" class="empty-title">User <b>{{collection.userData.name}}</b> didn't add add anything to this collection.</h2>
+
+	<div ng-hide="loaded || error" class="two-spin"></div>
+</section>

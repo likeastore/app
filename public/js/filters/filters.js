@@ -6,7 +6,6 @@ define(function (require) {
 
 	filters.filter('truncate', require('./truncate'));
 	filters.filter('linkify', require('./linkify'));
-	filters.filter('sortByType', require('./sortByType'));
 
 	return filters;
 });

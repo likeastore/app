@@ -1,8 +1,9 @@
 define(function () {
 	'use strict';
 
-	function ToggleStateCollectionController ($scope, $location, user, ngDialog, api) {
+	function ToggleStateCollectionController ($scope, ngDialog, api, user) {
 		var data = $scope.$parent.ngDialogData.split(', ');
+		var collectionId = data[0];
 		var isPublic = (data[1] === 'true');
 
 		$scope.futureState = !isPublic ? 'public' : 'private';
@@ -11,8 +12,8 @@ define(function () {
 			'This will make only you to have access to this collection.';
 
 		$scope.toggleState = function () {
-			api.patch({ resource: 'collections', target: data[0] }, { 'public': (isPublic ? false : true) }, function () {
-				user.getCollections();
+			api.patch({ resource: 'collections', target: collectionId }, { 'public': (isPublic ? false : true) }, function () {
+				$scope.$emit('update collection', collectionId);
 				ngDialog.close();
 			});
 		};

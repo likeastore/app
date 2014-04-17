@@ -26,7 +26,7 @@
 			<div ng-show="!collections.length" class="empty-collections">
 				You have 0 collections. <div ng-click="showAddForm=true" class="link">Click here to create the first one!</div>
 			</div>
-			<div ng-click="switchMenu('/collections/{{collection._id}}')" class="coll-item close-sidebar"
+			<div ng-click="switchMenu('/u/{{user.name}}/{{collection._id}}')" class="coll-item close-sidebar"
 				ng-repeat="collection in collections"
 				ng-class="{active: title===collection.title}">
 				<span class="avatar" style="background-color: {{collection.color || '#56c7aa'}}"></span>

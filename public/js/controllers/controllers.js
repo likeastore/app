@@ -26,7 +26,6 @@ define(function (require) {
 
 	// collections
 	controllers.controller('collectionController', require('./collectionController'));
-	controllers.controller('profileCollectionController', require('./profileCollectionController'));
 	controllers.controller('exploreController', require('./exploreController'));
 
 	// search

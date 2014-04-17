@@ -1,0 +1,216 @@
+/* Collection pages */
+:root {
+	var-red: #df3f3f;
+	var-grey: #eeeef0;
+	var-darkgrey: #64747d;
+	var-green: #57ad68;
+	var-navy: #56c7aa;
+	var-navy-opacity: rgba(66, 207, 176, 0.96);
+	var-orange: #fc523c;
+	var-tortoise: #1abc9c;
+	var-yellow: #f1c40f;
+	var-black: #1f282d;
+	var-darkblue: #272a33;
+	var-pink: #f03e56;
+	var-blue: #5da8e0;
+	var-text-font: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.collection {
+	font-family: var(text-font);
+}
+
+.collection .featured-title {
+	margin-bottom: 12px;
+}
+
+.collection .featured-title.bottom-space {
+	margin-bottom: 35px;
+}
+
+.collection-buttons > * {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 5px;
+}
+
+.collection-buttons > *:first-child {
+	margin-left: 0;
+}
+
+.collection-buttons {
+	margin: -5px auto 0;
+	width: 174px;
+	text-align: center;
+}
+
+.collection-buttons.public {
+	width: 196px;
+}
+
+.collection-buttons.owner .delete-collection-btn {
+	width: 28px;
+}
+
+.collection-buttons.owner .delete-collection-btn .icon {
+	margin-right: -1px;
+}
+
+.collection-author .avatar {
+	width: 24px;
+	height: 24px;
+	margin-right: 8px;
+	border-radius: 100%;
+}
+
+.collection-author a {
+	color: #555;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 22px;
+}
+
+.collection .tabs {
+	font-size: 14px;
+	padding: 5px 0 0;
+	text-align: right;
+}
+
+.collection .tabs .tab {
+	display: inline-block;
+	border-bottom: 2px solid transparent;
+	color: #999;
+	font-size: 13px;
+	text-align: center;
+	cursor: pointer;
+	margin: 0 0 -1px 14px;
+	padding-bottom: 8px;
+	vertical-align: top;
+	transition: all .3s;
+}
+
+.collection .tabs .tab.active {
+	color: #555;
+	border-color: #f03e56;
+	font-weight: bold;
+}
+
+.collection .tabs .tab:hover {
+	text-decoration: none;
+}
+
+.collection .edit-collection-popup {
+	visibility: hidden;
+	opacity: 0;
+	background: rgba(31, 33, 47, .96);
+	padding: 15px;
+	width: 280px;
+	position: absolute;
+	left: 50%;
+	margin-top: 8px;
+	z-index: 100;
+	border-radius: 3px;
+	cursor: default;
+	text-shadow: none;
+	transform: translateX(-50%);
+	transition: all .3s;
+}
+
+.collection .edit-collection-popup.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+.collection .edit-collection-popup:after {
+	bottom: 100%;
+	border: solid transparent;
+	content: '';
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-bottom-color: rgba(31, 33, 47, .96);
+	border-width: 6px;
+	left: 50%;
+	top: -12px;
+	margin-left: -9px;
+}
+
+.collection .edit-collection-popup .field {
+	color: #666;
+	border-color: transparent;
+	margin-bottom: 5px;
+}
+
+.collection .edit-collection-popup .mdm-btn {
+	margin-top: 10px;
+	width: 60px;
+	height: 27px;
+	line-height: 26px
+}
+
+.collection .edit-collection-popup .link-btn,
+.collection .edit-collection-popup .link-btn:hover {
+	display: inline;
+	color: rgba(255, 255, 255, .45);
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 1;
+	margin-top: 18px;
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: 0;
+	cursor: pointer;
+}
+
+.collection .edit-collection-wrap .show-edit {
+	position: relative;
+}
+
+.collection .edit-collection-wrap .actual-content {
+	cursor: pointer;
+}
+
+.collection .edit-collection-wrap .actual-content:hover {
+	text-decoration: underline;
+}
+
+.collection .edit-collection-wrap .color-avatar-current {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 15px 5px 0 0;
+	border-radius: 100%;
+	vertical-align: top;
+	cursor: pointer;
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, .9);
+}
+
+.collection .edit-collection-wrap .color-avatar-current .edit-collection-popup {
+	margin-top: 28px;
+	width: 190px;
+	margin-left: 3px;
+}
+
+.collection .edit-collection-wrap .color-avatar-current .edit-collection-popup .last {
+	margin-right: 0;
+}
+
+@media (max-width: 680px) {
+	.collection .featured-description {
+		margin-bottom: 50px;
+	}
+
+	.collection-buttons {
+		margin-top: -30px;
+	}
+
+	.collection-buttons > * {
+		font-size: 0;
+		width: 28px;
+	}
+
+	.collection-buttons > * .icon {
+		margin-right: -1px;
+	}
+}

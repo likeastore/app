@@ -78,9 +78,9 @@
   border-radius: 3px 3px 0 0;
 }
 
-.card-item .card-cover img.low-image-res {
-  border-radius: 0;
-}
+/*.card-item .card-cover img.low-image-res {
+	border-radius: 0;
+}*/
 
 .card-item .card-cover-overlay {
   opacity: 0;
@@ -128,6 +128,7 @@
   font-size: 13px;
   line-height: 17px;
   margin-bottom: 12px;
+  word-wrap: break-word;
 }
 
 .card-item .description a {

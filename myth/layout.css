@@ -1,3 +1,13 @@
+.grid-1140-wrap {
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+.grid-1020-wrap {
+	max-width: 1020px;
+	margin: 0 auto;
+}
+
 .prebar {
 	background: #fff;
 	border-bottom: 1px solid #ddd;
@@ -5,9 +15,16 @@
 	margin-top: -50px;
 }
 
-.grid-1020-wrap {
-	max-width: 1020px;
+.prebar-fixed {
 	margin: 0 auto;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 30px;
+}
+
+@media (max-width: 1160px) {
+	.grid-1140-wrap {
+		width: 920px;
+	}
 }
 
 @media (max-width: 1020px) {
@@ -16,9 +33,21 @@
 	}
 }
 
+@media (max-width: 920px) {
+	.grid-1140-wrap {
+		width: 700px;
+	}
+}
+
 @media (max-width: 765px) {
 	.grid-1020-wrap {
 		width: 510px;
+	}
+}
+
+@media (max-width: 700px) {
+	.grid-1140-wrap {
+		width: 90%;
 	}
 }
 

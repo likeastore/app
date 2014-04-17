@@ -74,7 +74,6 @@ define(function (require) {
 				.when('/discover', { templateUrl: 'partials/explore', controller: 'exploreController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.when('/suggest', { templateUrl: 'partials/suggest', controller: 'suggestPeopleController' })
-				.when('/collections/:id', { templateUrl: 'partials/dashboard', controller: 'collectionController'})
 				.when('/u/:name', { templateUrl: 'partials/profile', controller: 'profileController',
 					reloadOnSearch: false,
 					resolve: {
@@ -82,7 +81,16 @@ define(function (require) {
 							return user.initialize();
 						}
 					}})
-				.when('/u/:name/:id', { templateUrl: 'partials/profileCollection', controller: 'profileCollectionController' })
+				.when('/u/:name/:id', { templateUrl: 'partials/collection', controller: 'collectionController',
+					reloadOnSearch: false,
+					resolve: {
+						'rsAppUser': function (user) {
+							return user.initialize();
+						},
+						'rsUserCollections': function (user) {
+							return user.getCollections();
+						}
+					}})
 				.when('/ooops', { templateUrl: 'errorView', controller: 'errorController' })
 				.otherwise({ redirectTo: '/' });
 
@@ -92,17 +100,17 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, tracking, facebook, rooter) {
+	app.run(function (user, tracking, facebook, utils) {
 		user.initialize().then(function () {
-			user.getInboxCount()
-				.getCollections()
-				.getActiveNetworks();
+			user.getInboxCount();
+			user.getCollections();
+			user.getActiveNetworks();
 		});
 
 		tracking.boot();
 		facebook.init();
 
-		rooter();
+		utils();
 	});
 
 	return app;

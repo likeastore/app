@@ -17,7 +17,7 @@ define(function (require) {
 	services.factory('tracking', require('./tracking'));
 	services.factory('mixpanel', require('./mixpanel'));
 	services.factory('facebook', require('./facebook'));
-	services.factory('rooter', require('./rooter'));
+	services.factory('utils', require('./utils'));
 
 	return services;
 });

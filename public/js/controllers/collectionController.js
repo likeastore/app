@@ -1,40 +1,54 @@
 define(function () {
 	'use strict';
 
-	function CollectionController ($scope, $rootScope, $routeParams, $location, $analytics, api, appLoader) {
+	function CollectionController ($scope, $rootScope, $routeParams, $location, $analytics, api, user, appLoader, rsAppUser, rsUserCollections) {
 		appLoader.loading();
 
 		$analytics.eventTrack('collection opened');
 
-		$rootScope.$watch('collections', handleCollection);
+		$rootScope.title = $routeParams.name + '\'s collection';
 
-		function handleCollection (value) {
-			if (!value) {
-				return;
-			}
+		$scope.list = $location.hash() || 'favorites';
 
-			$scope.collection = _($rootScope.collections).find(function (coll) {
-				return coll._id === $routeParams.id;
+		$scope.me = (rsAppUser.name === $routeParams.name);
+
+		if ($scope.me) {
+			var targetCollection = _(rsUserCollections).find(function (collection) {
+				return collection._id === $routeParams.id;
 			});
-
-			if ($scope.collection) {
-				$rootScope.title = $scope.collection.title;
-				$rootScope.description = $scope.collection.description;
-			} else {
+			if (!targetCollection) {
 				return $location.url('/');
 			}
-
-			api.query({ resource: 'collections', target: $routeParams.id, verb: 'items' }, function (items) {
-				$scope.items = items;
-				appLoader.ready();
-			});
+			$scope.collection = targetCollection;
+		} else {
+			$scope.collection = api.get({ resource: 'collections', target: $routeParams.id });
 		}
 
-		$scope.remove = function (id, index) {
+		api.query({ resource: 'collections', target: $routeParams.id, verb: 'items' }, function handleItems(items) {
+			$scope.items = items;
+
+			appLoader.ready();
+		});
+
+		$scope.removeItem = function (id, index) {
 			api.delete({ resource: 'collections', target: $routeParams.id, verb: 'items', suffix: id }, function (res) {
 				$scope.items.splice(index, 1);
 			});
 		};
+
+		// events
+		$scope.$on('$routeUpdate', function () {
+			$scope.list = $location.hash() || 'favorites';
+		});
+
+		$rootScope.$on('update collection', function (e, collectionId) {
+			user.getCollections().then(function (collections) {
+				var targetCollection = _(collections).find(function (collection) {
+					return collection._id === collectionId;
+				});
+				$scope.collection = targetCollection;
+			});
+		});
 	}
 
 	return CollectionController;
