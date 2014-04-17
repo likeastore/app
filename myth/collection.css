@@ -18,6 +18,7 @@
 
 .collection {
 	font-family: var(text-font);
+	margin-bottom: 30px;
 }
 
 .collection .featured-title {

@@ -131,6 +131,10 @@
 	transition: all .2s;
 }
 
+.follow-collection .following-btn {
+	width: 90px;
+}
+
 .follow-collection-btns {
 	width: 91px;
 	height: 24px;

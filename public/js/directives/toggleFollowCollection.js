@@ -52,14 +52,14 @@ define(function (require) {
 					'default': '\
 						<div class="follow-collection">\
 							<a ng-show="owning" ng-href="/collections/{{collectionId}}" class="button sml-btn blue-btn slk-btn edit-btn">View</a>\
-							<button type="button" class="button sml-btn navy-btn slk-btn follow-btn"\
+							<button type="button" class="button xs-sml-btn navy-btn slk-btn follow-btn"\
 								ng-show="!following"\
 								ng-click="followCollection()"\
-								ng-disabled="processing">Follow</button>\
-							<button type="button" class="button sml-btn pink-btn slk-btn following-btn"\
+								ng-disabled="processing"><i class="font-icon plus-icon icon"></i> Follow</button>\
+							<button type="button" class="button xs-sml-btn pink-btn slk-btn following-btn"\
 								ng-show="following"\
 								ng-click="unfollowCollection()"\
-								ng-disabled="processing">Unfollow</button>\
+								ng-disabled="processing"><i class="font-icon check-icon icon"></i> Following</button>\
 						</div>',
 					'icons': '\
 						<div class="follow-collection follow-collection-icons">\
