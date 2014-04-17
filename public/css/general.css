@@ -1425,21 +1425,21 @@ textarea.fld {
 }
 
 .empty-box .empty-step .title {
-  font-family: 'Montserrat', 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
   font-size: 16px;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 1px;
   margin-bottom: 20px;
 }
 
 .empty-box .empty-step p {
-  color: #999;
-  letter-spacing: .3px;
+  color: #777;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 .empty-box .empty-step .button,
 .blank-box .button {
-  width: 75%;
+  width: 85%;
   height: 42px;
   font-weight: bold;
   margin-top: 35px;
@@ -1451,7 +1451,7 @@ textarea.fld {
   font-size: 12px;
   border: 1px solid #eee;
   letter-spacing: .3px;
-  margin: 45px auto 0;
+  margin: 35px auto 0;
   padding: 8px 0 9px;
   width: 90%;
   border-radius: 2px;
@@ -1470,7 +1470,6 @@ textarea.fld {
   top: -103px;
   left: -42px;
   width: 125px;
-  letter-spacing: .3px;
 }
 
 .empty-box .arrow-helper .arrow {
@@ -1511,17 +1510,13 @@ textarea.fld {
 }
 
 .blank-box p {
-  color: #999;
+  color: #777;
   font-size: 14px;
-  line-height: 19px;
+  line-height: 20px;
 }
 
 .blank-box.empty-collection {
   margin-top: 60px;
-}
-
-.blank-box.empty-collection .btn {
-  margin-top: 35px;
 }
 
 /* First time slider */
