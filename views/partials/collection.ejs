@@ -156,7 +156,7 @@
 		<ul ng-if="collection.followers.length" class="grid-1140-wrap clearfix followers-list" ng-switch-when="followers">
 			<li class="follower-item"
 				ng-repeat="follower in collection.followers">
-				<a ng-href="/u/{{follower.name}}">
+				<a ng-href="/u/{{follower.name}}" class="truncate">
 					<img ng-src="{{follower.avatar}}" class="avatar" avatar-load>
 					{{follower.name}}
 				</a>
