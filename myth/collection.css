@@ -198,13 +198,16 @@
 }
 
 .collection .followers-list .follower-item {
+	display: inline-block;
 	width: 25%;
 	float: left;
 	font-size: 13px;
 	line-height: 28px;
+	height: 30px;
 	overflow: hidden;
 	margin-bottom: 20px;
 	padding-right: 15px;
+	vertical-align: top;
 }
 
 .collection .followers-list .follower-item img {

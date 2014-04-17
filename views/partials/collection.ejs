@@ -153,15 +153,17 @@
 			</li>
 		</ul>
 
-		<ul ng-if="collection.followers.length" class="grid-1140-wrap clearfix followers-list" ng-switch-when="followers">
-			<li class="follower-item"
-				ng-repeat="follower in collection.followers">
-				<a ng-href="/u/{{follower.name}}" class="truncate">
-					<img ng-src="{{follower.avatar}}" avatar-load>
-					<span>{{follower.name}}</span>
-				</a>
-			</li>
-		</ul>
+		<div ng-switch-when="followers">
+			<ul ng-if="collection.followers.length" class="grid-1140-wrap clearfix followers-list">
+				<li class="follower-item"
+					ng-repeat="follower in collection.followers">
+					<a ng-href="/u/{{follower.name}}" class="truncate">
+						<img ng-src="{{follower.avatar}}" avatar-load>
+						<span>{{follower.name}}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 
 	<!-- Actual user empty collection -->
@@ -176,7 +178,7 @@
 	<h2 ng-if="loaded && !items.length && !me && list === 'favorites'" class="empty-title">User <b>{{collection.userData.name}}</b> didn't add anything to this collection.</h2>
 
 	<!-- Third-party user empty followers -->
-	<h2 ng-if="loaded && !collection.followers.length && list === 'followers'" class="empty-title">Collection <b>{{collection.title}}</b> has no followers.</h2>
+	<h2 ng-if="loaded && !collection.followers.length && list === 'followers'" class="empty-title">Collection <b>“{{collection.title}}”</b> has no followers.</h2>
 
 	<div ng-hide="loaded || error" class="two-spin"></div>
 </section>
