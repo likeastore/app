@@ -57,6 +57,11 @@
   line-height: 22px;
 }
 
+.collection-author a:hover {
+  color: #f03e56;
+  text-decoration: none;
+}
+
 .collection .tabs {
   font-size: 14px;
   padding: 5px 0 0;

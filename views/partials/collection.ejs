@@ -167,7 +167,7 @@
 	</div>
 
 	<!-- Actual user empty collection -->
-	<div ng-if="loaded && !items.length && me" class="blank-box empty-collection animated fadeIn">
+	<div ng-if="loaded && !items.length && me && list === 'favorites'" class="blank-box empty-collection animated fadeIn">
 		<img src="/img/collect-example-screen.png">
 		<h2 class="title">Your collection is empty!</h2>
 		<p>You didn't add any favorites to this collection.<br>  You can easily start collecting items by clicking <b>"Add"</b> button at the top of the favorite's card.</p>

@@ -227,8 +227,7 @@ textarea.fld {
   resize: none;
 }
 
-.btn,
-.btn:focus {
+.btn {
   display: inline-block;
   font: 400 13px 'Source Sans Pro', 'PT Sans', 'Helvetica', 'Arial', sans-serif;
   border: 0;
@@ -1439,7 +1438,7 @@ textarea.fld {
 
 .empty-box .empty-step .button,
 .blank-box .button {
-  width: 85%;
+  width: 90%;
   height: 42px;
   font-weight: bold;
   margin-top: 35px;

@@ -15,8 +15,8 @@
 	<p ng-if="coll.description" class="desc" ng-bind-html="coll.description|linkify"></p>
 
 	<div class="stat clearfix">
-		<span class="followers" tooltip="Followers"><i class="font-icon people-icon icon"></i> {{kFormat(coll.followersCount) || 0}}</span>
-		<span class="documents" tooltip="Favorites"><i class="font-icon doc-icon icon"></i> {{kFormat(coll.count) || 0}}</span>
+		<a ng-href="/u/{{coll.userData.name}}/{{coll._id}}#followers" class="followers stat-line" tooltip="Followers"><i class="font-icon people-icon icon"></i> {{kFormat(coll.followersCount) || 0}}</a>
+		<span class="documents stat-line" tooltip="Favorites"><i class="font-icon doc-icon icon"></i> {{kFormat(coll.count) || 0}}</span>
 	</div>
 
 	<div class="action">

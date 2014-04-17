@@ -1,22 +1,30 @@
 <!-- Share like dialog -->
 <script type="text/ng-template" id="shareLikeDialog">
-	<h2 class="bar">Share your favorite</h2>
-	<div class="social-desc">Press Ctrl+C or Cmd+C to copy this link</div>
+	<h2 class="bar">Share favorite</h2>
+	<div class="social-desc">Just copy this link and share with friends:</div>
 	<input id="likeUrl" class="fld" ng-model="link">
 	<div class="social-share">
-		<button type="button" class="btn big-btn fb-btn" share-on="facebook" share-on-event="share-like" share-on-text="{{link}}">Share on facebook</button>
-		<button type="button" class="btn big-btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="{{title}} on @{{service}} - {{link}}, shared via @likeastore">Share on twitter</button>
+		<button type="button" class="btn big-btn slk-btn fb-btn" share-on="facebook" share-on-event="share-like" share-on-text="{{link}}">
+			<i class="font-icon facebook-icon icon"></i> Share on facebook
+		</button>
+		<button type="button" class="btn big-btn slk-btn tw-btn" share-on="twitter" share-on-event="share-like" share-on-text="{{title}} on @{{service}} - {{link}}, shared via @likeastore">
+			<i class="font-icon twitter-icon icon"></i> Share on twitter
+		</button>
 	</div>
 </script>
 
 <!-- Share collection dialog -->
 <script type="text/ng-template" id="shareCollectionDialog">
 	<h2 class="bar">Share collection</h2>
-	<div class="social-desc">Press Ctrl+C or Cmd+C to copy this link</div>
+	<div class="social-desc">Just copy this link and share with friends:</div>
 	<input id="collectionUrl" class="fld" ng-model="link">
 	<div class="social-share">
-		<button type="button" class="btn big-btn fb-btn" share-on="facebook" share-on-text="{{link}}">Share on facebook</button>
-		<button type="button" class="btn big-btn tw-btn" share-on="twitter" share-on-text="{{description||title}} - {{link}}, shared via @likeastore">Share on twitter</button>
+		<button type="button" class="btn big-btn slk-btn fb-btn" share-on="facebook" share-on-text="{{link}}">
+			<i class="font-icon facebook-icon icon"></i> Share on facebook
+		</button>
+		<button type="button" class="btn big-btn slk-btn tw-btn" share-on="twitter" share-on-text="{{description||title}} - {{link}}, shared via @likeastore">
+			<i class="font-icon twitter-icon icon"></i> Share on twitter
+		</button>
 	</div>
 </script>
 
@@ -26,10 +34,10 @@
 	<img src="https://tour.likeastore.com/img/parachute-badge.png" class="hype-badge animated pulse delay-500ms" title="Hypebeast parachute badge ^_^">
 	<div class="social-desc">You have just created your first collection! Do you wanna tell your friends about it?</div>
 	<div class="social-share">
-		<button type="button" class="btn big-btn fb-btn" ng-click="shareOnFacebook()">
+		<button type="button" class="btn big-btn slk-btn fb-btn" ng-click="shareOnFacebook()">
 			<i class="font-icon facebook-icon icon"></i> Share on facebook
 		</button>
-		<a href="https://twitter.com/intent/tweet?text=I've just created my first collection on https://likeastore.com and earned Hobbyist badge! via @likeastore" class="btn big-btn tw-btn" ng-click="shareOnTwitter()">
+		<a href="https://twitter.com/intent/tweet?text=I've just created my first collection on https://likeastore.com and earned Hobbyist badge! via @likeastore" class="btn big-btn slk-btn tw-btn" ng-click="shareOnTwitter()">
 			<i class="font-icon twitter-icon icon"></i> Share on twitter
 		</a>
 	</div>
@@ -47,36 +55,40 @@
 			<textarea class="fld" name="message" rows="6" ng-model="message" required>
 			</textarea>
 		</div>
-		<button type="submit" class="btn green-btn send-btn" ng-disabled="sendText == 'Sending' || !inviteForm.$valid">{{sendText}}</button>
+		<button type="submit" class="btn green-btn slk-btn send-btn" ng-disabled="sendText == 'Sending' || !inviteForm.$valid">{{sendText}}</button>
 	</form>
 	<div class="social-share">
-		<button type="button" class="btn fb-btn" share-on-event="share-with-friend" share-on="facebook">Share on facebook</button>
-		<button type="button" class="btn tw-btn" share-on-event="share-with-friend" share-on="twitter">Share on twitter</button>
+		<button type="button" class="btn slk-btn fb-btn" share-on-event="share-with-friend" share-on="facebook">
+			<i class="font-icon facebook-icon icon"></i> Share on facebook
+		</button>
+		<button type="button" class="btn slk-btn tw-btn" share-on-event="share-with-friend" share-on="twitter">
+			<i class="font-icon twitter-icon icon"></i> Share on twitter
+		</button>
 	</div>
 </script>
 
 <!-- Delete account dialog -->
 <script type="text/ng-template" id="deleteAccountDialog">
 	<h2 class="bar">Delete account?</h2>
-	<div class="tip">Unexpected bad things will happen unless you are not ABSOLUTELY sure.</div>
-	<button type="button" ng-click="goBack()" class="btn pink-btn">No, thanks</button>
-	<button type="button" ng-click="deleteAccount()" class="btn green-btn">Yes, please</button>
+	<div class="tip">Unexpected bad things will happen unless you are not <b>ABSOLUTELY</b> sure.</div>
+	<button type="button" ng-click="goBack()" class="btn slk-btn pink-btn">No, thanks</button>
+	<button type="button" ng-click="deleteAccount()" class="btn slk-btn green-btn">Yes, please</button>
 </script>
 
 <!-- Delete collection dialog -->
 <script type="text/ng-template" id="deleteCollectionDialog">
 	<h2 class="bar">Delete collection?</h2>
-	<div class="tip">Are you sure you want to delete "{{title}}" collection?</div>
-	<button type="button" ng-click="goBack()" class="btn pink-btn">No</button>
-	<button type="button" ng-click="deleteCollection()" class="btn green-btn">Yes</button>
+	<div class="tip">Are you sure you want to delete <b>"{{title}}"</b> collection?</div>
+	<button type="button" ng-click="goBack()" class="btn slk-btn pink-btn">No</button>
+	<button type="button" ng-click="deleteCollection()" class="btn slk-btn green-btn">Yes</button>
 </script>
 
 <!-- Toggle collection state dialog -->
 <script type="text/ng-template" id="toggleStateCollectionDialog">
 	<h2 class="bar">Make collection {{futureState}}?</h2>
 	<div class="tip">{{stateText}}</div>
-	<button type="button" ng-click="goBack()" class="btn pink-btn">No</button>
-	<button type="button" ng-click="toggleState()" class="btn green-btn">Yes</button>
+	<button type="button" ng-click="goBack()" class="btn slk-btn pink-btn">No</button>
+	<button type="button" ng-click="toggleState()" class="btn slk-btn green-btn">Yes</button>
 </script>
 
 <!-- Dribbble connect dialog -->
@@ -84,7 +96,7 @@
 	<form ng-submit="turnOn()" novalidate>
 		<img src="/img/dribbble-logo.png" class="dribbble-logo">
 		<div class="ngdialog-message">
-			<div class="info-text">Start to collect shots of your favourite designers.</div>
+			<div class="info-text">Start to collect shots of your favorite designers.</div>
 			<div class="dribbble-user" ng-show="dribbbleUser.avatar_url">
 				<img ng-if="dribbbleUser.avatar_url" src="{{dribbbleUser.avatar_url}}">
 				<span>{{dribbbleUser.name}}, is it you?</span>
@@ -92,7 +104,7 @@
 			<input type="text" class="fld" placeholder="Dribbble username" ng-model="username" required/>
 		</div>
 		<div class="ngdialog-buttons">
-			<button type="submit" class="btn" ng-disabled="!dribbbleUser.name">Connect to dribbble</button>
+			<button type="submit" class="btn slk-btn" ng-disabled="!dribbbleUser.name">Connect to dribbble</button>
 		</div>
 	</form>
 </script>
