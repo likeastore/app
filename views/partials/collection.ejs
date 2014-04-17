@@ -157,8 +157,8 @@
 			<li class="follower-item"
 				ng-repeat="follower in collection.followers">
 				<a ng-href="/u/{{follower.name}}" class="truncate">
-					<img ng-src="{{follower.avatar}}" class="avatar" avatar-load>
-					{{follower.name}}
+					<img ng-src="{{follower.avatar}}" avatar-load>
+					<span>{{follower.name}}</span>
 				</a>
 			</li>
 		</ul>

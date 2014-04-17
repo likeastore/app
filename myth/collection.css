@@ -202,6 +202,7 @@
 	float: left;
 	font-size: 13px;
 	line-height: 28px;
+	overflow: hidden;
 	margin-bottom: 20px;
 	padding-right: 15px;
 }
@@ -218,6 +219,7 @@
 	display: inline-block;
 	color: #666;
 	font-weight: bold;
+	width: 100%;
 	overflow: hidden;
 }
 
