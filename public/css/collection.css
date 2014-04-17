@@ -188,6 +188,35 @@
   margin-right: 0;
 }
 
+.collection .followers-list .follower-item {
+  width: 25%;
+  float: left;
+  font-size: 13px;
+  line-height: 28px;
+  margin-bottom: 20px;
+  padding-right: 15px;
+}
+
+.collection .followers-list .follower-item img {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-right: 10px;
+  border-radius: 100%;
+}
+
+.collection .followers-list .follower-item a {
+  display: inline-block;
+  color: #777;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.collection .followers-list .follower-item a:hover {
+  color: #f03e56;
+  text-decoration: none;
+}
+
 @media (max-width: 680px) {
   .collection .featured-description {
     margin-bottom: 50px;

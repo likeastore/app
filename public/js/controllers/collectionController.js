@@ -41,7 +41,21 @@ define(function () {
 			$scope.list = $location.hash() || 'favorites';
 		});
 
-		$rootScope.$on('update collection', function (e, collectionId) {
+		$scope.$on('follow.collection', function (event, collId) {
+			if (!$scope.collection.followers) {
+				$scope.collection.followers = [];
+			}
+			$scope.collection.followers.push(rsAppUser);
+			$scope.collection.followersCount += 1;
+		});
+
+		$scope.$on('unfollow.collection', function (event, collId) {
+			var collIndex = _($scope.collection.followers).indexOf(rsAppUser);
+			$scope.collection.followers.splice(collIndex, 1);
+			$scope.collection.followersCount -= 1;
+		});
+
+		$rootScope.$on('update collection', function (event, collectionId) {
 			user.getCollections().then(function (collections) {
 				var targetCollection = _(collections).find(function (collection) {
 					return collection._id === collectionId;
