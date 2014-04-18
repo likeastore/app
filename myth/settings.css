@@ -357,7 +357,7 @@
 
 .block-networks-content {
 	font-family: var(text-font);
-	width: 500px;
+	width: 100%;
 	height: 355px;
 	margin: 0 auto;
 	text-align: center;
@@ -392,7 +392,8 @@
 .block-message {
 	color: #666;
 	font-size: 16px;
-	width: 490px;
+	width: 68%;
+	max-width: 515px;
 	margin: 0 auto 50px;
 	line-height: 24px;
 	letter-spacing: .3px;
@@ -465,6 +466,12 @@
 	}
 }
 
+@media (max-width: 470px) {
+	.block-networks-overlay .btn.fb-btn {
+		margin-bottom: 15px;
+	}
+}
+
 @media (max-width: 450px) {
 	.settings {
 		padding: 25px 20px;
@@ -481,5 +488,4 @@
 
 	.settings .tabs .tab {
 		font-size: 12px;
-	}
-}
+	}}

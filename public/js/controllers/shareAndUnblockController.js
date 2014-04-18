@@ -31,6 +31,9 @@ define(function () {
 		$scope.closeShare = function (e, mpEvent) {
 			$analytics.eventTrack(mpEvent);
 
+			user.unblockConnections()
+				.getActiveNetworks();
+
 			if (!$document.find('html').hasClass('cssanimations')) {
 				$scope.$parent.onBlockNetworks = false;
 				return;

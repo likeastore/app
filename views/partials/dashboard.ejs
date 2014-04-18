@@ -1,4 +1,4 @@
-<di ng-if="items.length">
+<div ng-if="items.length">
 	<h2 class="featured-title" ng-class="{'less-space': inbox}">{{title}}</h2>
 	<div ng-show="inbox" class="featured-description">You have <b>{{inboxCount}}</b> new favorites since last visit</div>
 </div>
@@ -79,7 +79,7 @@
 		</li>
 	</ul>
 
-	<div ng-if="loaded && !items.length && !search && !inbox && !collection" class="empty-box">
+	<div ng-if="loaded && !items.length && !search && !inbox" class="empty-box">
 		<div class="empty-step one">
 			<h2 class="title">1. Add network</h2>
 			<p>To start using our service the only thing you need is to <b>turn on</b> any network provided in settings.</p>
