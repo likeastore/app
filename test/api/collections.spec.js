@@ -768,12 +768,12 @@ describe.only('collections.spec.js', function () {
 			});
 
 			describe('other user collection', function () {
-				var otherUserHeaders;
+				var otherUser, otherUserHeaders;
 
 				beforeEach(function (done) {
 					testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
 						token = accessToken;
-						user = createdUser;
+						otherUser = createdUser;
 						otherUserHeaders = {'X-Access-Token': accessToken};
 						done(err);
 					});
@@ -825,6 +825,25 @@ describe.only('collections.spec.js', function () {
 
 					it('should have followCollections property', function () {
 						expect(results).to.have.property('followCollections');
+					});
+				});
+
+				describe('and owner updated', function () {
+					beforeEach(function (done) {
+						request.get({url: testUtils.getRootUrl() + '/api/users/me', headers: headers, json: true}, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it('should have followCollections property', function () {
+						expect(results).to.have.property('followed');
+						expect(results.followed[0].email).to.equal(otherUser.email);
 					});
 				});
 
@@ -930,6 +949,26 @@ describe.only('collections.spec.js', function () {
 						expect(results.followCollections).to.have.length(0);
 					});
 				});
+
+				describe('and owner updated', function () {
+					beforeEach(function (done) {
+						request.get({url: testUtils.getRootUrl() + '/api/users/me', headers: headers, json: true}, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it('should have followCollections property', function () {
+						expect(results).to.have.property('followed');
+						expect(results.followed).to.have.length(0);
+					});
+				});
+
 			});
 		});
 

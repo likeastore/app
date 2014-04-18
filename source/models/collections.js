@@ -246,7 +246,8 @@ function follow(user, collection, callback) {
 	async.waterfall([
 		checkCollection,
 		followCollection,
-		updateUser
+		updateOwner,
+		updateUser,
 	], callback);
 
 	function checkCollection(callback) {
@@ -280,6 +281,15 @@ function follow(user, collection, callback) {
 		});
 	}
 
+	function updateOwner(collection, callback) {
+		db.users.findAndModify({
+			query: {_id: collection.userData._id },
+			update: { $addToSet: { followed: _.pick(user, userPickFields) }}
+		}, function (err) {
+			callback(err, collection);
+		});
+	}
+
 	function updateUser(collection, callback) {
 		db.users.findAndModify({
 			query: {email: user.email},
@@ -296,6 +306,7 @@ function unfollow(user, collection, callback) {
 	async.waterfall([
 		checkUser,
 		unfollowCollection,
+		updateOwner,
 		updateUser
 	], callback);
 
@@ -322,6 +333,15 @@ function unfollow(user, collection, callback) {
 			query: {_id: collection._id},
 			update: { $pull: { followers: _.pick(user, userPickFields) }}
 		}, function (err, collection) {
+			callback(err, collection);
+		});
+	}
+
+	function updateOwner(collection, callback) {
+		db.users.findAndModify({
+			query: {_id: collection.userData._id },
+			update: { $pull: { followed: _.pick(user, userPickFields) }}
+		}, function (err) {
 			callback(err, collection);
 		});
 	}
