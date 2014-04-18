@@ -143,7 +143,7 @@
 								ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
 							<div ng-if="item.description && item.description !== item.name" class="description"
 								ng-bind-html="item.description|truncate:240|linkify"></div>
-							<div ng-if="item.gist || item.type === 'tumblr' || item.description === item.name" class="description"
+							<div ng-if="(!item.description && item.gist) || item.type === 'tumblr' || item.description === item.name" class="description"
 								ng-bind-html="item.source|linkify"></div>
 						</div>
 					</div>
