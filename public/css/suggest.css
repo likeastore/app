@@ -1,5 +1,9 @@
 
 
+.suggest-page {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
 .suggest-people-wrap {
   background: #fff;
   width: 600px;
@@ -7,15 +11,14 @@
   padding: 30px 50px 50px;
   text-align: center;
   border-radius: 3px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
 }
 
 .suggest-people-wrap .title {
   font-size: 18px;
-  font-family: 'Montserrat', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: .6px;
   margin-bottom: 20px;
 }
 
@@ -25,13 +28,14 @@
 
 .suggest-people-wrap .desc {
   color: #999;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: .6px;
+  font-size: 15px;
+  line-height: 20px;
 }
 
 .suggest-page .fld {
   background: #eee;
+  font-size: 12px;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
 .suggest-page .lazy-autocomplete-form {
@@ -44,31 +48,39 @@
 }
 
 .suggest-page .hr {
-  margin: 55px auto 45px;
+  margin: 45px auto 35px;
 }
 
 .person-item {
   display: inline-block;
   margin: 0 10px 25px;
-  width: 100px;
+  width: 80px;
   vertical-align: top;
 }
 
 .person-item .avatar {
-  width: 60px;
-  height: 60px;
+  border: 1px solid #ddd;
+  width: 52px;
+  height: 52px;
+  padding: 3px;
   cursor: pointer;
   border-radius: 100%;
 }
 
 .person-item .name {
   color: #666;
-  font-size: 13px;
-  margin: 0 0 10px -10px;
-  width: 120px;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 0 10px -5px;
+  width: 90px;
   height: 16px;
-  letter-spacing: .3px;
   cursor: pointer;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.person-item:hover .name {
+  color: #f03e56;
 }
 
 /* Lazy autocomplete form */
@@ -97,18 +109,12 @@
   transition: all .2s ease-out;
 }
 
-.lazy-autocomplete .lazy-autocomplete-item:hover {
-  background: #56c7aa;
-  background: rgba(66, 207, 176, 0.96);
-  border-color: #56c7aa;
-}
-
 .lazy-autocomplete .lazy-autocomplete-item.last {
   border-radius: 0 0 3px 3px;
 }
 
 .lazy-autocomplete .lazy-autocomplete-item:hover .name {
-  color: #fff;
+  color: #f03e56;
 }
 
 .lazy-autocomplete .lazy-autocomplete-item .avatar {
@@ -121,12 +127,12 @@
 .lazy-autocomplete .lazy-autocomplete-item .name {
   display: inline-block;
   color: #666;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: bold;
   line-height: 30px;
   vertical-align: top;
-  text-indent: 8px;
+  text-indent: 5px;
   width: 60%;
-  letter-spacing: .6px;
 }
 
 @media (max-width: 600px) {

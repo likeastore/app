@@ -9,7 +9,7 @@
 			ng-dialog="inviteDialogId"
 			ng-dialog-class="lsd-theme share-dialog"
 			ng-dialog-controller="shareWithFriendController"
-			ng-dialog-show-close="false">Invite them!</a>
+			ng-dialog-show-close="false"><b>Invite them!</b></a>
 		</div>
 
 		<form class="lazy-autocomplete-form" novalidate>
@@ -21,7 +21,7 @@
 		<ul class="people-list-wrap" ng-if="people.length">
 			<li class="person-item" ng-repeat="person in people">
 				<img ng-src="{{person.avatar}}" class="avatar" ng-click="switchMenu('/u/{{person.name}}')" avatar-load>
-				<div class="name truncate" ng-click="switchMenu('/u/{{person.name}}')">{{person.displayName || person.name}}</div>
+				<div class="name truncate" ng-click="switchMenu('/u/{{person.name}}')">{{person.name}}</div>
 			</li>
 		</ul>
 	</div>

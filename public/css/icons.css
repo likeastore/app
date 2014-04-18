@@ -257,6 +257,12 @@
   background-size: 90px;
 }
 
+.friends-icon {
+  background: url(../img/friends.png) center center no-repeat;
+  -webkit-background-size: 90px;
+  background-size: 90px;
+}
+
 .robot-icon {
   background: url(../img/square-robot.png) center center no-repeat;
   -webkit-background-size: 90px;
