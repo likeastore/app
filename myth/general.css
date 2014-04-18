@@ -212,9 +212,14 @@ body,
 	margin-bottom: 35px;
 }
 
+.featured-title.less-space {
+	margin-bottom: 12px;
+}
+
 .featured-description {
 	color: #6c6c6c;
 	font-size: 18px;
+	font-family: var(text-font);
 	line-height: 26px;
 	margin-bottom: 35px;
 	text-align: center;

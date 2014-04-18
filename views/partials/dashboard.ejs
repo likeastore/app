@@ -1,17 +1,7 @@
-	<h2 ng-show="items.length" class="featured-title">{{title}}</h2>
-	<!-- <div ng-show="items.length && inbox" class="description">You have <b>{{inboxCount}}</b> new favorites since last visit</div> -->
-
-	<!-- <div ng-show="!collection && items.length && !inbox && !search" class="notify-line" ng-click="createFirstCollection()">
-		<img src="/img/new-stamp.png" class="icon"> Check out “Collections” feature!
-	</div>
-
-	<div ng-show="search && items.length" class="notify-line"
-		ng-dialog="inviteDialogId"
-		ng-dialog-class="lsd-theme share-dialog"
-		ng-dialog-controller="shareWithFriendController"
-		ng-dialog-show-close="false">
-		<img src="/img/friends-stamp.png" class="icon"> Invite your friends!
-	</div> -->
+<di ng-if="items.length">
+	<h2 class="featured-title" ng-class="{'less-space': inbox}">{{title}}</h2>
+	<div ng-show="inbox" class="featured-description">You have <b>{{inboxCount}}</b> new favorites since last visit</div>
+</div>
 
 <section class="dashboard activity animated fadeIn">
 	<ul ng-if="items.length" id="scrollyItems" class="items-wrap" ng-class="{

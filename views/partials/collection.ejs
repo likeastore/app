@@ -175,10 +175,10 @@
 	</div>
 
 	<!-- Third-party user empty collection -->
-	<h2 ng-if="loaded && !items.length && !me && list === 'favorites'" class="empty-title">User <b>{{collection.userData.name}}</b> didn't add anything to this collection.</h2>
+	<h2 ng-if="!items.length && !me && list === 'favorites'" class="empty-title">User <b>{{collection.userData.name}}</b> didn't add anything to this collection.</h2>
 
 	<!-- Third-party user empty followers -->
-	<h2 ng-if="loaded && !collection.followers.length && list === 'followers'" class="empty-title">Collection <b>“{{collection.title}}”</b> has no followers.</h2>
+	<h2 ng-if="!collection.followers.length && list === 'followers'" class="empty-title">Collection <b>“{{collection.title}}”</b> has no followers.</h2>
 
 	<div ng-hide="loaded || error" class="two-spin"></div>
 </section>

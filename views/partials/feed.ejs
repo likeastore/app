@@ -1,12 +1,6 @@
-<div ng-if="items.length" class="feed top-bar clearfix animated fadeInLeft">
-	<div class="top left">
-		<h2 ng-show="items.length" class="title">{{title}}</h2>
-		<div ng-show="items.length" class="description">Favorites from collections you follow</div>
-	</div>
-
-	<div ng-show="items.length" class="notify-line" ng-click="switchMenu('/suggest')">
-		<img src="/img/friends-stamp.png" class="icon"> Find interesting people!
-	</div>
+<div ng-if="items.length" class="feed animated fadeIn">
+	<h2 class="featured-title less-space">{{title}}</h2>
+	<div class="featured-description">Explore favorites from collections you follow</div>
 </div>
 
 <section class="dashboard feed clearfix" id="scrollyItems" ng-switch="user.viewMode">
