@@ -25,6 +25,11 @@ var config = {
 		ua: null
 	},
 
+	notifier: {
+		url: 'http://localhost:3031',
+		accessToken: '1234'
+	},
+
 	// api keys
 	services: {
 		github: {
