@@ -27,6 +27,10 @@ exports.schemas = {
 			'color': {
 				required: false,
 				type: 'string'
+			},
+			'thumbnail': {
+				required: false,
+				type: 'string'
 			}
 		}
 	},

@@ -1032,7 +1032,7 @@ textarea.fld {
   font-size: 13px;
   line-height: 17px;
   padding: 5px;
-  max-height: 165px;
+  max-height: 140px;
   overflow: hidden;
   word-wrap: break-word;
 }

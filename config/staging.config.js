@@ -25,6 +25,11 @@ var config = {
 		ua: null
 	},
 
+	notifier: {
+		url: 'http://notifier.stage.likeastore.com',
+		accessToken: '1234'
+	},
+
 	// api keys
 	services: {
 		github: {

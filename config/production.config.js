@@ -25,6 +25,11 @@ var config = {
 		ua: 'UA-49743199-1'
 	},
 
+	notifier: {
+		url: 'http://notifier.likeastore.com',
+		accessToken: process.env.NOTIFIER_ACCESS_TOKEN
+	},
+
 	// api keys
 	services: {
 		github: {

@@ -97,6 +97,7 @@ function deactivate(user, callback) {
 	var deleteTasks = [
 		deleteNetworks,
 		deleteItems,
+		deleteCollections,
 		deleteUser
 	];
 
@@ -108,6 +109,10 @@ function deactivate(user, callback) {
 
 	function deleteItems(next) {
 		db.items.remove({ user: user.email }, next);
+	}
+
+	function deleteCollections(next) {
+		db.collections.remove({ user: user.email }, next);
 	}
 
 	function deleteUser(next) {

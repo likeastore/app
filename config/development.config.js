@@ -25,6 +25,11 @@ var config = {
 		ua: null
 	},
 
+	notifier: {
+		url: 'http://localhost:3031',
+		accessToken: '1234'
+	},
+
 	// api keys
 	services: {
 		github: {
@@ -89,7 +94,7 @@ var config = {
 	},
 
 	mandrill: {
-		token: '2kXX0stV1Hf56y9DYZts3A'
+		token: null
 	},
 
 	logentries: {
