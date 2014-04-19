@@ -142,9 +142,19 @@ function addItem(user, collection, item, callback) {
 	function putItemToCollection(item, collection, callback) {
 		var extended = _.extend(item, {added: moment().toDate()});
 
+		var updateCollectionQuery = {
+			$addToSet: {items: _.omit(extended, itemOmitFields)}
+		};
+
+		if (item.thumbnail && !collection.thumbnail) {
+			updateCollectionQuery = _.extend(updateCollectionQuery, {
+				$set: {thumbnail: item.thumbnail}
+			});
+		}
+
 		db.collections.findAndModify({
 			query: {user: user.email, _id: collection._id},
-			update: {$addToSet: {items: _.omit(extended, itemOmitFields)}}
+			update: updateCollectionQuery
 		}, callback);
 	}
 }
