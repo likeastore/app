@@ -12,6 +12,7 @@ var ObjectId = require('mongojs').ObjectId;
 var userPickFields = ['_id', 'email', 'avatar', 'displayName', 'name'];
 var itemOmitFields = ['collections', 'userData'];
 var collectionOmitFields = ['items'];
+var notifier = require('./notifier');
 
 function transform(collection) {
 	var clone = _.clone(collection);
@@ -258,6 +259,7 @@ function follow(user, collection, callback) {
 		followCollection,
 		updateOwner,
 		updateUser,
+		notifyOwner
 	], callback);
 
 	function checkCollection(callback) {
@@ -304,7 +306,13 @@ function follow(user, collection, callback) {
 		db.users.findAndModify({
 			query: {email: user.email},
 			update: {$addToSet: {followCollections: {id: collection._id}}}
-		}, callback);
+		}, function (err, user) {
+			callback(err, user, collection);
+		});
+	}
+
+	function notifyOwner(user, collection, callback) {
+		notifier('collection followed', user, {follower: user._id, collection: collection._id}, callback);
 	}
 }
 

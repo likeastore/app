@@ -3,7 +3,6 @@ var moment = require('moment');
 var middleware = require('../middleware');
 var users = require('../models/users');
 var config = require('../../config');
-var notififactions = require('../models/notififactions');
 
 function authService(app) {
 
