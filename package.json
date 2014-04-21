@@ -29,7 +29,6 @@
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-requirejs": "~0.4.0",
-    "grunt-hashres": "git://github.com/alexanderbeletsky/grunt-hashres.git",
     "seismo-client": "0.0.4",
     "node-mandrill": "~1.0.1",
     "respawn": "~0.1.7",
@@ -39,7 +38,8 @@
     "json-schema": "~0.2.2",
     "grunt-myth": "~0.1.1",
     "grunt-contrib-watch": "~0.5.3",
-    "nodalytics": "~1.0.0"
+    "nodalytics": "~1.0.0",
+    "grunt-hashres2": "~0.3.2"
   },
   "devDependencies": {
     "mocha": "~1.10.0",

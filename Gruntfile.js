@@ -77,7 +77,7 @@ module.exports = function (grunt) {
 	// Loaded tasks
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
-	grunt.loadNpmTasks('grunt-hashres');
+	grunt.loadNpmTasks('grunt-hashres2');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-myth');
 
