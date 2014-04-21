@@ -267,7 +267,13 @@ function update(user, collection, patch, callback) {
 			query: {user: user.email, _id: collection._id},
 			update: {$set: patch},
 			'new': true
-		}, callback);
+		}, function (err, collection) {
+			if (collection.public) {
+				notifier('collection created', user, {collection: collection._id});
+			}
+
+			callback(err, collection);
+		});
 	});
 }
 
