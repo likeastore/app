@@ -119,7 +119,8 @@ function addItem(user, collection, item, callback) {
 	async.waterfall([
 		findCollection,
 		putCollectionIdToItem,
-		putItemToCollection
+		putItemToCollection,
+		notifyFollowers
 	], callback);
 
 
@@ -156,7 +157,13 @@ function addItem(user, collection, item, callback) {
 		db.collections.findAndModify({
 			query: {user: user.email, _id: collection._id},
 			update: updateCollectionQuery
-		}, callback);
+		}, function (err) {
+			callback(err, item, collection);
+		});
+	}
+
+	function notifyFollowers(item, collection, callback) {
+		notifier('collection item added', user, {item: item._id, collection: collection._id}, callback);
 	}
 }
 
