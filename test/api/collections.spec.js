@@ -367,10 +367,22 @@ describe('collections.spec.js', function () {
 					});
 				});
 
+				beforeEach(function (done) {
+					request.get({url: url + '/' + collection._id + '/items', headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						items = body;
+						done(err);
+					});
+				});
+
 				it('should have added to collection once', function () {
 					expect(results.collections).to.be.a('array');
 					expect(results.collections.length).to.equal(1);
 					expect(results.collections[0]).to.deep.equal({id: collection._id.toString()});
+				});
+
+				it('should only one item added to collection', function () {
+					expect(items).to.have.length(1);
 				});
 			});
 

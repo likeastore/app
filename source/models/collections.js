@@ -157,6 +157,14 @@ function addItem(user, collection, item, callback) {
 	}
 
 	function putItemToCollection(item, collection, callback) {
+		var exists = _.find(collection.items, function (i) {
+			return i._id.equals(item._id);
+		});
+
+		if (exists) {
+			return callback(null, null, collection);
+		}
+
 		var extended = _.extend(item, {added: moment().toDate()});
 
 		var updateCollectionQuery = {
@@ -178,7 +186,11 @@ function addItem(user, collection, item, callback) {
 	}
 
 	function notifyFollowers(item, collection, callback) {
-		notifier('collection item added', user, {item: item._id, collection: collection._id}, callback);
+		if (item) {
+			notifier('collection item added', user, {item: item._id, collection: collection._id});
+		}
+
+		callback(null, item, collection);
 	}
 }
 
