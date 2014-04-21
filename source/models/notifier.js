@@ -9,7 +9,7 @@ function notifierRequestUrl() {
 
 function notifier(e, user, data, callback) {
 	var url = notifierRequestUrl();
-	var event = _.extend({event: e.replace(' ', '-')}, {user: user.email}, {data: data});
+	var event = _.extend({event: e.replace(/ /g, '-')}, {user: user.email}, {data: data});
 
 	request.post({url: url, body: event, json: true}, function (err) {
 		if (err) {
