@@ -23,14 +23,29 @@ function transform(collection) {
 }
 
 function create(user, collection, callback) {
-	collection.user = user.email;
-	collection.userData = _.pick(user, userPickFields);
+	async.waterfall([
+		createCollection,
+		notifyFollowers
+	], callback);
 
-	if (!collection.public) {
-		collection.public = false;
+	function createCollection(callback) {
+		collection.user = user.email;
+		collection.userData = _.pick(user, userPickFields);
+
+		if (!collection.public) {
+			collection.public = false;
+		}
+
+		db.collections.save(collection, callback);
 	}
 
-	db.collections.save(collection, callback);
+	function notifyFollowers(collection, callback) {
+		if (collection.public) {
+			notifier('collection created', user, {collection: collection._id});
+		}
+
+		callback(null, collection);
+	}
 }
 
 function remove(user, collection, callback) {
