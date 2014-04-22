@@ -9,8 +9,9 @@ define(function () {
 		$rootScope.title = $routeParams.name + '\'s collection';
 
 		$scope.list = $location.hash() || 'favorites';
-
 		$scope.me = (rsAppUser.name === $routeParams.name);
+		$scope.items = [];
+		$scope.page = 1;
 
 		if ($scope.me) {
 			var targetCollection = _(rsUserCollections).find(function (collection) {
@@ -24,17 +25,27 @@ define(function () {
 			$scope.collection = api.get({ resource: 'collections', target: $routeParams.id });
 		}
 
-		api.query({ resource: 'collections', target: $routeParams.id, verb: 'items' }, function handleItems(items) {
-			$scope.items = items;
-
-			appLoader.ready();
-		});
+		loadPage();
 
 		$scope.removeItem = function (id, index) {
 			api.delete({ resource: 'collections', target: $routeParams.id, verb: 'items', suffix: id }, function (res) {
 				$scope.items.splice(index, 1);
 			});
 		};
+
+		$scope.showMore = function () {
+			$scope.page += 1;
+			loadPage();
+		};
+
+		function loadPage() {
+			appLoader.loading();
+			api.get({ resource: 'collections', target: $routeParams.id, verb: 'items', page: $scope.page }, function handleItems(res) {
+				$scope.items = $scope.items.concat(res.data);
+				$scope.nextPage = res.nextPage;
+				appLoader.ready();
+			});
+		}
 
 		// events
 		$scope.$on('$routeUpdate', function () {
