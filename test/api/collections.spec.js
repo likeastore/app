@@ -382,7 +382,7 @@ describe('collections.spec.js', function () {
 				});
 
 				it('should only one item added to collection', function () {
-					expect(items).to.have.length(1);
+					expect(items.data).to.have.length(1);
 				});
 			});
 
@@ -504,9 +504,9 @@ describe('collections.spec.js', function () {
 				});
 
 				it('should return items in LIFO', function () {
-					expect(results[0]._id).to.equal(items[2]._id.toString());
-					expect(results[1]._id).to.equal(items[1]._id.toString());
-					expect(results[2]._id).to.equal(items[0]._id.toString());
+					expect(results.data[0]._id).to.equal(items[2]._id.toString());
+					expect(results.data[1]._id).to.equal(items[1]._id.toString());
+					expect(results.data[2]._id).to.equal(items[0]._id.toString());
 				});
 			});
 		});
@@ -693,8 +693,7 @@ describe('collections.spec.js', function () {
 				});
 
 				it('should return empty collection', function () {
-					expect(results).to.be.a('array');
-					expect(results.length).to.equal(0);
+					expect(results.data.length).to.equal(0);
 				});
 			});
 
@@ -720,8 +719,79 @@ describe('collections.spec.js', function () {
 				});
 
 				it('should return all items in collection', function () {
-					expect(results).to.be.a('array');
-					expect(results.length).to.equal(10);
+					expect(results.data.length).to.equal(10);
+				});
+			});
+
+			describe('and supports paging', function () {
+				beforeEach(function (done) {
+					testUtils.createTestItems(user, 67, function (err, created) {
+						items = created;
+						done(err);
+					});
+				});
+
+				beforeEach(function (done) {
+					async.each(items, putToCollection, done);
+
+					function putToCollection(item, callback) {
+						request.put({url: url + '/' + collection._id + '/items/' + item._id, headers: headers, json: true}, callback);
+					}
+				});
+
+				beforeEach(function (done) {
+					request.get({url: url + '/' + collection._id + '/items', headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						results = body;
+						done(err);
+					});
+				});
+
+				it('should respond 200 (ok)', function () {
+					expect(response.statusCode).to.equal(200);
+				});
+
+				it('should return all items on first page', function () {
+					expect(results.data.length).to.equal(30);
+					expect(results.nextPage).to.equal(true);
+				});
+
+				describe('second page', function () {
+					beforeEach(function (done) {
+						request.get({url: url + '/' + collection._id + '/items?page=2', headers: headers, json: true}, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it('should return all items on second page', function () {
+						expect(results.data.length).to.equal(30);
+						expect(results.nextPage).to.equal(true);
+					});
+				});
+
+				describe('third page', function () {
+					beforeEach(function (done) {
+						request.get({url: url + '/' + collection._id + '/items?page=3', headers: headers, json: true}, function (err, resp, body) {
+							response = resp;
+							results = body;
+							done(err);
+						});
+					});
+
+					it('should respond 200 (ok)', function () {
+						expect(response.statusCode).to.equal(200);
+					});
+
+					it('should return all items on third page', function () {
+						expect(results.data.length).to.equal(7);
+						expect(results.nextPage).to.equal(false);
+					});
 				});
 			});
 		});

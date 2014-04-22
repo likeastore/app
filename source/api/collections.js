@@ -135,7 +135,7 @@ function collectionsService(app) {
 	}
 
 	function getCollectionItems(req, res, next) {
-		collections.findItems(req.user, req.params.id, function (err, items) {
+		collections.findItems(req.user, req.params.id, req.query.page, function (err, items) {
 			if (err) {
 				return next(err);
 			}
