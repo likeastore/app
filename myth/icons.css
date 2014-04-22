@@ -58,10 +58,6 @@
 	content: 'o';
 }
 
-.full-star-icon:before {
-	content: 's';
-}
-
 .settings-icon:before {
 	content: 'u';
 }
@@ -244,6 +240,10 @@
 
 .location-icon:before {
 	content: '\e01D';
+}
+
+.share-love-icon:before {
+	content: 'S';
 }
 
 .big-icon {

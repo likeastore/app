@@ -245,6 +245,7 @@ textarea.fld {
   cursor: pointer;
   outline: none;
   -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
   border-radius: 2px;
   -webkit-transition: all .2s;
   transition: all .2s;
@@ -1522,6 +1523,45 @@ textarea.fld {
 
 .blank-box.empty-collection {
   margin-top: 60px;
+}
+
+/* Invite friends */
+
+.invite-friends {
+  background: #161625;
+  color: #fff;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  position: absolute;
+  bottom: 50px;
+  height: 74px;
+  width: 100%;
+  z-index: 19;
+  padding: 15px;
+  text-align: center;
+}
+
+.invite-friends .text {
+  font-size: 12px;
+  line-height: 15px;
+  width: 110px;
+  margin-right: 15px;
+  text-align: right;
+}
+
+.invite-friends .share-love-btn {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 34px;
+  width: 110px;
+  height: 36px;
+  margin-top: 5px;
+}
+
+.invite-friends .share-love-btn .icon {
+  font-size: 16px;
+  line-height: 1;
+  height: 16px;
+  margin: 9px 3px 0 0;
 }
 
 /* First time slider */

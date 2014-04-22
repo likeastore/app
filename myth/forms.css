@@ -44,6 +44,11 @@
 	opacity: .8;
 }
 
+.button .icon {
+	display: inline-block;
+	vertical-align: top;
+}
+
 .navy-btn {
 	background: var(navy-gradient);
 	color: #fff;

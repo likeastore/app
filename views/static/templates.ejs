@@ -58,12 +58,12 @@
 		<button type="submit" class="btn green-btn slk-btn send-btn" ng-disabled="sendText == 'Sending' || !inviteForm.$valid">{{sendText}}</button>
 	</form>
 	<div class="social-share">
-		<button type="button" class="btn slk-btn fb-btn" share-on-event="share-with-friend" share-on="facebook">
+		<button type="button" class="btn slk-btn fb-btn" ng-click="shareOnFacebook()">
 			<i class="font-icon facebook-icon icon"></i> Share on facebook
 		</button>
-		<button type="button" class="btn slk-btn tw-btn" share-on-event="share-with-friend" share-on="twitter">
+		<a href="https://twitter.com/intent/tweet?text=Just tried @likeastore it helps me to keep all my favorites and interests in one account!+https://likeastore.com" type="button" class="btn slk-btn tw-btn">
 			<i class="font-icon twitter-icon icon"></i> Share on twitter
-		</button>
+		</a>
 	</div>
 </script>
 

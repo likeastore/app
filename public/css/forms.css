@@ -29,6 +29,11 @@
   opacity: .8;
 }
 
+.button .icon {
+  display: inline-block;
+  vertical-align: top;
+}
+
 .navy-btn {
   background: -webkit-linear-gradient(350deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
   background: linear-gradient(100deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
