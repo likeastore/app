@@ -98,7 +98,8 @@ function deactivate(user, callback) {
 		deleteNetworks,
 		deleteItems,
 		deleteCollections,
-		deleteUser
+		deleteUser,
+		deleteFollowed
 	];
 
 	async.series(deleteTasks, callback);
@@ -117,6 +118,13 @@ function deactivate(user, callback) {
 
 	function deleteUser(next) {
 		db.users.remove({ email: user.email }, next);
+	}
+
+	function deleteFollowed(next) {
+		db.users.findAndModify({
+			query: {followed: {$elemMatch: {email: user.email}}},
+			update: {$pull: {followed: {email: user.email}}}
+		}, next);
 	}
 }
 
