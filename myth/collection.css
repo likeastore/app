@@ -245,7 +245,8 @@
 		margin-top: -30px;
 	}
 
-	.collection-buttons > * {
+	.collection-buttons > *,
+	.collection-buttons > * .follow-collection .button {
 		font-size: 0;
 		width: 28px;
 	}

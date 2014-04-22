@@ -37,6 +37,11 @@ define(function (require) {
 				};
 
 				$scope.addItemToCollection = function (collectionId) {
+					$scope.added = true;
+					$timeout(function () {
+						$scope.added = false;
+					}, 1500);
+
 					api.update({
 						resource: 'collections',
 						target: collectionId,
@@ -44,11 +49,6 @@ define(function (require) {
 						suffix: $scope.item._id
 					}, {}, function (res) {
 						$analytics.eventTrack('collection item added');
-
-						$scope.added = true;
-						$timeout(function () {
-							$scope.added = false;
-						}, 1500);
 					});
 				};
 

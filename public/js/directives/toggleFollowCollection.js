@@ -24,27 +24,17 @@ define(function (require) {
 				});
 
 				$scope.followCollection = function () {
-					$scope.processing = true;
-
+					$scope.following = true;
+					$rootScope.$broadcast('follow.collection', $scope.collectionId);
 					$analytics.eventTrack('collection followed');
-
-					api.update({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {}, function () {
-						$scope.following = true;
-						$scope.processing = false;
-						$rootScope.$broadcast('follow.collection', $scope.collectionId);
-					});
+					api.update({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {});
 				};
 
 				$scope.unfollowCollection = function (id) {
-					$scope.processing = true;
-
+					$scope.following = false;
+					$rootScope.$broadcast('unfollow.collection', $scope.collectionId);
 					$analytics.eventTrack('collection unfollowed');
-
-					api.delete({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {}, function () {
-						$scope.following = false;
-						$scope.processing = false;
-						$rootScope.$broadcast('unfollow.collection', $scope.collectionId);
-					});
+					api.delete({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {});
 				};
 			},
 			link: function (scope, elem, attrs) {
