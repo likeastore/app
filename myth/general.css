@@ -1331,6 +1331,7 @@ textarea.fld {
 .explore-block .explore-form .fld {
 	font-family: var(text-font);
 	padding-left: 40px;
+	letter-spacing: 0;
 	border-radius: 50px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
