@@ -1528,7 +1528,7 @@ textarea.fld {
 /* Invite friends */
 
 .invite-friends {
-  background: #161625;
+  background: transparent;
   color: #fff;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   position: absolute;

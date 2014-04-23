@@ -1,0 +1,154 @@
+.ngcustomer-voice-block {
+	background: #272727;
+	border: 1px solid rgba(0,0,0,.16);
+	border-radius: 3px;
+	bottom: 20px;
+	color: transparent;
+	cursor: pointer;
+	font-family: 'Helvetica Neue','Helvetica',Arial,sans-serif;
+	font-size: 14px;
+	font-weight: 700;
+	height: 42px;
+	line-height: 18px;
+	position: fixed;
+	right: 20px;
+	text-align: center;
+	width: 42px;
+	z-index: 99999999;
+	-webkit-animation: ngdialog-fadein .5s;
+	animation: ngdialog-fadein .5s;
+}
+
+.ngcustomer-voice-block .ngcustomer-voice-icon {
+	background: #fff;
+	border-radius: 100%;
+	color: #272727;
+	height: 18px;
+	margin: 11px auto;
+	width: 18px;
+}
+
+.ngdialog.ngdialog-theme-customer-voice {
+	padding-bottom: 160px;
+	padding-top: 160px;
+}
+
+.ngdialog.ngdialog-theme-customer-voice .ngdialog-overlay {
+	background: transparent;
+}
+
+.ngdialog.ngdialog-theme-customer-voice .ngdialog-content {
+	background: #f0f0f0;
+	border: 1px solid #bbb;
+	border-radius: 3px;
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,.2);
+	color: #272727;
+	font-family: 'Helvetica Neue','Helvetica',Arial,sans-serif;
+	font-size: 1.1em;
+	height: 350px;
+	line-height: 1.5em;
+	margin: 0 auto;
+	max-width: 100%;
+	padding: 0;
+	position: relative;
+	width: 470px;
+}
+
+.ngdialog.ngdialog-theme-customer-voice .ngdialog-close {
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.ngdialog.ngdialog-theme-customer-voice .ngdialog-close:before {
+	background: transparent;
+	color: #545454;
+	content: "\00D7";
+	font-size: 20px;
+	font-weight: 400;
+	height: 22px;
+	line-height: 20px;
+	position: absolute;
+	right: 12px;
+	text-align: center;
+	text-shadow: 0 1px 0 #fff;
+	top: 18px;
+	width: 22px;
+}
+
+.ngdialog.ngdialog-theme-customer-voice .ngdialog-close:hover:before,.ngdialog.ngdialog-theme-customer-voice .ngdialog-close:active:before {
+	color: #272727;
+}
+
+.ngdialog.ngdialog-theme-customer-voice .ngdialog-header {
+	background-color: #f6f6f6;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#f6f6f6),to(#eaeaea));
+	background-image: -webkit-linear-gradient(top,#f6f6f6,#eaeaea);
+	background-image: linear-gradient(to bottom,#f6f6f6,#eaeaea);
+	border-bottom: 1px solid #bbb;
+	border-radius: 3px 3px 0 0;
+	box-shadow: 0 1px 0 0 #fffafa;
+	color: #545454;
+	cursor: default;
+	font-size: 15px;
+	font-weight: 500;
+	height: 60px;
+	line-height: 56px;
+	text-align: center;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.ngdialog.ngdialog-theme-customer-voice .ngdialog-message {
+	margin-bottom: .5em;
+	padding: 1em;
+}
+
+.ngdialog.ngdialog-theme-customer-voice .ngdialog-button {
+	background: #3288e6;
+	border: 1px solid rgba(0,0,0,.16);
+	border-radius: 2px;
+	color: #fff;
+	cursor: pointer;
+	float: right;
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 500;
+	height: 38px;
+	margin: 0;
+	width: 100px;
+}
+
+.ngdialog.ngdialog-theme-customer-voice .ngdialog-button:hover,.ngdialog.ngdialog-theme-customer-voice .ngdialog-button:focus {
+	animation: ngdialog-pulse 1.1s infinite;
+	border: 1px solid rgba(0,0,0,.38);
+	box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	outline: none;
+}
+
+@media (max-width: 568px) {
+ .ngdialog.ngdialog-theme-customer-voice .ngdialog-button:focus {
+ 	animation: none;
+ }
+
+}
+
+.ngdialog.ngdialog-theme-customer-voice textarea,.ngdialog.ngdialog-theme-customer-voice textarea:focus {
+	background-clip: padding-box;
+	background-color: #fff;
+	border: 1px solid #b9b9b9;
+	border-radius: 3px;
+	box-shadow: rgba(255,255,255,0.0980392) 0 1px 0 0px,rgba(0,0,0,0.0980392) 0 1px 2px 0 inset;
+	color: #272727;
+	display: block;
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: inherit;
+	line-height: 18px;
+	margin-bottom: 12px;
+	outline: none;
+	padding: 10px;
+	resize: none;
+	width: 100%;
+	word-wrap: break-word;
+}
