@@ -5,6 +5,7 @@ var request = require('request');
 
 var config = require('../../config');
 var db = require('../db')(config);
+var notifier = require('./notifier');
 
 var ObjectId = require('mongojs').ObjectId;
 
@@ -416,6 +417,10 @@ function findFollowers(user, prop, callback) {
 	}
 }
 
+function feedback(user, message, callback) {
+	notifier('user feedback', user, {message: message}, callback);
+}
+
 module.exports = {
 	findById: findById,
 	findByEmail: findByEmail,
@@ -431,5 +436,6 @@ module.exports = {
 	suggestPeople: suggestPeople,
 
 	follows: follows,
-	followed: followed
+	followed: followed,
+	feedback: feedback
 };

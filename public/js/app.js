@@ -23,6 +23,8 @@ define(function (require) {
 	require('./directives/directives');
 	require('./filters/filters');
 
+	require('./modules/customerVoice');
+
 	var angular = require('angular');
 	var app = angular.module('likeastore', [
 		'ngRoute',
@@ -36,6 +38,7 @@ define(function (require) {
 		'angulartics.mixpanel',
 		'angularMoment',
 		'akoenig.deckgrid',
+		'ngCustomerVoice',
 		'services',
 		'controllers',
 		'directives',
@@ -46,8 +49,8 @@ define(function (require) {
 		angular.bootstrap(document, ['likeastore']);
 	};
 
-	app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'IntercomServiceProvider',
-		function ($routeProvider, $locationProvider, $httpProvider, intercomServiceProvider) {
+	app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'IntercomServiceProvider', 'ngCustomerVoiceProvider',
+		function ($routeProvider, $locationProvider, $httpProvider, intercomServiceProvider, ngCustomerVoiceProvider) {
 			$httpProvider.interceptors.push('httpInterceptor');
 
 			$routeProvider
@@ -96,6 +99,7 @@ define(function (require) {
 
 			$locationProvider.html5Mode(true);
 
+			ngCustomerVoiceProvider.apiUrl('/api/users/feedback');
 			intercomServiceProvider.asyncLoading(true);
 		}
 	]);

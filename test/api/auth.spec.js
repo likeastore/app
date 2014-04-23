@@ -100,7 +100,7 @@ describe('auth.spec.js', function () {
 			beforeEach(function (done) {
 				testUtils.createTestUser(function (err, createdUser) {
 					user = createdUser;
-					done();
+					done(err);
 				});
 			});
 
