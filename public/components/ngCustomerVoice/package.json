@@ -1,9 +1,9 @@
 {
-  "name": "ng-dialog",
-  "version": "0.1.7",
-  "homepage": "https://github.com/likeastore/ngDialog",
-  "description": "Modal dialogs and popups provider for Angular.js applications",
-  "main": "./js/ngDialog.js",
+  "name": "ngCustomerVoice",
+  "version": "0.1.1",
+  "homepage": "https://github.com/likeastore/ngCustomerVoice",
+  "description": "Angular.js client for user sending support emails",
+  "main": "./js/ngCustomerVoice.js",
   "keywords": [
     "angular.js",
     "modals",
@@ -12,7 +12,11 @@
     "ng",
     "provider",
     "factory",
-    "directive"
+    "directive",
+    "uservoice",
+    "intercome",
+    "emails",
+    "feedback"
   ],
   "author": {
     "name": "Dmitri Voronianski",
@@ -20,22 +24,17 @@
     "web": "http://pixelhunter.me",
     "twitter": "voronianski"
   },
-  "bugs": "https://github.com/likeastore/ngDialog/issues",
+  "bugs": "https://github.com/likeastore/ngCustomerVoice/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/likeastore/ngDialog"
+    "url": "https://github.com/likeastore/ngCustomerVoice"
   },
   "readmeFilename": "README.md",
   "license": "MIT",
   "devDependencies": {
-    "myth": "~0.1.6",
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-uglify": "~0.2.7",
-    "grunt-myth": "~0.1.0",
     "grunt-contrib-cssmin": "^0.9.0"
-  },
-  "dependencies": {
-    "strata": "~0.20.1"
   }
 }

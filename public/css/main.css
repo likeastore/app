@@ -2,7 +2,7 @@
 @import url(reset.css);
 @import url(../components/animate.css/animate.css);
 @import url(../components/ngDialog/css/ngDialog.css);
-@import url(customer-voice.css);
+@import url(../components/ngCustomerVoice/css/ngCustomerVoice.css);
 @import url(general.css);
 @import url(layout.css);
 @import url(icons.css);

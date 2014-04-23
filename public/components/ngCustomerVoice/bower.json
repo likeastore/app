@@ -1,0 +1,38 @@
+{
+  "name": "ngCustomerVoice",
+  "version": "0.1.1",
+  "homepage": "https://github.com/likeastore/ngCustomerVoice",
+  "description": "Angular.js client for user sending support emails",
+  "main": [
+      "js/ngCustomerVoice.js",
+      "css/ngCustomerVoice.css"
+  ],
+  "keywords": [
+    "angular",
+    "intercom",
+    "uservoice",
+    "feedback",
+    "emails",
+    "dialog",
+    "ngdialog",
+    "popup",
+    "send"
+  ],
+  "authors": [
+    "Dmitri Voronianski <dmitri.voronianski@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "example",
+    "test",
+    "tests",
+    "Gruntfile.js"
+  ],
+  "dependencies": {
+    "angular": "~1",
+    "ngDialog": "*"
+  }
+}

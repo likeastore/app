@@ -8,6 +8,7 @@ define(function (require) {
 	require('ngSanitize');
 	require('ngDialog');
 	require('ngIntercom');
+	require('ngCustomerVoice');
 	require('angularLocalStorage');
 	require('angulartics');
 	require('angulartics.mixpanel');
@@ -22,8 +23,6 @@ define(function (require) {
 	require('./controllers/controllers');
 	require('./directives/directives');
 	require('./filters/filters');
-
-	require('./modules/customerVoice');
 
 	var angular = require('angular');
 	var app = angular.module('likeastore', [
@@ -100,6 +99,7 @@ define(function (require) {
 			$locationProvider.html5Mode(true);
 
 			ngCustomerVoiceProvider.apiUrl('/api/users/feedback');
+			ngCustomerVoiceProvider.closeBeforeSend(true);
 			intercomServiceProvider.asyncLoading(true);
 		}
 	]);
