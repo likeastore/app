@@ -99,7 +99,7 @@ define(function (require) {
 
 			$locationProvider.html5Mode(true);
 
-			ngCustomerVoiceProvider.apiUrl('/api/user/feedback');
+			ngCustomerVoiceProvider.apiUrl('/api/users/feedback');
 			intercomServiceProvider.asyncLoading(true);
 		}
 	]);
