@@ -11,6 +11,7 @@ require.config({
 		'ngProgressLite': '../components/ngprogress-lite/ngprogress-lite',
 		'ngDialog': '../components/ngDialog/js/ngDialog',
 		'ngIntercom': '../components/angular-intercom/angular-intercom',
+		'ngCustomerVoice': '../components/ngCustomerVoice/js/ngCustomerVoice',
 		'angularLocalStorage': '../components/angularLocalStorage/src/angularLocalStorage',
 		'hashids': '../components/hashids/lib/hashids',
 		'seismo': '../components/seismo/seismo',
@@ -49,6 +50,9 @@ require.config({
 			deps: ['angular']
 		},
 		ngIntercom: {
+			deps: ['angular']
+		},
+		ngCustomerVoice: {
 			deps: ['angular']
 		},
 		angularLocalStorage: {

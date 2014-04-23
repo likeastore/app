@@ -24,24 +24,28 @@
 			closeByEscape: true
 		};
 
-		var globalID = 0, dialogsCount = 0;
+		var globalID = 0, dialogsCount = 0, closeByDocumentHandler;
 
 		this.$get = ['$document', '$templateCache', '$compile', '$q', '$http', '$rootScope', '$timeout',
 			function ($document, $templateCache, $compile, $q, $http, $rootScope, $timeout) {
 				var $body = $document.find('body');
 
 				var privateMethods = {
-					onDocumentKeyup: function (event) {
+					onDocumentKeydown: function (event) {
 						if (event.keyCode === 27) {
 							publicMethods.close();
 						}
 					},
 
 					closeDialog: function ($dialog) {
-						$dialog.unbind('click');
+						if (typeof window.Hammer !== 'undefined') {
+							window.Hammer($dialog[0]).off('tap', closeByDocumentHandler);
+						} else {
+							$dialog.unbind('click');
+						}
 
 						if (dialogsCount === 1) {
-							$body.unbind('keyup').removeClass('ngdialog-open');
+							$body.unbind('keydown').removeClass('ngdialog-open');
 						}
 
 						dialogsCount -= 1;
@@ -128,18 +132,24 @@
 							$body.addClass('ngdialog-open').append($dialog);
 
 							if (options.closeByEscape) {
-								$body.bind('keyup', privateMethods.onDocumentKeyup);
+								$body.bind('keydown', privateMethods.onDocumentKeydown);
 							}
 
 							if (options.closeByDocument) {
-								$dialog.bind('click', function (event) {
+								closeByDocumentHandler = function (event) {
 									var isOverlay = $el(event.target).hasClass('ngdialog-overlay');
 									var isCloseBtn = $el(event.target).hasClass('ngdialog-close');
 
 									if (isOverlay || isCloseBtn) {
 										publicMethods.close($dialog.attr('id'));
 									}
-								});
+								};
+
+								if (typeof window.Hammer !== 'undefined') {
+									window.Hammer($dialog[0]).on('tap', closeByDocumentHandler);
+								} else {
+									$dialog.bind('click', closeByDocumentHandler);
+								}
 							}
 
 							dialogsCount += 1;
@@ -208,7 +218,7 @@
 						data: attrs.ngDialogData,
 						showClose: attrs.ngDialogShowClose === 'false' ? false : true,
 						closeByDocument: attrs.ngDialogCloseByDocument === 'false' ? false : true,
-						closeByEscape: attrs.ngDialogCloseByKeyup === 'false' ? false : true
+						closeByEscape: attrs.ngDialogCloseByEscape === 'false' ? false : true
 					});
 				});
 			}

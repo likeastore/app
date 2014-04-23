@@ -133,6 +133,7 @@ This will close all open modals if there several of them open at the same time.
 ##### ``closeByDocument {Boolean}``
 
 It allows to close modals by clicking on overlay background, default ``true``.
+If [Hammer.js](https://github.com/EightMedia/hammer.js) is loaded, it will listen for ``tap`` instead of ``click``.
 
 ### ``.close(id)``
 
@@ -180,9 +181,15 @@ $rootScope.$on('ngDialog.opened', function (e, $dialog) {
 
 Currently ngDialog contains two default themes that show how easily you can create your own. Check ``example`` folder for demonstration purposes.
 
-## References
+## CDN
 
-Have a nice experience and use **ngDialog** in your project? Let us know! We appreciate any kind of feedback ;)
+ngDialog is available for public on [cdnjs](http://cdnjs.com/libraries/ng-dialog). Please use following urls for version 0.1.6.
+
+```html
+//cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.1.6/ng-dialog.min.css
+//cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.1.6/ng-dialog-theme-plain.min.css
+//cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.1.6/ng-dialog.min.js
+```
 
 ## Licence
 

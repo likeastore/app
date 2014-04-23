@@ -1,6 +1,6 @@
 {
   "name": "ngDialog",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "homepage": "https://github.com/likeastore/ngDialog",
   "description": "Modal dialogs and popups provider for Angular.js applications",
   "main": [
@@ -35,13 +35,13 @@
   "dependencies": {
     "angular": "~1"
   },
-  "_release": "0.1.5",
+  "_release": "0.1.7",
   "_resolution": {
     "type": "version",
-    "tag": "0.1.5",
-    "commit": "9706562a5d79f0a447ef3d562b342327abba1464"
+    "tag": "0.1.7",
+    "commit": "1aeda7c7beb4cebef27aef7ba849ca5b371dd7ea"
   },
   "_source": "git://github.com/likeastore/ngDialog.git",
-  "_target": "~0.1.0",
+  "_target": "*",
   "_originalSource": "ngDialog"
 }
