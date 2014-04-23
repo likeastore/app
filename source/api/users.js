@@ -60,17 +60,22 @@ function usersService(app) {
 		suggestPeopleToFollow
 	);
 
+	// DEPRICATED API: will be removed soon
 	app.post('/api/users/me/follow/:id',
 		middleware.validate.id('id'),
 		middleware.analytics.track('user followed'),
 		followUser
 	);
 
+	// DEPRICATED API: will be removed soon
 	app.del('/api/users/me/follow/:id',
 		middleware.validate.id('id'),
 		middleware.analytics.track('user unfollowed'),
 		unfollowUser
 	);
+
+	app.post('/api/users/feedback',
+		sendUsersFeedback);
 
 	function findUserByName(req, res, next) {
 		users.findByName(req.params.name, function (err, user) {
@@ -225,6 +230,16 @@ function usersService(app) {
 			req.user = user;
 
 			next();
+		});
+	}
+
+	function sendUsersFeedback(req, res, next) {
+		users.feedback(req.user, req.body.message, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.send(201);
 		});
 	}
 
