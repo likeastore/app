@@ -782,6 +782,8 @@ textarea.fld {
 	visibility: visible;
 	opacity: 1;
 	margin-top: 0;
+	max-height: 270px;
+	overflow-y: scroll;
 }
 
 .colls .coll-item {
@@ -2036,3 +2038,16 @@ textarea.fld {
 		width: 70%;
 	}
 }
+
+@media (max-height: 600px) {
+	.sidebar-nav .show-collections .colls {
+		max-height: 135px;
+	}
+}
+
+@media (max-height: 500px) {
+	.invite-friends {
+		display: none;
+	}
+}
+
