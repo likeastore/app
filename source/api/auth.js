@@ -105,7 +105,7 @@ function authService(app) {
 	}
 
 	function returnOk(req, res, next) {
-		res.send(200);
+		res.json(200, {});
 	}
 }
 

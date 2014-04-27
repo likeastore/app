@@ -782,8 +782,6 @@ textarea.fld {
 	visibility: visible;
 	opacity: 1;
 	margin-top: 0;
-	max-height: 270px;
-	overflow-y: scroll;
 }
 
 .colls .coll-item {
