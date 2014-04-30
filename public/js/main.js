@@ -21,8 +21,8 @@ require.config({
 		'underscore': '../components/underscore/underscore',
 		'moment': '../components/momentjs/moment',
 		'modernizr': '../components/modernizr/modernizr',
-		'facebook': '//connect.facebook.net/en_US/all',
-		'twttr': '//platform.twitter.com/widgets'
+		'facebook': '../components/utils/FB',
+		'twttr': '../components/utils/twttr'
 	},
 	shim: {
 		ngResource: {
