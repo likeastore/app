@@ -1,25 +1,42 @@
 var config = require('../../config');
-var db = require('../db')(config);
+var elastic = require('../elastic')(config);
+
+var pageSize = 30;
 
 function fullTextItemSearch (user, query, callback) {
 	if (!query) {
 		return callback(null, { data: [], nextPage: false });
 	}
 
-	db.items.runCommand('text', { search: query.toString(), filter: {user: user.email }}, function (err, doc) {
+	elastic.search({
+		index: 'items',
+		size: pageSize,
+		body: {
+			query: {
+				filtered: {
+					query: {
+						'query_string': {
+							query: query
+						},
+					},
+					filter: {
+						term: {
+							user: 'a@a.com'
+						}
+					}
+				}
+			}
+		}
+	}, function (err, resp) {
 		if (err) {
 			return callback(err);
 		}
 
-		if (doc && doc.errmsg) {
-			return callback(doc.errmsg);
-		}
-
-		var items = doc.results.map(function (result) {
-			return result.obj;
+		var items = resp.hits.hits.map(function (hit) {
+			return hit._source;
 		});
 
-		callback(null, { data: items, nextPage: false });
+		callback(null, {data: items, nextPage: items.length === pageSize});
 	});
 }
 

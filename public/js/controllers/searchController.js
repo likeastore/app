@@ -12,7 +12,6 @@ define(function (require) {
 
 		$scope.items = [];
 		$scope.nextPage = false;
-		appLoader.ready();
 
 		$scope.remove = function (id, index) {
 			api.delete({ resource: 'items', target: id }, function (res) {
@@ -20,6 +19,12 @@ define(function (require) {
 				$scope.items.splice(index, 1);
 			});
 		};
+
+		api.get({ resource: 'search', text: $routeParams.text }, function (res) {
+			$scope.items = $scope.items.concat(res.data);
+			$scope.nextPage = res.nextPage;
+			appLoader.ready();
+		});
 	}
 
 	return SearchController;

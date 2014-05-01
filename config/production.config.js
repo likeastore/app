@@ -6,6 +6,10 @@ var config = {
 	siteUrl: 'https://likeastore.com',
 	domain: '.likeastore.com',
 
+	elastic: {
+		connection: 'http://localhost:9200'
+	},
+
 	auth: {
 		cookieName: 'auth_token',
 		signKey: 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662',

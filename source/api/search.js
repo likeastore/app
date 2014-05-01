@@ -1,4 +1,5 @@
 var middleware = require('../middleware');
+var search = require('../models/search');
 
 function searchService(app) {
 	app.get('/api/search',
@@ -6,9 +7,14 @@ function searchService(app) {
 		searchItems);
 
 	function searchItems(req, res, next) {
-		res.send(503);
-	}
+		search.items(req.user, req.query.text, function (err, results) {
+			if (err) {
+				return next(err);
+			}
 
+			res.json(results);
+		});
+	}
 }
 
 module.exports = searchService;

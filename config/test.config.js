@@ -6,6 +6,10 @@ var config = {
 	siteUrl: 'http://localhost:3000',
 	domain: '',
 
+	elastic: {
+		connection: 'http://localhost:9200'
+	},
+
 	auth: {
 		signKey: 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662',
 		tokenTtl: 10080, // minutes, 7 days

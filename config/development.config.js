@@ -6,6 +6,10 @@ var config = {
 	siteUrl: 'http://localhost:3000',
 	domain: '',
 
+	elastic: {
+		connection: 'http://localhost:9200'
+	},
+
 	auth: {
 		cookieName: 'auth_token',
 		signKey: 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662',
