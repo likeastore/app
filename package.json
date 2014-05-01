@@ -39,7 +39,8 @@
     "grunt-myth": "~0.1.1",
     "grunt-contrib-watch": "~0.5.3",
     "nodalytics": "~1.0.0",
-    "grunt-hashres2": "~0.3.2"
+    "grunt-hashres2": "~0.3.2",
+    "elasticsearch": "~2.1.4"
   },
   "devDependencies": {
     "mocha": "~1.10.0",
