@@ -14,7 +14,7 @@ var itemOmitFields = ['collections', 'userData'];
 var collectionOmitFields = ['items'];
 var notifier = require('./notifier');
 
-var pageSize = 30;
+var pageSize = config.app.pageSize;
 
 function transform(collection) {
 	var clone = _.clone(collection);

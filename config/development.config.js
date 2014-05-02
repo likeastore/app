@@ -6,6 +6,10 @@ var config = {
 	siteUrl: 'http://localhost:3000',
 	domain: '',
 
+	app: {
+		pageSize: 32
+	},
+
 	elastic: {
 		connection: 'http://localhost:9200'
 	},

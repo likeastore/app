@@ -6,7 +6,7 @@ var networks = require('./networks');
 
 var ObjectId = require('mongojs').ObjectId;
 
-var pageSize = 30;
+var pageSize = config.app.pageSize;
 
 var itemsCountCache;
 var itemsCountCacheTTL = 5;

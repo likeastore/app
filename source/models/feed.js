@@ -2,7 +2,7 @@ var _ = require('underscore');
 var config = require('../../config');
 var db = require('../db')(config);
 
-var pageSize = 30;
+var pageSize = config.app.pageSize;
 
 function forUser(user, page, callback) {
 	var follows = user.followCollections;

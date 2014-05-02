@@ -1,7 +1,7 @@
 var config = require('../../config');
 var elastic = require('../elastic')(config);
 
-var pageSize = 30;
+var pageSize = config.app.pageSize;
 
 function fullTextItemSearch (user, query, callback) {
 	if (!query) {

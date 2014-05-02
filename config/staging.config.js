@@ -6,6 +6,10 @@ var config = {
 	siteUrl: 'https://stage.likeastore.com',
 	domain: '.likeastore.com',
 
+	app: {
+		pageSize: 32
+	},
+
 	elastic: {
 		connection: 'http://stage.likeastore.com:9200'
 	},
