@@ -16,7 +16,8 @@ function fullTextItemSearch (user, query, callback) {
 				filtered: {
 					query: {
 						'query_string': {
-							query: query
+							query: query,
+							default_operator: 'and'
 						},
 					},
 					filter: {
