@@ -16,13 +16,12 @@ function fullTextItemSearch (user, query, callback) {
 				filtered: {
 					query: {
 						'query_string': {
-							query: query,
-							default_operator: 'and'
+							query: query
 						},
 					},
 					filter: {
 						term: {
-							user: 'a@a.com'
+							user: user.email
 						}
 					}
 				}
