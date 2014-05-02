@@ -11,7 +11,7 @@ var config = {
 	},
 
 	elastic: {
-		connection: 'http://localhost:9200'
+		connection: 'http://search.likeastore.com:9200'
 	},
 
 	auth: {
