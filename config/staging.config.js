@@ -7,7 +7,7 @@ var config = {
 	domain: '.likeastore.com',
 
 	elastic: {
-		connection: 'http://localhost:9200'
+		connection: 'http://stage.likeastore.com:9200'
 	},
 
 	auth: {
