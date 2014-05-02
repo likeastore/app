@@ -7,7 +7,7 @@ function searchService(app) {
 		searchItems);
 
 	function searchItems(req, res, next) {
-		search.items(req.user, req.query.text, function (err, results) {
+		search.items(req.user, req.query.text, req.query.page, function (err, results) {
 			if (err) {
 				return next(err);
 			}

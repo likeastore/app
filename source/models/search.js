@@ -3,13 +3,17 @@ var elastic = require('../elastic')(config);
 
 var pageSize = config.app.pageSize;
 
-function fullTextItemSearch (user, query, callback) {
+function fullTextItemSearch (user, query, page, callback) {
 	if (!query) {
 		return callback(null, { data: [], nextPage: false });
 	}
 
+	page = page || 1;
+
+
 	elastic.search({
 		index: 'items',
+		from: (page - 1) * pageSize,
 		size: pageSize,
 		body: {
 			query: {
