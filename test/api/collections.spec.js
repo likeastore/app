@@ -752,7 +752,7 @@ describe('collections.spec.js', function () {
 				});
 
 				it('should return all items on first page', function () {
-					expect(results.data.length).to.equal(30);
+					expect(results.data.length).to.equal(32);
 					expect(results.nextPage).to.equal(true);
 				});
 
@@ -770,7 +770,7 @@ describe('collections.spec.js', function () {
 					});
 
 					it('should return all items on second page', function () {
-						expect(results.data.length).to.equal(30);
+						expect(results.data.length).to.equal(32);
 						expect(results.nextPage).to.equal(true);
 					});
 				});
@@ -789,7 +789,7 @@ describe('collections.spec.js', function () {
 					});
 
 					it('should return all items on third page', function () {
-						expect(results.data.length).to.equal(7);
+						expect(results.data.length).to.equal(3);
 						expect(results.nextPage).to.equal(false);
 					});
 				});

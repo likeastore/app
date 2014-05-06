@@ -55,7 +55,7 @@ describe('inbox.spec.js', function () {
 			});
 
 			it('should return first page 30 results', function () {
-				expect(results.data.length).to.equal(30);
+				expect(results.data.length).to.equal(32);
 			});
 
 			it('should have next page', function () {
