@@ -4,11 +4,13 @@ var middleware = require('../middleware');
 
 function itemsService(app) {
 	app.get('/api/items',
+		middleware.paging(),
 		getItems
 	);
 
 	app.get('/api/items/user/:id',
 		middleware.validate.id('id'),
+		middleware.paging(),
 		getUserItems
 	);
 
@@ -18,6 +20,7 @@ function itemsService(app) {
 	);
 
 	app.get('/api/items/inbox',
+		middleware.paging(),
 		getInbox
 	);
 
@@ -26,6 +29,7 @@ function itemsService(app) {
 	);
 
 	app.get('/api/items/:type',
+		middleware.paging(),
 		getItemsByType
 	);
 
@@ -45,7 +49,7 @@ function itemsService(app) {
 	);
 
 	function getItems (req, res, next) {
-		items.getAllItems(req.user, req.query.page, function (err, items) {
+		items.getAllItems(req.user, req.paging, function (err, items) {
 			if (err) {
 				return next({message: 'failed to get items', user: req.user, err: err, status: err.status || 500});
 			}
@@ -64,7 +68,7 @@ function itemsService(app) {
 				return next({message: 'user not found', user: req.params.id, err: err, status: 404});
 			}
 
-			items.getAllItems(user, req.query.page, function (err, items) {
+			items.getAllItems(user, req.paging, function (err, items) {
 				if (err) {
 					return next({message: 'failed to get items for user', byUser: req.user, forUser: req.params.id, err: err, status: err.status || 500});
 				}
@@ -96,7 +100,7 @@ function itemsService(app) {
 
 	function getItemsByType (req, res, next) {
 		var type = req.params.type;
-		items.getItemsByType(req.user, type, req.query.page, function (err, items) {
+		items.getItemsByType(req.user, type, req.paging, function (err, items) {
 			if (err) {
 				return next({message: 'failed to get items for user by type', user: req.user, type: type, error: err, status: err.status || 500});
 			}
@@ -107,7 +111,7 @@ function itemsService(app) {
 
 	function getInbox(req, res, next) {
 		var user = req.user;
-		items.getInbox(user, req.query.page, function (err, items) {
+		items.getInbox(user, req.paging, function (err, items) {
 			if (err) {
 				return next({message: 'failed to get items inbox', user: req.user, err: err, status: err.status || 500});
 			}
@@ -118,7 +122,7 @@ function itemsService(app) {
 
 	function getInboxCount(req, res, next) {
 		var user = req.user;
-		items.getInboxCount(user, req.query.page, function (err, result) {
+		items.getInboxCount(user, function (err, result) {
 			if (err) {
 				return next({message: 'failed to get items inbox', user: req.user, err: err, status: err.status || 500});
 			}

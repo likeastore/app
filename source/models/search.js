@@ -1,20 +1,17 @@
 var config = require('../../config');
 var elastic = require('../elastic')(config);
 
-var pageSize = config.app.pageSize;
-
-function fullTextItemSearch (user, query, page, callback) {
+function fullTextItemSearch (user, query, paging, callback) {
 	if (!query) {
 		return callback(null, { data: [], nextPage: false });
 	}
 
-	page = page || 1;
-
+	var page = paging.page || 1;
 
 	elastic.search({
 		index: 'items',
-		from: (page - 1) * pageSize,
-		size: pageSize,
+		from: (page - 1) * paging.pageSize,
+		size: paging.pageSize,
 		body: {
 			query: {
 				filtered: {
@@ -40,7 +37,7 @@ function fullTextItemSearch (user, query, page, callback) {
 			return hit._source;
 		});
 
-		callback(null, {data: items, nextPage: items.length === pageSize});
+		callback(null, {data: items, nextPage: items.length === paging.pageSize});
 	});
 }
 

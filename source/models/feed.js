@@ -2,9 +2,7 @@ var _ = require('underscore');
 var config = require('../../config');
 var db = require('../db')(config);
 
-var pageSize = config.app.pageSize;
-
-function forUser(user, page, callback) {
+function forUser(user, paging, callback) {
 	var follows = user.followCollections;
 
 	if (!follows || follows.length === 0) {
@@ -15,7 +13,7 @@ function forUser(user, page, callback) {
 		return f.id;
 	});
 
-	page = page || 1;
+	var page = paging.page || 1;
 
 	db.collections.aggregate([
 		{
@@ -40,17 +38,17 @@ function forUser(user, page, callback) {
 			$sort: { 'item.added': -1 }
 		},
 		{
-			$skip: (page - 1) * pageSize
+			$skip: (page - 1) * paging.pageSize
 		},
 		{
-			$limit: pageSize
+			$limit: paging.pageSize
 		}
 	], function (err, items) {
 		items = (items && items.map(function (i) {
 			return _.extend(i.item, {collection: i.collection});
 		})) || [];
 
-		callback(null, {data: items, nextPage: items.length === pageSize});
+		callback(null, {data: items, nextPage: items.length === paging.pageSize});
 	});
 }
 

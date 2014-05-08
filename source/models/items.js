@@ -6,8 +6,6 @@ var networks = require('./networks');
 
 var ObjectId = require('mongojs').ObjectId;
 
-var pageSize = config.app.pageSize;
-
 var itemsCountCache;
 var itemsCountCacheTTL = 5;
 
@@ -39,15 +37,15 @@ function ensureNetworksEnabled(user, callback) {
 	});
 }
 
-function getAllItems(user, page, callback) {
+function getAllItems(user, paging, callback) {
 	ensureNetworksEnabled(user, function (err, enabled) {
 		if (err) {
 			return callback(err);
 		}
 
-		var query = db.items.find({ user: user.email, hidden: {$exists: false}, type: {$in: enabled} }).limit(pageSize);
-		if (page) {
-			query = query.skip(pageSize * (page - 1));
+		var query = db.items.find({ user: user.email, hidden: {$exists: false}, type: {$in: enabled} }).limit(paging.pageSize);
+		if (paging.page) {
+			query = query.skip(paging.pageSize * (paging.page - 1));
 		}
 
 		query.sort({ created: -1 }, returnResults);
@@ -57,7 +55,7 @@ function getAllItems(user, page, callback) {
 				return callback(err);
 			}
 
-			callback(null, {data: items, nextPage: items.length === pageSize});
+			callback(null, {data: items, nextPage: items.length === paging.pageSize});
 		}
 	});
 }
@@ -90,7 +88,7 @@ function getItemsCount(callback) {
 	}
 }
 
-function getItemsByType(user, type, page, callback) {
+function getItemsByType(user, type, paging, callback) {
 	ensureNetworkEnabled(user, type, function (err, enabled) {
 		if (err) {
 			return callback(err);
@@ -100,9 +98,9 @@ function getItemsByType(user, type, page, callback) {
 			return callback({message: 'network disabled for user', status: 404});
 		}
 
-		var query = db.items.find({ user: user.email, type: type, hidden: {$exists: false} }).limit(pageSize);
-		if (page) {
-			query = query.skip(pageSize * (page - 1));
+		var query = db.items.find({ user: user.email, type: type, hidden: {$exists: false} }).limit(paging.pageSize);
+		if (paging.page) {
+			query = query.skip(paging.pageSize * (paging.page - 1));
 		}
 
 		query.sort({ created: -1 }, returnResults);
@@ -112,12 +110,12 @@ function getItemsByType(user, type, page, callback) {
 				return callback(err);
 			}
 
-			callback(null, {data: items, nextPage: items.length === pageSize});
+			callback(null, {data: items, nextPage: items.length === paging.pageSize});
 		}
 	});
 }
 
-function getInbox(user, page, callback) {
+function getInbox(user, paging, callback) {
 	ensureNetworksEnabled(user, function (err, enabled) {
 		if (err) {
 			return callback(err);
@@ -128,9 +126,9 @@ function getInbox(user, page, callback) {
 			criteria.date = { $gt: user.loginPreviousDate };
 		}
 
-		var query = db.items.find(criteria).limit(pageSize);
-		if (page) {
-			query = query.skip(pageSize * (page - 1));
+		var query = db.items.find(criteria).limit(paging.pageSize);
+		if (paging.page) {
+			query = query.skip(paging.pageSize * (paging.page - 1));
 		}
 
 		query.sort({ created: -1 }, returnResults);
@@ -140,12 +138,12 @@ function getInbox(user, page, callback) {
 				return callback(err);
 			}
 
-			callback(null, {data: items, nextPage: items.length === pageSize});
+			callback(null, {data: items, nextPage: items.length === paging.pageSize});
 		}
 	});
 }
 
-function getInboxCount(user, page, callback) {
+function getInboxCount(user, callback) {
 	ensureNetworksEnabled(user, function (err, enabled) {
 		if (err) {
 			return callback(err);

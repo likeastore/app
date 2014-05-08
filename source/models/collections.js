@@ -14,8 +14,6 @@ var itemOmitFields = ['collections', 'userData'];
 var collectionOmitFields = ['items'];
 var notifier = require('./notifier');
 
-var pageSize = config.app.pageSize;
-
 function transform(collection) {
 	var clone = _.clone(collection);
 	var count = (collection.items && collection.items.length) || 0;
@@ -225,12 +223,12 @@ function removeItem(user, collection, item, callback) {
 	}
 }
 
-function findItems(user, collection, page, callback) {
+function findItems(user, collection, paging, callback) {
 	if (!collection) {
 		return callback({message: 'missing collection id', status: 412});
 	}
 
-	page = page || 1;
+	var page = paging.page || 1;
 
 	db.collections.aggregate([
 		{
@@ -255,17 +253,17 @@ function findItems(user, collection, page, callback) {
 			$sort: { 'item.added': -1 }
 		},
 		{
-			$skip: pageSize * (page - 1)
+			$skip: paging.pageSize * (page - 1)
 		},
 		{
-			$limit: pageSize
+			$limit: paging.pageSize
 		}
 	], function (err, items) {
 		items = (items && items.map(function (i) {
 			return _.extend(i.item, {collection: i.collection});
 		})) || [];
 
-		callback(null, {data: items, nextPage: items.length === pageSize});
+		callback(null, {data: items, nextPage: items.length === paging.pageSize});
 	});
 }
 

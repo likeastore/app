@@ -34,6 +34,7 @@ function collectionsService(app) {
 		removeFromCollection);
 
 	app.get('/api/collections/:id/items',
+		middleware.paging(),
 		getCollectionItems);
 
 	app.patch('/api/collections/:id',
@@ -135,7 +136,7 @@ function collectionsService(app) {
 	}
 
 	function getCollectionItems(req, res, next) {
-		collections.findItems(req.user, req.params.id, req.query.page, function (err, items) {
+		collections.findItems(req.user, req.params.id, req.paging, function (err, items) {
 			if (err) {
 				return next(err);
 			}

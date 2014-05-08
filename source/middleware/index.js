@@ -7,5 +7,6 @@ module.exports = {
 	networks: require('./networks'),
 	analytics: require('./analytics'),
 	ga: require('./ga'),
-	validate: require('./validate')
+	validate: require('./validate'),
+	paging: require('./paging')
 };

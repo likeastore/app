@@ -1,12 +1,14 @@
 var feed = require('../models/feed');
+var middleware = require('../middleware');
 
 function feedService(app) {
 	app.get('/api/feed',
+		middleware.paging(),
 		getFeed
 	);
 
 	function getFeed(req, res, next) {
-		feed.forUser(req.user, req.query.page, function (err, feed) {
+		feed.forUser(req.user, req.paging, function (err, feed) {
 			if (err) {
 				return next(err);
 			}
