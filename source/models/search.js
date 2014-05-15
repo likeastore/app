@@ -42,8 +42,6 @@ function fullTextItemSearch (user, query, paging, callback) {
 		}
 
 		var items = resp.hits.hits.map(function (hit) {
-			console.log(hit.highlight);
-
 			return _.omit(_.extend(hit._source, tranform(hit.highlight)), 'userData');
 		});
 
