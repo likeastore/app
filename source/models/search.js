@@ -51,15 +51,15 @@ function fullTextItemSearch (user, query, paging, callback) {
 	function tranform(highlight) {
 		var transformed = {};
 
-		if (highlight.description && highlight.description.length > 0) {
+		if (highlight && highlight.description && highlight.description.length > 0) {
 			transformed.descriptionHtml = highlight.description[0];
 		}
 
-		if (highlight.title && highlight.title.length > 0) {
+		if (highlight && highlight.title && highlight.title.length > 0) {
 			transformed.titleHtml = highlight.title[0];
 		}
 
-		if (highlight.source && highlight.source.length > 0) {
+		if (highlight && highlight.source && highlight.source.length > 0) {
 			transformed.sourceHtml = highlight.source[0];
 		}
 
