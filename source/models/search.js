@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var config = require('../../config');
 var elastic = require('../elastic')(config);
 
@@ -25,6 +26,13 @@ function fullTextItemSearch (user, query, paging, callback) {
 							user: user.email
 						}
 					}
+				},
+			},
+			highlight: {
+				fields: {
+					description: { },
+					title: { },
+					source: { }
 				}
 			}
 		}
@@ -34,11 +42,29 @@ function fullTextItemSearch (user, query, paging, callback) {
 		}
 
 		var items = resp.hits.hits.map(function (hit) {
-			return hit._source;
+			return _.omit(_.extend(hit._source, tranform(hit.highlight)), 'userData');
 		});
 
 		callback(null, {data: items, nextPage: items.length === paging.pageSize});
 	});
+
+	function tranform(highlight) {
+		var transformed = {};
+
+		if (highlight.description && highlight.description.length > 0) {
+			transformed.descriptionHtml = highlight.description[0];
+		}
+
+		if (highlight.title && highlight.title.length > 0) {
+			transformed.titleHtml = highlight.title[0];
+		}
+
+		if (highlight.source && highlight.source.length > 0) {
+			transformed.sourceHtml = highlight.source[0];
+		}
+
+		return transformed;
+	}
 }
 
 module.exports = {
