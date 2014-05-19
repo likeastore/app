@@ -17,7 +17,7 @@ function fullTextItemSearch (user, query, paging, callback) {
 			query: {
 				filtered: {
 					query: {
-						'query_string': {
+						'simple_query_string': {
 							query: query
 						},
 					},
