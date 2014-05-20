@@ -105,7 +105,7 @@ function collectionsService(app) {
 				return next(err);
 			}
 
-			res.send(200);
+			res.json(200, {});
 		});
 	}
 
@@ -118,7 +118,7 @@ function collectionsService(app) {
 				return next(err);
 			}
 
-			res.send(201);
+			res.json(201, {});
 		});
 	}
 
@@ -131,7 +131,7 @@ function collectionsService(app) {
 				return next(err);
 			}
 
-			res.send(200);
+			res.json(200, {});
 		});
 	}
 
@@ -161,7 +161,7 @@ function collectionsService(app) {
 				return next(err);
 			}
 
-			res.send(201);
+			res.json(201, {});
 		});
 	}
 
@@ -171,7 +171,7 @@ function collectionsService(app) {
 				return next(err);
 			}
 
-			res.send(200);
+			res.json(200, {});
 		});
 	}
 
