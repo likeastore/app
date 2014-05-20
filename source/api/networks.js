@@ -197,7 +197,7 @@ function networksService(app) {
 	function getAllNetworks(req, res) {
 		networks.findNetworks(req.user, function (err, nets) {
 			if (err) {
-				return res.send(500, err);
+				return res.json(500, err);
 			}
 
 			res.json(nets);
@@ -207,9 +207,9 @@ function networksService(app) {
 	function deleteNetwork(req, res) {
 		networks.removeNetwork(req.user, req.params.network, function (err) {
 			if (err) {
-				return res.send(500, err);
+				return res.json(500, err);
 			}
-			res.send(200);
+			res.json(200, {});
 		});
 	}
 
@@ -222,17 +222,26 @@ function networksService(app) {
 	}
 
 	function redirectToSettings(req, res) {
-		res.redirect(config.applicationUrl + '/settings');
+		if (isIOSApp(req.headers)) {
+			res.redirect(config.siteUrl + '/blank.html');
+		} else {
+			res.redirect(config.applicationUrl + '/settings');
+		}
 	}
 
 	function getDribbbleUser(req, res) {
 		networks.getDribbbleUser(req.params.username, function (err, user) {
 			if (err) {
-				return res.send(404, err);
+				return res.json(404, err);
 			}
 			res.json(user);
 		});
 	}
+}
+
+// static
+function isIOSApp(headers) {
+	return (/((iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)|Likeastore.*iOS)/i).test(headers['user-agent']);
 }
 
 module.exports = networksService;
