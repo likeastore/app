@@ -223,7 +223,7 @@ function networksService(app) {
 
 	function redirectToSettings(req, res) {
 		if (isIOSApp(req.headers)) {
-			res.redirect(config.siteUrl + '/blank.html');
+			res.redirect(config.siteUrl + '/blank.html?connected');
 		} else {
 			res.redirect(config.applicationUrl + '/settings');
 		}
