@@ -17,7 +17,7 @@ var config = {
 	auth: {
 		cookieName: 'auth_token',
 		signKey: 'c88afe1f6aa4b3c7982695ddd1cdd200bcd96662',
-		tokenTtl: 10080, // minutes, 7 days
+		tokenTtl: 525600, // minutes, 365 days
 		secure: false
 	},
 
