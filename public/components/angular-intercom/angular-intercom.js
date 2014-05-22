@@ -52,7 +52,7 @@
             // Resolve the deferred promise
             // as the Intercom object on the window
             deferred.resolve($window.Intercom);
-          });
+          }, 1000);
         };
         createScript($document[0], onScriptLoad);
       }
