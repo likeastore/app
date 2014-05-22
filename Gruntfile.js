@@ -21,7 +21,9 @@ module.exports = function (grunt) {
 					mainConfigFile: "public/js/main.js",
 					name: 'main',
 					out: "public/build/main.js",
-					optimize: 'uglify2'
+					optimize: 'uglify2',
+					preserveLicenseComments: false,
+					generateSourceMaps: true
 				}
 			},
 			css: {
