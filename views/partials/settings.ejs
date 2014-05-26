@@ -11,6 +11,10 @@
 			ng-click="toggleConfig()"
 			ng-class="{active: !showConfigTab}">Personal</div>
 		<a href="/suggest" class="tab">Find friends</a>
+		<a ng-show="extension"
+			ng-click="installPlugin()"
+			ng-href="{{extension.url}}"
+			class="tab highlight" target="_blank">{{browser.name}} extension</a>
 	</div>
 
 	<ul ng-show="showConfigTab" class="right-block-wrap animated fadeIn">

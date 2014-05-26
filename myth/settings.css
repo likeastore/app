@@ -90,6 +90,10 @@
 	text-decoration: none;
 }
 
+.settings .tabs .tab.highlight {
+	color: var(pink);
+}
+
 .settings .right-block-wrap {
 	width: 100%;
 }

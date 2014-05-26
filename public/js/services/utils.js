@@ -2,6 +2,7 @@ define(function (require) {
 	'use strict';
 
 	var bowser = require('bowser');
+	var extension = require('config').extension;
 
 	return function ($rootScope, $document, $location) {
 		return function () {
@@ -9,6 +10,8 @@ define(function (require) {
 				name: bowser.name,
 				version: bowser.version
 			};
+
+			$rootScope.extension = extension[bowser.name.toLowerCase()];
 
 			$rootScope.switchMenu = function (url) {
 				$location.url(url);

@@ -46,6 +46,11 @@ define(function () {
 				$scope.editModes.website = false;
 			});
 		};
+
+		$scope.installPlugin = function () {
+			$analytics.eventTrack('go to extension via settings');
+		};
+
 		$rootScope.$watch('user', function (user) {
 			if (!user) {
 				return;

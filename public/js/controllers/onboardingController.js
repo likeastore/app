@@ -1,9 +1,6 @@
 define(function (require) {
 	'use strict';
 
-	var bowser = require('bowser');
-	var extension = require('config').extension;
-
 	function onboardingController ($scope, $document, $window, $rootScope, $location, api, $analytics) {
 		var $body = $document.find('body');
 		var delayedWarning;
@@ -17,8 +14,6 @@ define(function (require) {
 				$scope.showPreviewHelp = true;
 			}
 		});
-
-		$scope.extension = extension[bowser.name.toLowerCase()];
 
 		$scope.slide1 = true;
 		$scope.currentSlide = 1;
@@ -63,7 +58,7 @@ define(function (require) {
 		};
 
 		$scope.installPlugin = function () {
-			$analytics.eventTrack('installed extension via onboarding');
+			$analytics.eventTrack('go to extension via onboarding');
 		};
 	}
 
