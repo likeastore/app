@@ -23,6 +23,7 @@
     "angular-moment": "~0.6.0",
     "modernizr": "~2.7.1",
     "angular-deckgrid": "~0.4.1",
-    "ngCustomerVoice": "~0.1.1"
+    "ngCustomerVoice": "~0.1.1",
+    "bowser": "~0.7.1"
   }
 }

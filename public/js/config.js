@@ -10,6 +10,16 @@ define(function () {
 			limit: 30
 		},
 
+		extension: {
+			chrome: {
+				url: 'https://chrome.google.com/webstore/detail/likeastore/einhadilfmpdfmmjnnppomcccmlohjad'
+			},
+
+			firefox: {
+				url: 'https://addons.mozilla.org/en-US/firefox/addon/likeastore-social-bookmarking-/'
+			}
+		},
+
 		colors: [
 			{ name: 'red', hex: '#e74c3c' },
 			{ name: 'orange', hex: '#f39c12' },

@@ -1,5 +1,8 @@
-define(function () {
+define(function (require) {
 	'use strict';
+
+	var bowser = require('bowser');
+	var extension = require('config').extension;
 
 	function onboardingController ($scope, $document, $window, $rootScope, $location, api, $analytics) {
 		var $body = $document.find('body');
@@ -14,6 +17,8 @@ define(function () {
 				$scope.showPreviewHelp = true;
 			}
 		});
+
+		$scope.extension = extension[bowser.name.toLowerCase()];
 
 		$scope.slide1 = true;
 		$scope.currentSlide = 1;
@@ -55,6 +60,10 @@ define(function () {
 
 		$scope.followOnTwitter = function () {
 			$analytics.eventTrack('followed on twitter via onboarding');
+		};
+
+		$scope.installPlugin = function () {
+			$analytics.eventTrack('installed extension via onboarding');
 		};
 	}
 

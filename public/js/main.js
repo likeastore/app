@@ -21,6 +21,7 @@ require.config({
 		'underscore': '../components/underscore/underscore',
 		'moment': '../components/momentjs/moment',
 		'modernizr': '../components/modernizr/modernizr',
+		'bowser': '../components/bowser/bowser',
 		'facebook': '../components/utils/FB',
 		'twttr': '../components/utils/twttr'
 	},

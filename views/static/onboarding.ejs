@@ -44,8 +44,29 @@
 
 			<div class="cornered-buttons">
 				<div class="btn previous-btn" ng-click="goToSlide(2)">Previous</div>
-				<div class="btn ready-btn" ng-click="finish()">I'm ready!</div>
+				<div ng-hide="extension" class="btn ready-btn" ng-click="finish()">I'm ready!</div>
+				<div ng-show="extension" class="btn next-btn" ng-click="goToSlide(4)">Next</div>
 			</div>
+
+			<div ng-hide="extension" class="follow-buttons animated bounceInRight">
+				<a href="https://twitter.com/intent/follow?screen_name=likeastore" class="follow-btn twee" ng-click="followOnTwitter()">
+					<i class="font-icon twitter-icon icon"></i> Follow on Twitter
+				</a>
+				<a href="" class="follow-btn fb" ng-click="likeOnFacebook()">
+					<i class="font-icon facebook-icon icon"></i> Like on Facebook
+				</a>
+			</div>
+		</div>
+
+		<div ng-show="slide4" class="inner-box slide4 animated fadeIn">
+			<a ng-href="{{extension.url}}" target="_blank" ng-click="installPlugin()">
+				<img src="/img/extension-screen.png" class="extension-screen">
+				<img ng-src="/img/{{browser.name}}-extension-btn.png" class="extension-btn">
+			</a>
+			<div class="text">Improve your search experience with our browser extension. Find relevant information much faster inside your favorites.</div>
+
+			<div class="btn previous-btn" ng-click="goToSlide(3)">Previous</div>
+			<div class="btn ready-btn" ng-click="finish()">I'm ready!</div>
 
 			<div class="follow-buttons animated bounceInRight">
 				<a href="https://twitter.com/intent/follow?screen_name=likeastore" class="follow-btn twee" ng-click="followOnTwitter()">

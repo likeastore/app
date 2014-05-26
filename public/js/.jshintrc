@@ -5,6 +5,7 @@
 		"afterEach",
 		"before",
 		"beforeEach",
+		"bowser",
 		"chai",
 		"describe",
 		"expect",

@@ -1,8 +1,15 @@
-define(function () {
+define(function (require) {
 	'use strict';
+
+	var bowser = require('bowser');
 
 	return function ($rootScope, $document, $location) {
 		return function () {
+			$rootScope.browser = {
+				name: bowser.name,
+				version: bowser.version
+			};
+
 			$rootScope.switchMenu = function (url) {
 				$location.url(url);
 			};
