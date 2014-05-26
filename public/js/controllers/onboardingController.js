@@ -6,12 +6,25 @@ define(function (require) {
 		var delayedWarning;
 
 		$rootScope.$watch('user', function (value) {
-			if (value && !value.watchedPreview && $window.innerWidth >= 920) {
+			if ($window.innerWidth < 920) {
+				return;
+			}
+			if (!value) {
+				return;
+			}
+
+			if (!value.watchedPreview) {
 				if (value.warning) {
 					delayedWarning = true;
 					$rootScope.user.warning = false;
 				}
 				$scope.showPreviewHelp = true;
+			} else if (value.watchedPreview && $rootScope.extension && !value.watchedOnlyExtension) {
+				if (value.warning) {
+					delayedWarning = true;
+					$rootScope.user.warning = false;
+				}
+				$scope.showOnlyExtensionHelp = true;
 			}
 		});
 
@@ -36,11 +49,24 @@ define(function (require) {
 		};
 
 		$scope.finish = function () {
-			api.patch({ resource: 'users', target: 'me' }, { watchedPreview: true }, function () {
+			api.patch({ resource: 'users', target: 'me' }, { watchedPreview: true, watchedOnlyExtension: true }, function () {
 				$body.removeClass('sidebar-active');
 				$location.url('/');
 				$rootScope.user.watchedPreview = true;
 				$scope.showPreviewHelp = false;
+
+				if (delayedWarning) {
+					$rootScope.user.warning = true;
+				}
+			});
+		};
+
+		$scope.finishWhenOnlyExtension = function () {
+			api.patch({ resource: 'users', target: 'me' }, { watchedOnlyExtension: true }, function () {
+				$body.removeClass('sidebar-active');
+				$location.url('/');
+				$rootScope.user.watchedPreview = true;
+				$scope.showOnlyExtensionHelp = false;
 
 				if (delayedWarning) {
 					$rootScope.user.warning = true;

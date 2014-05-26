@@ -79,3 +79,24 @@
 		</div>
 	</div>
 </section>
+
+<section class="first-time-box" ng-show="showOnlyExtensionHelp" ng-controller="onboardingController">
+	<div ng-show="slide1" class="inner-box slide4 animated fadeIn">
+			<a ng-href="{{extension.url}}" target="_blank" ng-click="installPlugin()">
+				<img src="/img/extension-screen.png" class="extension-screen">
+				<img ng-src="/img/{{browser.name}}-extension-btn.png" class="extension-btn">
+			</a>
+			<div class="text">Improve your search experience with our browser extension. Find relevant information much faster inside your favorites.</div>
+
+			<div class="btn ready-btn" ng-click="finishWhenOnlyExtension()">I'm ready!</div>
+
+			<div class="follow-buttons animated bounceInRight">
+				<a href="https://twitter.com/intent/follow?screen_name=likeastore" class="follow-btn twee" ng-click="followOnTwitter()">
+					<i class="font-icon twitter-icon icon"></i> Follow on Twitter
+				</a>
+				<a href="" class="follow-btn fb" ng-click="likeOnFacebook()">
+					<i class="font-icon facebook-icon icon"></i> Like on Facebook
+				</a>
+			</div>
+		</div>
+</section>

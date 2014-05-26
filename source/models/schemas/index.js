@@ -88,6 +88,10 @@ exports.schemas = {
 				required: false,
 				type: 'boolean'
 			},
+			'watchedOnlyExtension': {
+				required: false,
+				type: 'boolean'
+			},
 			'blockNetworks': {
 				required: false,
 				type: 'boolean'
