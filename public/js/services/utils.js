@@ -7,7 +7,7 @@ define(function (require) {
 	return function ($rootScope, $document, $location) {
 		return function () {
 			$rootScope.browser = {
-				name: bowser.name,
+				name: bowser.name.toLowerCase(),
 				version: bowser.version
 			};
 
