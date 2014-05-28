@@ -26,6 +26,14 @@ bootstrap.app(function (err) {
 
 	var app = express();
 
+	var cors = function (req, res, next) {
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+		res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-Access-Token, X-Revision, Content-Type');
+
+		next();
+	};
+
 	app.configure(function(){
 		app.set('port', process.env.PORT || 3001);
 		app.engine('ejs', engine);
@@ -38,6 +46,7 @@ bootstrap.app(function (err) {
 		app.use(express.cookieParser());
 		app.use(middleware.noCache());
 		app.use(middleware.errors.logHttpErrors());
+		app.use(cors);
 		app.use(app.router);
 	});
 
