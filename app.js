@@ -27,7 +27,7 @@ bootstrap.app(function (err) {
 	var app = express();
 
 	var cors = function (req, res, next) {
-		res.header('Access-Control-Allow-Origin', 'https://*.google.*');
+		res.header('Access-Control-Allow-Origin', req.headers.origin !== 'null' && req.headers.origin || '*');
 		res.header('Access-Control-Allow-Credentials', true);
 		res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 		res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-Access-Token, X-Revision, Content-Type');
