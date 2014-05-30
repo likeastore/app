@@ -17,6 +17,10 @@ define(function () {
 
 			firefox: {
 				url: 'https://addons.mozilla.org/en-US/firefox/addon/likeastore-social-bookmarking-/'
+			},
+
+			safari: {
+				url: 'http://addons.likeastore.com/files/safari/likeastore.safariextz'
 			}
 		},
 
