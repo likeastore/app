@@ -275,5 +275,65 @@ describe('items.spec.js', function () {
 				expect(results.data[0].user).to.equal(user.email);
 			});
 		});
+
+		describe('when flagging item with inappropriate content', function () {
+			var flaggedBy, flaggedByItem, itemToValidate, anotherUser, anotherHeaders;
+
+			beforeEach(function (done) {
+				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
+					token = accessToken;
+					user = createdUser;
+					headers = {'X-Access-Token': accessToken};
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestNetworks(user, {}, done);
+			});
+
+			beforeEach(function (done) {
+				testUtils.createTestItems(user, function (err, itms) {
+					items = itms;
+					itemToValidate = itms[0];
+					done(err);
+				});
+			});
+
+			beforeEach(function (done) {;
+				request.post({url: url + '/' + itemToValidate._id + '/flag', body: {'reason': 'Spam'}, headers: headers, json: true}, function (err, resp, body) {
+					response = resp;
+					done(err);
+				});
+			});
+
+			it('should respond with 200 (ok)', function() {
+				expect(response.statusCode).to.equal(200);
+			});
+
+			describe('when getting flagged item', function () {
+				beforeEach(function (done) {
+					request.get({url: url + '/id/' + itemToValidate._id, headers: headers, json: true}, function (err, resp, body) {
+						response = resp;
+						flaggedBy = body.flaggedBy;
+						flaggedByItem = flaggedBy[0];
+						done(err);
+					});
+				});
+
+				it('should have array of users who reported', function() {
+					expect(flaggedBy).to.be.an('array');
+				});
+
+				it('should contain valid user email', function() {
+					expect(flaggedByItem.email).to.equal(user.email);
+				});
+
+				it('should contain valid user id', function() {
+					expect(flaggedByItem.id).to.equal(user._id.toString());
+				});
+			});
+
+		});
 	});
 });

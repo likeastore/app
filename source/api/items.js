@@ -43,6 +43,11 @@ function itemsService(app) {
 		readItem
 	);
 
+	app.post('/api/items/:id/flag',
+		middleware.validate.id('id'),
+		flagItem
+	);
+
 	app.get('/api/items/id/:id',
 		middleware.validate.id('id'),
 		getItemById
@@ -137,7 +142,18 @@ function itemsService(app) {
 				return next(err);
 			}
 
-			res.send(200);
+			res.json(200, {});
+		});
+	}
+
+	function flagItem(req, res, next) {
+		var reason = req.body.reason || 'No reason';
+		items.flagItem(req.user, req.params.id, reason, function (err) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(200, {});
 		});
 	}
 

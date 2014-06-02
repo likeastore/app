@@ -172,6 +172,21 @@ function hideItem(user, id, callback) {
 	}, callback);
 }
 
+function flagItem(user, id, reason, callback) {
+	var userData = {
+		id: user._id,
+		email: user.email,
+		reportedAt: new Date(),
+		reason: reason
+	};
+
+	db.items.findAndModify({
+		query: {_id: new db.ObjectId(id), user: user.email},
+		update: {$push: {flaggedBy: userData}},
+		'new': true
+	}, callback);
+}
+
 function readItem(user, id, callback) {
 	db.items.findAndModify({
 		query: {_id: new db.ObjectId(id), user: user.email},
@@ -188,5 +203,6 @@ module.exports = {
 	getInboxCount: getInboxCount,
 	getItemsCount: getItemsCount,
 	hideItem: hideItem,
+	flagItem: flagItem,
 	readItem: readItem
 };
