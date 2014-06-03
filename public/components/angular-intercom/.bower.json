@@ -1,6 +1,6 @@
 {
   "name": "angular-intercom",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "angular-intercom.js",
   "ignore": [
     "**/.*",
@@ -15,14 +15,13 @@
     "angular": "*"
   },
   "homepage": "https://github.com/gdi2290/angular-intercom",
-  "_release": "0.0.5",
+  "_release": "0.0.6",
   "_resolution": {
     "type": "version",
-    "tag": "v0.0.5",
-    "commit": "a5b2c2100c6ae5e7dd00917739ff1bdb5f8ab037"
+    "tag": "v0.0.6",
+    "commit": "8d7d77930715e8bb5b6658eb2cffd38b65c6bbe3"
   },
   "_source": "git://github.com/gdi2290/angular-intercom.git",
   "_target": "~0.0.5",
-  "_originalSource": "angular-intercom",
-  "_direct": true
+  "_originalSource": "angular-intercom"
 }

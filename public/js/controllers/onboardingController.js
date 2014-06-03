@@ -51,7 +51,7 @@ define(function (require) {
 		$scope.finish = function () {
 			api.patch({ resource: 'users', target: 'me' }, { watchedPreview: true, watchedOnlyExtension: true }, function () {
 				$body.removeClass('sidebar-active');
-				$location.url('/');
+				$location.url('/settings');
 				$rootScope.user.watchedPreview = true;
 				$scope.showPreviewHelp = false;
 
@@ -64,7 +64,7 @@ define(function (require) {
 		$scope.finishWhenOnlyExtension = function () {
 			api.patch({ resource: 'users', target: 'me' }, { watchedOnlyExtension: true }, function () {
 				$body.removeClass('sidebar-active');
-				$location.url('/');
+				$location.url('/settings');
 				$rootScope.user.watchedPreview = true;
 				$scope.showOnlyExtensionHelp = false;
 
