@@ -10,7 +10,7 @@ var ObjectId = require('mongojs').ObjectId;
 var itemsCountCache;
 var itemsCountCacheTTL = 5;
 
-var userPickFields = ['_id', 'avatar', 'bio', 'displayName', 'email', 'location', 'username', 'website'];
+var userPickFields = ['_id', 'avatar', 'bio', 'displayName', 'email', 'location', 'name', 'username', 'website'];
 
 function transform(item) {
 	var clone = _.clone(item);

@@ -9,7 +9,7 @@ var users = require('./users');
 
 var ObjectId = require('mongojs').ObjectId;
 
-var userPickFields = ['_id', 'avatar', 'bio', 'displayName', 'email', 'location', 'username', 'website'];
+var userPickFields = ['_id', 'avatar', 'bio', 'displayName', 'email', 'location', 'name', 'username', 'website'];
 var itemOmitFields = ['collections', 'userData'];
 var collectionOmitFields = ['items'];
 var notifier = require('./notifier');
