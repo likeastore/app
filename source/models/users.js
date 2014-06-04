@@ -7,9 +7,14 @@ var config = require('../../config');
 var db = require('../db')(config);
 var notifier = require('./notifier');
 
+var userPickFields = ['_id', 'avatar', 'bio', 'displayName', 'email', 'location', 'username', 'website', 'followCollections', 'followed', 'follows', 'warning'];
 var ObjectId = require('mongojs').ObjectId;
 
 var maxUsersMatches = 16;
+
+function transform(user) {
+	return _.pick(user, userPickFields);
+}
 
 function findById (id, callback) {
 	if (typeof id === 'string') {
@@ -437,5 +442,7 @@ module.exports = {
 
 	follows: follows,
 	followed: followed,
-	feedback: feedback
+	feedback: feedback,
+
+	transform: transform
 };

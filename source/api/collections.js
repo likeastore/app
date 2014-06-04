@@ -56,22 +56,26 @@ function collectionsService(app) {
 		getCollectionsUserFollow);
 
 	function getCollections(req, res, next) {
-		collections.find(req.user, function (err, collections) {
+		collections.find(req.user, function (err, results) {
 			if (err) {
 				return next(err);
 			}
 
-			res.json(collections);
+			results = results.map(collections.transform);
+
+			res.json(results);
 		});
 	}
 
 	function getUsersCollections(req, res, next) {
-		collections.findByUser(req.params.name, function (err, collections) {
+		collections.findByUser(req.params.name, function (err, results) {
 			if (err) {
 				return next(err);
 			}
 
-			res.json(collections);
+			results = results.map(collections.transform);
+
+			res.json(results);
 		});
 	}
 
@@ -85,6 +89,8 @@ function collectionsService(app) {
 				return next({message: 'collection not found', status: 404});
 			}
 
+			collection = collections.transform(collection);
+
 			res.json(collection);
 		});
 	}
@@ -94,6 +100,8 @@ function collectionsService(app) {
 			if (err) {
 				return next(err);
 			}
+
+			collection = collections.transform(collection);
 
 			res.json(collection, 201);
 		});
@@ -151,6 +159,8 @@ function collectionsService(app) {
 				return next(err);
 			}
 
+			collection = collections.transform(collection);
+
 			res.json(collection);
 		});
 	}
@@ -176,34 +186,40 @@ function collectionsService(app) {
 	}
 
 	function getCollectionsUserFollow(req, res, next) {
-		collections.followedBy(req.user, req.params.name, function (err, collections) {
+		collections.followedBy(req.user, req.params.name, function (err, results) {
 			if (err) {
 				return next(err);
 			}
 
-			res.json(collections);
+			results = results.map(collections.transform);
+
+			res.json(results);
 		});
 	}
 
 	function getPopularCollections(req, res, next) {
-		collections.popular(req.user, function (err, collections) {
+		collections.popular(req.user, function (err, results) {
 			if (err) {
 				return next(err);
 			}
 
-			res.json(collections);
+			results = results.map(collections.transform);
+
+			res.json(results);
 		});
 	}
 
 	function searchCollections(req, res, next) {
 		var query = req.query.text;
 
-		collections.search(req.user, query, function (err, collections) {
+		collections.search(req.user, query, function (err, results) {
 			if (err) {
 				return next({message: 'failed to search collections', user: req.user, query: query, err: err, status: 500});
 			}
 
-			res.json(collections);
+			results = results.map(collections.transform);
+
+			res.json(results);
 		});
 	}
 }

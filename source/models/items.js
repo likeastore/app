@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var moment = require('moment');
 
 var config = require('../../config');
@@ -8,6 +9,17 @@ var ObjectId = require('mongojs').ObjectId;
 
 var itemsCountCache;
 var itemsCountCacheTTL = 5;
+
+var userPickFields = ['_id', 'avatar', 'bio', 'displayName', 'email', 'location', 'username', 'website'];
+
+function transform(item) {
+	var clone = _.clone(item);
+	if (clone.userData) {
+		clone.userData = _.pick(clone.userData, userPickFields);
+	}
+
+	return clone;
+}
 
 function ensureNetworkEnabled(user, type, callback) {
 	networks.findNetworks(user, function (err, networks) {
@@ -61,7 +73,13 @@ function getAllItems(user, paging, callback) {
 }
 
 function getById(user, id, callback) {
-	db.items.findOne({user: user.email, _id: new ObjectId(id)}, callback);
+	db.items.findOne({user: user.email, _id: new ObjectId(id)}, function (err, item) {
+		if (err) {
+			return callback(err);
+		}
+
+		callback(null, item);
+	});
 }
 
 function getItemsCount(callback) {
@@ -204,5 +222,6 @@ module.exports = {
 	getItemsCount: getItemsCount,
 	hideItem: hideItem,
 	flagItem: flagItem,
-	readItem: readItem
+	readItem: readItem,
+	transform: transform
 };

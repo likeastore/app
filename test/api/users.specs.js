@@ -51,11 +51,15 @@ describe('users.spec.js', function () {
 			it ('should response contain user object', function () {
 				expect(body._id).to.be.ok;
 				expect(body.email).to.equal(user.email);
-				expect(body.apiToken).to.equal(user.apiToken);
 			});
 
 			it ('should have no warnings', function () {
 				expect(body.warning).to.not.be.ok;
+			});
+
+			it('should not expose private fields', function () {
+				expect(body.apiToken).to.not.be.ok;
+				expect(body.twitterToken).to.not.be.ok;
 			});
 
 			describe('when there is disabled network', function () {

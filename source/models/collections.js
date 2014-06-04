@@ -9,7 +9,7 @@ var users = require('./users');
 
 var ObjectId = require('mongojs').ObjectId;
 
-var userPickFields = ['_id', 'email', 'avatar', 'displayName', 'name'];
+var userPickFields = ['_id', 'avatar', 'bio', 'displayName', 'email', 'location', 'username', 'website'];
 var itemOmitFields = ['collections', 'userData'];
 var collectionOmitFields = ['items'];
 var notifier = require('./notifier');
@@ -80,7 +80,7 @@ function find(user, callback) {
 			return callback(err);
 		}
 
-		callback(null, collections.map(transform));
+		callback(null, collections);
 	});
 }
 
@@ -94,7 +94,7 @@ function findOne(user, collection, callback) {
 			return callback({message: 'collection not found', status: 404});
 		}
 
-		callback(null, transform(collection));
+		callback(null, collection);
 	});
 }
 
@@ -441,7 +441,7 @@ function followedBy(user, name, callback) {
 				return callback(err);
 			}
 
-			callback(null, collections.map(transform));
+			callback(null, collections);
 		});
 	});
 }
@@ -452,7 +452,7 @@ function popular(user, callback) {
 			return callback(err);
 		}
 
-		callback(null, collections.map(transform));
+		callback(null, collections);
 	});
 }
 
@@ -471,13 +471,12 @@ function search(user, query, callback) {
 		}
 
 		var items = doc.results.map(function (result) {
-			return transform(result.obj);
+			return result.obj;
 		});
 
 		callback(null, { data: items, nextPage: false });
 	});
 }
-
 
 module.exports = {
 	create: create,
@@ -493,5 +492,6 @@ module.exports = {
 	unfollow: unfollow,
 	followedBy: followedBy,
 	popular: popular,
-	search: search
+	search: search,
+	transform: transform
 };

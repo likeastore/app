@@ -63,6 +63,10 @@ describe('collections.spec.js', function () {
 					expect(results.user).to.equal(user.email);
 				});
 
+				it('should have user reference (userData)', function () {
+					expect(results.userData).to.be.ok;
+				});
+
 				it('should collection be public', function () {
 					expect(results.public).to.equal(true);
 				});
@@ -132,6 +136,10 @@ describe('collections.spec.js', function () {
 
 				it('should have user', function () {
 					expect(results.user).to.equal(user.email);
+				});
+
+				it('should have user reference (userData)', function () {
+					expect(results.userData).to.be.ok;
 				});
 
 				describe('and title is missing', function () {
@@ -241,6 +249,11 @@ describe('collections.spec.js', function () {
 				expect(results).to.have.property('title');
 				expect(results).to.have.property('description');
 				expect(results).to.have.property('user');
+				expect(results).to.have.property('userData');
+			});
+
+			it('should not expose private fields of userData', function () {
+				expect(results.userData).to.not.have.property('apiToken');
 			});
 
 			describe('by another user', function () {
@@ -272,6 +285,10 @@ describe('collections.spec.js', function () {
 					expect(results).to.have.property('title');
 					expect(results).to.have.property('description');
 					expect(results).to.have.property('user');
+				});
+
+				it('should not expose private fields of userData', function () {
+					expect(results.userData).to.not.have.property('apiToken');
 				});
 			});
 
@@ -720,6 +737,10 @@ describe('collections.spec.js', function () {
 
 				it('should return all items in collection', function () {
 					expect(results.data.length).to.equal(10);
+				});
+
+				it('should items do not contain userData', function () {
+					expect(results.data[0]).to.not.have.property('userData');
 				});
 			});
 

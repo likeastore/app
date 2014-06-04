@@ -244,7 +244,7 @@ function usersService(app) {
 	}
 
 	function returnUser(req, res, next) {
-		res.json(req.user);
+		res.json(users.transform(req.user));
 	}
 }
 

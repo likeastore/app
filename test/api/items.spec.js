@@ -59,6 +59,15 @@ describe('items.spec.js', function () {
 				expect(results.data.length).to.equal(10);
 			});
 
+			it ('should contain user reference (userData)', function () {
+				expect(results.data[0].userData).to.be.ok;
+				expect(results.data[0].userData.username).to.be.ok;
+			});
+
+			it ('should not expose private fields of userData', function () {
+				expect(results.data[0].userData.twitterToken).to.not.be.ok;
+			});
+
 			describe('and network is absent', function () {
 				beforeEach(function (done) {
 					testUtils.removeTestNetwork(user, 'twitter', done);
@@ -277,7 +286,7 @@ describe('items.spec.js', function () {
 		});
 
 		describe('when flagging item with inappropriate content', function () {
-			var flaggedBy, flaggedByItem, itemToValidate, anotherUser, anotherHeaders;
+			var flaggedBy, flaggedByItem, itemToValidate;
 
 			beforeEach(function (done) {
 				testUtils.createTestUserAndLoginToApi(function (err, createdUser, accessToken) {
@@ -294,13 +303,12 @@ describe('items.spec.js', function () {
 
 			beforeEach(function (done) {
 				testUtils.createTestItems(user, function (err, itms) {
-					items = itms;
 					itemToValidate = itms[0];
 					done(err);
 				});
 			});
 
-			beforeEach(function (done) {;
+			beforeEach(function (done) {
 				request.post({url: url + '/' + itemToValidate._id + '/flag', body: {'reason': 'Spam'}, headers: headers, json: true}, function (err, resp, body) {
 					response = resp;
 					done(err);
@@ -333,7 +341,6 @@ describe('items.spec.js', function () {
 					expect(flaggedByItem.id).to.equal(user._id.toString());
 				});
 			});
-
 		});
 	});
 });

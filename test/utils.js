@@ -18,7 +18,7 @@ function createTestUser (callback) {
 	var password = 'password';
 	var apiToken = crypto.createHash('sha1').update(email + ';' + password).digest('hex');
 
-	var user = {email: email, password: password, name: email , apiToken: apiToken};
+	var user = {email: email, password: password, name: email , apiToken: apiToken, twitterToken: 'twitterToken'};
 	db.users.save(user, {safe: true}, callback);
 }
 
@@ -66,6 +66,10 @@ function createTestItems (user, size, callback) {
 			type: networks[index % 3],
 			created: moment().toDate(),
 			date: moment().toDate(),
+			userData: {
+				username: 'marley',
+				twitterToken: 'twitterToken'
+			},
 			itemId: index
 		};
 	});
@@ -87,6 +91,10 @@ function createTestItemsOfType(user, network, size, callback) {
 			type: network,
 			created: moment().toDate(),
 			date: moment().toDate(),
+			userData: {
+				username: 'marley',
+				twitterToken: 'twitterToken'
+			},
 			itemId: index
 		};
 	});
