@@ -217,7 +217,9 @@ function collectionsService(app) {
 				return next({message: 'failed to search collections', user: req.user, query: query, err: err, status: 500});
 			}
 
-			results = results.map(collections.transform);
+			if (results.data) {
+				results.data = results.data.map(collections.transform);
+			}
 
 			res.json(results);
 		});
