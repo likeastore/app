@@ -23,7 +23,7 @@ var userPickFields = [
 	'blockNetworks',
 	'warning',
 	'watchedPreview',
-	'wathcedOnlyExtension'
+	'watchedOnlyExtension'
 ];
 
 var ObjectId = require('mongojs').ObjectId;
