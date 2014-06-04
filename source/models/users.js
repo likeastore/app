@@ -14,6 +14,7 @@ var userPickFields = [
 	'displayName',
 	'email',
 	'location',
+	'name',
 	'username',
 	'registered',
 	'website',
