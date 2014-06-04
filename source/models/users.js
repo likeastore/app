@@ -7,7 +7,25 @@ var config = require('../../config');
 var db = require('../db')(config);
 var notifier = require('./notifier');
 
-var userPickFields = ['_id', 'avatar', 'bio', 'displayName', 'email', 'location', 'username', 'website', 'followCollections', 'followed', 'follows', 'warning'];
+var userPickFields = [
+	'_id',
+	'avatar',
+	'bio',
+	'displayName',
+	'email',
+	'location',
+	'username',
+	'registered',
+	'website',
+	'followCollections',
+	'followed',
+	'follows',
+	'blockNetworks',
+	'warning',
+	'watchedPreview',
+	'wathcedOnlyExtension'
+];
+
 var ObjectId = require('mongojs').ObjectId;
 
 var maxUsersMatches = 16;
