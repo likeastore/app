@@ -447,7 +447,7 @@ function followedBy(user, name, callback) {
 }
 
 function popular(user, callback) {
-	db.collections.find({public: true, followers: {$exists: true}}).limit(50, function (err, collections) {
+	db.collections.find({public: true, followers: {$exists: true}}).limit(72, function (err, collections) {
 		if (err) {
 			return callback(err);
 		}
