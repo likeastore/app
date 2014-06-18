@@ -61,6 +61,8 @@ module.exports = function (grunt) {
 					'public/css/deckgrid.css': 'myth/deckgrid.css',
 					'public/css/collgrid.css': 'myth/collgrid.css',
 					'public/css/forms.css': 'myth/forms.css',
+					'public/css/onboarding-dark.css': 'myth/onboarding-dark.css',
+					'public/css/onboarding-light.css': 'myth/onboarding-light.css',
 					'public/css/layout.css': 'myth/layout.css'
 				}
 			}

@@ -1,12 +1,14 @@
 define(function (require) {
 	'use strict';
 
+	var config = require('config');
+
 	function onboardingController ($scope, $document, $window, $rootScope, $location, api, $analytics) {
 		var $body = $document.find('body');
 		var delayedWarning;
 
 		$rootScope.$watch('user', function (value) {
-			if ($window.innerWidth < 920) {
+			if ($window.innerWidth < 620) {
 				return;
 			}
 			if (!value) {
@@ -30,6 +32,8 @@ define(function (require) {
 
 		$scope.slide1 = true;
 		$scope.currentSlide = 1;
+		$scope.fcolls = _(config.featuredCollections).shuffle().slice(0, 4);
+		$scope.fnets = _(config.featuredNetworks).shuffle().slice(0, 4);
 
 		$scope.goToSlide = function (slideNum) {
 			if (slideNum > $scope.currentSlide) {
@@ -38,11 +42,12 @@ define(function (require) {
 				$scope['slide' + (slideNum+1)] = false;
 			}
 
+			/* NB: used on arrows onboarding
 			if (slideNum === 3) {
 				$body.addClass('sidebar-active');
 			} else {
 				$body.removeClass('sidebar-active');
-			}
+			}*/
 
 			$scope['slide' + slideNum] = true;
 			$scope.currentSlide = slideNum;
@@ -51,7 +56,7 @@ define(function (require) {
 		$scope.finish = function () {
 			api.patch({ resource: 'users', target: 'me' }, { watchedPreview: true, watchedOnlyExtension: true }, function () {
 				$body.removeClass('sidebar-active');
-				$location.url('/settings');
+				$location.url('/feed');
 				$rootScope.user.watchedPreview = true;
 				$scope.showPreviewHelp = false;
 
@@ -64,7 +69,7 @@ define(function (require) {
 		$scope.finishWhenOnlyExtension = function () {
 			api.patch({ resource: 'users', target: 'me' }, { watchedOnlyExtension: true }, function () {
 				$body.removeClass('sidebar-active');
-				$location.url('/settings');
+				$location.url('/feed');
 				$rootScope.user.watchedPreview = true;
 				$scope.showOnlyExtensionHelp = false;
 

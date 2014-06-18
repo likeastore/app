@@ -26,6 +26,7 @@ define(function (require) {
 	directives.directive('addCollectionPopup', require('./addCollectionPopup'));
 	directives.directive('editCollection', require('./editCollection'));
 	directives.directive('toggleFollowCollection', require('./toggleFollowCollection'));
+	directives.directive('ecFollow', require('./toggleClassFollowCollection'));
 
 	return directives;
 });
