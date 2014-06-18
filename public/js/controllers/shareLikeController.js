@@ -1,9 +1,11 @@
 define(function () {
 	'use strict';
 
-	function ShareLikeController ($scope, links, $analytics, analytics) {
+	function ShareLikeController ($scope, links, $analytics, analytics, mixpanel) {
 		$analytics.eventTrack('like shared'); // mixpanel
 		analytics.track('like-shared'); // seismo
+
+		mixpanel.people.increment('Likes Shares');
 
 		var like = $scope.$parent.ngDialogData.split(', ');
 
