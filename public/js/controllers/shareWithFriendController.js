@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function ShareWithFriendController($rootScope, $scope, $timeout, api, $analytics, analytics, facebook, mixpanel) {
+	function ShareWithFriendController($rootScope, $scope, $timeout, api, $analytics, seismo, facebook, mixpanel) {
 		$scope.sendText = 'Send';
 		$scope.message = '\
 I want to share Likeastore with you. It helps me to connect all my social networks, like Twitter and Facebook and keep all my favorites in one place.\
@@ -27,7 +27,7 @@ https://likeastore.com';
 					changeSendText('Thank you!');
 
 					$analytics.eventTrack('shared with friend', {via: 'email'});
-					analytics.track('share-with-friend', {via: 'email'});
+					seismo.track('share-with-friend', {via: 'email'});
 					mixpanel.people.increment('Shares with Friend', {via: 'email'});
 
 					$timeout(function () {
@@ -50,7 +50,7 @@ https://likeastore.com';
 					'on https://likeastore.com ^.^',
 				success: function () {
 					$analytics.eventTrack('shared with friend', {via: 'facebook'});
-					analytics.track('share-with-friend', {via: 'facebook'});
+					seismo.track('share-with-friend', {via: 'facebook'});
 					mixpanel.people.increment('Shares with Friend', {via: 'facebook'});
 				}
 			});
@@ -58,7 +58,7 @@ https://likeastore.com';
 
 		$scope.shareOnTwitter = function () {
 			$analytics.eventTrack('shared with friend', {via: 'twitter'});
-			analytics.track('share-with-friend', {via: 'twitter'});
+			seismo.track('share-with-friend', {via: 'twitter'});
 			mixpanel.people.increment('Shares with Friend', {via: 'twitter'});
 		};
 

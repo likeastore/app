@@ -27,6 +27,7 @@ define(function (require) {
 					$scope.following = true;
 					$rootScope.$broadcast('follow.collection', $scope.collectionId);
 					$analytics.eventTrack('collection followed');
+
 					api.update({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {});
 				};
 
@@ -34,6 +35,7 @@ define(function (require) {
 					$scope.following = false;
 					$rootScope.$broadcast('unfollow.collection', $scope.collectionId);
 					$analytics.eventTrack('collection unfollowed');
+
 					api.delete({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {});
 				};
 			},

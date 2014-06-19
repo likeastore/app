@@ -1,9 +1,9 @@
 define(function () {
 	'use strict';
 
-	function ShareCollectionController ($scope, links, $analytics, analytics, mixpanel) {
+	function ShareCollectionController ($scope, links, $analytics, seismo, mixpanel) {
 		$analytics.eventTrack('collection shared'); // mixpanel
-		analytics.track('collection-shared'); // seismo
+		seismo.track('collection-shared'); // seismo
 
 		mixpanel.people.increment('Collection Shares');
 
