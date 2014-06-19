@@ -33,7 +33,7 @@ define(function (require) {
 						<div ng-click="closeForm()" class="link-btn cancel">Cancel</div>\
 					</div>\
 				</form>',
-			controller: function ($scope, $rootScope, $cookieStore, $analytics, api, ngDialog, user) {
+			controller: function ($scope, $rootScope, $cookieStore, $analytics, seismo, api, ngDialog, user) {
 				$scope.colors = config.colors;
 
 				$scope.activeColor = $scope.colors[3];
@@ -50,6 +50,7 @@ define(function (require) {
 
 					api.save({ resource: 'collections' }, $scope.collection, function (collection) {
 						$analytics.eventTrack('collection created');
+						seismo.track('collection created');
 
 						var getBadge = $rootScope.collections.length === 0 && !$cookieStore.get('hypebeastBadge');
 
