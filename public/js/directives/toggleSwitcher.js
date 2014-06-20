@@ -16,7 +16,7 @@ define(function (require) {
 					<span class="bg"></span>\
 				</div>',
 			link: function (scope, elem, attrs) {
-				var service = scope.service = attrs.toggleSwitcher;
+				var service = scope.service = attrs.toggleSwitcher.toLowerCase();
 				var urlOptions = { resource: 'networks', target: service };
 				var parent = elem.parent();
 				var index;
