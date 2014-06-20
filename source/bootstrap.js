@@ -1,26 +1,15 @@
 var exec = require('child_process').exec;
 var logger = require('./utils/logger');
 
-function bootstrapApp(callback) {
-	var env = process.env.NODE_ENV || 'development';
-	if (env === 'development' || env === 'test') {
-		return callback (null);
+logger.info('bootrapping application in: ' + process.cwd());
+logger.info('running grunt build...');
+
+exec('./node_modules/grunt-cli/bin/grunt build', function (err, stdout, stderr) {
+	if (err) {
+		logger.info('stderr: ' + stderr);
+		process.exit(1);
 	}
 
-	logger.info('bootrapping application in: ' + process.cwd());
-	logger.info('running grunt build...');
-
-	exec('./node_modules/grunt-cli/bin/grunt build', function (err, stdout, stderr) {
-		if (err) {
-			logger.info('stderr: ' + stderr);
-			return callback(err);
-		}
-
-		logger.info('build js and css sources done.');
-		return callback (null);
-	});
-}
-
-module.exports = {
-	app: bootstrapApp
-};
+	logger.info('build js and css sources done.');
+	process.exit(0);
+});

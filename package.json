@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
+    "postinstall": "node source/bootstrap.js",
     "test": "node runMocha",
     "watch": "nodemon --watch source --watch config app.js",
     "test-watch": "nodemon --watch source --watch config --watch test runMocha.js"
