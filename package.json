@@ -9,6 +9,9 @@
     "watch": "nodemon --watch source --watch config app.js",
     "test-watch": "nodemon --watch source --watch config --watch test runMocha.js"
   },
+  "config": {
+      "unsafe-perm": true
+  },
   "domains": [
     "app.likeastore.com"
   ],

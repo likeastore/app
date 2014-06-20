@@ -459,7 +459,7 @@ function popular(user, callback) {
 		collections = _.sort(collections, function (collection) {
 			return collection.followers && collection.followers.length;
 		});
-
+x
 		callback(null, collections);
 	});
 }
