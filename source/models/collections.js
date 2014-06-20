@@ -456,10 +456,10 @@ function popular(user, callback) {
 			return collection.items && collection.items.length > 0;
 		});
 
-		collections = _.sort(collections, function (collection) {
+		collections = _.sortBy(collections, function (collection) {
 			return collection.followers && collection.followers.length;
 		});
-x
+
 		callback(null, collections);
 	});
 }
