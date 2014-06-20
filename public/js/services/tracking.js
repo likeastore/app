@@ -13,6 +13,8 @@ define(function (require) {
 						});
 
 						mixpanel.alias(user.email);
+						mixpanel.identify(user.email);
+
 						mixpanel.people.set({
 							'$email': user.email,
 							'$created': new Date(user.registered),

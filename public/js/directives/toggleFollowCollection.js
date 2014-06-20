@@ -8,7 +8,7 @@ define(function (require) {
 				collectionId: "=toggleFollowCollection"
 			},
 			replace: true,
-			controller: function ($scope, $rootScope, api, $analytics) {
+			controller: function ($scope, $rootScope, api, $analytics, seismo) {
 				$scope.$watch('collectionId', function (value) {
 					if (!value) {
 						return;
@@ -27,6 +27,8 @@ define(function (require) {
 					$scope.following = true;
 					$rootScope.$broadcast('follow.collection', $scope.collectionId);
 					$analytics.eventTrack('collection followed');
+					seismo.track('collection followed');
+
 					api.update({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {});
 				};
 
@@ -34,6 +36,8 @@ define(function (require) {
 					$scope.following = false;
 					$rootScope.$broadcast('unfollow.collection', $scope.collectionId);
 					$analytics.eventTrack('collection unfollowed');
+					seismo.track('collection unfollowed');
+
 					api.delete({ resource: 'collections', target: $scope.collectionId, verb: 'follow' }, {});
 				};
 			},

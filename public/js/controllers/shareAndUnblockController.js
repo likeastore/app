@@ -1,7 +1,7 @@
 define(function () {
 	'use strict';
 
-	function ShareAndUnblockController ($scope, $rootScope, $document, api, user, $analytics, analytics, facebook) {
+	function ShareAndUnblockController ($scope, $rootScope, $document, api, user, $analytics, seismo, facebook, mixpanel) {
 		twttr.widgets.load();
 		twttr.events.bind('tweet', function () {
 			unblockNetworks();
@@ -9,7 +9,9 @@ define(function () {
 
 		function unblockNetworks () {
 			$analytics.eventTrack('app shared'); // mixpanel
-			analytics.track('app-shared'); // seismo
+			seismo.track('app-shared'); // seismo
+
+			mixpanel.people.increment('Shares on Networks');
 
 			$scope.thanks = true;
 			user.unblockConnections()

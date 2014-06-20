@@ -29,7 +29,7 @@ define(function (require) {
 						<span>{{collection.title}}</span>\
 					</li>\
 				</ul>',
-			controller: function ($scope, $rootScope, $document, $analytics, $timeout, api) {
+			controller: function ($scope, $rootScope, $document, $analytics, $timeout, api, seismo) {
 				$scope.collections = $rootScope.collections;
 
 				$scope.togglePopup = function () {
@@ -49,6 +49,7 @@ define(function (require) {
 						suffix: $scope.item._id
 					}, {}, function (res) {
 						$analytics.eventTrack('collection item added');
+						seismo.track('collection item added');
 					});
 				};
 

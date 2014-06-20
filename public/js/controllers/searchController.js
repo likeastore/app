@@ -1,7 +1,7 @@
 define(function (require) {
 	'use strict';
 
-	function SearchController ($scope, $rootScope, $routeParams, appLoader, api, user, $analytics) {
+	function SearchController ($scope, $rootScope, $routeParams, appLoader, api, user, $analytics, mixpanel) {
 		$analytics.eventTrack('search opened');
 
 		$rootScope.title = 'Search results for "' + $routeParams.text + '"';
@@ -32,6 +32,9 @@ define(function (require) {
 			api.get({ resource: 'search', text: $routeParams.text, page: $scope.page }, function (res) {
 				$scope.items = $scope.items.concat(res.data);
 				$scope.nextPage = res.nextPage;
+
+				mixpanel.people.increment('Searches by Site');
+
 				appLoader.ready();
 			});
 		}

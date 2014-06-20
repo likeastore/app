@@ -13,7 +13,7 @@ define(function (require) {
 	services.factory('appLoader', require('./appLoader'));
 	services.factory('user', require('./user'));
 	services.factory('links', require('./links'));
-	services.factory('analytics', require('./analytics'));
+	services.factory('seismo', require('./seismo'));
 	services.factory('tracking', require('./tracking'));
 	services.factory('mixpanel', require('./mixpanel'));
 	services.factory('facebook', require('./facebook'));
