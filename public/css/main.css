@@ -4,7 +4,6 @@
 @import url(../components/ngDialog/css/ngDialog.css);
 @import url(../components/ngCustomerVoice/css/ngCustomerVoice.css);
 @import url(general.css);
-@import url(onboarding-light.css); /* switch the version of onboarding styles here */
 @import url(layout.css);
 @import url(icons.css);
 @import url(forms.css);
