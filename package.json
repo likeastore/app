@@ -1,6 +1,6 @@
 {
   "name": "likeastore-app",
-  "version": "0.0.49",
+  "version": "0.0.50",
   "private": true,
   "scripts": {
     "start": "node app.js",
@@ -10,7 +10,7 @@
     "test-watch": "nodemon --watch source --watch config --watch test runMocha.js"
   },
   "config": {
-      "unsafe-perm": true
+    "unsafe-perm": true
   },
   "domains": [
     "app.likeastore.com"
