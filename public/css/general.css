@@ -632,6 +632,7 @@ textarea.fld {
 .sidebar-nav .username {
   display: inline-block;
   margin: 3px 10px;
+  width: 145px;
 }
 
 .sidebar-nav .username:hover {
@@ -667,6 +668,7 @@ textarea.fld {
   width: 210px;
   line-height: 16px;
   margin-left: -2px;
+  padding-right: 0;
 }
 
 .sidebar-nav .menu-title .icon {

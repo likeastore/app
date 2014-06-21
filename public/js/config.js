@@ -34,6 +34,10 @@ define(function () {
 			{ name: 'grey', hex: '#c8c8c8' }
 		],
 
+		defaultCollectionProps: {
+			'public': true // make it public by default
+		},
+
 		featuredCollections: [
 			{
 				id: '5399482ee45b300f0000002c',

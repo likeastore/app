@@ -2,7 +2,7 @@
 	<li ng-if="user" class="user">
 		<div ng-click="switchMenu('/u/{{user.name}}')" class="menu-title">
 			<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load>
-			<span class="username close-sidebar">{{(user.displayName || user.name)|truncate:35}}</span>
+			<span class="username truncate close-sidebar">{{(user.displayName || user.name)|truncate:35}}</span>
 		</div>
 		<div ng-click="user.logout()" class="font-icon logout-icon subicon right" tooltip="Sign out"></div>
 		<div ng-click="goToConfig()" class="font-icon settings-icon subicon close-sidebar right" tooltip="Settings"></div>
