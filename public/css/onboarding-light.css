@@ -140,6 +140,12 @@
   margin-bottom: 20px;
 }
 
+.first-time-box .only-extension-box h2 {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 .first-time-box .inner-box .network-line {
   display: inline-block;
   border-top: 1px solid rgba(0, 0, 0, .06);

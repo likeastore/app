@@ -5,7 +5,7 @@ define(function (require) {
 
 	function onboardingController ($scope, $document, $window, $rootScope, $location, api, $analytics) {
 		var $body = $document.find('body');
-		var properSlide = ($location.url() === '/settings' ? '3' : '1');
+		var properSlide = ($location.url() === '/settings') ? '3' : '1';
 		var delayedWarning;
 
 		$rootScope.$watch('user', function (value) {
@@ -22,12 +22,14 @@ define(function (require) {
 					$rootScope.user.warning = false;
 				}
 				$scope.showPreviewHelp = true;
+				$location.url('/feed');
 			} else if (value.watchedPreview && $rootScope.extension && !value.watchedOnlyExtension) {
 				if (value.warning) {
 					delayedWarning = true;
 					$rootScope.user.warning = false;
 				}
 				$scope.showOnlyExtensionHelp = true;
+				$location.url('/feed');
 			}
 		});
 
@@ -57,7 +59,6 @@ define(function (require) {
 		$scope.finish = function () {
 			api.patch({ resource: 'users', target: 'me' }, { watchedPreview: true, watchedOnlyExtension: true }, function () {
 				$body.removeClass('sidebar-active');
-				$location.url('/feed');
 				$rootScope.user.watchedPreview = true;
 				$scope.showPreviewHelp = false;
 
@@ -70,7 +71,6 @@ define(function (require) {
 		$scope.finishWhenOnlyExtension = function () {
 			api.patch({ resource: 'users', target: 'me' }, { watchedOnlyExtension: true }, function () {
 				$body.removeClass('sidebar-active');
-				$location.url('/feed');
 				$rootScope.user.watchedPreview = true;
 				$scope.showOnlyExtensionHelp = false;
 
