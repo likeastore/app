@@ -1,33 +1,18 @@
 <section class="first-time-box" ng-show="showPreviewHelp" ng-controller="onboardingController">
 	<div class="message-container">
-		<h1>Welcome {{user.name}}!</h1>
-		<div class="text">
-			Let's get you started and finsih a couple of things. Just follow the steps below and you will automatically roll into our dynamic tips to tell you all about Likeastore.
-		</div>
-
 		<div ng-show="slide1" class="inner-box slide1 animated fadeIn clearfix">
-			<span class="num">1</span>
-			<h2>Connect some networks</h2>
-			<ul class="tiny-networks clearfix">
-				<li ng-repeat="fnet in fnets" class="network-line clearfix">
-					<h3 class="left">{{fnet.service}}</h3>
-					<div class="right" toggle-switcher="{{fnet.service}}"></div>
-				</li>
-			</ul>
-			<div class="buttons right">
-				<div class="o-btn btn next-btn" ng-click="goToSlide(2)">Next</div>
-			</div>
+			<h1>Welcome to Likeastore!</h1>
+			<div class="o-btn btn next-btn" ng-click="goToSlide(2)">Let's start</div>
 		</div>
 
 		<div ng-show="slide2" class="inner-box slide2 animated fadeIn clearfix">
-			<span class="num">2</span>
-			<h2>Follow some collections</h2>
-			<ul class="tiny-collections clearfix">
-				<li ng-repeat="fcoll in fcolls">
-					<div class="cover" style="background-image: url({{fcoll.thumbnail}}); background-color: rgba({{hexToRGBString(fcoll.color)}}, .8)">
-						<div class="title">{{fcoll.title}}</div>
-					</div>
-					<div class="check" ec-follow="fcoll.id"></div>
+			<span class="num">1</span>
+			<h2>Connect networks</h2>
+			<ul class="tiny-networks clearfix">
+				<li ng-repeat="fnet in fnets" class="network-line clearfix">
+					<i class="font-icon {{fnet.service.toLowerCase()}}-icon {{fnet.service.toLowerCase()}}-bg-clr network-icon"></i>
+					<h3 class="left">{{fnet.service}}</h3>
+					<div class="right" toggle-switcher="{{fnet.service}}"></div>
 				</li>
 			</ul>
 			<div class="buttons right">
@@ -36,7 +21,24 @@
 			</div>
 		</div>
 
-		<div ng-show="slide3" class="inner-box slide3 animated fadeIn">
+		<div ng-show="slide3" class="inner-box slide3 animated fadeIn clearfix">
+			<span class="num">2</span>
+			<h2>Follow collections</h2>
+			<ul class="tiny-collections clearfix">
+				<li ng-repeat="fcoll in fcolls">
+					<div class="cover" style="background-image: url({{fcoll.thumbnail}}); background-color: rgba({{hexToRGBString(fcoll.color)}}, .8)">
+						<div class="title">{{fcoll.title}}</div>
+					</div>
+					<div class="check" ec-follow="fcoll.id"><span class="font-icon check-icon icon"></span></div>
+				</li>
+			</ul>
+			<div class="buttons right">
+				<div class="o-btn btn previous-btn" ng-click="goToSlide(2)">Back</div>
+				<div class="o-btn btn next-btn" ng-click="goToSlide(4)">Next</div>
+			</div>
+		</div>
+
+		<div ng-show="slide4" class="inner-box slide4 animated fadeIn">
 			<span class="num">3</span>
 			<h2>Install browser plugin</h2>
 
@@ -44,25 +46,32 @@
 				<img src="/img/extension-screen.png" class="extension-screen">
 				<img ng-src="/img/{{browser.name}}-extension-btn.png" class="extension-btn">
 			</a>
-			<div class="note">Improve your search experience with our browser extension. Find relevant information much faster inside your favorites.</div>
+			<div class="note">It will improve your search experience with our browser extension. Find relevant information much faster inside your favorites.</div>
 			<div class="buttons right">
-				<div class="o-btn btn previous-btn" ng-click="goToSlide(2)">Back</div>
+				<div class="o-btn btn previous-btn" ng-click="goToSlide(3)">Back</div>
 				<div class="o-btn btn next-btn" ng-click="finish()">Done</div>
 			</div>
 		</div>
+
+		<ul class="paginator">
+			<li ng-class="{active: slide1}"></li>
+			<li ng-class="{active: slide2}"></li>
+			<li ng-class="{active: slide3}"></li>
+			<li ng-class="{active: slide4}"></li>
+		</ul>
 	</div>
 </section>
 
 <section class="first-time-box" ng-show="showOnlyExtensionHelp" ng-controller="onboardingController">
 	<div class="message-container">
 		<div ng-show="slide1" class="inner-box slide1 animated fadeIn">
-			<h1>Install our browser plugin</h1>
+			<h1>Install browser plugin</h1>
 
 			<a ng-href="{{extension.url}}" target="_blank" ng-click="installPlugin()">
 				<img src="/img/extension-screen.png" class="extension-screen">
 				<img ng-src="/img/{{browser.name}}-extension-btn.png" class="extension-btn">
 			</a>
-			<div class="note">Improve your search experience with our browser extension. Find relevant information much faster inside your favorites.</div>
+			<div class="note">It will improve your search experience with our browser extension. Find relevant information much faster inside your favorites.</div>
 			<div class="buttons right">
 				<div class="o-btn btn next-btn" ng-click="finishWhenOnlyExtension()">Done</div>
 			</div>

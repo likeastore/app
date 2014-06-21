@@ -19,13 +19,15 @@
 .first-time-box .message-container {
   width: 600px;
   position: relative;
-  margin: 60px auto 0;
+  margin: 100px auto 0;
 }
 
 .first-time-box h1 {
-  font-size: 34px;
   color: #333;
-  margin-bottom: 15px;
+  font-size: 34px;
+  font-weight: bold;
+  padding-top: 80px;
+  margin-left: 15px;
 }
 
 .first-time-box .text {
@@ -91,6 +93,23 @@
   opacity: 1;
 }
 
+.first-time-box .tiny-collections .icon {
+  display: block;
+  background: -webkit-linear-gradient(15deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
+  background: linear-gradient(75deg, rgba(63, 192, 193, 0.98) 0%, rgba(66, 207, 176, 0.96) 100%);
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  line-height: 34px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 48px;
+  top: 62px;
+  border-radius: 100%;
+}
+
 .first-time-box .inner-box {
   position: relative;
 }
@@ -128,8 +147,8 @@
   float: left;
   padding: 8px 0;
   position: relative;
-  width: 295px;
-  margin-right: 10px;
+  width: 290px;
+  margin-right: 20px;
 }
 
 .first-time-box .network-line .network-icon {
@@ -145,6 +164,10 @@
   vertical-align: middle;
   position: absolute;
   border-radius: 100%;
+}
+
+.first-time-box .network-line .network-icon.pocket-icon {
+  line-height: 32px;
 }
 
 .first-time-box .inner-box .tiny-networks {
@@ -164,17 +187,17 @@
 .first-time-box .inner-box .toggle,
 .first-time-box .inner-box .toggle input[type="checkbox"] {
   width: 50px;
-  height: 24px;
+  height: 26px;
   margin: 0;
 }
 
 .first-time-box .toggle .btn {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 }
 
 .first-time-box .toggle.on .btn {
-  left: 27px;
+  left: 25px;
 }
 
 .first-time-box .toggle .texts {
@@ -186,11 +209,11 @@
 }
 
 .first-time-box .inner-box h3 {
-  color: #555;
+  color: #666;
   font-size: 14px;
   font-weight: bold;
-  text-indent: 5px;
-  margin-top: 2px;
+  text-indent: 36px;
+  margin-top: 3px;
 }
 
 .first-time-box .o-btn {
@@ -223,7 +246,18 @@
   line-height: 58px;
 }
 
-.first-time-box .slide2 .buttons {
+.first-time-box .slide1 {
+  text-align: center;
+}
+
+.first-time-box .slide1 .o-btn {
+  width: 200px;
+  height: 50px;
+  line-height: 48px;
+  font-size: 15px;
+}
+
+.first-time-box .slide3 .buttons {
   margin: 20px 22px 0 0;
 }
 
@@ -248,4 +282,26 @@
   font-size: 14px;
   line-height: 18px;
   margin-top: 40px;
+}
+
+.first-time-box .paginator {
+  margin: 0 0 0 -44px;
+  width: 98px;
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+}
+
+.first-time-box .paginator li {
+  display: inline-block;
+  background: #ddd;
+  float: left;
+  margin: 0 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+}
+
+.first-time-box .paginator li.active {
+  background: #999;
 }

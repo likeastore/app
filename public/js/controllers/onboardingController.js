@@ -5,6 +5,7 @@ define(function (require) {
 
 	function onboardingController ($scope, $document, $window, $rootScope, $location, api, $analytics) {
 		var $body = $document.find('body');
+		var properSlide = ($location.url() === '/settings' ? '3' : '1');
 		var delayedWarning;
 
 		$rootScope.$watch('user', function (value) {
@@ -30,10 +31,10 @@ define(function (require) {
 			}
 		});
 
-		$scope.slide1 = true;
-		$scope.currentSlide = 1;
+		$scope['slide' + properSlide] = true;
+		$scope.currentSlide = +properSlide;
 		$scope.fcolls = _(config.featuredCollections).shuffle().slice(0, 4);
-		$scope.fnets = _(config.featuredNetworks).shuffle().slice(0, 4);
+		$scope.fnets = _(config.featuredNetworks).shuffle().slice(0, 10);
 
 		$scope.goToSlide = function (slideNum) {
 			if (slideNum > $scope.currentSlide) {

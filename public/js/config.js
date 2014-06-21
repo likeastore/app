@@ -61,9 +61,27 @@ define(function () {
 			},
 			{
 				id: '53369933d195760e00000016',
-				title: 'Art & Design',
+				title: 'Design',
 				color: '#eab6fd',
 				thumbnail: 'http://b.vimeocdn.com/ts/454/498/454498578_640.jpg'
+			},
+			{
+				id: '5387808d9f86a70e00000008',
+				title: 'Art',
+				color: '#feee43',
+				thumbnail: 'http://37.media.tumblr.com/d97ab61794c173219c2e937025953761/tumblr_n78aj7rGMq1qhci8no1_1280.jpg'
+			},
+			{
+				id: '534fc50d83902b1400000012',
+				title: 'UI and UX',
+				color: '#feee43',
+				thumbnail: 'https://d13yacurqjgara.cloudfront.net/users/19434/screenshots/1345888/mediabox_albums_1x.png'
+			},
+			{
+				id: '5352cfef7fa1b91100000002',
+				title: 'Software Development',
+				color: '#56c7aa',
+				thumbnail: 'https://pbs.twimg.com/media/BBfcIa3CEAAPVh2.png'
 			}
 		],
 
@@ -88,6 +106,15 @@ define(function () {
 			},
 			{
 				service: 'Tumblr'
+			},
+			{
+				service: 'Github'
+			},
+			{
+				service: 'Twitter'
+			},
+			{
+				service: 'Facebook'
 			}
 		]
 	};
