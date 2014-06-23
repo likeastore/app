@@ -5,7 +5,14 @@ define(function (require) {
 
 	function onboardingController ($scope, $document, $window, $rootScope, $location, api, $analytics) {
 		var $body = $document.find('body');
-		var properSlide = ($location.url() === '/settings') ? '3' : '1';
+		var events = [
+			'welcome',
+			'networks',
+			'collections',
+			'extensions'
+		];
+
+		var properSlide = ($location.url() === '/settings') ? '2' : '0';
 		var delayedWarning;
 
 		$rootScope.$watch('user', function (value) {
@@ -34,15 +41,17 @@ define(function (require) {
 		});
 
 		$scope['slide' + properSlide] = true;
+		$scope.collectionFollowedCount = 0;
 		$scope.currentSlide = +properSlide;
 		$scope.fcolls = _(config.featuredCollections).shuffle().slice(0, 4);
 		$scope.fnets = _(config.featuredNetworks).shuffle().slice(0, 10);
+		$analytics.eventTrack('onboarding ' + events[$scope.currentSlide] + ' opened');
 
 		$scope.goToSlide = function (slideNum) {
 			if (slideNum > $scope.currentSlide) {
-				$scope['slide' + (slideNum-1)] = false;
+				$scope['slide' + (slideNum - 1)] = false;
 			} else {
-				$scope['slide' + (slideNum+1)] = false;
+				$scope['slide' + (slideNum + 1)] = false;
 			}
 
 			/* NB: used on arrows onboarding
@@ -54,6 +63,15 @@ define(function (require) {
 
 			$scope['slide' + slideNum] = true;
 			$scope.currentSlide = slideNum;
+			$analytics.eventTrack('onboarding ' + events[$scope.currentSlide] + ' opened');
+		};
+
+		$scope.networkEnabled = function (network) {
+			$analytics.eventTrack('onboarding network enabled', {network: network});
+		};
+
+		$scope.collectionFollowed = function (title) {
+			$analytics.eventTrack('onboarding collection followed', {title: title, count: $scope.collectionFollowedCount++ });
 		};
 
 		$scope.finish = function () {
@@ -61,6 +79,8 @@ define(function (require) {
 				$body.removeClass('sidebar-active');
 				$rootScope.user.watchedPreview = true;
 				$scope.showPreviewHelp = false;
+				$analytics.eventTrack('onboarding finished');
+
 				$location.url('/feed');
 
 				if (delayedWarning) {
@@ -74,6 +94,8 @@ define(function (require) {
 				$body.removeClass('sidebar-active');
 				$rootScope.user.watchedPreview = true;
 				$scope.showOnlyExtensionHelp = false;
+				$analytics.eventTrack('onboarding finished');
+
 				$location.url('/feed');
 
 				if (delayedWarning) {
@@ -92,7 +114,7 @@ define(function (require) {
 		};
 
 		$scope.installPlugin = function () {
-			$analytics.eventTrack('go to extension via onboarding');
+			$analytics.eventTrack('onboarding installed plugin');
 		};
 	}
 
