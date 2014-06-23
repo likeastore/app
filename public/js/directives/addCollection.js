@@ -41,9 +41,7 @@ define(function (require) {
 					$scope.activeColor = color;
 				};
 
-				$scope.collection = {
-					'public': true // make it public by default
-				};
+				$scope.collection = config.defaultCollectionProps;
 
 				$scope.createCollection = function () {
 					$scope.collection.color = $scope.activeColor.hex;
@@ -57,7 +55,7 @@ define(function (require) {
 						$scope.$parent.showCollections = true;
 						$rootScope.collections.push(collection);
 
-						$scope.collection = {};
+						$scope.collection = config.defaultCollectionProps;
 						$scope.closeForm();
 
 						if (getBadge) {

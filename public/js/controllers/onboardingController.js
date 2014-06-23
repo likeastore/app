@@ -1,12 +1,22 @@
 define(function (require) {
 	'use strict';
 
+	var config = require('config');
+
 	function onboardingController ($scope, $document, $window, $rootScope, $location, api, $analytics) {
 		var $body = $document.find('body');
+		var events = [
+			'welcome',
+			'networks',
+			'collections',
+			'extensions'
+		];
+
+		var properSlide = ($location.url() === '/settings') ? '2' : '0';
 		var delayedWarning;
 
 		$rootScope.$watch('user', function (value) {
-			if ($window.innerWidth < 920) {
+			if ($window.innerWidth < 620) {
 				return;
 			}
 			if (!value) {
@@ -19,41 +29,59 @@ define(function (require) {
 					$rootScope.user.warning = false;
 				}
 				$scope.showPreviewHelp = true;
+				$location.url('/feed');
 			} else if (value.watchedPreview && $rootScope.extension && !value.watchedOnlyExtension) {
 				if (value.warning) {
 					delayedWarning = true;
 					$rootScope.user.warning = false;
 				}
 				$scope.showOnlyExtensionHelp = true;
+				$location.url('/feed');
 			}
 		});
 
-		$scope.slide1 = true;
-		$scope.currentSlide = 1;
+		$scope['slide' + properSlide] = true;
+		$scope.collectionFollowedCount = 0;
+		$scope.currentSlide = +properSlide;
+		$scope.fcolls = _(config.featuredCollections).shuffle().slice(0, 4);
+		$scope.fnets = _(config.featuredNetworks).shuffle().slice(0, 10);
+		$analytics.eventTrack('onboarding ' + events[$scope.currentSlide] + ' opened');
 
 		$scope.goToSlide = function (slideNum) {
 			if (slideNum > $scope.currentSlide) {
-				$scope['slide' + (slideNum-1)] = false;
+				$scope['slide' + (slideNum - 1)] = false;
 			} else {
-				$scope['slide' + (slideNum+1)] = false;
+				$scope['slide' + (slideNum + 1)] = false;
 			}
 
+			/* NB: used on arrows onboarding
 			if (slideNum === 3) {
 				$body.addClass('sidebar-active');
 			} else {
 				$body.removeClass('sidebar-active');
-			}
+			}*/
 
 			$scope['slide' + slideNum] = true;
 			$scope.currentSlide = slideNum;
+			$analytics.eventTrack('onboarding ' + events[$scope.currentSlide] + ' opened');
+		};
+
+		$scope.networkEnabled = function (network) {
+			$analytics.eventTrack('onboarding network enabled', {network: network});
+		};
+
+		$scope.collectionFollowed = function (title) {
+			$analytics.eventTrack('onboarding collection followed', {title: title, count: $scope.collectionFollowedCount++ });
 		};
 
 		$scope.finish = function () {
 			api.patch({ resource: 'users', target: 'me' }, { watchedPreview: true, watchedOnlyExtension: true }, function () {
 				$body.removeClass('sidebar-active');
-				$location.url('/settings');
 				$rootScope.user.watchedPreview = true;
 				$scope.showPreviewHelp = false;
+				$analytics.eventTrack('onboarding finished');
+
+				$location.url('/feed');
 
 				if (delayedWarning) {
 					$rootScope.user.warning = true;
@@ -64,9 +92,11 @@ define(function (require) {
 		$scope.finishWhenOnlyExtension = function () {
 			api.patch({ resource: 'users', target: 'me' }, { watchedOnlyExtension: true }, function () {
 				$body.removeClass('sidebar-active');
-				$location.url('/settings');
 				$rootScope.user.watchedPreview = true;
 				$scope.showOnlyExtensionHelp = false;
+				$analytics.eventTrack('onboarding finished');
+
+				$location.url('/feed');
 
 				if (delayedWarning) {
 					$rootScope.user.warning = true;
@@ -84,7 +114,7 @@ define(function (require) {
 		};
 
 		$scope.installPlugin = function () {
-			$analytics.eventTrack('go to extension via onboarding');
+			$analytics.eventTrack('onboarding installed plugin');
 		};
 	}
 
