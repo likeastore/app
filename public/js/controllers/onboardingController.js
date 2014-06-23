@@ -61,6 +61,7 @@ define(function (require) {
 				$body.removeClass('sidebar-active');
 				$rootScope.user.watchedPreview = true;
 				$scope.showPreviewHelp = false;
+				$location.url('/feed');
 
 				if (delayedWarning) {
 					$rootScope.user.warning = true;
@@ -73,6 +74,7 @@ define(function (require) {
 				$body.removeClass('sidebar-active');
 				$rootScope.user.watchedPreview = true;
 				$scope.showOnlyExtensionHelp = false;
+				$location.url('/feed');
 
 				if (delayedWarning) {
 					$rootScope.user.warning = true;
