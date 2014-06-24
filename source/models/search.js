@@ -17,8 +17,13 @@ function fullTextItemSearch (user, query, paging, callback) {
 			query: {
 				filtered: {
 					query: {
-						fuzzy_like_this: {
-							like_text: query
+						common: {
+							_all: {
+								query: query,
+								cutoff_frequency: 0.002,
+								minimum_should_match: 2,
+								low_freq_operator: 'and'
+							}
 						}
 					},
 					filter: {
@@ -26,7 +31,7 @@ function fullTextItemSearch (user, query, paging, callback) {
 							user: user.email
 						}
 					}
-				},
+				}
 			},
 			highlight: {
 				fields: {
@@ -42,13 +47,13 @@ function fullTextItemSearch (user, query, paging, callback) {
 		}
 
 		var items = resp.hits.hits.map(function (hit) {
-			return _.omit(_.extend(hit._source, tranform(hit.highlight)), 'userData');
+			return _.omit(_.extend(hit._source, transform(hit.highlight)), 'userData');
 		});
 
 		callback(null, {data: items, nextPage: items.length === paging.pageSize});
 	});
 
-	function tranform(highlight) {
+	function transform(highlight) {
 		var transformed = {};
 
 		if (highlight && highlight.description && highlight.description.length > 0) {
