@@ -25,6 +25,10 @@ var config = {
 		salt: '0b208b34946d64c41a11bab4eb34a7c6515ac2e9'
 	},
 
+	tracker: {
+		url: 'http://tracker.likeastore.com'
+	},
+
 	tracking: {
 		enabled: false
 	},
@@ -124,32 +128,6 @@ var config = {
 	newrelic: {
 		application: 'likeastore-app-staging',
 		licenseKey: 'e5862474ee62b99898c861dddfbfa8a89ac54f49'
-	},
-
-	collector: {
-		// scheduler cycle
-		schedulerRestart: 1000,
-
-		// after collector got to normal mode, next scheduled run in 15 mins
-		nextNormalRunAfter: 10000,
-
-		// after collector got to rateLimit mode, next scheduled run in hour
-		nextRateLimitRunAfter: 1000 * 60 * 60,
-
-		// initial mode quotes
-		quotes: {
-			github: {
-				runAfter: 5000
-			},
-
-			twitter: {
-				runAfter: 60000
-			},
-
-			stackoverflow: {
-				runAfter: 5000
-			}
-		}
 	}
 };
 

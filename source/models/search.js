@@ -3,7 +3,10 @@ var config = require('../../config');
 var elastic = require('../elastic')(config);
 
 function fullTextItemSearch (user, query, paging, callback) {
-	if (!query) {
+	var text = query.text;
+	var track = query.track;
+
+	if (!text) {
 		return callback(null, { data: [], nextPage: false });
 	}
 
@@ -19,7 +22,7 @@ function fullTextItemSearch (user, query, paging, callback) {
 					query: {
 						common: {
 							_all: {
-								query: query,
+								query: text,
 								cutoff_frequency: 0.002,
 								minimum_should_match: 2,
 								low_freq_operator: 'and'
@@ -50,6 +53,10 @@ function fullTextItemSearch (user, query, paging, callback) {
 			return _.omit(_.extend(hit._source, transform(hit.highlight)), 'userData');
 		});
 
+		items = items.map(function (item) {
+			return track ? trackUrl(item, user, text) : item;
+		});
+
 		callback(null, {data: items, nextPage: items.length === paging.pageSize});
 	});
 
@@ -69,6 +76,14 @@ function fullTextItemSearch (user, query, paging, callback) {
 		}
 
 		return transformed;
+	}
+
+	function trackUrl(item, user, text) {
+		var track = {user: user.email, url: item.source, query: text};
+		var payload = new Buffer(JSON.stringify(track)).toString('base64');
+		var url = config.tracker.url + '/api/track?d=' + payload;
+
+		return _.extend(item, {trackUrl: url});
 	}
 }
 
