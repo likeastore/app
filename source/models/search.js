@@ -79,7 +79,7 @@ function fullTextItemSearch (user, query, paging, callback) {
 	}
 
 	function trackUrl(item, user, text) {
-		var track = {user: user.email, url: item.source, query: text};
+		var track = {user: user.email, id: item._id, url: item.source, query: text};
 		var payload = new Buffer(JSON.stringify(track)).toString('base64');
 		var url = config.tracker.url + '/api/track?d=' + payload;
 
