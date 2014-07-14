@@ -4,6 +4,7 @@ var moment = require('moment');
 
 var config = require('../../config');
 var db = require('../db')(config);
+var elastic = require('../elastic')(config);
 
 var users = require('./users');
 
@@ -25,7 +26,8 @@ function transform(collection) {
 function create(user, collection, callback) {
 	async.waterfall([
 		createCollection,
-		notifyFollowers
+		notifyFollowers,
+		saveToElastic
 	], callback);
 
 	function createCollection(callback) {
@@ -45,6 +47,14 @@ function create(user, collection, callback) {
 		}
 
 		callback(null, collection);
+	}
+
+	function saveToElastic(collection, callback) {
+		elastic.index({index: 'collections', type: 'collection', id: collection._id.toString(), body: collection}, function (err) {
+			// TODO: What about error?
+
+			callback(null, collection);
+		});
 	}
 }
 
@@ -469,21 +479,59 @@ function search(user, query, callback) {
 		return callback(null, { data: [], nextPage: false });
 	}
 
-	db.collections.runCommand('text', { search: query.toString(), filter: {'public': true} }, function (err, doc) {
+	elastic.search({
+		index: 'collections',
+		body: {
+			query: {
+				filtered: {
+					query: {
+						simple_query_string: {
+							query: query,
+							fields: ['title', 'description']
+						},
+					},
+
+					filter: {
+						term: {
+							public: true
+						}
+					}
+				}
+			}
+		}
+	}, function (err, response) {
 		if (err) {
 			return callback(err);
 		}
 
-		if (doc && doc.errmsg) {
-			return callback(doc.errmsg);
-		}
-
-		var items = doc.results.map(function (result) {
-			return result.obj;
+		var ids = response.hits.hits.map(function (collection) {
+			return new ObjectId(collection._id);
 		});
 
-		callback(null, { data: items, nextPage: false });
+		db.collections.find({_id: {$in: ids}}, function (err, collections) {
+			if (err) {
+				return callback(err);
+			}
+
+			callback(null, {data: collections, nextPage: false});
+		});
 	});
+
+	// db.collections.runCommand('text', { search: query.toString(), filter: {'public': true} }, function (err, doc) {
+	// 	if (err) {
+	// 		return callback(err);
+	// 	}
+
+	// 	if (doc && doc.errmsg) {
+	// 		return callback(doc.errmsg);
+	// 	}
+
+	// 	var items = doc.results.map(function (result) {
+	// 		return result.obj;
+	// 	});
+
+	// 	callback(null, { data: items, nextPage: false });
+	// });
 }
 
 module.exports = {
