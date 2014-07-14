@@ -11,7 +11,11 @@ var config = {
 	},
 
 	elastic: {
-		connection: 'http://localhost:9200'
+		host: {
+			host: 'localhost:9200'
+		},
+
+		requestTimeout: 5000
 	},
 
 	auth: {
