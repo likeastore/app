@@ -457,14 +457,18 @@ function followedBy(user, name, callback) {
 }
 
 function popular(user, callback) {
-	db.collections.find({public: true}).limit(128, function (err, collections) {
+	var collections = [
+		new ObjectId('539e0ac5e45b300f00000037'),
+		new ObjectId('53ab2bba43fa2f1200000001'),
+		new ObjectId('53369916d195760e00000015'),
+		new ObjectId('533e78ce84bb1c0c0000000a'),
+		new ObjectId('534faf1b83902b140000000c'),
+	];
+
+	db.collections.find({_id: {$in: collections}}, function (err, collections) {
 		if (err) {
 			return callback(err);
 		}
-
-		collections = collections.filter(function (collection) {
-			return collection.items && collection.items.length > 0;
-		});
 
 		collections = _.sortBy(collections, function (collection) {
 			return collection.followers && collection.followers.length;
