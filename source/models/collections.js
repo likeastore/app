@@ -458,11 +458,19 @@ function followedBy(user, name, callback) {
 
 function popular(user, callback) {
 	var collections = [
+		// promoted in promo-w29
 		new ObjectId('539e0ac5e45b300f00000037'),
 		new ObjectId('53ab2bba43fa2f1200000001'),
 		new ObjectId('53369916d195760e00000015'),
 		new ObjectId('533e78ce84bb1c0c0000000a'),
 		new ObjectId('534faf1b83902b140000000c'),
+
+		// will be promoted in promo-w30
+		new ObjectId('53a03c550648690f00000001'),
+		new ObjectId('5355252fedce3c0c00000001'),
+		new ObjectId('5387808d9f86a70e00000008'),
+		new ObjectId('535123356c39511000000001'),
+		new ObjectId('535e0b4ebc7cb00e0000000d')
 	];
 
 	db.collections.find({_id: {$in: collections}}, function (err, collections) {
