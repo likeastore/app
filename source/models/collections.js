@@ -471,7 +471,7 @@ function popular(user, callback) {
 		}
 
 		collections = _.sortBy(collections, function (collection) {
-			return collection.followers && collection.followers.length;
+			return collection.followers && collection.followers.length * (-1);
 		});
 
 		callback(null, collections);
