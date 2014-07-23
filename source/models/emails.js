@@ -15,7 +15,6 @@ function sendTemplate(emails, template, merge, callback) {
 		message: {
 			auto_html: false,
 			to: emails,
-			bcc_address: 'devs@likeastore.com',
 			global_merge_vars: merge
 		}
 	}, function (err) {
