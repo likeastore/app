@@ -46,8 +46,8 @@ define(function () {
 					query.target = options.target;
 				}
 
-				if (options.track) {
-					query.track = options.track;
+				if (options.query) {
+					query = _.extend(query, options.query);
 				}
 
 				return query;

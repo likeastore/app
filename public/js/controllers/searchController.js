@@ -29,6 +29,8 @@ define(function (require) {
 		function loadPage() {
 			appLoader.loading();
 
+			// TODO: extend query with tracking
+
 			api.get({ resource: 'search', text: $routeParams.text, page: $scope.page }, function (res) {
 				$scope.items = $scope.items.concat(res.data);
 				$scope.nextPage = res.nextPage;

@@ -55,7 +55,7 @@ define(function (require) {
 	controllers.controller('historyController', require('./historyController'));
 
 	// discovery
-	controllers.controller('feedController', factory({title: 'Feed', event:'feed opened', resource: 'feed', track: 1}));
+	controllers.controller('feedController', factory({title: 'Feed', event:'feed opened', resource: 'feed', query: {track: 1, from: 'site'}}));
 	controllers.controller('suggestPeopleController', require('./suggestPeopleController'));
 
 	// profile

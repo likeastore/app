@@ -5,6 +5,7 @@ var db = require('../db')(config);
 function forUser(user, query, paging, callback) {
 	var follows = user.followCollections;
 	var track = query.track;
+	var from = query.from;
 
 	if (!follows || follows.length === 0) {
 		return callback(null, {data: [], nextPage: false});
@@ -57,7 +58,14 @@ function forUser(user, query, paging, callback) {
 	});
 
 	function trackUrl(item, user) {
-		var track = {user: user.email, id: item._id, url: item.source, source: 'search'};
+		var track = {
+			action: 'feed results clicked',
+			user: user.email,
+			id: item._id,
+			url: item.source,
+			source: from
+		};
+
 		var payload = new Buffer(JSON.stringify(track)).toString('base64');
 		var url = config.tracker.url + '/api/track?d=' + payload;
 
