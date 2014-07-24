@@ -5,6 +5,7 @@ var elastic = require('../elastic')(config);
 function fullTextItemSearch (user, query, paging, callback) {
 	var text = query.text;
 	var track = query.track;
+	var from = query.from || 'extention';
 
 	if (!text) {
 		return callback(null, { data: [], nextPage: false });
@@ -79,7 +80,14 @@ function fullTextItemSearch (user, query, paging, callback) {
 	}
 
 	function trackUrl(item, user, text) {
-		var track = {user: user.email, id: item._id, url: item.source, query: text};
+		var track = {
+			action: 'search results clicked',
+			user: user.email, id: item._id,
+			url: item.source,
+			query: text,
+			source: from
+		};
+
 		var payload = new Buffer(JSON.stringify(track)).toString('base64');
 		var url = config.tracker.url + '/api/track?d=' + payload;
 
