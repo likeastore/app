@@ -2,8 +2,9 @@ var _ = require('underscore');
 var config = require('../../config');
 var db = require('../db')(config);
 
-function forUser(user, paging, callback) {
+function forUser(user, query, paging, callback) {
 	var follows = user.followCollections;
+	var track = query.track;
 
 	if (!follows || follows.length === 0) {
 		return callback(null, {data: [], nextPage: false});
@@ -48,8 +49,20 @@ function forUser(user, paging, callback) {
 			return _.extend(i.item, {collection: i.collection});
 		})) || [];
 
+		items = items.map(function (item) {
+			return track ? trackUrl(item, user) : item;
+		});
+
 		callback(null, {data: items, nextPage: items.length === paging.pageSize});
 	});
+
+	function trackUrl(item, user) {
+		var track = {user: user.email, id: item._id, url: item.source, source: 'search'};
+		var payload = new Buffer(JSON.stringify(track)).toString('base64');
+		var url = config.tracker.url + '/api/track?d=' + payload;
+
+		return _.extend(item, {trackUrl: url});
+	}
 }
 
 module.exports = {

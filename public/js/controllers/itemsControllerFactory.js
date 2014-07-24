@@ -1,16 +1,17 @@
 define(function () {
 	'use strict';
 
-	function itemsControllerFactory (title, target, event, resource) {
+	function itemsControllerFactory (options) {
 
 		function ItemsController($scope, $rootScope, $window, appLoader, api, user, $analytics) {
 			$window.scrollTo(0,0);
 
-			resource = resource || 'items';
+			var resource = options.resource || 'items';
+			var title = options.title;
 
 			event && $analytics.eventTrack(event);
 
-			$rootScope.title = title;
+			$rootScope.title = options.title;
 
 			$scope.page = 1;
 			$scope.items = [];
@@ -40,8 +41,13 @@ define(function () {
 
 			function createQuery () {
 				var query = { resource: resource, page: $scope.page };
-				if (target) {
-					query.target = target;
+
+				if (options.target) {
+					query.target = options.target;
+				}
+
+				if (options.track) {
+					query.track = options.track;
 				}
 
 				return query;

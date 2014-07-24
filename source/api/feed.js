@@ -8,7 +8,7 @@ function feedService(app) {
 	);
 
 	function getFeed(req, res, next) {
-		feed.forUser(req.user, req.paging, function (err, feed) {
+		feed.forUser(req.user, req.query, req.paging, function (err, feed) {
 			if (err) {
 				return next(err);
 			}
