@@ -8,6 +8,7 @@ define(function () {
 
 			var resource = options.resource || 'items';
 			var title = options.title;
+			var event = options.event;
 
 			event && $analytics.eventTrack(event);
 
