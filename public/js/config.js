@@ -20,7 +20,7 @@ define(function () {
 			},
 
 			safari: {
-				url: 'http://addons.likeastore.com/files/safari/likeastore.safariextz'
+				url: 'http://addons.likeastore.com/dist/safari/likeastore.safariextz'
 			}
 		},
 
