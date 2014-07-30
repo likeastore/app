@@ -84,7 +84,7 @@ function fullTextItemSearch (user, query, paging, callback) {
 			action: 'search results clicked',
 			user: user.email, id: item._id,
 			url: item.source,
-			query: text,
+			query: text.trim(),
 			source: from
 		};
 
