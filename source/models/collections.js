@@ -465,12 +465,20 @@ function popular(user, callback) {
 		new ObjectId('533e78ce84bb1c0c0000000a'),
 		new ObjectId('534faf1b83902b140000000c'),
 
-		// will be promoted in promo-w30
+		// promoted in promo-w30
 		new ObjectId('53a03c550648690f00000001'),
 		new ObjectId('5355252fedce3c0c00000001'),
 		new ObjectId('5387808d9f86a70e00000008'),
 		new ObjectId('535123356c39511000000001'),
-		new ObjectId('535e0b4ebc7cb00e0000000d')
+		new ObjectId('535e0b4ebc7cb00e0000000d'),
+
+		// promoted in promo-31
+
+		new ObjectId('53cfc734378cd61000000001'),
+		new ObjectId('53ccc26bcf3c83120000000f'),
+		new ObjectId('53b837bac1d2e81000000016'),
+		new ObjectId('533902f1d195760e0000001e'),
+		new ObjectId('5357bc507e21761000000002')
 	];
 
 	db.collections.find({_id: {$in: collections}}, function (err, collections) {
