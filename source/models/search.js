@@ -32,7 +32,7 @@ function genericSearch(options, callback) {
 						_all: {
 							query: text,
 							cutoff_frequency: 0.002,
-							minimum_should_match: 2,
+							minimum_should_match: 1,
 							low_freq_operator: 'and'
 						}
 					}
