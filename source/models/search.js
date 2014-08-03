@@ -4,7 +4,14 @@ var async = require('async');
 var config = require('../../config');
 var elastic = require('../elastic')(config);
 
-function genericSearch(index, filter, user, query, paging, callback) {
+function genericSearch(options, callback) {
+	var user = options.user;
+	var index = options.index;
+	var filter = options.filter || {};
+	var sort = options.sort || {};
+	var query = options.query;
+	var paging = options.paging;
+
 	var text = query.text;
 	var track = query.track;
 	var from = query.from || 'extention';
@@ -14,44 +21,47 @@ function genericSearch(index, filter, user, query, paging, callback) {
 	}
 
 	var page = (paging && paging.page) || 1;
-	var pageSize = (paging && page.pageSize) || config.app.pageSize;
+	var pageSize = (paging && paging.pageSize) || config.app.pageSize;
 	var pageFrom = (page - 1) * pageSize;
+
+	var searchQuery = {
+		query: {
+			filtered: {
+				query: {
+					common: {
+						_all: {
+							query: text,
+							cutoff_frequency: 0.002,
+							minimum_should_match: 2,
+							low_freq_operator: 'and'
+						}
+					}
+				},
+				filter: filter,
+			}
+		},
+		highlight: {
+			fields: {
+				description: { },
+				title: { },
+				source: { }
+			}
+		},
+		sort: sort
+	};
 
 	elastic.search({
 		index: index,
 		from: pageFrom,
 		size: pageSize,
-		body: {
-			query: {
-				filtered: {
-					query: {
-						common: {
-							_all: {
-								query: text,
-								cutoff_frequency: 0.002,
-								minimum_should_match: 2,
-								low_freq_operator: 'and'
-							}
-						}
-					},
-					filter: filter,
-				}
-			},
-			highlight: {
-				fields: {
-					description: { },
-					title: { },
-					source: { }
-				}
-			}
-		}
+		body: searchQuery
 	}, function (err, resp) {
 		if (err) {
 			return callback(err);
 		}
 
 		var items = resp.hits.hits.map(function (hit) {
-			return _.omit(_.extend(hit._source, transform(hit.highlight)), 'userData');
+			return _.omit(_.extend(hit._source, transform(hit.highlight)), options.omit);
 		});
 
 		items = items.map(function (item) {
@@ -97,30 +107,44 @@ function genericSearch(index, filter, user, query, paging, callback) {
 }
 
 function searchOwnItems (user, query, paging, callback) {
-	var filter = {
-		term: {
-			user: user.email
-		}
-	};
-
-	genericSearch('items', filter, user, query, paging, callback);
+	genericSearch({
+		index: 'items',
+		filter: {
+			term: {
+				user: user.email
+			}
+		},
+		user: user,
+		query: query,
+		paging: paging,
+		sort: { date: {order: 'desc'}},
+		omit: 'userData'
+	}, callback);
 }
 
 function searchFeed(user, query, paging, callback) {
-	var filter = {
-		term: {
-			feedOwner: user.email
-		}
-	};
-
-	genericSearch('feeds', filter, user, query, paging, callback);
+	genericSearch({
+		index: 'feeds',
+		filter: {
+			term: {
+				feedOwner: user.email
+			}
+		},
+		user: user,
+		query: query,
+		paging: paging,
+		sort: { date: {order: 'desc'}},
+		omit: 'userData'
+	}, callback);
 }
 
 function searchCollections(user, query, paging, callback) {
-	var filter = {
-	};
-
-	genericSearch('collections', filter, user, query, paging, callback);
+	genericSearch({
+		index: 'collections',
+		user: user,
+		query: query,
+		paging: paging
+	}, callback);
 }
 
 function advancedSearch(user, query, paging, callback) {
@@ -135,7 +159,7 @@ function advancedSearch(user, query, paging, callback) {
 			searchCollections(user, query, paging, callback);
 		}
 	], function (err, results) {
-		callback(err, {items: results[0], feed: results[1], collections: results[2]});
+		callback(err, {items: results[0], feeds: results[1], collections: results[2]});
 	});
 }
 

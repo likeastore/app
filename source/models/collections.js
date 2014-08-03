@@ -33,6 +33,7 @@ function create(user, collection, callback) {
 	function createCollection(callback) {
 		collection.user = user.email;
 		collection.userData = _.pick(user, userPickFields);
+		collection.date = moment().toDate();
 
 		if (!collection.public) {
 			collection.public = false;
