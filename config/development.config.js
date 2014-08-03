@@ -12,7 +12,7 @@ var config = {
 
 	elastic: {
 		host: {
-			host: 'localhost:9200'
+			host: 'localhost'
 		},
 
 		requestTimeout: 5000
