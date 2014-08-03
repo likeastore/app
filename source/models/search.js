@@ -1,8 +1,10 @@
 var _ = require('underscore');
+var async = require('async');
+
 var config = require('../../config');
 var elastic = require('../elastic')(config);
 
-function fullTextItemSearch (user, query, paging, callback) {
+function genericSearch(index, filter, user, query, paging, callback) {
 	var text = query.text;
 	var track = query.track;
 	var from = query.from || 'extention';
@@ -11,12 +13,14 @@ function fullTextItemSearch (user, query, paging, callback) {
 		return callback(null, { data: [], nextPage: false });
 	}
 
-	var page = paging.page || 1;
+	var page = (paging && paging.page) || 1;
+	var pageSize = (paging && page.pageSize) || config.app.pageSize;
+	var pageFrom = (page - 1) * pageSize;
 
 	elastic.search({
-		index: 'items',
-		from: (page - 1) * paging.pageSize,
-		size: paging.pageSize,
+		index: index,
+		from: pageFrom,
+		size: pageSize,
 		body: {
 			query: {
 				filtered: {
@@ -30,11 +34,7 @@ function fullTextItemSearch (user, query, paging, callback) {
 							}
 						}
 					},
-					filter: {
-						term: {
-							user: user.email
-						}
-					}
+					filter: filter,
 				}
 			},
 			highlight: {
@@ -82,6 +82,7 @@ function fullTextItemSearch (user, query, paging, callback) {
 	function trackUrl(item, user, text) {
 		var track = {
 			action: 'search results clicked',
+			index: index,
 			user: user.email, id: item._id,
 			url: item.source,
 			query: text.trim(),
@@ -95,6 +96,52 @@ function fullTextItemSearch (user, query, paging, callback) {
 	}
 }
 
+function searchOwnItems (user, query, paging, callback) {
+	var filter = {
+		term: {
+			user: user.email
+		}
+	};
+
+	genericSearch('items', filter, user, query, paging, callback);
+}
+
+function searchFeed(user, query, paging, callback) {
+	var filter = {
+		term: {
+			feedOwner: user.email
+		}
+	};
+
+	genericSearch('feeds', filter, user, query, paging, callback);
+}
+
+function searchCollections(user, query, paging, callback) {
+	var filter = {
+	};
+
+	genericSearch('collections', filter, user, query, paging, callback);
+}
+
+function advancedSearch(user, query, paging, callback) {
+	async.parallel([
+		function (callback) {
+			searchOwnItems(user, query, paging, callback);
+		},
+		function (callback) {
+			searchFeed(user, query, paging, callback);
+		},
+		function (callback) {
+			searchCollections(user, query, paging, callback);
+		}
+	], function (err, results) {
+		callback(err, {items: results[0], feed: results[1], collections: results[2]});
+	});
+}
+
 module.exports = {
-	items: fullTextItemSearch
+	items: searchOwnItems,
+	feed: searchFeed,
+	collections: searchCollections,
+	advanced: advancedSearch
 };
