@@ -32,7 +32,7 @@ function genericSearch(options, callback) {
 						_all: {
 							query: text,
 							cutoff_frequency: 0.002,
-							minimum_should_match: 1,
+							minimum_should_match: 2,
 							low_freq_operator: 'and'
 						}
 					}
@@ -133,7 +133,7 @@ function searchFeed(user, query, paging, callback) {
 		user: user,
 		query: query,
 		paging: paging,
-		sort: { date: {order: 'desc'}},
+		sort: { added: {order: 'desc'}},
 		omit: 'userData'
 	}, callback);
 }
