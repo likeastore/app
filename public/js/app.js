@@ -69,7 +69,7 @@ define(function (require) {
 				.when('/instagram', { templateUrl: 'partials/dashboard', controller: 'instagramController' })
 				.when('/flickr', { templateUrl: 'partials/dashboard', controller: 'flickrController' })
 				.when('/stackoverflow', { templateUrl: 'partials/dashboard', controller: 'stackoverflowController' })
-				.when('/search', { templateUrl: 'partials/dashboard', controller: 'searchController' })
+				.when('/search', { templateUrl: 'partials/search', controller: 'searchController' })
 				.when('/items/:id', { templateUrl: 'partials/dashboard', controller: 'dashboardController'})
 				.when('/feed', { templateUrl: 'partials/feed', controller: 'feedController' })
 				.when('/explore', { templateUrl: 'partials/explore', controller: 'exploreController' })

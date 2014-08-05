@@ -1,0 +1,186 @@
+<section class="dashboard activity animated fadeIn">
+
+	<section ng-show="collections">
+		<h2 class="featured-title">Suggested collections:</h2>
+
+			<ul class="items-wrap clearfix" ng-class="{
+				'list-view': user.viewMode === 'list',
+				'grid-view': user.viewMode === 'grid',
+				'inbox': inbox
+			}">
+				<li class="coll-card collection{{$index}}"
+					ng-repeat="coll in collections"
+					ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
+					ng-include="'/partials/cardCollection.ejs'">
+				</li>
+			</ul>
+
+	</section>
+
+	<section ng-show="feeds">
+		<h2 class="featured-title">Found in feed:</h2>
+
+		<ul id="scrollyItems" class="items-wrap" ng-class="{
+			'list-view': user.viewMode === 'list',
+			'grid-view': user.viewMode === 'grid',
+			'inbox': inbox
+		}">
+			<li class="dash-item {{item.type}} item{{$index}}"
+				ng-repeat="item in feeds"
+				ng-class="{
+					'thumbed': item.thumbnail,
+					'texted': !item.thumbnail,
+					'last': $last
+				}"
+				go-to-link="{{item.source}}">
+
+				<div class="action-buttons">
+					<div add-collection-popup="item"></div>
+					<a href="" class="share-btn"
+						tooltip="Share"
+						ng-dialog="shareLikeDialog"
+						ng-dialog-class="lsd-theme share-dialog share-like"
+						ng-dialog-controller="shareLikeController"
+						ng-dialog-show-close="false"
+						ng-dialog-data="{{item._id}}, {{item.type}}, {{item.title||item.repo}}"><i class="font-icon share-icon"></i></a>
+					<a href="" class="delete-btn"
+						tooltip="{{inbox ? 'Mark as read' : 'Delete'}}"
+						ng-click="inbox ? markAsRead(item._id, $index) : remove(item._id, $index)"><i class="font-icon delete-icon"></i></a>
+				</div>
+
+				<div ng-if="item.thumbnail" class="image">
+					<a ng-show="user.viewMode === 'grid'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+
+					<div class="info">
+						<div ng-if="item.avatarUrl" class="author-image">
+							<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+						</div>
+
+						<div ng-show="user.viewMode === 'grid'" class="right-block">
+							<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
+							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+							<div ng-if="item.description" class="description"
+								ng-bind-html="item.description|truncate:240|linkify" ng-class="{short: user.viewMode==='grid' && item.title && item.authorName}"></div>
+						</div>
+
+						<div ng-show="user.viewMode === 'list'" class="right-block clearfix">
+							<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
+							<a ng-show="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+							<div class="texts">
+								<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+								<div ng-if="item.description" class="description"
+									ng-bind-html="item.description|truncate:240|linkify"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div ng-if="!item.thumbnail" class="text-wrap">
+					<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author-image">
+						<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+					</div>
+					<div class="right-block">
+						<div ng-if="item.authorName && item.type !== 'facebook'" class="author-name">{{item.authorName}}</div>
+						<h2 ng-if="item.title || item.repo || item.name" class="title"
+							ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
+						<div ng-if="item.description && item.description !== item.name" class="description"
+							ng-bind-html="item.description|truncate:240|linkify"></div>
+						<div ng-if="(!item.description && item.gist) || item.type === 'tumblr' || item.description === item.name" class="description"
+							ng-bind-html="item.source|linkify"></div>
+					</div>
+				</div>
+
+				<time>{{item.created|date: 'longDate'}}</time>
+				<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
+			</li>
+		</ul>
+
+	</section>
+
+	<section ng-show="items">
+		<h2 class="featured-title">Found in likes:</h2>
+
+		<ul id="scrollyItems" class="items-wrap" ng-class="{
+			'list-view': user.viewMode === 'list',
+			'grid-view': user.viewMode === 'grid',
+			'inbox': inbox
+		}">
+			<li class="dash-item {{item.type}} item{{$index}}"
+				ng-repeat="item in items"
+				ng-class="{
+					'thumbed': item.thumbnail,
+					'texted': !item.thumbnail,
+					'last': $last
+				}"
+				go-to-link="{{item.source}}">
+
+				<div class="action-buttons">
+					<div add-collection-popup="item"></div>
+					<a href="" class="share-btn"
+						tooltip="Share"
+						ng-dialog="shareLikeDialog"
+						ng-dialog-class="lsd-theme share-dialog share-like"
+						ng-dialog-controller="shareLikeController"
+						ng-dialog-show-close="false"
+						ng-dialog-data="{{item._id}}, {{item.type}}, {{item.title||item.repo}}"><i class="font-icon share-icon"></i></a>
+					<a href="" class="delete-btn"
+						tooltip="{{inbox ? 'Mark as read' : 'Delete'}}"
+						ng-click="inbox ? markAsRead(item._id, $index) : remove(item._id, $index)"><i class="font-icon delete-icon"></i></a>
+				</div>
+
+				<div ng-if="item.thumbnail" class="image">
+					<a ng-show="user.viewMode === 'grid'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+
+					<div class="info">
+						<div ng-if="item.avatarUrl" class="author-image">
+							<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+						</div>
+
+						<div ng-show="user.viewMode === 'grid'" class="right-block">
+							<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
+							<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+							<div ng-if="item.description" class="description"
+								ng-bind-html="item.description|truncate:240|linkify" ng-class="{short: user.viewMode==='grid' && item.title && item.authorName}"></div>
+						</div>
+
+						<div ng-show="user.viewMode === 'list'" class="right-block clearfix">
+							<div ng-if="item.authorName" class="author-name">{{item.authorName}}</div>
+							<a ng-show="user.viewMode === 'list'" href="{{item.source}}" class="cover" style="background-image: url({{item.thumbnail}})" target="_blank"></a>
+							<div class="texts">
+								<h2 ng-if="item.title || item.repo" class="title truncate">{{item.title||item.repo}}</h2>
+								<div ng-if="item.description" class="description"
+									ng-bind-html="item.description|truncate:240|linkify"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div ng-if="!item.thumbnail" class="text-wrap">
+					<div ng-if="item.avatarUrl && item.type !== 'facebook'" class="author-image">
+						<img ng-src="{{item.avatarUrl}}" class="avatar" avatar-load>
+					</div>
+					<div class="right-block">
+						<div ng-if="item.authorName && item.type !== 'facebook'" class="author-name">{{item.authorName}}</div>
+						<h2 ng-if="item.title || item.repo || item.name" class="title"
+							ng-class="{truncate: item.type !== 'tumblr'}">{{item.title||item.repo||item.name}}</h2>
+						<div ng-if="item.description && item.description !== item.name" class="description"
+							ng-bind-html="item.description|truncate:240|linkify"></div>
+						<div ng-if="(!item.description && item.gist) || item.type === 'tumblr' || item.description === item.name" class="description"
+							ng-bind-html="item.source|linkify"></div>
+					</div>
+				</div>
+
+				<time>{{item.created|date: 'longDate'}}</time>
+				<i class="font-icon {{item.type}}-icon {{item.type}}-bg-clr icon"></i>
+			</li>
+		</ul>
+	</section>
+
+	<div ng-if="loaded && !items.length && search" class="blank-box">
+		<div class="robot-icon big-icon"></div>
+		<h2 class="title">No matching search results!</h2>
+		<p>Sorry, but there is no content related to your <b ng-show="query">"{{query}}"</b> request. Didn't you mean something else?</p>
+	</div>
+
+	<div ng-hide="loaded || error" class="two-spin"></div>
+</section>

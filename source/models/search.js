@@ -3,6 +3,9 @@ var async = require('async');
 
 var config = require('../../config');
 var elastic = require('../elastic')(config);
+var collections = require('./collections');
+
+var ObjectId = require('mongojs').ObjectId;
 
 function genericSearch(options, callback) {
 	var user = options.user;
@@ -141,10 +144,33 @@ function searchFeed(user, query, paging, callback) {
 function searchCollections(user, query, paging, callback) {
 	genericSearch({
 		index: 'collections',
+		filter: {
+			term: {
+				public: true
+			}
+		},
 		user: user,
 		query: query,
 		paging: paging
-	}, callback);
+	}, function (err, results) {
+		if (err) {
+			return callback(err);
+		}
+
+		var ids = results.data.map(function (c) {
+			return new ObjectId(c._id);
+		});
+
+		collections.resolve(ids, function (err, resolved) {
+			if (err) {
+				return callback(err);
+			}
+
+			//results.data = resolved;
+
+			callback(null, results);
+		});
+	});
 }
 
 function advancedSearch(user, query, paging, callback) {

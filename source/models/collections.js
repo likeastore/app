@@ -529,7 +529,7 @@ function search(user, query, callback) {
 			return new ObjectId(collection._id);
 		});
 
-		db.collections.find({_id: {$in: ids}}, function (err, collections) {
+		resolve(ids, function (err, collections) {
 			if (err) {
 				return callback(err);
 			}
@@ -537,22 +537,16 @@ function search(user, query, callback) {
 			callback(null, {data: collections, nextPage: false});
 		});
 	});
+}
 
-	// db.collections.runCommand('text', { search: query.toString(), filter: {'public': true} }, function (err, doc) {
-	// 	if (err) {
-	// 		return callback(err);
-	// 	}
+function resolve(ids, callback) {
+	db.collections.find({_id: {$in: ids}}, function (err, collections) {
+		if (err) {
+			return callback(err);
+		}
 
-	// 	if (doc && doc.errmsg) {
-	// 		return callback(doc.errmsg);
-	// 	}
-
-	// 	var items = doc.results.map(function (result) {
-	// 		return result.obj;
-	// 	});
-
-	// 	callback(null, { data: items, nextPage: false });
-	// });
+		callback(null, collections);
+	});
 }
 
 module.exports = {
@@ -570,5 +564,6 @@ module.exports = {
 	followedBy: followedBy,
 	popular: popular,
 	search: search,
+	resolve: resolve,
 	transform: transform
 };
