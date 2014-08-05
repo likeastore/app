@@ -39,7 +39,7 @@ define(function (require) {
 				}
 
 				$scope.items = $scope.items.concat(res.items.data);
-				$scope.nextPage = res.items.data.nextPage;
+				$scope.nextPage = res.items.nextPage;
 
 				mixpanel.people.increment('Searches by Site');
 
