@@ -57,7 +57,7 @@
 		</ul>
 	</section>
 
-	<div ng-if="loaded && !items.length && search" class="blank-box">
+	<div ng-if="loaded && !items.length && !feeds.length && !collections.length" class="blank-box">
 		<div class="robot-icon big-icon"></div>
 		<h2 class="title">No matching search results!</h2>
 		<p>Sorry, but there is no content related to your <b ng-show="query">"{{query}}"</b> request. Didn't you mean something else?</p>
