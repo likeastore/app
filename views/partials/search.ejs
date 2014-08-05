@@ -1,7 +1,7 @@
 <h2 class="featured-title" ng-class="{'less-space': inbox}">{{title}}</h2>
 
 <section class="dashboard activity animated fadeIn">
-	<section ng-show="collections.length">
+	<section ng-if="collections.length">
 		<h2 class="small-title">Suggested collections to follow:</h2>
 		<ul class="items-wrap clearfix" ng-class="{
 			'list-view': user.viewMode === 'list',
@@ -16,7 +16,7 @@
 		</ul>
 	</section>
 
-	<section ng-show="feeds.length">
+	<section ng-if="feeds.length">
 		<h2 class="small-title">From your feed:</h2>
 		<ul class="items-wrap" ng-class="{
 				'list-view': user.viewMode === 'list',
@@ -37,7 +37,7 @@
 		</ul>
 	</section>
 
-	<section ng-show="items.length">
+	<section ng-if="items.length">
 		<h2 class="small-title">From your likes:</h2>
 		<ul id="scrollyItems" class="items-wrap" ng-class="{
 			'list-view': user.viewMode === 'list',
