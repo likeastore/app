@@ -2,7 +2,7 @@
 
 <section class="dashboard activity animated fadeIn">
 	<section ng-show="collections">
-		<h2 class="title">Suggested collections to follow:</h2>
+		<h2 class="small-title">Suggested collections to follow:</h2>
 		<ul class="items-wrap clearfix" ng-class="{
 			'list-view': user.viewMode === 'list',
 			'grid-view': user.viewMode === 'grid',
@@ -17,7 +17,7 @@
 	</section>
 
 	<section ng-show="feeds">
-		<h2 class="title">From your feed:</h2>
+		<h2 class="small-title">From your feed:</h2>
 		<ul class="items-wrap" ng-class="{
 				'list-view': user.viewMode === 'list',
 				'grid-view': user.viewMode === 'grid',
@@ -38,7 +38,7 @@
 	</section>
 
 	<section ng-show="items">
-		<h2 class="title">From your likes:</h2>
+		<h2 class="small-title">From your likes:</h2>
 		<ul id="scrollyItems" class="items-wrap" ng-class="{
 			'list-view': user.viewMode === 'list',
 			'grid-view': user.viewMode === 'grid',

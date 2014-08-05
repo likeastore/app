@@ -166,7 +166,7 @@ function searchCollections(user, query, paging, callback) {
 				return callback(err);
 			}
 
-			//results.data = resolved;
+			results.data = resolved;
 
 			callback(null, results);
 		});

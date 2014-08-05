@@ -193,12 +193,12 @@ body,
   margin-bottom: 35px;
 }
 
-.title {
+.small-title {
   color: #555;
   font-size: 18px;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   padding: 0;
-  margin-bottom: 35px;
+  margin-bottom: 25px;
 }
 
 .featured-title.less-space {
