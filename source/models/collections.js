@@ -545,6 +545,8 @@ function resolve(ids, callback) {
 			return callback(err);
 		}
 
+		collections = collections.map(transform);
+
 		callback(null, collections);
 	});
 }
