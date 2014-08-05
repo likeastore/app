@@ -9,9 +9,11 @@ define(function (require) {
 			cacheTemplates: function () {
 				$http.get('/partials/cardCollection.ejs', {cache: $templateCache});
 				$http.get('/partials/cardItem.ejs', {cache: $templateCache});
+
+				return this;
 			},
 
-			globals: function () {
+			addGlobals: function () {
 				$rootScope.browser = {
 					name: bowser.name.toLowerCase(),
 					version: bowser.version
@@ -53,6 +55,8 @@ define(function (require) {
 						[parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)].join() :
 						null;
 				};
+
+				return this;
 			}
 		};
 	};

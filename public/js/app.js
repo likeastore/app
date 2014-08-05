@@ -114,7 +114,7 @@ define(function (require) {
 		tracking.boot();
 		facebook.init();
 
-		utils();
+		utils.addGlobals().cacheTemplates();
 	});
 
 	return app;
