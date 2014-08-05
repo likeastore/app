@@ -1,7 +1,7 @@
 <h2 class="featured-title" ng-class="{'less-space': inbox}">{{title}}</h2>
 
 <section class="dashboard activity animated fadeIn">
-	<section ng-if="loaded && collections.length">
+	<section ng-show="collections.length">
 		<h2 class="small-title">Suggested collections to follow:</h2>
 		<ul class="items-wrap clearfix" ng-class="{
 			'list-view': user.viewMode === 'list',
