@@ -1,18 +1,18 @@
-<a ng-show="list === 'collections'" ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
-<a ng-show="list === 'following'" ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
+<a ng-if="list === 'collections'" ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
+<a ng-if="list === 'following'" ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
 
 <div class="line-shadow"></div>
-<div ng-show="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>
-<div ng-show="!coll.thumbnail" class="thumb" style="background-color: rgba({{hexToRGBString(coll.color)}}, .8)"></div>
+<div ng-if="coll.thumbnail" class="thumb" style="background-image: url({{coll.thumbnail}})"></div>
+<div ng-if="!coll.thumbnail" class="thumb" style="background-color: rgba({{hexToRGBString(coll.color)}}, .8)"></div>
 <div class="meta">
-	<a ng-show="list === 'collections'" ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
-	<a ng-show="list === 'following'" ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
+	<a ng-if="list === 'collections'" ng-href="/u/{{profile.name}}/{{coll._id}}" class="mask-link"></a>
+	<a ng-if="list === 'following'" ng-href="/u/{{coll.userData.name}}/{{coll._id}}" class="mask-link"></a>
 
-	<div ng-ishowf="list === 'following' && coll.userData.name" class="author truncate">
+	<div ng-if="list === 'following' && coll.userData.name" class="author truncate">
 		<img ng-src="{{coll.userData.avatar}}" avatar-load> <a ng-href="/u/{{coll.userData.name}}">{{coll.userData.name}}</a>
 	</div>
 	<h1 class="title">{{coll.title}}</h1>
-	<p ng-ifshow="coll.description" class="desc" ng-bind-html="coll.description|linkify"></p>
+	<p ng-if="coll.description" class="desc" ng-bind-html="coll.description|linkify"></p>
 
 	<div class="stat clearfix">
 		<a ng-href="/u/{{coll.userData.name}}/{{coll._id}}#followers" class="followers stat-line" tooltip="Followers"><i class="font-icon people-icon icon"></i> {{kFormat(coll.followersCount) || 0}}</a>
