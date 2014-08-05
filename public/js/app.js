@@ -114,8 +114,6 @@ define(function (require) {
 		tracking.boot();
 		facebook.init();
 
-		$http.get('/partials/cardCollection.ejs', {cache: $templateCache});
-
 		utils();
 	});
 
