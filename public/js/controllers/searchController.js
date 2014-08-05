@@ -9,6 +9,8 @@ define(function (require) {
 		$scope.query = $routeParams.text;
 
 		$scope.page = 1;
+		$scope.collections = [];
+		$scope.feeds = [];
 		$scope.items = [];
 		$scope.nextPage = false;
 
@@ -29,11 +31,14 @@ define(function (require) {
 		function loadPage() {
 			appLoader.loading();
 
-			// TODO: extend query with tracking
+			api.get({ resource: 'search2', text: $routeParams.text, page: $scope.page, track: 1, from: 'site' }, function (res) {
+				if ($scope.page === 1) {
+					$scope.collections = $scope.collections.concat(res.collections.data);
+					$scope.feeds = $scope.feeds.concat(res.feeds.data);
+				}
 
-			api.get({ resource: 'search', text: $routeParams.text, page: $scope.page }, function (res) {
-				$scope.items = $scope.items.concat(res.data);
-				$scope.nextPage = res.nextPage;
+				$scope.items = $scope.items.concat(res.items.data);
+				$scope.nextPage = res.items.nextPage;
 
 				mixpanel.people.increment('Searches by Site');
 

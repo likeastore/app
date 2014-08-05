@@ -1,0 +1,67 @@
+<h2 class="featured-title" ng-class="{'less-space': inbox}">{{title}}</h2>
+
+<section class="dashboard activity animated fadeIn">
+	<section ng-show="collections">
+		<h2 class="title">Suggested collections to follow:</h2>
+		<ul class="items-wrap clearfix" ng-class="{
+			'list-view': user.viewMode === 'list',
+			'grid-view': user.viewMode === 'grid',
+			'inbox': inbox
+		}">
+			<li class="coll-card collection{{$index}}"
+				ng-repeat="coll in collections"
+				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
+				ng-include="'/partials/cardCollection.ejs'">
+			</li>
+		</ul>
+	</section>
+
+	<section ng-show="feeds">
+		<h2 class="title">From your feed:</h2>
+		<ul class="items-wrap" ng-class="{
+				'list-view': user.viewMode === 'list',
+				'grid-view': user.viewMode === 'grid',
+				'inbox': inbox
+			}">
+
+			<li class="dash-item {{item.type}} item{{$index}}"
+				ng-repeat="item in feeds"
+				ng-class="{
+					'thumbed': item.thumbnail,
+					'texted': !item.thumbnail,
+					'last': $last
+				}"
+				go-to-link="{{item.trackUrl||item.source}}"
+				ng-include="'/partials/cardItem.ejs'">
+			</li>
+		</ul>
+	</section>
+
+	<section ng-show="items">
+		<h2 class="title">From your likes:</h2>
+		<ul id="scrollyItems" class="items-wrap" ng-class="{
+			'list-view': user.viewMode === 'list',
+			'grid-view': user.viewMode === 'grid',
+			'inbox': inbox
+		}">
+			<li class="dash-item {{item.type}} item{{$index}}"
+				ng-repeat="item in items"
+				ng-class="{
+					'thumbed': item.thumbnail,
+					'texted': !item.thumbnail,
+					'last': $last
+				}"
+				go-to-link="{{item.trackUrl||item.source}}"
+				ng-include="'/partials/cardItem.ejs'">
+			</li>
+		</ul>
+	</section>
+
+	<div ng-if="loaded && !items.length && search" class="blank-box">
+		<div class="robot-icon big-icon"></div>
+		<h2 class="title">No matching search results!</h2>
+		<p>Sorry, but there is no content related to your <b ng-show="query">"{{query}}"</b> request. Didn't you mean something else?</p>
+	</div>
+
+	<div ng-hide="loaded || error" class="two-spin"></div>
+</section>
