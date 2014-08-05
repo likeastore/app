@@ -4,7 +4,6 @@ define(function (require) {
 	function SearchController ($scope, $rootScope, $routeParams, appLoader, api, user, $analytics, mixpanel) {
 		$analytics.eventTrack('search opened');
 
-		$rootScope.title = 'Search results for "' + $routeParams.text + '"';
 		$scope.search = true;
 		$scope.query = $routeParams.text;
 
