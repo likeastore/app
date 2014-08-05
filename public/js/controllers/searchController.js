@@ -7,6 +7,7 @@ define(function (require) {
 		$rootScope.title = 'Search results for "' + $routeParams.text + '"';
 		$scope.search = true;
 		$scope.query = $routeParams.text;
+		$scope.list = 'following';
 
 		$scope.page = 1;
 		$scope.collections = [];
