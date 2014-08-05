@@ -11,7 +11,7 @@
 			<li class="coll-card collection{{$index}}"
 				ng-repeat="coll in collections"
 				ng-class="{'last': $last, 'thumbed': coll.thumbnail}"
-				ng-include="'/partials/cardCollection.ejs'">
+				ng-include src="'/partials/cardCollection.ejs'">
 			</li>
 		</ul>
 	</section>

@@ -104,7 +104,7 @@ define(function (require) {
 		}
 	]);
 
-	app.run(function (user, tracking, facebook, utils) {
+	app.run(function (user, tracking, facebook, utils, $templateCache, $http) {
 		user.initialize().then(function () {
 			user.getInboxCount();
 			user.getCollections();
@@ -113,6 +113,8 @@ define(function (require) {
 
 		tracking.boot();
 		facebook.init();
+
+		$http.get('/partials/cardCollection.ejs', {cache: $templateCache});
 
 		utils();
 	});
