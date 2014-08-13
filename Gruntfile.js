@@ -48,7 +48,6 @@ module.exports = function (grunt) {
 			}
 		},
 
-
 		myth: {
 			all: {
 				files: {
