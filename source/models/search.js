@@ -7,40 +7,12 @@ var collections = require('./collections');
 
 var ObjectId = require('mongojs').ObjectId;
 
-function genericSearch(options, callback) {
-	var user = options.user;
-	var index = options.index;
-	var filter = options.filter || {};
-	var sort = options.sort || {};
-	var query = options.query;
-	var paging = options.paging;
-
-	var text = query.text;
-	var track = query.track;
-	var from = query.from || 'extention';
-
-	if (!text) {
-		return callback(null, { data: [], nextPage: false });
-	}
-
-	var page = (paging && paging.page) || 1;
-	var pageSize = (paging && paging.pageSize) || config.app.pageSize;
-	var pageFrom = (page - 1) * pageSize;
-
+function elasticSearch(query, filter, index, sort, pageFrom, pageSize, callback) {
 	var searchQuery = {
 		query: {
 			filtered: {
-				query: {
-					common: {
-						_all: {
-							query: text,
-							cutoff_frequency: 0.002,
-							minimum_should_match: 2,
-							low_freq_operator: 'and'
-						}
-					}
-				},
-				filter: filter,
+				query: query,
+				filter: filter
 			}
 		},
 		highlight: {
@@ -58,7 +30,26 @@ function genericSearch(options, callback) {
 		from: pageFrom,
 		size: pageSize,
 		body: searchQuery
-	}, function (err, resp) {
+	}, callback);
+}
+
+function genericSearch(options, callback) {
+	var user = options.user;
+	var index = options.index;
+	var filter = options.filter || {};
+	var sort = options.sort || {};
+	var query = options.query;
+	var text = options.query.text;
+	var paging = options.paging;
+	var elasticQuery = options.elasticQuery;
+	var track = query.track;
+	var from = query.from || 'extention';
+
+	var page = (paging && paging.page) || 1;
+	var pageSize = (paging && paging.pageSize) || config.app.pageSize;
+	var pageFrom = (page - 1) * pageSize;
+
+	elasticSearch(elasticQuery, filter, index, sort, pageFrom, pageSize, function (err, resp) {
 		if (err) {
 			return callback(err);
 		}
@@ -109,8 +100,64 @@ function genericSearch(options, callback) {
 	}
 }
 
+function commonSearch(options, callback) {
+	var query = options.query;
+	var text = query.text;
+
+	if (!text) {
+		return callback(null, { data: [], nextPage: false });
+	}
+
+	var elasticQuery = {
+		common: {
+			_all: {
+				query: text,
+				cutoff_frequency: 0.002,
+				minimum_should_match: 2,
+				low_freq_operator: 'and'
+			}
+		}
+	};
+
+	genericSearch(_.extend(options, {elasticQuery: elasticQuery}), callback);
+}
+
+function simpleSearch(options, callback) {
+	var query = options.query;
+	var text = query.text;
+
+	if (!text) {
+		return callback(null, { data: [], nextPage: false });
+	}
+
+	var elasticQuery = {
+		simple_query_string: {
+			query: text,
+			analyzer: 'snowball',
+			fields: ['_all'],
+			default_operator: 'and'
+		}
+	};
+
+	genericSearch(_.extend(options, {elasticQuery: elasticQuery}), callback);
+}
+
+function fallbackSearch(options, callback) {
+	commonSearch(options, function (err, results) {
+		if (err) {
+			return callback(err);
+		}
+
+		if (results.data.length > 0) {
+			return callback(null, results);
+		}
+
+		simpleSearch(options, callback);
+	});
+}
+
 function searchOwnItems (user, query, paging, callback) {
-	genericSearch({
+	fallbackSearch({
 		index: 'items',
 		filter: {
 			term: {
@@ -126,7 +173,7 @@ function searchOwnItems (user, query, paging, callback) {
 }
 
 function searchFeed(user, query, paging, callback) {
-	genericSearch({
+	fallbackSearch({
 		index: 'feeds',
 		filter: {
 			term: {
@@ -142,7 +189,7 @@ function searchFeed(user, query, paging, callback) {
 }
 
 function searchCollections(user, query, paging, callback) {
-	genericSearch({
+	fallbackSearch({
 		index: 'collections',
 		filter: {
 			term: {
