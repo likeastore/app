@@ -21,7 +21,7 @@ define(function () {
 				timer = $timeout(function () {
 					searchForCollections(tags);
 				}, 1000);
-			} else {
+			} else if ($rootScope.loaded) {
 				getPopularCollections();
 			}
 		}
