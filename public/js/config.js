@@ -86,6 +86,12 @@ define(function () {
 				title: 'Software Development',
 				color: '#56c7aa',
 				thumbnail: 'https://pbs.twimg.com/media/BBfcIa3CEAAPVh2.png'
+			},
+			{
+				id: '5336995fd195760e00000017',
+				title: 'Interesting',
+				color: '#56c7aa',
+				thumbnail: 'https://m1.behance.net/rendition/projects/18682087/404/06a4d2d6c161a007825ac5886aa74dbd.jpeg'
 			}
 		],
 
