@@ -1264,6 +1264,7 @@ textarea.fld {
 .list-view .dash-item.last {
   border-bottom: 0;
   border-radius: 0 0 2px 2px;
+  margin-bottom: 25px;
 }
 
 .list-view .dash-item .cover {
