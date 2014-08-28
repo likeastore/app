@@ -32,7 +32,7 @@ define(function (require) {
 		function loadPage() {
 			appLoader.loading();
 
-			api.get({ resource: 'search2', text: $routeParams.text, page: $scope.page, track: 1, from: 'site' }, function (res) {
+			api.get({ resource: 'search', text: $routeParams.text, page: $scope.page, track: 1, from: 'site' }, function (res) {
 				if ($scope.page === 1) {
 					$scope.collections = $scope.collections.concat(res.collections.data);
 					$scope.feeds = $scope.feeds.concat(res.feeds.data);

@@ -519,50 +519,6 @@ function popular(user, callback) {
 	});
 }
 
-function search(user, query, callback) {
-	if (!query) {
-		return callback(null, { data: [], nextPage: false });
-	}
-
-	elastic.search({
-		index: 'collections',
-		body: {
-			query: {
-				filtered: {
-					query: {
-						simple_query_string: {
-							query: query,
-							fields: ['title', 'description']
-						},
-					},
-
-					filter: {
-						term: {
-							public: true
-						}
-					}
-				}
-			}
-		}
-	}, function (err, response) {
-		if (err) {
-			return callback(err);
-		}
-
-		var ids = response.hits.hits.map(function (collection) {
-			return new ObjectId(collection._id);
-		});
-
-		resolve(ids, function (err, collections) {
-			if (err) {
-				return callback(err);
-			}
-
-			callback(null, {data: collections, nextPage: false});
-		});
-	});
-}
-
 function resolve(ids, callback) {
 	db.collections.find({_id: {$in: ids}}, function (err, collections) {
 		if (err) {
@@ -589,7 +545,6 @@ module.exports = {
 	unfollow: unfollow,
 	followedBy: followedBy,
 	popular: popular,
-	search: search,
 	resolve: resolve,
 	transform: transform
 };

@@ -4,7 +4,6 @@ module.exports = function (app) {
 	require('./networks')(app);
 	require('./users')(app);
 	require('./search')(app);
-	require('./search2')(app);
 	require('./emails')(app);
 	require('./history')(app);
 	require('./monitor')(app);

@@ -8,9 +8,9 @@ function collectionsService(app) {
 	app.get('/api/collections/explore',
 		getPopularCollections);
 
-	app.get('/api/collections/search',
-		middleware.analytics.track('search collections', {query: 'text'}),
-		searchCollections);
+	// app.get('/api/collections/search',
+	// 	middleware.analytics.track('search collections', {query: 'text'}),
+	// 	searchCollections);
 
 	app.get('/api/collections/user/:name',
 		getUsersCollections);
@@ -209,21 +209,17 @@ function collectionsService(app) {
 		});
 	}
 
-	function searchCollections(req, res, next) {
-		var query = req.query.text;
+	// function searchCollections(req, res, next) {
+	// 	var query = req.query.text;
 
-		collections.search(req.user, query, function (err, results) {
-			if (err) {
-				return next({message: 'failed to search collections', user: req.user, query: query, err: err, status: 500});
-			}
+	// 	collections.search(req.user, query, function (err, results) {
+	// 		if (err) {
+	// 			return next({message: 'failed to search collections', user: req.user, query: query, err: err, status: 500});
+	// 		}
 
-			if (results.data) {
-				results.data = results.data.map(collections.transform);
-			}
-
-			res.json(results);
-		});
-	}
+	// 		res.json(results);
+	// 	});
+	// }
 }
 
 module.exports = collectionsService;
