@@ -504,6 +504,13 @@ function popular(user, callback) {
 		new ObjectId('53552540edce3c0c00000002'),
 		new ObjectId('531f870049e12d0d0000000f'),
 		new ObjectId('539819f5e45b300f00000026'),
+
+		// promoted in promo-35
+		new ObjectId('53a93bebaa267c0d00000001'),
+		new ObjectId('531e32859a9b500c00000078'),
+		new ObjectId('53ee08d50b0e941400000003'),
+		new ObjectId('539ea335e45b300f00000039'),
+		new ObjectId('534399aa19979c0b00000026')
 	];
 
 	db.collections.find({_id: {$in: collections}}, function (err, collections) {
