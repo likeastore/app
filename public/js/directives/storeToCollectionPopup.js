@@ -30,35 +30,33 @@ define(function (require) {
 					</li>\
 				</ul>',
 			controller: function ($scope, $rootScope, $document, $analytics, $timeout, api, seismo) {
-				// $rootScope.watch('collections', function (collections) {
-					$scope.collections = $rootScope.collections;
+				$scope.collections = $rootScope.collections;
 
-					$scope.togglePopup = function () {
-						$scope.popup = !$scope.popup ? true : false;
-					};
+				$scope.togglePopup = function () {
+					$scope.popup = !$scope.popup ? true : false;
+				};
 
-					$scope.addItemToCollection = function (collectionId) {
-						$scope.added = true;
-						$timeout(function () {
-							$scope.added = false;
-						}, 1500);
+				$scope.addItemToCollection = function (collectionId) {
+					$scope.added = true;
+					$timeout(function () {
+						$scope.added = false;
+					}, 1500);
 
-						api.update({
-							resource: 'collections',
-							target: collectionId,
-							verb: 'items',
-							suffix: $scope.item._id
-						}, {}, function (res) {
-							$analytics.eventTrack('collection item added');
-							seismo.track('collection item added');
-						});
-					};
+					api.update({
+						resource: 'collections',
+						target: collectionId,
+						verb: 'items',
+						suffix: $scope.item._id
+					}, {}, function (res) {
+						$analytics.eventTrack('collection item added');
+						seismo.track('collection item added');
+					});
+				};
 
-					$scope.createFirstCollection = function () {
-						$document.find('body').addClass('sidebar-active');
-						$rootScope.showAddForm = true;
-					};
-				// });
+				$scope.createFirstCollection = function () {
+					$document.find('body').addClass('sidebar-active');
+					$rootScope.showAddForm = true;
+				};
 			},
 			link: function (scope, elem) {
 				elem.addClass('store-it-popup-wrap');
