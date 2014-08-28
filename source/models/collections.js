@@ -508,7 +508,7 @@ function popular(user, callback) {
 		// promoted in promo-35
 		new ObjectId('53a93bebaa267c0d00000001'),
 		new ObjectId('531e32859a9b500c00000078'),
-		new ObjectId('53ee08d50b0e941400000003'),
+		new ObjectId('531ae71679fd7b0d0000002c'),
 		new ObjectId('539ea335e45b300f00000039'),
 		new ObjectId('534399aa19979c0b00000026')
 	];
