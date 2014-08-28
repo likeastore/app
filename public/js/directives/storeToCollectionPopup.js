@@ -30,8 +30,8 @@ define(function (require) {
 					</li>\
 				</ul>',
 			controller: function ($scope, $rootScope, $document, $analytics, $timeout, api, seismo) {
-				$rootScope.watch('collections', function (collections) {
-					$scope.collections = collections;
+				// $rootScope.watch('collections', function (collections) {
+					$scope.collections = $rootScope.collections;
 
 					$scope.togglePopup = function () {
 						$scope.popup = !$scope.popup ? true : false;
@@ -58,7 +58,7 @@ define(function (require) {
 						$document.find('body').addClass('sidebar-active');
 						$rootScope.showAddForm = true;
 					};
-				});
+				// });
 			},
 			link: function (scope, elem) {
 				elem.addClass('store-it-popup-wrap');
