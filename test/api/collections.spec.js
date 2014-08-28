@@ -946,7 +946,7 @@ describe('collections.spec.js', function () {
 
 					it('should have followCollections property', function () {
 						expect(results).to.have.property('followed');
-						expect(results.followed[0].email).to.equal(otherUser.email);
+						expect(results.followed[0]._id).to.equal(otherUser._id.toString());
 					});
 				});
 

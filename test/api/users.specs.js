@@ -169,9 +169,8 @@ describe('users.spec.js', function () {
 					expect(body.follows).to.be.ok;
 				});
 
-				it('should have id and email', function () {
+				it('should have id', function () {
 					expect(body.follows[0].id).to.be.ok;
-					expect(body.follows[0].email).to.be.ok;
 				});
 			});
 

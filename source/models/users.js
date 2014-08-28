@@ -27,12 +27,30 @@ var userPickFields = [
 	'watchedOnlyExtension'
 ];
 
+var followOmitFields = [
+	'email'
+];
+
 var ObjectId = require('mongojs').ObjectId;
 
 var maxUsersMatches = 16;
 
 function transform(user) {
-	return _.pick(user, userPickFields);
+	user = _.pick(user, userPickFields);
+
+	if (user.followed) {
+		user.followed = user.followed.map(function (f) {
+			return _.omit(f, followOmitFields);
+		});
+	}
+
+	if (user.follows) {
+		user.follows = user.follows.map(function (f) {
+			return _.omit(f, followOmitFields);
+		});
+	}
+
+	return user;
 }
 
 function findById (id, callback) {
