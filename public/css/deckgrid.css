@@ -194,6 +194,40 @@
   color: #999;
 }
 
+.card-item .card-comments {
+  font-size: 11px;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: bold;
+  border-top: 1px solid #e7e7e7;
+  line-height: 15px;
+  padding: 10px 12px;
+  position: relative;
+  z-index: 11;
+  border-radius: 0 0 3px 3px;
+  -webkit-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+
+.card-item .card-comments .comment-icon {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 20px;
+  vertical-align: top;
+  color: #717171;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  margin-right: 3px;
+}
+
+.card-item .card-comments .comments-count {
+  display: inline-block;
+}
+
+.card-item .card-comments .comments-count a {
+  color: #b5b5b5;
+}
+
 .card-item .from .icon {
   display: inline-block;
   color: #fff;
