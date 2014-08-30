@@ -4,10 +4,29 @@
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
-.discuss .comment-form .avatar {
+.discuss .comment-form {
   display: inline-block;
+}
+
+.discuss .comment-form .avatar {
   vertical-align: top;
   width: 44px;
   height: 44px;
   border-radius: 100%;
+}
+
+.discuss .comment-form .comment-box {
+  display: block;
+  border-style: none;
+  border-color: transparent;
+  overflow: auto;
+  width: 620px;
+  font-size: 15px;
+  background: transparent;
+  border-bottom: 1px solid #ddd;
+  border-radius: 1px;
+}
+
+.discuss .comment-form .comment-box:focus {
+  outline: none;
 }
