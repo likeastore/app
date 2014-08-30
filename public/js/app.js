@@ -18,6 +18,7 @@ define(function (require) {
 	require('underscore');
 	require('facebook');
 	require('twttr');
+	require('elastic');
 
 	require('./services/services');
 	require('./controllers/controllers');
@@ -38,6 +39,7 @@ define(function (require) {
 		'angularMoment',
 		'akoenig.deckgrid',
 		'ngCustomerVoice',
+		'monospaced.elastic',
 		'services',
 		'controllers',
 		'directives',

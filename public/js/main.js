@@ -23,7 +23,8 @@ require.config({
 		'modernizr': '../components/modernizr/modernizr',
 		'bowser': '../components/bowser/bowser',
 		'facebook': '../components/utils/FB',
-		'twttr': '../components/utils/twttr'
+		'twttr': '../components/utils/twttr',
+		'elastic': '../components/angular-elastic/elastic'
 	},
 	shim: {
 		ngResource: {
@@ -91,6 +92,9 @@ require.config({
 		},
 		twttr: {
 			exports: 'twttr'
+		},
+		elastic: {
+			deps: ['angular']
 		}
 	},
 	baseUrl: '/js'
