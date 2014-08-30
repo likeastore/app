@@ -1,0 +1,13 @@
+/* Discuss */
+
+.discuss {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.discuss .comment-form .avatar {
+  display: inline-block;
+  vertical-align: top;
+  width: 44px;
+  height: 44px;
+  border-radius: 100%;
+}

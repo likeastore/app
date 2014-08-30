@@ -64,5 +64,8 @@ define(function (require) {
 	// onboarding
 	controllers.controller('onboardingController', require('./onboardingController'));
 
+	// discuss
+	controllers.controller('discussController', require('./discussController'));
+
 	return controllers;
 });

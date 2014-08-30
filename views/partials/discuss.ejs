@@ -2,8 +2,13 @@
 	<div class="item-preview">
 	</div>
 
-	<div class="comment-form">
-	</div>
+	<form class="comment-form">
+		<div class="user">
+			<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load>
+		</div>
+		<textarea class="comment-box" msd-elastic ng-model="comment"></textarea>
+		<button type="submit">Post</button>
+	</form>
 
 	<div class="comments">
 	</div>
