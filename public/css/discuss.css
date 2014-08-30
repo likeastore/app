@@ -2,31 +2,44 @@
 
 .discuss {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  text-align: center;
 }
 
 .discuss .comment-form {
   display: inline-block;
+
 }
 
 .discuss .comment-form .avatar {
+  display: inline-block;
   vertical-align: top;
   width: 44px;
   height: 44px;
   border-radius: 100%;
+  vertical-align: top;
 }
 
 .discuss .comment-form .comment-box {
-  display: block;
+  display: inline-block;
   border-style: none;
   border-color: transparent;
   overflow: auto;
   width: 620px;
-  font-size: 15px;
+  height: 70px;
+  font-size: 13px;
+  color: #666;
   background: transparent;
+  vertical-align: top;
   border-bottom: 1px solid #ddd;
   border-radius: 1px;
+  margin: 0 15px;
 }
 
 .discuss .comment-form .comment-box:focus {
   outline: none;
+}
+
+.discuss .comment-form .post-comment {
+  display: inline-block;
+  vertical-align: top;
 }

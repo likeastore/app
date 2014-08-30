@@ -1,13 +1,11 @@
-<section class="discuss animated fadeIn">
+<section class="discuss dashboard animated fadeIn">
 	<div class="item-preview">
 	</div>
 
 	<form class="comment-form">
-		<div class="user">
-			<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load>
-		</div>
+		<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load>
 		<textarea class="comment-box" msd-elastic ng-model="comment" placeholder="Write your comment.."></textarea>
-		<button type="submit">Post</button>
+		<button type="submit" class="button navy-btn mdm-btn">Post</button>
 	</form>
 
 	<div class="comments">
