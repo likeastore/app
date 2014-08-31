@@ -2,12 +2,19 @@
 	<div class="item-preview">
 	</div>
 
-	<form class="comment-form">
+	<ol class="comments">
+		<li class="comment" ng-repeat="comment in comments">
+			<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load/>
+			<a class="name" href="/u/{{comment.user.name}}">{{comment.user.name}}</a>
+			<div class="message">
+				{{comment.message}}
+			</div>
+		</li>
+	</ol>
+
+	<form class="comment-form" ng-submit="postComment()">
 		<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load>
-		<textarea class="comment-box" msd-elastic ng-model="comment" placeholder="Write your comment.."></textarea>
+		<textarea class="comment-box" msd-elastic ng-model="message" placeholder="Write your comment.."></textarea>
 		<button type="submit" class="button navy-btn mdm-btn">Post</button>
 	</form>
-
-	<div class="comments">
-	</div>
 </section>
