@@ -77,7 +77,6 @@ define(function (require) {
 				.when('/discover', { templateUrl: 'partials/explore', controller: 'exploreController' })
 				.when('/settings', { templateUrl: 'partials/settings', controller: 'settingsController' })
 				.when('/suggest', { templateUrl: 'partials/suggest', controller: 'suggestPeopleController' })
-				.when('/discuss/:id', { templateUrl: 'partials/discuss', controller: 'discussController'})
 				.when('/u/:name', { templateUrl: 'partials/profile', controller: 'profileController',
 					reloadOnSearch: false,
 					resolve: {
@@ -95,6 +94,7 @@ define(function (require) {
 							return user.getCollections();
 						}
 					}})
+				.when('/u/:name/discuss/:id', { templateUrl: 'partials/discuss', controller: 'discussController'})
 				.when('/ooops', { templateUrl: 'errorView', controller: 'errorController' })
 				.otherwise({ redirectTo: '/' });
 

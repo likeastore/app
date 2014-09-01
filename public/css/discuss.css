@@ -2,9 +2,12 @@
 
 .discuss {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  text-align: center;
   max-width: 640px;
   margin: 0 auto;
+}
+
+.discuss .preview {
+  margin: 0 25%;
 }
 
 .discuss .comment-form {

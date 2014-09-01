@@ -73,7 +73,7 @@ function getAllItems(user, paging, callback) {
 }
 
 function getById(user, id, callback) {
-	db.items.findOne({user: user.email, _id: new ObjectId(id)}, function (err, item) {
+	db.items.findOne({_id: new ObjectId(id)}, function (err, item) {
 		if (err) {
 			return callback(err);
 		}
