@@ -9,10 +9,13 @@ define(function () {
 		loadItem();
 
 		$scope.postComment = function () {
-			var comment = {message: this.message, user: $rootScope.user, date: moment().toDate()};
-			this.message = '';
+			var me = this;
 
-			$scope.comments.push(comment);
+			var comment = {message: me.message};
+			api.post({resource: 'items', target: id, verb: 'comment'}, comment, function (comment) {
+				$scope.comments.push(comment);
+				me.message = '';
+			});
 		};
 
 		$scope.ago = function (date) {

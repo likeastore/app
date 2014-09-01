@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var moment = require('moment');
+var async = require('async');
 
 var config = require('../../config');
 var db = require('../db')(config);
@@ -17,6 +18,8 @@ function transform(item) {
 	if (clone.userData) {
 		clone.userData = _.pick(clone.userData, userPickFields);
 	}
+
+	clone.commentsCount = (item.comments && item.comments.length) || 0;
 
 	return clone;
 }
@@ -184,7 +187,7 @@ function getInboxCount(user, callback) {
 
 function hideItem(user, id, callback) {
 	db.items.findAndModify({
-		query: {_id: new db.ObjectId(id), user: user.email},
+		query: {_id: new ObjectId(id), user: user.email},
 		update: {$set: {hidden: true}},
 		'new': true
 	}, callback);
@@ -199,7 +202,7 @@ function flagItem(user, id, reason, callback) {
 	};
 
 	db.items.findAndModify({
-		query: {_id: new db.ObjectId(id), user: user.email},
+		query: {_id: new ObjectId(id), user: user.email},
 		update: {$push: {flaggedBy: userData}},
 		'new': true
 	}, callback);
@@ -213,6 +216,35 @@ function readItem(user, id, callback) {
 	}, callback);
 }
 
+function postComment(user, id, comment, callback) {
+	if (!comment.message) {
+		return callback({message: 'missing message', status: 412});
+	}
+
+	comment = _.extend(comment, {date: moment().toDate(), user: _.pick(user, userPickFields)});
+
+	db.items.findAndModify({
+		query: {_id: new ObjectId(id)},
+		update: {$push: {comments: comment}},
+		'new': true
+	}, function (err, item) {
+		if (err) {
+			return callback(err);
+		}
+
+		// inc comment count in collections
+		async.each(item.collections, function (collection, callback) {
+			db.collections.update({_id: collection.id, 'items._id': new ObjectId(id)}, {$inc: {'items.$.commentsCount': 1}}, {multi: true}, callback);
+		}, function (err, results) {
+			if (err) {
+				return callback(err);
+			}
+
+			callback(null, comment);
+		});
+	});
+}
+
 module.exports = {
 	getAllItems: getAllItems,
 	getById: getById,
@@ -223,5 +255,6 @@ module.exports = {
 	hideItem: hideItem,
 	flagItem: flagItem,
 	readItem: readItem,
+	postComment: postComment,
 	transform: transform
 };

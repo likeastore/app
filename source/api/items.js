@@ -53,6 +53,10 @@ function itemsService(app) {
 		getItemById
 	);
 
+	app.post('/api/items/:id/comment',
+		middleware.validate.id('id'),
+		postComment);
+
 	function getItems (req, res, next) {
 		items.getAllItems(req.user, req.paging, function (err, results) {
 			if (err) {
@@ -186,6 +190,16 @@ function itemsService(app) {
 			}
 
 			res.send(200);
+		});
+	}
+
+	function postComment(req, res, next) {
+		items.postComment(req.user, req.params.id, req.body, function (err, comment) {
+			if (err) {
+				return next(err);
+			}
+
+			res.json(201, comment);
 		});
 	}
 }
