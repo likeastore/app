@@ -43,7 +43,10 @@
 	<div class="card-comments">
 		<i class="font-icon pencil-icon comment-icon"></i>
 		<div class="comments-count">
-			<a href="/u/{{card.collection.owner.name}}/discuss/{{card._id}}" class="c-title truncate">3 comments</a>
+			<a href="/u/{{card.collection.owner.name}}/discuss/{{card._id}}" class="c-title truncate">
+				<span ng-if="card.commentsCount">{{card.commentsCount}} comments</span>
+				<span ng-if="!card.commentsCount">Leave a comment</span>
+			</a>
 		</div>
 	</div>
 </div>

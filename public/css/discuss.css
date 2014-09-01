@@ -10,6 +10,20 @@
   margin: 0 25%;
 }
 
+.discuss .user-info {
+  margin-bottom: 13px;
+}
+
+.discuss .user-info .name {
+  font-weight: 700;
+  color: #1f282d;
+}
+
+.discuss .user-info .info {
+  line-height: 40px;
+  margin-left: 13px;
+}
+
 .discuss .comment-form {
   display: inline-block;
 }

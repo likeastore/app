@@ -1,4 +1,11 @@
 <section class="discuss dashboard animated fadeIn">
+	<div class="user-info">
+		<img ng-src="{{item.userData.avatar}}" class="avatar close-sidebar" avatar-load/>
+		<span class="info">
+			<a class="name" href="/u/{{item.userData.name}}">{{item.userData.name}}</a> liked this on <span class="name">{{item.type}}</span>:
+		</span>
+	</div>
+
 	<div class="preview">
 		<div class="dash-item {{item.type}}" ng-include="'/partials/cardItem.ejs'"></div>
 	</div>
