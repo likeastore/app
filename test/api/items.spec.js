@@ -216,8 +216,6 @@ describe('items.spec.js', function () {
 		});
 
 		describe('when item hidden', function () {
-			var items;
-
 			beforeEach(function (done) {
 				testUtils.createTestNetworks(user, {}, done);
 			});

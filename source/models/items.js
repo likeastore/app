@@ -19,8 +19,6 @@ function transform(item) {
 		clone.userData = _.pick(clone.userData, userPickFields);
 	}
 
-	clone.commentsCount = (item.comments && item.comments.length) || 0;
-
 	return clone;
 }
 
@@ -233,7 +231,8 @@ function postComment(user, id, comment, callback) {
 		}
 
 		// inc comment count in collections
-		async.each(item.collections, function (collection, callback) {
+		var collections = item.collections || [];
+		async.each(collections, function (collection, callback) {
 			db.collections.update({_id: collection.id, 'items._id': new ObjectId(id)}, {$inc: {'items.$.commentsCount': 1}}, {multi: true}, callback);
 		}, function (err, results) {
 			if (err) {
