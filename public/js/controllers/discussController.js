@@ -10,6 +10,10 @@ define(function () {
 
 			comments.push(comment);
 		};
+
+		$scope.ago = function (date) {
+			return moment.duration(new Date() - date).humanize(true);
+		};
 	}
 
 	return DiscussController;

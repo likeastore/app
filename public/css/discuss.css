@@ -50,7 +50,7 @@
 
 .discuss .comments li {
   text-align: left;
-  margin: 34px 0;
+  margin-bottom: 44px;
 }
 
 .discuss .comments .name {
@@ -60,8 +60,11 @@
   margin-left: 15px;
 }
 
+.discuss .comments .date {
+  float: right;
+}
+
 .discuss .comments .comment {
-  width: 524px;
   color: #666;
   vertical-align: top;
 }
