@@ -4,6 +4,7 @@ var moment = require('moment');
 var config = require('../../config');
 var db = require('../db')(config);
 var networks = require('./networks');
+var notifier = require('./notifier');
 
 var ObjectId = require('mongojs').ObjectId;
 
@@ -228,6 +229,8 @@ function postComment(user, id, comment, callback) {
 		if (err) {
 			return callback(err);
 		}
+
+		notifier('item comment posted', user, {itemId: id, comment: comment});
 
 		callback(null, comment);
 	});
