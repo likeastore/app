@@ -1,6 +1,5 @@
 var _ = require('underscore');
 var moment = require('moment');
-var async = require('async');
 
 var config = require('../../config');
 var db = require('../db')(config);
@@ -225,22 +224,12 @@ function postComment(user, id, comment, callback) {
 		query: {_id: new ObjectId(id)},
 		update: {$push: {comments: comment}},
 		'new': true
-	}, function (err, item) {
+	}, function (err) {
 		if (err) {
 			return callback(err);
 		}
 
-		// inc comment count in collections
-		var collections = item.collections || [];
-		async.each(collections, function (collection, callback) {
-			db.collections.update({_id: collection.id, 'items._id': new ObjectId(id)}, {$inc: {'items.$.commentsCount': 1}}, {multi: true}, callback);
-		}, function (err, results) {
-			if (err) {
-				return callback(err);
-			}
-
-			callback(null, comment);
-		});
+		callback(null, comment);
 	});
 }
 

@@ -9,5 +9,4 @@ module.exports = function (app) {
 	require('./monitor')(app);
 	require('./feed')(app);
 	require('./collections')(app);
-	require('./comments')(app);
 };

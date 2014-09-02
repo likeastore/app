@@ -19,7 +19,7 @@ define(function () {
 		};
 
 		$scope.ago = function (date) {
-			return moment.duration(new Date() - date).humanize(true);
+			return moment.duration(new Date(date) - new Date()).humanize(true);
 		};
 
 		function loadItem() {
