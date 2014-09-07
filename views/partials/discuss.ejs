@@ -23,7 +23,7 @@
 
 	<ol class="comments">
 		<li class="comment" ng-repeat="comment in comments">
-			<img ng-src="{{user.avatar}}" class="avatar close-sidebar" avatar-load/>
+			<img ng-src="{{comment.user.avatar}}" class="avatar close-sidebar" avatar-load/>
 			<abbr class="date" title="{{comment.date}}">{{ago(comment.date)}}</abbr>
 			<a class="name" href="/u/{{comment.user.name}}">{{comment.user.name}}</a>
 			<div class="message">
