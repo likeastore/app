@@ -230,7 +230,7 @@ function postComment(user, id, comment, callback) {
 			return callback(err);
 		}
 
-		notifier('item comment posted', user, {itemId: id, comment: comment});
+		notifier('item comment posted', user, {item: id, comment: comment});
 
 		callback(null, comment);
 	});
