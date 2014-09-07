@@ -7,7 +7,18 @@
 	</div>
 
 	<div class="preview">
-		<div class="dash-item {{item.type}}" ng-include="'/partials/cardItem.ejs'"></div>
+		<ul class="items-wrap" class="grid-view">
+			<li class="dash-item {{item.type}} item{{$index}}"
+				ng-model="item"
+				ng-class="{
+					'thumbed': item.thumbnail,
+					'texted': !item.thumbnail,
+					'last': $last
+				}"
+				go-to-link="{{item.trackUrl||item.source}}"
+				ng-include="'/partials/cardItem.ejs'">
+			</li>
+		</ul>
 	</div>
 
 	<ol class="comments">
