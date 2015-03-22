@@ -13,23 +13,29 @@ function searchService(app) {
 		searchCollections);
 
 	function advancedSearch(req, res, next) {
-		search.advanced(req.user, req.query, req.paging, function (err, results) {
-			if (err) {
-				return next(err);
-			}
 
-			res.json(results);
-		});
+		res.json([]);
+
+		// search.advanced(req.user, req.query, req.paging, function (err, results) {
+		// 	if (err) {
+		// 		return next(err);
+		// 	}
+
+		// 	res.json(results);
+		// });
 	}
 
 	function searchCollections(req, res, next) {
-		search.collections(req.user, req.query, req.paging, function (err, results) {
-			if (err) {
-				return next(err);
-			}
 
-			res.json(results);
-		});
+		res.json([]);
+
+		// search.collections(req.user, req.query, req.paging, function (err, results) {
+		// 	if (err) {
+		// 		return next(err);
+		// 	}
+
+		// 	res.json(results);
+		// });
 	}
 }
 
