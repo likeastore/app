@@ -84,5 +84,5 @@ module.exports = function (grunt) {
 
 	// Default task.
 	grunt.registerTask('default', ['jshint']);
-	grunt.registerTask('build', ['requirejs', 'myth', 'hashres']);
+	grunt.registerTask('build', ['requirejs', 'hashres']);
 };
