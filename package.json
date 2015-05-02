@@ -53,7 +53,8 @@
     "sinon-chai": "~2.4.0"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "0.10.x",
+    "npm": "2.9.x"
   },
   "subdomain": "likeastore-app"
 }
