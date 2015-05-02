@@ -193,14 +193,6 @@ body,
   margin-bottom: 35px;
 }
 
-.small-title {
-  color: #555;
-  font-size: 18px;
-  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  padding: 0;
-  margin-bottom: 25px;
-}
-
 .featured-title.less-space {
   margin-bottom: 12px;
 }
@@ -1264,7 +1256,6 @@ textarea.fld {
 .list-view .dash-item.last {
   border-bottom: 0;
   border-radius: 0 0 2px 2px;
-  margin-bottom: 25px;
 }
 
 .list-view .dash-item .cover {

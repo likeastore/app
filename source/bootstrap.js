@@ -6,7 +6,7 @@ logger.info('running grunt build...');
 
 exec('./node_modules/grunt-cli/bin/grunt build', function (err, stdout, stderr) {
 	if (err) {
-		logger.info('stderr: ' + stderr);
+		logger.fatal({message: 'fatal error', err: JSON.stringify(err), stdout: stdout, stderr: stderr});
 		process.exit(1);
 	}
 
