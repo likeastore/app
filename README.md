@@ -1,6 +1,6 @@
 # Likeastore.
 
-API and Web Client of awesome Likeastore. application.
+HTTP API and Web Client of awesome Likeastore. application.
 
 ## Installation
 
